@@ -11,14 +11,14 @@ Ingestion Grand Débat → SQLite (modèle normalisé) — version optimisée
 
 Usage :
   python gdn_ingest.py ingest \
-    --db sqlite:///gdn.db \
+    --db sqlite:///sandbox.db \
     --csv data/organisation-de-letat-et-des-services-publics.csv \
     --mapping ingest/mappings/organisation_etat_services.yml \
     --batch org_etat_services_$(date +%F) \
     --commit-every 10000 \
     --defer-fts
 
-  python gdn_ingest.py rebuild-fts --db sqlite:///gdn.db
+  python gdn_ingest.py rebuild-fts --db sqlite:///sandbox.db
 """
 from __future__ import annotations
 import argparse, csv, glob, gzip, hashlib, io, json, os, re, sys, zipfile

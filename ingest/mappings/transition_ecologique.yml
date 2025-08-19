@@ -1,0 +1,123 @@
+form:
+  name: "Grand Débat - Transition écologique"
+  version: "v1"
+  source: "plateforme"
+
+defaults:
+  author:
+    source_author_id: authorId
+    zipcode: authorZipCode
+  contribution:
+    source_contribution_id: reference
+    submitted_at: publishedAt
+    title: title
+    source: "plateforme-gdn"
+
+questions:
+  # --- méta utile pour la recherche FTS (titre)
+  - code: "META_TITLE"
+    prompt: "Titre de la contribution"
+    type: "text"
+    section: "meta"
+    source_column: "title"
+
+  # --- Transition écologique
+  - code: "Q160"
+    prompt: "Quel est aujourd'hui pour vous le problème concret le plus important dans le domaine de l'environnement ?"
+    type: "text"
+    section: "diagnostic"
+    source_column: "QUXVlc3Rpb246MTYw - Quel est aujourd'hui pour vous le problème concret le plus important dans le domaine de l'environnement ?"
+
+  - code: "Q161"
+    prompt: "Que faudrait-il faire selon vous pour apporter des réponses à ce problème ?"
+    type: "text"
+    section: "solutions"
+    source_column: "QUXVlc3Rpb246MTYx - Que faudrait-il faire selon vous pour apporter des réponses à ce problème ?"
+
+  - code: "Q146"
+    prompt: "Diriez-vous que votre vie quotidienne est aujourd'hui touchée par le changement climatique ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "climat"
+    source_column: "QUXVlc3Rpb246MTQ2 - Diriez-vous que votre vie quotidienne est aujourd'hui touchée par le changement climatique ?"
+
+  - code: "Q147"
+    prompt: "Si oui, de quelle manière votre vie quotidienne est-elle touchée par le changement climatique ?"
+    type: "text"
+    section: "climat"
+    source_column: "QUXVlc3Rpb246MTQ3 - Si oui, de quelle manière votre vie quotidienne est-elle touchée par le changement climatique ?"
+
+  - code: "Q148"
+    prompt: "À titre personnel, pensez-vous pouvoir contribuer à protéger l'environnement ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "engagement"
+    source_column: "QUXVlc3Rpb246MTQ4 - À titre personnel, pensez-vous pouvoir contribuer à protéger l'environnement ?"
+
+  - code: "Q149"
+    prompt: "Si oui, que faites-vous aujourd'hui pour protéger l'environnement et/ou que pourriez-vous faire ?"
+    type: "text"
+    section: "engagement"
+    source_column: "QUXVlc3Rpb246MTQ5 - Si oui, que faites-vous aujourd'hui pour protéger l'environnement et/ou que pourriez-vous faire ?"
+
+  - code: "Q150"
+    prompt: "Qu'est-ce qui pourrait vous inciter à changer vos comportements (chauffage, conduite, déplacements courts, etc.) ?"
+    type: "text"
+    section: "comportements"
+    source_column: "QUXVlc3Rpb246MTUw - Qu'est-ce qui pourrait vous inciter à changer vos comportements comme par exemple mieux entretenir et régler votre chauffage, modifier votre manière de conduire ou renoncer à prendre votre véhicule pour de très petites distances ?"
+
+  - code: "Q151"
+    prompt: "Quelles seraient les solutions les plus simples et les plus supportables financièrement pour vous inciter à changer ?"
+    type: "text"
+    section: "comportements"
+    source_column: "QUXVlc3Rpb246MTUx - Quelles seraient pour vous les solutions les plus simples et les plus supportables sur un plan financier pour vous inciter à changer vos comportements ?"
+
+  - code: "Q152"
+    prompt: "Par rapport à votre mode de chauffage actuel, existe-t-il des solutions alternatives plus écologiques ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "chauffage"
+    source_column: "QUXVlc3Rpb246MTUy - Par rapport à votre mode de chauffage actuel, pensez-vous qu'il existe des solutions alternatives plus écologiques ?"
+
+  - code: "Q153"
+    prompt: "Si oui, que faudrait-il faire pour vous convaincre ou vous aider à changer de mode de chauffage ?"
+    type: "text"
+    section: "chauffage"
+    source_column: "QUXVlc3Rpb246MTUz - Si oui, que faudrait-il faire pour vous convaincre ou vous aider à changer de mode de chauffage ?"
+
+  - code: "Q154"
+    prompt: "Pour vos déplacements quotidiens, avez-vous la possibilité d'utiliser des alternatives à la voiture individuelle ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "mobilité"
+    source_column: "QUXVlc3Rpb246MTU0 - Avez-vous pour vos déplacements quotidiens la possibilité de recourir à des solutions de mobilité alternatives à la voiture individuelle comme les transports en commun, le covoiturage, l'auto-partage, le transport à la demande, le vélo, etc. ?"
+
+  - code: "Q155"
+    prompt: "Si oui, que faudrait-il faire pour vous convaincre ou vous aider à utiliser ces solutions alternatives ?"
+    type: "text"
+    section: "mobilité"
+    source_column: "QUXVlc3Rpb246MTU1 - Si oui, que faudrait-il faire pour vous convaincre ou vous aider à utiliser ces solutions alternatives ?"
+
+  - code: "Q207"
+    prompt: "Si non, quelles alternatives de mobilité souhaiteriez-vous pouvoir utiliser ?"
+    type: "text"
+    section: "mobilité"
+    source_column: "QUXVlc3Rpb246MjA3 - Si non, quelles sont les solutions de mobilité alternatives que vous souhaiteriez pouvoir utiliser ?"
+
+  - code: "Q157"
+    prompt: "Qui doit selon vous se charger de vous proposer ce type de solutions alternatives ?"
+    type: "text"
+    section: "mobilité"
+    source_column: "QUXVlc3Rpb246MTU3 - Et qui doit selon vous se charger de vous proposer ce type de solutions alternatives ?"
+
+  - code: "Q158"
+    prompt: "Que pourrait faire la France pour faire partager ses choix en matière d'environnement au niveau européen et international ?"
+    type: "text"
+    section: "politique_publique"
+    source_column: "QUXVlc3Rpb246MTU4 - Que pourrait faire la France pour faire partager ses choix en matière d'environnement au niveau européen et international ?"
+
+  - code: "Q159"
+    prompt: "Autres points sur la transition écologique"
+    type: "text"
+    section: "ouverture"
+    source_column: "QUXVlc3Rpb246MTU5 - Y a-t-il d'autres points sur la transition écologique sur lesquels vous souhaiteriez vous exprimer ?"

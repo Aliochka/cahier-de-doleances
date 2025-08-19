@@ -33,6 +33,11 @@ data/
 *.db-shm
 *.db-wal
 
+# --- sandbox / sqlite ---
+sandbox.db
+sandbox.db-shm
+sandbox.db-wal
+
 
 # --- Rust ---
 /target/

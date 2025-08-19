@@ -5,6 +5,16 @@ from sqlalchemy import pool
 
 from alembic import context
 from app.models import Base
+import os
+
+config = context.config
+
+# Priorité: -x db_url=... > $DATABASE_URL > alembic.ini
+x_args = context.get_x_argument(as_dictionary=True)
+runtime_url = x_args.get("db_url") or os.getenv("GDN_DB_PATH")
+
+if runtime_url:
+    config.set_main_option("sqlalchemy.url", runtime_url)
 
 
 # this is the Alembic Config object, which provides

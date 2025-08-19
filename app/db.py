@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 # 1) Chemin absolu (via env GDN_SQLITE_PATH)
-DB_PATH = Path(os.getenv("GDN_SQLITE_PATH", "/home/romain/cahier-de-doleances/gdn.db")).expanduser().resolve()
+DB_PATH = Path(os.getenv("GDN_SQLITE_PATH", "/home/romain/cahier-de-doleances/sandbox.db")).expanduser().resolve()
 
 # 2) URI SQLite read-only (uri=true indispensable quand on a des query params)
 #    Note: as_posix() pour avoir 'file:/...' correct
