@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 class Settings:
-    DB_PATH = os.getenv("GDN_SQLITE_PATH", "./sandox.db")  # set dans .env
+    DB_PATH = os.getenv("DATABASE_URL", "./sandox.db")  # set dans .env
 settings = Settings()
 
 

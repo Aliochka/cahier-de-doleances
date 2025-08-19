@@ -9,6 +9,14 @@ import os
 
 config = context.config
 
+# Permet de surcharger l'URL par l'environnement
+database_url = os.getenv("DATABASE_URL")
+if database_url:
+    config.set_main_option("sqlalchemy.url", database_url)
+
+
+config = context.config
+
 # Priorité: -x db_url=... > $DATABASE_URL > alembic.ini
 x_args = context.get_x_argument(as_dictionary=True)
 runtime_url = x_args.get("db_url") or os.getenv("GDN_DB_PATH")

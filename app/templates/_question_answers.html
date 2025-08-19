@@ -1,0 +1,51 @@
+{% if total == 0 %}
+  {% if q %}
+    <p class="text-sm text-[#57534E] dark:text-[#B5B8BE]">Aucun résultat pour « {{ q }} ».</p>
+  {% else %}
+    <p class="text-sm text-[#57534E] dark:text-[#B5B8BE]">Aucune réponse pour cette question.</p>
+  {% endif %}
+{% else %}
+  <div class="flex items-baseline justify-between mb-3">
+    <div class="font-[IBM_Plex_Mono] text-xs tracking-[0.06em] text-[#1F3A5F] dark:text-[#8AB6FF]">
+      {{ total }} réponse{{ 's' if total>1 }}
+      {% if q %} · filtre « {{ q }} »{% endif %}
+    </div>
+  </div>
+
+  <ul class="space-y-3 md:space-y-4">
+    {% for a in answers %}
+      <li class="rounded-xl border border-[#E7E2DA] dark:border-[#242938]
+                 bg-[#FFFAF2] dark:bg-[#0E1013] p-4">
+        <div class="text-[15px] leading-7 font-inter">
+          {{ a.answer_text[:420] }}{% if a.answer_text and a.answer_text|length > 420 %}…{% endif %}
+        </div>
+        <div class="mt-2 text-xs text-[#57534E] dark:text-[#B5B8BE] font-[IBM_Plex_Mono]">
+          {% if a.submitted_at %}{{ a.submitted_at }}{% else %}–{% endif %}
+          {% if a.zipcode %} · {{ a.zipcode }}{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="mt-4 flex items-center justify-between">
+    {% if page > 1 %}
+      <button
+        class="rounded-lg px-3 py-2 border border-[#E7E2DA] dark:border-[#242938]"
+        hx-get="{{ url_for('question_answers_partial', question_id=question_id) }}?page={{ page-1 }}{% if q %}&q={{ q|urlencode }}{% endif %}"
+        hx-target="#answers"
+        hx-swap="innerHTML"
+        hx-push-url="true">← Précédent</button>
+    {% else %}
+      <span></span>
+    {% endif %}
+
+    {% if has_next %}
+      <button
+        class="rounded-lg px-3 py-2 border border-[#E7E2DA] dark:border-[#242938]"
+        hx-get="{{ url_for('question_answers_partial', question_id=question_id) }}?page={{ page+1 }}{% if q %}&q={{ q|urlencode }}{% endif %}"
+        hx-target="#answers"
+        hx-swap="innerHTML"
+        hx-push-url="true">Suivant →</button>
+    {% endif %}
+  </div>
+{% endif %}

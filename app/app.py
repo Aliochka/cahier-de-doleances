@@ -6,22 +6,13 @@ from fastapi.templating import Jinja2Templates
 from app.dal import latest_contribs, search_contribs
 from pathlib import Path
 from app.routers.hx import router as hx_router
-from app.db import assert_db_readable, DB_PATH
 import logging
 from dotenv import load_dotenv
-from app.routers.debug import router as debug_router
+from app.routers.question_search import router as question_search_router
 
 load_dotenv()
 
 log = logging.getLogger("uvicorn.error")
-try:
-    assert_db_readable()
-    log.info("SQLite OK: %s", DB_PATH)
-except Exception as e:
-    log.error("DB error: %s", e)
-    # option: re-raise pour fail fast
-    # raise
-
 app = FastAPI()
 
 BASE_DIR = Path(__file__).resolve().parent          # => /home/romain/grand_debat/app
@@ -36,7 +27,7 @@ from app.routers.pages import router as page_router
 
 app.include_router(page_router)
 app.include_router(hx_router)
-app.include_router(debug_router)
+app.include_router(question_search_router)
 
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
