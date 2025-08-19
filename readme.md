@@ -1,25 +1,80 @@
-Périmètre + maquettes hi‑fi mobile
+# Cahier de doléances
 
-DAL read‑only + mapping champs
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
 
-Endpoints/fragments htmx (réponses → questions → thèmes)
+> **Vision** : *Un pas de plus vers la révolution.*
 
-Cache + rate‑limit + erreurs UX
+---
 
-SEO + accessibilité + analytics
+## 🚀 Objectif du projet
 
-Déploiement staging → prod
+Cahier de doléances est un site/service permettant d’explorer, rechercher et analyser les contributions citoyennes du **Grand Débat National**.  
+L’idée : donner un accès simple et puissant à cette matière brute, pour nourrir les réflexions et ouvrir la voie à de nouvelles perspectives collectives.
 
-QA finale + go‑live
 
-# Ingest
+---
 
+## 🗺️ Roadmap v0
+
+- [ ] Mise en place du backend (FastAPI + SQLite pour démarrage local)  
+- [ ] Ingestion massive des contributions (CSV compressés)  
+- [ ] Indexation plein texte (FTS5) pour recherche rapide  
+- [ ] Front-end minimaliste mobile-first  
+- [ ] Scripts d’analyses exploratoires (Python / Rust)  
+
+---
+
+## 🛠️ Guide pour les développeurs
+
+### 1. Lancer le projet
+
+\`\`\`bash
+git clone https://github.com/[ton-org]/cahier-de-doleances.git
+cd cahier-de-doleances
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
-./gdn_ingest/target/release/gdn_ingest ingest   --db sqlite:///$PWD/gdn.db   --csv $PWD/data/la-fiscalite-et-les-depenses-publiques.csv   --mapping $PWD/ingest/mappings/fiscalite_depenses.yml   --batch fiscalite_depenses_$(date +%F)   --commit-every 20000   --log-every 2000   --defer-fts
-[ingest] form id=3 name='Grand Débat - Fiscalité & dépenses publiques' version='v1
+
+```bash
+# Lancer le serveur
+npm run:dev
 ```
 
+### 2. Créer la base de test
 
-# Lancer l'app
+```bash
+# Base SQLite par défaut
+touch gdn.db
+```
 
-`uvicorn app:app --reload --port 8000`
+### 3. Ingestion des données
+
+```bash
+python gdn_ingest.py ingest   --csv /chemin/vers/contributions.csv   --db gdn.db   --chunksize 5000
+```
+
+### 4. Recherche plein texte
+
+```bash
+python gdn_ingest.py search   --db gdn.db   --query "culture NEAR/5 patrimoine"   --limit 20
+```
+
+### 5. Rebuild du script en Rust (optionnel, pour performance)
+
+```bash
+cargo build --release
+./target/release/gdn_ingest ...
+```
+
+---
+
+## 📜 Licence
+
+Ce projet est distribué sous licence **MIT**.  
+Voir le fichier [LICENSE](./LICENSE) pour plus de détails.
+
+---
+
+## ✊ Un pas de plus vers la révolution
