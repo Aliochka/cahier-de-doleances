@@ -1,0 +1,236 @@
+form:
+  name: "Grand Débat - Organisation de l'État & services publics"
+  version: "v1"
+  source: "plateforme"
+
+defaults:
+  author:
+    source_author_id: authorId
+    zipcode: authorZipCode
+  contribution:
+    source_contribution_id: reference
+    submitted_at: publishedAt
+    title: title
+    source: "plateforme-gdn"
+
+questions:
+  # --- Meta (titre recherchable en FTS)
+  - code: "META_TITLE"
+    prompt: "Titre de la contribution"
+    type: "text"
+    section: "meta"
+    source_column: "title"
+
+  # --- Organisation de l'État / administrations
+  - code: "Q169"
+    prompt: "Que pensez-vous de l'organisation de l'État et des administrations en France ? De quelle manière cette organisation devrait-elle évoluer ?"
+    type: "text"
+    section: "organisation"
+    source_column: "QUXVlc3Rpb246MTY5 - Que pensez-vous de l'organisation de l'Etat et des administrations en France ? De quelle manière cette organisation devrait-elle évoluer ?"
+
+  - code: "Q170"
+    prompt: "Selon vous, l'État doit-il aujourd'hui transférer de nouvelles missions aux collectivités territoriales ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "organisation"
+    source_column: "QUXVlc3Rpb246MTcw - Selon vous, l'Etat doit-il aujourd'hui transférer de nouvelles missions aux collectivités territoriales ?"
+
+  - code: "Q171"
+    prompt: "Si oui, lesquelles (missions à transférer) ?"
+    type: "text"
+    section: "organisation"
+    source_column: "QUXVlc3Rpb246MTcx - Si oui, lesquelles ?"
+
+  # --- Accès aux services publics
+  - code: "Q204"
+    prompt: "Estimez-vous avoir accès aux services publics dont vous avez besoin ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "services_publics"
+    source_column: "QUXVlc3Rpb246MjA0 - Estimez-vous avoir accès aux services publics dont vous avez besoin ?"
+
+  - code: "Q172"
+    prompt: "Si non, quels services publics manquent sur votre territoire ?"
+    type: "text"
+    section: "services_publics"
+    source_column: "QUXVlc3Rpb246MTcy - Si non, quels types de services publics vous manquent dans votre territoire et qu'il est nécessaire de renforcer ?"
+
+  # --- Dématérialisation / services en ligne
+  - code: "Q174"
+    prompt: "Quels nouveaux services / démarches souhaitez-vous voir développés sur Internet en priorité ?"
+    type: "text"
+    section: "dematerialisation"
+    source_column: "QUXVlc3Rpb246MTc0 - Quels nouveaux services ou quelles démarches souhaitez-vous voir développées sur Internet en priorité ?"
+
+  - code: "Q175"
+    prompt: "Avez-vous déjà utilisé certaines de ces nouvelles formes de services publics ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "dematerialisation"
+    source_column: "QUXVlc3Rpb246MTc1 - Avez-vous déjà utilisé certaines de ces nouvelles formes de services publics ?"
+
+  - code: "Q176"
+    prompt: "Si oui, en avez-vous été satisfait ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "dematerialisation"
+    source_column: "QUXVlc3Rpb246MTc2 - Si oui, en avez-vous été satisfait ?"
+
+  - code: "Q177"
+    prompt: "Quelles améliorations préconiseriez-vous ?"
+    type: "text"
+    section: "dematerialisation"
+    source_column: "QUXVlc3Rpb246MTc3 - Quelles améliorations préconiseriez-vous ?"
+
+  - code: "Q178"
+    prompt: "Quels services publics ont évolué positivement ces dernières années ?"
+    type: "text"
+    section: "evolutions"
+    source_column: "QUXVlc3Rpb246MTc4 - Quand vous pensez à l'évolution des services publics au cours des dernières années, quels sont ceux qui ont évolué de manière positive ?"
+
+  - code: "Q179"
+    prompt: "Quels services publics doivent le plus évoluer selon vous ?"
+    type: "text"
+    section: "evolutions"
+    source_column: "QUXVlc3Rpb246MTc5 - Quels sont les services publics qui doivent le plus évoluer selon vous ?"
+
+  # --- Droit à l'erreur
+  - code: "Q180"
+    prompt: "Connaissez-vous le \"droit à l'erreur\" ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "droit_a_l_erreur"
+    source_column: "QUXVlc3Rpb246MTgw - Connaissez-vous le \"droit à l'erreur\", c'est-à-dire le droit d'affirmer votre bonne foi lorsque vous faites un erreur dans vos déclarations ?"
+
+  - code: "Q181"
+    prompt: "Si oui, avez-vous déjà utilisé ce droit à l'erreur ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "droit_a_l_erreur"
+    source_column: "QUXVlc3Rpb246MTgx - Si oui, avez-vous déjà utilisé ce droit à l'erreur ?"
+
+  - code: "Q182"
+    prompt: "Si oui, à quelle occasion en avez-vous fait usage ?"
+    type: "text"
+    section: "droit_a_l_erreur"
+    source_column: "QUXVlc3Rpb246MTgy - Si oui, à quelle occasion en avez-vous fait usage ?"
+
+  # --- Règles inutiles / complexité administrative
+  - code: "Q183"
+    prompt: "Règles jugées inutiles ou trop complexes ?"
+    type: "text"
+    section: "simplification"
+    source_column: "QUXVlc3Rpb246MTgz - Pouvez-vous identifier des règles que l'administration vous a déjà demandé d'appliquer et que vous avez jugées inutiles ou trop complexes ?"
+
+  # --- Administration / autonomie / formation
+  - code: "Q184"
+    prompt: "Faut-il donner plus d'autonomie aux fonctionnaires de terrain ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "administration"
+    source_column: "QUXVlc3Rpb246MTg0 - Faut-il donner plus d'autonomie aux fonctionnaires de terrain ?"
+
+  - code: "Q185"
+    prompt: "Si oui, comment (autonomie) ?"
+    type: "text"
+    section: "administration"
+    source_column: "QUXVlc3Rpb246MTg1 - Si oui, comment ?"
+
+  - code: "Q186"
+    prompt: "Faut-il revoir le fonctionnement et la formation de l'administration ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "administration"
+    source_column: "QUXVlc3Rpb246MTg2 - Faut-il revoir le fonctionnement et la formation de l'administration ?"
+
+  - code: "Q187"
+    prompt: "Si oui, comment (fonctionnement/formation) ?"
+    type: "text"
+    section: "administration"
+    source_column: "QUXVlc3Rpb246MTg3 - Si oui, comment ?"
+
+  - code: "Q188"
+    prompt: "Comment mieux répondre aux défis des territoires les plus en difficulté ?"
+    type: "text"
+    section: "territoires"
+    source_column: "QUXVlc3Rpb246MTg4 - Comment l'Etat et les collectivités territoriales peuvent-ils s'améliorer pour mieux répondre aux défis de nos territoires les plus en difficulté ?"
+
+  # --- Retours d'expérience par domaine (texte libre)
+  - code: "Q191"
+    prompt: "Retour d'expérience : formation (satisfaction/difficultés + administration concernée)"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTkx - Si vous avez été amené à chercher une formation, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q192"
+    prompt: "Retour d'expérience : scolariser un enfant"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTky - Si vous avez été amené à scolariser votre enfant, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q193"
+    prompt: "Retour d'expérience : chercher un emploi"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTkz - Si vous avez été amené à chercher un emploi, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q194"
+    prompt: "Retour d'expérience : préparer sa retraite"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTk0 - Si vous avez été amené à préparer votre retraite, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q195"
+    prompt: "Retour d'expérience : remboursement de soins de santé"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTk1 - Si vous avez été amené à demander un remboursement de soins de santé, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q196"
+    prompt: "Retour d'expérience : demande d'aide (handicap)"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTk2 - Si vous avez été amené à faire une demande d'aide pour une situation de handicap, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q198"
+    prompt: "Retour d'expérience : créer une entreprise"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTk4 - Si vous avez été amené à créer une entreprise, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q199"
+    prompt: "Retour d'expérience : recruter du personnel"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MTk5 - Si vous avez été amené à recruter du personnel, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q200"
+    prompt: "Retour d'expérience : former du personnel"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MjAw - Si vous avez été amené à former du personnel, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q201"
+    prompt: "Retour d'expérience : rémunérer du personnel"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MjAx - Si vous avez été amené à rémunérer du personnel, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q202"
+    prompt: "Retour d'expérience : mettre fin à votre activité"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MjAy - Si vous avez été amené à mettre fin à votre activité, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  - code: "Q203"
+    prompt: "Retour d'expérience : recruter une personne en situation de handicap"
+    type: "text"
+    section: "parcours_admin"
+    source_column: "QUXVlc3Rpb246MjAz - Si vous avez été amené à recruter une personne portant un handicap, pouvez-vous indiquer les éléments de satisfaction et/ou les difficultés rencontrés en précisant, pour chaque point, l'administration concernée :"
+
+  # --- Ouverture
+  - code: "Q189"
+    prompt: "Autres points sur l'organisation de l'État et des services publics"
+    type: "text"
+    section: "ouverture"
+    source_column: "QUXVlc3Rpb246MTg5 - Y a-t-il d'autres points sur l'organisation de l'Etat et des services publics sur lesquels vous souhaiteriez vous exprimer ?"

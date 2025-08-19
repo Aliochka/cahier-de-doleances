@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr" class="h-full" data-theme>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Exploration · Grand Débat{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Un outil de consultation et de recherche dans les contributions du Grand Débat national.{% endblock %}">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Fonts (machine + lecture) -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS compilé (adapter le chemin à ton build) -->
+  <link rel="stylesheet" href="{{ url_for('static', path='css/app.css') }}">
+  <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+
+  <style>
+    /* Accessibilité : réduire animations si demandé */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+    }
+  </style>
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body class="min-h-full bg-[#FFF7E6] text-[#1A1A1A] dark:bg-[#0E1013] dark:text-[#EDEDED]">
+  <!-- Lien d’évitement -->
+  <a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2
+     bg-white dark:bg-[#151821] text-sm px-3 py-2 rounded border border-[#E7E2DA] dark:border-[#242938]">
+    Aller au contenu
+  </a>
+
+  <header class="border-b border-[#E7E2DA] dark:border-[#242938]">
+    <div class="mx-auto max-w-4xl px-4 py-3 flex items-center justify-between">
+      <a href="{{ url_for('home') }}" class="font-[IBM_Plex_Mono] text-[#1F3A5F] dark:text-[#8AB6FF] text-base md:text-lg tracking-[0.04em]">
+        Exploration · Grand Débat
+      </a>
+      <button id="themeToggle" type="button"
+        class="font-[IBM_Plex_Mono] text-sm px-3 py-1.5 rounded border border-[#E7E2DA] dark:border-[#242938]
+               hover:bg-white/60 dark:hover:bg-white/5"
+        aria-pressed="false" aria-label="Basculer le thème clair/sombre">
+        ☾/☀︎
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu" class="mx-auto max-w-4xl px-4 py-8 md:py-10">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="mt-10 border-t border-[#E7E2DA] dark:border-[#242938]">
+    <div class="mx-auto max-w-4xl px-4 py-6 text-sm text-[#57534E] dark:text-[#B5B8BE]">
+    <p>© Exploration · Grand Débat — accessibilité AA,
+        <a href="{{ url_for('mentions') }}" class="underline">mentions légales</a>.
+        </p>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle thème clair/sombre accessible
+    (function() {
+      const root = document.documentElement;
+      const btn  = document.getElementById('themeToggle');
+      const key  = 'prefers-dark';
+      const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem(key);
+      const initDark = saved === '1' || (saved === null && prefers);
+      root.classList.toggle('dark', initDark);
+      btn?.setAttribute('aria-pressed', String(initDark));
+      btn?.addEventListener('click', () => {
+        const next = !root.classList.contains('dark');
+        root.classList.toggle('dark', next);
+        btn.setAttribute('aria-pressed', String(next));
+        localStorage.setItem(key, next ? '1' : '0');
+      });
+    })();
+  </script>
+
+  {% block body_extra %}{% endblock %}
+</body>
+</html>

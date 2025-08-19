@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables “archives” (optionnel) */
+:root {
+  --paper:  #FFF7E6;
+  --ink:    #1A1A1A;
+}
+.dark {
+  --paper:  #0E1013;
+  --ink:    #EDEDED;
+}
+
+/* Base lisible */
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Réduction motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}

@@ -1,0 +1,8 @@
+{% for r in rows %}
+  <article class="card">
+    <div class="meta">{{ r.question_code }} — {{ r.prompt }}</div>
+    <p class="snippet">{{ r.extrait|safe }}</p>
+  </article>
+{% else %}
+  <p>Aucun résultat.</p>
+{% endfor %}

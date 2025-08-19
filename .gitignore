@@ -1,0 +1,70 @@
+app/static/css/app.css
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.log
+
+# Environnements virtuels
+venv/
+.venv/
+env/
+.env/
+
+# Fichiers de config locaux
+*.env
+*.local
+
+# --- Data & DB ---
+data/
+*.db
+*.sqlite
+*.sqlite3
+*.csv
+*.tsv
+*.json
+*.parquet
+*.gz
+*.zip
+
+*.db-shm
+*.db-wal
+
+
+# --- Rust ---
+/target/
+Cargo.lock   # garde-le si tu veux figer les dépendances Rust
+
+# --- Node / Frontend ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- CSS générés (Tailwind / PostCSS) ---
+app/static/css/app.css
+app/static/css/*.css.map
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Tailwind / PostCSS
+*.css.map
+*.postcssrc
+*.stylelintrc
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+
+# --- IDE / Editor ---
+.idea/
+.vscode/
+*.swp

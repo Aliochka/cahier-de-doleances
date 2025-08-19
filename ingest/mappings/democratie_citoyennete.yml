@@ -1,0 +1,261 @@
+form:
+  name: "Grand Débat - Démocratie & citoyenneté"
+  version: "v1"
+  source: "plateforme"
+
+defaults:
+  author:
+    source_author_id: authorId
+    zipcode: authorZipCode
+    # (facultatif) si tu as une ville/age/genre dans d'autres jeux, tu pourras les ajouter ici
+  contribution:
+    source_contribution_id: reference
+    submitted_at: publishedAt      # ou createdAt si tu préfères
+    title: title
+    source: "plateforme-gdn"
+
+questions:
+  # --- méta utile pour la recherche FTS (titre)
+  - code: "META_TITLE"
+    prompt: "Titre de la contribution"
+    type: "text"
+    section: "meta"
+    source_column: "title"
+
+  # --- Représentation, institutions
+  - code: "Q107"
+    prompt: "En qui faites-vous le plus confiance pour vous faire représenter dans la société et pourquoi ?"
+    type: "text"
+    section: "représentation"
+    source_column: "QUXVlc3Rpb246MTA3 - En qui faites-vous le plus confiance pour vous faire représenter dans la société et pourquoi ?"
+
+  - code: "Q108"
+    prompt: "En dehors des élus politiques, faut-il donner un rôle plus important aux associations et aux organisations syndicales et professionnelles ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "représentation"
+    source_column: "QUXVlc3Rpb246MTA4 - En dehors des élus politiques, faut-il donner un rôle plus important aux associations et aux organisations syndicales et professionnelles ?"
+
+  - code: "Q109"
+    prompt: "Si oui, à quel type d'associations ou d'organisations ? Et avec quel rôle ?"
+    type: "text"
+    section: "représentation"
+    source_column: "QUXVlc3Rpb246MTA5 - Si oui, à quel type d'associations ou d'organisations ? Et avec quel rôle ?"
+
+  - code: "Q110"
+    prompt: "Que faudrait-il faire pour renouer le lien entre les citoyens et les élus qui les représentent ?"
+    type: "text"
+    section: "représentation"
+    source_column: "QUXVlc3Rpb246MTEw - Que faudrait-il faire pour renouer le lien entre les citoyens et les élus qui les représentent ?"
+
+  - code: "Q111"
+    prompt: "Le non-cumul des mandats instauré en 2017 pour les parlementaires (députés et sénateurs) est :"
+    type: "single_choice"
+    options_from_values: true
+    section: "institutions"
+    source_column: "QUXVlc3Rpb246MTEx - Le non-cumul des mandats instauré en 2017 pour les parlementaires (députés et sénateurs) est :"
+
+  - code: "Q112"
+    prompt: "Pourquoi ?"
+    type: "text"
+    section: "institutions"
+    source_column: "QUXVlc3Rpb246MTEy - Pourquoi ?"
+
+  - code: "Q113"
+    prompt: "Que faudrait-il faire pour mieux représenter les différentes sensibilités politiques ?"
+    type: "text"
+    section: "représentation"
+    source_column: "QUXVlc3Rpb246MTEz - Que faudrait-il faire pour mieux représenter les différentes sensibilités politiques ?"
+
+  - code: "Q114"
+    prompt: "Pensez-vous qu'il serait souhaitable de réduire le nombre d'élus (hors députés et sénateurs) ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "institutions"
+    source_column: "QUXVlc3Rpb246MTE0 - Pensez-vous qu'il serait souhaitable de réduire le nombre d'élus (hors députés et sénateurs) ?"
+
+  - code: "Q115"
+    prompt: "Si oui, lesquels ?"
+    type: "text"
+    section: "institutions"
+    source_column: "QUXVlc3Rpb246MTE1 - Si oui, lesquels ?"
+
+  # --- Élections / participation
+  - code: "Q116"
+    prompt: "Que pensez-vous de la participation des citoyens aux élections et comment les inciter à y participer davantage ?"
+    type: "text"
+    section: "élections"
+    source_column: "QUXVlc3Rpb246MTE2 - Que pensez-vous de la participation des citoyens aux élections et comment les inciter à y participer davantage ?"
+
+  - code: "Q117"
+    prompt: "Faut-il prendre en compte le vote blanc ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "élections"
+    source_column: "QUXVlc3Rpb246MTE3 - Faut-il prendre en compte le vote blanc ?"
+
+  - code: "Q118"
+    prompt: "Si oui, de quelle manière ?"
+    type: "text"
+    section: "élections"
+    source_column: "QUXVlc3Rpb246MTE4 - Si oui, de quelle manière ?"
+
+  - code: "Q119"
+    prompt: "Que faudrait-il faire aujourd'hui pour mieux associer les citoyens aux grandes orientations et à la décision publique ? Comment mettre en place une démocratie plus participative ?"
+    type: "text"
+    section: "participation"
+    source_column: "QUXVlc3Rpb246MTE5 - Que faudrait-il faire aujourd'hui pour mieux associer les citoyens aux grandes orientations et à la décision publique ? Comment mettre en place une démocratie plus participative ?"
+
+  - code: "Q120"
+    prompt: "Faut-il faciliter le déclenchement du référendum d'initiative partagée (RIP) applicable depuis 2015 ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "participation"
+    source_column: "QUXVlc3Rpb246MTIw - Faut-il faciliter le déclenchement du référendum d'initiative partagée (le RIP est organisé à l'initiative de membres du Parlement soutenu par une partie du corps électoral) qui est applicable depuis 2015 ?"
+
+  - code: "Q121"
+    prompt: "Si oui, comment ?"
+    type: "text"
+    section: "participation"
+    source_column: "QUXVlc3Rpb246MTIx - Si oui, comment ?"
+
+  - code: "Q122"
+    prompt: "Que faudrait-il faire pour consulter plus directement les citoyens sur l'utilisation de l'argent public, par l'État et les collectivités ?"
+    type: "text"
+    section: "participation"
+    source_column: "QUXVlc3Rpb246MTIy - Que faudrait-il faire pour consulter plus directement les citoyens sur l'utilisation de l'argent public, par l'Etat et les collectivités ?"
+
+  # --- Assemblées / CESE / Sénat
+  - code: "Q123"
+    prompt: "Quel rôle nos assemblées (Sénat, CESE, etc.) doivent-elles jouer pour représenter nos territoires et la société civile ?"
+    type: "text"
+    section: "institutions"
+    source_column: "QUXVlc3Rpb246MTIz - Quel rôle nos assemblées, dont le Sénat et le Conseil économique, social et environnemental, doivent-elles jouer pour représenter nos territoires et la société civile ?"
+
+  - code: "Q124"
+    prompt: "Faut-il les transformer ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "institutions"
+    source_column: "QUXVlc3Rpb246MTI0 - Faut-il les transformer ?"
+
+  - code: "Q125"
+    prompt: "Si oui, comment ?"
+    type: "text"
+    section: "institutions"
+    source_column: "QUXVlc3Rpb246MTI1 - Si oui, comment ?"
+
+  # --- Laïcité & valeurs républicaines
+  - code: "Q127"
+    prompt: "Que proposez-vous pour renforcer la laïcité dans le rapport entre l'État et les religions ?"
+    type: "text"
+    section: "laïcité"
+    source_column: "QUXVlc3Rpb246MTI3 - Que proposez-vous pour renforcer les principes de la laïcité dans le rapport entre l'Etat et les religions de notre pays ?"
+
+  - code: "Q128"
+    prompt: "Comment garantir le respect par tous des valeurs intangibles de la République et de la compréhension réciproque ?"
+    type: "text"
+    section: "valeurs"
+    source_column: "QUXVlc3Rpb246MTI4 - Comment garantir le respect par tous de la compréhension réciproque et des valeurs intangibles de la République ?"
+
+  # --- Engagement citoyen / civisme
+  - code: "Q129"
+    prompt: "Que faire aujourd'hui pour renforcer l'engagement citoyen dans la société ?"
+    type: "text"
+    section: "engagement"
+    source_column: "QUXVlc3Rpb246MTI5 - Que faudrait-il faire aujourd'hui pour renforcer l'engagement citoyen dans la société ?"
+
+  - code: "Q130"
+    prompt: "Quels comportements civiques faut-il promouvoir dans la vie quotidienne ou collective ?"
+    type: "text"
+    section: "civisme"
+    source_column: "QUXVlc3Rpb246MTMw - Quels sont les comportements civiques qu'il faut promouvoir dans notre vie quotidienne ou collective ?"
+
+  - code: "Q131"
+    prompt: "Comment favoriser ces comportements civiques et quels engagements concrets ?"
+    type: "text"
+    section: "civisme"
+    source_column: "QUXVlc3Rpb246MTMx - Que faudrait-il faire pour favoriser le développement de ces comportements civiques et par quels engagements concrets chacun peut-il y participer ?"
+
+  - code: "Q132"
+    prompt: "Comment valoriser l'engagement citoyen dans les parcours de vie et les relations avec l'administration ?"
+    type: "text"
+    section: "engagement"
+    source_column: "QUXVlc3Rpb246MTMy - Que faudrait-il faire pour valoriser l'engagement citoyen dans les parcours de vie, dans les relations avec l'administration et les pouvoirs publics ?"
+
+  # --- Incivilités
+  - code: "Q133"
+    prompt: "Quelles incivilités sont les plus pénibles et comment lutter contre elles ?"
+    type: "text"
+    section: "incivilités"
+    source_column: "QUXVlc3Rpb246MTMz - Quelles sont les incivilités les plus pénibles dans la vie quotidienne et que faudrait-il faire pour lutter contre ces incivilités ?"
+
+  - code: "Q134"
+    prompt: "Que doivent faire les pouvoirs publics face aux incivilités ?"
+    type: "text"
+    section: "incivilités"
+    source_column: "QUXVlc3Rpb246MTM0 - Que peuvent et doivent faire les pouvoirs publics pour répondre aux incivilités ?"
+
+  - code: "Q135"
+    prompt: "Quel rôle pour chacun afin de faire reculer les incivilités ?"
+    type: "text"
+    section: "incivilités"
+    source_column: "QUXVlc3Rpb246MTM1 - Quel pourrait être le rôle de chacun pour faire reculer les incivilités dans la société ?"
+
+  # --- Discriminations / solidarité
+  - code: "Q136"
+    prompt: "Quelles discriminations observez-vous (témoin ou victime) ?"
+    type: "text"
+    section: "discriminations"
+    source_column: "QUXVlc3Rpb246MTM2 - Quelles sont les discriminations les plus répandues dont vous êtes témoin ou victime ?"
+
+  - code: "Q137"
+    prompt: "Que faire contre ces discriminations pour une société plus solidaire et tolérante ?"
+    type: "text"
+    section: "discriminations"
+    source_column: "QUXVlc3Rpb246MTM3 - Que faudrait-il faire pour lutter contre ces discriminations et construire une société plus solidaire et plus tolérante ?"
+
+  - code: "Q138"
+    prompt: "Faut-il instaurer des contreparties aux allocations de solidarité ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "solidarité"
+    source_column: "QUXVlc3Rpb246MTM4 - Pensez-vous qu'il faille instaurer des contreparties aux différentes allocations de solidarité ?"
+
+  - code: "Q139"
+    prompt: "Si oui, lesquelles ?"
+    type: "text"
+    section: "solidarité"
+    source_column: "QUXVlc3Rpb246MTM5 - Si oui, lesquelles ?"
+
+  # --- Immigration / intégration
+  - code: "Q141"
+    prompt: "Que pensez-vous de la situation de l'immigration et de la politique migratoire ? Critères à mettre en place ?"
+    type: "text"
+    section: "immigration"
+    source_column: "QUXVlc3Rpb246MTQx - Que pensez-vous de la situation de l'immigration en France aujourd'hui et de la politique migratoire ? Quelles sont, selon vous, les critères à mettre en place pour définir la politique migratoire ?"
+
+  - code: "Q142"
+    prompt: "Après l'asile, souhaitez-vous des objectifs annuels définis par le Parlement en matière d'immigration ?"
+    type: "single_choice"
+    options_from_values: true
+    section: "immigration"
+    source_column: "QUXVlc3Rpb246MTQy - En matière d'immigration, une fois nos obligations d'asile remplies, souhaitez-vous que nous puissions nous fixer des objectifs annuels définis par le Parlement ?"
+
+  - code: "Q143"
+    prompt: "Que proposez-vous pour répondre à ce défi durable ?"
+    type: "text"
+    section: "immigration"
+    source_column: "QUXVlc3Rpb246MTQz - Que proposez-vous afin de répondre à ce défi qui va durer ?"
+
+  - code: "Q144"
+    prompt: "Quelles modalités d'intégration efficaces et justes mettre en place aujourd'hui ?"
+    type: "text"
+    section: "immigration"
+    source_column: "QUXVlc3Rpb246MTQ0 - Quelles sont, selon vous, les modalités d'intégration les plus efficaces et les plus justes à mettre en place aujourd'hui dans la société ?"
+
+  - code: "Q145"
+    prompt: "Autres points sur la démocratie et la citoyenneté"
+    type: "text"
+    section: "ouverture"
+    source_column: "QUXVlc3Rpb246MTQ1 - Y a-t-il d'autres points sur la démocratie et la citoyenneté sur lesquels vous souhaiteriez vous exprimer ?"

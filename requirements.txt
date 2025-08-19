@@ -1,0 +1,17 @@
+
+alembic
+bertopic
+fastapi
+hdbscan
+matplotlib
+pandas
+python-dotenv
+PyYAML
+scikit-learn
+sentence_transformers
+slugify
+spacy
+SQLAlchemy
+stopwordsiso
+transformers
+wordcloud

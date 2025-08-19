@@ -1,0 +1,7 @@
+<div class="grid gap-3 md:gap-4">
+  {% for c in rows %}
+    {% set c = c %}{% include "_contrib_card.html" %}
+  {% else %}
+    <p class="text-sm text-[#57534E] dark:text-[#B5B8BE]">Aucune contribution à afficher.</p>
+  {% endfor %}
+</div>
