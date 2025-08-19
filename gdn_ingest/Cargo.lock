@@ -270,6 +270,7 @@ dependencies = [
  "flate2",
  "glob",
  "hex",
+ "once_cell",
  "regex",
  "rusqlite",
  "serde",

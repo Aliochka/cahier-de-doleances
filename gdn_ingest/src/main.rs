@@ -18,7 +18,7 @@ use std::{
 };
 use zip::read::ZipArchive;
 use std::io::Cursor;
-
+use once_cell::sync::Lazy;
 
 #[derive(Parser)]
 #[command(name = "gdn_ingest", version, about = "Ingestion Grand Débat (Rust)")]
@@ -255,23 +255,11 @@ fn ensure_question(conn: &Connection, form_id: i64, qm: &QuestionMap) -> Result<
     Ok(conn.last_insert_rowid())
 }
 
-fn ensure_option(conn: &Connection, question_id: i64, code: &str, label: &str, position: Option<i64>) -> Result<i64> {
-    let mut q = conn.prepare("SELECT id FROM options WHERE question_id=?1 AND code=?2")?;
-    if let Ok(mut rows) = q.query(params![question_id, code]) {
-        if let Some(r) = rows.next()? { return Ok(r.get(0)?); }
-    }
-    conn.execute(
-        "INSERT INTO options(question_id,code,label,position) VALUES(?1,?2,?3,?4)",
-        params![question_id, code, label, &position],
-    )?;
-    Ok(conn.last_insert_rowid())
-}
-
+// ---------- Slugify optimisé (regex compilée une seule fois) ----------
+static SLUG_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"[^a-z0-9]+").unwrap());
 fn slugify(s: &str) -> String {
-    // simple slug (ascii, tirets) — suffisant pour codes d’options
     let lower = s.to_lowercase();
-    let re = Regex::new(r"[^a-z0-9]+").unwrap();
-    let collapsed = re.replace_all(&lower, "-");
+    let collapsed = SLUG_RE.replace_all(&lower, "-");
     collapsed.trim_matches('-').to_string()
 }
 
@@ -293,8 +281,39 @@ fn ensure_dynamic_option(conn: &Connection, caches: &mut Caches, qid: i64, label
     Ok(oid)
 }
 
+// ---------- Indexes uniques nécessaires aux UPSERT ----------
+fn ensure_ingest_indexes(conn: &Connection) -> Result<()> {
+    conn.execute_batch(
+        r#"
+        -- contributions: dédup par raw_hash
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_contributions_rawhash
+            ON contributions(raw_hash);
+
+        -- answers: une ligne par (contribution, question)
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_answers_unique
+            ON answers(contribution_id, question_id);
+
+        -- options: code unique dans une question
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_options_unique
+            ON options(question_id, code);
+
+        -- answer_options: éviter les doublons
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_answer_options_unique
+            ON answer_options(answer_id, option_id);
+
+        -- authors: clés optionnelles (si présentes)
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_authors_emailhash
+            ON authors(email_hash);
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_authors_source_author_id
+            ON authors(source_author_id);
+        "#
+    )?;
+    Ok(())
+}
+
 // ---------- Auteur / Contribution ----------
 
+// Authors — UPSERT + RETURNING si une clé est dispo
 fn get_or_create_author(conn: &Connection, amap: &AuthorMap, row: &StringRecord, headers: &csv::StringRecord) -> Result<Option<i64>> {
     if amap == &AuthorMap::default() { return Ok(None); }
     let col_val = |name: &Option<String>| -> Option<Cow<'_, str>> {
@@ -303,45 +322,106 @@ fn get_or_create_author(conn: &Connection, amap: &AuthorMap, row: &StringRecord,
     let email_hash = col_val(&amap.email_hash).map(|s| s.into_owned());
     let source_author_id = col_val(&amap.source_author_id).map(|s| s.into_owned());
 
-    // lookup by email_hash or source_author_id
-    if let Some(ref eh) = email_hash {
-        if let Some(id) = query_scalar(conn, "SELECT id FROM authors WHERE email_hash=?1", params![eh])? {
-            return Ok(Some(id));
-        }
-    }
-    if let Some(ref sid) = source_author_id {
-        if let Some(id) = query_scalar(conn, "SELECT id FROM authors WHERE source_author_id=?1", params![sid])? {
-            return Ok(Some(id));
-        }
+    let name = col_val(&amap.name).map(|s| s.into_owned());
+    let zipcode = col_val(&amap.zipcode).map(|s| s.into_owned());
+    let city = col_val(&amap.city).map(|s| s.into_owned());
+    let age_range = col_val(&amap.age_range).map(|s| s.into_owned());
+    let gender = col_val(&amap.gender).map(|s| s.into_owned());
+
+    if email_hash.is_some() {
+        let mut stmt = conn.prepare(
+            r#"
+            INSERT INTO authors(source_author_id, name, email_hash, zipcode, city, age_range, gender)
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+            ON CONFLICT(email_hash) DO UPDATE SET
+                source_author_id = COALESCE(authors.source_author_id, excluded.source_author_id),
+                name            = COALESCE(authors.name,            excluded.name),
+                zipcode         = COALESCE(authors.zipcode,         excluded.zipcode),
+                city            = COALESCE(authors.city,            excluded.city),
+                age_range       = COALESCE(authors.age_range,       excluded.age_range),
+                gender          = COALESCE(authors.gender,          excluded.gender)
+            RETURNING id
+            "#
+        )?;
+        let id: i64 = stmt.query_row(
+            params![
+                source_author_id.as_deref(),
+                name.as_deref(),
+                email_hash.as_deref(),
+                zipcode.as_deref(),
+                city.as_deref(),
+                age_range.as_deref(),
+                gender.as_deref(),
+            ],
+            |r| r.get(0),
+        )?;
+        return Ok(Some(id));
     }
 
-    // insert
+    if source_author_id.is_some() {
+        let mut stmt = conn.prepare(
+            r#"
+            INSERT INTO authors(source_author_id, name, email_hash, zipcode, city, age_range, gender)
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+            ON CONFLICT(source_author_id) DO UPDATE SET
+                email_hash      = COALESCE(authors.email_hash,      excluded.email_hash),
+                name            = COALESCE(authors.name,            excluded.name),
+                zipcode         = COALESCE(authors.zipcode,         excluded.zipcode),
+                city            = COALESCE(authors.city,            excluded.city),
+                age_range       = COALESCE(authors.age_range,       excluded.age_range),
+                gender          = COALESCE(authors.gender,          excluded.gender)
+            RETURNING id
+            "#
+        )?;
+        let id: i64 = stmt.query_row(
+            params![
+                source_author_id.as_deref(),
+                name.as_deref(),
+                email_hash.as_deref(),
+                zipcode.as_deref(),
+                city.as_deref(),
+                age_range.as_deref(),
+                gender.as_deref(),
+            ],
+            |r| r.get(0),
+        )?;
+        return Ok(Some(id));
+    }
+
+    // Pas de clé → on insère naïvement
     conn.execute(
         "INSERT INTO authors(source_author_id,name,email_hash,zipcode,city,age_range,gender)
          VALUES(?1,?2,?3,?4,?5,?6,?7)",
         params![
             source_author_id.as_deref(),
-            col_val(&amap.name).as_deref(),
+            name.as_deref(),
             email_hash.as_deref(),
-            col_val(&amap.zipcode).as_deref(),
-            col_val(&amap.city).as_deref(),
-            col_val(&amap.age_range).as_deref(),
-            col_val(&amap.gender).as_deref(),
+            zipcode.as_deref(),
+            city.as_deref(),
+            age_range.as_deref(),
+            gender.as_deref(),
         ],
     )?;
     Ok(Some(conn.last_insert_rowid()))
 }
 
+// Contributions — UPSERT + RETURNING sur raw_hash
 fn get_or_create_contribution(conn: &Connection, cmap: &ContributionMap, form_id: i64, author_id: Option<i64>, batch: &str, raw_json: &str, row_hash: &str, row: &StringRecord, headers: &csv::StringRecord) -> Result<i64> {
-    if let Some(id) = query_scalar(conn, "SELECT id FROM contributions WHERE raw_hash=?1", params![row_hash])? {
-        return Ok(id);
-    }
     let val = |name: &Option<String>| -> Option<String> {
         name.as_ref().and_then(|n| headers.iter().position(|h| h == n).and_then(|i| row.get(i).map(|s| s.to_string())))
     };
-    conn.execute(
-        "INSERT INTO contributions(source_contribution_id,author_id,form_id,source,submitted_at,title,import_batch_id,raw_hash,raw_json)
-         VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9)",
+    let mut stmt = conn.prepare(
+        r#"
+        INSERT INTO contributions(
+            source_contribution_id, author_id, form_id, source, submitted_at, title,
+            import_batch_id, raw_hash, raw_json
+        )
+        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
+        ON CONFLICT(raw_hash) DO UPDATE SET id=id
+        RETURNING id
+        "#
+    )?;
+    let id: i64 = stmt.query_row(
         params![
             val(&cmap.source_contribution_id).as_deref(),
             &author_id as &dyn ToSql,
@@ -353,8 +433,9 @@ fn get_or_create_contribution(conn: &Connection, cmap: &ContributionMap, form_id
             row_hash,
             raw_json,
         ],
+        |r| r.get(0),
     )?;
-    Ok(conn.last_insert_rowid())
+    Ok(id)
 }
 
 fn query_scalar<T: rusqlite::types::FromSql>(
@@ -371,64 +452,49 @@ fn query_scalar<T: rusqlite::types::FromSql>(
     }
 }
 
+// ---------- Answers (optimisées) ----------
 
-// ---------- Answers (anti-doublon) ----------
-
-fn find_answer(conn: &Connection, contribution_id: i64, question_id: i64) -> Result<Option<i64>> {
-    query_scalar(conn, "SELECT id FROM answers WHERE contribution_id=?1 AND question_id=?2", params![contribution_id, question_id])
+fn upsert_answer_get_id(conn: &Connection, contribution_id: i64, question_id: i64) -> Result<i64> {
+    // Crée la ligne si absente, sinon met à jour à l'identique pour retourner l'id
+    let mut stmt = conn.prepare(
+        r#"
+        INSERT INTO answers(contribution_id, question_id, position, text, value_json)
+        VALUES (?1, ?2, 1, NULL, NULL)
+        ON CONFLICT(contribution_id, question_id) DO UPDATE SET position = answers.position
+        RETURNING id
+        "#
+    )?;
+    let id: i64 = stmt.query_row(params![contribution_id, question_id], |r| r.get(0))?;
+    Ok(id)
 }
 
 fn ensure_text_answer(conn: &Connection, contribution_id: i64, question_id: i64, text_value: &str, joiner: &str) -> Result<()> {
     if text_value.trim().is_empty() { return Ok(()); }
-    if let Some(aid) = find_answer(conn, contribution_id, question_id)? {
-        // append if different
-        let old: Option<String> = query_scalar(conn, "SELECT text FROM answers WHERE id=?1", params![aid])?;
-        if let Some(oldtxt) = old {
-            if !oldtxt.contains(text_value) {
-                let newtxt = format!("{oldtxt}{joiner}{text_value}");
-                conn.execute("UPDATE answers SET text=?1 WHERE id=?2", params![&newtxt, aid])?;
-            }
-        } else {
-            conn.execute("UPDATE answers SET text=?1 WHERE id=?2", params![text_value, aid])?;
-        }
-        return Ok(());
-    }
+    let aid = upsert_answer_get_id(conn, contribution_id, question_id)?;
     conn.execute(
-        "INSERT INTO answers(contribution_id,question_id,position,text) VALUES(?1,?2,1,?3)",
-        params![contribution_id, question_id, text_value],
+        r#"
+        UPDATE answers
+        SET text = CASE
+            WHEN text IS NULL OR length(trim(text))=0 THEN ?2
+            WHEN instr(text, ?2)=0 THEN text || ?3 || ?2
+            ELSE text
+        END
+        WHERE id = ?1
+        "#,
+        params![aid, text_value.trim(), joiner],
     )?;
     Ok(())
 }
 
 fn ensure_value_answer(conn: &Connection, contribution_id: i64, question_id: i64, value_json: &str) -> Result<()> {
-    if let Some(aid) = find_answer(conn, contribution_id, question_id)? {
-        conn.execute("UPDATE answers SET value_json=?1 WHERE id=?2", params![value_json, aid])?;
-        return Ok(());
-    }
-    conn.execute(
-        "INSERT INTO answers(contribution_id,question_id,position,value_json) VALUES(?1,?2,1,?3)",
-        params![contribution_id, question_id, value_json],
-    )?;
+    let aid = upsert_answer_get_id(conn, contribution_id, question_id)?;
+    conn.execute("UPDATE answers SET value_json=?2 WHERE id=?1", params![aid, value_json])?;
     Ok(())
 }
 
 fn ensure_single_choice(conn: &Connection, contribution_id: i64, question_id: i64, option_id: i64) -> Result<()> {
-    let aid = if let Some(aid) = find_answer(conn, contribution_id, question_id)? {
-        aid
-    } else {
-        conn.execute("INSERT INTO answers(contribution_id,question_id,position) VALUES(?1,?2,1)",
-            params![contribution_id, question_id])?;
-        conn.last_insert_rowid()
-    };
-    // remplace l'option si nécessaire
-    let existing: Vec<i64> = {
-        let mut stmt = conn.prepare("SELECT option_id FROM answer_options WHERE answer_id=?1")?;
-        let mut rows = stmt.query(params![aid])?;
-        let mut v = Vec::new();
-        while let Some(r) = rows.next()? { v.push(r.get(0)?); }
-        v
-    };
-    if existing.len() == 1 && existing[0] == option_id { return Ok(()); }
+    let aid = upsert_answer_get_id(conn, contribution_id, question_id)?;
+    // remplace l'option
     conn.execute("DELETE FROM answer_options WHERE answer_id=?1", params![aid])?;
     conn.execute("INSERT OR IGNORE INTO answer_options(answer_id, option_id) VALUES(?1,?2)",
         params![aid, option_id])?;
@@ -437,13 +503,7 @@ fn ensure_single_choice(conn: &Connection, contribution_id: i64, question_id: i6
 
 fn ensure_multi_choice(conn: &Connection, contribution_id: i64, question_id: i64, option_ids: &[i64]) -> Result<()> {
     if option_ids.is_empty() { return Ok(()); }
-    let aid = if let Some(aid) = find_answer(conn, contribution_id, question_id)? {
-        aid
-    } else {
-        conn.execute("INSERT INTO answers(contribution_id,question_id,position) VALUES(?1,?2,1)",
-            params![contribution_id, question_id])?;
-        conn.last_insert_rowid()
-    };
+    let aid = upsert_answer_get_id(conn, contribution_id, question_id)?;
     for oid in option_ids {
         conn.execute("INSERT OR IGNORE INTO answer_options(answer_id, option_id) VALUES(?1,?2)", params![aid, oid])?;
     }
@@ -482,11 +542,27 @@ fn open_any(path: &str) -> Result<Box<dyn Read>> {
     }
 }
 
-
 fn sha256_rowjson(rec: &serde_json::Value) -> String {
     let mut hasher = Sha256::new();
     hasher.update(rec.to_string().as_bytes());
     hex::encode(hasher.finalize())
+}
+
+// ---------- Options (UPSERT + RETURNING) ----------
+
+fn ensure_option(conn: &Connection, question_id: i64, code: &str, label: &str, position: Option<i64>) -> Result<i64> {
+    let mut stmt = conn.prepare(
+        r#"
+        INSERT INTO options(question_id, code, label, position)
+        VALUES (?1, ?2, ?3, ?4)
+        ON CONFLICT(question_id, code) DO UPDATE SET
+            label = excluded.label,
+            position = COALESCE(excluded.position, options.position)
+        RETURNING id
+        "#
+    )?;
+    let id: i64 = stmt.query_row(params![question_id, code, label, &position], |r| r.get(0))?;
+    Ok(id)
 }
 
 // ---------- run_ingest ----------
@@ -499,6 +575,9 @@ fn run_ingest(db: String, csv_globs: Vec<String>, mapping_path: PathBuf, batch: 
 
     // connex + form + caches
     let conn = open_conn(&db)?;
+    // ⚠️ Ajout : index uniques nécessaires aux UPSERT
+    ensure_ingest_indexes(&conn)?;
+
     let form_id = preload_form(&conn, &mapping.form)?;
     let mut caches = preload_questions_and_options(&conn, form_id, &mapping)?;
     println!("[ingest] form id={form_id} name='{}' version='{}'", mapping.form.name, mapping.form.version.as_deref().unwrap_or(""));
