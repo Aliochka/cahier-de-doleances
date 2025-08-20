@@ -27,7 +27,7 @@ def hx_search(
             "results": [],
             "too_short": True,
         }
-        return templates.TemplateResponse("_search_results.html", ctx)
+        return templates.TemplateResponse("_results_answers.html", ctx)
 
     offset = (page - 1) * PER_PAGE
 
@@ -47,14 +47,16 @@ def hx_search(
         if total:
             # Tri par pertinence : bm25(answers_fts) ASC (plus petit = plus pertinent)
             search_sql = sqltext("""
-                SELECT a.id            AS answer_id,
-                       a.text          AS answer_text,
-                       a.question_id   AS question_id,
-                       q.prompt        AS question_prompt,
+                SELECT a.id              AS answer_id,
+                       a.text            AS answer_text,
+                       a.question_id     AS question_id,
+                       q.prompt          AS question_prompt,
+                       c.author_id       AS author_id,
                        bm25(answers_fts) AS score
                 FROM answers_fts
-                JOIN answers   a ON a.id = answers_fts.rowid
-                JOIN questions q ON q.id = a.question_id
+                JOIN answers       a ON a.id = answers_fts.rowid
+                JOIN questions     q ON q.id = a.question_id
+                JOIN contributions c ON c.id = a.contribution_id
                 WHERE answers_fts MATCH :q
                 ORDER BY bm25(answers_fts) ASC, a.id DESC
                 LIMIT :limit OFFSET :offset
@@ -75,9 +77,11 @@ def hx_search(
                     "answer_id": r["answer_id"],
                     "question_id": r["question_id"],
                     "question_prompt": r["question_prompt"],
+                    "author_id": r["author_id"],
                     "text": text_val,
                     "truncated": truncated,
                 })
+
 
     ctx = {
         "request": request,

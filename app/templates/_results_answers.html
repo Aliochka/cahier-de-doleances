@@ -40,6 +40,11 @@
           <a href="/questions/{{ r.question_id }}" class="font-medium hover:underline">
             {{ r.question_prompt|e }}
           </a>
+            <div class="text-xs text-ink2">
+              <a href="/authors/{{ r.author_id }}" class="hover:underline">
+                Auteur #{{ r.author_id }}
+              </a>
+            </div>
         </header>
         <div class="prose prose-sm whitespace-pre-wrap">
           {{ r.text|e|replace('\n','<br>')|safe }}

@@ -6,6 +6,7 @@ import logging
 from dotenv import load_dotenv
 from app.routers.question_search import router as question_search_router
 from app.routers import answers_search
+from app.routers import authors
 
 load_dotenv()
 
@@ -23,5 +24,4 @@ if STATIC_DIR.exists():
 app.include_router(page_router)
 app.include_router(question_search_router)
 app.include_router(answers_search.router)
-
-
+app.include_router(authors.router)
