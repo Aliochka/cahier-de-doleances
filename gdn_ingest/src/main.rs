@@ -52,6 +52,8 @@ enum Cmd {
         /// Désactive les triggers FTS5 pendant l’ingestion puis rebuild
         #[arg(long, default_value_t = false)]
         defer_fts: bool,
+        #[arg(long, default_value = ",")]
+        delimiter: char,
     },
     /// Reconstruire answers_fts
     RebuildFts {
@@ -160,12 +162,27 @@ struct OptionSpec {
 fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.cmd {
-        Cmd::Ingest { db, csv, mapping, batch, commit_every, log_every, defer_fts } => {
-            run_ingest(db, csv, mapping, batch, commit_every, log_every, defer_fts)
-        }
+        Cmd::Ingest { db, csv, mapping, batch, commit_every, log_every, defer_fts, delimiter } => {
+           run_ingest(db, csv, mapping, batch, commit_every, log_every, defer_fts, delimiter)}
         Cmd::RebuildFts { db } => rebuild_fts(db),
     }
 }
+
+fn sniff_delimiter<R: Read>(mut r: R) -> std::io::Result<(Vec<u8>, u8)> {
+    use std::io::Read;
+    let mut buf = vec![0u8; 8192];
+    let n = r.read(&mut buf)?;
+    buf.truncate(n);
+    let sample = std::str::from_utf8(&buf).unwrap_or("");
+    let count = |c: char| sample.matches(c).count();
+    let mut best = (count(','), b',');
+    for (c, b) in [( ';', b';'), ('\t', b'\t')] {
+        let k = count(c);
+        if k > best.0 { best = (k, b); }
+    }
+    Ok((buf, best.1))
+}
+
 
 fn open_conn(db: &str) -> Result<Connection> {
     // accepte "sqlite:///gdn.db" ou "gdn.db"
@@ -285,7 +302,11 @@ fn ensure_dynamic_option(conn: &Connection, caches: &mut Caches, qid: i64, label
 fn ensure_ingest_indexes(conn: &Connection) -> Result<()> {
     conn.execute_batch(
         r#"
-        -- contributions: dédup par raw_hash
+        -- contributions: dédup par référence (si présente), sinon par raw_hash
+        CREATE UNIQUE INDEX IF NOT EXISTS uq_contributions_ref
+            ON contributions(source_contribution_id)
+            WHERE source_contribution_id IS NOT NULL;
+
         CREATE UNIQUE INDEX IF NOT EXISTS idx_contributions_rawhash
             ON contributions(raw_hash);
 
@@ -293,15 +314,11 @@ fn ensure_ingest_indexes(conn: &Connection) -> Result<()> {
         CREATE UNIQUE INDEX IF NOT EXISTS idx_answers_unique
             ON answers(contribution_id, question_id);
 
-        -- options: code unique dans une question
+        -- options / answer_options / authors (inchangé)
         CREATE UNIQUE INDEX IF NOT EXISTS idx_options_unique
             ON options(question_id, code);
-
-        -- answer_options: éviter les doublons
         CREATE UNIQUE INDEX IF NOT EXISTS idx_answer_options_unique
             ON answer_options(answer_id, option_id);
-
-        -- authors: clés optionnelles (si présentes)
         CREATE UNIQUE INDEX IF NOT EXISTS idx_authors_emailhash
             ON authors(email_hash);
         CREATE UNIQUE INDEX IF NOT EXISTS idx_authors_source_author_id
@@ -310,6 +327,7 @@ fn ensure_ingest_indexes(conn: &Connection) -> Result<()> {
     )?;
     Ok(())
 }
+
 
 // ---------- Auteur / Contribution ----------
 
@@ -406,12 +424,66 @@ fn get_or_create_author(conn: &Connection, amap: &AuthorMap, row: &StringRecord,
 }
 
 // Contributions — UPSERT + RETURNING sur raw_hash
-fn get_or_create_contribution(conn: &Connection, cmap: &ContributionMap, form_id: i64, author_id: Option<i64>, batch: &str, raw_json: &str, row_hash: &str, row: &StringRecord, headers: &csv::StringRecord) -> Result<i64> {
-    let val = |name: &Option<String>| -> Option<String> {
-        name.as_ref().and_then(|n| headers.iter().position(|h| h == n).and_then(|i| row.get(i).map(|s| s.to_string())))
+fn get_or_create_contribution(
+    conn: &Connection,
+    cmap: &ContributionMap,
+    form_id: i64,
+    author_id: Option<i64>,
+    batch: &str,
+    raw_json: &str,
+    row_hash: &str,
+    row: &StringRecord,
+    headers: &csv::StringRecord,
+) -> Result<i64> {
+    let pick = |name: &Option<String>| -> Option<String> {
+        name.as_ref()
+            .and_then(|n| headers.iter().position(|h| h == n)
+            .and_then(|i| row.get(i).map(|s| s.to_string())))
+            .map(|s| s.trim().to_string())
+            .filter(|s| !s.is_empty())
     };
-    let mut stmt = conn.prepare(
-        r#"
+
+    let source_id   = pick(&cmap.source_contribution_id);
+    let submitted_at= pick(&cmap.submitted_at);
+    let title       = pick(&cmap.title);
+
+    if source_id.is_some() {
+        // 🔑 dédup par référence
+        let mut stmt = conn.prepare(r#"
+            INSERT INTO contributions(
+                source_contribution_id, author_id, form_id, source, submitted_at, title,
+                import_batch_id, raw_hash, raw_json
+            )
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
+            ON CONFLICT(source_contribution_id) DO UPDATE SET
+                author_id       = COALESCE(excluded.author_id, contributions.author_id),
+                source          = COALESCE(contributions.source, excluded.source),
+                submitted_at    = COALESCE(contributions.submitted_at, excluded.submitted_at),
+                title           = COALESCE(contributions.title, excluded.title),
+                import_batch_id = excluded.import_batch_id,
+                raw_hash        = excluded.raw_hash,
+                raw_json        = excluded.raw_json
+            RETURNING id
+        "#)?;
+        let id: i64 = stmt.query_row(
+            params![
+                source_id.as_deref(),
+                &author_id as &dyn ToSql,
+                &form_id,
+                cmap.source.as_deref(),
+                submitted_at.as_deref(),
+                title.as_deref(),
+                batch,
+                row_hash,
+                raw_json,
+            ],
+            |r| r.get(0),
+        )?;
+        return Ok(id);
+    }
+
+    // 🛟 fallback: dédup par raw_hash
+    let mut stmt = conn.prepare(r#"
         INSERT INTO contributions(
             source_contribution_id, author_id, form_id, source, submitted_at, title,
             import_batch_id, raw_hash, raw_json
@@ -419,16 +491,15 @@ fn get_or_create_contribution(conn: &Connection, cmap: &ContributionMap, form_id
         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
         ON CONFLICT(raw_hash) DO UPDATE SET id=id
         RETURNING id
-        "#
-    )?;
+    "#)?;
     let id: i64 = stmt.query_row(
         params![
-            val(&cmap.source_contribution_id).as_deref(),
+            Option::<&str>::None, // pas de ref fiable → NULL
             &author_id as &dyn ToSql,
             &form_id,
             cmap.source.as_deref(),
-            val(&cmap.submitted_at).as_deref(),
-            val(&cmap.title).as_deref(),
+            submitted_at.as_deref(),
+            title.as_deref(),
             batch,
             row_hash,
             raw_json,
@@ -437,6 +508,7 @@ fn get_or_create_contribution(conn: &Connection, cmap: &ContributionMap, form_id
     )?;
     Ok(id)
 }
+
 
 fn query_scalar<T: rusqlite::types::FromSql>(
     conn: &Connection,
@@ -567,7 +639,16 @@ fn ensure_option(conn: &Connection, question_id: i64, code: &str, label: &str, p
 
 // ---------- run_ingest ----------
 
-fn run_ingest(db: String, csv_globs: Vec<String>, mapping_path: PathBuf, batch: String, commit_every: usize, log_every: usize, defer_fts: bool) -> Result<()> {
+fn run_ingest(
+    db: String,
+    csv_globs: Vec<String>,
+    mapping_path: PathBuf,
+    batch: String,
+    commit_every: usize,
+    log_every: usize,
+    defer_fts: bool,
+    delimiter: char,
+) -> Result<()> {
     // mapping
     let mapping_str = std::fs::read_to_string(&mapping_path)
         .with_context(|| format!("lecture mapping {:?}", mapping_path))?;
@@ -601,8 +682,21 @@ fn run_ingest(db: String, csv_globs: Vec<String>, mapping_path: PathBuf, batch: 
     for path in files {
         println!("[ingest] fichier: {path}");
         // open & csv reader
-        let reader = open_any(&path)?;
-        let mut rdr = csv::ReaderBuilder::new().from_reader(reader);
+        let mut reader = open_any(&path)?;
+        let (primed, delim_auto) = sniff_delimiter(&mut reader)?;
+        let delim = if delimiter == ',' || delimiter == ';' || delimiter == '\t' {
+            delimiter as u8
+        } else {
+            delim_auto
+        };
+        let cursor = std::io::Cursor::new(primed);
+        let chained = cursor.chain(reader);
+        let mut rdr = csv::ReaderBuilder::new()
+            .delimiter(delim)
+            .has_headers(true)
+            .flexible(true)    // tolère lignes un peu “biscornues”
+            .from_reader(chained);
+
 
         let headers = rdr.headers()?.clone();
 
@@ -612,6 +706,26 @@ fn run_ingest(db: String, csv_globs: Vec<String>, mapping_path: PathBuf, batch: 
 
         for rec in rdr.records() {
             let rec = rec?;
+            // skip trashed
+            let mut is_trashed = false;
+            if let Some(ix) = headers.iter().position(|h| h == "trashed") {
+                if let Some(v) = rec.get(ix) {
+                    let s = v.trim().to_lowercase();
+                    is_trashed = matches!(s.as_str(), "1" | "true" | "yes" | "vrai");
+                }
+            }
+            if !is_trashed {
+                if let Some(ix) = headers.iter().position(|h| h == "trashedStatus") {
+                    if let Some(v) = rec.get(ix) {
+                        let s = v.trim().to_lowercase();
+                        if !s.is_empty() && s != "kept" { is_trashed = true; }
+                    }
+                }
+            }
+            if is_trashed {
+                continue; // on ignore cette ligne
+            }
+
             // raw_json pour audit + hash
             let mut rowmap = serde_json::Map::new();
             for (i, h) in headers.iter().enumerate() {
