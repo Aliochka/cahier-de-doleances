@@ -6,6 +6,7 @@
   hx-get="/hx/search"
   hx-target="#results"
   hx-push-url="true"
+  hx-indicator="#search-indicator"
   class="sticky top-0 z-20 bg-paper/90 dark:bg-d_bg/90 backdrop-blur border-b border-line dark:border-d_line">
   <label for="q" class="sr-only">Rechercher une réponse</label>
   <div class="mx-auto max-w-4xl px-4 py-3">
@@ -17,12 +18,21 @@
   </div>
 </form>
 
+<!-- Spinner htmx (affiché pendant la requête) -->
+<div id="search-indicator" class="hidden mx-auto max-w-4xl px-4 text-sm text-ink2 dark:text-d_ink2" hx-indicator>
+  Recherche en cours…
+</div>
+<style>
+  [hx-indicator].htmx-request { display: block; }
+</style>
+
 <div id="results"
      class="mx-auto max-w-4xl px-4 py-4 space-y-3"
      hx-get="/hx/search?q={{ q|urlencode if q }}"
      hx-trigger="load"
      hx-target="#results"
-     hx-swap="innerHTML">
+     hx-swap="innerHTML"
+     hx-indicator="#search-indicator">
   <p class="text-sm text-ink2 dark:text-d_ink2">Tapez votre recherche…</p>
 </div>
 {% endblock %}

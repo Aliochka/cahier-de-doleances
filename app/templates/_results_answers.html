@@ -1,0 +1,78 @@
+{# Contexte: q, page, per_page, total, results, too_short #}
+
+{% if too_short %}
+  <p class="text-sm text-ink2 dark:text-d_ink2">Tapez au moins 2 caractères.</p>
+{% elif not q %}
+  <p class="text-sm text-ink2 dark:text-d_ink2">Tapez votre recherche…</p>
+{% elif total == 0 %}
+  <p class="text-sm text-ink2 dark:text-d_ink2">Aucun résultat pour « {{ q|e }} ».</p>
+{% else %}
+  {% set first = (page - 1) * per_page + 1 %}
+  {% set last = ((page - 1) * per_page + results|length) %}
+
+  <div class="flex items-center justify-between mb-2">
+    <p class="text-sm text-ink2 dark:text-d_ink2">
+      Résultats {{ first }}–{{ last }} sur <strong>{{ total }}</strong> pour « {{ q|e }} »
+    </p>
+    <div class="flex gap-2">
+      <button
+        class="px-2 py-1 border rounded disabled:opacity-40"
+        {% if page <= 1 %}disabled{% else %}
+        hx-get="/hx/search?q={{ q|urlencode }}&page={{ page-1 }}"
+        hx-target="#results" hx-swap="innerHTML" hx-push-url="true"
+        {% endif %}
+        aria-label="Page précédente">◀︎</button>
+
+      <button
+        class="px-2 py-1 border rounded disabled:opacity-40"
+        {% if last >= total %}disabled{% else %}
+        hx-get="/hx/search?q={{ q|urlencode }}&page={{ page+1 }}"
+        hx-target="#results" hx-swap="innerHTML" hx-push-url="true"
+        {% endif %}
+        aria-label="Page suivante">▶︎</button>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    {% for r in results %}
+      <article class="border rounded-lg p-4 bg-white dark:bg-d_card">
+        <header class="mb-2">
+          <a href="/questions/{{ r.question_id }}" class="font-medium hover:underline">
+            {{ r.question_prompt|e }}
+          </a>
+        </header>
+        <div class="prose prose-sm whitespace-pre-wrap">
+          {{ r.text|e|replace('\n','<br>')|safe }}
+          {% if r.truncated %}
+            <div class="mt-2">
+              <a href="/questions/{{ r.question_id }}" class="text-accent hover:underline">Voir tout →</a>
+            </div>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+  <div class="flex items-center justify-between mt-4">
+    <p class="text-sm">
+      Page {{ page }} / {{ (total // per_page) + (1 if total % per_page else 0) }}
+    </p>
+    <div class="flex gap-2">
+      <button
+        class="px-2 py-1 border rounded disabled:opacity-40"
+        {% if page <= 1 %}disabled{% else %}
+        hx-get="/hx/search?q={{ q|urlencode }}&page={{ page-1 }}"
+        hx-target="#results" hx-swap="innerHTML" hx-push-url="true"
+        {% endif %}
+        aria-label="Page précédente">◀︎</button>
+
+      <button
+        class="px-2 py-1 border rounded disabled:opacity-40"
+        {% if last >= total %}disabled{% else %}
+        hx-get="/hx/search?q={{ q|urlencode }}&page={{ page+1 }}"
+        hx-target="#results" hx-swap="innerHTML" hx-push-url="true"
+        {% endif %}
+        aria-label="Page suivante">▶︎</button>
+    </div>
+  </div>
+{% endif %}

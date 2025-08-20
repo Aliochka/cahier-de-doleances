@@ -4,16 +4,14 @@ from fastapi.responses import HTMLResponse
 from sqlalchemy import text, bindparam
 from sqlalchemy.orm import Session
 from app.db import SessionLocal
-from fastapi.templating import Jinja2Templates
-from app.models import Question
 from sqlalchemy.exc import OperationalError
 from fastapi import HTTPException
+from app.web import templates
 
 PAGE_SIZE_DEFAULT = 20
 MIN_ANSWER_LEN = 40  # filtre lisibilité
 
 router = APIRouter()
-templates = Jinja2Templates(directory="app/templates")
 
 def get_db():
     db = SessionLocal()
