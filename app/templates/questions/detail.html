@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+{% set PAGE_TITLE = "Question · " ~ (question.title or ('#' ~ question.id)) %}
+{% block content %}
+{% include "partials/_breadcrumbs.html" with context %}
+<header class="page-header">
+  <h1 class="h1">{{ question.title or ('Question #' ~ question.id) }}</h1>
+  {% if question.answers_count is not none %}
+  <p class="muted">{{ question.answers_count }} réponses</p>
+  {% endif %}
+</header>
+
+{% include "partials/_filters_bar.html" with context %}
+
+{% if answers and answers|length %}
+  <ul class="list list--plain">
+    {% for a in answers %}
+      {% include "partials/_answers_list.html" with context %}
+    {% endfor %}
+  </ul>
+  {% include "partials/_pagination.html" with context %}
+{% else %}
+  {% include "partials/_empty_state.html" %}
+{% endif %}
+{% endblock %}

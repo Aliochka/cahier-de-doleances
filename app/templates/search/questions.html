@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+{% set PAGE_TITLE = "Recherche questions" %}
+{% block content %}
+{% include "partials/_breadcrumbs.html" with context %}
+<header class="page-header">
+  <h1 class="h1">Recherche dans les questions</h1>
+  {% include "partials/_search_form.html" with context %}
+</header>
+
+{% include "partials/_filters_bar.html" with context %}
+
+{% if questions and questions|length %}
+  <ul class="list list--cards">
+    {% for q in questions %}
+      <li class="card">
+        {% include "partials/_questions_list.html" with context %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% include "partials/_pagination.html" with context %}
+{% else %}
+  {% include "partials/_empty_state.html" %}
+{% endif %}
+{% endblock %}

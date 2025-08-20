@@ -1,0 +1,16 @@
+<form class="search-bar" role="search" action="{{ search_action or request.url.path }}" method="get">
+  <label for="q" class="sr-only">Rechercher</label>
+  <input
+    id="q"
+    name="q"
+    type="search"
+    value="{{ q or '' }}"
+    placeholder="Rechercher…"
+    autocomplete="off"
+    aria-label="Rechercher"
+    />
+  <button class="btn btn--primary" type="submit">Rechercher</button>
+  {# Conserver les autres query params (ex: sort) #}
+  {% if sort %}<input type="hidden" name="sort" value="{{ sort }}"/>{% endif %}
+  {% if page %}<input type="hidden" name="page" value="{{ page }}"/>{% endif %}
+</form>

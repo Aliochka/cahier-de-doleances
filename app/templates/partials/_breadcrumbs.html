@@ -1,0 +1,5 @@
+<nav class="breadcrumbs" aria-label="Fil d’Ariane">
+  <a href="{{ url_for('home') }}">Accueil</a>
+  {% if crumb1 %} › <a href="{{ crumb1.url }}">{{ crumb1.label }}</a>{% endif %}
+  {% if crumb2 %} › <span aria-current="page">{{ crumb2.label }}</span>{% endif %}
+</nav>

@@ -1,0 +1,15 @@
+{% set p = page or 1 %}
+{% set total_pages = total_pages or 1 %}
+<nav class="pagination" role="navigation" aria-label="Pagination">
+  <a class="pagination__btn{% if p <= 1 %} is-disabled{% endif %}"
+     href="{{ request.url.include_query_params(page=p-1 if p>1 else 1) }}"
+     aria-disabled="{{ 'true' if p<=1 else 'false' }}"
+     rel="prev">Précédent</a>
+
+  <span class="pagination__info">Page {{ p }} / {{ total_pages }}</span>
+
+  <a class="pagination__btn{% if p >= total_pages %} is-disabled{% endif %}"
+     href="{{ request.url.include_query_params(page=p+1 if p<total_pages else total_pages) }}"
+     aria-disabled="{{ 'true' if p>=total_pages else 'false' }}"
+     rel="next">Suivant</a>
+</nav>

@@ -1,0 +1,11 @@
+{# Liste de réponses + pagination #}
+{% if answers and answers|length %}
+  <ul class="list list--plain">
+    {% for a in answers %}
+      {% include "partials/_answer_item.html" %}
+    {% endfor %}
+  </ul>
+  {% include "partials/_pagination.html" with context %}
+{% else %}
+  {% include "partials/_empty_state.html" %}
+{% endif %}

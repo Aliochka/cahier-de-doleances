@@ -1,0 +1,12 @@
+<section class="filters" aria-label="Filtres et tri">
+  <div class="filters__row">
+    <div class="filters__left">
+      <strong class="filters__title">Trier par :</strong>
+      <a class="chip{% if sort == 'recent' %} chip--active{% endif %}" href="{{ request.url.include_query_params(sort='recent', page=1) }}">Plus récentes</a>
+      <a class="chip{% if sort == 'popular' %} chip--active{% endif %}" href="{{ request.url.include_query_params(sort='popular', page=1) }}">Populaires</a>
+    </div>
+    <div class="filters__right">
+      <span class="muted">Page {{ page or 1 }}</span>
+    </div>
+  </div>
+</section>

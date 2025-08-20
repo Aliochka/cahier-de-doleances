@@ -1,0 +1,10 @@
+<article class="media">
+  <div class="media__body">
+    <h3 class="h3">
+      <a href="{{ url_for('question_detail', question_id=q.id) }}">{{ q.title }}</a>
+    </h3>
+    {% if q.answers_count is not none %}
+      <span class="badge">{{ q.answers_count }} réponses</span>
+    {% endif %}
+  </div>
+</article>

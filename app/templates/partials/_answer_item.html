@@ -1,0 +1,25 @@
+<!-- app/templates/partials/_answer_item.html -->
+<li class="answer">
+  {% set _a = a %}
+  {% set _author_id = _a.author_id if _a.author_id is defined else (_a.get('author_id') if _a.get is defined else None) %}
+  {% set _q_id = _a.question_id if _a.question_id is defined else (_a.get('question_id') if _a.get is defined else None) %}
+  {% set _date = _a.created_at if _a.created_at is defined else (_a.get('submitted_at') if _a.get is defined else None) %}
+  {% set _body = _a.body if _a.body is defined else (_a.text if _a.text is defined else (_a.answer_text if _a.answer_text is defined else '')) %}
+
+  <header class="answer__meta">
+    {% if _author_id %}
+      <a class="answer__author" href="{{ url_for('author_detail', author_id=_author_id) }}">Auteur #{{ _author_id }}</a>
+    {% endif %}
+    {% if _date %}
+      <time class="answer__date" datetime="{{ _date|default('', true) }}">{{ _date }}</time>
+    {% endif %}
+  </header>
+
+  <div class="answer__body">{{ _body }}</div>
+
+  {% if _q_id %}
+  <footer class="answer__footer">
+    <a class="link" href="{{ url_for('question_detail', question_id=_q_id) }}">Voir la question</a>
+  </footer>
+  {% endif %}
+</li>

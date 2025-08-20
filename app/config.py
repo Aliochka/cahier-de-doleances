@@ -11,7 +11,7 @@ def _default_db_path() -> str:
 
 def get_db_path() -> str:
     # 1) explicit env
-    path = os.environ.get("GDN_DB_PATH")
+    path = os.environ.get("DATABASE_URL")
     if path and path.strip():
         return path.strip()
     # 2) default

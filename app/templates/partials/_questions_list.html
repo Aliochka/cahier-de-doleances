@@ -1,0 +1,13 @@
+{# Liste de questions sous forme de cartes + pagination #}
+{% if questions and questions|length %}
+  <ul class="list list--cards">
+    {% for q in questions %}
+      <li class="card">
+        {% include "questions/_card.html" %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% include "partials/_pagination.html" with context %}
+{% else %}
+  {% include "partials/_empty_state.html" %}
+{% endif %}
