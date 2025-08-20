@@ -2,24 +2,16 @@
 {% set PAGE_TITLE = "Auteur · " ~ (author.name or ('#' ~ author.id)) %}
 {% block content %}
 {% include "partials/_breadcrumbs.html" with context %}
+
 <header class="page-header">
   <h1 class="h1">{{ author.name or ('Auteur #' ~ author.id) }}</h1>
   <p class="muted">ID : {{ author.id }} • {{ author.answers_count }} réponses</p>
 </header>
 
 {% if q %}
-<p class="search-context">Filtré par « <strong>{{ q }}</strong> »</p>
+  <p class="search-context">Filtré par « <strong>{{ q }}</strong> »</p>
 {% endif %}
 
-{% if answers and answers|length %}
-  <ul class="list list--plain">
-    {% for a in answers %}
-      {% include "partials/_answers_list.html" with context %}
+{% include "partials/_answers_list.html" with context %}
 
-    {% endfor %}
-  </ul>
-  {% include "partials/_pagination.html" with context %}
-{% else %}
-  {% include "partials/_empty_state.html" %}
-{% endif %}
 {% endblock %}

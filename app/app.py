@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from app.routers.pages import router as page_router
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 import logging
