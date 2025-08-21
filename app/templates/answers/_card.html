@@ -30,7 +30,6 @@
   </blockquote>
 
   <footer class="answer__footer">
-    <p>par</p>
     {% if author_id %}
       <a class="quote__link" href="{{ url_for('author_detail', author_id=author_id) }}">
         {{ _a.author_name if _a.author_name is defined else ('Auteur #' ~ author_id) }}
@@ -39,6 +38,11 @@
     {% if qid and not on_question_page %}
       <a class="badge badge--link" href="{{ url_for('question_detail', question_id=qid) }}">Voir la question</a>
     {% endif %}
-    
+    {% if ans_id %}
+     <a class="quote__link" href="{{ url_for('answer_detail', answer_id=ans_id) }}">
+        → Voir la réponse
+      </a>
+    {% endif %}
+
   </footer>
 </li>

@@ -101,7 +101,14 @@ a:not(.btn), .link{
   padding:0;
 }
 .answer__question-title {font-family:var(--font-typewriter);}
-.answer__meta{ display:flex; gap:var(--space-3); font-size:14px; color:var(--muted); margin-bottom:var(--space-2); }
+.answer__meta{ 
+    display:flex;
+    gap:var(--space-3); 
+    font-size:14px; color:var(--muted); margin-bottom:var(--space-2); 
+    align-items: center;
+    justify-content: space-between;
+    
+}
 .answer__question{ margin-bottom:var(--space-2); }
 .answer__questionLink{ font-weight:600; text-decoration:underline; }
 .answer__body{ white-space:pre-wrap; word-wrap:break-word; }
@@ -306,6 +313,6 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 .answer--full .quote::after{
   font-size: 110px;
 }
-.answer--full .quote::before{ left: -20px; top: -28px; }
-.answer--full .quote::after { right: -6px; bottom: -45px; }
+.answer--full .quote::before{ left: -30px; top: -28px; }
+.answer--full .quote::after { right: -60px; bottom: -60px; }
 .answer__footer {margin-top: 20px; display: flex; align-items: center; gap: 8px;}
