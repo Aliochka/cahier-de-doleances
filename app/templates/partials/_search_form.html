@@ -1,7 +1,19 @@
-<form class="search-bar" role="search" action="{{ search_action or request.url.path }}" method="get">
-  <label for="q" class="sr-only">Rechercher</label>
-  <input id="q" name="q" type="search" value="{{ q or '' }}" placeholder="Rechercher…" autocomplete="off" aria-label="Rechercher"/>
-  <button class="btn btn--primary" type="submit">Rechercher</button>
-  {# Garder sort si présent #}
-  {% if sort %}<input type="hidden" name="sort" value="{{ sort }}"/>{% endif %}
+{# Params attendus (tous optionnels) :
+   - action       : URL du form (défaut = route courante)
+   - id           : id du champ (défaut "q")
+   - label        : texte du label (lu par SR)
+   - placeholder  : placeholder du champ
+   - submit_text  : texte du bouton
+   - q            : valeur préremplie
+#}
+<form class="search-bar" method="get" action="{{ action if action is defined else request.url.path }}">
+  <label class="sr-only" for="{{ id|default('q') }}">{{ label|default('Rechercher') }}</label>
+  <input
+    id="{{ id|default('q') }}"
+    name="q"
+    type="search"
+    placeholder="{{ placeholder|default('Rechercher…') }}"
+    value="{{ q|default('') }}"
+  >
+  <button class="btn btn--primary" type="submit">{{ submit_text|default('Rechercher') }}</button>
 </form>

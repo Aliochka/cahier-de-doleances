@@ -2,9 +2,17 @@
 {% set PAGE_TITLE = "Recherche questions" %}
 {% block content %}
 {% include "partials/_breadcrumbs.html" with context %}
-<header class="page-header page-header--center">
-  <h1 class="h1">Recherche dans les questions</h1>
-  {% include "partials/_search_form.html" with context %}
+<header class="page-header page-header--stack">
+  <h1 class="h1 page-title--nowrap">Recherche dans les questions</h1>
+  {% with
+      id='q',
+      label='Rechercher dans les questions',
+      placeholder='Rechercher…',
+      submit_text='Rechercher',
+      q=q
+  %}
+    {% include "partials/_search_form.html" %}
+  {% endwith %}
 </header>
 
 {% include "partials/_filters_bar.html" with context %}

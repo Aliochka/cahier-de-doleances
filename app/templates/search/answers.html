@@ -2,9 +2,13 @@
 {% set PAGE_TITLE = "Recherche réponses" %}
 {% block content %}
 {% include "partials/_breadcrumbs.html" with context %}
-<header class="page-header page-header--center">
-  <h1 class="h1">Recherche dans les réponses</h1>
-  {% include "partials/_search_form.html" with context %}
+<header class="page-header page-header--stack">
+  <h1 class="h1 page-title--nowrap">Recherche dans les réponses</h1>
+  <form class="search-bar" method="get" action="{{ url_for('search_answers') }}">
+    <label class="sr-only" for="q">Rechercher dans les réponses</label>
+    <input id="q" name="q" type="search" placeholder="Rechercher..." value="{{ q|default('') }}">
+    <button class="btn btn--primary" type="submit">Rechercher</button>
+  </form>
 </header>
 
 {% include "partials/_filters_bar.html" with context %}

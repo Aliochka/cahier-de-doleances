@@ -193,3 +193,48 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 .btn--block{ display:flex; width:100%; }
 .btn .icon{ width:1.1em; height:1.1em; }
 .card .btn{ margin-top:var(--space-3); }
+
+
+/* Page header empilé : titre puis barre de recherche */
+.page-header--stack{ margin-bottom: var(--space-4); }
+.page-header--stack .search-bar{ margin-top: var(--space-3); }
+
+/* Titre sur une seule ligne (revient à la ligne sur mobile) */
+.page-title--nowrap{ white-space: nowrap; }
+@media (max-width: 640px){
+  .page-title--nowrap{ white-space: normal; }
+}
+
+/* Barre plus large et centrée visuellement */
+.search-bar--wide{ max-width: 720px; }
+
+/* Label accessible mais masqué visuellement */
+.sr-only{
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* Header empilé : titre AU-DESSUS du champ de recherche */
+/* Header empilé : titre au-dessus du formulaire, sans changer la largeur */
+.page-header--stack{
+  display:block;                       /* pas de flex = pas d'effet sur la largeur */
+  margin-bottom: var(--space-4);
+}
+.page-header--stack .h1{               /* espace entre titre et barre */
+  margin: 0 0 var(--space-3);
+}
+/* Ne JAMAIS contraindre la largeur de la search-bar ici */
+.page-header--stack .search-bar{
+  margin: 0;                           /* ou var(--space-0) si tu as */
+  width: auto;
+  max-width: none;
+}
+
+.page-title--nowrap{ white-space: nowrap; }
+
+@media (max-width: 640px){
+  .page-title--nowrap{ white-space: normal; }  /* redevient fluide sur mobile */
+}
