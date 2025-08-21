@@ -9,8 +9,6 @@
   {% endwith %}
 </header>
 
-{% include "partials/_filters_bar.html" with context %}
-
 {% if questions and questions|length %}
   <ul class="list list--plain">
     {% for question in questions %}
