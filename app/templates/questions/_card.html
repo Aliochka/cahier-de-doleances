@@ -1,10 +1,25 @@
-<article class="media">
+<article class="media question-card">
   <div class="media__body">
-    <h3 class="h3">
-      <a href="{{ url_for('question_detail', question_id=q.id) }}">{{ q.title }}</a>
-    </h3>
-    {% if q.answers_count is not none %}
-      <span class="badge">{{ q.answers_count }} réponses</span>
+    {# Titre sans lien, garde le highlight si présent #}
+    {% set title_html =
+         (q.prompt_hl|safe) if q.prompt_hl is defined and q.prompt_hl
+         else (q.title if q.title is defined and q.title
+         else q.prompt) %}
+    <h3 class="h3">{{ title_html }}</h3>
+
+    {# 3 exemples de réponses si fournis par la route #}
+    {% if q.answers is defined and q.answers %}
+      <ul class="question-preview">
+        {% for a in q.answers[:3] %}
+          <li class="question-preview__item">{{ a.text }}</li>
+        {% endfor %}
+      </ul>
     {% endif %}
+
+    <div class="question-card__actions" style="margin-top: var(--space-3);">
+      <a class="badge badge--link" href="{{ url_for('question_detail', question_id=q.id) }}">
+        Voir les réponses
+      </a>
+    </div>
   </div>
 </article>
