@@ -8,7 +8,12 @@
 .h2{ font-size:22px; margin:0 0 var(--space-2); }
 .h3{ font-size:18px; margin:0 0 var(--space-1); }
 .muted{ color:var(--muted); font-family:var(--font-typewriter);}
-
+mark {
+  background: #ffe066;   
+  color: #1a1a1a;        
+  padding: 0 .15em;      
+  border-radius: .15em; 
+}
 /* Liens standards (hors .btn) */
 a:not(.btn), .link{
   color:var(--primary);

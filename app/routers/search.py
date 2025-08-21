@@ -7,7 +7,7 @@ from sqlalchemy import text, bindparam
 from app.db import SessionLocal
 from app.web import templates
 from math import ceil
-
+from app.helpers import postprocess_excerpt
 
 router = APIRouter()
 
@@ -76,6 +76,7 @@ def search_answers(
             if not body:
                 raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
                 body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
+            body = postprocess_excerpt(body)
             answers.append({
                 "id": r["answer_id"],
                 "author_id": r["author_id"],
@@ -139,6 +140,7 @@ def search_answers(
         for r in rows:
             raw = (r["answer_text"] or "")[:MAX_TEXT_LEN]
             snippet, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
+            snippet = postprocess_excerpt(snippet)
             answers.append({
                 "id": r["answer_id"],
                 "author_id": r["author_id"],
