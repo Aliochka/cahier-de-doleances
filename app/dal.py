@@ -27,57 +27,6 @@ def _has_table(name: str) -> bool:
     return inspect(engine).has_table(name)
 
 
-def latest_contribs(limit: int = 6, min_len: int = 200):
-    """
-    Retourne jusqu'à `limit` réponses (answers) considérées comme
-    des 'contributions de qualité' (len(text) >= min_len).
-    Sélection pseudo-aléatoire performante via pivot sur answer.id.
-    """
-    with engine.connect() as conn:
-        # bornes d'ID
-        bounds = conn.execute(
-            text("""
-                SELECT MIN(id) AS min_id, MAX(id) AS max_id
-                FROM answers
-                WHERE length(text) >= :min_len
-            """),
-            {"min_len": min_len},
-        ).mappings().first()
-
-        if not bounds or bounds["min_id"] is None:
-            return []
-
-        min_id, max_id = int(bounds["min_id"]), int(bounds["max_id"])
-        span = max_id - min_id + 1
-        pivot = conn.execute(
-            text("SELECT (abs(random()) % :span) + :min_id AS pivot_id"),
-            {"span": span, "min_id": min_id},
-        ).mappings().first()["pivot_id"]
-
-        def fetch_side(op: str, remaining: int):
-            q = text(f"""
-                SELECT a.id AS id,
-                       a.text AS body,
-                       a.question_id AS question_id,
-                       c.author_id AS author_id,
-                       c.id AS contribution_id
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE length(a.text) >= :min_len AND a.id {op} :pivot
-                ORDER BY a.id ASC
-                LIMIT :lim
-            """)
-            return conn.execute(
-                q, {"min_len": min_len, "pivot": pivot, "lim": remaining}
-            ).mappings().all()
-
-        out = []
-        out += fetch_side(">=", limit)
-        if len(out) < limit:
-            out += fetch_side("<", limit - len(out))
-
-        return [dict(r) for r in out[:limit]]
-
 def search_contribs(q: str, limit: int = 20, offset: int = 0) -> List[Dict[str, Any]]:
     """
     Recherche plein texte via FTS5 answers_fts → answers → contributions.

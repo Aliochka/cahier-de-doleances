@@ -1,49 +1,41 @@
 from logging.config import fileConfig
-
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
-from alembic import context
-from app.models import Base
 import os
 
+from alembic import context
+from sqlalchemy import engine_from_config, pool
+from app.models import Base
+
+# Charge .env si présent
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception:
+    pass
+
+# Alembic Config
 config = context.config
 
-# Permet de surcharger l'URL par l'environnement
-database_url = os.getenv("DATABASE_URL")
-if database_url:
-    config.set_main_option("sqlalchemy.url", database_url)
+# Logging
+if config.config_file_name is not None:
+    fileConfig(config.config_file_name)
 
+# Métadonnées pour autogenerate
+target_metadata = Base.metadata
 
-config = context.config
-
-# Priorité: -x db_url=... > $DATABASE_URL > alembic.ini
+# Priorité des sources d'URL: -x db_url=... > $DATABASE_URL > alembic.ini
 x_args = context.get_x_argument(as_dictionary=True)
-runtime_url = x_args.get("db_url") or os.getenv("GDN_DB_PATH")
+runtime_url = (x_args.get("db_url") or os.getenv("DATABASE_URL") or "").strip()
 
 if runtime_url:
     config.set_main_option("sqlalchemy.url", runtime_url)
 
-
-# this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
-config = context.config
-
-# Interpret the config file for Python logging.
-# This line sets up loggers basically.
-if config.config_file_name is not None:
-    fileConfig(config.config_file_name)
-
-# add your model's MetaData object here
-# for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-target_metadata = Base.metadata
-
-# other values from the config, defined by the needs of env.py,
-# can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
-# ... etc.
+# Sanity check: on vérifie qu'on a bien une URL
+final_url = config.get_main_option("sqlalchemy.url")
+if not final_url:
+    raise RuntimeError(
+        "SQLAlchemy URL manquante. Fournis-la via `-x db_url=...`, "
+        "ou définis DATABASE_URL, ou mets-la dans alembic.ini."
+    )
 
 
 def run_migrations_offline() -> None:

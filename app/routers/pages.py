@@ -1,15 +1,13 @@
 # app/routers/pages.py
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from app.dal import latest_contribs
 from app.web import templates
 
 router = APIRouter()
 
 @router.get("/", name="home", response_class=HTMLResponse)
 def home(request: Request):
-    last = latest_contribs(limit=6, min_len=200)
-    return templates.TemplateResponse("home/index.html", {"request": request, "last_contribs": last})
+    return templates.TemplateResponse("home/index.html", {"request": request })
 
 @router.get("/mentions", name="mentions", response_class=HTMLResponse)
 def mentions(request: Request):
