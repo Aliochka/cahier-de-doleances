@@ -1,7 +1,6 @@
 {% extends "base/base.html" %}
 {% set PAGE_TITLE = "Recherche réponses" %}
 {% block content %}
-{% include "partials/_breadcrumbs.html" with context %}
 <header class="page-header page-header--stack">
   <h1 class="h1 page-title--nowrap">Recherche dans les réponses</h1>
   <form class="search-bar" method="get" action="{{ url_for('search_answers') }}">

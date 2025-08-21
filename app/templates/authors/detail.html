@@ -1,7 +1,6 @@
 {% extends "base/base.html" %}
 {% set PAGE_TITLE = "Auteur · " ~ (author.name or ('#' ~ author.id)) %}
 {% block content %}
-{% include "partials/_breadcrumbs.html" with context %}
 
 <header class="page-header">
   <h1 class="h1">{{ author.name or ('Auteur #' ~ author.id) }}</h1>

@@ -17,8 +17,7 @@
 
 <li class="answer" id="answer-{{ ans_id or '' }}">
   <header class="answer__meta">
-    {# Lien vers la question si on n'est PAS sur la page question #}
-    {% if qid and not on_question_page %}
+     {% if qid and not on_question_page %}
       <a class="link" href="{{ url_for('question_detail', question_id=qid) }}">Voir la question</a>
     {% endif %}
     {% if date %}
@@ -31,14 +30,15 @@
   </blockquote>
 
   <footer class="answer__footer">
-    {% if author_id and ans_id %}
-      <a class="quote__link"
-         href="{{ url_for('author_detail', author_id=author_id) }}#answer-{{ ans_id }}">
-        → Voir la contribution
+    {% if ans_id %}
+     <a class="quote__link" href="{{ url_for('answer_detail', answer_id=ans_id) }}">
+        → Voir la réponse
       </a>
-    {% elif author_id %}
+    {% endif %}
+    {% if author_id %}
+      &nbsp;•&nbsp;
       <a class="quote__link" href="{{ url_for('author_detail', author_id=author_id) }}">
-        → Voir la contribution
+        {{ _a.author_name if _a.author_name is defined else ('Auteur #' ~ author_id) }}
       </a>
     {% endif %}
   </footer>

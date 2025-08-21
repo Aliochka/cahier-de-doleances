@@ -142,7 +142,7 @@ def author_detail(
             {"aid": author_id, "limit": PER_PAGE, "offset": offset},
         ).mappings().all()
 
-    # Mapping vers le format attendu par partials/_answer_item.html
+    # Mapping vers le format attendu par answers/_card.html
     answers = [
         {
             "id": r["answer_id"],

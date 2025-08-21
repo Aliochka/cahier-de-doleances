@@ -7,7 +7,7 @@
 .h1{ font-size:28px; margin:0 0 var(--space-2); }
 .h2{ font-size:22px; margin:0 0 var(--space-2); }
 .h3{ font-size:18px; margin:0 0 var(--space-1); }
-.muted{ color:var(--muted); }
+.muted{ color:var(--muted); font-family:var(--font-typewriter);}
 
 /* Liens standards (hors .btn) */
 a:not(.btn), .link{
@@ -246,12 +246,11 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
   position:absolute; pointer-events:none;
   font-family:var(--font-typewriter);
   font-size:80px; line-height:1;
-  color:color-mix(in srgb, var(--ink) 25%, transparent);
-  opacity:.9;
+  color: black;
   content:"«";
 }
-.quote::before{ left:-6px; top:-16px; content:"«"; }
-.quote::after { right:-8px; bottom:-22px; content:"»"; }
+.quote::before{ left:-10px; top:-20px; content:"«"; }
+.quote::after { right:-4px; bottom:-22px; content:"»"; }
 
 .quote__meta{ margin-top:4px; font-size:13px; color:var(--muted); }
 .quote__link{
@@ -268,3 +267,42 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 .clamp-3{ -webkit-line-clamp:3; }
 .clamp-4{ -webkit-line-clamp:4; }
 .clamp-5{ -webkit-line-clamp:5; }
+
+/* Page réponse : conserver tous les retours à la ligne */
+.answer--full .quote__text{
+  white-space: pre-wrap;
+  -webkit-line-clamp: unset; /* pas de clamp/ellipsis sur la page détail */
+}
+
+/* ===========================
+   Page Réponse — mise en valeur
+   =========================== */
+
+/* centre verticalement le bloc réponse dans la fenêtre */
+.answer-page{
+  min-height: 65vh;            /* zone haute pour le centrage */
+  display: flex;
+  align-items: center;         /* centrage vertical du contenu */
+}
+
+/* largeur confortable */
+.answer--full{
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+/* gros texte + interligne généreuse, conserve les sauts de ligne */
+.answer--full .quote__text{
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.9;
+  letter-spacing: .2px;
+  white-space: pre-wrap;       /* pas de clamp/ellipsis sur la page détail */
+}
+
+/* guillemets plus grands sur la page réponse */
+.answer--full .quote::before,
+.answer--full .quote::after{
+  font-size: 110px;
+}
+.answer--full .quote::before{ left: -20px; top: -28px; }
+.answer--full .quote::after { right: -6px; bottom: -45px; }

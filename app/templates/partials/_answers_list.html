@@ -2,7 +2,7 @@
 {% if answers and answers|length %}
   <ul class="list list--plain">
     {% for a in answers %}
-      {% include "partials/_answer_item.html" %}
+      {% include "answer/_card.html" %}
     {% endfor %}
   </ul>
   {% include "partials/_pagination.html" with context %}

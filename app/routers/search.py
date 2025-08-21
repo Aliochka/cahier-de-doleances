@@ -296,7 +296,7 @@ def hx_search(request: Request, q: str = Query("", description="Requête utilisa
                         "author_id": r["author_id"],
                         "question_id": r["question_id"],
                         "created_at": r["submitted_at"],
-                        "body": txt,  # attendu par partials/_answer_item.html
+                        "body": txt,  # attendu par answers/_card.html
                     })
 
     total_pages = max(1, ceil(total / PER_PAGE)) if q else 1

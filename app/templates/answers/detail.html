@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+{% set PAGE_TITLE = "Réponse" %}
+
+{% block content %}
+
+  <header class="page-header page-header--stack">
+    <h1 class="h1">{{ answer.question_prompt }}</h1>
+    <p class="muted">
+      par
+      <a href="{{ url_for('author_detail', author_id=answer.author_id) }}">
+        {{ answer.author_name or ('Auteur #' ~ answer.author_id) }}
+      </a>
+      {% if answer.submitted_at %} — {{ answer.submitted_at }}{% endif %}
+    </p>
+  </header>
+
+  <section class="answer-page">
+    <article class="answer answer--full">
+      <blockquote class="quote">
+        <p class="quote__text">{{ answer.text }}</p>
+      </blockquote>
+    </article>
+  </section>
+{% endblock %}

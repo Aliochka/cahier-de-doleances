@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 import logging
 from dotenv import load_dotenv
-from app.routers import pages, search, authors, questions
+from app.routers import pages, search, authors, questions, answers
 
 load_dotenv()
 
@@ -23,3 +23,4 @@ app.include_router(pages.router)
 app.include_router(search.router)
 app.include_router(authors.router)
 app.include_router(questions.router)
+app.include_router(answers.router)

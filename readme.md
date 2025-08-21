@@ -12,6 +12,10 @@
 Cahier de doléances est un site/service permettant d’explorer, rechercher et analyser les contributions citoyennes du **Grand Débat National**.  
 L’idée : donner un accès simple et puissant à cette matière brute, pour nourrir les réflexions et ouvrir la voie à de nouvelles perspectives collectives.
 
+Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
+
+
+
 
 ---
 
@@ -21,12 +25,43 @@ L’idée : donner un accès simple et puissant à cette matière brute, pour no
 - [x] Ingestion massive des contributions (CSV compressés)  
 - [x] Indexation plein texte (FTS5) pour recherche rapide  
 - [ ] Front-end minimaliste mobile-first
-  - [] ui
-  - [] page accueil
-  - [] page question
-  - [] page auteur
-  - [] page thème 
+  - [ ] ui
+  - [ ] page accueil
+    - [ ] back
+    - [ ] ux
+    - [ ] ui
+    - [ ] contenu
+  - [ ] page question
+    - [x] back
+    - [ ] ux
+    - [ ] ui
+    - [ ] contenu
+  - [ ] page auteur
+    - [x] back
+    - [ ] ux
+    - [ ] ui
+  - [ ] recherche par question
+    - [x] back
+    - [x] ux
+    - [ ] ui
+    - [x] optimisation
+  - [ ] recherche par réponses
+    - [x] back
+    - [ ] ux
+    - [ ] ui
+- [ ] migration postgresql
+- [ ] MEP !
+
+## v1
+- [ ] page thème
 - [ ] Scripts d’analyses exploratoires (Python / Rust)  
+- [ ] notion de formulaire (ordre des questions)
+- [ ] mentions légales
+- [ ] footer
+- [ ] menu joli
+
+## v2
+- [ ] secret secret
 
 ---
 
