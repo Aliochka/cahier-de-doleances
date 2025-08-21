@@ -31,10 +31,11 @@ def search_answers(
 
     offset = (page - 1) * PER_PAGE
 
-    # Mode 1 — RECHERCHE FTS quand q >= 2 (inchangé côté logique)
+    # Mode 1 — RECHERCHE FTS quand q >= 2
     if len(q) >= 2:
         match_query = f'"{q}"' if " " in q else q
         with SessionLocal() as db:
+            # total résultats FTS
             total = db.execute(
                 text("""
                     SELECT COUNT(*)
@@ -44,17 +45,20 @@ def search_answers(
                 {"q": match_query},
             ).scalar_one()
 
+            rows = []
             if total:
                 rows = db.execute(
                     text("""
                         SELECT
                             a.id                 AS answer_id,
-                            a.text               AS answer_text,
                             a.question_id        AS question_id,
                             q.prompt             AS question_prompt,
                             c.author_id          AS author_id,
                             c.submitted_at       AS submitted_at,
-                            bm25(answers_fts)    AS score
+                            bm25(answers_fts)    AS score,
+                            -- extrait surligné (colonne 0 = texte dans answers_fts)
+                            snippet(answers_fts, 0, '<mark>', '</mark>', '…', 18) AS answer_snippet,
+                            a.text               AS answer_text
                         FROM answers_fts
                         JOIN answers       a ON a.id = answers_fts.rowid
                         JOIN contributions c ON c.id = a.contribution_id
@@ -65,19 +69,20 @@ def search_answers(
                     """),
                     {"q": match_query, "limit": PER_PAGE, "offset": offset},
                 ).mappings().all()
-            else:
-                rows = []
 
         for r in rows:
-            raw = (r["answer_text"] or "")[:MAX_TEXT_LEN]
-            snippet, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
+            # Utilise le snippet FTS ; fallback si vide
+            body = (r["answer_snippet"] or "").strip()
+            if not body:
+                raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
+                body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
             answers.append({
                 "id": r["answer_id"],
                 "author_id": r["author_id"],
                 "question_id": r["question_id"],
                 "question_title": r["question_prompt"],
                 "created_at": r["submitted_at"],
-                "body": snippet,
+                "body": body,  # contient déjà <mark>…</mark> si snippet()
             })
 
         total_pages = max(1, ceil(total / PER_PAGE))
@@ -86,19 +91,26 @@ def search_answers(
     # Mode 2 — TIMELINE RÉCENTE quand q est vide / trop court
     else:
         with SessionLocal() as db:
-            # 2.1 — Compte total filtré pour avoir toutes les pages
-            total = db.execute(
-                text("""
-                    SELECT COUNT(*)
-                    FROM answers a
-                    WHERE a.text IS NOT NULL
-                      AND trim(a.text) <> ''
-                      AND length(a.text) >= :min_len
-                """),
-                {"min_len": MIN_ANSWER_LEN},
-            ).scalar_one()
+            # essaie d'utiliser le compteur O(1), sinon fallback COUNT(*)
+            try:
+                total = db.execute(
+                    text("SELECT valid_count FROM answer_valid_stats WHERE id = 1")
+                ).scalar_one_or_none()
+            except Exception:
+                total = None
 
-            # 2.2 — Page courante
+            if total is None:
+                total = db.execute(
+                    text("""
+                        SELECT COUNT(*)
+                        FROM answers a
+                        WHERE a.text IS NOT NULL
+                          AND trim(a.text) <> ''
+                          AND length(a.text) >= :min_len
+                    """),
+                    {"min_len": MIN_ANSWER_LEN},
+                ).scalar_one()
+
             rows = db.execute(
                 text("""
                     SELECT
@@ -150,9 +162,11 @@ def search_answers(
             "on_answers_search": True,
             "page_size": PER_PAGE,
             "has_next": has_next,
-            "total_pages": total_pages,  # maintenant défini aussi en mode timeline
+            "total_pages": total_pages,  # défini dans les deux modes
         },
     )
+
+
 
 
 
