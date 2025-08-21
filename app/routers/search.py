@@ -160,30 +160,38 @@ def search_questions_page(
                     SELECT
                         a.question_id,
                         a.id AS answer_id,
-                        substr(a.text, 1, :maxlen) AS answer_text,
-                        ROW_NUMBER() OVER(
+                        c.author_id AS author_id,
+                        -- on supprime les gros blancs : CR/LF -> espace
+                        substr(
+                            REPLACE(REPLACE(a.text, char(13), ' '), char(10), ' '),
+                            1, :maxlen
+                        ) AS answer_text,
+                        CASE WHEN length(a.text) > :maxlen THEN 1 ELSE 0 END AS is_truncated,
+                        ROW_NUMBER() OVER (
                             PARTITION BY a.question_id
                             ORDER BY random()
                         ) AS rn
                     FROM answers a
+                    JOIN contributions c ON c.id = a.contribution_id
                     WHERE a.question_id IN :ids
                     AND a.text IS NOT NULL
                     AND trim(a.text) <> ''
                 )
-                SELECT question_id, answer_id, answer_text
+                SELECT question_id, answer_id, author_id, answer_text, is_truncated
                 FROM picks
                 WHERE rn <= 3;
             """).bindparams(bindparam("ids", expanding=True))
 
             for ar in db.execute(
-                sql_answers,
-                {"ids": tuple(question_ids), "maxlen": PREVIEW_MAXLEN},
+                sql_answers, {"ids": tuple(question_ids), "maxlen": PREVIEW_MAXLEN}
             ).mappings():
-                previews_by_qid[ar["question_id"]].append(
-                    {"id": ar["answer_id"], "text": ar["answer_text"]}
-                )
+                previews_by_qid[ar["question_id"]].append({
+                    "id": ar["answer_id"],
+                    "author_id": ar["author_id"],
+                    "text": ar["answer_text"],
+                    "is_truncated": bool(ar["is_truncated"]),
+                })
 
-        # attacher aux questions
         questions = []
         for r in rows:
             questions.append({
@@ -193,6 +201,8 @@ def search_questions_page(
                 "prompt_hl": r.get("prompt_hl"),
                 "answers": previews_by_qid.get(r["id"], []),
             })
+
+
 
     total_pages = max(1, math.ceil(total / PER_PAGE))
     return templates.TemplateResponse(

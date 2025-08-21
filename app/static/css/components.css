@@ -2,18 +2,27 @@
    Components — Thème "Archives 50s" global
    ========================================= */
 
-/* ---------- Titres / utilitaires ---------- */
+/* ---------- Titres & utilitaires ---------- */
 .h1,.h2,.h3{ font-family:var(--font-typewriter); letter-spacing:.2px; }
 .h1{ font-size:28px; margin:0 0 var(--space-2); }
 .h2{ font-size:22px; margin:0 0 var(--space-2); }
 .h3{ font-size:18px; margin:0 0 var(--space-1); }
 .muted{ color:var(--muted); }
 
-/* Liens normaux (les boutons <a class="btn"> sont exclus) */
+/* Liens standards (hors .btn) */
 a:not(.btn), .link{
   color:var(--primary);
   text-decoration:underline;
   text-underline-offset:2px;
+}
+
+/* Accès : label masqué visuellement mais présent pour SR */
+.sr-only{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
 }
 
 /* ---------- Cartes ---------- */
@@ -32,9 +41,9 @@ a:not(.btn), .link{
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:var(--space-4);
 }
-.list--plain{ display:flex; flex-direction:column; gap:var(--space-4); }
+.list--plain{ display:flex; flex-direction:column; gap:var(--space-3); }
 
-/* ---------- Media ---------- */
+/* ---------- Media object ---------- */
 .media{ display:flex; gap:var(--space-4); }
 .media__body{ flex:1; }
 
@@ -84,32 +93,42 @@ a:not(.btn), .link{
 .pagination__btn.is-disabled{ opacity:.5; pointer-events:none; }
 .pagination__info{ color:var(--muted); }
 
-/* ---------- Réponses ---------- */
+/* ---------- Réponses (pages auteur / question) ---------- */
 .answer{
   background:var(--paper);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:var(--space-5);
+  border:none;
+  border-radius:0;
+  padding:0;
 }
 .answer__meta{ display:flex; gap:var(--space-3); font-size:14px; color:var(--muted); margin-bottom:var(--space-2); }
 .answer__question{ margin-bottom:var(--space-2); }
 .answer__questionLink{ font-weight:600; text-decoration:underline; }
 .answer__body{ white-space:pre-wrap; word-wrap:break-word; }
-
-/* ---------- États vides & breadcrumbs ---------- */
-.empty{
-  padding:var(--space-6); text-align:center; color:var(--muted);
-  background:var(--paper); border:1px dashed var(--border); border-radius:var(--radius);
+.answer__body ul{
+  margin:var(--space-3) 0 var(--space-3) var(--space-5);
+  padding-left:var(--space-5);
+  list-style:disc;
 }
-.breadcrumbs{ font-size:14px; color:var(--muted); margin-bottom:var(--space-4); }
+.answer__body li{ margin:4px 0; }
 
-/* ---------- Badges => tampons ---------- */
+/* ---------- Badge tampon ---------- */
 .badge{
-  display:inline-block; font-size:12px; text-transform:uppercase; letter-spacing:.6px;
-  color:var(--stamp); border:2px solid var(--stamp); border-radius:4px; padding:2px 8px;
+  display:inline-block;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  color:var(--stamp);
+  border:2px solid var(--stamp);
+  border-radius:4px;
+  padding:2px 8px;
   background:color-mix(in srgb, var(--stamp) 8%, transparent);
   transform:rotate(-.6deg);
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.03);
+}
+a.badge,a.badge:link,a.badge:visited{ text-decoration:none; display:inline-block; }
+a.badge:hover{
+  background:color-mix(in srgb, var(--stamp) 12%, transparent);
+  border-color:var(--stamp);
 }
 
 /* ---------- Boutons (archives 50s) ---------- */
@@ -126,11 +145,9 @@ a:not(.btn), .link{
   transition:box-shadow .12s ease, filter .12s ease, background-color .12s ease;
   cursor:pointer;
 }
-/* Liens-boutons : pas de soulignement */
 a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
-
 .btn:hover{
-  box-shadow: 0 3px 0 rgba(0,0,0,.12), inset 0 -1px 0 rgba(0,0,0,.08);
+  box-shadow:0 3px 0 rgba(0,0,0,.12), inset 0 -1px 0 rgba(0,0,0,.08);
 }
 .btn:not(.btn--primary):hover{
   background:
@@ -139,9 +156,7 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 }
 .btn:focus-visible{ outline:2px dashed var(--ink-blue); outline-offset:2px; }
 
-/* Variantes (placées APRÈS les règles génériques pour gagner la cascade) */
-
-/* Primaire : toujours blanc, y compris au hover/focus/active */
+/* Variantes */
 .btn--primary{
   border-color:color-mix(in srgb, var(--primary) 70%, black 30%);
   background:
@@ -154,15 +169,10 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
   background:
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.06)),
     var(--primary);
-  filter: brightness(1.05);
-  box-shadow: 0 3px 0 rgba(0,0,0,.18), inset 0 .5px 0 rgba(255,255,255,.3);
-  color: var(--primary-contrast); /* reste bien blanc */
+  filter:brightness(1.05);
+  box-shadow:0 3px 0 rgba(0,0,0,.18), inset 0 .5px 0 rgba(255,255,255,.3);
+  color:var(--primary-contrast);
 }
-
-.btn--primary:focus,
-.btn--primary:active{ color:var(--primary-contrast); }
-
-/* Secondaire : texte bleu encre sur tous les états */
 .btn--secondary{
   border-color:var(--ink-blue);
   background:
@@ -176,10 +186,6 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
     var(--paper);
   color:var(--ink-blue);
 }
-.btn--secondary:focus,
-.btn--secondary:active{ color:var(--ink-blue); }
-
-/* Ghost (lien mis en avant) */
 .btn--ghost{
   border-color:transparent;
   background:transparent;
@@ -189,95 +195,76 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 }
 .btn--ghost:hover{ filter:brightness(1.05); }
 
-/* Divers */
 .btn--block{ display:flex; width:100%; }
 .btn .icon{ width:1.1em; height:1.1em; }
 .card .btn{ margin-top:var(--space-3); }
 
+/* ---------- Page header (titre au-dessus de la barre) ---------- */
+.page-header--stack{ display:block; margin-bottom:var(--space-4); }
+.page-header--stack .h1{ margin:0 0 var(--space-3); }
+.page-header--stack .search-bar{ margin:0; width:auto; max-width:none; }
 
-/* Page header empilé : titre puis barre de recherche */
-.page-header--stack{ margin-bottom: var(--space-4); }
-.page-header--stack .search-bar{ margin-top: var(--space-3); }
+/* Titre sur une seule ligne (sauf mobile) */
+.page-title--nowrap{ white-space:nowrap; }
+@media (max-width:640px){ .page-title--nowrap{ white-space:normal; } }
 
-/* Titre sur une seule ligne (revient à la ligne sur mobile) */
-.page-title--nowrap{ white-space: nowrap; }
-@media (max-width: 640px){
-  .page-title--nowrap{ white-space: normal; }
+/* Largeur confortable pour la barre de recherche si besoin */
+.search-bar--wide{ max-width:720px; }
+
+/* ---------- Préviews de réponses sous une question ---------- */
+/* Liste compacte, aucune bordure */
+.question-card .question-preview{
+  margin-top:var(--space-3);
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
-
-/* Barre plus large et centrée visuellement */
-.search-bar--wide{ max-width: 720px; }
-
-/* Label accessible mais masqué visuellement */
-.sr-only{
-  position: absolute !important;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0);
-  white-space: nowrap; border: 0;
-}
-
-/* Header empilé : titre AU-DESSUS du champ de recherche */
-/* Header empilé : titre au-dessus du formulaire, sans changer la largeur */
-.page-header--stack{
-  display:block;                       /* pas de flex = pas d'effet sur la largeur */
-  margin-bottom: var(--space-4);
-}
-.page-header--stack .h1{               /* espace entre titre et barre */
-  margin: 0 0 var(--space-3);
-}
-/* Ne JAMAIS contraindre la largeur de la search-bar ici */
-.page-header--stack .search-bar{
-  margin: 0;                           /* ou var(--space-0) si tu as */
-  width: auto;
-  max-width: none;
+.question-card .question-preview__item{
+  padding:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  outline:0;
+  overflow:visible; /* laisser dépasser les guillemets */
 }
 
-.page-title--nowrap{ white-space: nowrap; }
+/* Citation avec gros guillemets « » */
+.quote{ 
+  position:relative;
+  margin:0; 
+  margin-top:var(--space-3);
+  padding:0; 
+    }
+.quote__text{
+  margin:0; line-height:1.4; white-space:normal;
+  padding:2px 0 0 28px; /* espace pour le guillemet ouvrant */
+}
+.quote::before,
+.quote::after{
+  position:absolute; pointer-events:none;
+  font-family:var(--font-typewriter);
+  font-size:80px; line-height:1;
+  color:color-mix(in srgb, var(--ink) 25%, transparent);
+  opacity:.9;
+  content:"«";
+}
+.quote::before{ left:-6px; top:-16px; content:"«"; }
+.quote::after { right:-8px; bottom:-22px; content:"»"; }
 
-@media (max-width: 640px){
-  .page-title--nowrap{ white-space: normal; }  /* redevient fluide sur mobile */
+.quote__meta{ margin-top:4px; font-size:13px; color:var(--muted); }
+.quote__link{
+  color:var(--ink-blue);
+  text-decoration:underline;
+  text-underline-offset:2px;
 }
 
-.question-preview{
-  margin-top: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+/* Ellipsis multi-lignes */
+.clamp-3,.clamp-4,.clamp-5{
+  display:-webkit-box; -webkit-box-orient:vertical;
+  overflow:hidden; text-overflow:ellipsis;
 }
-.question-preview__item{
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--paper);
-  color: var(--text);
-  white-space: pre-wrap;
-}
-
-/* Badge utilisable comme lien (tampon) */
-a.badge, a.badge:link, a.badge:visited{
-  text-decoration: none;
-  display: inline-block;
-}
-a.badge:hover{
-  background: color-mix(in srgb, var(--stamp) 12%, transparent);
-  border-color: var(--stamp);
-}
-
-/* Extraits sous la question */
-.question-card__actions{ margin-top: var(--space-3); }
-
-.question-preview{
-  margin-top: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.question-preview__item{
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--paper);
-  color: var(--text);
-  white-space: pre-wrap;
-}
+.clamp-3{ -webkit-line-clamp:3; }
+.clamp-4{ -webkit-line-clamp:4; }
+.clamp-5{ -webkit-line-clamp:5; }

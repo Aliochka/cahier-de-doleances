@@ -1,30 +1,45 @@
-<li class="answer">
-  {% set _a = a %}
-  {% set _author_id = _a.author_id if _a.author_id is defined else (_a.get('author_id') if _a.get is defined else None) %}
-  {% set _q_id = _a.question_id if _a.question_id is defined else (_a.get('question_id') if _a.get is defined else None) %}
-  {% set _date = _a.created_at if _a.created_at is defined else (_a.get('submitted_at') if _a.get is defined else None) %}
-  {% set _body = _a.body if _a.body is defined else (_a.text if _a.text is defined else (_a.answer_text if _a.answer_text is defined else '')) %}
-  {% set _q_title = _a.question_title if _a.question_title is defined
-                    else (_a.question_prompt if _a.question_prompt is defined
-                    else (_a.get('question_prompt') if _a.get is defined else None)) %}
+{# Prépare les champs de façon robuste #}
+{% set _a = a %}
+{% set ans_id = _a.id if _a is defined and _a.id is defined else none %}
+{% if ans_id is none and _a.get is defined %}
+  {% set ans_id = _a.get('answer_id') or _a.get('id') %}
+{% endif %}
 
-  {# ----- QUESTION AU-DESSUS ----- #}
-  {% if _q_id and not on_question_page %}
-    <div class="answer__question">
-      <a class="answer__questionLink" href="{{ url_for('question_detail', question_id=_q_id) }}">
-        {{ _q_title or ('Question #' ~ _q_id) }}
-      </a>
-    </div>
-  {% endif %}
+{% set author_id = _a.author_id if _a.author_id is defined
+                 else (_a.get('author_id') if _a.get is defined else none) %}
+{% set qid = _a.question_id if _a.question_id is defined
+           else (_a.get('question_id') if _a.get is defined else none) %}
+{% set date = _a.created_at if _a.created_at is defined
+            else (_a.get('submitted_at') if _a.get is defined else none) %}
+{% set body = _a.body if _a.body is defined
+           else (_a.text if _a.text is defined
+           else (_a.get('answer_text') or '')) %}
 
+<li class="answer" id="answer-{{ ans_id or '' }}">
   <header class="answer__meta">
-    {% if _author_id %}
-      <a class="answer__author" href="{{ url_for('author_detail', author_id=_author_id) }}">Auteur #{{ _author_id }}</a>
+    {# Lien vers la question si on n'est PAS sur la page question #}
+    {% if qid and not on_question_page %}
+      <a class="link" href="{{ url_for('question_detail', question_id=qid) }}">Voir la question</a>
     {% endif %}
-    {% if _date %}
-      <time class="answer__date" datetime="{{ _date|default('', true) }}">{{ _date }}</time>
+    {% if date %}
+      <time class="answer__date" datetime="{{ date }}">{{ date }}</time>
     {% endif %}
   </header>
 
-  <div class="answer__body">{{ _body }}</div>
+  <blockquote class="quote">
+    <p class="quote__text clamp-4">{{ body }}</p>
+  </blockquote>
+
+  <footer class="answer__footer">
+    {% if author_id and ans_id %}
+      <a class="quote__link"
+         href="{{ url_for('author_detail', author_id=author_id) }}#answer-{{ ans_id }}">
+        → Voir la contribution
+      </a>
+    {% elif author_id %}
+      <a class="quote__link" href="{{ url_for('author_detail', author_id=author_id) }}">
+        → Voir la contribution
+      </a>
+    {% endif %}
+  </footer>
 </li>
