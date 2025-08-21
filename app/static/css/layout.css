@@ -1,17 +1,24 @@
-body{background:var(--bg);color:var(--text);font-family:var(--font-sans)}
+html, body{height:100%}
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
+}
 .container{
   max-width:var(--container);
   margin:0 auto;
   padding-left:var(--page-gutter);
   padding-right:var(--page-gutter);
 }
-.site-header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+main{flex:1 0 auto}
+.site-header{ flex:0 0 auto; background: var(--surface); border-bottom:1px solid var(--border); }
 .header__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);height:64px}
 .brand{display:flex;align-items:center;gap:var(--space-2);font-weight:700}
 .brand__logo{width:28px;height:28px}
 .nav__link{padding:8px 10px;border-radius:8px}
 .nav__link:hover{background:var(--bg)}
-.site-footer{border-top:1px solid var(--border);margin-top:var(--space-10);background:var(--surface)}
+.site-footer{ flex:0 0 auto; background: var(--surface); border-top:1px solid var(--border); }
 .footer__inner{display:flex;align-items:center;justify-content:space-between;padding:var(--space-6) 0}
 .skip-link{position:absolute;left:-9999px}
 .skip-link:focus{left:var(--space-4);top:var(--space-4);background:#000;color:#fff;padding:6px 10px;border-radius:8px}
@@ -39,4 +46,24 @@ main.container{
     padding-left:max(var(--page-gutter), env(safe-area-inset-left));
     padding-right:max(var(--page-gutter), env(safe-area-inset-right));
   }
+}
+
+.theme-archive body,
+.theme-archive-dark body{
+  font-family: var(--font-serif);
+  color: var(--text);
+  background: var(--bg);
+}
+
+.theme-archive main.container,
+.theme-archive-dark main.container{
+  background-color: var(--paper);
+  /* grain très léger (sans image) */
+  background-image:
+    radial-gradient(rgba(0,0,0,.035) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.08);
+  margin-top: var(--space-6);
 }

@@ -5,3 +5,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ PAGE_TITLE or 'Cahier de doléances' }}" />
 <meta property="og:url" content="{{ request.url }}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ request.url_for('static', path='/css/reset.css') }}?v=1">
+<link rel="stylesheet" href="{{ request.url_for('static', path='/css/variables.css') }}?v=1">
+<link rel="stylesheet" href="{{ request.url_for('static', path='/css/layout.css') }}?v=1">
+<link rel="stylesheet" href="{{ request.url_for('static', path='/css/components.css') }}?v=1">
+<link rel="stylesheet" href="{{ request.url_for('static', path='/css/pages.css') }}?v=1">
+<link rel="icon" href="{{ request.url_for('static', path='/img/favicon.ico') }}">

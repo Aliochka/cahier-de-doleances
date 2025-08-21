@@ -1,33 +1,195 @@
-.h1{font-size:28px;margin:0 0 var(--space-2)}
-.h2{font-size:22px;margin:0 0 var(--space-2)}
-.h3{font-size:18px;margin:0 0 var(--space-1)}
-.muted{color:var(--muted)}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:var(--space-5)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);cursor:pointer}
-.btn:hover{background:#f3f4f6}
-.btn--primary{background:var(--primary);border-color:var(--primary);color:var(--primary-contrast)}
-.btn--primary:hover{filter:brightness(.95)}
-.badge{display:inline-block;font-size:12px;background:#eef2ff;color:#3730a3;border-radius:999px;padding:2px 8px}
-.list{list-style:none;padding:0;margin:0}
-.list--cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4)}
-.list--plain{display:flex;flex-direction:column;gap:var(--space-4)}
-.media{display:flex;gap:var(--space-4)}
-.media__body{flex:1}
-.search-bar{display:flex;gap:var(--space-2);align-items:center}
-.search-bar input[type="search"]{flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
-.filters{margin:var(--space-4) 0 var(--space-6)}
-.filters__row{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4)}
-.chip{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:6px 10px;margin-right:6px}
-.chip--active{background:#111827;color:#fff;border-color:#111827}
-.pagination{display:flex;gap:var(--space-3);align-items:center;justify-content:center;margin-top:var(--space-6)}
-.pagination__btn{padding:8px 12px;border:1px solid var(--border);border-radius:10px}
-.pagination__btn.is-disabled{opacity:.5;pointer-events:none}
-.pagination__info{color:var(--muted)}
-.answer{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-5)}
-.answer__meta{display:flex;gap:var(--space-3);font-size:14px;color:var(--muted);margin-bottom:var(--space-2)}
-.answer__body{white-space:pre-wrap;word-wrap:break-word}
-.empty{padding:var(--space-6);text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius)}
-.breadcrumbs{font-size:14px;color:var(--muted);margin-bottom:var(--space-4)}
-.link{color:var(--primary);text-decoration:underline}
-.answer__question{margin-bottom:var(--space-2)}
-.answer__questionLink{font-weight:600;text-decoration:underline}
+/* =========================================
+   Components — Thème "Archives 50s" global
+   ========================================= */
+
+/* ---------- Titres / utilitaires ---------- */
+.h1,.h2,.h3{ font-family:var(--font-typewriter); letter-spacing:.2px; }
+.h1{ font-size:28px; margin:0 0 var(--space-2); }
+.h2{ font-size:22px; margin:0 0 var(--space-2); }
+.h3{ font-size:18px; margin:0 0 var(--space-1); }
+.muted{ color:var(--muted); }
+
+/* Liens normaux (les boutons <a class="btn"> sont exclus) */
+a:not(.btn), .link{
+  color:var(--primary);
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+
+/* ---------- Cartes ---------- */
+.card{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:8px;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  padding:var(--space-5);
+}
+
+/* ---------- Listes ---------- */
+.list{ list-style:none; padding:0; margin:0; }
+.list--cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:var(--space-4);
+}
+.list--plain{ display:flex; flex-direction:column; gap:var(--space-4); }
+
+/* ---------- Media ---------- */
+.media{ display:flex; gap:var(--space-4); }
+.media__body{ flex:1; }
+
+/* ---------- Barre de recherche ---------- */
+.search-bar{ display:flex; gap:var(--space-2); align-items:center; }
+.search-bar input[type="search"]{
+  flex:1; min-width:220px;
+  padding:10px 12px;
+  background:var(--paper);
+  border:2px solid var(--border);
+  border-radius:10px;
+}
+.search-bar input[type="search"]:hover{
+  border-color:color-mix(in srgb, var(--border) 80%, #000 20%);
+}
+.search-bar input[type="search"]:focus{
+  outline:2px dashed var(--ink-blue);
+  outline-offset:2px;
+  box-shadow:none;
+}
+
+/* ---------- Filtres & chips ---------- */
+.filters{ margin:var(--space-4) 0 var(--space-6); }
+.filters__row{ display:flex; justify-content:space-between; align-items:center; gap:var(--space-4); }
+.chip{
+  display:inline-block;
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:6px 10px;
+  margin-right:6px;
+}
+.chip--active{ background:#111827; color:#fff; border-color:#111827; }
+
+/* ---------- Pagination ---------- */
+.pagination{
+  display:flex; gap:var(--space-3);
+  align-items:center; justify-content:center;
+  margin-top:var(--space-6);
+}
+.pagination__btn{
+  padding:8px 12px;
+  border:2px solid var(--border);
+  border-radius:10px;
+  background:var(--paper);
+  text-decoration:none;
+}
+.pagination__btn.is-disabled{ opacity:.5; pointer-events:none; }
+.pagination__info{ color:var(--muted); }
+
+/* ---------- Réponses ---------- */
+.answer{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:var(--space-5);
+}
+.answer__meta{ display:flex; gap:var(--space-3); font-size:14px; color:var(--muted); margin-bottom:var(--space-2); }
+.answer__question{ margin-bottom:var(--space-2); }
+.answer__questionLink{ font-weight:600; text-decoration:underline; }
+.answer__body{ white-space:pre-wrap; word-wrap:break-word; }
+
+/* ---------- États vides & breadcrumbs ---------- */
+.empty{
+  padding:var(--space-6); text-align:center; color:var(--muted);
+  background:var(--paper); border:1px dashed var(--border); border-radius:var(--radius);
+}
+.breadcrumbs{ font-size:14px; color:var(--muted); margin-bottom:var(--space-4); }
+
+/* ---------- Badges => tampons ---------- */
+.badge{
+  display:inline-block; font-size:12px; text-transform:uppercase; letter-spacing:.6px;
+  color:var(--stamp); border:2px solid var(--stamp); border-radius:4px; padding:2px 8px;
+  background:color-mix(in srgb, var(--stamp) 8%, transparent);
+  transform:rotate(-.6deg);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.03);
+}
+
+/* ---------- Boutons (archives 50s) ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-weight:600; line-height:1; padding:10px 14px;
+  border:2px solid var(--ink); border-radius:8px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.6), rgba(0,0,0,.03)),
+    var(--paper);
+  color:var(--ink);
+  text-decoration:none;
+  box-shadow:0 1px 0 rgba(0,0,0,.06), inset 0 -1px 0 rgba(0,0,0,.05);
+  transition:box-shadow .12s ease, filter .12s ease, background-color .12s ease;
+  cursor:pointer;
+}
+/* Liens-boutons : pas de soulignement */
+a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
+
+.btn:hover{
+  box-shadow: 0 3px 0 rgba(0,0,0,.12), inset 0 -1px 0 rgba(0,0,0,.08);
+}
+.btn:not(.btn--primary):hover{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.7), rgba(0,0,0,.05)),
+    var(--paper);
+}
+.btn:focus-visible{ outline:2px dashed var(--ink-blue); outline-offset:2px; }
+
+/* Variantes (placées APRÈS les règles génériques pour gagner la cascade) */
+
+/* Primaire : toujours blanc, y compris au hover/focus/active */
+.btn--primary{
+  border-color:color-mix(in srgb, var(--primary) 70%, black 30%);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.15), rgba(0,0,0,.06)),
+    var(--primary);
+  box-shadow:0 2px 0 rgba(0,0,0,.12), inset 0 .5px 0 rgba(255,255,255,.25);
+  color:var(--primary-contrast);
+}
+.btn--primary:hover{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.06)),
+    var(--primary);
+  filter: brightness(1.05);
+  box-shadow: 0 3px 0 rgba(0,0,0,.18), inset 0 .5px 0 rgba(255,255,255,.3);
+  color: var(--primary-contrast); /* reste bien blanc */
+}
+
+.btn--primary:focus,
+.btn--primary:active{ color:var(--primary-contrast); }
+
+/* Secondaire : texte bleu encre sur tous les états */
+.btn--secondary{
+  border-color:var(--ink-blue);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.5), rgba(0,0,0,.03)),
+    var(--paper);
+  color:var(--ink-blue);
+}
+.btn--secondary:hover{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.65), rgba(0,0,0,.06)),
+    var(--paper);
+  color:var(--ink-blue);
+}
+.btn--secondary:focus,
+.btn--secondary:active{ color:var(--ink-blue); }
+
+/* Ghost (lien mis en avant) */
+.btn--ghost{
+  border-color:transparent;
+  background:transparent;
+  color:var(--ink-blue);
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+.btn--ghost:hover{ filter:brightness(1.05); }
+
+/* Divers */
+.btn--block{ display:flex; width:100%; }
+.btn .icon{ width:1.1em; height:1.1em; }
+.card .btn{ margin-top:var(--space-3); }
