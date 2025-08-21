@@ -17,10 +17,15 @@ L’idée : donner un accès simple et puissant à cette matière brute, pour no
 
 ## 🗺️ Roadmap v0
 
-- [ ] Mise en place du backend (FastAPI + SQLite pour démarrage local)  
-- [ ] Ingestion massive des contributions (CSV compressés)  
-- [ ] Indexation plein texte (FTS5) pour recherche rapide  
-- [ ] Front-end minimaliste mobile-first  
+- [x] Mise en place du backend (FastAPI + SQLite pour démarrage local)  
+- [x] Ingestion massive des contributions (CSV compressés)  
+- [x] Indexation plein texte (FTS5) pour recherche rapide  
+- [ ] Front-end minimaliste mobile-first
+  - [] ui
+  - [] page accueil
+  - [] page question
+  - [] page auteur
+  - [] page thème 
 - [ ] Scripts d’analyses exploratoires (Python / Rust)  
 
 ---
@@ -39,7 +44,7 @@ pip install -r requirements.txt
 
 ```bash
 # Lancer le serveur
-npm run dev
+gunicorn -k uvicorn.workers.UvicornWorker app.app:app --reload
 ```
 
 ### 2. Créer la base de test

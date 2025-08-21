@@ -131,6 +131,7 @@ def question_detail(request: Request, question_id: int, q: str | None = Query(No
             "q": q or "",
             "page": page,
             "total_pages": total_pages,
+            "on_question_page": True,
         },
     )
 

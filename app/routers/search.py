@@ -31,30 +31,35 @@ def search_answers(request: Request, q: str = Query("", description="Requête"),
             """), {"q": match_query}).scalar_one()
 
             if total:
-                rows = db.execute(text("""
-                    SELECT a.id              AS answer_id,
-                           a.text            AS answer_text,
-                           a.question_id     AS question_id,
-                           c.author_id       AS author_id,
-                           c.submitted_at    AS submitted_at,
-                           bm25(answers_fts) AS score
-                    FROM answers_fts
-                    JOIN answers       a ON a.id = answers_fts.rowid
-                    JOIN contributions c ON c.id = a.contribution_id
-                    WHERE answers_fts MATCH :q
-                    ORDER BY bm25(answers_fts) ASC, a.id DESC
-                    LIMIT :limit OFFSET :offset
-                """), {"q": match_query, "limit": PER_PAGE, "offset": offset}).mappings().all()
+               rows = db.execute(text("""
+                SELECT a.id              AS answer_id,
+                    a.text            AS answer_text,
+                    a.question_id     AS question_id,
+                    q.prompt          AS question_prompt,
+                    c.author_id       AS author_id,
+                    c.submitted_at    AS submitted_at,
+                    bm25(answers_fts) AS score
+                FROM answers_fts
+                JOIN answers       a ON a.id = answers_fts.rowid
+                JOIN contributions c ON c.id = a.contribution_id
+                JOIN questions     q ON q.id = a.question_id
+                WHERE answers_fts MATCH :q
+                ORDER BY bm25(answers_fts) ASC, a.id DESC
+                LIMIT :limit OFFSET :offset
+            """), {"q": match_query, "limit": PER_PAGE, "offset": offset}).mappings().all()
 
-                for r in rows:
-                    txt = (r["answer_text"] or "")[:MAX_TEXT_LEN]
-                    answers.append({
-                        "id": r["answer_id"],
-                        "question_id": r["question_id"],
-                        "author_id": r["author_id"],
-                        "created_at": r["submitted_at"],
-                        "body": txt,  # <- pour _answer_item.html
-                    })
+            answers = []
+            for r in rows:
+                txt = (r["answer_text"] or "")[:MAX_TEXT_LEN]
+                answers.append({
+                    "id": r["answer_id"],
+                    "author_id": r["author_id"],
+                    "question_id": r["question_id"],
+                    "question_title": r["question_prompt"],   # 👈 utilisé par le partial
+                    "created_at": r["submitted_at"],
+                    "body": txt,
+                })
+
 
     total_pages = max(1, math.ceil(total / PER_PAGE)) if q else 1
     return templates.TemplateResponse(

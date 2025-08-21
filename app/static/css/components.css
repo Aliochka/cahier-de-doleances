@@ -29,3 +29,5 @@
 .empty{padding:var(--space-6);text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius)}
 .breadcrumbs{font-size:14px;color:var(--muted);margin-bottom:var(--space-4)}
 .link{color:var(--primary);text-decoration:underline}
+.answer__question{margin-bottom:var(--space-2)}
+.answer__questionLink{font-weight:600;text-decoration:underline}

@@ -15,4 +15,9 @@
   --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
 
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+
+
+  --gutter-min: 16px;   /* marge mini */
+  --gutter-max: 40px;   /* marge maxi */
+  --page-gutter: clamp(var(--gutter-min), 4vw, var(--gutter-max));
 }

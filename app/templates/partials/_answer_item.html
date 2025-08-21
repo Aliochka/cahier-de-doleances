@@ -1,10 +1,21 @@
-<!-- app/templates/partials/_answer_item.html -->
 <li class="answer">
   {% set _a = a %}
   {% set _author_id = _a.author_id if _a.author_id is defined else (_a.get('author_id') if _a.get is defined else None) %}
   {% set _q_id = _a.question_id if _a.question_id is defined else (_a.get('question_id') if _a.get is defined else None) %}
   {% set _date = _a.created_at if _a.created_at is defined else (_a.get('submitted_at') if _a.get is defined else None) %}
   {% set _body = _a.body if _a.body is defined else (_a.text if _a.text is defined else (_a.answer_text if _a.answer_text is defined else '')) %}
+  {% set _q_title = _a.question_title if _a.question_title is defined
+                    else (_a.question_prompt if _a.question_prompt is defined
+                    else (_a.get('question_prompt') if _a.get is defined else None)) %}
+
+  {# ----- QUESTION AU-DESSUS ----- #}
+  {% if _q_id and not on_question_page %}
+    <div class="answer__question">
+      <a class="answer__questionLink" href="{{ url_for('question_detail', question_id=_q_id) }}">
+        {{ _q_title or ('Question #' ~ _q_id) }}
+      </a>
+    </div>
+  {% endif %}
 
   <header class="answer__meta">
     {% if _author_id %}
@@ -16,10 +27,4 @@
   </header>
 
   <div class="answer__body">{{ _body }}</div>
-
-  {% if _q_id %}
-  <footer class="answer__footer">
-    <a class="link" href="{{ url_for('question_detail', question_id=_q_id) }}">Voir la question</a>
-  </footer>
-  {% endif %}
 </li>

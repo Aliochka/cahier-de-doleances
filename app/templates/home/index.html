@@ -1,24 +1,23 @@
 {% extends "base/base.html" %}
 {% set PAGE_TITLE = "Accueil" %}
 {% block content %}
-<section class="hero">
-  <h1 class="h1">Un pas de plus vers la révolution</h1>
-  <p class="lead">Explorez les questions et des millions de réponses.</p>
-  <div class="hero__actions">
-    {% include "partials/_search_form.html" with context %}
-  </div>
+<section class="hero hero--center container--narrow">
+  <h1 class="h1">Cahier de doléances</h1>
+  <h2 class="h2">Un pas de plus vers la révolution</h1>
+  <p class="lead">Explorez les questions et des millions de réponses des contributions au grand débat.</p>
+   <p class="lead"> Et... bientôt les vôtres !</p>
 </section>
 
-<section class="grid grid--2">
+<section class="grid grid--2 grid--narrow grid--center">
   <article class="card">
-    <h2 class="h2">Rechercher des questions</h2>
+    <h2 class="h2">Rechercher dans les questions</h2>
     <p>Parcourez l’ensemble des questions du Grand Débat.</p>
-    <a class="btn btn--primary" href="{{ url_for('search_questions') }}">Chercher des questions</a>
+    <a class="btn btn--primary" href="{{ url_for('search_questions') }}">Chercher dans les questions</a>
   </article>
   <article class="card">
-    <h2 class="h2">Rechercher des réponses</h2>
+    <h2 class="h2">Rechercher dans les réponses</h2>
     <p>Trouvez des réponses par mots-clés, filtrées et triées.</p>
-    <a class="btn" href="{{ url_for('search_answers') }}">Chercher des réponses</a>
+    <a class="btn btn--primary" href="{{ url_for('search_answers') }}">Chercher dans les réponses</a>
   </article>
 </section>
 {% endblock %}
