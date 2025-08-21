@@ -100,6 +100,7 @@ a:not(.btn), .link{
   border-radius:0;
   padding:0;
 }
+.answer__question-title {font-family:var(--font-typewriter);}
 .answer__meta{ display:flex; gap:var(--space-3); font-size:14px; color:var(--muted); margin-bottom:var(--space-2); }
 .answer__question{ margin-bottom:var(--space-2); }
 .answer__questionLink{ font-weight:600; text-decoration:underline; }
@@ -307,3 +308,4 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 }
 .answer--full .quote::before{ left: -20px; top: -28px; }
 .answer--full .quote::after { right: -6px; bottom: -45px; }
+.answer__footer {margin-top: 20px; display: flex; align-items: center; gap: 8px;}
