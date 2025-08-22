@@ -24,31 +24,31 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 - [x] Mise en place du backend (FastAPI + SQLite pour démarrage local)  
 - [x] Ingestion massive des contributions (CSV compressés)  
 - [x] Indexation plein texte (FTS5) pour recherche rapide  
-- [ ] Front-end minimaliste mobile-first
-  - [ ] ui
+- [x] Front-end minimaliste mobile-first
+  - [x] ui
   - [ ] page accueil
-    - [ ] back
-    - [ ] ux
-    - [ ] ui
-    - [ ] contenu
-  - [ ] page question
     - [x] back
     - [ ] ux
     - [ ] ui
     - [ ] contenu
-  - [ ] page auteur
-    - [x] back
-    - [ ] ux
-    - [ ] ui
-  - [ ] recherche par question
+  - [x] page question
     - [x] back
     - [x] ux
-    - [ ] ui
-    - [x] optimisation
-  - [ ] recherche par réponses
+    - [x] ui
+  - [x] page auteur
     - [x] back
-    - [ ] ux
-    - [ ] ui
+    - [x] ux
+    - [x] ui
+  - [x] recherche par question
+    - [x] back
+    - [x] ux
+    - [x] ui
+    - [x] optimisation
+  - [x] recherche par réponses
+    - [x] back
+    - [x] ux
+    - [x] ui
+    - [x] optimisation
 - [ ] migration postgresql
 - [ ] MEP !
 

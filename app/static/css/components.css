@@ -259,8 +259,8 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 .quote::after{
   position:absolute; pointer-events:none;
   font-family:var(--font-typewriter);
-  font-size:80px; line-height:1;
-  color: var(--ink);
+  font-size:60px; line-height:1;
+  color: var(--muted);
   content:"«";
 }
 .quote::before{ left:-10px; top:-30px; content:"«"; }

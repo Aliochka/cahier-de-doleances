@@ -31,43 +31,44 @@ def search_answers(
 
     offset = (page - 1) * PER_PAGE
 
-    # Mode 1 — RECHERCHE FTS quand q >= 2
+    # Mode 1 — RECHERCHE FTS Postgres quand q >= 2
     if len(q) >= 2:
-        match_query = f'"{q}"' if " " in q else q
         with SessionLocal() as db:
-            # total résultats FTS
+            # total résultats FTS (websearch_to_tsquery = syntaxe "moteur web")
             total = db.execute(
                 text("""
+                    WITH s AS (SELECT websearch_to_tsquery('fr_unaccent', :q) AS tsq)
                     SELECT COUNT(*)
-                    FROM answers_fts
-                    WHERE answers_fts MATCH :q
+                    FROM answers a, s
+                    WHERE a.text_tsv @@ s.tsq
                 """),
-                {"q": match_query},
+                {"q": q},
             ).scalar_one()
 
             rows = []
             if total:
                 rows = db.execute(
                     text("""
+                        WITH s AS (SELECT websearch_to_tsquery('fr_unaccent', :q) AS tsq)
                         SELECT
-                            a.id                 AS answer_id,
-                            a.question_id        AS question_id,
-                            q.prompt             AS question_prompt,
-                            c.author_id          AS author_id,
-                            c.submitted_at       AS submitted_at,
-                            bm25(answers_fts)    AS score,
-                            -- extrait surligné (colonne 0 = texte dans answers_fts)
-                            snippet(answers_fts, 0, '<mark>', '</mark>', '…', 18) AS answer_snippet,
-                            a.text               AS answer_text
-                        FROM answers_fts
-                        JOIN answers       a ON a.id = answers_fts.rowid
+                            a.id               AS answer_id,
+                            a.question_id      AS question_id,
+                            qq.prompt          AS question_prompt,
+                            c.author_id        AS author_id,
+                            c.submitted_at     AS submitted_at,
+                            ts_rank(a.text_tsv, s.tsq) AS score,
+                            ts_headline('fr_unaccent', a.text, s.tsq,
+                                'StartSel=<mark>, StopSel=</mark>, MaxFragments=2, MaxWords=18') AS answer_snippet,
+                            a.text             AS answer_text
+                        FROM answers a
                         JOIN contributions c ON c.id = a.contribution_id
-                        JOIN questions     q ON q.id = a.question_id
-                        WHERE answers_fts MATCH :q
-                        ORDER BY bm25(answers_fts) ASC, a.id DESC
+                        JOIN questions     qq ON qq.id = a.question_id
+                        , s
+                        WHERE a.text_tsv @@ s.tsq
+                        ORDER BY score DESC, a.id DESC
                         LIMIT :limit OFFSET :offset
                     """),
-                    {"q": match_query, "limit": PER_PAGE, "offset": offset},
+                    {"q": q, "limit": PER_PAGE, "offset": offset},
                 ).mappings().all()
 
         for r in rows:
@@ -83,7 +84,7 @@ def search_answers(
                 "question_id": r["question_id"],
                 "question_title": r["question_prompt"],
                 "created_at": r["submitted_at"],
-                "body": body,  # contient déjà <mark>…</mark> si snippet()
+                "body": body,  # contient déjà <mark>…</mark> si ts_headline()
             })
 
         total_pages = max(1, ceil(total / PER_PAGE))
@@ -196,50 +197,27 @@ def search_questions_page(
     with SessionLocal() as db:
         # 1) Sélection des questions
         if q:
-            # Phase 1 : hits FTS (rowid + rank), pas de COUNT(*)
-            hits_sql = text("""
-                SELECT rowid AS qid, bm25(question_fts) AS rank
-                FROM question_fts
-                WHERE question_fts MATCH :q
-                ORDER BY rank ASC, rowid ASC
-                LIMIT :limit_plus_one OFFSET :offset
-            """)
-            hit_rows = db.execute(
-                hits_sql,
-                {"q": q, "limit_plus_one": PER_PAGE + 1, "offset": offset},
-            ).mappings().all()
-
-            has_next = len(hit_rows) > PER_PAGE
-            hit_rows = hit_rows[:PER_PAGE]
-            hit_ids = [r["qid"] for r in hit_rows]
-            rank_by_id = {r["qid"]: r["rank"] for r in hit_rows}
-
-            if hit_ids:
-                # Phase 2 : détails + highlight uniquement pour ces ids
-                data_sql = text("""
-                        WITH ids(qid, rank) AS (
-                        VALUES {}
-                        )
-                        SELECT
+            # FTS Postgres direct (une seule phase)
+            rows = db.execute(
+                text("""
+                    WITH s AS (SELECT websearch_to_tsquery('fr_unaccent', :q) AS tsq)
+                    SELECT
                         q.id,
                         q.question_code,
                         q.prompt AS title,
-                        i.rank AS score,
-                        highlight(question_fts, 0, '<mark>', '</mark>') AS prompt_hl
-                        FROM ids i
-                        JOIN question_fts
-                        ON question_fts.rowid = i.qid
-                        AND question_fts MATCH :q           -- <- indispensable pour highlight()
-                        JOIN questions q ON q.id = i.qid
-                        ORDER BY i.rank ASC, q.id ASC
-                    """.format(",".join(f"({qid}, :rank_{qid})" for qid in hit_ids)))
+                        ts_rank(q.prompt_tsv, s.tsq) AS score,
+                        ts_headline('fr_unaccent', q.prompt, s.tsq,
+                            'StartSel=<mark>, StopSel=</mark>, MaxFragments=1, MaxWords=18') AS prompt_hl
+                    FROM questions q, s
+                    WHERE q.prompt_tsv @@ s.tsq
+                    ORDER BY score DESC, q.id ASC
+                    LIMIT :limit_plus_one OFFSET :offset
+                """),
+                {"q": q, "limit_plus_one": PER_PAGE + 1, "offset": offset},
+            ).mappings().all()
 
-                params = {f"rank_{qid}": rank_by_id[qid] for qid in hit_ids}
-                params["q"] = q
-
-                rows = db.execute(data_sql, params).mappings().all()
-            else:
-                rows = []
+            has_next = len(rows) > PER_PAGE
+            rows = rows[:PER_PAGE]
         else:
             total = db.execute(text("SELECT COUNT(*) FROM questions")).scalar_one()
             rows = db.execute(
@@ -346,61 +324,3 @@ def search_questions_page(
         "total_pages": None if q else total_pages,
     }
     return templates.TemplateResponse("search/questions.html", ctx)
-
-
-
-# # --- Alias HTMX : /hx/search -> partials/_answers_list.html ---
-# @router.get("/hx/search", response_class=HTMLResponse)
-# def hx_search(request: Request, q: str = Query("", description="Requête utilisateur"), page: int = Query(1, ge=1)):
-#     q = (q or "").strip()
-#     PER_PAGE = 20
-#     MAX_TEXT_LEN = 20_000
-#     answers, total = [], 0
-
-#     if len(q) >= 2:
-#         match_query = f'"{q}"' if " " in q else q
-#         offset = (page - 1) * PER_PAGE
-#         with SessionLocal() as db:
-#             total = db.execute(text("""
-#                 SELECT COUNT(*)
-#                 FROM answers_fts
-#                 WHERE answers_fts MATCH :q
-#             """), {"q": match_query}).scalar_one()
-
-#             if total:
-#                 rows = db.execute(text("""
-#                     SELECT a.id           AS answer_id,
-#                            a.text         AS answer_text,
-#                            a.question_id  AS question_id,
-#                            c.author_id    AS author_id,
-#                            c.submitted_at AS submitted_at,
-#                            bm25(answers_fts) AS score
-#                     FROM answers_fts
-#                     JOIN answers       a ON a.id = answers_fts.rowid
-#                     JOIN contributions c ON c.id = a.contribution_id
-#                     WHERE answers_fts MATCH :q
-#                     ORDER BY bm25(answers_fts) ASC, a.id DESC
-#                     LIMIT :limit OFFSET :offset
-#                 """), {"q": match_query, "limit": PER_PAGE, "offset": offset}).mappings().all()
-
-#                 for r in rows:
-#                     txt = (r["answer_text"] or "")[:MAX_TEXT_LEN]
-#                     answers.append({
-#                         "id": r["answer_id"],
-#                         "author_id": r["author_id"],
-#                         "question_id": r["question_id"],
-#                         "created_at": r["submitted_at"],
-#                         "body": txt,  # attendu par answers/_card.html
-#                     })
-
-#     total_pages = max(1, ceil(total / PER_PAGE)) if q else 1
-#     return templates.TemplateResponse(
-#         "partials/_answers_list.html",
-#         {
-#             "request": request,
-#             "answers": answers,
-#             "page": page,
-#             "total_pages": total_pages,
-#             "q": q,
-#         },
-#     )
