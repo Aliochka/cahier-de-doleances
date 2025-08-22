@@ -1,27 +1,40 @@
 {% extends "base/base.html" %}
 {% set PAGE_TITLE = "Recherche questions" %}
-{% block content %}
 
+{% block content %}
 <header class="page-header page-header--stack">
   <h1 class="h1 page-title--nowrap">Recherche dans les questions</h1>
-  {% with id='q', label='Rechercher dans les questions', placeholder='Rechercher…', submit_text='Rechercher', q=q %}
-    {% include "partials/_search_form.html" %}
-  {% endwith %}
+
+  <form class="search-bar" method="get" action="{{ url_for('search_questions') }}" onsubmit="return false;">
+    <label class="sr-only" for="q">Rechercher une question</label>
+
+    <input
+      id="q"
+      name="q"
+      type="search"
+      placeholder="Rechercher…"
+      value="{{ q|default('') }}"
+      autocomplete="off"
+
+      hx-get="{{ url_for('search_questions') }}?partial=1"
+      hx-trigger="keyup changed delay:300ms, search"
+      hx-target="#questions-list"
+      hx-swap="innerHTML"
+      hx-push-url="true"
+      hx-indicator="#search-spinner"
+    />
+
+    <button class="btn btn--primary" type="button"
+            onclick="document.getElementById('q').dispatchEvent(new Event('search'))">
+      Rechercher
+    </button>
+
+    <span id="search-spinner" class="htmx-indicator" aria-hidden="true">⏳</span>
+  </form>
 </header>
 
-{% if questions and questions|length %}
-  <ul class="list list--plain">
-    {% for question in questions %}
-      <li class="card">
-        {% with q=question %}
-          {% include "questions/_card.html" %}
-        {% endwith %}
-      </li>
-    {% endfor %}
-  </ul>
-
-  {% include "partials/_pagination.html" with context %}
-{% else %}
-  {% include "partials/_empty_state.html" %}
-{% endif %}
+<div id="questions-list">
+  {# 1er rendu : on insère le partial qui contient aussi le sentinel #}
+  {% include "partials/_questions_list.html" with context %}
+</div>
 {% endblock %}

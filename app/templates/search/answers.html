@@ -1,14 +1,39 @@
 {% extends "base/base.html" %}
 {% set PAGE_TITLE = "Recherche réponses" %}
+
 {% block content %}
 <header class="page-header page-header--stack">
   <h1 class="h1 page-title--nowrap">Recherche dans les réponses</h1>
-  <form class="search-bar" method="get" action="{{ url_for('search_answers') }}">
+
+  <form class="search-bar" method="get" action="{{ url_for('search_answers') }}" onsubmit="return false;">
     <label class="sr-only" for="q">Rechercher dans les réponses</label>
-    <input id="q" name="q" type="search" placeholder="Rechercher..." value="{{ q|default('') }}">
-    <button class="btn btn--primary" type="submit">Rechercher</button>
+
+    <input
+      id="q"
+      name="q"
+      type="search"
+      placeholder="Rechercher..."
+      value="{{ q|default('') }}"
+      autocomplete="off"
+      hx-get="{{ url_for('search_answers') }}?partial=1"
+      hx-trigger="keyup changed delay:300ms, search"
+      hx-target="#answers-list"
+      hx-swap="innerHTML"
+      hx-push-url="true"
+      hx-indicator="#search-spinner"
+    />
+
+    <button class="btn btn--primary" type="button"
+            onclick="document.getElementById('q').dispatchEvent(new Event('search'))">
+      Rechercher
+    </button>
+
+    <span id="search-spinner" class="htmx-indicator" aria-hidden="true">⏳</span>
   </form>
 </header>
 
-{% include "partials/_answers_list.html" with context %}
+<!-- Conteneur que htmx remplace/étend -->
+<div id="answers-list">
+  {% include "partials/_answers_list.html" with context %}
+</div>
 {% endblock %}

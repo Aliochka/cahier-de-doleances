@@ -11,7 +11,7 @@
     <ul class="question-preview">
         {% for a in q.answers[:3] %}
         {% if a.author_id %}
-        {% set contrib_url = (url_for('author_detail', author_id=a.author_id)|string) ~ '#answer-' ~ a.id %}
+        {% set contrib_url = (url_for('answer_detail', answer_id=a.id)|string)%}
         {% else %}
         {% set contrib_url = (url_for('question_detail', question_id=q.id)|string) ~ '#answer-' ~ a.id %}
         {% endif %}
@@ -22,7 +22,7 @@
             {{ a.text }}{% if a.is_truncated %}…{% endif %}
             </blockquote>
             <figcaption class="quote__meta">
-            <a class="quote__link" href="{{ contrib_url }}">→ Voir la contribution</a>
+            <a class="quote__link" href="{{ contrib_url }}">→ Voir la réponse</a>
             </figcaption>
         </figure>
         </li>

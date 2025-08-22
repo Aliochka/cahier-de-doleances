@@ -259,7 +259,7 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 .quote::after{
   position:absolute; pointer-events:none;
   font-family:var(--font-typewriter);
-  font-size:60px; line-height:1;
+  font-size:40px; line-height:1;
   color: var(--muted);
   content:"«";
 }
@@ -321,3 +321,24 @@ a.btn, a.btn:link, a.btn:visited{ text-decoration:none; }
 .answer--full .quote::before{ left: -30px; top: -28px; }
 .answer--full .quote::after { right: -60px; bottom: -60px; }
 .answer__footer {margin-top: 20px; display: flex; align-items: center; gap: 8px;}
+
+/* htmx indicators (affichés pendant la requête) */
+.htmx-indicator { display: none; }
+.htmx-request .htmx-indicator { display: inline-block; }
+/* petit spinner circulaire */
+.loader {
+  width: 22px; height: 22px;
+  border: 3px solid rgba(0,0,0,.15);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+/* zone centrée sous la liste */
+.list-loader {
+  display: none;
+  justify-content: center;
+  padding: 12px 0;
+}
+/* le sentinel htmx devient .htmx-request le temps du fetch → on montre le loader qu’il contient */
+.htmx-request .list-loader { display: flex; }

@@ -1,11 +1,24 @@
-{# Liste de réponses + pagination #}
 {% if answers and answers|length %}
   <ul class="list list--plain">
     {% for a in answers %}
       {% include "answers/_card.html" %}
     {% endfor %}
   </ul>
-  {% include "partials/_pagination.html" with context %}
+
+  {% if has_next and next_cursor %}
+    <div class="htmx-sentinel"
+         hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor }}&partial=1"
+         hx-trigger="revealed"
+         hx-target="#answers-list"
+         hx-swap="beforeend"
+         hx-indicator=".list-loader"
+         aria-hidden="true">
+      <!-- loader visible pendant la requête déclenchée par ce sentinel -->
+      <div class="list-loader">
+        <div class="loader" aria-hidden="true" title="Chargement…"></div>
+      </div>
+    </div>
+  {% endif %}
 {% else %}
   {% include "partials/_empty_state.html" %}
 {% endif %}
