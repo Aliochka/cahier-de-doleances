@@ -207,11 +207,9 @@ def search_answers(
     if partial:
         from fastapi.responses import HTMLResponse  # local import ok
         resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
-        resp.headers["X-Robots-Tag"] = "noindex, nofollow"
         return resp
 
     resp = templates.TemplateResponse("search/answers.html", ctx)
-    resp.headers["X-Robots-Tag"] = "noindex, follow"
     return resp
 
 # ===========================
@@ -373,9 +371,7 @@ def search_questions_page(
     }
     if partial:
         resp = templates.TemplateResponse("partials/_questions_list.html", ctx)
-        resp.headers["X-Robots-Tag"] = "noindex, nofollow"
         return resp
 
     resp = templates.TemplateResponse("search/questions.html", ctx)
-    resp.headers["X-Robots-Tag"] = "noindex, follow"
     return resp

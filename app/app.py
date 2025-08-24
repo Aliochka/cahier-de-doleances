@@ -85,17 +85,19 @@ class WwwRedirectMiddleware(BaseHTTPMiddleware):
 class SearchRobotsHeaderMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         resp = await call_next(request)
-        path = request.url.path
 
+        path = request.url.path
         if path.startswith("/search/"):
             p = (request.query_params.get("partial") or "").lower()
-            is_partial = p in ("1", "true", "yes")
-            tag = "noindex, nofollow" if is_partial else "noindex, follow"
+            tag = "noindex, nofollow" if p in ("1", "true", "yes") else "noindex, follow"
 
-            # Si déjà posé par le handler, on ne touche pas ; sinon on garantie l'en-tête (HEAD, etc.)
-            if "X-Robots-Tag" not in resp.headers:
-                resp.headers["X-Robots-Tag"] = tag
+            # supprime toute occurrence existante (casse-insensible), puis fixe une seule valeur
+            for k in list(resp.headers.keys()):
+                if k.lower() == "x-robots-tag":
+                    del resp.headers[k]
+            resp.headers["X-Robots-Tag"] = tag
         return resp
+
 
 
 
