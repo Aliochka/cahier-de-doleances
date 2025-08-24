@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from starlette.datastructures import URL
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
@@ -82,6 +81,24 @@ class WwwRedirectMiddleware(BaseHTTPMiddleware):
         new_url = request.url.replace(netloc=CANONICAL_HOST, scheme="https")
         return RedirectResponse(str(new_url), status_code=308)
 
+
+class SearchRobotsHeaderMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        resp = await call_next(request)
+        path = request.url.path
+
+        if path.startswith("/search/"):
+            p = (request.query_params.get("partial") or "").lower()
+            is_partial = p in ("1", "true", "yes")
+            tag = "noindex, nofollow" if is_partial else "noindex, follow"
+
+            # Si déjà posé par le handler, on ne touche pas ; sinon on garantie l'en-tête (HEAD, etc.)
+            if "X-Robots-Tag" not in resp.headers:
+                resp.headers["X-Robots-Tag"] = tag
+        return resp
+
+
+
 # -----------------------------------------------------------------------------
 # App
 # -----------------------------------------------------------------------------
@@ -105,6 +122,9 @@ app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
 
 # 4) Compression (utile pour sitemap, listes, etc.)
 app.add_middleware(GZipMiddleware, minimum_size=1024)
+
+app.add_middleware(SearchRobotsHeaderMiddleware)
+
 
 # -----------------------------------------------------------------------------
 # Static
