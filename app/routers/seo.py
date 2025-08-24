@@ -4,8 +4,8 @@ import os
 from typing import Optional, Iterable
 from datetime import datetime, timezone
 
-from fastapi import APIRouter
-from fastapi.responses import PlainTextResponse, StreamingResponse
+from fastapi import APIRouter, Request
+from fastapi.responses import PlainTextResponse, StreamingResponse, Response
 from sqlalchemy import text
 
 from app.db import SessionLocal
@@ -13,9 +13,9 @@ from app.db import SessionLocal
 router = APIRouter()
 
 HOST = os.getenv("CANONICAL_HOST_URL", "https://www.cahierdedoleances.fr")
-CHUNK = int(os.getenv("SITEMAP_CHUNK", "200"))                   # taille de lot
-SITEMAP_MAX_URLS = int(os.getenv("SITEMAP_MAX_URLS", "50000"))   # limite globale
-LIGHT_LASTMOD = os.getenv("SITEMAP_LIGHT_LASTMOD", "1") == "1"   # ne calcule pas lastmod des questions
+CHUNK = int(os.getenv("SITEMAP_CHUNK", "200"))
+SITEMAP_MAX_URLS = int(os.getenv("SITEMAP_MAX_URLS", "50000"))
+LIGHT_LASTMOD = os.getenv("SITEMAP_LIGHT_LASTMOD", "1") == "1"
 
 def _w3c(dt: Optional[datetime]) -> Optional[str]:
     if not dt:
@@ -28,8 +28,10 @@ def _url_xml(loc: str, lastmod: Optional[datetime] = None) -> str:
     lm = _w3c(lastmod)
     return f"<url><loc>{loc}</loc>{f'<lastmod>{lm}</lastmod>' if lm else ''}</url>"
 
-@router.get("/robots.txt", include_in_schema=False)
-def robots_txt() -> PlainTextResponse:
+# --- robots.txt: GET + HEAD ---
+@router.api_route("/robots.txt", methods=["GET", "HEAD"], include_in_schema=False)
+def robots_txt(request: Request):
+    # Pour HEAD, renvoie juste les en-têtes (FastAPI jettera le body)
     content = (
         "User-agent: *\n"
         "Allow: /\n"
@@ -39,8 +41,15 @@ def robots_txt() -> PlainTextResponse:
     resp.headers["Cache-Control"] = "public, max-age=86400"  # 24h
     return resp
 
-@router.get("/sitemap.xml", include_in_schema=False)
-def sitemap_xml() -> StreamingResponse:
+# --- sitemap.xml: GET + HEAD ---
+@router.api_route("/sitemap.xml", methods=["GET", "HEAD"], include_in_schema=False)
+def sitemap_xml(request: Request):
+    # HEAD: réponse vide mais bons en-têtes
+    if request.method == "HEAD":
+        resp = Response(media_type="application/xml; charset=utf-8")
+        resp.headers["Cache-Control"] = "public, max-age=21600"  # 6h
+        return resp
+
     def stream() -> Iterable[bytes]:
         emitted = 0
 
@@ -54,9 +63,8 @@ def sitemap_xml() -> StreamingResponse:
 
         with SessionLocal() as db:
             # lastmod global = dernière contribution
-            site_lastmod = db.execute(
-                text("SELECT MAX(submitted_at) AS lastmod FROM contributions")
-            ).mappings().first()["lastmod"]
+            row = db.execute(text("SELECT MAX(submitted_at) AS lastmod FROM contributions")).mappings().first()
+            site_lastmod = row and row["lastmod"]
 
             # Accueil
             if emitted < SITEMAP_MAX_URLS:
@@ -93,7 +101,6 @@ def sitemap_xml() -> StreamingResponse:
 
                 if not rows:
                     break
-
                 for r in rows:
                     if emitted >= SITEMAP_MAX_URLS:
                         break
@@ -125,7 +132,7 @@ def sitemap_xml() -> StreamingResponse:
                     yield emit(_url_xml(loc, r["lastmod"]))
                     last_id = r["id"]
 
-            # AUTHORS (avec au moins une contribution)
+            # AUTHORS
             last_author = 0
             while emitted < SITEMAP_MAX_URLS:
                 rows = db.execute(
