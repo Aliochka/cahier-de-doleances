@@ -8,3 +8,4 @@ pydantic==2.11.7
 python-slugify==8.0.4        # si utilisé dans le code web
 psycopg2-binary==2.9.10
 python-dotenv==1.1.1       # optionnel (en prod on préfère les env vars)
+starlette>=0.27

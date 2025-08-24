@@ -1,5 +1,7 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = "Question · " ~ (question.title or ('#' ~ question.id)) %}
+{% set PAGE_TITLE = (question.prompt or ("Question #" ~ question.id)) %}
+{% set PAGE_DESCRIPTION = "Contributions citoyennes à la question « " ~ (question.prompt or ("Question #" ~ question.id)) ~ " ». Lisez les avis et points de vue variés." %}
+
 {% block content %}
 
 <header class="page-header">

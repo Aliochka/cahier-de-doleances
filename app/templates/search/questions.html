@@ -1,5 +1,7 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = "Recherche questions" %}
+{% set PAGE_TITLE = q and ("Recherche questions : « " ~ q ~ " »") or "Recherche questions" %}
+{% set PAGE_DESCRIPTION = q and ("Résultats de recherche de questions pour « " ~ q ~ " ». Parcourez les thèmes correspondants.") or "Parcourez les questions et thèmes du Cahier de doléances." %}
+{% set on_questions_search = true %}
 
 {% block content %}
 <header class="page-header page-header--stack">

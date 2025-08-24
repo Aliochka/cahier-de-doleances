@@ -20,13 +20,11 @@ MAX_TEXT_LEN = 20_000
 MIN_ANSWER_LEN = 60
 PREVIEW_MAXLEN = 400
 
-
 # --- utils cursor opaque (base64 urlsafe(JSON)) ---
 def _enc_cursor(obj: dict) -> str:
     raw = json.dumps(obj, separators=(",", ":"), ensure_ascii=False).encode()
     s = base64.urlsafe_b64encode(raw).decode()
     return s.rstrip("=")
-
 
 def _dec_cursor(s: str | None) -> dict | None:
     if not s:
@@ -34,7 +32,6 @@ def _dec_cursor(s: str | None) -> dict | None:
     pad = "=" * ((4 - len(s) % 4) % 4)
     data = base64.urlsafe_b64decode(s + pad)
     return json.loads(data.decode())
-
 
 # --- helpers UI ---
 def _clean_snippet(s: str, maxlen: int) -> tuple[str, bool]:
@@ -44,17 +41,17 @@ def _clean_snippet(s: str, maxlen: int) -> tuple[str, bool]:
     s = s[:maxlen].replace("\r", " ").replace("\n", " ")
     return s, is_trunc
 
-
 # ===========================
 #   /search/answers
 #   - FTS Postgres
 #   - keyset pagination + htmx partial
+#   - SEO: noindex (full: follow / partial: nofollow via X-Robots-Tag dans le template)
 # ===========================
 @router.get("/search/answers", name="search_answers", response_class=HTMLResponse)
 def search_answers(
     request: Request,
     q: str = Query("", description="Requête"),
-    page: int = Query(1, ge=1),                 # conservé pour compat (non utilisé)
+    page: int = Query(1, ge=1),                 # compat (non utilisé)
     cursor: str | None = Query(None),           # scroll infini
     partial: bool = Query(False),               # rendu fragment (htmx)
 ):
@@ -64,7 +61,6 @@ def search_answers(
     has_next = False
     next_cursor: str | None = None
 
-    # keyset: limit + 1 (élément sentinelle)
     limit = PER_PAGE + 1
     cur = _dec_cursor(cursor)
 
@@ -123,14 +119,12 @@ def search_answers(
                 params,
             ).mappings().all()
 
-        # sentinelle + next_cursor
         if len(rows) == limit:
             has_next = True
             tail = rows[-1]
             next_cursor = _enc_cursor({"id": tail["answer_id"], "score": float(tail["score"])})
             rows = rows[:-1]
 
-        # build output
         for r in rows:
             body = (r["answer_snippet"] or "").strip()
             if not body:
@@ -201,26 +195,27 @@ def search_answers(
                 }
             )
 
-    # rendu
     ctx = {
         "request": request,
         "q": q,
         "answers": answers,
-        "on_answers_search": True,
+        "on_answers_search": True,  # flag metas (noindex + canonical ?q=)
         "page_size": PER_PAGE,
         "has_next": has_next,
         "next_cursor": next_cursor,
     }
     if partial:
-        return templates.TemplateResponse("partials/_answers_list.html", ctx)
-    return templates.TemplateResponse("search/answers.html", ctx)
+        from fastapi.responses import HTMLResponse  # local import ok
+        resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
+        resp.headers["X-Robots-Tag"] = "noindex, nofollow"
+        return resp
 
+    resp = templates.TemplateResponse("search/answers.html", ctx)
+    resp.headers["X-Robots-Tag"] = "noindex, follow"
+    return resp
 
 # ===========================
 #   /search/questions
-#   - FTS Postgres
-#   - keyset pagination + htmx partial
-#   - previews: 3 dernières réponses / question (1 seul SQL)
 # ===========================
 @router.get("/search/questions", name="search_questions", response_class=HTMLResponse)
 def search_questions_page(
@@ -238,7 +233,6 @@ def search_questions_page(
     cur = _dec_cursor(cursor)
 
     with SessionLocal() as db:
-        # 1) Sélection des questions (FTS si q, sinon listing récent)
         if q:
             params = {"q": q, "limit": limit}
             cursor_sql = ""
@@ -313,13 +307,12 @@ def search_questions_page(
                 next_cursor = _enc_cursor({"id": tail["id"]})
                 rows = rows[:-1]
 
-        # 2) Aperçus (3 réponses récentes / question) — 1 seul SQL
+        # Aperçus (3 réponses récentes / question)
         question_ids = [r["id"] for r in rows]
         previews_by_qid: dict[int, list[dict]] = {qid: [] for qid in question_ids}
 
         if question_ids:
-            sql_previews = text(
-                """
+            sql_previews = text("""
                 WITH sel AS (
                   SELECT
                     a.question_id,
@@ -342,8 +335,7 @@ def search_questions_page(
                 JOIN contributions c ON c.id = sel.contribution_id
                 WHERE sel.rn <= 3
                 ORDER BY sel.question_id, sel.answer_id DESC
-                """
-            ).bindparams(bindparam("qids", expanding=True))
+            """).bindparams(bindparam("qids", expanding=True))
 
             preview_rows = db.execute(
                 sql_previews,
@@ -355,15 +347,9 @@ def search_questions_page(
                 aid = r["answer_id"]
                 snippet, is_trunc = _clean_snippet((r["text"] or "")[:MAX_TEXT_LEN], PREVIEW_MAXLEN)
                 previews_by_qid[qid].append(
-                    {
-                        "id": aid,
-                        "author_id": r["author_id"],
-                        "text": snippet,
-                        "is_truncated": is_trunc,
-                    }
+                    {"id": aid, "author_id": r["author_id"], "text": snippet, "is_truncated": is_trunc}
                 )
 
-        # 3) Structure finale
         questions = []
         for r in rows:
             questions.append(
@@ -376,16 +362,20 @@ def search_questions_page(
                 }
             )
 
-    # 4) Rendu
     ctx = {
         "request": request,
         "q": q,
         "questions": questions,
+        "on_questions_search": True,  # flag metas (noindex + canonical ?q=)
         "page_size": PER_PAGE,
         "has_next": has_next,
         "next_cursor": next_cursor,
     }
     if partial:
-        # attendu: templates/partials/_questions_list.html
-        return templates.TemplateResponse("partials/_questions_list.html", ctx)
-    return templates.TemplateResponse("search/questions.html", ctx)
+        resp = templates.TemplateResponse("partials/_questions_list.html", ctx)
+        resp.headers["X-Robots-Tag"] = "noindex, nofollow"
+        return resp
+
+    resp = templates.TemplateResponse("search/questions.html", ctx)
+    resp.headers["X-Robots-Tag"] = "noindex, follow"
+    return resp

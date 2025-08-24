@@ -1,5 +1,10 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = "Réponse" %}
+{% set PAGE_TITLE = "Contribution de " ~ (answer.author_name or "Auteur anonyme") ~ " — " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) %}
+{% set _ex = (answer.text or "") | striptags %}
+{% set _ex = _ex.replace("\n"," ") %}
+{% set _ex = _ex[:110] ~ ("…" if _ex|length > 110 else "") %}
+{% set PAGE_DESCRIPTION = "Contribution de " ~ (answer.author_name or "Auteur anonyme")
+    ~ " à « " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) ~ " ». " ~ (_ex if _ex else "Lisez l’avis et les arguments détaillés.") %}
 
 {% block content %}
 

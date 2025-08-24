@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+{% set PAGE_TITLE = "Page introuvable" %}
+{% set PAGE_DESCRIPTION = "La page que vous cherchez n’existe pas ou a été déplacée. Retournez à l’accueil ou lancez une recherche." %}
+
+{% block content %}
+  <section class="container">
+    <header class="page-header page-header--stack">
+      <h1 class="h1">Page introuvable</h1>
+      <p>La page que vous cherchez n’existe pas ou a été déplacée.</p>
+    </header>
+
+    <nav class="stack-md">
+      <a class="btn btn--primary" href="{{ url_for('home') }}">← Retour à l’accueil</a>
+      <div class="stack-sm">
+        <a class="link" href="{{ url_for('search_questions') }}">Rechercher dans les questions</a>
+        <a class="link" href="{{ url_for('search_answers') }}">Rechercher dans les réponses</a>
+      </div>
+    </nav>
+  </section>
+{% endblock %}

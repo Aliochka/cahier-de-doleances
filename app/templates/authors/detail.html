@@ -1,5 +1,6 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = "Auteur · " ~ (author.name or ('#' ~ author.id)) %}
+{% set PAGE_TITLE = (author.display_name or "Auteur anonyme") ~ " – Contributions" %}
+{% set PAGE_DESCRIPTION = "Contributions de " ~ (author.display_name or "un auteur anonyme") ~ " au Cahier de doléances. Découvrez ses avis et prises de position." %}
 {% block content %}
 
 <header class="page-header">

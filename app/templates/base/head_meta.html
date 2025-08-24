@@ -1,10 +1,91 @@
+{# =======================
+   META / SEO – base head
+   ======================= #}
+{# --- Config --- #}
+{% set HOST = "https://www.cahierdedoleances.fr" %}
+{% set TITLE_SUFFIX = " – Cahier de doléances" %}
+{% set MAX_TITLE = 65 %}
+{% set MAX_DESC  = 160 %}
+
+{# --- TITLE (utilise PAGE_TITLE défini par chaque page) --- #}
+{% set _raw_title = PAGE_TITLE | default("Cahier de doléances – un pas de plus vers la révolution") %}
+{% if _raw_title == "Cahier de doléances – un pas de plus vers la révolution" %}
+  {% set COMPUTED_TITLE = _raw_title %}
+{% else %}
+  {% set _subject = _raw_title %}
+  {% set _full = _subject ~ TITLE_SUFFIX %}
+  {% if _full | length > MAX_TITLE %}
+    {% set allowed = MAX_TITLE - (TITLE_SUFFIX | length) - 1 %}
+    {% set _subject = _subject | truncate(allowed, end="…") %}
+    {% set _full = _subject ~ TITLE_SUFFIX %}
+  {% endif %}
+  {% set COMPUTED_TITLE = _full %}
+{% endif %}
+
+{# --- DESCRIPTION (utilise PAGE_DESCRIPTION si défini) --- #}
+{% set _raw_desc = PAGE_DESCRIPTION | default("") %}
+{# Fallbacks légers par type (on garde court) #}
+{% if not _raw_desc %}
+  {% if on_answers_search and q %}
+    {% set _raw_desc = "Résultats dans les réponses pour « " ~ q ~ " ». Parcourez les contributions correspondantes." %}
+  {% elif on_questions_search and q %}
+    {% set _raw_desc = "Résultats de recherche de questions pour « " ~ q ~ " ». Parcourez les thèmes correspondants." %}
+  {% elif on_answers_search %}
+    {% set _raw_desc = "Parcourez les réponses les plus récentes publiées par les contributeurs." %}
+  {% elif on_questions_search %}
+    {% set _raw_desc = "Parcourez les questions et thèmes du Cahier de doléances." %}
+  {% else %}
+    {% set _raw_desc = "Découvrez et partagez des contributions citoyennes sur les grandes questions publiques. Lisez, explorez, participez." %}
+  {% endif %}
+{% endif %}
+{% set META_DESCRIPTION = _raw_desc | striptags | replace("\n"," ") | replace("  "," ") %}
+{% if META_DESCRIPTION | length > MAX_DESC %}
+  {% set META_DESCRIPTION = META_DESCRIPTION[:MAX_DESC-1] ~ "…" %}
+{% endif %}
+
+{# --- CANONICAL (allowlist de query) --- #}
+{% set canonical_path = request.url.path %}
+{% set canonical_query = "" %}
+{% if on_answers_search or on_questions_search %}
+  {% if q %}{% set canonical_query = "?q=" ~ q | urlencode %}{% endif %}
+{% endif %}
+{% set CANONICAL_URL = HOST ~ canonical_path ~ canonical_query %}
+
+{# --- OG image par défaut --- #}
+{% set OG_IMAGE = HOST ~ request.url_for('static', path='/img/og-default.jpg') %}
+
+{# --- Robots meta (les routes search sont noindex ; on garde follow) --- #}
+{% set ROBOTS = (on_answers_search or on_questions_search) and "noindex, follow" or "index, follow" %}
+
+{# ====== HEAD tags ====== #}
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#ffffff" />
+<title>{{ COMPUTED_TITLE }}</title>
+
+{# Canonical & robots #}
+<link rel="canonical" href="{{ CANONICAL_URL }}" />
+<meta name="robots" content="{{ ROBOTS }}" />
+
+{# Meta description #}
+<meta name="description" content="{{ META_DESCRIPTION }}" />
+
+{# Open Graph #}
 <meta property="og:site_name" content="Cahier de doléances" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="{{ PAGE_TITLE or 'Cahier de doléances' }}" />
-<meta property="og:url" content="{{ request.url }}" />
+<meta property="og:title" content="{{ COMPUTED_TITLE }}" />
+<meta property="og:description" content="{{ META_DESCRIPTION }}" />
+<meta property="og:url" content="{{ CANONICAL_URL }}" />
+<meta property="og:image" content="{{ OG_IMAGE }}" />
+
+{# Twitter Cards #}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ COMPUTED_TITLE }}" />
+<meta name="twitter:description" content="{{ META_DESCRIPTION }}" />
+<meta name="twitter:image" content="{{ OG_IMAGE }}" />
+<meta name="twitter:site" content="@cahierdedoleances" /> {# ajuste/retire si pas de compte #}
+
+{# === Tes assets existants (inchangés) === #}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
@@ -14,8 +95,8 @@
 <link rel="stylesheet" href="{{ request.url_for('static', path='/css/components.css') }}?v=1">
 <link rel="stylesheet" href="{{ request.url_for('static', path='/css/pages.css') }}?v=1">
 <link rel="icon" href="{{ request.url_for('static', path='/img/favicon.ico') }}">
+
 <script
   src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js"
   integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
   crossorigin="anonymous"></script>
-
