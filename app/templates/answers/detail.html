@@ -1,18 +1,27 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = "Contribution de " ~ (answer.author_name or "Auteur anonyme") ~ " — " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) %}
+
+{# Meta #}
+{% set _author_label = (answer.author_name or ('Auteur #' ~ answer.author_id)) %}
+{% set PAGE_TITLE = "Contribution de " ~ _author_label ~ " — " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) %}
 {% set _ex = (answer.text or "") | striptags %}
 {% set _ex = _ex.replace("\n"," ") %}
 {% set _ex = _ex[:110] ~ ("…" if _ex|length > 110 else "") %}
-{% set PAGE_DESCRIPTION = "Contribution de " ~ (answer.author_name or "Auteur anonyme")
+{% set PAGE_DESCRIPTION = "Contribution de " ~ _author_label
     ~ " à « " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) ~ " ». " ~ (_ex if _ex else "Lisez l’avis et les arguments détaillés.") %}
 
 {% block content %}
 
+  {# URLs canoniques #}
+  {% set q_url = url_for('question_detail', question_id=answer.question_id, slug=answer.question_slug) %}
+  {% set author_url = url_for('author_detail', author_id=answer.author_id, slug=answer.author_slug) %}
+
   <header class="page-header page-header--stack">
-    <h1 class="h1">{{ answer.question_prompt }}</h1>
+    <h1 class="h1">
+      <a href="{{ q_url }}">{{ answer.question_prompt }}</a>
+    </h1>
     <p class="muted">
       par
-      <a href="{{ url_for('author_detail', author_id=answer.author_id) }}">
+      <a href="{{ author_url }}">
         {{ answer.author_name or ('Auteur #' ~ answer.author_id) }}
       </a>
       {% if answer.submitted_at %} — {{ answer.submitted_at }}{% endif %}
@@ -24,6 +33,7 @@
       <blockquote class="quote">
         <p class="quote__text">{{ answer.text }}</p>
       </blockquote>
+      <p><a class="badge badge--link" href="{{ q_url }}">← Voir la question</a></p>
     </article>
   </section>
 {% endblock %}

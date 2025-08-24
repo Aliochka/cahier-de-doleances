@@ -13,6 +13,22 @@ from app.db import SessionLocal
 from app.web import templates
 from app.helpers import postprocess_excerpt
 
+# --- slugify helper (fallback si helper dédié absent) ---
+try:
+    from app.helpers import slugify  # type: ignore
+except Exception:
+    import re, unicodedata
+    _keep = re.compile(r"[^a-z0-9\s-]")
+    _collapse = re.compile(r"[-\s]+")
+    def slugify(value: str | None, maxlen: int = 60) -> str:
+        if not value:
+            return "question"
+        value = unicodedata.normalize("NFKD", value)
+        value = "".join(ch for ch in value if not unicodedata.combining(ch)).lower()
+        value = _keep.sub(" ", value)
+        value = _collapse.sub("-", value).strip("-")
+        return (value[:maxlen].rstrip("-") or "question")
+
 router = APIRouter()
 
 PER_PAGE = 20
@@ -41,11 +57,12 @@ def _clean_snippet(s: str, maxlen: int) -> tuple[str, bool]:
     s = s[:maxlen].replace("\r", " ").replace("\n", " ")
     return s, is_trunc
 
+
 # ===========================
 #   /search/answers
 #   - FTS Postgres
 #   - keyset pagination + htmx partial
-#   - SEO: noindex (full: follow / partial: nofollow via X-Robots-Tag dans le template)
+#   - SEO: noindex (full: follow / partial: nofollow — géré côté template/en-têtes)
 # ===========================
 @router.get("/search/answers", name="search_answers", response_class=HTMLResponse)
 def search_answers(
@@ -119,24 +136,28 @@ def search_answers(
                 params,
             ).mappings().all()
 
+        # sentinelle + next_cursor
         if len(rows) == limit:
             has_next = True
             tail = rows[-1]
             next_cursor = _enc_cursor({"id": tail["answer_id"], "score": float(tail["score"])})
             rows = rows[:-1]
 
+        # build output
         for r in rows:
             body = (r["answer_snippet"] or "").strip()
             if not body:
                 raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
                 body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
             body = postprocess_excerpt(body)
+            q_title = r["question_prompt"]
             answers.append(
                 {
                     "id": r["answer_id"],
                     "author_id": r["author_id"],
                     "question_id": r["question_id"],
-                    "question_title": r["question_prompt"],
+                    "question_title": q_title,
+                    "question_slug": slugify(q_title or f"question-{r['question_id']}"),
                     "created_at": r["submitted_at"],
                     "body": body,
                 }
@@ -184,12 +205,14 @@ def search_answers(
             raw = (r["answer_text"] or "")[:MAX_TEXT_LEN]
             snippet, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
             snippet = postprocess_excerpt(snippet)
+            q_title = r["question_prompt"]
             answers.append(
                 {
                     "id": r["answer_id"],
                     "author_id": r["author_id"],
                     "question_id": r["question_id"],
-                    "question_title": r["question_prompt"],
+                    "question_title": q_title,
+                    "question_slug": slugify(q_title or f"question-{r['question_id']}"),
                     "created_at": r["submitted_at"],
                     "body": snippet,
                 }
@@ -205,15 +228,17 @@ def search_answers(
         "next_cursor": next_cursor,
     }
     if partial:
-        from fastapi.responses import HTMLResponse  # local import ok
         resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
         return resp
 
     resp = templates.TemplateResponse("search/answers.html", ctx)
     return resp
 
+
 # ===========================
 #   /search/questions
+#   - FTS + aperçus (3 dernières réponses / question)
+#   - slug renvoyé pour lier vers /questions/{id}-{slug}
 # ===========================
 @router.get("/search/questions", name="search_questions", response_class=HTMLResponse)
 def search_questions_page(
@@ -231,6 +256,7 @@ def search_questions_page(
     cur = _dec_cursor(cursor)
 
     with SessionLocal() as db:
+        # 1) Sélection des questions
         if q:
             params = {"q": q, "limit": limit}
             cursor_sql = ""
@@ -305,7 +331,7 @@ def search_questions_page(
                 next_cursor = _enc_cursor({"id": tail["id"]})
                 rows = rows[:-1]
 
-        # Aperçus (3 réponses récentes / question)
+        # 2) Aperçus (3 réponses récentes / question) — 1 seul SQL
         question_ids = [r["id"] for r in rows]
         previews_by_qid: dict[int, list[dict]] = {qid: [] for qid in question_ids}
 
@@ -348,18 +374,22 @@ def search_questions_page(
                     {"id": aid, "author_id": r["author_id"], "text": snippet, "is_truncated": is_trunc}
                 )
 
+        # 3) Structure finale (avec slug)
         questions = []
         for r in rows:
+            title = r.get("title")
             questions.append(
                 {
                     "id": r["id"],
                     "question_code": r.get("question_code"),
-                    "title": r.get("title"),
+                    "title": title,
                     "prompt_hl": r.get("prompt_hl"),
+                    "slug": slugify(title or f"question-{r['id']}"),
                     "answers": previews_by_qid.get(r["id"], []),
                 }
             )
 
+    # 4) Rendu
     ctx = {
         "request": request,
         "q": q,

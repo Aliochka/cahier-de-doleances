@@ -1,6 +1,8 @@
 # Helpers (mets-les au même endroit que _clean_snippet)
-
+from __future__ import annotations
 import re
+import unicodedata
+
 
 MAX_TEXT_LEN = 20_000
 
@@ -49,3 +51,27 @@ def postprocess_excerpt(html_or_text: str) -> str:
     s = _strip_boilerplate(s)
     # 4) trim final
     return s.strip()
+
+_slug_pat_keep = re.compile(r"[^a-z0-9\s-]")
+_slug_pat_collapse = re.compile(r"[-\s]+")
+
+def slugify(value: str | None, maxlen: int = 60) -> str:
+    if not value:
+        return ""
+    # Ligatures FR courantes
+    value = value.replace("œ", "oe").replace("Œ", "oe").replace("æ", "ae").replace("Æ", "ae")
+    # Décomposition + suppression diacritiques
+    value = unicodedata.normalize("NFKD", value)
+    value = "".join(ch for ch in value if not unicodedata.combining(ch))
+    # Minuscule
+    value = value.lower()
+    # Retire ponctuation, garde lettres/chiffres/espaces/tirets
+    value = _slug_pat_keep.sub(" ", value)
+    # Espace/—/– → tiret unique
+    value = _slug_pat_collapse.sub("-", value).strip("-")
+    # Coupe propre
+    if len(value) > maxlen:
+        value = value[:maxlen].rstrip("-")
+    return value or "contenu"
+
+

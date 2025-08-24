@@ -1,10 +1,12 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = (author.display_name or "Auteur anonyme") ~ " – Contributions" %}
-{% set PAGE_DESCRIPTION = "Contributions de " ~ (author.display_name or "un auteur anonyme") ~ " au Cahier de doléances. Découvrez ses avis et prises de position." %}
+{% set author_name = author.name or ('Auteur #' ~ author.id) %}
+{% set PAGE_TITLE = author_name ~ " – Contributions" %}
+{% set PAGE_DESCRIPTION = "Contributions de " ~ author_name ~ " au Cahier de doléances. Découvrez ses avis et prises de position." %}
+
 {% block content %}
 
 <header class="page-header">
-  <h1 class="h1">{{ author.name or ('Auteur #' ~ author.id) }}</h1>
+  <h1 class="h1">{{ author_name }}</h1>
   <p class="muted">ID : {{ author.id }} • {{ author.answers_count }} réponses</p>
 </header>
 
@@ -12,6 +14,8 @@
   <p class="search-context">Filtré par « <strong>{{ q }}</strong> »</p>
 {% endif %}
 
+{# Afficher le titre de la question dans la liste des réponses #}
+{% set on_question_page = false %}
 {% include "partials/_answers_list.html" with context %}
 
 {% endblock %}

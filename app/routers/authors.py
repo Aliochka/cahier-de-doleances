@@ -1,11 +1,31 @@
 # app/routers/authors.py
+from __future__ import annotations
+
 import math
-from fastapi import APIRouter, Request, Query, Depends
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, Request, Query, Depends, HTTPException
+from fastapi.responses import HTMLResponse, RedirectResponse, Response, JSONResponse
 from sqlalchemy import text
 from sqlalchemy.orm import Session
+
 from app.db import SessionLocal
 from app.web import templates
+
+# Slugify helper (fallback si le helper dédié n'est pas dispo)
+try:
+    from app.helpers import slugify  # type: ignore
+except Exception:
+    import re, unicodedata
+    _keep = re.compile(r"[^a-z0-9\s-]")
+    _collapse = re.compile(r"[-\s]+")
+    def slugify(value: str | None, maxlen: int = 60) -> str:
+        if not value:
+            return "contenu"
+        value = value.replace("œ", "oe").replace("Œ", "oe").replace("æ", "ae").replace("Æ", "ae")
+        value = unicodedata.normalize("NFKD", value)
+        value = "".join(ch for ch in value if not unicodedata.combining(ch)).lower()
+        value = _keep.sub(" ", value)
+        value = _collapse.sub("-", value).strip("-")
+        return (value[:maxlen].rstrip("-") or "contenu")
 
 router = APIRouter()
 
@@ -21,19 +41,61 @@ def get_db():
         db.close()
 
 
-@router.get("/authors/{author_id}", response_class=HTMLResponse, name="author_detail")
+# =========================================================
+# 1) ROUTE CANONIQUE AVEC SLUG — GET + HEAD
+#    Pattern strict avec convertisseur :int pour éviter les collisions
+#    /authors/{author_id:int}-{slug}
+# =========================================================
+@router.api_route(
+    "/authors/{author_id:int}-{slug}",
+    methods=["GET", "HEAD"],
+    response_class=HTMLResponse,
+    name="author_detail",
+)
 def author_detail(
     request: Request,
     author_id: int,
-    q: str | None = None,
-    page: int = 1,
+    slug: str,
+    q: str | None = Query(None),
+    page: int = Query(1, ge=1),
     db: Session = Depends(get_db),
 ):
-    # Normalise requête + pagination
+    # HEAD rapide : valide l'existence + slug canonique sans tout charger
+    if request.method == "HEAD":
+        row = db.execute(
+            text("SELECT name FROM authors WHERE id = :aid"),
+            {"aid": author_id},
+        ).mappings().first()
+        if not row:
+            raise HTTPException(status_code=404, detail="Auteur introuvable")
+        canonical = slugify((row["name"] or f"Auteur #{author_id}"), maxlen=60)
+        if slug != canonical:
+            url = request.url_for("author_detail", author_id=author_id, slug=canonical)
+            return RedirectResponse(url, status_code=308)
+        return Response(status_code=200)
+
+    # Debug ciblé : ?debug=1 renvoie l'état DB vu par CE handler
+    if "debug" in request.query_params:
+        row = db.execute(
+            text("SELECT id, name FROM authors WHERE id = :aid"),
+            {"aid": author_id},
+        ).mappings().first()
+        return JSONResponse(
+            {
+                "aid": author_id,
+                "row_is_none": row is None,
+                "name": (row or {}).get("name") if row else None,
+                "requested_slug": slug,
+                "canonical": slugify(((row or {}).get("name") or f"Auteur #{author_id}") if row else f"Auteur #{author_id}", maxlen=60),
+            },
+            status_code=200 if row else 404,
+        )
+
+    # GET normal
     q = (q or "").strip()
     offset = (page - 1) * PER_PAGE
 
-    # Infos auteur + nb de réponses
+    # Auteur
     row = db.execute(
         text(
             """
@@ -53,21 +115,24 @@ def author_detail(
         ),
         {"aid": author_id},
     ).mappings().first()
+    if not row:
+        raise HTTPException(status_code=404, detail="Auteur introuvable")
 
-    author = {
-        "id": author_id,
-        "name": row["name"] if row else None,
-        "answers_count": row["answers_count"] if row else None,
-    }
+    author_name = row["name"] or f"Auteur #{author_id}"
+    canonical_slug = slugify(author_name, maxlen=60)
+    if slug != canonical_slug:
+        url = request.url_for("author_detail", author_id=author_id, slug=canonical_slug)
+        if q:
+            url += f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
+        elif page and page != 1:
+            url += f"?page={page}"
+        return RedirectResponse(url, status_code=308)
 
-    # Si recherche : FTS sur answers_fts (phrase si espaces)
-    match = None
+    # Listing des réponses (FTS via answers_fts si q, sinon récent)
     if q:
         q_esc = q.replace('"', '""')
         match = f'"{q_esc}"' if " " in q_esc else q_esc
 
-    # ----- TOTAL -----
-    if match:
         total = db.execute(
             text(
                 """
@@ -82,22 +147,7 @@ def author_detail(
             ),
             {"aid": author_id, "q": match},
         ).scalar_one()
-    else:
-        total = db.execute(
-            text(
-                """
-                SELECT COUNT(1)
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE c.author_id = :aid
-                  AND a.text IS NOT NULL
-                """
-            ),
-            {"aid": author_id},
-        ).scalar_one()
 
-    # ----- ROWS (page courante) -----
-    if match:
         rows = db.execute(
             text(
                 """
@@ -121,6 +171,19 @@ def author_detail(
             {"aid": author_id, "q": match, "limit": PER_PAGE, "offset": offset},
         ).mappings().all()
     else:
+        total = db.execute(
+            text(
+                """
+                SELECT COUNT(1)
+                FROM answers a
+                JOIN contributions c ON c.id = a.contribution_id
+                WHERE c.author_id = :aid
+                  AND a.text IS NOT NULL
+                """
+            ),
+            {"aid": author_id},
+        ).scalar_one()
+
         rows = db.execute(
             text(
                 """
@@ -143,17 +206,21 @@ def author_detail(
         ).mappings().all()
 
     # Mapping vers le format attendu par answers/_card.html
-    answers = [
-        {
-            "id": r["answer_id"],
-            "author_id": author_id,
-            "question_id": r["question_id"],
-            "question_title": r["question_prompt"],  # affiché au-dessus de la réponse
-            "created_at": r["submitted_at"],
-            "body": (r["answer_text"] or "")[:MAX_TEXT_LEN],
-        }
-        for r in rows
-    ]
+    answers = []
+    for r in rows:
+        q_title = r["question_prompt"]
+        q_slug = slugify(q_title or f"question-{r['question_id']}")
+        answers.append(
+            {
+                "id": r["answer_id"],
+                "author_id": author_id,
+                "question_id": r["question_id"],
+                "question_title": q_title,
+                "question_slug": q_slug,
+                "created_at": r["submitted_at"],
+                "body": (r["answer_text"] or "")[:MAX_TEXT_LEN],
+            }
+        )
 
     total_pages = max(1, math.ceil(total / PER_PAGE))
 
@@ -161,7 +228,12 @@ def author_detail(
         "authors/detail.html",
         {
             "request": request,
-            "author": author,
+            "author": {
+                "id": author_id,
+                "name": row["name"],
+                "answers_count": row["answers_count"],
+                "slug": canonical_slug,
+            },
             "answers": answers,
             "q": q,
             "page": page,
@@ -170,29 +242,56 @@ def author_detail(
     )
 
 
-# Optionnel : endpoint partial (prêt pour htmx v2), non utilisé en SSR pur
-@router.get(
-    "/authors/{author_id}/partials/answers",
+# =========================================================
+# 2) ROUTE LEGACY — GET + HEAD → redirection vers slug
+#    Pattern strict : /authors/{author_id:int}
+# =========================================================
+@router.api_route(
+    "/authors/{author_id:int}",
+    methods=["GET", "HEAD"],
     response_class=HTMLResponse,
-    name="author_answers_partial",
+    name="author_detail_legacy",
 )
-def author_answers_partial(
+def author_detail_legacy(
     request: Request,
     author_id: int,
     q: str | None = Query(None),
     page: int = Query(1, ge=1),
     db: Session = Depends(get_db),
 ):
-    # Réutilise la logique ci-dessus et renvoie seulement la liste + pagination
-    resp = author_detail(request, author_id, q=q, page=page, db=db)
-    ctx = dict(resp.context)
-    return templates.TemplateResponse(
-        "partials/_answers_list.html",
-        {
-            "request": request,
-            "answers": ctx.get("answers", []),
-            "page": ctx.get("page", 1),
-            "total_pages": ctx.get("total_pages", 1),
-            "q": ctx.get("q", ""),
-        },
-    )
+    row = db.execute(
+        text("SELECT id, name FROM authors WHERE id = :aid"),
+        {"aid": author_id},
+    ).mappings().first()
+    if not row:
+        raise HTTPException(status_code=404, detail="Auteur introuvable")
+
+    canonical_slug = slugify(row["name"] or f"Auteur #{author_id}", maxlen=60)
+    url = request.url_for("author_detail", author_id=author_id, slug=canonical_slug)
+    if q:
+        url += f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
+    elif page and page != 1:
+        url += f"?page={page}"
+    return RedirectResponse(url, status_code=308)
+
+
+# =========================================================
+# 3) DEBUG TEMPORAIRE — état DB pour un auteur donné
+#    (à retirer une fois tout OK)
+# =========================================================
+@router.get("/debug/author/{aid:int}")
+def debug_author(aid: int):
+    with SessionLocal() as db:
+        row = db.execute(text("SELECT id, name FROM authors WHERE id=:aid"), {"aid": aid}).mappings().first()
+        if not row:
+            return JSONResponse({"aid": aid, "found": False}, status_code=404)
+        name = row["name"]
+        return JSONResponse(
+            {
+                "aid": aid,
+                "found": True,
+                "name": name,
+                "canonical_slug": slugify(name or f"Auteur #{aid}"),
+            },
+            status_code=200,
+        )

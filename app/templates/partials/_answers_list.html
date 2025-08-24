@@ -1,24 +1,76 @@
-{% if answers and answers|length %}
-  <ul class="list list--plain">
-    {% for a in answers %}
-      {% include "answers/_card.html" %}
-    {% endfor %}
-  </ul>
+{# Prépare les champs de façon robuste #}
+{% for a in answers %}
+  {% set _a = a %}
+  {% set ans_id = (_a.id if _a is defined and _a.id is defined else none)
+                  or (_a.get('answer_id') if _a.get is defined else none)
+                  or (_a.get('id') if _a.get is defined else none) %}
 
-  {% if has_next and next_cursor %}
-    <div class="htmx-sentinel"
-         hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor }}&partial=1"
-         hx-trigger="revealed"
-         hx-target="#answers-list"
-         hx-swap="beforeend"
-         hx-indicator=".list-loader"
-         aria-hidden="true">
-      <!-- loader visible pendant la requête déclenchée par ce sentinel -->
-      <div class="list-loader">
-        <div class="loader" aria-hidden="true" title="Chargement…"></div>
-      </div>
-    </div>
-  {% endif %}
-{% else %}
-  {% include "partials/_empty_state.html" %}
-{% endif %}
+  {% set author_id   = (_a.author_id if _a.author_id is defined else none)
+                     or (_a.get('author_id') if _a.get is defined else none) %}
+  {% set author_name = (_a.author_name if _a.author_name is defined else none)
+                     or (_a.get('author_name') if _a.get is defined else none) %}
+  {% set author_slug = (_a.author_slug if _a.author_slug is defined else none)
+                     or (_a.get('author_slug') if _a.get is defined else none) %}
+
+  {% set qid       = (_a.question_id if _a.question_id is defined else none)
+                   or (_a.get('question_id') if _a.get is defined else none) %}
+  {% set q_title   = (_a.question_title if _a.question_title is defined else none)
+                   or (_a.get('question_title') if _a.get is defined else none)
+                   or (_a.question_prompt if _a.question_prompt is defined else none)
+                   or (_a.get('question_prompt') if _a.get is defined else none) %}
+  {% set q_slug    = (_a.question_slug if _a.question_slug is defined else none)
+                   or (_a.get('question_slug') if _a.get is defined else none) %}
+
+  {% set date = (_a.created_at if _a.created_at is defined else none)
+              or (_a.get('submitted_at') if _a.get is defined else none) %}
+
+  {% set body = (_a.body if _a.body is defined else none)
+             or (_a.text if _a.text is defined else none)
+             or (_a.get('answer_text') if _a.get is defined else '') %}
+
+  <li class="answer" id="answer-{{ ans_id or '' }}">
+    <header class="answer__meta">
+      {% if qid and not on_question_page %}
+        <p class="answer__question-title h4">{{ q_title }}</p>
+      {% endif %}
+      {% if date %}
+        <time class="answer__date" datetime="{{ date }}">{{ date }}</time>
+      {% endif %}
+    </header>
+
+    <blockquote class="quote">
+      <p class="quote__text clamp-4">{{ body|safe }}</p>
+    </blockquote>
+
+    <footer class="answer__footer">
+      {% if author_id %}
+        <a class="quote__link"
+           href="{% if author_slug %}
+                    {{ url_for('author_detail', author_id=author_id, slug=author_slug) }}
+                  {% else %}
+                    {{ url_for('author_detail_legacy', author_id=author_id) }}
+                  {% endif %}"
+           rel="author">
+          {{ author_name or ('Auteur #' ~ author_id) }}
+        </a>
+      {% endif %}
+
+      {% if qid and not on_question_page %}
+        <a class="badge badge--link"
+           href="{% if q_slug %}
+                    {{ url_for('question_detail', question_id=qid, slug=q_slug) }}
+                  {% else %}
+                    {{ url_for('question_detail_legacy', question_id=qid) }}
+                  {% endif %}">
+          Voir la question
+        </a>
+      {% endif %}
+
+      {% if ans_id %}
+        <a class="quote__link" href="{{ url_for('answer_detail', answer_id=ans_id) }}">
+          → Voir la réponse
+        </a>
+      {% endif %}
+    </footer>
+  </li>
+{% endfor %}

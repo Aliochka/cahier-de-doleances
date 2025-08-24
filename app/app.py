@@ -1,11 +1,12 @@
 # app.py
 from __future__ import annotations
+from dotenv import load_dotenv
+load_dotenv()  # lit .env en local; en prod Scalingo: ignoré (vars lues depuis l'env)
 
 import os
 import logging
 from pathlib import Path
 
-from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -26,7 +27,6 @@ from fastapi.exception_handlers import http_exception_handler as fastapi_http_ex
 from app.web import templates
 from app.routers import pages, search, authors, questions, answers, seo
 
-load_dotenv()  # lit .env en local; en prod Scalingo: ignoré (vars lues depuis l'env)
 
 # -----------------------------------------------------------------------------
 # Config
@@ -158,3 +158,44 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
         return resp
 
     return await fastapi_http_exception_handler(request, exc)
+
+
+# app/app.py (temporaire)
+from sqlalchemy import text
+from sqlalchemy.engine.url import make_url
+from app.db import SessionLocal
+
+@app.get("/__dbcheck")
+def __dbcheck():
+    import os
+    url = os.getenv("DATABASE_URL", "")
+    try:
+        u = make_url(url)
+        safe = u.set(password="***")
+        dsn = str(safe)
+    except Exception:
+        dsn = url[:10] + "…"
+    out = {"env_DATABASE_URL": dsn}
+    with SessionLocal() as db:
+        try:
+            out["current_database"] = db.execute(text("select current_database()")).scalar()
+            out["authors_count"] = db.execute(text("select count(*) from authors")).scalar()
+        except Exception as e:
+            out["error"] = str(e)
+    return out
+
+
+@app.get("/__routes")
+def __routes():
+    out = []
+    for r in app.router.routes:
+        try:
+            out.append({
+                "path": getattr(r, "path", None) or r.path_format,
+                "name": getattr(r, "name", None),
+                "methods": sorted(list(getattr(r, "methods", set()))),
+            })
+        except Exception:
+            pass
+    out.sort(key=lambda x: x["path"])
+    return out
