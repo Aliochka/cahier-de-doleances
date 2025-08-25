@@ -37,3 +37,23 @@
     </article>
   </section>
 {% endblock %}
+
+{% block jsonld %}
+{% set _author = (answer.author_name or ("Auteur #" ~ answer.author_id)) %}
+{% set _headline = (answer.question_prompt or ("Question #" ~ answer.question_id)) %}
+{% set _article_body = (answer.text | striptags) %}
+{% set _q_url = url_for('question_detail', question_id=answer.question_id, slug=answer.question_slug) %}
+
+{# Construire l'objet puis le sérialiser #}
+{% set _json = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": _headline,
+  "mainEntityOfPage": request.url,
+  "articleBody": _article_body,
+  "datePublished": (answer.submitted_at or ""),
+  "author": { "@type": "Person", "name": _author },
+  "about": { "@type": "Question", "name": _headline, "url": _q_url }
+} %}
+<script type="application/ld+json">{{ _json | tojson | safe }}</script>
+{% endblock %}

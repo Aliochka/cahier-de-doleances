@@ -19,3 +19,15 @@
 {% include "partials/_answers_list.html" with context %}
 
 {% endblock %}
+
+{% block jsonld %}
+{% set _author_name = (author.name or ("Auteur #" ~ author.id)) %}
+{% set _json = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntityOfPage": request.url,
+  "about": { "@type": "Person", "name": _author_name, "identifier": author.id, "url": request.url }
+} %}
+<script type="application/ld+json">{{ _json | tojson | safe }}</script>
+{% endblock %}
+
