@@ -1,0 +1,16 @@
+{# app/templates/forms/_card.html #}
+<article class="form-card">
+  {% set f_url = url_for('form_detail', form_id=f.id) %}
+
+  <h3 class="h3 form-card__title">
+    <a href="{{ f_url }}">{{ f.name }}</a>
+  </h3>
+
+  <div class="form-card__meta">
+    Contient {{ f.questions_count }} question{{ 's' if f.questions_count != 1 }}
+  </div>
+
+  <div class="form-card__actions" style="margin-top: var(--space-2);">
+    <a class="badge badge--link" href="{{ f_url }}?contrib=1">Voir le formulaire</a>
+  </div>
+</article>

@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+{% set PAGE_TITLE = "Formulaire · " ~ form.name %}
+{% set PAGE_DESCRIPTION = "Questions et contributions pour « " ~ form.name ~ " »." %}
+
+{% block content %}
+<header class="page-header">
+  <h1 class="h1">{{ form.name }}</h1>
+  <p class="muted">{{ form.questions_count }} question{{ 's' if form.questions_count != 1 }}</p>
+</header>
+
+<section class="questions">
+  <ol class="list list--ordered">
+    {% for q in questions %}
+    <li class="card">
+        <h3 class="h3">
+          <a href="{{ url_for('question_detail', question_id=q.id, slug=q.slug) }}">{{ q.prompt }}</a>
+        </h3>
+        {% if current_contrib_id %}
+          {% if q.answer_text %}
+            <div class="answer-text">{{ q.answer_text }}</div>
+          {% else %}
+            <div class="answer-text muted">—</div>
+          {% endif %}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  
+  {% if total_contribs > 0 %}
+    <nav class="pager" aria-label="Navigation des contributions" style="display:flex;align-items:center;gap:.5rem;margin:1rem 0;">
+      {% set prev_idx = contrib_idx - 1 %}
+      {% set next_idx = contrib_idx + 1 %}
+      <a class="btn btn--secondary {% if contrib_idx <= 1 %}is-disabled{% endif %}"
+        href="{{ (url_for('form_detail', form_id=form.id) ~ '?contrib=' ~ prev_idx) if contrib_idx > 1 else '#' }}"
+        aria-disabled="{{ 'true' if contrib_idx <= 1 else 'false' }}">← Précédent</a>
+  
+      <span class="muted">Contribution {{ contrib_idx }} / {{ total_contribs }}</span>
+  
+      <a class="btn btn--secondary {% if contrib_idx >= total_contribs %}is-disabled{% endif %}"
+        href="{{ (url_for('form_detail', form_id=form.id) ~ '?contrib=' ~ next_idx) if contrib_idx < total_contribs else '#' }}"
+        aria-disabled="{{ 'true' if contrib_idx >= total_contribs else 'false' }}">Suivant →</a>
+    </nav>
+  {% else %}
+    <div class="empty-state">Aucune contribution pour ce formulaire.</div>
+  {% endif %}
+{% endblock %}

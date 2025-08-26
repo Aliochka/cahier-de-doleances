@@ -1,43 +1,22 @@
 {# app/templates/questions/_card.html #}
-<article class="media question-card">
-  <div class="media__body">
-    {# Titre affiché (garde le highlight si présent) #}
-    {% set title_html =
-         (q.prompt_hl|safe) if q.prompt_hl is defined and q.prompt_hl
-         else (q.title if q.title is defined and q.title
-         else q.prompt) %}
+<article class="question-card">
+  {# Titre affiché avec highlight si présent #}
+  {% set title_html =
+       (q.prompt_hl|safe) if q.prompt_hl is defined and q.prompt_hl
+       else (q.title if q.title is defined and q.title
+       else q.prompt) %}
 
-    {# URL canonique avec slug, fallback legacy si slug absent #}
-    {% if q.slug is defined and q.slug %}
-      {% set q_url = url_for('question_detail', question_id=q.id, slug=q.slug) %}
-    {% else %}
-      {% set q_url = url_for('question_detail_legacy', question_id=q.id) %}
+  {# URL canonique avec slug, fallback legacy si slug absent #}
+  {% if q.slug is defined and q.slug %}
+    {% set q_url = url_for('question_detail', question_id=q.id, slug=q.slug) %}
+  {% else %}
+    {% set q_url = url_for('question_detail_legacy', question_id=q.id) %}
+  {% endif %}
+
+  <h3 class="h3 question-card__title">
+    <a href="{{ q_url }}">{{ title_html }}</a>
+    {% if q.answers_count is defined and q.answers_count == 0 %}
+      <span class="badge badge--muted">0&nbsp;réponse</span>
     {% endif %}
-
-    <h3 class="h3">
-      <a href="{{ q_url }}">{{ title_html }}</a>
-    </h3>
-
-    {% if q.answers %}
-    <ul class="question-preview">
-      {% for a in q.answers[:3] %}
-        {% set contrib_url = url_for('answer_detail', answer_id=a.id) %}
-        <li class="question-preview__item" id="preview-{{ a.id }}">
-          <figure class="quote">
-            <blockquote class="quote__text clamp-5">
-              {{ a.text }}{% if a.is_truncated %}…{% endif %}
-            </blockquote>
-            <figcaption class="quote__meta">
-              <a class="quote__link" href="{{ contrib_url }}">→ Voir la réponse</a>
-            </figcaption>
-          </figure>
-        </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
-    <div class="question-card__actions" style="margin-top: var(--space-3);">
-      <a class="badge badge--link" href="{{ q_url }}">Voir toutes les réponses à la question.</a>
-    </div>
-  </div>
+  </h3>
 </article>

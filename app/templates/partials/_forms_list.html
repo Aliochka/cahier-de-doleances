@@ -1,20 +1,20 @@
-{% if questions and questions|length %}
+{% if forms and forms|length %}
   <ul class="list list--plain">
-    {% for question in questions %}
+    {% for form in forms %}
       <li class="card">
-        {% with q=question %}
-          {% include "questions/_card.html" %}
+        {% with f=form %}
+          {% include "forms/_card.html" %}
         {% endwith %}
       </li>
     {% endfor %}
   </ul>
 
-  {% if has_next_questions and next_cursor_questions %}
+  {% if has_next_forms and next_cursor_forms %}
     <div class="htmx-sentinel"
          style="min-height:20px;"
-         hx-get="{{ url_for('search_questions') }}?partial=1&section=questions{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_questions={{ next_cursor_questions|urlencode }}"
+         hx-get="{{ url_for('search_questions') }}?partial=1&section=forms{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_forms={{ next_cursor_forms|urlencode }}"
          hx-trigger="intersect once"
-         hx-target="#questions-list"
+         hx-target="#forms-list"
          hx-swap="beforeend"
          hx-indicator=".list-loader"
          aria-hidden="true">

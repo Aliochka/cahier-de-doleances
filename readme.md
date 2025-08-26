@@ -60,7 +60,7 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
   - [ ]  page answer contenu responsive
 - [ ] SEO technique
 - [ ] perf page question
-  - [ ] rework page question ?
+- [ ] rework page question
 - [ ] check bdd (questions sans réponses ?)
 
  
@@ -81,69 +81,6 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 ## v2
 - [ ] secret secret
 
----
-
-# ✅ SEO – Roadmap
-
-## 🎯 v0+ (socle technique propre)
-Objectif : que le site soit indexable et lisible par Google.  
-
-- [ ] **Balises `<title>` dynamiques**
-  - Accueil, question, réponse, auteur  
-  - Toujours unique, suffixé par “Cahier de doléances”  
-
-- [ ] **Balises `<meta description>` dynamiques**
-  - Exemple : `"Découvrez les contributions citoyennes à la question {titre}."`  
-
-- [ ] **Balise `<h1>` unique par page**  
-  - Titre de la question ou de la réponse  
-
-- [ ] **Sitemap XML** (`/sitemap.xml`)  
-  - Liste : accueil, questions, réponses, auteurs  
-
-- [ ] **robots.txt** (`/robots.txt`)  
-  - Avec lien vers sitemap  
-
-- [ ] **Canonical URL** sur chaque page  
-  - Évite duplicate content  
-
-- [ ] **Open Graph / Twitter Cards (version minimale)**  
-  - `og:title`, `og:description`, `og:url`, `og:image`  
-
----
-
-## 🚀 v1 (SEO + contenu + performance)  
-Objectif : mieux se positionner sur des requêtes et améliorer l’expérience de recherche.  
-
-- [ ] **URLs propres avec slug**  
-  - `/questions/42-education-culture`  
-  - `/auteurs/dupont-jean`  
-
-- [ ] **Page d’accueil enrichie**  
-  - Texte explicatif sur le projet, ses objectifs, et comment participer  
-  - Liens internes vers les questions principales  
-
-- [ ] **Améliorer l’UX de lecture**  
-  - Meilleure typographie (espacement, lisibilité mobile)  
-  - Mise en avant des contributions longues  
-
-- [ ] **Balises sémantiques**  
-  - `<article>`, `<section>`, `<header>`, `<footer>` autour des contenus  
-
-- [ ] **Données structurées (schema.org)**  
-  - Type `"Question"` pour les questions  
-  - Type `"Answer"` pour les réponses  
-  - Permet rich snippets dans Google  
-
-- [ ] **Texte alternatif (alt) sur images** (si tu en ajoutes plus tard)  
-
-- [ ] **Vitesse**
-  - Vérifier via PageSpeed Insights  
-  - Optimiser si besoin (lazyload, cache headers, compression)  
-
-- [ ] **Suivi**
-  - Google Search Console : soumettre sitemap, suivre indexation  
-  - Analytics / Matomo : suivre trafic et requêtes  
 
 
 

@@ -5,24 +5,9 @@ from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse, Response
 from sqlalchemy import text
 from datetime import datetime, timezone
+from app.helpers import slugify  # type: ignore
 
 from app.db import SessionLocal
-
-# slugify helper (fallback)
-try:
-    from app.helpers import slugify  # type: ignore
-except Exception:
-    import re, unicodedata
-    _keep = re.compile(r"[^a-z0-9\s-]")
-    _collapse = re.compile(r"[-\s]+")
-    def slugify(value: str | None, maxlen: int = 60) -> str:
-        if not value:
-            return "contenu"
-        value = unicodedata.normalize("NFKD", value)
-        value = "".join(ch for ch in value if not unicodedata.combining(ch)).lower()
-        value = _keep.sub(" ", value)
-        value = _collapse.sub("-", value).strip("-")
-        return (value[:maxlen].rstrip("-") or "contenu")
 
 router = APIRouter()
 

@@ -73,4 +73,18 @@
       {% endif %}
     </footer>
   </li>
+  {% if has_next and next_cursor %}
+  <div class="htmx-sentinel"
+       style="min-height:20px;"
+       hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor }}&partial=1"
+       hx-trigger="intersect once"
+       hx-target="#answers-list"
+       hx-swap="beforeend"
+       hx-indicator=".list-loader"
+       aria-hidden="true">
+    <div class="list-loader">
+      <div class="loader" aria-hidden="true" title="Chargement…"></div>
+    </div>
+  </div>
+{% endif %}
 {% endfor %}
