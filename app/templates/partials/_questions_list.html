@@ -11,15 +11,13 @@
 
   {% if has_next_questions and next_cursor_questions %}
     <div class="htmx-sentinel"
-         style="min-height:20px;"
          hx-get="{{ url_for('search_questions') }}?partial=1&section=questions{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_questions={{ next_cursor_questions|urlencode }}"
          hx-trigger="intersect once"
          hx-target="#questions-list"
-         hx-swap="beforeend"
-         hx-indicator=".list-loader"
-         aria-hidden="true">
-      <div class="list-loader">
-        <div class="loader" aria-hidden="true" title="Chargement…"></div>
+         hx-swap="beforeend">
+      <div class="list-loader htmx-indicator">
+        <div class="loader" title="Chargement des questions suivantes…"></div>
+        <span style="margin-left: var(--space-2); color: var(--muted);">Chargement des questions…</span>
       </div>
     </div>
   {% endif %}

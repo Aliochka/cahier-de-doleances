@@ -54,20 +54,20 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 
 ## V0+
 
-- [ ] page formulaire
+- [x] page formulaire
 - [ ] bugs
-  - [ ] l'url partial qui pop
-  - [ ]  page answer contenu responsive
-- [ ] SEO technique
-- [ ] perf page question
-- [ ] rework page question
-- [ ] check bdd (questions sans réponses ?)
+  - [ ] l'url partial qui pop http://127.0.0.1:8000/search/answers?partial=1&q=politique
+  - [x]  page answer contenu responsive
+- [x] SEO technique
+- [x] perf page question
+- [x] rework page question
+- [x] check bdd (questions sans réponses ?)
 
  
 ## v1
 - [ ] optimisations SEO
 - [ ] ux/ui 
-  - [ ] refaire le _card answer
+  - [x] refaire le _card answer
   - [ ] navigation
   - [ ] pagination (loader)
 - [ ] page thème

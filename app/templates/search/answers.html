@@ -10,22 +10,23 @@
   <form class="search-bar" method="get" action="{{ url_for('search_answers') }}" onsubmit="return false;">
     <label class="sr-only" for="q">Rechercher dans les réponses</label>
 
-    <input
-      id="q"
-      name="q"
-      type="search"
-      placeholder="Rechercher..."
-      value="{{ q|default('') }}"
-      autocomplete="off"
-      hx-get="{{ url_for('search_answers') }}?partial=1"
-      hx-trigger="keyup changed delay:300ms, search"
-      hx-target="#answers-list"
-      hx-swap="innerHTML"
-      hx-push-url="true"
-      hx-indicator="#search-spinner"
-    />
-
-    <span id="search-spinner" class="htmx-indicator" aria-hidden="true">⏳</span>
+    <div class="search-input-wrapper">
+      <input
+        id="q"
+        name="q"
+        type="search"
+        placeholder="Rechercher..."
+        value="{{ q|default('') }}"
+        autocomplete="off"
+        hx-get="{{ url_for('search_answers') }}?partial=1"
+        hx-trigger="keyup changed delay:300ms, search"
+        hx-target="#answers-list"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        hx-indicator=".search-loading"
+      />
+      <span class="search-loading htmx-indicator" aria-hidden="true">🔍</span>
+    </div>
   </form>
 </header>
 

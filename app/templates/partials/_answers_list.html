@@ -5,7 +5,6 @@
 
 {% if has_next and next_cursor %}
   <div class="htmx-sentinel"
-       style="min-height:20px;"
        {% if on_question_page and question %}
          hx-get="{{ url_for('question_detail', question_id=question.id, slug=question.slug) }}?partial=1&cursor={{ next_cursor|urlencode }}{% if q %}&q={{ q|urlencode }}{% endif %}"
        {% else %}
@@ -13,11 +12,10 @@
        {% endif %}
        hx-trigger="intersect once"
        hx-target="#answers-list"
-       hx-swap="beforeend"
-       hx-indicator=".list-loader"
-       aria-hidden="true">
-    <div class="list-loader">
-      <div class="loader" aria-hidden="true" title="Chargement…"></div>
+       hx-swap="beforeend">
+    <div class="list-loader htmx-indicator">
+      <div class="loader" title="Chargement des réponses suivantes…"></div>
+      <span style="margin-left: var(--space-2); color: var(--muted);">Chargement…</span>
     </div>
   </div>
 {% endif %}

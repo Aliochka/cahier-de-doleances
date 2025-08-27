@@ -134,6 +134,7 @@ a:not(.btn), .link {
   display: flex;
   gap: var(--space-2);
   align-items: center;
+  position: relative;
 }
 
 .search-bar input[type="search"] {
@@ -512,20 +513,61 @@ a.btn:visited {
 /* htmx indicators (affichés pendant la requête) */
 .htmx-indicator {
     display: none;
+    font-size: 14px;
+    margin-left: var(--space-1);
+    color: var(--muted);
+    animation: pulse 1.5s infinite;
 }
 
-.htmx-request .htmx-indicator {
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator {
     display: inline-block;
+}
+
+/* Animation pour les indicateurs de chargement */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Animation de rotation pour les spinners */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Wrapper pour l'input de recherche avec indicateur */
+.search-input-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+/* Indicateur de recherche dans la barre */
+.search-loading {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 16px;
+    z-index: 1;
+    animation: pulse 1.5s infinite;
 }
 
 /* petit spinner circulaire */
 .loader {
-    width: 22px;
-    height: 22px;
-    border: 3px solid rgba(0, 0, 0, .15);
-    border-top-color: currentColor;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(0, 0, 0, .1);
+    border-top-color: var(--primary);
     border-radius: 50%;
-    animation: spin 0.9s linear infinite;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
 }
 
 @keyframes spin {
@@ -538,12 +580,33 @@ a.btn:visited {
 .list-loader {
     display: none;
     justify-content: center;
-    padding: 12px 0;
+    align-items: center;
+    padding: var(--space-4) 0;
+    background: var(--paper);
+    border-radius: 8px;
+    margin: var(--space-2) 0;
+    border: 1px solid var(--border);
 }
 
-/* le sentinel htmx devient .htmx-request le temps du fetch → on montre le loader qu’il contient */
-.htmx-request .list-loader {
+/* Quand le sentinel devient .htmx-request, on montre le loader qu'il contient */
+.htmx-request .list-loader,
+.htmx-request.htmx-sentinel .list-loader {
     display: flex;
+}
+
+/* Indicateur HTMX standard - s'affiche quand l'élément parent a .htmx-request */
+.list-loader.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .list-loader.htmx-indicator {
+    display: flex;
+}
+
+/* Sentinel invisible par défaut */
+.htmx-sentinel {
+    min-height: 20px;
+    margin: 0;
 }
 
 /* ---------- Answer card (minimal style) ---------- */

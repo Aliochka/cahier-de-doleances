@@ -11,15 +11,13 @@
 
   {% if has_next_forms and next_cursor_forms %}
     <div class="htmx-sentinel"
-         style="min-height:20px;"
          hx-get="{{ url_for('search_questions') }}?partial=1&section=forms{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_forms={{ next_cursor_forms|urlencode }}"
          hx-trigger="intersect once"
          hx-target="#forms-list"
-         hx-swap="beforeend"
-         hx-indicator=".list-loader"
-         aria-hidden="true">
-      <div class="list-loader">
-        <div class="loader" aria-hidden="true" title="Chargement…"></div>
+         hx-swap="beforeend">
+      <div class="list-loader htmx-indicator">
+        <div class="loader" title="Chargement des formulaires suivants…"></div>
+        <span style="margin-left: var(--space-2); color: var(--muted);">Chargement des formulaires…</span>
       </div>
     </div>
   {% endif %}
