@@ -17,7 +17,7 @@
   
   <footer class="answer-card__meta">
     <div class="answer-card__info">
-      {% if a.author_id %}
+      {% if a.author_id and not on_author_page %}
         {% if a.author_slug %}
           <a href="{{ url_for('author_detail', author_id=a.author_id, slug=a.author_slug) }}">
             {{ a.author_name or ('Auteur #' ~ a.author_id) }}
