@@ -75,22 +75,38 @@ def form_detail(
 
         current_contrib_id = row_contrib["id"] if row_contrib else None
 
-        # 3) Réponses de la contribution courante (alignées sur l'ordre des questions)
-        answers_map: dict[int, str] = {}
+        # 3) Réponses de la contribution courante avec métadonnées pour answer cards
+        answers = []
         if current_contrib_id is not None:
             rows_answers = db.execute(
                 text("""
-                    SELECT a.question_id, a.text
+                    SELECT a.id, a.question_id, a.text, q.prompt,
+                           c.author_id, c.submitted_at
                     FROM answers a
+                    JOIN questions q ON q.id = a.question_id
+                    JOIN contributions c ON c.id = a.contribution_id
                     WHERE a.contribution_id = :cid
+                      AND a.text IS NOT NULL
+                      AND trim(a.text) != ''
+                    ORDER BY COALESCE(q.position, 999999), q.id
                 """),
                 {"cid": current_contrib_id},
             ).mappings().all()
+            
             for r in rows_answers:
-                answers_map[int(r["question_id"])] = (r["text"] or "").strip()
+                answers.append({
+                    "id": r["id"],
+                    "question_id": r["question_id"],
+                    "question_title": r["prompt"],
+                    "question_slug": slugify(r["prompt"] or f"question-{r['question_id']}"),
+                    "body": r["text"],
+                    "author_id": r["author_id"],
+                    "created_at": r["submitted_at"],
+                })
 
-        # 4) Construction du modèle pour le template
+        # 4) Construction du modèle pour le template (questions avec réponses vides pour navigation)
         questions = []
+        answers_map: dict[int, str] = {a["question_id"]: a["body"] for a in answers}
         for q in rows_questions:
             qid = int(q["id"])
             prompt = q["prompt"]
@@ -110,9 +126,11 @@ def form_detail(
                 "questions_count": row_form["questions_count"],
             },
             "questions": questions,
+            "answers": answers,
             "total_contribs": total_contribs,
             "contrib_idx": contrib_idx,
             "current_contrib_id": current_contrib_id,
+            "on_form_page": True,
         }
 
         return templates.TemplateResponse("forms/detail.html", ctx)
