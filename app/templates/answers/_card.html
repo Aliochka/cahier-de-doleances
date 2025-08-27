@@ -1,75 +1,81 @@
-{# Prépare les champs de façon robuste #}
-{% set _a = a %}
-{% set ans_id = (_a.id if _a is defined and _a.id is defined else none)
-                or (_a.get('answer_id') if _a.get is defined else none)
-                or (_a.get('id') if _a.get is defined else none) %}
+{# Answer card - Minimal style, mobile-first #}
+{# Gestion robuste des champs de différentes sources #}
+{% set ans_id = (a.id if a.id is defined else none) 
+                or (a.get('answer_id') if a.get is defined else none)
+                or (a.get('id') if a.get is defined else none) %}
 
-{% set author_id   = (_a.author_id if _a.author_id is defined else none)
-                   or (_a.get('author_id') if _a.get is defined else none) %}
-{% set author_name = (_a.author_name if _a.author_name is defined else none)
-                   or (_a.get('author_name') if _a.get is defined else none) %}
-{% set author_slug = (_a.author_slug if _a.author_slug is defined else none)
-                   or (_a.get('author_slug') if _a.get is defined else none) %}
+{% set author_id = (a.author_id if a.author_id is defined else none)
+                  or (a.get('author_id') if a.get is defined else none) %}
+{% set author_name = (a.author_name if a.author_name is defined else none)
+                    or (a.get('author_name') if a.get is defined else none) %}
+{% set author_slug = (a.author_slug if a.author_slug is defined else none)
+                    or (a.get('author_slug') if a.get is defined else none) %}
 
-{% set qid       = (_a.question_id if _a.question_id is defined else none)
-                 or (_a.get('question_id') if _a.get is defined else none) %}
-{% set q_title   = (_a.question_title if _a.question_title is defined else none)
-                 or (_a.get('question_title') if _a.get is defined else none)
-                 or (_a.question_prompt if _a.question_prompt is defined else none)
-                 or (_a.get('question_prompt') if _a.get is defined else none) %}
-{% set q_slug    = (_a.question_slug if _a.question_slug is defined else none)
-                 or (_a.get('question_slug') if _a.get is defined else none) %}
+{% set qid = (a.question_id if a.question_id is defined else none)
+            or (a.get('question_id') if a.get is defined else none) %}
+{% set q_title = (a.question_title if a.question_title is defined else none)
+                or (a.get('question_title') if a.get is defined else none)
+                or (a.question_prompt if a.question_prompt is defined else none)
+                or (a.get('question_prompt') if a.get is defined else none) %}
+{% set q_slug = (a.question_slug if a.question_slug is defined else none)
+               or (a.get('question_slug') if a.get is defined else none) %}
 
-{% set date = (_a.created_at if _a.created_at is defined else none)
-            or (_a.get('submitted_at') if _a.get is defined else none) %}
+{% set date = (a.created_at if a.created_at is defined else none)
+             or (a.get('submitted_at') if a.get is defined else none) %}
 
-{% set body = (_a.body if _a.body is defined else none)
-           or (_a.text if _a.text is defined else none)
-           or (_a.get('answer_text') if _a.get is defined else '') %}
+{% set body = (a.body if a.body is defined else none)
+             or (a.text if a.text is defined else none)
+             or (a.get('answer_text') if a.get is defined else '') %}
 
-<li class="answer" id="answer-{{ ans_id or '' }}">
-  <header class="answer__meta">
-    {% if qid and not on_question_page %}
-      <p class="answer__question-title h4">{{ q_title }}</p>
-    {% endif %}
-    {% if date %}
-      <time class="answer__date" datetime="{{ date }}">{{ date }}</time>
-    {% endif %}
-  </header>
-
-  <blockquote class="quote">
-    <p class="quote__text clamp-4">{{ body|safe }}</p>
-  </blockquote>
-
-
-  <footer class="answer__footer">
-    {% if author_id %}
-      {% if _a.author_slug is defined and _a.author_slug %}
-        <a class="quote__link"
-           href="{{ url_for('author_detail', author_id=author_id, slug=_a.author_slug) }}">
-          {{ _a.author_name if _a.author_name is defined else ('Auteur #' ~ author_id) }}
-        </a>
-      {% else %}
-        <a class="quote__link"
-           href="{{ url_for('author_detail_legacy', author_id=author_id) }}">
-          {{ _a.author_name if _a.author_name is defined else ('Auteur #' ~ author_id) }}
+<article class="answer-card" id="answer-{{ ans_id or '' }}">
+  {% if qid and not on_question_page %}
+    <header class="answer-card__question">
+      <h3 class="answer-card__question-title">{{ q_title }}</h3>
+      {% if date %}
+        <time class="answer-card__question-date" datetime="{{ date }}">
+          {{ date.strftime('%d/%m/%Y') if date.strftime is defined else date }}
+        </time>
+      {% endif %}
+    </header>
+  {% endif %}
+  
+  <div class="answer-card__content is-truncated">
+    {{ body|safe }}
+  </div>
+  
+  <footer class="answer-card__meta">
+    <div class="answer-card__info">
+      {% if author_id %}
+        {% if author_slug %}
+          <a href="{{ url_for('author_detail', author_id=author_id, slug=author_slug) }}">
+            {{ author_name or ('Auteur #' ~ author_id) }}
+          </a>
+        {% else %}
+          <a href="{{ url_for('author_detail_legacy', author_id=author_id) }}">
+            {{ author_name or ('Auteur #' ~ author_id) }}
+          </a>
+        {% endif %}
+      {% endif %}
+      
+      {% if ans_id %}
+        <a href="{{ url_for('answer_detail', answer_id=ans_id) }}" class="answer-card__primary">
+          → Voir la réponse
         </a>
       {% endif %}
-    {% endif %}
-      
+    </div>
+    
     {% if qid and not on_question_page %}
-      {% if _a.question_slug is defined and _a.question_slug %}
-        <a class="badge badge--link"
-           href="{{ url_for('question_detail', question_id=qid, slug=_a.question_slug) }}">Voir la question</a>
-      {% else %}
-        <a class="badge badge--link"
-           href="{{ url_for('question_detail_legacy', question_id=qid) }}">Voir la question</a>
-      {% endif %}
-    {% endif %}
-      
-    {% if ans_id %}
-      <a class="quote__link" href="{{ url_for('answer_detail', answer_id=ans_id) }}">→ Voir la réponse</a>
+      <div class="answer-card__actions">
+        {% if q_slug %}
+          <a href="{{ url_for('question_detail', question_id=qid, slug=q_slug) }}" class="badge">
+            Voir la question
+          </a>
+        {% else %}
+          <a href="{{ url_for('question_detail_legacy', question_id=qid) }}" class="badge">
+            Voir la question
+          </a>
+        {% endif %}
+      </div>
     {% endif %}
   </footer>
-
-</li>
+</article>

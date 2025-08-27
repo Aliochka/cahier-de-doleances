@@ -65,7 +65,7 @@ a:not(.btn), .link {
 }
 
 /* ---------- Text clamping ---------- */
-.clamp-3, .clamp-4, .clamp-5 {
+.clamp-3, .clamp-4, .clamp-5, .clamp-10 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -75,6 +75,7 @@ a:not(.btn), .link {
 .clamp-3 { -webkit-line-clamp: 3; }
 .clamp-4 { -webkit-line-clamp: 4; }
 .clamp-5 { -webkit-line-clamp: 5; }
+.clamp-10 { -webkit-line-clamp: 10; }
 
 /* ---------- Layout components ---------- */
 .card {
@@ -210,52 +211,7 @@ a:not(.btn), .link {
     color: var(--muted);
 }
 
-/* ---------- Réponses (pages auteur / question) ---------- */
-.answer {
-    background: var(--paper);
-    border: none;
-    border-radius: 0;
-    padding: 0;
-}
-
-.answer__question-title {
-    font-family: var(--font-typewriter);
-}
-
-.answer__meta {
-    display: flex;
-    gap: var(--space-3);
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: var(--space-2);
-    align-items: center;
-    justify-content: space-between;
-
-}
-
-.answer__question {
-    margin-bottom: var(--space-2);
-}
-
-.answer__questionLink {
-    font-weight: 600;
-    text-decoration: underline;
-}
-
-.answer__body {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
-.answer__body ul {
-    margin: var(--space-3) 0 var(--space-3) var(--space-5);
-    padding-left: var(--space-5);
-    list-style: disc;
-}
-
-.answer__body li {
-    margin: 4px 0;
-}
+/* ---------- Answer components (supprimé - utilise maintenant answer-card) ---------- */
 
 /* ---------- Badge tampon ---------- */
 .badge {
@@ -449,34 +405,17 @@ a.btn:visited {
 }
 
 .quote__text {
-    margin: 0;
-    line-height: 1.4;
-    white-space: normal;
-    padding: 2px 0 0 28px;
-    /* espace pour le guillemet ouvrant */
+  margin: 0;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.7;
+  max-width: 72ch;
+  white-space: normal;
+  padding: 0;
 }
 
 .quote::before,
 .quote::after {
-    position: absolute;
-    pointer-events: none;
-    font-family: var(--font-typewriter);
-    font-size: 40px;
-    line-height: 1;
-    color: var(--muted);
-    content: "«";
-}
-
-.quote::before {
-    left: -10px;
-    top: -30px;
-    content: "«";
-}
-
-.quote::after {
-    right: -18px;
-    bottom: -22px;
-    content: "»";
+  display: none;
 }
 
 .quote__meta {
@@ -564,12 +503,6 @@ a.btn:visited {
     bottom: -60px;
 }
 
-.answer__footer {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
 
 /* htmx indicators (affichés pendant la requête) */
 .htmx-indicator {
@@ -606,4 +539,133 @@ a.btn:visited {
 /* le sentinel htmx devient .htmx-request le temps du fetch → on montre le loader qu’il contient */
 .htmx-request .list-loader {
     display: flex;
+}
+
+/* ---------- Answer card (minimal style) ---------- */
+.answer-card {
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  padding: var(--space-6) 0;
+}
+
+.answer-card:last-child {
+  border-bottom: none;
+}
+
+.answer-card__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.answer-card__question-title {
+  font-family: var(--font-typewriter);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.answer-card__question-date {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.answer-card__content {
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.7;
+  max-width: 72ch;
+  margin-bottom: var(--space-4);
+  color: var(--text);
+}
+
+.answer-card__content.is-truncated {
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.answer-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 14px;
+  color: var(--muted);
+  min-height: 44px;
+}
+
+.answer-card__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.answer-card__info > * + *::before {
+  content: "•";
+  color: var(--muted);
+  margin: 0 var(--space-2);
+}
+
+.answer-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.answer-card__primary {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.answer-card__primary:hover {
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  transform: translateY(-1px);
+}
+
+
+@media (max-width: 640px) {
+  .answer-card {
+    padding: var(--space-5) 0;
+  }
+  
+  .answer-card__content {
+    font-size: 17px;
+    margin-bottom: var(--space-3);
+  }
+  
+  .answer-card__question {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  
+  .answer-card__question-date {
+    align-self: flex-end;
+  }
+  
+  .answer-card__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  
+  .answer-card__actions {
+    align-self: stretch;
+  }
 }
