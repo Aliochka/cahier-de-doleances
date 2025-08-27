@@ -73,10 +73,16 @@
       {% endif %}
     </footer>
   </li>
-  {% if has_next and next_cursor %}
+{% endfor %}
+
+{% if has_next and next_cursor %}
   <div class="htmx-sentinel"
        style="min-height:20px;"
-       hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor }}&partial=1"
+       {% if on_question_page and question %}
+         hx-get="{{ url_for('question_detail', question_id=question.id, slug=question.slug) }}?partial=1&cursor={{ next_cursor|urlencode }}{% if q %}&q={{ q|urlencode }}{% endif %}"
+       {% else %}
+         hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor|urlencode }}&partial=1"
+       {% endif %}
        hx-trigger="intersect once"
        hx-target="#answers-list"
        hx-swap="beforeend"
@@ -87,4 +93,3 @@
     </div>
   </div>
 {% endif %}
-{% endfor %}

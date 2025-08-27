@@ -13,7 +13,16 @@
   {% endif %}
 </header>
 
-{% include "partials/_answers_list.html" with context %}
+{% if q %}
+  <div class="search-context">
+    <p class="muted">Recherche : « {{ q }} » dans les réponses</p>
+  </div>
+{% endif %}
+
+<!-- Conteneur que htmx remplace/étend -->
+<div id="answers-list">
+  {% include "partials/_answers_list.html" with context %}
+</div>
 {% endblock %}
 
 {# JSON-LD rendu via un block dédié #}

@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 import math
+import json
+import base64
+from typing import Any
 from fastapi import APIRouter, Request, Query, Depends, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse, Response, JSONResponse
 from sqlalchemy import text
@@ -31,6 +34,19 @@ router = APIRouter()
 PER_PAGE = 20
 MIN_ANSWER_LEN = 60
 MAX_TEXT_LEN = 20_000
+
+# --- utils cursor opaque (base64 urlsafe(JSON)) ---
+def _enc_cursor(obj: dict) -> str:
+    raw = json.dumps(obj, separators=(",", ":"), ensure_ascii=False).encode()
+    s = base64.urlsafe_b64encode(raw).decode()
+    return s.rstrip("=")
+
+def _dec_cursor(s: str | None) -> dict | None:
+    if not s:
+        return None
+    pad = "=" * ((4 - len(s) % 4) % 4)
+    data = base64.urlsafe_b64decode(s + pad)
+    return json.loads(data.decode())
 
 def get_db():
     db = SessionLocal()
@@ -62,7 +78,9 @@ def question_detail(
     question_id: int,
     slug: str,
     q: str | None = Query(None, description="Filtre texte dans les réponses"),
-    page: int = Query(1, ge=1),
+    page: int = Query(1, ge=1),                 # legacy compat
+    cursor: str | None = Query(None),           # scroll infini
+    partial: bool = Query(False),               # rendu fragment (htmx)
     db: Session = Depends(get_db),
 ):
     # HEAD rapide : valide existence + slug sans charger la page
@@ -107,68 +125,101 @@ def question_detail(
             url += f"?page={page}"
         return RedirectResponse(url, status_code=308)
 
-    # --- Pagination + filtre
+    # --- Scroll infini + filtre
     q = (q or "").strip()
-    offset = (page - 1) * PER_PAGE
-    params = {"qid": question_id, "minlen": MIN_ANSWER_LEN}
+    answers: list[dict[str, Any]] = []
+    has_next = False
+    next_cursor: str | None = None
+    total = 0
 
-    # total
+    limit = PER_PAGE + 1
+    cur = _dec_cursor(cursor)
+    params = {"qid": question_id, "minlen": MIN_ANSWER_LEN, "limit": limit}
+    
+    # Curseur pour pagination keyset
+    cursor_sql = ""
+    if cur:
+        cursor_sql = """
+            AND (
+                c.submitted_at < :last_date
+                OR (c.submitted_at = :last_date AND a.id < :last_id)
+            )
+        """
+        params["last_date"] = cur.get("date")
+        params["last_id"] = int(cur.get("id", 0))
+
+    # Total count (uniquement si pas de curseur - pour affichage initial)
+    if not cursor:
+        if q:
+            total = db.execute(
+                text("""
+                    SELECT COUNT(1)
+                    FROM answers a
+                    JOIN contributions c ON c.id = a.contribution_id
+                    WHERE a.question_id = :qid
+                      AND a.text IS NOT NULL
+                      AND char_length(btrim(a.text)) >= :minlen
+                      AND a.text ILIKE :like
+                """),
+                {**params, "like": f"%{q}%"},
+            ).scalar_one()
+        else:
+            total = db.execute(
+                text("""
+                    SELECT COUNT(1)
+                    FROM answers a
+                    JOIN contributions c ON c.id = a.contribution_id
+                    WHERE a.question_id = :qid
+                      AND a.text IS NOT NULL
+                      AND char_length(btrim(a.text)) >= :minlen
+                """),
+                params,
+            ).scalar_one()
+
+    # Requête avec curseur
     if q:
-        total = db.execute(
-            text("""
-                SELECT COUNT(1)
+        rows = db.execute(
+            text(f"""
+                SELECT a.id AS answer_id, a.text AS answer_text,
+                       c.author_id AS author_id, c.submitted_at AS submitted_at
                 FROM answers a
+                JOIN contributions c ON c.id = a.contribution_id
                 WHERE a.question_id = :qid
                   AND a.text IS NOT NULL
                   AND char_length(btrim(a.text)) >= :minlen
                   AND a.text ILIKE :like
+                  {cursor_sql}
+                ORDER BY c.submitted_at DESC, a.id DESC
+                LIMIT :limit
             """),
             {**params, "like": f"%{q}%"},
-        ).scalar_one()
+        ).mappings().all()
     else:
-        total = db.execute(
-            text("""
-                SELECT COUNT(1)
+        rows = db.execute(
+            text(f"""
+                SELECT a.id AS answer_id, a.text AS answer_text,
+                       c.author_id AS author_id, c.submitted_at AS submitted_at
                 FROM answers a
+                JOIN contributions c ON c.id = a.contribution_id
                 WHERE a.question_id = :qid
                   AND a.text IS NOT NULL
                   AND char_length(btrim(a.text)) >= :minlen
+                  {cursor_sql}
+                ORDER BY c.submitted_at DESC, a.id DESC
+                LIMIT :limit
             """),
             params,
-        ).scalar_one()
+        ).mappings().all()
 
-    # page rows
-    if q:
-        rows = db.execute(
-            text("""
-                SELECT a.id AS answer_id, a.text AS answer_text,
-                       c.author_id AS author_id, c.submitted_at AS submitted_at
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE a.question_id = :qid
-                  AND a.text IS NOT NULL
-                  AND char_length(btrim(a.text)) >= :minlen
-                  AND a.text ILIKE :like
-                ORDER BY c.submitted_at DESC
-                LIMIT :limit OFFSET :offset
-            """),
-            {**params, "like": f"%{q}%", "limit": PER_PAGE, "offset": offset},
-        ).mappings().all()
-    else:
-        rows = db.execute(
-            text("""
-                SELECT a.id AS answer_id, a.text AS answer_text,
-                       c.author_id AS author_id, c.submitted_at AS submitted_at
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE a.question_id = :qid
-                  AND a.text IS NOT NULL
-                  AND char_length(btrim(a.text)) >= :minlen
-                ORDER BY c.submitted_at DESC
-                LIMIT :limit OFFSET :offset
-            """),
-            {**params, "limit": PER_PAGE, "offset": offset},
-        ).mappings().all()
+    # Traitement des résultats
+    if len(rows) > PER_PAGE:
+        has_next = True
+        rows = rows[:-1]  # Retire le dernier élément (sentinel)
+        last_row = rows[-1]
+        next_cursor = _enc_cursor({
+            "date": last_row["submitted_at"].isoformat() if last_row["submitted_at"] else None,
+            "id": last_row["answer_id"],
+        })
 
     answers = [{
         "id": r["answer_id"],
@@ -178,8 +229,21 @@ def question_detail(
         "body": (r["answer_text"] or "")[:MAX_TEXT_LEN],
     } for r in rows]
 
-    total_pages = max(1, math.ceil(total / PER_PAGE))
+    # Rendu partiel pour HTMX
+    if partial:
+        return templates.TemplateResponse(
+            "partials/_answers_list.html",
+            {
+                "request": request,
+                "answers": answers,
+                "has_next": has_next,
+                "next_cursor": next_cursor,
+                "q": q,
+                "on_question_page": True,
+            },
+        )
 
+    # Rendu complet
     return templates.TemplateResponse(
         "questions/detail.html",
         {
@@ -189,11 +253,13 @@ def question_detail(
                 "question_code": row.get("question_code"),
                 "title": row["prompt"],
                 "slug": canonical_slug,
+                "answers_count": total,
             },
             "answers": answers,
+            "has_next": has_next,
+            "next_cursor": next_cursor,
             "q": q,
-            "page": page,
-            "total_pages": total_pages,
+            "page": page,  # legacy compat
             "on_question_page": True,
         },
     )
