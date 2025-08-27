@@ -14,6 +14,7 @@ router = APIRouter()
 # Limites (prudents pour la perf)
 SITEMAP_LIMIT_QUESTIONS = 2000
 SITEMAP_LIMIT_AUTHORS   = 1000
+SITEMAP_LIMIT_FORMS     = 50
 
 CACHE_ROBOTS = "public, max-age=86400"
 CACHE_SITEMAP = "public, max-age=21600"
@@ -56,6 +57,10 @@ def sitemap_xml(request: Request):
         # lastmod global (homepage) = dernière contribution
         home_lastmod = db.execute(text("SELECT MAX(submitted_at) FROM contributions")).scalar()
         urls.append((f"{base}/", _fmt_iso(home_lastmod)))
+        
+        # Pages de recherche principales
+        urls.append((f"{base}/search/questions", _fmt_iso(home_lastmod)))
+        urls.append((f"{base}/search/answers", _fmt_iso(home_lastmod)))
 
         # Questions: canonical slug + lastmod = max(submitted_at des réponses)
         q_rows = db.execute(text("""
@@ -89,6 +94,22 @@ def sitemap_xml(request: Request):
             name = r["name"] or f"Auteur #{r['id']}"
             aslug = slugify(name)
             urls.append((f"{base}/authors/{r['id']}-{aslug}", _fmt_iso(r["lastmod"])))
+
+        # Formulaires: lastmod = max(submitted_at des contributions liées)
+        f_rows = db.execute(text("""
+            SELECT f.id, f.name, MAX(c.submitted_at) AS lastmod
+            FROM forms f
+            JOIN questions q ON q.form_id = f.id
+            JOIN answers a ON a.question_id = q.id
+            JOIN contributions c ON c.id = a.contribution_id
+            WHERE a.text IS NOT NULL
+            GROUP BY f.id, f.name
+            ORDER BY lastmod DESC NULLS LAST, f.id DESC
+            LIMIT :lim
+        """), {"lim": SITEMAP_LIMIT_FORMS}).mappings().all()
+
+        for r in f_rows:
+            urls.append((f"{base}/forms/{r['id']}", _fmt_iso(r["lastmod"])))
 
     # Rend XML
     parts = [
