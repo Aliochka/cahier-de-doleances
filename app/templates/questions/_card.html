@@ -1,35 +1,19 @@
 {# app/templates/questions/_card.html #}
 <article class="question-card">
-  {# Titre affiché avec highlight si présent #}
-  {% set title_html =
-       (q.prompt_hl|safe) if q.prompt_hl is defined and q.prompt_hl
-       else (q.title if q.title is defined and q.title
-       else q.prompt) %}
-
-  {# URL canonique avec slug, fallback legacy si slug absent #}
-  {% if q.slug is defined and q.slug %}
-    {% set q_url = url_for('question_detail', question_id=q.id, slug=q.slug) %}
-  {% else %}
-    {% set q_url = url_for('question_detail_legacy', question_id=q.id) %}
-  {% endif %}
+  {% set title_html = q.prompt_hl|safe if q.prompt_hl else (q.title or q.prompt) %}
+  {% set q_url = url_for('question_detail', question_id=q.id, slug=q.slug) if q.slug else url_for('question_detail_legacy', question_id=q.id) %}
 
   <h3 class="h3 question-card__title">
-    {{ title_html }}</a>
+    <a href="{{ q_url }}">{{ title_html }}</a>
   </h3>
   
   {% if q.answers_count is defined %}
-    {% if q.answers_count == 0 %}
-      <div class="question-card__badge">
-        <a class="badge" href="{{ q_url }}">Aucune réponse</a>
-      </div>
-    {% elif q.answers_count == 1 %}
-      <div class="question-card__badge">
-        <a class="badge" href="{{ q_url }}">1 réponse</a>
-      </div>
-    {% else %}
-      <div class="question-card__badge">
-        <a class="badge" href="{{ q_url }}">{{ q.answers_count }} réponses</a>
-      </div>
-    {% endif %}
+    <div class="question-card__badge">
+      <a class="badge" href="{{ q_url }}">
+        {% if q.answers_count == 0 %}Aucune réponse
+        {% elif q.answers_count == 1 %}1 réponse
+        {% else %}{{ q.answers_count }} réponses{% endif %}
+      </a>
+    </div>
   {% endif %}
 </article>

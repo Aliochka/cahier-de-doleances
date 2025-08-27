@@ -1,77 +1,49 @@
 {# Answer card - Minimal style, mobile-first #}
-{# Gestion robuste des champs de différentes sources #}
-{% set ans_id = (a.id if a.id is defined else none) 
-                or (a.get('answer_id') if a.get is defined else none)
-                or (a.get('id') if a.get is defined else none) %}
-
-{% set author_id = (a.author_id if a.author_id is defined else none)
-                  or (a.get('author_id') if a.get is defined else none) %}
-{% set author_name = (a.author_name if a.author_name is defined else none)
-                    or (a.get('author_name') if a.get is defined else none) %}
-{% set author_slug = (a.author_slug if a.author_slug is defined else none)
-                    or (a.get('author_slug') if a.get is defined else none) %}
-
-{% set qid = (a.question_id if a.question_id is defined else none)
-            or (a.get('question_id') if a.get is defined else none) %}
-{% set q_title = (a.question_title if a.question_title is defined else none)
-                or (a.get('question_title') if a.get is defined else none)
-                or (a.question_prompt if a.question_prompt is defined else none)
-                or (a.get('question_prompt') if a.get is defined else none) %}
-{% set q_slug = (a.question_slug if a.question_slug is defined else none)
-               or (a.get('question_slug') if a.get is defined else none) %}
-
-{% set date = (a.created_at if a.created_at is defined else none)
-             or (a.get('submitted_at') if a.get is defined else none) %}
-
-{% set body = (a.body if a.body is defined else none)
-             or (a.text if a.text is defined else none)
-             or (a.get('answer_text') if a.get is defined else '') %}
-
-<article class="answer-card" id="answer-{{ ans_id or '' }}">
-  {% if qid and not on_question_page %}
+<article class="answer-card" id="answer-{{ a.id or '' }}">
+  {% if a.question_id and not on_question_page %}
     <header class="answer-card__question">
-      <h3 class="answer-card__question-title">{{ q_title }}</h3>
-      {% if date %}
-        <time class="answer-card__question-date" datetime="{{ date }}">
-          {{ date.strftime('%d/%m/%Y') if date.strftime is defined else date }}
+      <h3 class="answer-card__question-title">{{ a.question_title or a.question_prompt }}</h3>
+      {% if a.created_at %}
+        <time class="answer-card__question-date" datetime="{{ a.created_at }}">
+          {{ a.created_at.strftime('%d/%m/%Y') if a.created_at.strftime is defined else a.created_at }}
         </time>
       {% endif %}
     </header>
   {% endif %}
   
   <div class="answer-card__content is-truncated">
-    {{ body|safe }}
+    {{ a.body|safe }}
   </div>
   
   <footer class="answer-card__meta">
     <div class="answer-card__info">
-      {% if author_id %}
-        {% if author_slug %}
-          <a href="{{ url_for('author_detail', author_id=author_id, slug=author_slug) }}">
-            {{ author_name or ('Auteur #' ~ author_id) }}
+      {% if a.author_id %}
+        {% if a.author_slug %}
+          <a href="{{ url_for('author_detail', author_id=a.author_id, slug=a.author_slug) }}">
+            {{ a.author_name or ('Auteur #' ~ a.author_id) }}
           </a>
         {% else %}
-          <a href="{{ url_for('author_detail_legacy', author_id=author_id) }}">
-            {{ author_name or ('Auteur #' ~ author_id) }}
+          <a href="{{ url_for('author_detail_legacy', author_id=a.author_id) }}">
+            {{ a.author_name or ('Auteur #' ~ a.author_id) }}
           </a>
         {% endif %}
       {% endif %}
       
-      {% if ans_id %}
-        <a href="{{ url_for('answer_detail', answer_id=ans_id) }}" class="answer-card__primary">
+      {% if a.id %}
+        <a href="{{ url_for('answer_detail', answer_id=a.id) }}" class="answer-card__primary">
           → Voir la réponse
         </a>
       {% endif %}
     </div>
     
-    {% if qid and not on_question_page %}
+    {% if a.question_id and not on_question_page %}
       <div class="answer-card__actions">
-        {% if q_slug %}
-          <a href="{{ url_for('question_detail', question_id=qid, slug=q_slug) }}" class="badge">
+        {% if a.question_slug %}
+          <a href="{{ url_for('question_detail', question_id=a.question_id, slug=a.question_slug) }}" class="badge">
             Voir la question
           </a>
         {% else %}
-          <a href="{{ url_for('question_detail_legacy', question_id=qid) }}" class="badge">
+          <a href="{{ url_for('question_detail_legacy', question_id=a.question_id) }}" class="badge">
             Voir la question
           </a>
         {% endif %}
