@@ -213,7 +213,10 @@ def search_answers(
         "has_next": has_next,
         "next_cursor": next_cursor,
     }
-    if partial:
+    # Détecter les requêtes HTMX via headers ou paramètre
+    is_htmx = partial or "HX-Request" in request.headers
+    
+    if is_htmx:
         resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
         return resp
 
@@ -446,8 +449,11 @@ def search_questions(
         "on_questions_search": True,  # (noindex + canonical ?q=) si besoin
     }
 
+    # Détecter les requêtes HTMX via headers ou paramètre
+    is_htmx = partial or "HX-Request" in request.headers
+    
     # Rendu partiel (htmx) : une seule section
-    if partial:
+    if is_htmx:
         if section == "forms":
             return templates.TemplateResponse("partials/_forms_list.html", ctx)
         if section == "questions":

@@ -18,7 +18,7 @@
         placeholder="Rechercher..."
         value="{{ q|default('') }}"
         autocomplete="off"
-        hx-get="{{ url_for('search_answers') }}?partial=1"
+        hx-get="{{ url_for('search_answers') }}"
         hx-trigger="keyup changed delay:300ms, search"
         hx-target="#answers-list"
         hx-swap="innerHTML"
