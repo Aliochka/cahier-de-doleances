@@ -7,18 +7,20 @@ from typing import Any
 
 from fastapi import APIRouter, Request, Query
 from fastapi.responses import HTMLResponse
-from sqlalchemy import text, bindparam
+from sqlalchemy import text
 
 from app.db import SessionLocal
 from app.web import templates
 from app.helpers import postprocess_excerpt
+from app.helpers import slugify  # type: ignore
+
 
 router = APIRouter()
 
 PER_PAGE = 20
 MAX_TEXT_LEN = 20_000
-MIN_ANSWER_LEN = 60
-PREVIEW_MAXLEN = 400
+MIN_ANSWER_LEN = 40
+PREVIEW_MAXLEN = 1000
 
 # --- utils cursor opaque (base64 urlsafe(JSON)) ---
 def _enc_cursor(obj: dict) -> str:
@@ -41,11 +43,12 @@ def _clean_snippet(s: str, maxlen: int) -> tuple[str, bool]:
     s = s[:maxlen].replace("\r", " ").replace("\n", " ")
     return s, is_trunc
 
+
 # ===========================
 #   /search/answers
 #   - FTS Postgres
 #   - keyset pagination + htmx partial
-#   - SEO: noindex (full: follow / partial: nofollow via X-Robots-Tag dans le template)
+#   - SEO: noindex (full: follow / partial: nofollow — géré côté template/en-têtes)
 # ===========================
 @router.get("/search/answers", name="search_answers", response_class=HTMLResponse)
 def search_answers(
@@ -119,24 +122,28 @@ def search_answers(
                 params,
             ).mappings().all()
 
+        # sentinelle + next_cursor
         if len(rows) == limit:
             has_next = True
             tail = rows[-1]
             next_cursor = _enc_cursor({"id": tail["answer_id"], "score": float(tail["score"])})
             rows = rows[:-1]
 
+        # build output
         for r in rows:
             body = (r["answer_snippet"] or "").strip()
             if not body:
                 raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
                 body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
             body = postprocess_excerpt(body)
+            q_title = r["question_prompt"]
             answers.append(
                 {
                     "id": r["answer_id"],
                     "author_id": r["author_id"],
                     "question_id": r["question_id"],
-                    "question_title": r["question_prompt"],
+                    "question_title": q_title,
+                    "question_slug": slugify(q_title or f"question-{r['question_id']}"),
                     "created_at": r["submitted_at"],
                     "body": body,
                 }
@@ -184,12 +191,14 @@ def search_answers(
             raw = (r["answer_text"] or "")[:MAX_TEXT_LEN]
             snippet, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
             snippet = postprocess_excerpt(snippet)
+            q_title = r["question_prompt"]
             answers.append(
                 {
                     "id": r["answer_id"],
                     "author_id": r["author_id"],
                     "question_id": r["question_id"],
-                    "question_title": r["question_prompt"],
+                    "question_title": q_title,
+                    "question_slug": slugify(q_title or f"question-{r['question_id']}"),
                     "created_at": r["submitted_at"],
                     "body": snippet,
                 }
@@ -205,173 +214,247 @@ def search_answers(
         "next_cursor": next_cursor,
     }
     if partial:
-        from fastapi.responses import HTMLResponse  # local import ok
         resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
         return resp
 
     resp = templates.TemplateResponse("search/answers.html", ctx)
     return resp
 
+
 # ===========================
 #   /search/questions
+#   - Deux sections : FORMULAIRES + QUESTIONS
+#   - FTS + BM25 (strict), FR + unaccent
+#   - Surlignage dans le titre des questions uniquement
+#   - Badge "0 réponse" basé sur question_stats.answers_count
+#   - Slug renvoyé pour lier vers /questions/{id}-{slug}
+#   - Scroll infini indépendant par section (cursor_forms / cursor_questions)
 # ===========================
 @router.get("/search/questions", name="search_questions", response_class=HTMLResponse)
-def search_questions_page(
+def search_questions(
     request: Request,
-    q: str | None = Query(None),
-    page: int = Query(1, ge=1),                 # compat
-    cursor: str | None = Query(None),           # scroll infini
-    partial: bool = Query(False),               # rendu fragment (htmx)
+    q: str | None = Query(None, description="Requête"),
+    # scroll infini, 1 curseur par section
+    cursor_forms: str | None = Query(None),
+    cursor_questions: str | None = Query(None),
+    # rendu fragment (htmx) : "forms" | "questions" | None
+    section: str | None = Query(None),
+    partial: bool = Query(False),
 ):
     q = (q or "").strip()
 
-    has_next = False
-    next_cursor: str | None = None
-    limit = PER_PAGE + 1
-    cur = _dec_cursor(cursor)
+    # Cursors décodés
+    cur_forms = _dec_cursor(cursor_forms)
+    cur_questions = _dec_cursor(cursor_questions)
+
+    # Résultats
+    forms: list[dict] = []
+    questions: list[dict] = []
+
+    # Pagination/next-cursors (par section)
+    has_next_forms = False
+    has_next_questions = False
+    next_cursor_forms: str | None = None
+    next_cursor_questions: str | None = None
+
+    limit = PER_PAGE + 1  # +1 pour détecter la page suivante
 
     with SessionLocal() as db:
-        if q:
-            params = {"q": q, "limit": limit}
-            cursor_sql = ""
-            if cur:
-                cursor_sql = """
-                  AND (
-                    ranked.score < :last_score
-                    OR (ranked.score = :last_score AND ranked.id < :last_id)
-                  )
-                """
-                params["last_score"] = float(cur.get("score", 0.0))
-                params["last_id"] = int(cur.get("id", 0))
+        # -------------------------------------------------
+        # SECTION "FORMULAIRES"
+        # -------------------------------------------------
+        if section in (None, "forms"):
+            if q:
+                params = {"q": q, "limit": limit}
+                cursor_sql = ""
+                if cur_forms:
+                    cursor_sql = """
+                      HAVING
+                        score < :last_score
+                        OR (score = :last_score AND MAX(f.id) < :last_id)
+                    """
+                    params["last_score"] = float(cur_forms.get("score", 0.0))
+                    params["last_id"] = int(cur_forms.get("id", 0))
 
-            rows = db.execute(
-                text(
+                sql_forms = text(
                     f"""
-                    WITH s AS (SELECT websearch_to_tsquery('fr_unaccent', :q) AS tsq),
+                    WITH s AS (SELECT plainto_tsquery('french', unaccent(:q)) AS tsq)
+                    SELECT
+                        f.id,
+                        f.name,
+                        COUNT(q.id)::int AS questions_count,
+                        ts_rank((f.tsv_name)::tsvector, s.tsq) AS score
+                    FROM forms f
+                    LEFT JOIN questions q ON q.form_id = f.id,
+                         s
+                    WHERE (f.tsv_name)::tsvector @@ s.tsq
+                    GROUP BY f.id, f.name, s.tsq
+                    {cursor_sql}
+                    ORDER BY score DESC, id DESC
+                    LIMIT :limit
+                    """
+                )
+                rows = db.execute(sql_forms, params).mappings().all()
+            else:
+                params = {"limit": limit}
+                cursor_sql = ""
+                if cur_forms:
+                    cursor_sql = "WHERE f.id < :last_id"
+                    params["last_id"] = int(cur_forms.get("id", 0))
+                sql_forms = text(
+                    f"""
+                    SELECT
+                        f.id,
+                        f.name,
+                        (SELECT COUNT(*) FROM questions qq WHERE qq.form_id = f.id)::int AS questions_count
+                    FROM forms f
+                    {cursor_sql}
+                    ORDER BY f.id DESC
+                    LIMIT :limit
+                    """
+                )
+                rows = db.execute(sql_forms, params).mappings().all()
+
+            if len(rows) == limit:
+                has_next_forms = True
+                tail = rows[-1]
+                # si q vide : pas de score
+                score_val = float(tail.get("score", 0.0) or 0.0)
+                next_cursor_forms = _enc_cursor({"id": int(tail["id"]), "score": score_val})
+                rows = rows[:-1]
+
+            for r in rows:
+                forms.append(
+                    {
+                        "id": r["id"],
+                        "name": r["name"],
+                        "questions_count": int(r["questions_count"]),
+                        # slug utile si besoin d'URL lisibles plus tard
+                        "slug": slugify(r["name"] or f"form-{r['id']}"),
+                        "score": float(r.get("score", 0.0) or 0.0),
+                    }
+                )
+
+        # -------------------------------------------------
+        # SECTION "QUESTIONS"
+        # -------------------------------------------------
+        if section in (None, "questions"):
+            if q:
+                params = {"q": q, "limit": limit}
+                cursor_sql = ""
+                if cur_questions:
+                    cursor_sql = """
+                      AND (
+                        ranked.score < :last_score
+                        OR (ranked.score = :last_score AND ranked.id < :last_id)
+                      )
+                    """
+                    params["last_score"] = float(cur_questions.get("score", 0.0))
+                    params["last_id"] = int(cur_questions.get("id", 0))
+
+                sql_questions = text(
+                    f"""
+                    WITH s AS (SELECT plainto_tsquery('french', unaccent(:q)) AS tsq),
                     ranked AS (
                       SELECT
                         q.id,
                         q.question_code,
                         q.prompt,
-                        ts_rank(q.prompt_tsv, s.tsq) AS score
-                      FROM questions q, s
-                      WHERE q.prompt_tsv @@ s.tsq
+                        COALESCE(st.answers_count, 0)::int AS answers_count,
+                        ts_rank((q.tsv_prompt)::tsvector, s.tsq) AS score,
+                        ts_headline('french', q.prompt, s.tsq,
+                            'StartSel=<mark>, StopSel=</mark>, MaxFragments=1, MaxWords=18') AS prompt_hl
+                      FROM questions q
+                      LEFT JOIN question_stats st ON st.question_id = q.id, s
+                      WHERE (q.tsv_prompt)::tsvector @@ s.tsq
                     )
                     SELECT
                         ranked.id,
                         ranked.question_code,
-                        ranked.prompt AS title,
+                        ranked.prompt,
+                        ranked.answers_count,
                         ranked.score,
-                        ts_headline('fr_unaccent', ranked.prompt, s.tsq,
-                            'StartSel=<mark>, StopSel=</mark>, MaxFragments=1, MaxWords=18') AS prompt_hl
-                    FROM ranked, s
+                        ranked.prompt_hl
+                    FROM ranked
                     WHERE 1=1
                     {cursor_sql}
                     ORDER BY ranked.score DESC, ranked.id DESC
                     LIMIT :limit
                     """
-                ),
-                params,
-            ).mappings().all()
-
-            if len(rows) == limit:
-                has_next = True
-                tail = rows[-1]
-                next_cursor = _enc_cursor({"id": tail["id"], "score": float(tail["score"])})
-                rows = rows[:-1]
-        else:
-            params = {"limit": limit}
-            cursor_sql = ""
-            if cur:
-                cursor_sql = "WHERE q.id < :last_id"
-                params["last_id"] = int(cur.get("id", 0))
-
-            rows = db.execute(
-                text(
+                )
+                rows = db.execute(sql_questions, params).mappings().all()
+            else:
+                params = {"limit": limit}
+                cursor_sql = ""
+                if cur_questions:
+                    cursor_sql = "WHERE q.id < :last_id"
+                    params["last_id"] = int(cur_questions.get("id", 0))
+                sql_questions = text(
                     f"""
-                    SELECT q.id, q.question_code, q.prompt AS title
+                    SELECT
+                        q.id,
+                        q.question_code,
+                        q.prompt,
+                        COALESCE(st.answers_count, 0)::int AS answers_count
                     FROM questions q
+                    LEFT JOIN question_stats st ON st.question_id = q.id
                     {cursor_sql}
                     ORDER BY q.id DESC
                     LIMIT :limit
                     """
-                ),
-                params,
-            ).mappings().all()
+                )
+                rows = db.execute(sql_questions, params).mappings().all()
 
             if len(rows) == limit:
-                has_next = True
+                has_next_questions = True
                 tail = rows[-1]
-                next_cursor = _enc_cursor({"id": tail["id"]})
+                score_val = float(tail.get("score", 0.0) or 0.0)
+                next_cursor_questions = _enc_cursor({"id": int(tail["id"]), "score": score_val})
                 rows = rows[:-1]
 
-        # Aperçus (3 réponses récentes / question)
-        question_ids = [r["id"] for r in rows]
-        previews_by_qid: dict[int, list[dict]] = {qid: [] for qid in question_ids}
-
-        if question_ids:
-            sql_previews = text("""
-                WITH sel AS (
-                  SELECT
-                    a.question_id,
-                    a.id              AS answer_id,
-                    a.contribution_id,
-                    a.text,
-                    ROW_NUMBER() OVER (PARTITION BY a.question_id ORDER BY a.id DESC) AS rn
-                  FROM answers a
-                  WHERE a.question_id IN :qids
-                    AND a.text IS NOT NULL
-                    AND char_length(btrim(a.text)) >= :min_len
-                )
-                SELECT
-                  sel.question_id,
-                  sel.answer_id,
-                  sel.contribution_id,
-                  sel.text,
-                  c.author_id
-                FROM sel
-                JOIN contributions c ON c.id = sel.contribution_id
-                WHERE sel.rn <= 3
-                ORDER BY sel.question_id, sel.answer_id DESC
-            """).bindparams(bindparam("qids", expanding=True))
-
-            preview_rows = db.execute(
-                sql_previews,
-                {"qids": tuple(question_ids), "min_len": MIN_ANSWER_LEN},
-            ).mappings().all()
-
-            for r in preview_rows:
-                qid = r["question_id"]
-                aid = r["answer_id"]
-                snippet, is_trunc = _clean_snippet((r["text"] or "")[:MAX_TEXT_LEN], PREVIEW_MAXLEN)
-                previews_by_qid[qid].append(
-                    {"id": aid, "author_id": r["author_id"], "text": snippet, "is_truncated": is_trunc}
+            for r in rows:
+                title = r.get("prompt")
+                questions.append(
+                    {
+                        "id": r["id"],
+                        "question_code": r.get("question_code"),
+                        "title": title,
+                        # surlignage seulement côté titre
+                        "prompt_hl": r.get("prompt_hl"),
+                        "answers_count": int(r.get("answers_count", 0) or 0),
+                        "slug": slugify(title or f"question-{r['id']}"),
+                        "score": float(r.get("score", 0.0) or 0.0),
+                    }
                 )
 
-        questions = []
-        for r in rows:
-            questions.append(
-                {
-                    "id": r["id"],
-                    "question_code": r.get("question_code"),
-                    "title": r.get("title"),
-                    "prompt_hl": r.get("prompt_hl"),
-                    "answers": previews_by_qid.get(r["id"], []),
-                }
-            )
-
+    # ---------------------------------------
+    # Contexte template
+    # ---------------------------------------
     ctx = {
         "request": request,
         "q": q,
+        # Sections
+        "forms": forms,
         "questions": questions,
-        "on_questions_search": True,  # flag metas (noindex + canonical ?q=)
+        # Cursors/flags par section
         "page_size": PER_PAGE,
-        "has_next": has_next,
-        "next_cursor": next_cursor,
+        "has_next_forms": has_next_forms,
+        "has_next_questions": has_next_questions,
+        "next_cursor_forms": next_cursor_forms,
+        "next_cursor_questions": next_cursor_questions,
+        # SEO hint
+        "on_questions_search": True,  # (noindex + canonical ?q=) si besoin
     }
-    if partial:
-        resp = templates.TemplateResponse("partials/_questions_list.html", ctx)
-        return resp
 
-    resp = templates.TemplateResponse("search/questions.html", ctx)
-    return resp
+    # Rendu partiel (htmx) : une seule section
+    if partial:
+        if section == "forms":
+            return templates.TemplateResponse("partials/_forms_list.html", ctx)
+        if section == "questions":
+            return templates.TemplateResponse("partials/_questions_list.html", ctx)
+        # par défaut, recharge les deux colonnes
+        return templates.TemplateResponse("partials/_search_sections.html", ctx)
+
+    # Rendu complet (les 2 sections)
+    return templates.TemplateResponse("search/questions.html", ctx)
+

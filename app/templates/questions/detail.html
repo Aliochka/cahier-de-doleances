@@ -1,9 +1,11 @@
+{# app/templates/questions/detail.html #}
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = (question.prompt or ("Question #" ~ question.id)) %}
-{% set PAGE_DESCRIPTION = "Contributions citoyennes à la question « " ~ (question.prompt or ("Question #" ~ question.id)) ~ " ». Lisez les avis et points de vue variés." %}
+
+{# Meta #}
+{% set PAGE_TITLE = (question.title or ("Question #" ~ question.id)) %}
+{% set PAGE_DESCRIPTION = "Contributions citoyennes à la question « " ~ (question.title or ("Question #" ~ question.id)) ~ " ». Lisez les avis et points de vue variés." %}
 
 {% block content %}
-
 <header class="page-header">
   <h1 class="h1">{{ question.title or ('Question #' ~ question.id) }}</h1>
   {% if question.answers_count is not none %}
@@ -11,6 +13,59 @@
   {% endif %}
 </header>
 
+{% if q %}
+  <div class="search-context">
+    <p class="muted">Recherche : « {{ q }} » dans les réponses</p>
+  </div>
+{% endif %}
 
-{% include "partials/_answers_list.html" with context %}
+<!-- Conteneur que htmx remplace/étend -->
+<div id="answers-list">
+  {% include "partials/_answers_list.html" with context %}
+</div>
+{% endblock %}
+
+{# JSON-LD rendu via un block dédié #}
+{% block jsonld %}
+{% set _answers = answers or [] %}
+{% set _suggested = _answers[:3] %}
+{% set _qname = (question.title or ("Question #" ~ question.id)) %}
+
+{# --- QAPage --- #}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"QAPage",
+  "mainEntity":{
+    "@type":"Question",
+    "name": {{ _qname | tojson }},
+    "text": {{ _qname | tojson }},
+    "answerCount": {{ _answers | length }},
+    "suggestedAnswer":[
+      {%- for a in _suggested %}
+      {
+        "@type":"Answer",
+        "text": {{ (a.body | striptags) | tojson }},
+        "dateCreated": {{ (a.created_at or "") | tojson }},
+        "url": {{ (url_for('answer_detail', answer_id=a.id) ~ "") | tojson }},
+        "author": { "@type":"Person", "name": {{ ("Auteur #" ~ a.author_id) | tojson }} }
+      }{%- if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+}
+</script>
+
+{# --- Fil d’Ariane --- #}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    { "@type":"ListItem","position":1,"name":"Accueil","item": {{ url_for('home') | tojson }} },
+    { "@type":"ListItem","position":2,"name":"Questions","item": {{ url_for('search_questions') | tojson }} },
+    { "@type":"ListItem","position":3,"name": {{ _qname | tojson }},"item": {{ (request.url ~ "") | tojson }} }
+  ]
+}
+</script>
 {% endblock %}

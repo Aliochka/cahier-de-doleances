@@ -1,16 +1,14 @@
 # app/db.py
+
+from dotenv import load_dotenv  # type: ignore
+load_dotenv()
+
 import os
 from typing import Optional
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-# Optionnel en local : charger .env
-try:
-    from dotenv import load_dotenv  # type: ignore
-    load_dotenv()
-except Exception:
-    pass
 
 
 def _normalize_psycopg2(url: Optional[str]) -> str:

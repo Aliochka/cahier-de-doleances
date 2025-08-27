@@ -1,0 +1,27 @@
+{% if forms and forms|length %}
+  <ul class="list list--plain">
+    {% for form in forms %}
+      <li class="card">
+        {% with f=form %}
+          {% include "forms/_card.html" %}
+        {% endwith %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if has_next_forms and next_cursor_forms %}
+    <div class="htmx-sentinel"
+         style="min-height:20px;"
+         hx-get="{{ url_for('search_questions') }}?partial=1&section=forms{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_forms={{ next_cursor_forms|urlencode }}"
+         hx-trigger="intersect once"
+         hx-target="#forms-list"
+         hx-swap="beforeend"
+         hx-indicator=".list-loader"
+         aria-hidden="true">
+      <div class="list-loader">
+        <div class="loader" aria-hidden="true" title="Chargement…"></div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+

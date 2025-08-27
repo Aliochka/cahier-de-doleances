@@ -1,11 +1,12 @@
 # app.py
 from __future__ import annotations
+from dotenv import load_dotenv
+load_dotenv()  # lit .env en local; en prod Scalingo: ignoré (vars lues depuis l'env)
 
 import os
 import logging
 from pathlib import Path
 
-from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -24,9 +25,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.exception_handlers import http_exception_handler as fastapi_http_exception_handler
 
 from app.web import templates
-from app.routers import pages, search, authors, questions, answers, seo
+from app.routers import pages, search, authors, questions, answers, seo, forms
 
-load_dotenv()  # lit .env en local; en prod Scalingo: ignoré (vars lues depuis l'env)
 
 # -----------------------------------------------------------------------------
 # Config
@@ -141,6 +141,7 @@ app.include_router(search.router)
 app.include_router(authors.router)
 app.include_router(questions.router)
 app.include_router(answers.router)
+app.include_router(forms.router)
 app.include_router(seo.router)
 
 # -----------------------------------------------------------------------------
@@ -158,3 +159,4 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
         return resp
 
     return await fastapi_http_exception_handler(request, exc)
+

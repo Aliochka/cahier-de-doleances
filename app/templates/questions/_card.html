@@ -1,41 +1,19 @@
-<article class="media question-card">
-  <div class="media__body">
-    {# Titre sans lien, garde le highlight si présent #}
-    {% set title_html =
-         (q.prompt_hl|safe) if q.prompt_hl is defined and q.prompt_hl
-         else (q.title if q.title is defined and q.title
-         else q.prompt) %}
-    <h3 class="h3">{{ title_html }}</h3>
+{# app/templates/questions/_card.html #}
+<article class="question-card">
+  {% set title_html = q.prompt_hl|safe if q.prompt_hl else (q.title or q.prompt) %}
+  {% set q_url = url_for('question_detail', question_id=q.id, slug=q.slug) if q.slug else url_for('question_detail_legacy', question_id=q.id) %}
 
-    {% if q.answers %}
-    <ul class="question-preview">
-        {% for a in q.answers[:3] %}
-        {% if a.author_id %}
-        {% set contrib_url = (url_for('answer_detail', answer_id=a.id)|string)%}
-        {% else %}
-        {% set contrib_url = (url_for('question_detail', question_id=q.id)|string) ~ '#answer-' ~ a.id %}
-        {% endif %}
-
-        <li class="question-preview__item" id="preview-{{ a.id }}">
-        <figure class="quote">
-            <blockquote class="quote__text clamp-5">
-            {{ a.text }}{% if a.is_truncated %}…{% endif %}
-            </blockquote>
-            <figcaption class="quote__meta">
-            <a class="quote__link" href="{{ contrib_url }}">→ Voir la réponse</a>
-            </figcaption>
-        </figure>
-        </li>
-
-        {% endfor %}
-    </ul>
-    {% endif %}
-
-
-    <div class="question-card__actions" style="margin-top: var(--space-3);">
-      <a class="badge badge--link" href="{{ url_for('question_detail', question_id=q.id) }}">
-        Voir toutes les réponses à la question.
+  <h3 class="h3 question-card__title">
+    <a href="{{ q_url }}">{{ title_html }}</a>
+  </h3>
+  
+  {% if q.answers_count is defined %}
+    <div class="question-card__badge">
+      <a class="badge" href="{{ q_url }}">
+        {% if q.answers_count == 0 %}Aucune réponse
+        {% elif q.answers_count == 1 %}1 réponse
+        {% else %}{{ q.answers_count }} réponses{% endif %}
       </a>
     </div>
-  </div>
+  {% endif %}
 </article>

@@ -1,7 +1,14 @@
 <article class="media">
   <div class="media__body">
     <h3 class="h3">
-      <a href="{{ url_for('author_detail', author_id=author.id) }}">
+      <a
+        href="{% if author.slug %}
+                 {{ url_for('author_detail', author_id=author.id, slug=author.slug) }}
+               {% else %}
+                 {{ url_for('author_detail_legacy', author_id=author.id) }}
+               {% endif %}"
+        rel="author"
+      >
         {{ author.name or ('Auteur #' ~ author.id) }}
       </a>
     </h3>

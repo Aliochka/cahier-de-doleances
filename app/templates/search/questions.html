@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = q and ("Recherche questions : « " ~ q ~ " »") or "Recherche questions" %}
-{% set PAGE_DESCRIPTION = q and ("Résultats de recherche de questions pour « " ~ q ~ " ». Parcourez les thèmes correspondants.") or "Parcourez les questions et thèmes du Cahier de doléances." %}
+{% set PAGE_TITLE = q and ("Recherche questions : « " ~ q ~ " »") or "Recherche" %}
+{% set PAGE_DESCRIPTION = q and ("Résultats de recherche pour « " ~ q ~ " ». Parcourez les formulaires et les questions.") or "Parcourez les formulaires et les questions du Cahier de doléances." %}
 {% set on_questions_search = true %}
 
 {% block content %}
@@ -8,7 +8,7 @@
   <h1 class="h1 page-title--nowrap">Recherche dans les questions</h1>
 
   <form class="search-bar" method="get" action="{{ url_for('search_questions') }}" onsubmit="return false;">
-    <label class="sr-only" for="q">Rechercher une question</label>
+    <label class="sr-only" for="q">Rechercher</label>
 
     <input
       id="q"
@@ -20,23 +20,17 @@
 
       hx-get="{{ url_for('search_questions') }}?partial=1"
       hx-trigger="keyup changed delay:300ms, search"
-      hx-target="#questions-list"
+      hx-target="#search-sections"
       hx-swap="innerHTML"
       hx-push-url="true"
       hx-indicator="#search-spinner"
     />
 
-    <button class="btn btn--primary" type="button"
-            onclick="document.getElementById('q').dispatchEvent(new Event('search'))">
-      Rechercher
-    </button>
-
     <span id="search-spinner" class="htmx-indicator" aria-hidden="true">⏳</span>
   </form>
 </header>
 
-<div id="questions-list">
-  {# 1er rendu : on insère le partial qui contient aussi le sentinel #}
-  {% include "partials/_questions_list.html" with context %}
+<div id="search-sections" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+  {% include "partials/_search_sections.html" with context %}
 </div>
 {% endblock %}
