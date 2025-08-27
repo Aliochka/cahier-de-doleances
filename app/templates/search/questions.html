@@ -1,11 +1,11 @@
 {% extends "base/base.html" %}
-{% set PAGE_TITLE = q and ("Recherche : « " ~ q ~ " »") or "Recherche" %}
+{% set PAGE_TITLE = q and ("Recherche questions : « " ~ q ~ " »") or "Recherche" %}
 {% set PAGE_DESCRIPTION = q and ("Résultats de recherche pour « " ~ q ~ " ». Parcourez les formulaires et les questions.") or "Parcourez les formulaires et les questions du Cahier de doléances." %}
 {% set on_questions_search = true %}
 
 {% block content %}
 <header class="page-header page-header--stack">
-  <h1 class="h1 page-title--nowrap">Recherche</h1>
+  <h1 class="h1 page-title--nowrap">Recherche dans les questions</h1>
 
   <form class="search-bar" method="get" action="{{ url_for('search_questions') }}" onsubmit="return false;">
     <label class="sr-only" for="q">Rechercher</label>
@@ -25,11 +25,6 @@
       hx-push-url="true"
       hx-indicator="#search-spinner"
     />
-
-    <button class="btn btn--primary" type="button"
-            onclick="document.getElementById('q').dispatchEvent(new Event('search'))">
-      Rechercher
-    </button>
 
     <span id="search-spinner" class="htmx-indicator" aria-hidden="true">⏳</span>
   </form>
