@@ -14,9 +14,22 @@
   {% endif %}
 
   <h3 class="h3 question-card__title">
-    <a href="{{ q_url }}">{{ title_html }}</a>
-    {% if q.answers_count is defined and q.answers_count == 0 %}
-      <span class="badge badge--muted">0&nbsp;réponse</span>
-    {% endif %}
+    {{ title_html }}</a>
   </h3>
+  
+  {% if q.answers_count is defined %}
+    {% if q.answers_count == 0 %}
+      <div class="question-card__badge">
+        <a class="badge" href="{{ q_url }}">Aucune réponse</a>
+      </div>
+    {% elif q.answers_count == 1 %}
+      <div class="question-card__badge">
+        <a class="badge" href="{{ q_url }}">1 réponse</a>
+      </div>
+    {% else %}
+      <div class="question-card__badge">
+        <a class="badge" href="{{ q_url }}">{{ q.answers_count }} réponses</a>
+      </div>
+    {% endif %}
+  {% endif %}
 </article>

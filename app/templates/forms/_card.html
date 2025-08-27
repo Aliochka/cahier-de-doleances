@@ -3,7 +3,7 @@
   {% set f_url = url_for('form_detail', form_id=f.id) %}
 
   <h3 class="h3 form-card__title">
-    <a href="{{ f_url }}">{{ f.name }}</a>
+    {{ f.name }}
   </h3>
 
   <div class="form-card__meta">

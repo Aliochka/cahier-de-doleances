@@ -211,6 +211,11 @@ a:not(.btn), .link {
     color: var(--muted);
 }
 
+/* ---------- Question card components ---------- */
+.question-card__badge {
+  margin-top: var(--space-2);
+}
+
 /* ---------- Answer components (supprimé - utilise maintenant answer-card) ---------- */
 
 /* ---------- Badge tampon ---------- */
