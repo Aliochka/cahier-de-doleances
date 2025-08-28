@@ -16,3 +16,4 @@ def mentions(request: Request):
 @router.get("/topics", name="topics", response_class=HTMLResponse)
 def topics(request: Request):
     return templates.TemplateResponse("topics.html", {"request": request})
+

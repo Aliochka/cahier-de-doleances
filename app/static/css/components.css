@@ -603,10 +603,11 @@ a.btn:visited {
     display: flex;
 }
 
-/* Sentinel invisible par défaut */
+/* Sentinel pour scroll infini */
 .htmx-sentinel {
     min-height: 20px;
-    margin: 0;
+    margin: 10px 0;
+    text-align: center;
 }
 
 /* ---------- Answer card (minimal style) ---------- */

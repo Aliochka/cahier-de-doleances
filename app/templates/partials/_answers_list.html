@@ -1,21 +1,51 @@
+{# Script de nettoyage pour éviter les doublons #}
+<script>
+// Supprimer tous les anciens sentinels avant d'ajouter le nouveau
+(function() {
+  const oldAnswersSentinels = document.querySelectorAll('#answers-list .htmx-sentinel');
+  oldAnswersSentinels.forEach(s => s.remove());
+})();
+</script>
+
 {# Liste de réponses utilisant le composant _card.html #}
 {% for a in answers %}
   {% include "answers/_card.html" with context %}
 {% endfor %}
 
 {% if has_next and next_cursor %}
-  <div class="htmx-sentinel"
-       {% if on_question_page and question %}
-         hx-get="{{ url_for('question_detail', question_id=question.id, slug=question.slug) }}?partial=1&cursor={{ next_cursor|urlencode }}{% if q %}&q={{ q|urlencode }}{% endif %}"
-       {% else %}
-         hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor|urlencode }}&partial=1"
-       {% endif %}
-       hx-trigger="intersect once"
-       hx-target="#answers-list"
-       hx-swap="beforeend">
-    <div class="list-loader htmx-indicator">
+  <div class="htmx-sentinel" id="answers-sentinel"
+       data-url="{% if on_question_page and question %}{{ url_for('question_detail', question_id=question.id, slug=question.slug) }}?partial=1&cursor={{ next_cursor|urlencode }}{% if q %}&q={{ q|urlencode }}{% endif %}{% else %}{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor|urlencode }}&partial=1{% endif %}">
+    <div class="list-loader">
       <div class="loader" title="Chargement des réponses suivantes…"></div>
       <span style="margin-left: var(--space-2); color: var(--muted);">Chargement…</span>
     </div>
   </div>
+
+  <script>
+  // Intersection Observer pour scroll infini
+  (function() {
+    const sentinel = document.getElementById('answers-sentinel');
+    if (!sentinel) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !sentinel.dataset.loaded) {
+          // Scroll infini déclenché pour answers
+          sentinel.dataset.loaded = 'true';
+          
+          // Déclencher la requête HTMX manuellement
+          htmx.ajax('GET', sentinel.dataset.url, {
+            target: '#answers-list',
+            swap: 'beforeend'
+          }).then(() => {
+            // Supprimer cet ancien sentinel après succès
+            sentinel.remove();
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    observer.observe(sentinel);
+  })();
+  </script>
 {% endif %}
