@@ -104,19 +104,38 @@ def form_detail(
                     "created_at": r["submitted_at"],
                 })
 
-        # 4) Construction du modèle pour le template (questions avec réponses vides pour navigation)
+        # 4) Construction de toutes les questions avec ou sans réponses pour affichage complet
         questions = []
-        answers_map: dict[int, str] = {a["question_id"]: a["body"] for a in answers}
+        answers_map: dict[int, dict] = {a["question_id"]: a for a in answers}
+        all_answers = []  # Toutes les questions formatées comme des answer cards
+        
         for q in rows_questions:
             qid = int(q["id"])
             prompt = q["prompt"]
-            questions.append({
+            question = {
                 "id": qid,
                 "position": q["position"],
                 "prompt": prompt,
                 "slug": slugify(prompt or f"question-{qid}"),
-                "answer_text": answers_map.get(qid, ""),  # peut être vide si pas de réponse
-            })
+                "answer_text": answers_map.get(qid, {}).get("body", ""),
+            }
+            questions.append(question)
+            
+            # Créer un objet answer card pour chaque question
+            if qid in answers_map:
+                # Question avec réponse existante
+                all_answers.append(answers_map[qid])
+            else:
+                # Question sans réponse - créer une entry vide
+                all_answers.append({
+                    "id": None,
+                    "question_id": qid,
+                    "question_title": prompt,
+                    "question_slug": slugify(prompt or f"question-{qid}"),
+                    "body": "",  # Réponse vide
+                    "author_id": None,
+                    "created_at": None,
+                })
 
         ctx = {
             "request": request,
@@ -126,7 +145,7 @@ def form_detail(
                 "questions_count": row_form["questions_count"],
             },
             "questions": questions,
-            "answers": answers,
+            "answers": all_answers,
             "total_contribs": total_contribs,
             "contrib_idx": contrib_idx,
             "current_contrib_id": current_contrib_id,
