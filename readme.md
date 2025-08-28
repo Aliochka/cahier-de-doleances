@@ -88,6 +88,27 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 
 ## 🛠️ Guide pour les développeurs
 
+### Scripts utiles
+
+#### Vérification de l'alignement modèles/BDD
+
+Pour s'assurer que les modèles SQLAlchemy sont alignés avec la structure PostgreSQL :
+
+```bash
+# Via script shell (charge automatiquement DATABASE_URL depuis .env)
+./scripts/check-alignment.sh
+
+# Ou directement via Python
+python scripts/check_model_alignment.py
+```
+
+Ce script compare automatiquement :
+- Les tables présentes
+- Les colonnes et leurs types
+- Les contraintes de clés étrangères
+- Ignore les tables et colonnes générées automatiquement (Alembic, triggers FTS)
+- Charge la configuration depuis le fichier .env
+
 ### 1. Lancer le projet
 
 \`\`\`bash
