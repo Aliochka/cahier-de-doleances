@@ -243,6 +243,12 @@ def question_detail(
             },
         )
 
+    # Récupérer le type de question pour l'affichage conditionnel des stats
+    question_type = db.execute(
+        text("SELECT type FROM questions WHERE id = :qid"),
+        {"qid": question_id}
+    ).scalar_one_or_none()
+
     # Rendu complet
     return templates.TemplateResponse(
         "questions/detail.html",
@@ -254,6 +260,7 @@ def question_detail(
                 "title": row["prompt"],
                 "slug": canonical_slug,
                 "answers_count": total,
+                "type": question_type,
             },
             "answers": answers,
             "has_next": has_next,
@@ -296,7 +303,98 @@ def question_detail_legacy(
     return RedirectResponse(url, status_code=308)
 
 # =========================================================
-# 3) PARTIAL HTMX (liste des réponses) — GET
+# 3) STATISTIQUES SINGLE_CHOICE — GET
+# =========================================================
+@router.get(
+    "/questions/{question_id:int}/stats",
+    response_class=JSONResponse,
+    name="question_stats",
+)
+def question_stats(
+    request: Request,
+    question_id: int,
+    db: Session = Depends(get_db),
+):
+    # Vérifier que la question existe et est de type single_choice
+    question_row = db.execute(
+        text("SELECT id, type, prompt FROM questions WHERE id = :qid"),
+        {"qid": question_id},
+    ).mappings().first()
+    
+    if not question_row:
+        raise HTTPException(status_code=404, detail="Question introuvable")
+    
+    if question_row["type"] != "single_choice":
+        raise HTTPException(status_code=400, detail="Cette question n'est pas de type single_choice")
+    
+    # Récupérer les statistiques par option
+    stats_rows = db.execute(
+        text("""
+            SELECT 
+                o.id as option_id,
+                o.label,
+                o.position,
+                COALESCE(COUNT(ao.option_id), 0) as count,
+                COALESCE(ROUND(COUNT(ao.option_id) * 100.0 / NULLIF(SUM(COUNT(ao.option_id)) OVER(), 0), 2), 0) as percentage
+            FROM options o
+            LEFT JOIN answer_options ao ON ao.option_id = o.id
+            WHERE o.question_id = :qid
+            GROUP BY o.id, o.label, o.position
+            ORDER BY o.position
+        """),
+        {"qid": question_id},
+    ).mappings().all()
+    
+    # Calculer le total des réponses
+    total_answers = sum(row["count"] for row in stats_rows)
+    
+    # Formater les données pour Chart.js
+    chart_data = {
+        "labels": [row["label"] for row in stats_rows],
+        "datasets": [{
+            "label": "Nombre de réponses",
+            "data": [row["count"] for row in stats_rows],
+            "backgroundColor": [
+                "#3b82f6",  # bleu
+                "#ef4444",  # rouge
+                "#10b981",  # vert
+                "#f59e0b",  # jaune
+                "#8b5cf6",  # violet
+                "#06b6d4",  # cyan
+            ][:len(stats_rows)],
+            "borderColor": [
+                "#1d4ed8",
+                "#dc2626", 
+                "#059669",
+                "#d97706",
+                "#7c3aed",
+                "#0891b2",
+            ][:len(stats_rows)],
+            "borderWidth": 1
+        }]
+    }
+    
+    return {
+        "question": {
+            "id": question_row["id"],
+            "prompt": question_row["prompt"],
+            "type": question_row["type"]
+        },
+        "total_answers": total_answers,
+        "stats": [
+            {
+                "option_id": row["option_id"],
+                "label": row["label"],
+                "count": row["count"],
+                "percentage": float(row["percentage"])
+            }
+            for row in stats_rows
+        ],
+        "chart_data": chart_data
+    }
+
+# =========================================================
+# 4) PARTIAL HTMX (liste des réponses) — GET
 # =========================================================
 @router.get(
     "/questions/{question_id:int}/partials/answers",

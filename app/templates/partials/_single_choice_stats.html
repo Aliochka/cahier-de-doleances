@@ -1,0 +1,119 @@
+{# app/templates/partials/_single_choice_stats.html #}
+<div class="question-stats" data-question-id="{{ question.id }}">
+  <div class="stats-header">
+    <h2 class="h3">Statistiques des réponses</h2>
+    <div class="stats-loading" id="stats-loading-{{ question.id }}">
+      Chargement des statistiques...
+    </div>
+  </div>
+  
+  <div class="stats-content" id="stats-content-{{ question.id }}" style="display: none;">
+    <div class="stats-summary">
+      <span class="total-count" id="total-count-{{ question.id }}"></span>
+    </div>
+    
+    <div class="chart-container">
+      <canvas id="chart-{{ question.id }}" width="400" height="200"></canvas>
+    </div>
+    
+    <div class="stats-details">
+      <div class="stats-legend" id="stats-legend-{{ question.id }}"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const questionId = {{ question.id }};
+  const loadingEl = document.getElementById(`stats-loading-${questionId}`);
+  const contentEl = document.getElementById(`stats-content-${questionId}`);
+  const totalCountEl = document.getElementById(`total-count-${questionId}`);
+  const legendEl = document.getElementById(`stats-legend-${questionId}`);
+  const canvas = document.getElementById(`chart-${questionId}`);
+  const ctx = canvas.getContext('2d');
+  
+  // Charger les statistiques depuis l'API
+  fetch(`/questions/${questionId}/stats`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erreur lors du chargement des statistiques');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Masquer le loading et afficher le contenu
+      loadingEl.style.display = 'none';
+      contentEl.style.display = 'block';
+      
+      // Afficher le total
+      totalCountEl.textContent = `${data.total_answers.toLocaleString('fr-FR')} réponses au total`;
+      
+      // Créer le graphique horizontal en barres
+      const chart = new Chart(ctx, {
+        type: 'bar',
+        data: data.chart_data,
+        options: {
+          indexAxis: 'y', // Barres horizontales
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString('fr-FR');
+                }
+              }
+            },
+            y: {
+              ticks: {
+                maxRotation: 0
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false // On va créer notre propre légende
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const stat = data.stats[context.dataIndex];
+                  return `${stat.count.toLocaleString('fr-FR')} réponses (${stat.percentage}%)`;
+                }
+              }
+            }
+          },
+          onHover: (event, activeElements) => {
+            canvas.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
+          }
+        }
+      });
+      
+      // Créer la légende personnalisée avec les pourcentages
+      let legendHTML = '<div class="legend-items">';
+      data.stats.forEach((stat, index) => {
+        const color = data.chart_data.datasets[0].backgroundColor[index];
+        legendHTML += `
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: ${color};"></div>
+            <div class="legend-text">
+              <span class="legend-label">${stat.label}</span>
+              <span class="legend-value">${stat.count.toLocaleString('fr-FR')} (${stat.percentage}%)</span>
+            </div>
+          </div>
+        `;
+      });
+      legendHTML += '</div>';
+      legendEl.innerHTML = legendHTML;
+    })
+    .catch(error => {
+      console.error('Erreur:', error);
+      loadingEl.innerHTML = `
+        <div class="stats-error">
+          Impossible de charger les statistiques pour cette question.
+        </div>
+      `;
+    });
+})();
+</script>

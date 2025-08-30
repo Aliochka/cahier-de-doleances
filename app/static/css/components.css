@@ -738,3 +738,108 @@ a.btn:visited {
     align-self: stretch;
   }
 }
+
+/* ---------- Question Stats (Charts) ---------- */
+.question-stats-section {
+  margin: var(--space-3) 0;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-alt);
+}
+
+.question-stats .stats-header {
+  margin-bottom: var(--space-2);
+}
+
+.question-stats .stats-loading {
+  color: var(--muted);
+  font-family: var(--font-typewriter);
+  font-style: italic;
+}
+
+.question-stats .stats-error {
+  color: #dc2626;
+  font-family: var(--font-typewriter);
+}
+
+.question-stats .stats-summary {
+  margin-bottom: var(--space-2);
+}
+
+.question-stats .total-count {
+  font-family: var(--font-typewriter);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.question-stats .chart-container {
+  position: relative;
+  height: 300px;
+  margin: var(--space-2) 0;
+  background: white;
+  border-radius: 4px;
+  padding: var(--space-1);
+  border: 1px solid var(--border);
+}
+
+.question-stats .stats-details {
+  margin-top: var(--space-2);
+}
+
+.question-stats .legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.question-stats .legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-typewriter);
+  font-size: 14px;
+}
+
+.question-stats .legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.question-stats .legend-text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.question-stats .legend-label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.question-stats .legend-value {
+  color: var(--muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .question-stats .chart-container {
+    height: 250px;
+    padding: var(--space-half);
+  }
+  
+  .question-stats .legend-item {
+    font-size: 13px;
+  }
+  
+  .question-stats-section {
+    margin: var(--space-2) 0;
+    padding: var(--space-1);
+  }
+}

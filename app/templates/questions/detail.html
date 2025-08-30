@@ -13,6 +13,13 @@
   {% endif %}
 </header>
 
+{% if question.type == 'single_choice' %}
+  <!-- Section statistiques pour les questions à choix unique -->
+  <section class="question-stats-section">
+    {% include "partials/_single_choice_stats.html" with context %}
+  </section>
+{% endif %}
+
 {% if q %}
   <div class="search-context">
     <p class="muted">Recherche : « {{ q }} » dans les réponses</p>
