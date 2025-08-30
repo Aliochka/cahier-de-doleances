@@ -1,13 +1,4 @@
 {% if forms and forms|length %}
-{# Script de nettoyage pour éviter les doublons #}
-<script>
-// Supprimer tous les anciens sentinels avant d'ajouter le nouveau
-(function() {
-  const oldFormsSentinels = document.querySelectorAll('#forms-list .htmx-sentinel');
-  oldFormsSentinels.forEach(s => s.remove());
-})();
-</script>
-
   <ul class="list list--plain">
     {% for form in forms %}
       <li class="card">
@@ -19,41 +10,16 @@
   </ul>
 
   {% if has_next_forms and next_cursor_forms %}
-    <div class="htmx-sentinel" id="forms-sentinel"
-         data-url="{{ url_for('search_questions') }}?partial=1&section=forms{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_forms={{ next_cursor_forms|urlencode }}">
+    <div class="forms-load-more-sentinel"
+         hx-get="{{ url_for('search_questions') }}?partial=1&section=forms{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_forms={{ next_cursor_forms|urlencode }}"
+         hx-trigger="intersect once"
+         hx-target="#forms-list"
+         hx-swap="beforeend">
       <div class="list-loader">
         <div class="loader" title="Chargement des formulaires suivants…"></div>
         <span style="margin-left: var(--space-2); color: var(--muted);">Chargement des formulaires…</span>
       </div>
     </div>
-
-    <script>
-    // Intersection Observer pour scroll infini
-    (function() {
-      const sentinel = document.getElementById('forms-sentinel');
-      if (!sentinel) return;
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !sentinel.dataset.loaded) {
-            // Scroll infini déclenché pour forms
-            sentinel.dataset.loaded = 'true';
-            
-            // Déclencher la requête HTMX manuellement
-            htmx.ajax('GET', sentinel.dataset.url, {
-              target: '#forms-list',
-              swap: 'beforeend'
-            }).then(() => {
-              // Supprimer cet ancien sentinel après succès
-              sentinel.remove();
-            });
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      observer.observe(sentinel);
-    })();
-    </script>
   {% endif %}
 {% endif %}
 
