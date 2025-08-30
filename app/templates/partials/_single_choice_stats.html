@@ -1,7 +1,15 @@
 {# app/templates/partials/_single_choice_stats.html #}
 <div class="question-stats" data-question-id="{{ question.id }}">
   <div class="stats-header">
-    <h2 class="h3">Statistiques des réponses</h2>
+    <h2 class="h3">
+      {% if question.type == 'single_choice' %}
+        Répartition des réponses
+      {% elif question.type == 'multi_choice' %}
+        Options les plus sélectionnées
+      {% else %}
+        Statistiques des réponses
+      {% endif %}
+    </h2>
     <div class="stats-loading" id="stats-loading-{{ question.id }}">
       Chargement des statistiques...
     </div>
@@ -45,8 +53,15 @@
       loadingEl.style.display = 'none';
       contentEl.style.display = 'block';
       
-      // Afficher le total
-      totalCountEl.textContent = `${data.total_answers.toLocaleString('fr-FR')} réponses au total`;
+      // Afficher le total avec message adapté
+      const questionType = '{{ question.type }}';
+      let totalMessage;
+      if (questionType === 'multi_choice') {
+        totalMessage = `${data.total_answers.toLocaleString('fr-FR')} sélections au total`;
+      } else {
+        totalMessage = `${data.total_answers.toLocaleString('fr-FR')} réponses au total`;
+      }
+      totalCountEl.textContent = totalMessage;
       
       // Créer le graphique horizontal en barres
       const chart = new Chart(ctx, {

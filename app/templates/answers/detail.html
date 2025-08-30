@@ -13,7 +13,9 @@
 
   {# URLs canoniques #}
   {% set q_url = url_for('question_detail', question_id=answer.question_id, slug=answer.question_slug) %}
-  {% set author_url = url_for('author_detail', author_id=answer.author_id, slug=answer.author_slug) %}
+  {% if answer.author_id %}
+    {% set author_url = url_for('author_detail', author_id=answer.author_id, slug=answer.author_slug) %}
+  {% endif %}
 
   <header class="page-header page-header--stack">
     <h1 class="h1">
@@ -21,9 +23,13 @@
     </h1>
     <p class="muted">
       par
-      <a href="{{ author_url }}">
-        {{ answer.author_name or ('Auteur #' ~ answer.author_id) }}
-      </a>
+      {% if answer.author_id and author_url is defined %}
+        <a href="{{ author_url }}">
+          {{ answer.author_name or ('Auteur #' ~ answer.author_id) }}
+        </a>
+      {% else %}
+        {{ answer.author_name or 'Auteur anonyme' }}
+      {% endif %}
       {% if answer.submitted_at %} — {{ answer.submitted_at }}{% endif %}
     </p>
   </header>

@@ -113,7 +113,7 @@ def search_answers(
                     JOIN contributions c ON c.id = ranked.contribution_id
                     JOIN questions     qq ON qq.id = ranked.question_id,
                     s
-                    WHERE 1=1
+                    WHERE qq.type NOT IN ('single_choice', 'multi_choice')
                     {cursor_sql}
                     ORDER BY ranked.score DESC, ranked.id DESC
                     LIMIT :limit
@@ -173,6 +173,7 @@ def search_answers(
                     JOIN questions     q ON q.id = a.question_id
                     WHERE a.text IS NOT NULL
                       AND char_length(btrim(a.text)) >= :min_len
+                      AND q.type NOT IN ('single_choice', 'multi_choice')
                       {cursor_sql}
                     ORDER BY a.id DESC
                     LIMIT :limit
