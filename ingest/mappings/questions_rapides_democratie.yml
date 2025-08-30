@@ -1,0 +1,90 @@
+form:
+  name: Grand Débat - Démocratie & citoyenneté
+  version: v1
+  source: plateforme
+defaults:
+  author:
+    source_author_id: authorId
+    zipcode: authorZipCode  
+  contribution:
+    source_contribution_id: id
+    submitted_at: publishedAt
+    source: plateforme-gdn
+questions:
+- code: Q72
+  prompt: Selon vous, faut-il introduire une dose de proportionnelle pour certaines élections, lesquelles ?
+  type: text
+  section: élections
+  source_column: "QUXVlc3Rpb246NzI= - Selon vous, faut-il introduire une dose de proportionnelle pour certaines élections, lesquelles ?"
+- code: Q74
+  prompt: Pensez-vous qu'il serait souhaitable de réduire le nombre de parlementaires (députés + sénateurs = 925) ?
+  type: single_choice
+  section: institutions
+  source_column: "QUXVlc3Rpb246NzQ= - Pensez-vous qu'il serait souhaitable de réduire le nombre de parlementaires (députés + sénateurs = 925) ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q76
+  prompt: Faut-il rendre le vote obligatoire ?
+  type: single_choice
+  section: élections
+  source_column: "QUXVlc3Rpb246NzY= - Faut-il rendre le vote obligatoire ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q78
+  prompt: Faut-il avoir davantage recours au référendum au niveau national ?
+  type: single_choice
+  section: participation
+  source_column: "QUXVlc3Rpb246Nzg= - Faut-il avoir davantage recours au référendum au niveau national ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q77
+  prompt: Faut-il avoir davantage recours au référendum au niveau local ?
+  type: single_choice
+  section: participation
+  source_column: "QUXVlc3Rpb246Nzc= - Faut-il avoir davantage recours au référendum au niveau local ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q80
+  prompt: Faut-il tirer au sort des citoyens non élus pour les associer à la décision publique ?
+  type: single_choice
+  section: participation
+  source_column: "QUXVlc3Rpb246ODA= - Faut-il tirer au sort des citoyens non élus pour les associer à la décision publique ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q83
+  prompt: Diriez-vous que l'application de la laïcité en France est aujourd'hui
+  type: single_choice
+  section: laïcité
+  source_column: "QUXVlc3Rpb246ODM= - Diriez-vous que l'application de la laïcité en France est aujourd'hui:"
+  options:
+  - code: satisfaisante
+    label: Satisfaisante
+    position: 1
+  - code: a_ameliorer
+    label: A améliorer
+    position: 2

@@ -1,0 +1,69 @@
+form:
+  name: Grand Débat - Transition écologique
+  version: v1
+  source: plateforme
+defaults:
+  author:
+    source_author_id: authorId
+    zipcode: authorZipCode  
+  contribution:
+    source_contribution_id: id
+    submitted_at: publishedAt
+    source: plateforme-gdn
+questions:
+- code: Q57
+  prompt: Pensez-vous que vos actions en faveur de l'environnement peuvent vous permettre de faire des économies ?
+  type: single_choice
+  section: économie
+  source_column: "QUXVlc3Rpb246NTc= - Pensez-vous que vos actions en faveur de l'environnement peuvent vous permettre de faire des économies ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q55
+  prompt: Diriez-vous que vous connaissez les aides et dispositifs qui sont aujourd'hui proposés par l'Etat, les collectivités, les entreprises et les associations pour l'isolation et le chauffage des logements, et pour les déplacements ?
+  type: single_choice
+  section: aides
+  source_column: "QUXVlc3Rpb246NTU= - Diriez-vous que vous connaissez les aides et dispositifs qui sont aujourd'hui proposés par l'Etat, les collectivités, les entreprises et les associations pour l'isolation et le chauffage des logements, et pour les déplacements ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q58
+  prompt: Pensez-vous que les taxes sur le diesel et sur l'essence peuvent permettre de modifier les comportements des utilisateurs ?
+  type: single_choice
+  section: fiscalité
+  source_column: "QUXVlc3Rpb246NTg= - Pensez-vous que les taxes sur le diesel et sur l'essence peuvent permettre de modifier les comportements des utilisateurs ?"
+  options:
+  - code: oui
+    label: Oui
+    position: 1
+  - code: non
+    label: Non
+    position: 2
+- code: Q62
+  prompt: À quoi les recettes liées aux taxes sur le diesel et l'essence doivent-elles avant tout servir ?
+  type: text
+  section: fiscalité
+  source_column: "QUXVlc3Rpb246NjI= - À quoi les recettes liées aux taxes sur le diesel et l'essence doivent-elles avant tout servir ?"
+- code: Q61
+  prompt: Selon vous, la transition écologique doit être avant tout financée
+  type: text
+  section: financement
+  source_column: "QUXVlc3Rpb246NjE= - Selon vous, la transition écologique doit être avant tout financée :"
+- code: Q60
+  prompt: Et qui doit être en priorité concerné par le financement de la transition écologique ?
+  type: text
+  section: financement
+  source_column: "QUXVlc3Rpb246NjA= - Et qui doit être en priorité concerné par le financement de la transition écologique ?"
+- code: Q59
+  prompt: Que faudrait-il faire pour protéger la biodiversité et le climat tout en maintenant des activités agricoles et industrielles compétitives par rapport à leurs concurrents étrangers, notamment européens ?
+  type: text
+  section: compétitivité
+  source_column: "QUXVlc3Rpb246NTk= - Que faudrait-il faire pour protéger la biodiversité et le climat tout en maintenant des activités agricoles et industrielles compétitives par rapport à leurs concurrents étrangers, notamment européens ?"
