@@ -9,6 +9,7 @@
    <p class="lead"> Et... bientôt les vôtres !</p>
 </section>
 
+{% if forms and forms|length %}
 <section class="grid grid--2 grid--narrow grid--center">
   <article class="card">
     <h2 class="h2">Rechercher dans les questions</h2>
@@ -21,4 +22,21 @@
     <a class="btn btn--secondary" href="{{ url_for('search_answers') }}">Chercher dans les réponses</a>
   </article>
 </section>
+
+<section class="container--narrow" style="margin: var(--space-4) auto;">
+  <h2 class="h2" style="text-align: center; margin-bottom: var(--space-3);">Formulaires disponibles</h2>
+  
+  <div class="grid grid--2 gap-4">
+    {% for form in forms %}
+      <div class="card">
+        {% with f=form %}
+          {% include "forms/_card.html" %}
+        {% endwith %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+
 {% endblock %}

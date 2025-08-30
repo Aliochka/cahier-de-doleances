@@ -7,13 +7,31 @@
     <a href="{{ q_url }}">{{ title_html }}</a>
   </h3>
   
-  {% if q.answers_count is defined %}
-    <div class="question-card__badge">
-      <a class="badge" href="{{ q_url }}">
-        {% if q.answers_count == 0 %}Aucune réponse
-        {% elif q.answers_count == 1 %}1 réponse
-        {% else %}{{ q.answers_count }} réponses{% endif %}
-      </a>
-    </div>
-  {% endif %}
+  <div class="question-card__meta">
+    {% if q.type %}
+      <div class="question-card__type">
+        {% if q.type == 'single_choice' %}
+          <span class="question-type single-choice">Choix unique</span>
+        {% elif q.type == 'multi_choice' %}
+          <span class="question-type multi-choice">Choix multiple</span>
+        {% elif q.type == 'text' %}
+          <span class="question-type text">Texte libre</span>
+        {% elif q.type == 'number' %}
+          <span class="question-type number">Numérique</span>
+        {% else %}
+          <span class="question-type other">{{ q.type }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    {% if q.answers_count is defined %}
+      <div class="question-card__badge">
+        <a class="badge" href="{{ q_url }}">
+          {% if q.answers_count == 0 %}Aucune réponse
+          {% elif q.answers_count == 1 %}1 réponse
+          {% else %}{{ q.answers_count }} réponses{% endif %}
+        </a>
+      </div>
+    {% endif %}
+  </div>
 </article>

@@ -1,0 +1,19 @@
+{# Template pour rendre les graphiques du dashboard #}
+{% if questions_stats and questions_stats|length > 0 %}
+  {% for question_stats in questions_stats %}
+    {% set question_id = question_stats.question_id %}
+    {% set question_prompt = question_stats.question_prompt %}
+    {% set question_slug = question_stats.question_id|string %}
+    {% set question_type = question_stats.question_type %}
+    {% set total_answers = question_stats.total_answers %}
+    {% set chart_data = question_stats.chart_data %}
+    {% set stats = question_stats.stats %}
+    {% set chart_colors = ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"] %}
+    
+    {% include 'partials/_compact_chart.html' %}
+  {% endfor %}
+{% else %}
+  <div class="empty-charts">
+    <p>Aucune question à choix trouvée dans ce formulaire.</p>
+  </div>
+{% endif %}

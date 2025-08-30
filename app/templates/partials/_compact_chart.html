@@ -1,0 +1,89 @@
+{# Template pour graphique compact dans le dashboard #}
+<div class="compact-chart" data-question-id="{{ question_id }}">
+  <div class="compact-chart__header">
+    <h3 class="compact-chart__title">
+      <a href="{{ url_for('question_detail', question_id=question_id, slug=question_slug) }}" class="chart-question-link">
+        {{ question_prompt }}
+      </a>
+    </h3>
+    <div class="compact-chart__meta">
+      <span class="chart-type">{{ question_type }}</span>
+      <span class="chart-count">{{ total_answers }} {{ 'sélections' if question_type == 'multi_choice' else 'réponses' }}</span>
+    </div>
+  </div>
+  
+  <div class="compact-chart__canvas-container">
+    <canvas id="compact-chart-{{ question_id }}" width="300" height="150"></canvas>
+  </div>
+  
+  <div class="compact-chart__legend">
+    <div class="legend-items-compact">
+      {% for stat in stats[:4] %}  {# Top 4 options seulement #}
+        <div class="legend-item-compact">
+          <div class="legend-color-compact" style="background-color: {{ chart_colors[loop.index0] }};"></div>
+          <span class="legend-label-compact">{{ stat.label[:20] }}{{ '...' if stat.label|length > 20 else '' }}</span>
+          <span class="legend-value-compact">{{ stat.percentage }}%</span>
+        </div>
+      {% endfor %}
+      {% if stats|length > 4 %}
+        <div class="legend-more">+{{ stats|length - 4 }} autres options</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="chart-data-{{ question_id }}">{{ chart_data | tojson | safe }}</script>
+<script type="application/json" id="chart-stats-{{ question_id }}">{{ stats | tojson | safe }}</script>
+<script>
+// Graphique compact pour question {{ question_id }}
+(function() {
+  const canvas = document.getElementById('compact-chart-{{ question_id }}');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  
+  // Récupérer les données depuis les scripts JSON
+  const chartDataEl = document.getElementById('chart-data-{{ question_id }}');
+  const chartStatsEl = document.getElementById('chart-stats-{{ question_id }}');
+  
+  if (!chartDataEl || !chartStatsEl) return;
+  
+  const chartData = JSON.parse(chartDataEl.textContent);
+  const chartStats = JSON.parse(chartStatsEl.textContent);
+  
+  // Configuration pour graphique compact
+  const config = {
+    type: 'doughnut',  // Plus compact qu'un bar chart
+    data: chartData,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false  // On utilise notre légende custom
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const stat = chartStats[context.dataIndex];
+              return `${stat.label}: ${stat.count.toLocaleString('fr-FR')} (${stat.percentage}%)`;
+            }
+          }
+        }
+      },
+      onClick: function(event, elements) {
+        // Clic sur le graphique = aller vers la question détaillée
+        if (elements.length > 0) {
+          window.location.href = "{{ url_for('question_detail', question_id=question_id, slug=question_slug) }}";
+        }
+      },
+      onHover: (event, activeElements) => {
+        canvas.style.cursor = 'pointer';
+      }
+    }
+  };
+  
+  // Créer le graphique
+  new Chart(ctx, config);
+})();
+</script>

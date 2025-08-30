@@ -11,6 +11,6 @@
   </div>
 
   <div class="form-card__actions" style="margin-top: var(--space-2);">
-    <a class="badge badge--link" href="{{ f_url }}?contrib=1">Voir le formulaire</a>
+    <a class="badge badge--link" href="{{ url_for('form_dashboard', form_id=f.id) }}">Voir le formulaire</a>
   </div>
 </article>

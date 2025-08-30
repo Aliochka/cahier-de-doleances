@@ -364,6 +364,7 @@ def search_questions(
                         q.id,
                         q.question_code,
                         q.prompt,
+                        q.type,
                         COALESCE(st.answers_count, 0)::int AS answers_count,
                         ts_rank((q.tsv_prompt)::tsvector, s.tsq) AS score,
                         ts_headline('french', q.prompt, s.tsq,
@@ -376,6 +377,7 @@ def search_questions(
                         ranked.id,
                         ranked.question_code,
                         ranked.prompt,
+                        ranked.type,
                         ranked.answers_count,
                         ranked.score,
                         ranked.prompt_hl
@@ -399,6 +401,7 @@ def search_questions(
                         q.id,
                         q.question_code,
                         q.prompt,
+                        q.type,
                         COALESCE(st.answers_count, 0)::int AS answers_count
                     FROM questions q
                     LEFT JOIN question_stats st ON st.question_id = q.id
@@ -423,6 +426,7 @@ def search_questions(
                         "id": r["id"],
                         "question_code": r.get("question_code"),
                         "title": title,
+                        "type": r.get("type"),
                         # surlignage seulement côté titre
                         "prompt_hl": r.get("prompt_hl"),
                         "answers_count": int(r.get("answers_count", 0) or 0),

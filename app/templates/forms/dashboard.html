@@ -1,0 +1,166 @@
+{% extends "base/base.html" %}
+
+{% block head %}
+{{ super() }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-AdF3gKBkm8NXXmJN4vBaY54LzgBwmrCOYATBaJVPrU0=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1>{{ form.name }}</h1>
+    <div class="header-meta">
+      <span class="form-info">{{ form.questions_count }} questions au total</span>
+      <a href="{{ url_for('form_detail', form_id=form.id) }}" class="btn btn-secondary">
+        Voir les réponses individuelles
+      </a>
+    </div>
+  </div>
+
+  <!-- Liste unifiée des questions -->
+  <div class="dashboard-section">
+    <h2>Questions du formulaire</h2>
+    
+    <div class="unified-questions-list">
+      {% for question in questions %}
+        <div class="question-item">
+          <div class="question-header">
+            <h3 class="question-title">
+              <a href="{{ url_for('question_detail', question_id=question.id, slug=question.slug) }}">
+                {{ question.prompt }}
+              </a>
+            </h3>
+            <div class="question-meta">
+              {% if question.type == 'single_choice' %}
+                <span class="question-type single-choice">Choix unique</span>
+              {% elif question.type == 'multi_choice' %}
+                <span class="question-type multi-choice">Choix multiple</span>
+              {% elif question.type == 'text' %}
+                <span class="question-type text">Texte libre</span>
+              {% elif question.type == 'number' %}
+                <span class="question-type number">Numérique</span>
+              {% else %}
+                <span class="question-type other">{{ question.type }}</span>
+              {% endif %}
+              {% if question.position %}
+                <span class="question-position">Position: {{ question.position }}</span>
+              {% endif %}
+              {% if question.answers_count is defined %}
+                {% if question.answers_count > 0 %}
+                  <span class="answers-count">{{ question.answers_count }} réponses</span>
+                {% else %}
+                  <span class="answers-count no-answers">Aucune réponse</span>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+          
+          <!-- Graphique intégré pour les questions à choix -->
+          {% if question.chart_data %}
+            <div class="question-chart">
+              <div class="chart-container-inline">
+                <canvas id="question-chart-{{ question.id }}" width="400" height="200"></canvas>
+              </div>
+              
+              <div class="chart-legend-inline">
+                <div class="legend-items-inline">
+                  {% for stat in question.chart_stats[:4] %}
+                    <div class="legend-item-inline">
+                      <div class="legend-color-inline" style="background-color: {{ ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"][loop.index0] }};"></div>
+                      <span class="legend-label-inline">{{ stat.label[:25] }}{{ '...' if stat.label|length > 25 else '' }}</span>
+                      <span class="legend-value-inline">{{ stat.percentage }}%</span>
+                    </div>
+                  {% endfor %}
+                  {% if question.chart_stats|length > 4 %}
+                    <div class="legend-more-inline">+{{ question.chart_stats|length - 4 }} autres</div>
+                  {% endif %}
+                </div>
+                <div class="chart-total">
+                  {{ question.total_chart_answers }} {{ 'sélections' if question.type == 'multi_choice' else 'réponses' }} au total
+                </div>
+              </div>
+            </div>
+            
+            <script type="application/json" id="chart-data-{{ question.id }}">{{ question.chart_data | tojson | safe }}</script>
+            <script type="application/json" id="chart-stats-{{ question.id }}">{{ question.chart_stats | tojson | safe }}</script>
+            <script>
+            // Graphique inline pour question {{ question.id }}
+            (function() {
+              const canvas = document.getElementById('question-chart-{{ question.id }}');
+              if (!canvas) return;
+              
+              const ctx = canvas.getContext('2d');
+              
+              // Récupérer les données depuis les scripts JSON
+              const chartDataEl = document.getElementById('chart-data-{{ question.id }}');
+              const chartStatsEl = document.getElementById('chart-stats-{{ question.id }}');
+              
+              if (!chartDataEl || !chartStatsEl) return;
+              
+              const chartData = JSON.parse(chartDataEl.textContent);
+              const chartStats = JSON.parse(chartStatsEl.textContent);
+              
+              // Configuration pour graphique inline
+              const config = {
+                type: 'bar',
+                data: chartData,
+                options: {
+                  indexAxis: 'y', // Barres horizontales
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                      ticks: {
+                        callback: function(value) {
+                          return value.toLocaleString('fr-FR');
+                        }
+                      }
+                    },
+                    y: {
+                      ticks: {
+                        maxRotation: 0
+                      }
+                    }
+                  },
+                  plugins: {
+                    legend: {
+                      display: false
+                    },
+                    tooltip: {
+                      callbacks: {
+                        label: function(context) {
+                          const stat = chartStats[context.dataIndex];
+                          return `${stat.label}: ${stat.count.toLocaleString('fr-FR')} (${stat.percentage}%)`;
+                        }
+                      }
+                    }
+                  },
+                  onClick: function(event, elements) {
+                    if (elements.length > 0) {
+                      window.location.href = "{{ url_for('question_detail', question_id=question.id, slug=question.slug) }}";
+                    }
+                  },
+                  onHover: (event, activeElements) => {
+                    canvas.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
+                  }
+                }
+              };
+              
+              new Chart(ctx, config);
+            })();
+            </script>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      {% if not questions %}
+        <div class="empty-state">
+          <p>Aucune question trouvée dans ce formulaire.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
