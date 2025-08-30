@@ -1,15 +1,19 @@
-{# Template pour la recherche globale - garde la logique conditionnelle #}
+{# Template spécifique pour les réponses sur une page de question #}
 {# Liste de réponses utilisant le composant _card.html #}
 {% for a in answers %}
   {% include "answers/_card.html" with context %}
 {% endfor %}
 
 {% if has_next and next_cursor %}
-  <div class="search-load-more-sentinel"
-       hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor|urlencode }}&partial=1"
+  {% set debug_url = url_for('question_detail', question_id=question.id, slug=question.slug) ~ "?partial=1&cursor=" ~ next_cursor|urlencode %}
+  {% if q %}{% set debug_url = debug_url ~ "&q=" ~ q|urlencode %}{% endif %}
+  
+  <div class="load-more-sentinel"
+       hx-get="{{ debug_url }}"
        hx-trigger="intersect once"
        hx-target="#answers-list"
-       hx-swap="beforeend">
+       hx-swap="beforeend"
+>
     <div class="list-loader">
       <div class="loader" title="Chargement des réponses suivantes…"></div>
       <span style="margin-left: var(--space-2); color: var(--muted);">Chargement…</span>

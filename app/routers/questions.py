@@ -94,23 +94,10 @@ def question_detail(
             return RedirectResponse(url, status_code=308)
         return Response(status_code=200)
 
-    # DEBUG: ?debug=1 → infos JSON (utile si besoin)
-    if "debug" in request.query_params:
-        row = db.execute(text("SELECT id, prompt FROM questions WHERE id=:qid"), {"qid": question_id}).mappings().first()
-        return JSONResponse(
-            {
-                "qid": question_id,
-                "row_is_none": row is None,
-                "prompt": (row or {}).get("prompt") if row else None,
-                "requested_slug": slug,
-                "canonical": slugify(((row or {}).get("prompt") or f"question-{question_id}") if row else f"question-{question_id}"),
-            },
-            status_code=200 if row else 404,
-        )
 
     # --- Question
     row = db.execute(
-        text("SELECT id, question_code, prompt FROM questions WHERE id = :qid"),
+        text("SELECT id, question_code, prompt, type FROM questions WHERE id = :qid"),
         {"qid": question_id},
     ).mappings().first()
     if not row:
@@ -228,26 +215,25 @@ def question_detail(
         "created_at": r["submitted_at"],
         "body": (r["answer_text"] or "")[:MAX_TEXT_LEN],
     } for r in rows]
+    
 
     # Rendu partiel pour HTMX
     if partial:
         return templates.TemplateResponse(
-            "partials/_answers_list.html",
+            "partials/_question_answers_list.html",
             {
                 "request": request,
                 "answers": answers,
                 "has_next": has_next,
                 "next_cursor": next_cursor,
                 "q": q,
+                "question": {
+                    "id": row["id"],
+                    "slug": canonical_slug,
+                },
                 "on_question_page": True,
             },
         )
-
-    # Récupérer le type de question pour l'affichage conditionnel des stats
-    question_type = db.execute(
-        text("SELECT type FROM questions WHERE id = :qid"),
-        {"qid": question_id}
-    ).scalar_one_or_none()
 
     # Rendu complet
     return templates.TemplateResponse(
@@ -260,7 +246,7 @@ def question_detail(
                 "title": row["prompt"],
                 "slug": canonical_slug,
                 "answers_count": total,
-                "type": question_type,
+                "type": row["type"],
             },
             "answers": answers,
             "has_next": has_next,
