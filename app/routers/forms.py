@@ -2,12 +2,9 @@
 from __future__ import annotations
 
 import json
-import time
-import os
-from datetime import datetime, timezone
 
 from fastapi import APIRouter, Request, Query, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse
 from sqlalchemy import text
 from app.db import SessionLocal
 from app.web import templates
