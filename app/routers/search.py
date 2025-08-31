@@ -81,9 +81,9 @@ def track_search_query(db, query: str):
             """),
             {"query": normalized_query}
         )
-        db.commit()
+        # Don't commit here - let the session context manager handle it
     except Exception:
-        db.rollback()  # Silent fail, cache is not critical
+        raise  # Re-raise to let the session context handle rollback
 
 
 def get_cached_results(db, cache_key: str, ttl_minutes: int) -> dict | None:
@@ -126,13 +126,17 @@ def save_cached_results(db, cache_key: str, results: dict, popularity: int):
             """),
             {
                 "key": cache_key, 
-                "json": json.dumps(results, ensure_ascii=False),
+                "json": json.dumps(results, ensure_ascii=False, default=str),
                 "count": popularity
             }
         )
         db.commit()
+            
     except Exception:
-        db.rollback()  # Silent fail
+        try:
+            db.rollback()
+        except:
+            pass  # Silent fail
 
 PER_PAGE = 20
 MAX_TEXT_LEN = 20_000
@@ -186,6 +190,7 @@ def search_answers(
 
     # Cache logic with single session like dashboard cache
     with SessionLocal() as db:
+        print(f"DEBUG: Starting search session for query='{q}'")
         # Track search query
         track_search_query(db, q)
         
@@ -209,6 +214,11 @@ def search_answers(
                 }
             )
 
+        # Initialize variables for both modes
+        rows = []
+        has_next = False
+        next_cursor = None
+        
         # Cache miss - proceed with normal search
         # --- Mode 1: FTS quand q >= 2
         if len(q) >= 2:
@@ -258,7 +268,7 @@ def search_answers(
                 params,
             ).mappings().all()
 
-        # sentinelle + next_cursor
+        # sentinelle + next_cursor  
         if len(rows) == limit:
             has_next = True
             tail = rows[-1]
@@ -345,7 +355,7 @@ def search_answers(
                 }
             )
 
-        # Save to cache after successful search (same session)
+        # Save to cache after successful search (same session) - AFTER both modes
         # Re-get cache info for saving (variables may be out of scope)
         cache_key_save = get_cache_key(q, cursor or "")
         popularity_save = get_search_popularity(db, q)
