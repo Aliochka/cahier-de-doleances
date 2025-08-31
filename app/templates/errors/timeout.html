@@ -1,0 +1,109 @@
+{% extends "base/base.html" %}
+
+{% block title %}Délai d'attente dépassé - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="container error-page">
+  <div class="error-content">
+    <div class="error-icon">
+      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12,6 12,12 16,14"></polyline>
+      </svg>
+    </div>
+    
+    <h1>Délai d'attente dépassé</h1>
+    <p class="error-description">
+      Le serveur met trop de temps à répondre. Cela peut être dû à une charge importante ou à une requête complexe.
+    </p>
+    
+    <div class="error-actions">
+      <a href="{{ url_for('homepage') }}" class="btn btn-primary">
+        Retour à l'accueil
+      </a>
+      <button onclick="history.back()" class="btn btn-secondary">
+        Page précédente
+      </button>
+      <button onclick="window.location.reload()" class="btn btn-secondary">
+        Réessayer
+      </button>
+    </div>
+    
+    <div class="error-help">
+      <p>Suggestions :</p>
+      <ul>
+        <li>Réessayez dans quelques instants</li>
+        <li>Simplifiez votre recherche si vous utilisez la fonction recherche</li>
+        <li>Vérifiez votre connexion internet</li>
+        <li>Le problème sera résolu automatiquement sous peu</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+.error-page {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.error-content {
+  max-width: 600px;
+}
+
+.error-icon {
+  color: #f59e0b;
+  margin-bottom: 2rem;
+}
+
+.error-page h1 {
+  font-size: 2.5rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.error-description {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.error-actions {
+  margin-bottom: 3rem;
+}
+
+.error-actions .btn {
+  margin: 0.5rem;
+}
+
+.error-help {
+  text-align: left;
+  background: #fffbeb;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #f59e0b;
+}
+
+.error-help p {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #92400e;
+}
+
+.error-help ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.error-help li {
+  margin-bottom: 0.25rem;
+  color: #a16207;
+}
+</style>
+{% endblock %}
