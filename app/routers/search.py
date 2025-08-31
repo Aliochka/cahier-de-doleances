@@ -82,6 +82,9 @@ def search_answers(
                 params["last_score"] = float(cur.get("score", 0.0))
                 params["last_id"] = int(cur.get("id", 0))
 
+            # Augmenter work_mem pour cette session seulement
+            db.execute(text("SET work_mem = '32MB'"))
+            
             rows = db.execute(
                 text(
                     f"""
@@ -97,6 +100,7 @@ def search_answers(
                       JOIN questions qq ON qq.id = a.question_id, s
                       WHERE a.text_tsv @@ s.tsq
                         AND qq.type NOT IN ('single_choice', 'multi_choice')
+                        AND char_length(btrim(a.text)) >= 60
                     )
                     SELECT
                         ranked.id               AS answer_id,
