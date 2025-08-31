@@ -64,14 +64,14 @@
               
               <div class="chart-legend-inline">
                 <div class="legend-items-inline">
-                  {% for stat in question.chart_stats[:4] %}
+                  {% for stat in question.chart_stats[:4] if question.chart_stats %}
                     <div class="legend-item-inline">
                       <div class="legend-color-inline" style="background-color: {{ ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"][loop.index0] }};"></div>
                       <span class="legend-label-inline">{{ stat.label[:25] }}{{ '...' if stat.label|length > 25 else '' }}</span>
                       <span class="legend-value-inline">{{ stat.percentage }}%</span>
                     </div>
                   {% endfor %}
-                  {% if question.chart_stats|length > 4 %}
+                  {% if question.chart_stats and question.chart_stats|length > 4 %}
                     <div class="legend-more-inline">+{{ question.chart_stats|length - 4 }} autres</div>
                   {% endif %}
                 </div>
@@ -82,7 +82,7 @@
             </div>
             
             <script type="application/json" id="chart-data-{{ question.id }}">{{ question.chart_data | tojson | safe }}</script>
-            <script type="application/json" id="chart-stats-{{ question.id }}">{{ question.chart_stats | tojson | safe }}</script>
+            <script type="application/json" id="chart-stats-{{ question.id }}">{{ question.chart_stats | tojson | safe if question.chart_stats else '[]' }}</script>
             <script>
             // Graphique inline pour question {{ question.id }}
             (function() {

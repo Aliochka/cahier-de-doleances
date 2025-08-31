@@ -15,213 +15,10 @@ from app.helpers import slugify  # type: ignore
 
 router = APIRouter()
 
-@router.get("/forms/{form_id}/test-cache")
-def test_cache_simple(form_id: int):
-    """Test simple du cache PostgreSQL pour débogage"""
-    results = {"steps": []}
-    
-    try:
-        # Étape 1: Tester la connexion de base
-        with SessionLocal() as db:
-            result = db.execute(text("SELECT 1 as test")).mappings().first()
-            results["steps"].append(f"✅ DB connection: {result['test']}")
-        
-        # Étape 2: Tester SELECT sur cache table
-        with SessionLocal() as db:
-            count = db.execute(text("SELECT COUNT(*) as c FROM dashboard_cache")).mappings().first()
-            results["steps"].append(f"✅ Cache table access: {count['c']} entries")
-        
-        # Étape 3: Tester INSERT simple
-        with SessionLocal() as db:
-            db.execute(text("""
-                DELETE FROM dashboard_cache WHERE form_id = :fid
-            """), {"fid": form_id})
-            db.commit()
-            results["steps"].append("✅ DELETE test passed")
-        
-        # Étape 4: Tester INSERT
-        with SessionLocal() as db:
-            db.execute(text("""
-                INSERT INTO dashboard_cache (form_id, stats_json) 
-                VALUES (:fid, :json)
-            """), {"fid": form_id, "json": '{"test": "debug"}'})
-            db.commit()
-            results["steps"].append("✅ INSERT test passed")
-        
-        # Étape 5: Vérifier INSERT
-        with SessionLocal() as db:
-            check = db.execute(text("""
-                SELECT stats_json FROM dashboard_cache WHERE form_id = :fid
-            """), {"fid": form_id}).mappings().first()
-            if check:
-                results["steps"].append(f"✅ INSERT verified: {check['stats_json']}")
-            else:
-                results["steps"].append("❌ INSERT not found!")
-        
-        return {"success": True, "results": results}
-        
-    except Exception as e:
-        return {"success": False, "error": str(e), "results": results}
 
 
 # Cache TTL en secondes (30 minutes)
 DASHBOARD_CACHE_TTL = 1800
-
-def get_dashboard_stats_cached(db, form_id: int) -> list:
-    """
-    Récupère les statistiques dashboard avec cache fichier temporaire
-    """
-    import os
-    import tempfile
-    
-    cache_file = os.path.join(tempfile.gettempdir(), f"dashboard_cache_{form_id}.json")
-    
-    # 1. Vérifier le cache fichier
-    if os.path.exists(cache_file):
-        try:
-            # Vérifier âge du fichier (30 minutes = 1800 secondes)
-            file_age = time.time() - os.path.getmtime(cache_file)
-            if file_age < DASHBOARD_CACHE_TTL:
-                with open(cache_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-        except:
-            # Fichier corrompu, on l'ignore
-            pass
-    
-    # 2. Calculer les stats
-    try:
-        stats = calculate_dashboard_stats(db, form_id)
-        
-        # 3. Sauver dans le cache fichier
-        with open(cache_file, 'w', encoding='utf-8') as f:
-            json.dump(stats, f, ensure_ascii=False)
-    except Exception as e:
-        # Fallback si calcul échoue - retourner liste vide
-        return []
-    
-    return stats
-
-
-def calculate_dashboard_stats(db, form_id: int) -> list:
-    """
-    Calcule toutes les statistiques dashboard - version simplifiée pour débogage
-    """
-    try:
-        # Récupération simple des questions d'abord
-        results = db.execute(
-            text("""
-                SELECT q.id, q.prompt, q.type, q.position,
-                       COALESCE(st.answers_count, 0)::int AS answers_count
-                FROM questions q
-                LEFT JOIN question_stats st ON st.question_id = q.id
-                WHERE q.form_id = :form_id
-                ORDER BY COALESCE(q.position, 999999), q.id
-            """),
-            {"form_id": form_id}
-        ).mappings().all()
-        
-        questions_list = []
-        for r in results:
-            question_data = {
-                "id": r["id"],
-                "prompt": r["prompt"],
-                "type": r["type"],
-                "position": r["position"],
-                "answers_count": r["answers_count"],
-                "slug": slugify(r["prompt"] or f"question-{r['id']}")
-            }
-            
-            # Pour l'instant, on revient à l'ancienne méthode pour déboguer
-            if r["type"] == "single_choice":
-                try:
-                    stats_rows = db.execute(text("""
-                        SELECT 
-                            o.id as option_id,
-                            o.label,
-                            o.position,
-                            COALESCE(COUNT(ao.option_id), 0) as count,
-                            COALESCE(ROUND(COUNT(ao.option_id) * 100.0 / NULLIF(SUM(COUNT(ao.option_id)) OVER(), 0), 2), 0) as percentage
-                        FROM options o
-                        LEFT JOIN answer_options ao ON ao.option_id = o.id
-                        WHERE o.question_id = :qid
-                        GROUP BY o.id, o.label, o.position
-                        ORDER BY o.position
-                        LIMIT 10
-                    """), {"qid": r["id"]}).mappings().all()
-                    
-                    if stats_rows:
-                        total_answers = sum(row["count"] for row in stats_rows)
-                        if total_answers > 0:
-                            chart_data = {
-                                "labels": [row["label"][:30] + ("..." if len(row["label"]) > 30 else "") for row in stats_rows],
-                                "datasets": [{
-                                    "data": [row["count"] for row in stats_rows],
-                                    "backgroundColor": ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"][:len(stats_rows)]
-                                }]
-                            }
-                            question_data["chart_data"] = chart_data
-                            question_data["chart_stats"] = [dict(row) for row in stats_rows]
-                            question_data["total_chart_answers"] = total_answers
-                except Exception as e:
-                    print(f"Erreur single_choice {r['id']}: {e}")
-            
-            elif r["type"] == "multi_choice":
-                try:
-                    # Version SQL optimisée pour multi_choice
-                    stats = db.execute(text("""
-                        WITH parsed_options AS (
-                            SELECT 
-                                trim(unnest(string_to_array(a.text, '|'))) as option_name
-                            FROM answers a
-                            WHERE a.question_id = :qid 
-                              AND a.text LIKE '%|%'
-                              AND a.text IS NOT NULL
-                        )
-                        SELECT 
-                            option_name as label,
-                            COUNT(*) as count
-                        FROM parsed_options
-                        WHERE option_name != ''
-                        GROUP BY option_name
-                        ORDER BY count DESC
-                        LIMIT 10
-                    """), {"qid": r["id"]}).mappings().all()
-                    
-                    if stats:
-                        total_responses = sum(row["count"] for row in stats)
-                        if total_responses > 0:
-                            chart_data = {
-                                "labels": [row["label"][:30] + ("..." if len(row["label"]) > 30 else "") for row in stats],
-                                "datasets": [{
-                                    "data": [row["count"] for row in stats],
-                                    "backgroundColor": ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"][:len(stats)]
-                                }]
-                            }
-                            
-                            chart_stats = []
-                            for i, row in enumerate(stats):
-                                chart_stats.append({
-                                    "option_id": i,
-                                    "label": row["label"],
-                                    "position": i,
-                                    "count": row["count"],
-                                    "percentage": round(row["count"] * 100.0 / total_responses, 2)
-                                })
-                            
-                            question_data["chart_data"] = chart_data
-                            question_data["chart_stats"] = chart_stats
-                            question_data["total_chart_answers"] = total_responses
-                except Exception as e:
-                    print(f"Erreur multi_choice {r['id']}: {e}")
-            
-            questions_list.append(question_data)
-        
-        return questions_list
-        
-    except Exception as e:
-        print(f"Erreur calculate_dashboard_stats: {e}")
-        return []
-
 
 def invalidate_dashboard_cache(db, form_id: int):
     """Invalide le cache dashboard pour un formulaire"""
@@ -376,14 +173,11 @@ def form_detail(
         return templates.TemplateResponse("forms/detail.html", ctx)
 
 
-@router.get("/forms/{form_id}/dashboard", name="form_dashboard")
-def form_dashboard(request: Request, form_id: int, debug: bool = False):
+@router.get("/forms/{form_id}/dashboard", name="form_dashboard", response_class=HTMLResponse)
+def form_dashboard(request: Request, form_id: int):
     """
     Page dashboard d'un formulaire avec graphiques et liste des questions
     """
-    # Mode debug pour tester le cache PostgreSQL
-    if debug:
-        return test_cache_postgresql(form_id)
     
     with SessionLocal() as db:
         # Infos formulaire + questions
@@ -455,11 +249,28 @@ def form_dashboard(request: Request, form_id: int, debug: bool = False):
                         """), {"qid": q["id"]}).mappings().all()
                         
                         if stats_rows and sum(row["count"] for row in stats_rows) > 0:
+                            total_answers = sum(row["count"] for row in stats_rows)
                             chart_data = {
                                 "labels": [row["label"][:30] for row in stats_rows],
-                                "datasets": [{"data": [row["count"] for row in stats_rows]}]
+                                "datasets": [{
+                                    "data": [row["count"] for row in stats_rows],
+                                    "backgroundColor": ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"][:len(stats_rows)]
+                                }]
                             }
+                            
+                            # Ajouter les stats détaillées pour le template
+                            chart_stats = []
+                            for i, row in enumerate(stats_rows):
+                                percentage = round(row["count"] * 100.0 / total_answers, 2) if total_answers > 0 else 0
+                                chart_stats.append({
+                                    "label": row["label"],
+                                    "count": row["count"],
+                                    "percentage": percentage
+                                })
+                            
                             question_data["chart_data"] = chart_data
+                            question_data["chart_stats"] = chart_stats
+                            question_data["total_chart_answers"] = total_answers
                     except:
                         pass
                 
