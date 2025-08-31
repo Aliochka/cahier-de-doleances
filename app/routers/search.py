@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import base64
+import hashlib
+import datetime
 from typing import Any
 
 from fastapi import APIRouter, Request, Query
@@ -16,6 +18,121 @@ from app.helpers import slugify  # type: ignore
 
 
 router = APIRouter()
+
+
+# Cache helper functions
+def get_cache_key(query: str = "", cursor: str = "") -> str:
+    """Generate cache key for search query"""
+    if not query.strip():
+        return f"timeline:{cursor}" if cursor else "timeline"
+    
+    # Normalize query for consistent caching
+    normalized_query = query.strip().lower()
+    key_base = f"search:{normalized_query}"
+    
+    if cursor:
+        key_base += f":{cursor}"
+        
+    return key_base
+
+
+def get_search_popularity(db, query: str) -> int:
+    """Get search count for a query"""
+    if not query.strip():
+        return 1000  # Timeline is always "popular"
+    
+    result = db.execute(
+        text("SELECT search_count FROM search_stats WHERE query_text = :query"),
+        {"query": query.strip().lower()}
+    ).mappings().first()
+    
+    return result["search_count"] if result else 0
+
+
+def get_cache_ttl_minutes(popularity: int) -> int:
+    """Get TTL in minutes based on query popularity"""
+    if popularity >= 100:
+        return 30  # Very popular: 30 minutes
+    elif popularity >= 20:
+        return 15  # Popular: 15 minutes  
+    elif popularity >= 5:
+        return 5   # Medium: 5 minutes
+    else:
+        return 0   # Rare: no cache
+
+
+def track_search_query(db, query: str):
+    """Increment search counter for a query"""
+    if not query.strip():
+        return  # Don't track timeline
+        
+    normalized_query = query.strip().lower()
+    
+    try:
+        # Upsert search stats
+        db.execute(
+            text("""
+                INSERT INTO search_stats (query_text, search_count, last_searched)
+                VALUES (:query, 1, NOW())
+                ON CONFLICT (query_text)
+                DO UPDATE SET 
+                    search_count = search_stats.search_count + 1,
+                    last_searched = NOW()
+            """),
+            {"query": normalized_query}
+        )
+        db.commit()
+    except Exception:
+        db.rollback()  # Silent fail, cache is not critical
+
+
+def get_cached_results(db, cache_key: str, ttl_minutes: int) -> dict | None:
+    """Get cached results if not expired"""
+    if ttl_minutes == 0:
+        return None  # No cache for rare queries
+        
+    try:
+        result = db.execute(
+            text("""
+                SELECT results_json, created_at 
+                FROM search_cache 
+                WHERE cache_key = :key
+                  AND created_at > NOW() - INTERVAL '%s minutes'
+            """ % ttl_minutes),
+            {"key": cache_key}
+        ).mappings().first()
+        
+        if result:
+            return json.loads(result["results_json"])
+            
+    except Exception:
+        pass  # Silent fail
+        
+    return None
+
+
+def save_cached_results(db, cache_key: str, results: dict, popularity: int):
+    """Save results to cache"""
+    try:
+        db.execute(
+            text("""
+                INSERT INTO search_cache (cache_key, results_json, search_count, created_at)
+                VALUES (:key, :json, :count, NOW())
+                ON CONFLICT (cache_key)
+                DO UPDATE SET 
+                    results_json = :json,
+                    search_count = :count,
+                    created_at = NOW()
+            """),
+            {
+                "key": cache_key, 
+                "json": json.dumps(results, ensure_ascii=False),
+                "count": popularity
+            }
+        )
+        db.commit()
+    except Exception:
+        db.rollback()  # Silent fail
 
 PER_PAGE = 20
 MAX_TEXT_LEN = 20_000
@@ -67,9 +184,34 @@ def search_answers(
     limit = PER_PAGE + 1
     cur = _dec_cursor(cursor)
 
-    # --- Mode 1: FTS quand q >= 2
-    if len(q) >= 2:
-        with SessionLocal() as db:
+    # Cache logic with single session like dashboard cache
+    with SessionLocal() as db:
+        # Track search query
+        track_search_query(db, q)
+        
+        # Check cache
+        cache_key = get_cache_key(q, cursor or "")
+        popularity = get_search_popularity(db, q)
+        ttl_minutes = get_cache_ttl_minutes(popularity)
+        
+        cached_results = get_cached_results(db, cache_key, ttl_minutes)
+        if cached_results:
+            # Cache hit! Return cached results
+            return templates.TemplateResponse(
+                "search/answers.html",
+                {
+                    "request": request,
+                    "q": q,
+                    "answers": cached_results["answers"],
+                    "has_next": cached_results["has_next"],
+                    "next_cursor": cached_results.get("next_cursor"),
+                    "search_mode": "answers"
+                }
+            )
+
+        # Cache miss - proceed with normal search
+        # --- Mode 1: FTS quand q >= 2
+        if len(q) >= 2:
             params = {"q": q, "limit": limit, "maxlen": MAX_TEXT_LEN}
             cursor_sql = ""
             if cur:
@@ -148,9 +290,8 @@ def search_answers(
                 }
             )
 
-    # --- Mode 2: timeline récente (q court ou vide)
-    else:
-        with SessionLocal() as db:
+        # --- Mode 2: timeline récente (q court ou vide)
+        else:
             params = {"min_len": MIN_ANSWER_LEN, "limit": limit, "max_text": MAX_TEXT_LEN}
             cursor_sql = ""
             if cur:
@@ -203,6 +344,20 @@ def search_answers(
                     "body": snippet,
                 }
             )
+
+        # Save to cache after successful search (same session)
+        # Re-get cache info for saving (variables may be out of scope)
+        cache_key_save = get_cache_key(q, cursor or "")
+        popularity_save = get_search_popularity(db, q)
+        ttl_minutes_save = get_cache_ttl_minutes(popularity_save)
+        
+        if ttl_minutes_save > 0:  # Only cache if worth it
+            cache_data = {
+                "answers": answers,
+                "has_next": has_next,
+                "next_cursor": next_cursor
+            }
+            save_cached_results(db, cache_key_save, cache_data, popularity_save)
 
     ctx = {
         "request": request,

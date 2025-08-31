@@ -1,5 +1,5 @@
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
-from sqlalchemy import String, Integer, BigInteger, ForeignKey, Text, DateTime
+from sqlalchemy import String, Integer, BigInteger, ForeignKey, Text, DateTime, func
 
 class Base(DeclarativeBase):
     pass
@@ -129,3 +129,25 @@ class QuestionStats(Base):
     __tablename__ = "question_stats"
     question_id: Mapped[int] = mapped_column(Integer, ForeignKey("questions.id"), primary_key=True)
     answers_count: Mapped[int] = mapped_column(Integer, default=0)
+
+# --- Cache Dashboard (pour les formulaires)
+class DashboardCache(Base):
+    __tablename__ = "dashboard_cache"
+    form_id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    stats_json: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[DateTime | None] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[DateTime | None] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+# --- Cache et Stats de Recherche
+class SearchStats(Base):
+    __tablename__ = "search_stats"
+    query_text: Mapped[str] = mapped_column(String(255), primary_key=True)
+    search_count: Mapped[int | None] = mapped_column(Integer, default=1)
+    last_searched: Mapped[DateTime | None] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+class SearchCache(Base):
+    __tablename__ = "search_cache"
+    cache_key: Mapped[str] = mapped_column(String(100), primary_key=True)
+    results_json: Mapped[str] = mapped_column(Text)
+    search_count: Mapped[int | None] = mapped_column(Integer, default=0)
+    created_at: Mapped[DateTime | None] = mapped_column(DateTime(timezone=True), server_default=func.now())
