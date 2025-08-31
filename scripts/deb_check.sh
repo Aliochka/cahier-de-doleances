@@ -33,14 +33,14 @@ FROM pg_stat_database WHERE datname = current_database()\gset
 
 -- Warnings lisibles
 SELECT CASE WHEN :cache_hit_pct < :warn_cache
-            THEN format('⚠️  Cache hit %.2f%% < %.2f%%', :cache_hit_pct, :warn_cache)
-            ELSE format('✅ Cache hit %.2f%%', :cache_hit_pct) END AS cache_hit_status;
+            THEN '⚠️  Cache hit ' || :cache_hit_pct || '% < ' || :warn_cache || '%'
+            ELSE '✅ Cache hit ' || :cache_hit_pct || '%' END AS cache_hit_status;
 
 WITH s AS (
   SELECT COUNT(*) AS total FROM pg_stat_activity WHERE datname=current_database()
 ) SELECT CASE WHEN total > :warn_conn
-              THEN format('⚠️  Connections %s > %s', total, :'warn_conn')
-              ELSE format('✅ Connections %s / %s', total, :'warn_conn') END AS connections_status
+              THEN '⚠️  Connections ' || total || ' > ' || :warn_conn
+              ELSE '✅ Connections ' || total || ' / ' || :warn_conn END AS connections_status
 FROM s;
 
 -- Tailles
