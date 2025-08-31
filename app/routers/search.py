@@ -73,13 +73,7 @@ def search_answers(
             params = {"q": q, "limit": limit, "maxlen": MAX_TEXT_LEN}
             cursor_sql = ""
             if cur:
-                cursor_sql = """
-                  AND (
-                    ranked.score < :last_score
-                    OR (ranked.score = :last_score AND ranked.id < :last_id)
-                  )
-                """
-                params["last_score"] = float(cur.get("score", 0.0))
+                cursor_sql = "AND fr.id < :last_id"
                 params["last_id"] = int(cur.get("id", 0))
 
             # Augmenter work_mem pour cette session seulement
@@ -89,33 +83,33 @@ def search_answers(
                 text(
                     f"""
                     WITH s AS (SELECT websearch_to_tsquery('fr_unaccent', :q) AS tsq),
-                    ranked AS (
-                      SELECT
-                        a.id,
-                        a.question_id,
-                        a.contribution_id,
-                        ROUND(ts_rank(a.text_tsv, s.tsq)::numeric, 6)::float AS score,
-                        a.text
-                      FROM answers a
-                      JOIN questions qq ON qq.id = a.question_id, s
+                    fts_matches AS (
+                      SELECT a.id, a.question_id, a.contribution_id, a.text
+                      FROM answers a, s
                       WHERE a.text_tsv @@ s.tsq
-                        AND qq.type NOT IN ('single_choice', 'multi_choice')
                         AND char_length(btrim(a.text)) >= 60
+                    ),
+                    filtered_results AS (
+                      SELECT fm.id, fm.question_id, fm.contribution_id, fm.text, qq.prompt AS question_prompt
+                      FROM fts_matches fm
+                      JOIN questions qq ON qq.id = fm.question_id
+                      WHERE qq.type NOT IN ('single_choice', 'multi_choice')
+                      ORDER BY fm.id DESC
                     )
                     SELECT
-                        ranked.id               AS answer_id,
-                        ranked.question_id      AS question_id,
-                        qq.prompt               AS question_prompt,
-                        c.author_id             AS author_id,
-                        c.submitted_at          AS submitted_at,
-                        ranked.score            AS score,
-                        LEFT(ranked.text, :maxlen) AS answer_text
-                    FROM ranked
-                    JOIN contributions c ON c.id = ranked.contribution_id
-                    JOIN questions     qq ON qq.id = ranked.question_id
+                        fr.id               AS answer_id,
+                        fr.question_id      AS question_id,
+                        fr.question_prompt  AS question_prompt,
+                        c.author_id         AS author_id,
+                        c.submitted_at      AS submitted_at,
+                        LEFT(fr.text, :maxlen) AS answer_text,
+                        ts_headline('fr_unaccent', LEFT(fr.text, :maxlen), s.tsq, 
+                                   'StartSel=<mark>, StopSel=</mark>, MaxWords=60, MinWords=40') AS highlighted_text
+                    FROM filtered_results fr
+                    JOIN contributions c ON c.id = fr.contribution_id, s
                     WHERE 1=1
                     {cursor_sql}
-                    ORDER BY ranked.score DESC, ranked.id DESC
+                    ORDER BY fr.id DESC
                     LIMIT :limit
                     """
                 ),
@@ -126,15 +120,21 @@ def search_answers(
         if len(rows) == limit:
             has_next = True
             tail = rows[-1]
-            next_cursor = _enc_cursor({"id": tail["answer_id"], "score": float(tail["score"])})
+            next_cursor = _enc_cursor({"id": tail["answer_id"]})
             rows = rows[:-1]
 
         # build output
         for r in rows:
-            # Générer le snippet seulement ici (pas dans SQL)
-            raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
-            body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
-            body = postprocess_excerpt(body)
+            # Utiliser le highlighting de PostgreSQL
+            highlighted = r.get("highlighted_text") or ""
+            # Fallback sur le texte brut si pas de highlighting
+            if not highlighted.strip():
+                raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
+                body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
+                body = postprocess_excerpt(body)
+            else:
+                body = highlighted.strip()
+                
             q_title = r["question_prompt"]
             answers.append(
                 {
