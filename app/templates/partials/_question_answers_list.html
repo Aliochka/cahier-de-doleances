@@ -5,11 +5,11 @@
 {% endfor %}
 
 {% if has_next and next_cursor %}
-  {% set debug_url = url_for('question_detail', question_id=question.id, slug=question.slug) ~ "?partial=1&cursor=" ~ next_cursor|urlencode %}
-  {% if q %}{% set debug_url = debug_url ~ "&q=" ~ q|urlencode %}{% endif %}
+  {% set load_url = url_for('question_detail', question_id=question.id, slug=question.slug) ~ "?partial=1&cursor=" ~ next_cursor|urlencode %}
+  {% if q %}{% set load_url = load_url ~ "&q=" ~ q|urlencode %}{% endif %}
   
   <div class="load-more-sentinel"
-       hx-get="{{ debug_url }}"
+       hx-get="{{ load_url }}"
        hx-trigger="intersect once"
        hx-target="#answers-list"
        hx-swap="beforeend"

@@ -190,7 +190,6 @@ def search_answers(
 
     # Cache logic with single session like dashboard cache
     with SessionLocal() as db:
-        print(f"DEBUG: Starting search session for query='{q}'")
         # Track search query
         track_search_query(db, q)
         
@@ -382,7 +381,12 @@ def search_answers(
     is_htmx = partial or "HX-Request" in request.headers
     
     if is_htmx:
-        resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
+        # Si c'est un infinite scroll (cursor présent), utiliser le template d'append
+        if cursor:
+            resp = templates.TemplateResponse("partials/_answers_list_append.html", ctx)
+        else:
+            # Première recherche HTMX, template complet
+            resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
         return resp
 
     resp = templates.TemplateResponse("search/answers.html", ctx)

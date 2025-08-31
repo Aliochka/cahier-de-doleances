@@ -74,23 +74,6 @@ def author_detail(
             return RedirectResponse(url, status_code=308)
         return Response(status_code=200)
 
-    # Debug ciblé : ?debug=1 renvoie l'état DB vu par CE handler
-    if "debug" in request.query_params:
-        row = db.execute(
-            text("SELECT id, name FROM authors WHERE id = :aid"),
-            {"aid": author_id},
-        ).mappings().first()
-        return JSONResponse(
-            {
-                "aid": author_id,
-                "row_is_none": row is None,
-                "name": (row or {}).get("name") if row else None,
-                "requested_slug": slug,
-                "canonical": slugify(((row or {}).get("name") or f"Auteur #{author_id}") if row else f"Auteur #{author_id}", maxlen=60),
-            },
-            status_code=200 if row else 404,
-        )
-
     # GET normal
     q = (q or "").strip()
     offset = (page - 1) * PER_PAGE
@@ -274,24 +257,3 @@ def author_detail_legacy(
         url += f"?page={page}"
     return RedirectResponse(url, status_code=308)
 
-
-# =========================================================
-# 3) DEBUG TEMPORAIRE — état DB pour un auteur donné
-#    (à retirer une fois tout OK)
-# =========================================================
-@router.get("/debug/author/{aid:int}")
-def debug_author(aid: int):
-    with SessionLocal() as db:
-        row = db.execute(text("SELECT id, name FROM authors WHERE id=:aid"), {"aid": aid}).mappings().first()
-        if not row:
-            return JSONResponse({"aid": aid, "found": False}, status_code=404)
-        name = row["name"]
-        return JSONResponse(
-            {
-                "aid": aid,
-                "found": True,
-                "name": name,
-                "canonical_slug": slugify(name or f"Auteur #{aid}"),
-            },
-            status_code=200,
-        )

@@ -1,0 +1,17 @@
+{# Template pour l'infinite scroll - seulement les nouvelles réponses #}
+{% for a in answers %}
+  {% include "answers/_card.html" with context %}
+{% endfor %}
+
+{% if has_next and next_cursor %}
+  <div class="search-load-more-sentinel"
+       hx-get="{{ url_for('search_answers') }}?q={{ q|default('')|urlencode }}&cursor={{ next_cursor|urlencode }}&partial=1"
+       hx-trigger="intersect once"
+       hx-target="#answers-list"
+       hx-swap="beforeend">
+    <div class="list-loader">
+      <div class="loader" title="Chargement des réponses suivantes…"></div>
+      <span style="margin-left: var(--space-2); color: var(--muted);">Chargement…</span>
+    </div>
+  </div>
+{% endif %}
