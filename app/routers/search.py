@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import base64
+import binascii
 import hashlib
 import datetime
 from typing import Any
@@ -24,15 +25,12 @@ router = APIRouter()
 def get_cache_key(query: str = "", cursor: str = "") -> str:
     """Generate cache key for search query"""
     if not query.strip():
-        return f"timeline:{cursor}" if cursor else "timeline"
+        return f"search::{cursor}" if cursor else "search::"
     
     # Normalize query for consistent caching
     normalized_query = query.strip().lower()
-    key_base = f"search:{normalized_query}"
+    key_base = f"search:{normalized_query}:{cursor}"
     
-    if cursor:
-        key_base += f":{cursor}"
-        
     return key_base
 
 
@@ -152,9 +150,13 @@ def _enc_cursor(obj: dict) -> str:
 def _dec_cursor(s: str | None) -> dict | None:
     if not s:
         return None
-    pad = "=" * ((4 - len(s) % 4) % 4)
-    data = base64.urlsafe_b64decode(s + pad)
-    return json.loads(data.decode())
+    try:
+        pad = "=" * ((4 - len(s) % 4) % 4)
+        data = base64.urlsafe_b64decode(s + pad)
+        return json.loads(data.decode())
+    except (ValueError, json.JSONDecodeError, UnicodeDecodeError, binascii.Error):
+        # Return None for invalid cursors instead of crashing
+        return None
 
 # --- helpers UI ---
 def _clean_snippet(s: str, maxlen: int) -> tuple[str, bool]:

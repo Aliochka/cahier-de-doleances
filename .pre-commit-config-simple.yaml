@@ -1,0 +1,29 @@
+# .pre-commit-config-simple.yaml (working version)
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: ^.github/
+      - id: check-added-large-files
+      - id: check-merge-conflict
+  
+  - repo: local
+    hooks:
+      - id: pytest-critical
+        name: Critical Tests
+        entry: python
+        language: python
+        args: [scripts/run_tests.py, --critical]
+        pass_filenames: false
+        always_run: true
+        stages: [commit]
+        
+      - id: basic-syntax-check
+        name: Basic Python Syntax
+        entry: python -m py_compile
+        language: python
+        files: \.py$
+        pass_filenames: true

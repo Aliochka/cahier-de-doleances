@@ -29,8 +29,8 @@ def _normalize_psycopg2(url: Optional[str]) -> str:
 
 
 def _pick_db_url() -> str:
-    # Priorité : DATABASE_URL > SCALINGO_POSTGRESQL_URL > fallback local sqlite
-    raw = os.getenv("DATABASE_URL") or os.getenv("SCALINGO_POSTGRESQL_URL")
+    # Priorité : TEST_DATABASE_URL > DATABASE_URL > SCALINGO_POSTGRESQL_URL > fallback local sqlite
+    raw = os.getenv("TEST_DATABASE_URL") or os.getenv("DATABASE_URL") or os.getenv("SCALINGO_POSTGRESQL_URL")
     normalized = _normalize_psycopg2(raw)
     return normalized or "sqlite:///./app_local.db"
 

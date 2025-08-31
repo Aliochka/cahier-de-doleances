@@ -4,6 +4,7 @@ from __future__ import annotations
 import math
 import json
 import base64
+import binascii
 from typing import Any
 from fastapi import APIRouter, Request, Query, Depends, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse, Response, JSONResponse
@@ -44,9 +45,13 @@ def _enc_cursor(obj: dict) -> str:
 def _dec_cursor(s: str | None) -> dict | None:
     if not s:
         return None
-    pad = "=" * ((4 - len(s) % 4) % 4)
-    data = base64.urlsafe_b64decode(s + pad)
-    return json.loads(data.decode())
+    try:
+        pad = "=" * ((4 - len(s) % 4) % 4)
+        data = base64.urlsafe_b64decode(s + pad)
+        return json.loads(data.decode())
+    except (ValueError, json.JSONDecodeError, UnicodeDecodeError, binascii.Error):
+        # Return None for invalid cursors instead of crashing
+        return None
 
 def get_db():
     db = SessionLocal()
@@ -107,9 +112,9 @@ def question_detail(
     if slug != canonical_slug:
         url = request.url_for("question_detail", question_id=question_id, slug=canonical_slug)
         if q:
-            url += f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
+            url = str(url) + f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
         elif page and page != 1:
-            url += f"?page={page}"
+            url = str(url) + f"?page={page}"
         return RedirectResponse(url, status_code=308)
 
     # --- Scroll infini + filtre
