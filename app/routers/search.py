@@ -93,8 +93,10 @@ def search_answers(
                         a.contribution_id,
                         ROUND(ts_rank(a.text_tsv, s.tsq)::numeric, 6)::float AS score,
                         a.text
-                      FROM answers a, s
+                      FROM answers a
+                      JOIN questions qq ON qq.id = a.question_id, s
                       WHERE a.text_tsv @@ s.tsq
+                        AND qq.type NOT IN ('single_choice', 'multi_choice')
                     )
                     SELECT
                         ranked.id               AS answer_id,
@@ -103,17 +105,11 @@ def search_answers(
                         c.author_id             AS author_id,
                         c.submitted_at          AS submitted_at,
                         ranked.score            AS score,
-                        ts_headline('fr_unaccent',
-                            LEFT(ranked.text, :maxlen),
-                            s.tsq,
-                            'StartSel=<mark>, StopSel=</mark>, MaxFragments=2, MaxWords=18'
-                        ) AS answer_snippet,
                         LEFT(ranked.text, :maxlen) AS answer_text
                     FROM ranked
                     JOIN contributions c ON c.id = ranked.contribution_id
-                    JOIN questions     qq ON qq.id = ranked.question_id,
-                    s
-                    WHERE qq.type NOT IN ('single_choice', 'multi_choice')
+                    JOIN questions     qq ON qq.id = ranked.question_id
+                    WHERE 1=1
                     {cursor_sql}
                     ORDER BY ranked.score DESC, ranked.id DESC
                     LIMIT :limit
@@ -131,10 +127,9 @@ def search_answers(
 
         # build output
         for r in rows:
-            body = (r["answer_snippet"] or "").strip()
-            if not body:
-                raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
-                body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
+            # Générer le snippet seulement ici (pas dans SQL)
+            raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
+            body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
             body = postprocess_excerpt(body)
             q_title = r["question_prompt"]
             answers.append(
