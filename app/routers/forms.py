@@ -29,9 +29,16 @@ def invalidate_dashboard_cache(db, form_id: int):
 def form_detail(
     request: Request,
     form_id: int,
-    contrib: int | None = Query(1, ge=1, description="Index (1..M) de la contribution à afficher"),
+    contrib: str | None = Query("1", description="Index (1..M) de la contribution à afficher"),
 ):
-    contrib = contrib or 1
+    # Parse contrib parameter manually to handle invalid values gracefully
+    contrib_int = 1  # default
+    if contrib:
+        try:
+            contrib_int = int(contrib)
+        except (ValueError, TypeError):
+            contrib_int = 1  # fallback for invalid values like "invalid"
+    contrib_int = max(1, contrib_int)  # clamp to minimum 1
 
     with SessionLocal() as db:
         # 1) Infos formulaire + questions (ordre)
@@ -74,7 +81,7 @@ def form_detail(
 
         total_contribs = row_counts["total"] if row_counts else 0
 
-        contrib_idx = max(1, min(contrib, max(total_contribs, 1)))  # clamp 1..M (si 0, on force à 1)
+        contrib_idx = max(1, min(contrib_int, max(total_contribs, 1)))  # clamp 1..M (si 0, on force à 1)
 
         # ID de la contribution k (ordre stable submitted_at ASC, id ASC)
         row_contrib = db.execute(

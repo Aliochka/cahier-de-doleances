@@ -28,6 +28,8 @@ def test_engine():
             # Test connection
             with engine.connect() as conn:
                 conn.execute(text("SELECT 1"))
+            # Create schema for PostgreSQL
+            Base.metadata.create_all(bind=engine)
             return engine
         except Exception as e:
             print(f"\n⚠️  Test database connection failed: {e}")
@@ -75,7 +77,7 @@ def client(test_db):
 @pytest.fixture
 def sample_data(test_db):
     """Create sample data for tests"""
-    from app.models import Form, Question, Option, Author, Contribution, Answer
+    from app.models import Form, Question, Option, Author, Contribution, Answer, AnswerOption
     
     # Create form
     form = Form(name="Test Form", version="1.0", source="test")
@@ -132,17 +134,17 @@ def sample_data(test_db):
     test_db.flush()
     
     # Create answers
-    # Single choice answers
+    # Single choice answers (no text, will use AnswerOption relations)
     answer1 = Answer(
         contribution_id=contrib1.id,
         question_id=q1.id,
-        text="Rouge",
+        text="",  # Empty text for single_choice, relation via AnswerOption
         position=1
     )
     answer2 = Answer(
         contribution_id=contrib2.id,
         question_id=q1.id,
-        text="Bleu", 
+        text="", 
         position=1
     )
     
@@ -161,6 +163,13 @@ def sample_data(test_db):
     )
     
     test_db.add_all([answer1, answer2, answer3, answer4])
+    test_db.flush()
+    
+    # Create AnswerOption relations for single_choice answers
+    answer_opt1 = AnswerOption(answer_id=answer1.id, option_id=opt1.id)  # answer1 -> Rouge
+    answer_opt2 = AnswerOption(answer_id=answer2.id, option_id=opt2.id)  # answer2 -> Bleu
+    test_db.add_all([answer_opt1, answer_opt2])
+    
     test_db.commit()
     
     return {

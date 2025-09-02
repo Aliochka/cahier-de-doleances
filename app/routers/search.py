@@ -65,6 +65,8 @@ def track_search_query(db, query: str):
         return  # Don't track timeline
         
     normalized_query = query.strip().lower()
+    # Truncate query to fit database column (varchar(255))
+    truncated_query = normalized_query[:255]
     
     try:
         # Upsert search stats
@@ -77,7 +79,7 @@ def track_search_query(db, query: str):
                     search_count = search_stats.search_count + 1,
                     last_searched = NOW()
             """),
-            {"query": normalized_query}
+            {"query": truncated_query}
         )
         # Don't commit here - let the session context manager handle it
     except Exception:
@@ -255,11 +257,13 @@ def search_answers(
                         fr.question_prompt  AS question_prompt,
                         c.author_id         AS author_id,
                         c.submitted_at      AS submitted_at,
+                        au.name             AS author_name,
                         LEFT(fr.text, :maxlen) AS answer_text,
                         ts_headline('fr_unaccent', LEFT(fr.text, :maxlen), s.tsq, 
                                    'StartSel=<mark>, StopSel=</mark>, MaxWords=60, MinWords=40') AS highlighted_text
                     FROM filtered_results fr
-                    JOIN contributions c ON c.id = fr.contribution_id, s
+                    JOIN contributions c ON c.id = fr.contribution_id
+                    LEFT JOIN authors au ON au.id = c.author_id, s
                     WHERE 1=1
                     {cursor_sql}
                     ORDER BY fr.id DESC
@@ -293,6 +297,7 @@ def search_answers(
                 {
                     "id": r["answer_id"],
                     "author_id": r["author_id"],
+                    "author_name": r["author_name"],
                     "question_id": r["question_id"],
                     "question_title": q_title,
                     "question_slug": slugify(q_title or f"question-{r['question_id']}"),
@@ -318,10 +323,12 @@ def search_answers(
                         a.question_id   AS question_id,
                         q.prompt        AS question_prompt,
                         c.author_id     AS author_id,
-                        c.submitted_at  AS submitted_at
+                        c.submitted_at  AS submitted_at,
+                        au.name         AS author_name
                     FROM answers a
                     JOIN contributions c ON c.id = a.contribution_id
                     JOIN questions     q ON q.id = a.question_id
+                    LEFT JOIN authors au ON au.id = c.author_id
                     WHERE a.text IS NOT NULL
                       AND char_length(btrim(a.text)) >= :min_len
                       AND q.type NOT IN ('single_choice', 'multi_choice')
@@ -348,6 +355,7 @@ def search_answers(
                 {
                     "id": r["answer_id"],
                     "author_id": r["author_id"],
+                    "author_name": r["author_name"],
                     "question_id": r["question_id"],
                     "question_title": q_title,
                     "question_slug": slugify(q_title or f"question-{r['question_id']}"),
