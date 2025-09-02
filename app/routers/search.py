@@ -49,14 +49,16 @@ def get_search_popularity(db, query: str) -> int:
 
 def get_cache_ttl_minutes(popularity: int) -> int:
     """Get TTL in minutes based on query popularity"""
-    if popularity >= 100:
-        return 30  # Very popular: 30 minutes
+    if popularity >= 1000:
+        return 60  # Timeline: 1 hour (était 30min)
+    elif popularity >= 100:
+        return 45  # Very popular: 45 minutes (était 30min)
     elif popularity >= 20:
-        return 15  # Popular: 15 minutes  
+        return 30  # Popular: 30 minutes (était 15min)
     elif popularity >= 5:
-        return 5   # Medium: 5 minutes
+        return 15  # Medium: 15 minutes (était 5min)
     else:
-        return 0   # Rare: no cache
+        return 5   # Rare: 5 minutes cache (était 0 = no cache)
 
 
 def track_search_query(db, query: str):
@@ -204,18 +206,25 @@ def search_answers(
         
         cached_results = get_cached_results(db, cache_key, ttl_minutes)
         if cached_results:
-            # Cache hit! Return cached results
-            return templates.TemplateResponse(
-                "search/answers.html",
-                {
-                    "request": request,
-                    "q": q,
-                    "answers": cached_results["answers"],
-                    "has_next": cached_results["has_next"],
-                    "next_cursor": cached_results.get("next_cursor"),
-                    "search_mode": "answers"
-                }
-            )
+            # Cache hit! Return cached results avec le bon template (partiel ou complet)
+            ctx_cached = {
+                "request": request,
+                "q": q,
+                "answers": cached_results["answers"],
+                "has_next": cached_results["has_next"],
+                "next_cursor": cached_results.get("next_cursor"),
+                "search_mode": "answers"
+            }
+            
+            # Détection HTMX pour cache hit aussi
+            is_htmx_cached = partial or "HX-Request" in request.headers
+            if is_htmx_cached:
+                if cursor:
+                    return templates.TemplateResponse("partials/_answers_list_append.html", ctx_cached)
+                else:
+                    return templates.TemplateResponse("partials/_answers_list.html", ctx_cached)
+            
+            return templates.TemplateResponse("search/answers.html", ctx_cached)
 
         # Initialize variables for both modes
         rows = []
@@ -243,6 +252,8 @@ def search_answers(
                       FROM answers a, s
                       WHERE a.text_tsv @@ s.tsq
                         AND char_length(btrim(a.text)) >= 60
+                      ORDER BY a.id DESC
+                      LIMIT 1789  -- Limite les matches FTS (année de la Révolution française) 🇫🇷
                     ),
                     filtered_results AS (
                       SELECT fm.id, fm.question_id, fm.contribution_id, fm.text, qq.prompt AS question_prompt
@@ -317,23 +328,29 @@ def search_answers(
             rows = db.execute(
                 text(
                     f"""
+                    WITH recent_answers AS (
+                        SELECT a.id, a.text, a.question_id, c.id as contribution_id, c.author_id, c.submitted_at
+                        FROM answers a
+                        JOIN contributions c ON c.id = a.contribution_id
+                        WHERE a.text IS NOT NULL
+                          AND char_length(btrim(a.text)) >= :min_len
+                          {cursor_sql}
+                        ORDER BY a.id DESC
+                        LIMIT 1789  -- Limite à 1789 réponses récentes (année de la Révolution française) 🇫🇷
+                    )
                     SELECT
-                        a.id            AS answer_id,
-                        LEFT(a.text, :max_text) AS answer_text,
-                        a.question_id   AS question_id,
+                        ra.id           AS answer_id,
+                        LEFT(ra.text, :max_text) AS answer_text,
+                        ra.question_id  AS question_id,
                         q.prompt        AS question_prompt,
-                        c.author_id     AS author_id,
-                        c.submitted_at  AS submitted_at,
+                        ra.author_id    AS author_id,
+                        ra.submitted_at AS submitted_at,
                         au.name         AS author_name
-                    FROM answers a
-                    JOIN contributions c ON c.id = a.contribution_id
-                    JOIN questions     q ON q.id = a.question_id
-                    LEFT JOIN authors au ON au.id = c.author_id
-                    WHERE a.text IS NOT NULL
-                      AND char_length(btrim(a.text)) >= :min_len
-                      AND q.type NOT IN ('single_choice', 'multi_choice')
-                      {cursor_sql}
-                    ORDER BY a.id DESC
+                    FROM recent_answers ra
+                    JOIN questions q ON q.id = ra.question_id
+                    LEFT JOIN authors au ON au.id = ra.author_id
+                    WHERE q.type NOT IN ('single_choice', 'multi_choice')
+                    ORDER BY ra.id DESC
                     LIMIT :limit
                     """
                 ),

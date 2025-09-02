@@ -18,8 +18,8 @@ def test_cache_functions_import():
     """Test that we can import cache functions"""
     from app.routers.search import get_cache_ttl_minutes, get_cache_key
     
-    # Test basic functionality
-    assert get_cache_ttl_minutes(1) == 0
+    # Test basic functionality  
+    assert get_cache_ttl_minutes(1) == 5  # Now caches rare queries for 5 min
     assert get_cache_key("test", "cursor") == "search:test:cursor"
 
 
@@ -28,11 +28,12 @@ def test_cache_logic_only():
     """Test cache logic without database"""
     from app.routers.search import get_cache_ttl_minutes
     
-    # Test the TTL logic
-    assert get_cache_ttl_minutes(1) == 0      # No cache for rare (< 5)
-    assert get_cache_ttl_minutes(5) == 5      # 5 min for medium (5-19) 
-    assert get_cache_ttl_minutes(20) == 15    # 15 min for popular (20-99)
-    assert get_cache_ttl_minutes(100) == 30   # 30 min for very popular (100+)
+    # Test the TTL logic (optimized for production)
+    assert get_cache_ttl_minutes(1) == 5      # 5 min cache for rare (< 5) - optimized
+    assert get_cache_ttl_minutes(5) == 15     # 15 min for medium (5-19) - increased
+    assert get_cache_ttl_minutes(20) == 30    # 30 min for popular (20-99) - increased
+    assert get_cache_ttl_minutes(100) == 45   # 45 min for very popular (100-999) - increased
+    assert get_cache_ttl_minutes(1000) == 60  # 1 hour for timeline (1000+) - new
 
 
 @pytest.mark.scroll

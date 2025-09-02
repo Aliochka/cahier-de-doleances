@@ -17,15 +17,16 @@ class TestCacheIntelligence:
     """Tests for intelligent caching system"""
     
     def test_popularity_based_ttl(self, test_db, cache_test_data):
-        """Test TTL calculation based on search popularity"""
-        # Test different popularity levels according to actual implementation
-        assert get_cache_ttl_minutes(1) == 0      # No cache for rare queries (< 5)
-        assert get_cache_ttl_minutes(4) == 0      # Still no cache  
-        assert get_cache_ttl_minutes(5) == 5      # 5 min for medium popularity (5-19)
-        assert get_cache_ttl_minutes(10) == 5     # Still 5 min
-        assert get_cache_ttl_minutes(20) == 15    # 15 min for popular (20-99)
-        assert get_cache_ttl_minutes(50) == 15    # Still 15 min
-        assert get_cache_ttl_minutes(100) == 30   # 30 min for very popular (100+)
+        """Test TTL calculation based on search popularity - optimized for production"""
+        # Test different popularity levels according to optimized implementation
+        assert get_cache_ttl_minutes(1) == 5      # 5 min cache for rare queries - optimized!
+        assert get_cache_ttl_minutes(4) == 5      # Still 5 min  
+        assert get_cache_ttl_minutes(5) == 15     # 15 min for medium popularity (5-19) - increased
+        assert get_cache_ttl_minutes(10) == 15    # Still 15 min
+        assert get_cache_ttl_minutes(20) == 30    # 30 min for popular (20-99) - increased
+        assert get_cache_ttl_minutes(50) == 30    # Still 30 min
+        assert get_cache_ttl_minutes(100) == 45   # 45 min for very popular (100-999) - increased
+        assert get_cache_ttl_minutes(1000) == 60  # 1 hour for timeline (1000+) - new
     
     def test_search_popularity_tracking(self, test_db):
         """Test search query popularity tracking"""
