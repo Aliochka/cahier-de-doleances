@@ -332,11 +332,13 @@ def search_answers(
                         SELECT a.id, a.text, a.question_id, c.id as contribution_id, c.author_id, c.submitted_at
                         FROM answers a
                         JOIN contributions c ON c.id = a.contribution_id
+                        JOIN questions q ON q.id = a.question_id
                         WHERE a.text IS NOT NULL
                           AND char_length(btrim(a.text)) >= :min_len
+                          AND q.type NOT IN ('single_choice', 'multi_choice')  -- ✅ Filtre AVANT LIMIT pour éviter 0 résultats
                           {cursor_sql}
                         ORDER BY a.id DESC
-                        LIMIT 1789  -- Limite à 1789 réponses récentes (année de la Révolution française) 🇫🇷
+                        LIMIT 1789  -- Limite à 1789 réponses récentes filtrées (année de la Révolution française) 🇫🇷
                     )
                     SELECT
                         ra.id           AS answer_id,
@@ -349,7 +351,6 @@ def search_answers(
                     FROM recent_answers ra
                     JOIN questions q ON q.id = ra.question_id
                     LEFT JOIN authors au ON au.id = ra.author_id
-                    WHERE q.type NOT IN ('single_choice', 'multi_choice')
                     ORDER BY ra.id DESC
                     LIMIT :limit
                     """
