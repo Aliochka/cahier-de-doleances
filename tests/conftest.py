@@ -18,26 +18,22 @@ def test_engine():
     """Create test database engine with PostgreSQL"""
     import os
     
-    # Try Docker test database first, then fallback to SQLite
     test_db_url = os.getenv("TEST_DATABASE_URL")
+    if not test_db_url:
+        raise RuntimeError(
+            "TEST_DATABASE_URL environment variable is required. "
+            "Please set it to your PostgreSQL test database URL, e.g.:\n"
+            "export TEST_DATABASE_URL='postgresql:///test_cahier_doleances'"
+        )
     
-    if test_db_url:
-        try:
-            print(f"🐳 Using test database: {test_db_url}")
-            engine = create_engine(test_db_url, echo=False)
-            # Test connection
-            with engine.connect() as conn:
-                conn.execute(text("SELECT 1"))
-            # Create schema for PostgreSQL
-            Base.metadata.create_all(bind=engine)
-            return engine
-        except Exception as e:
-            print(f"\n⚠️  Test database connection failed: {e}")
-            print("🔄 Falling back to SQLite...")
+    print(f"🐳 Using PostgreSQL test database: {test_db_url}")
+    engine = create_engine(test_db_url, echo=False)
     
-    # Fallback to SQLite (compatible with basic tests)
-    print("📝 Using SQLite for basic tests")
-    engine = create_engine("sqlite:///:memory:", echo=False)
+    # Test connection
+    with engine.connect() as conn:
+        conn.execute(text("SELECT 1"))
+    
+    # Create schema
     Base.metadata.create_all(bind=engine)
     return engine
 

@@ -13,10 +13,9 @@ from sqlalchemy.orm import sessionmaker
 
 def _normalize_psycopg2(url: Optional[str]) -> str:
     """
-    Normalise une URL Postgres pour SQLAlchemy avec psycopg2-binary.
+    Normalise une URL PostgreSQL pour SQLAlchemy avec psycopg2-binary.
     - postgres://...         -> postgresql+psycopg2://...
     - postgresql://...       -> postgresql+psycopg2://... (si pas déjà +psycopg*)
-    - laisse les autres schémas inchangés (sqlite://, etc.)
     """
     if not url:
         return ""
@@ -29,27 +28,27 @@ def _normalize_psycopg2(url: Optional[str]) -> str:
 
 
 def _pick_db_url() -> str:
-    # Priorité : TEST_DATABASE_URL > DATABASE_URL > SCALINGO_POSTGRESQL_URL > fallback local sqlite
+    # Priorité : TEST_DATABASE_URL > DATABASE_URL > SCALINGO_POSTGRESQL_URL
     raw = os.getenv("TEST_DATABASE_URL") or os.getenv("DATABASE_URL") or os.getenv("SCALINGO_POSTGRESQL_URL")
     normalized = _normalize_psycopg2(raw)
-    return normalized or "sqlite:///./app_local.db"
+    if not normalized:
+        raise RuntimeError(
+            "No database URL found. Please set one of:\n"
+            "- DATABASE_URL for production\n" 
+            "- TEST_DATABASE_URL for testing\n"
+            "- SCALINGO_POSTGRESQL_URL for Scalingo deployment"
+        )
+    return normalized
 
 
 DB_URL = _pick_db_url()
 
-# Création de l'engine (adaptation pour SQLite)
-if DB_URL.startswith("sqlite"):
-    engine = create_engine(
-        DB_URL,
-        connect_args={"check_same_thread": False},
-        pool_pre_ping=True,
-    )
-else:
-    engine = create_engine(
-        DB_URL,
-        pool_pre_ping=True,
-        pool_recycle=300,  # évite les connexions zombies en PaaS
-    )
+# PostgreSQL engine configuration
+engine = create_engine(
+    DB_URL,
+    pool_pre_ping=True,
+    pool_recycle=300,  # évite les connexions zombies en PaaS
+)
 
 SessionLocal = sessionmaker(
     bind=engine, autocommit=False, autoflush=False, expire_on_commit=False
