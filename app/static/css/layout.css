@@ -188,3 +188,27 @@ main.container {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
   margin-top: 0;
 }
+
+/* ---------- Auto-hide header on scroll ---------- */
+#main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+#main-header.header-hidden {
+  transform: translateY(-100%);
+}
+
+#main-header.header-visible {
+  transform: translateY(0);
+}
+
+/* Add padding to body to compensate for fixed header */
+body {
+  padding-top: 64px; /* hauteur du header */
+}
