@@ -243,41 +243,30 @@ def search_answers(
             # Augmenter work_mem pour cette session seulement
             db.execute(text("SET work_mem = '32MB'"))
             
+            # Requête FTS simplifiée et optimisée
             rows = db.execute(
                 text(
                     f"""
-                    WITH s AS (SELECT websearch_to_tsquery('fr_unaccent', :q) AS tsq),
-                    fts_matches AS (
-                      SELECT a.id, a.question_id, a.contribution_id, a.text
-                      FROM answers a, s
-                      WHERE a.text_tsv @@ s.tsq
-                        AND char_length(btrim(a.text)) >= 60
-                      ORDER BY a.id DESC
-                      LIMIT 1789  -- Limite les matches FTS (année de la Révolution française) 🇫🇷
-                    ),
-                    filtered_results AS (
-                      SELECT fm.id, fm.question_id, fm.contribution_id, fm.text, qq.prompt AS question_prompt
-                      FROM fts_matches fm
-                      JOIN questions qq ON qq.id = fm.question_id
-                      WHERE qq.type NOT IN ('single_choice', 'multi_choice')
-                      ORDER BY fm.id DESC
-                    )
                     SELECT
-                        fr.id               AS answer_id,
-                        fr.question_id      AS question_id,
-                        fr.question_prompt  AS question_prompt,
+                        a.id                AS answer_id,
+                        a.question_id       AS question_id,
+                        q.prompt            AS question_prompt,
                         c.author_id         AS author_id,
                         c.submitted_at      AS submitted_at,
                         au.name             AS author_name,
-                        LEFT(fr.text, :maxlen) AS answer_text,
-                        ts_headline('fr_unaccent', LEFT(fr.text, :maxlen), s.tsq, 
+                        LEFT(a.text, :maxlen) AS answer_text,
+                        ts_headline('fr_unaccent', LEFT(a.text, :maxlen), 
+                                   websearch_to_tsquery('fr_unaccent', :q), 
                                    'StartSel=<mark>, StopSel=</mark>, MaxWords=60, MinWords=40') AS highlighted_text
-                    FROM filtered_results fr
-                    JOIN contributions c ON c.id = fr.contribution_id
-                    LEFT JOIN authors au ON au.id = c.author_id, s
-                    WHERE 1=1
-                    {cursor_sql}
-                    ORDER BY fr.id DESC
+                    FROM answers a
+                    JOIN questions q ON q.id = a.question_id
+                    JOIN contributions c ON c.id = a.contribution_id
+                    LEFT JOIN authors au ON au.id = c.author_id
+                    WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
+                      AND char_length(btrim(a.text)) >= 60
+                      AND q.type NOT IN ('single_choice', 'multi_choice')
+                      {cursor_sql}
+                    ORDER BY a.id DESC
                     LIMIT :limit
                     """
                 ),
