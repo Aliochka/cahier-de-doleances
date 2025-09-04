@@ -255,8 +255,8 @@ def search_answers(
                             FROM answers a
                             WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
                               AND char_length(btrim(a.text)) >= 60
-                            ORDER BY a.id DESC  
-                            LIMIT 200
+                            ORDER BY a.id DESC
+                            LIMIT 1789
                         )
                         SELECT
                             fm.id               AS answer_id,
