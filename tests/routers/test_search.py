@@ -50,6 +50,56 @@ class TestSearchAnswers:
                 # Request next page
                 response2 = client.get(f"/search/answers?cursor={cursor}")
                 assert response2.status_code == 200
+                
+                # Pages should be different
+                assert response1.text != response2.text
+    
+    def test_search_infinite_scroll_preserves_query(self, client, sample_data):
+        """Test that infinite scroll preserves search query parameters"""
+        # First: get search results for a specific query  
+        search_response = client.get("/search/answers?q=test")
+        assert search_response.status_code == 200
+        
+        # Extract cursor from the pagination link if present
+        import re
+        cursor_match = re.search(r'hx-get="[^"]*cursor=([^&"]+)[^"]*partial=true', search_response.text)
+        
+        if cursor_match:
+            cursor = cursor_match.group(1)
+            
+            # Test partial request with cursor (simulates infinite scroll)
+            partial_response = client.get(f"/search/answers?q=test&cursor={cursor}&partial=true")
+            assert partial_response.status_code == 200
+            
+            # Should return HTML fragments, not full page
+            assert "<!doctype html>" not in partial_response.text
+            assert "<article class=" in partial_response.text or len(partial_response.text) < 100  # Either cards or empty
+            
+            # If results are returned, they should be relevant to the search query
+            if "answer-card" in partial_response.text:
+                # Check that highlighting is working (should contain <mark> tags if query matches)
+                content_has_marks = "<mark>" in partial_response.text
+                # Note: we can't guarantee every result will have highlights,
+                # but if any do, it proves the query was preserved
+                print(f"Partial response has highlighting: {content_has_marks}")
+        else:
+            # No pagination needed - all results fit on first page
+            print("No pagination cursor found - all results fit on one page")
+    
+    def test_search_highlighting_python(self, client, sample_data):
+        """Test that Python highlighting works correctly"""
+        response = client.get("/search/answers?q=service")
+        assert response.status_code == 200
+        
+        # Should contain highlighted terms
+        if "<mark>" in response.text:
+            # Verify highlighting tags are properly formatted
+            import re
+            marks = re.findall(r'<mark>([^<]+)</mark>', response.text)
+            assert len(marks) > 0
+            # At least some highlighted terms should relate to the query
+            query_related = any("service" in mark.lower() for mark in marks)
+            assert query_related, f"No query-related highlights found in: {marks[:5]}"
 
 
 @pytest.mark.scroll

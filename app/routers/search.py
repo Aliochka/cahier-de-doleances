@@ -25,11 +25,13 @@ router = APIRouter()
 def get_cache_key(query: str = "", cursor: str = "") -> str:
     """Generate cache key for search query"""
     if not query.strip():
-        return f"search::{cursor}" if cursor else "search::"
+        return f"search:timeline:{cursor}" if cursor else "search:timeline:"
     
-    # Normalize query for consistent caching
+    # Normalize query for consistent caching  
     normalized_query = query.strip().lower()
-    key_base = f"search:{normalized_query}:{cursor}"
+    # Différencier FTS vs Timeline dans la clé de cache
+    mode = "fts" if len(normalized_query) >= 2 else "timeline"
+    key_base = f"search:{mode}:{normalized_query}:{cursor}"
     
     return key_base
 
@@ -186,6 +188,7 @@ def search_answers(
     partial: bool = Query(False),               # rendu fragment (htmx)
 ):
     q = (q or "").strip()
+    
 
     answers: list[dict[str, Any]] = []
     has_next = False
@@ -237,7 +240,7 @@ def search_answers(
             params = {"q": q, "limit": limit, "maxlen": MAX_TEXT_LEN}
             cursor_sql = ""
             if cur:
-                cursor_sql = "AND fr.id < :last_id"
+                cursor_sql = "AND fm.id < :last_id"
                 params["last_id"] = int(cur.get("id", 0))
 
             # Optimisations PostgreSQL + timeout de sécurité
@@ -279,6 +282,7 @@ def search_answers(
                     params,
                 ).mappings().all()
                 
+                
             except Exception as e:
                 # Si timeout, fallback sur résultats vides
                 print(f"Search timeout for query '{q}': {e}")
@@ -289,39 +293,33 @@ def search_answers(
                 db.execute(text("SET statement_timeout = 0"))  
                 db.execute(text("SET enable_seqscan = true"))
 
-        # sentinelle + next_cursor  
-        if len(rows) == limit:
-            has_next = True
-            tail = rows[-1]
-            next_cursor = _enc_cursor({"id": tail["answer_id"]})
-            rows = rows[:-1]
+            # sentinelle + next_cursor pour FTS
+            if len(rows) == limit:
+                has_next = True
+                tail = rows[-1]
+                next_cursor = _enc_cursor({"id": tail["answer_id"]})
+                rows = rows[:-1]
 
-        # build output avec highlighting Python
-        for r in rows:
-            # Highlighting en Python sur le texte complet 
-            raw_text = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
-            
-            if len(q) >= 2:  # Appliquer le highlighting seulement si on a une vraie requête
+            # build output FTS avec highlighting Python
+            for r in rows:
+                # Highlighting en Python sur le texte complet 
+                raw_text = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
                 highlighted = highlight_text_python(raw_text, q, max_words=35, min_words=15)
                 body = postprocess_excerpt(highlighted)
-            else:
-                # Mode timeline : pas de highlighting
-                body, _ = _clean_snippet(raw_text, PREVIEW_MAXLEN)
-                body = postprocess_excerpt(body)
-                
-            q_title = r["question_prompt"]
-            answers.append(
-                {
-                    "id": r["answer_id"],
-                    "author_id": r["author_id"],
-                    "author_name": r["author_name"],
-                    "question_id": r["question_id"],
-                    "question_title": q_title,
-                    "question_slug": slugify(q_title or f"question-{r['question_id']}"),
-                    "created_at": r["submitted_at"],
-                    "body": body,
-                }
-            )
+                    
+                q_title = r["question_prompt"]
+                answers.append(
+                    {
+                        "id": r["answer_id"],
+                        "author_id": r["author_id"],
+                        "author_name": r["author_name"],
+                        "question_id": r["question_id"],
+                        "question_title": q_title,
+                        "question_slug": slugify(q_title or f"question-{r['question_id']}"),
+                        "created_at": r["submitted_at"],
+                        "body": body,
+                    }
+                )
 
         # --- Mode 2: timeline récente (q court ou vide)
         else:
