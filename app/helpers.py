@@ -2,6 +2,7 @@
 from __future__ import annotations
 import re
 import unicodedata
+from typing import List
 
 
 MAX_TEXT_LEN = 20_000
@@ -73,5 +74,73 @@ def slugify(value: str | None, maxlen: int = 60) -> str:
     if len(value) > maxlen:
         value = value[:maxlen].rstrip("-")
     return value or "contenu"
+
+
+def highlight_text_python(text: str, query: str, max_words: int = 35, min_words: int = 15) -> str:
+    """
+    Highlighting en Python, plus rapide que ts_headline de PostgreSQL
+    Trouve les mots de la requête dans le texte et les entoure de <mark>
+    """
+    if not text or not query.strip():
+        return text[:1000]  # Limite pour l'affichage
+    
+    # Nettoyer et préparer la requête
+    query_words = []
+    # Diviser la requête en mots individuels
+    for word in re.findall(r'\w+', query.lower()):
+        if len(word) >= 2:  # Ignorer les mots trop courts
+            query_words.append(word)
+    
+    if not query_words:
+        return text[:1000]
+    
+    # Trouver les positions de tous les matches dans le texte
+    matches = []
+    text_lower = text.lower()
+    
+    for word in query_words:
+        # Chercher toutes les occurrences de ce mot
+        for match in re.finditer(r'\b' + re.escape(word) + r'\w*\b', text_lower):
+            matches.append((match.start(), match.end(), word))
+    
+    if not matches:
+        return text[:1000]
+    
+    # Trier les matches par position
+    matches.sort(key=lambda x: x[0])
+    
+    # Trouver les meilleurs extraits autour des matches
+    extracts = []
+    
+    for start_pos, end_pos, word in matches[:3]:  # Max 3 extraits
+        # Trouver le début et la fin de l'extrait (par mots)
+        words_before = text[:start_pos].split()
+        words_after = text[end_pos:].split()
+        
+        # Prendre quelques mots avant et après
+        context_before = words_before[-10:] if len(words_before) >= 10 else words_before
+        context_after = words_after[:10] if len(words_after) >= 10 else words_after
+        
+        # Reconstituer l'extrait
+        extract_start = len(' '.join(words_before[:-len(context_before)])) if context_before != words_before else 0
+        extract_end = start_pos + len(' '.join(context_before)) + len(text[start_pos:end_pos]) + len(' '.join(context_after))
+        
+        extracts.append((extract_start, min(extract_end, len(text))))
+    
+    # Fusionner les extraits qui se chevauchent et créer le texte final
+    if extracts:
+        # Prendre le premier extrait pour simplifier
+        start, end = extracts[0]
+        excerpt = text[start:end]
+        
+        # Appliquer le highlighting sur cet extrait
+        highlighted = excerpt
+        for word in query_words:
+            pattern = r'\b(' + re.escape(word) + r'\w*)\b'
+            highlighted = re.sub(pattern, r'<mark>\1</mark>', highlighted, flags=re.IGNORECASE)
+        
+        return highlighted
+    
+    return text[:1000]
 
 

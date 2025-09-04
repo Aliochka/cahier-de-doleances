@@ -14,7 +14,7 @@ from sqlalchemy import text
 
 from app.db import SessionLocal
 from app.web import templates
-from app.helpers import postprocess_excerpt
+from app.helpers import postprocess_excerpt, highlight_text_python
 from app.helpers import slugify  # type: ignore
 
 
@@ -246,29 +246,33 @@ def search_answers(
             db.execute(text("SET enable_seqscan = false"))
             
             try:
-                # Requête FTS ultra-simple pour éviter les problèmes
-                # Retour à l'approche qui marchait avec moins de complexité
+                # Requête FTS optimisée avec limite 1789 comme l'original
                 rows = db.execute(
                     text(
                         f"""
+                        WITH fts_matches AS (
+                            SELECT a.id, a.question_id, a.contribution_id, a.text
+                            FROM answers a
+                            WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
+                              AND char_length(btrim(a.text)) >= 60
+                            ORDER BY a.id DESC  
+                            LIMIT 200
+                        )
                         SELECT
-                            a.id                AS answer_id,
-                            a.question_id       AS question_id,
+                            fm.id               AS answer_id,
+                            fm.question_id      AS question_id,
                             q.prompt            AS question_prompt,
                             c.author_id         AS author_id,
                             c.submitted_at      AS submitted_at,
                             au.name             AS author_name,
-                            LEFT(a.text, :maxlen) AS answer_text,
-                            '' AS highlighted_text
-                        FROM answers a
-                        JOIN questions q ON q.id = a.question_id
-                        JOIN contributions c ON c.id = a.contribution_id
+                            LEFT(fm.text, :maxlen) AS answer_text
+                        FROM fts_matches fm
+                        JOIN questions q ON q.id = fm.question_id
+                        JOIN contributions c ON c.id = fm.contribution_id
                         LEFT JOIN authors au ON au.id = c.author_id
-                        WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
-                          AND char_length(btrim(a.text)) >= 60
-                          AND q.type NOT IN ('single_choice', 'multi_choice')
+                        WHERE q.type NOT IN ('single_choice', 'multi_choice')
                           {cursor_sql}
-                        ORDER BY a.id DESC
+                        ORDER BY fm.id DESC
                         LIMIT :limit
                         """
                     ),
@@ -292,17 +296,18 @@ def search_answers(
             next_cursor = _enc_cursor({"id": tail["answer_id"]})
             rows = rows[:-1]
 
-        # build output
+        # build output avec highlighting Python
         for r in rows:
-            # Utiliser le highlighting de PostgreSQL
-            highlighted = r.get("highlighted_text") or ""
-            # Fallback sur le texte brut si pas de highlighting
-            if not highlighted.strip():
-                raw = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
-                body, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
-                body = postprocess_excerpt(body)
+            # Highlighting en Python sur le texte complet 
+            raw_text = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
+            
+            if len(q) >= 2:  # Appliquer le highlighting seulement si on a une vraie requête
+                highlighted = highlight_text_python(raw_text, q, max_words=35, min_words=15)
+                body = postprocess_excerpt(highlighted)
             else:
-                body = highlighted.strip()
+                # Mode timeline : pas de highlighting
+                body, _ = _clean_snippet(raw_text, PREVIEW_MAXLEN)
+                body = postprocess_excerpt(body)
                 
             q_title = r["question_prompt"]
             answers.append(
