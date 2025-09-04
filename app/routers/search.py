@@ -240,38 +240,50 @@ def search_answers(
                 cursor_sql = "AND fr.id < :last_id"
                 params["last_id"] = int(cur.get("id", 0))
 
-            # Augmenter work_mem pour cette session seulement
-            db.execute(text("SET work_mem = '32MB'"))
+            # Optimisations PostgreSQL + timeout de sécurité
+            db.execute(text("SET work_mem = '64MB'"))
+            db.execute(text("SET statement_timeout = '5000'"))  # 5 secondes MAX (au lieu de 30s+ par défaut)
+            db.execute(text("SET enable_seqscan = false"))
             
-            # Requête FTS simplifiée et optimisée
-            rows = db.execute(
-                text(
-                    f"""
-                    SELECT
-                        a.id                AS answer_id,
-                        a.question_id       AS question_id,
-                        q.prompt            AS question_prompt,
-                        c.author_id         AS author_id,
-                        c.submitted_at      AS submitted_at,
-                        au.name             AS author_name,
-                        LEFT(a.text, :maxlen) AS answer_text,
-                        ts_headline('fr_unaccent', LEFT(a.text, :maxlen), 
-                                   websearch_to_tsquery('fr_unaccent', :q), 
-                                   'StartSel=<mark>, StopSel=</mark>, MaxWords=60, MinWords=40') AS highlighted_text
-                    FROM answers a
-                    JOIN questions q ON q.id = a.question_id
-                    JOIN contributions c ON c.id = a.contribution_id
-                    LEFT JOIN authors au ON au.id = c.author_id
-                    WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
-                      AND char_length(btrim(a.text)) >= 60
-                      AND q.type NOT IN ('single_choice', 'multi_choice')
-                      {cursor_sql}
-                    ORDER BY a.id DESC
-                    LIMIT :limit
-                    """
-                ),
-                params,
-            ).mappings().all()
+            try:
+                # Requête FTS ultra-simple pour éviter les problèmes
+                # Retour à l'approche qui marchait avec moins de complexité
+                rows = db.execute(
+                    text(
+                        f"""
+                        SELECT
+                            a.id                AS answer_id,
+                            a.question_id       AS question_id,
+                            q.prompt            AS question_prompt,
+                            c.author_id         AS author_id,
+                            c.submitted_at      AS submitted_at,
+                            au.name             AS author_name,
+                            LEFT(a.text, :maxlen) AS answer_text,
+                            '' AS highlighted_text
+                        FROM answers a
+                        JOIN questions q ON q.id = a.question_id
+                        JOIN contributions c ON c.id = a.contribution_id
+                        LEFT JOIN authors au ON au.id = c.author_id
+                        WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
+                          AND char_length(btrim(a.text)) >= 60
+                          AND q.type NOT IN ('single_choice', 'multi_choice')
+                          {cursor_sql}
+                        ORDER BY a.id DESC
+                        LIMIT :limit
+                        """
+                    ),
+                    params,
+                ).mappings().all()
+                
+            except Exception as e:
+                # Si timeout, fallback sur résultats vides
+                print(f"Search timeout for query '{q}': {e}")
+                rows = []
+            
+            finally:
+                # Remettre les paramètres par défaut
+                db.execute(text("SET statement_timeout = 0"))  
+                db.execute(text("SET enable_seqscan = true"))
 
         # sentinelle + next_cursor  
         if len(rows) == limit:
