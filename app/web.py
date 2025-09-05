@@ -6,6 +6,7 @@ import json
 from datetime import date
 from decimal import Decimal
 from starlette.datastructures import URL
+from app.i18n import _, ngettext_template, get_current_language, LANGUAGES
 
 # Central Jinja2Templates instance for the whole app
 BASE_DIR = Path(__file__).resolve().parent
@@ -31,3 +32,9 @@ templates.env.filters["tojson"] = lambda v: json.dumps(
     v, ensure_ascii=False, separators=(",", ":"), default=_json_default
 )
 templates.env.globals["now"] = lambda: datetime.now(ZoneInfo("Europe/Paris"))
+
+# Add i18n functions to templates
+templates.env.globals["_"] = _
+templates.env.globals["ngettext"] = ngettext_template
+templates.env.globals["get_current_language"] = get_current_language
+templates.env.globals["LANGUAGES"] = LANGUAGES

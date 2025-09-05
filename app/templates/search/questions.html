@@ -2,6 +2,7 @@
 {% set PAGE_TITLE = q and ("Recherche questions : « " ~ q ~ " »") or "Recherche" %}
 {% set PAGE_DESCRIPTION = q and ("Résultats de recherche pour « " ~ q ~ " ». Parcourez les formulaires et les questions.") or "Parcourez les formulaires et les questions du Cahier de doléances." %}
 {% set on_questions_search = true %}
+{% set has_infinite_scroll = true %}
 
 {% block content %}
 <header class="page-header page-header--stack">
