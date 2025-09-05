@@ -5,12 +5,17 @@
     {% include "base/head_meta.html" %}
 
   </head>
-  <body class="theme-archive">
+  <body class="theme-archive{% if has_infinite_scroll %} has-infinite-scroll{% endif %}">
     <a class="skip-link" href="#main">Aller au contenu</a>
     {% include "base/header.html" %}
     <main id="main" class="container">
       {% block content %}{% endblock %}
     </main>
+    {% if has_infinite_scroll %}
+      {% include "base/floating_footer.html" %}
+    {% else %}
+      {% include "base/footer.html" %}
+    {% endif %}
     {% block jsonld %}{% endblock %}
   </body>
 </html>

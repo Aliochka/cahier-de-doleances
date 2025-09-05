@@ -14,6 +14,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
+from starlette.middleware.sessions import SessionMiddleware
 
 # Try Starlette first, fallback to Uvicorn (selon versions / stubs Pylance)
 try:
@@ -25,7 +26,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.exception_handlers import http_exception_handler as fastapi_http_exception_handler
 
 from app.web import templates
-from app.routers import pages, search, authors, questions, answers, seo, forms
+from app.routers import pages, search, authors, questions, answers, seo, forms, i18n
+from app.i18n import I18nMiddleware
 
 
 # -----------------------------------------------------------------------------
@@ -134,29 +136,31 @@ class TimeoutMiddleware(BaseHTTPMiddleware):
 # -----------------------------------------------------------------------------
 app = FastAPI()
 
-# 1) Faire confiance aux en-têtes du proxy (X-Forwarded-Proto/Host)
-app.add_middleware(ProxyHeadersMiddleware)
+# Middleware stack (executes in REVERSE order of addition)
 
-# 2) Forcer HTTPS & host canonique uniquement en prod
+# 1) I18n middleware (executes LAST - sees sessions)
+app.add_middleware(I18nMiddleware)
+
+# 2) Session middleware (executes BEFORE i18n - provides sessions)  
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key-change-in-production-very-important-security")
+app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY)
+
+# 3) Other middlewares (execute BEFORE sessions)
+app.add_middleware(SearchRobotsHeaderMiddleware)
+app.add_middleware(TimeoutMiddleware)
+app.add_middleware(GZipMiddleware, minimum_size=1024)
+
+# 4) Proxy and security (execute FIRST)
+app.add_middleware(ProxyHeadersMiddleware)
 if IS_PROD:
     app.add_middleware(HTTPSRedirectMiddleware)
     app.add_middleware(WwwRedirectMiddleware)
-
-# 3) TrustedHost : strict en prod, permissif en dev
+    
 if IS_PROD:
     allowed_hosts = list(ALLOWED_HOSTS_BASE) + [f"*.{CANONICAL_HOST.split('.', 1)[1]}"]
 else:
-    allowed_hosts = ["*"]  # plus simple pour le dev local
-
+    allowed_hosts = ["*"]
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
-
-# 4) Compression (utile pour sitemap, listes, etc.)
-app.add_middleware(GZipMiddleware, minimum_size=1024)
-
-# 5) Timeout middleware pour pages d'erreur personnalisées
-app.add_middleware(TimeoutMiddleware)
-
-app.add_middleware(SearchRobotsHeaderMiddleware)
 
 
 # -----------------------------------------------------------------------------
@@ -174,6 +178,7 @@ app.include_router(questions.router)
 app.include_router(answers.router)
 app.include_router(forms.router)
 app.include_router(seo.router)
+app.include_router(i18n.router)
 
 # -----------------------------------------------------------------------------
 # Exception handlers

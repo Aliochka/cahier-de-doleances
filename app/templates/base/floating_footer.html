@@ -1,8 +1,6 @@
-<footer class="site-footer">
+<footer id="floating-footer" class="floating-footer">
   <div class="container footer__inner">
-    <p>© {{ now().year }} — Cahier de doléances</p>
     <ul class="footer__links">
-      <li><a href="#" aria-disabled="true">Mentions légales</a></li>
       <li class="language-switcher">
         {% set current_lang = get_current_language(request) %}
         {% for lang_code, lang_name in LANGUAGES.items() %}

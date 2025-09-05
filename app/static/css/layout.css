@@ -63,6 +63,24 @@ main {
   background: var(--bg);
 }
 
+/* Language switcher */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.language-link {
+  font-size: 0.9em;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.language-link:hover {
+  opacity: 1;
+}
+
 /* ---------- Site footer ---------- */
 .site-footer {
   flex: 0 0 auto;
@@ -211,4 +229,45 @@ main.container {
 /* Add padding to body to compensate for fixed header */
 body {
   padding-top: 64px; /* hauteur du header */
+}
+
+/* ---------- Floating footer for infinite scroll pages ---------- */
+.floating-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.floating-footer.footer-visible {
+  transform: translateY(0);
+}
+
+.floating-footer .footer__inner {
+  padding: var(--space-3) 0;
+  justify-content: center;
+}
+
+.floating-footer .footer__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.floating-footer .footer__links li {
+  margin: 0;
+}
+
+/* Hide regular footer on infinite scroll pages */
+.has-infinite-scroll .site-footer {
+  display: none;
 }

@@ -4,27 +4,27 @@
 {% block content %}
 <section class="hero hero--center container--narrow">
   <h1 class="h1">Cahier de doléances</h1>
-  <h2 class="h2">Un pas de plus vers la révolution.</h1>
-  <p class="lead">Explorez les questions et des millions de réponses des contributions au grand débat.</p>
-   <p class="lead"> Et... bientôt les vôtres !</p>
+  <h2 class="h2">{{ _("Un pas de plus vers la révolution.", request) }}</h2>
+  <p class="lead">{{ _("Explorez les questions et des millions de réponses des contributions au grand débat.", request) }}</p>
+  <p class="lead">{{ _("Et... bientôt les vôtres !", request) }}</p>
 </section>
 
 {% if forms and forms|length %}
 <section class="grid grid--2 grid--narrow grid--center">
   <article class="card">
-    <h2 class="h2">Rechercher dans les questions</h2>
-    <p>Parcourez l’ensemble des questions du Grand Débat.</p>
-    <a class="btn btn--secondary" href="{{ url_for('search_questions') }}">Chercher dans les questions</a>
+    <h2 class="h2">{{ _("Rechercher dans les questions", request) }}</h2>
+    <p>{{ _("Parcourez l'ensemble des questions du Grand Débat.", request) }}</p>
+    <a class="btn btn--secondary" href="{{ url_for('search_questions') }}">{{ _("Chercher dans les questions", request) }}</a>
   </article>
   <article class="card">
-    <h2 class="h2">Rechercher dans les réponses</h2>
-    <p>Trouvez des réponses par mots-clés, filtrées et triées.</p>
-    <a class="btn btn--secondary" href="{{ url_for('search_answers') }}">Chercher dans les réponses</a>
+    <h2 class="h2">{{ _("Rechercher dans les réponses", request) }}</h2>
+    <p>{{ _("Trouvez des réponses par mots-clés, filtrées et triées.", request) }}</p>
+    <a class="btn btn--secondary" href="{{ url_for('search_answers') }}">{{ _("Chercher dans les réponses", request) }}</a>
   </article>
 </section>
 
 <section class="container--narrow" style="margin: var(--space-4) auto;">
-  <h2 class="h2" style="text-align: center; margin-bottom: var(--space-3);">Formulaires disponibles</h2>
+  <h2 class="h2" style="text-align: center; margin-bottom: var(--space-3);">{{ _("Formulaires disponibles", request) }}</h2>
   
   <div class="grid grid--2 gap-4">
     {% for form in forms %}

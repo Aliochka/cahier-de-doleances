@@ -2,6 +2,7 @@
 {% set PAGE_TITLE = q and ("Recherche réponses : « " ~ q ~ " »") or "Recherche réponses" %}
 {% set PAGE_DESCRIPTION = q and ("Résultats dans les réponses pour « " ~ q ~ " ». Parcourez les contributions correspondantes.") or "Parcourez les réponses les plus récentes publiées par les contributeurs." %}
 {% set on_answers_search = true %}
+{% set has_infinite_scroll = true %}
 
 {% block content %}
 <header class="page-header page-header--stack">
