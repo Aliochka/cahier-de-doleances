@@ -5,6 +5,8 @@ import os
 import hashlib
 import tempfile
 import asyncio
+import logging
+import time
 from pathlib import Path
 
 from fastapi import APIRouter, Request, HTTPException
@@ -27,8 +29,43 @@ CACHE_SITEMAP = "public, max-age=21600"
 CACHE_OG_IMAGE = "public, max-age=604800"  # 1 semaine
 
 # Configuration pour la génération d'images OG
-OG_CACHE_DIR = Path(tempfile.gettempdir()) / "og_cache"
-OG_CACHE_DIR.mkdir(exist_ok=True)
+OG_CACHE_DIR = Path(os.getenv("OG_CACHE_DIR", tempfile.gettempdir())) / "og_cache"
+OG_CACHE_DIR.mkdir(exist_ok=True, parents=True)
+
+# Configuration Playwright pour la production
+PLAYWRIGHT_ARGS = [
+    '--no-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-background-timer-throttling',
+    '--disable-backgrounding-occluded-windows',
+    '--disable-renderer-backgrounding',
+    '--disable-features=TranslateUI',
+    '--disable-gpu',
+    '--no-first-run',
+    '--disable-default-apps',
+    '--disable-extensions',
+    '--disable-sync',
+    '--disable-background-networking',
+    '--no-zygote'  # Pour les environnements Docker
+]
+
+# Pool global de navigateurs (sera initialisé à la première utilisation)
+_browser_pool = None
+
+# Logger spécialisé pour les images OG
+logger = logging.getLogger("og_images")
+
+async def _get_browser():
+    """Obtient un navigateur Playwright optimisé pour la production"""
+    global _browser_pool
+    
+    if _browser_pool is None:
+        from playwright.async_api import async_playwright
+        _browser_pool = await async_playwright().start()
+    
+    # Lance un nouveau navigateur avec les arguments optimisés
+    browser = await _browser_pool.chromium.launch(args=PLAYWRIGHT_ARGS)
+    return browser
 
 def _fmt_iso(dt: datetime | None) -> str | None:
     if not dt:
@@ -406,12 +443,16 @@ def _create_og_html_template_question(question_data: dict) -> str:
 
 
 async def _generate_og_image(answer_data: dict, cache_key: str) -> Path:
-    """Génère l'image OG avec Playwright"""
+    """Génère l'image OG avec Playwright optimisé pour la production"""
     cache_path = OG_CACHE_DIR / f"{cache_key}.png"
     
     # Si l'image est déjà en cache, la retourner
     if cache_path.exists():
+        logger.debug(f"Cache hit pour {cache_key}")
         return cache_path
+    
+    start_time = time.time()
+    logger.info(f"Génération d'image OG pour answer - cache_key: {cache_key}")
     
     # Créer le HTML temporaire
     html_content = _create_og_html_template(answer_data)
@@ -422,29 +463,34 @@ async def _generate_og_image(answer_data: dict, cache_key: str) -> Path:
         temp_html_path = f.name
     
     try:
-        # Importer Playwright de manière asynchrone
-        from playwright.async_api import async_playwright
+        # Utiliser le navigateur optimisé
+        browser = await _get_browser()
         
-        async with async_playwright() as p:
-            # Lancer le navigateur
-            browser = await p.chromium.launch(args=['--no-sandbox', '--disable-dev-shm-usage'])
+        try:
             page = await browser.new_page()
             
             # Configurer la taille de viewport pour 1200x630
             await page.set_viewport_size({"width": 1200, "height": 630})
             
-            # Charger le HTML
-            await page.goto(f"file://{temp_html_path}")
+            # Charger le HTML avec timeout
+            await page.goto(f"file://{temp_html_path}", timeout=15000)
             
             # Attendre que la page soit complètement chargée
-            await page.wait_for_load_state('networkidle')
+            await page.wait_for_load_state('networkidle', timeout=10000)
             
             # Prendre la capture d'écran
             await page.screenshot(path=str(cache_path), full_page=True)
             
+            generation_time = time.time() - start_time
+            logger.info(f"Image OG générée avec succès en {generation_time:.2f}s - taille: {cache_path.stat().st_size} bytes")
+            
+        finally:
             # Fermer le navigateur
             await browser.close()
             
+    except Exception as e:
+        logger.error(f"Erreur lors de la génération d'image OG: {str(e)}")
+        raise
     finally:
         # Supprimer le fichier HTML temporaire
         os.unlink(temp_html_path)
@@ -453,12 +499,16 @@ async def _generate_og_image(answer_data: dict, cache_key: str) -> Path:
 
 
 async def _generate_og_image_question(question_data: dict, cache_key: str) -> Path:
-    """Génère l'image OG pour une question avec Playwright"""
+    """Génère l'image OG pour une question avec Playwright optimisé"""
     cache_path = OG_CACHE_DIR / f"{cache_key}.png"
     
     # Si l'image est déjà en cache, la retourner
     if cache_path.exists():
+        logger.debug(f"Cache hit pour question {cache_key}")
         return cache_path
+    
+    start_time = time.time()
+    logger.info(f"Génération d'image OG pour question - cache_key: {cache_key}")
     
     # Créer le HTML temporaire
     html_content = _create_og_html_template_question(question_data)
@@ -469,29 +519,34 @@ async def _generate_og_image_question(question_data: dict, cache_key: str) -> Pa
         temp_html_path = f.name
     
     try:
-        # Importer Playwright de manière asynchrone
-        from playwright.async_api import async_playwright
+        # Utiliser le navigateur optimisé
+        browser = await _get_browser()
         
-        async with async_playwright() as p:
-            # Lancer le navigateur
-            browser = await p.chromium.launch(args=['--no-sandbox', '--disable-dev-shm-usage'])
+        try:
             page = await browser.new_page()
             
             # Configurer la taille de viewport pour 1200x630
             await page.set_viewport_size({"width": 1200, "height": 630})
             
-            # Charger le HTML
-            await page.goto(f"file://{temp_html_path}")
+            # Charger le HTML avec timeout
+            await page.goto(f"file://{temp_html_path}", timeout=15000)
             
             # Attendre que la page soit complètement chargée
-            await page.wait_for_load_state('networkidle')
+            await page.wait_for_load_state('networkidle', timeout=10000)
             
             # Prendre la capture d'écran
             await page.screenshot(path=str(cache_path), full_page=True)
             
+            generation_time = time.time() - start_time
+            logger.info(f"Image OG question générée avec succès en {generation_time:.2f}s - taille: {cache_path.stat().st_size} bytes")
+            
+        finally:
             # Fermer le navigateur
             await browser.close()
             
+    except Exception as e:
+        logger.error(f"Erreur lors de la génération d'image OG question: {str(e)}")
+        raise
     finally:
         # Supprimer le fichier HTML temporaire
         os.unlink(temp_html_path)

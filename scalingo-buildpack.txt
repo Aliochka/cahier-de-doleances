@@ -1,0 +1,9 @@
+# Buildpacks requis pour Scalingo
+# Ajouter dans votre projet Scalingo
+
+# 1. Buildpack principal Python
+heroku/python
+
+# 2. Buildpack pour Playwright (si disponible)
+# Sinon, utiliser une alternative comme wkhtmltopdf
+https://github.com/dscout/wkhtmltopdf-buildpack

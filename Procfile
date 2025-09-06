@@ -1,2 +1,1 @@
-postdeploy: alembic upgrade head
-web: gunicorn -k uvicorn.workers.UvicornWorker app.app:app --bind 0.0.0.0:$PORT --log-file -
+web: gunicorn app.app:app -w 2 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
