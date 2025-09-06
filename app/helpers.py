@@ -76,6 +76,47 @@ def slugify(value: str | None, maxlen: int = 60) -> str:
     return value or "contenu"
 
 
+def clean_text_excerpt(text: str, max_chars: int = 300) -> str:
+    """
+    Génère un extrait propre de texte pour les métadonnées OG/Twitter
+    - Supprime le HTML
+    - Remplace les sauts de ligne par des espaces
+    - Limite à max_chars caractères
+    - Ajoute … si tronqué
+    """
+    if not text:
+        return ""
+    
+    # Supprime les balises HTML basiques
+    import re
+    text = re.sub(r'<[^>]+>', '', text)
+    
+    # Remplace les sauts de ligne et espaces multiples par un seul espace
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    # Applique le post-processing existant pour nettoyer les boilerplates
+    text = postprocess_excerpt(text)
+    
+    # Tronque proprement
+    if len(text) <= max_chars:
+        return text
+    
+    # Trouve la dernière phrase complète ou au moins le dernier mot complet
+    truncated = text[:max_chars]
+    
+    # Essaie de couper à la fin d'une phrase
+    last_sentence = max(truncated.rfind('.'), truncated.rfind('!'), truncated.rfind('?'))
+    if last_sentence > max_chars * 0.7:  # Si on trouve une phrase dans les 70% finaux
+        return truncated[:last_sentence + 1]
+    
+    # Sinon coupe au dernier espace pour ne pas couper un mot
+    last_space = truncated.rfind(' ')
+    if last_space > 0:
+        return truncated[:last_space] + '…'
+    
+    return truncated + '…'
+
+
 def highlight_text_python(text: str, query: str, max_words: int = 35, min_words: int = 15) -> str:
     """
     Highlighting en Python, plus rapide que ts_headline de PostgreSQL

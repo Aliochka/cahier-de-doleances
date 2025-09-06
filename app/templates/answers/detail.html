@@ -2,12 +2,17 @@
 
 {# Meta #}
 {% set _author_label = (answer.author_name or ('Auteur #' ~ answer.author_id)) %}
-{% set PAGE_TITLE = "Contribution de " ~ _author_label ~ " — " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) %}
-{% set _ex = (answer.text or "") | striptags %}
-{% set _ex = _ex.replace("\n"," ") %}
-{% set _ex = _ex[:110] ~ ("…" if _ex|length > 110 else "") %}
-{% set PAGE_DESCRIPTION = "Contribution de " ~ _author_label
-    ~ " à « " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) ~ " ». " ~ (_ex if _ex else "Lisez l’avis et les arguments détaillés.") %}
+{% set PAGE_TITLE = "Réponse à « " ~ (answer.question_prompt or ("Question #" ~ answer.question_id)) ~ " »" %}
+
+{# Utilise la fonction helper pour générer un extrait propre #}
+{% set _clean_excerpt = answer.text | clean_text_excerpt(180) %}
+{% set PAGE_DESCRIPTION = (_clean_excerpt if _clean_excerpt else "Lisez l'avis et les arguments détaillés de " ~ _author_label ~ ".") %}
+
+{# URL canonique sans paramètres #}
+{% set CANONICAL_URL = url_for('answer_detail', answer_id=answer.id) | string %}
+
+{# Image OG dynamique #}
+{% set OG_IMAGE_URL = url_for('og_answer_image', answer_id=answer.id) %}
 
 {% block content %}
 

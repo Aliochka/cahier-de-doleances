@@ -3,7 +3,13 @@
 
 {# Meta #}
 {% set PAGE_TITLE = (question.title or ("Question #" ~ question.id)) %}
-{% set PAGE_DESCRIPTION = "Contributions citoyennes à la question « " ~ (question.title or ("Question #" ~ question.id)) ~ " ». Lisez les avis et points de vue variés." %}
+{% set PAGE_DESCRIPTION = "Contributions citoyennes à la question « " ~ (question.title or ("Question #" ~ question.id)) ~ " ». " ~ (question.answers_count or 0) ~ " réponse" ~ ("s" if question.answers_count != 1 else "") ~ "." %}
+
+{# URL canonique sans paramètres #}
+{% set CANONICAL_URL = url_for('question_detail', question_id=question.id, slug=question.slug) | string %}
+
+{# Image OG dynamique #}
+{% set OG_IMAGE_URL = url_for('og_question_image', question_id=question.id) %}
 
 {% block content %}
 <header class="page-header">

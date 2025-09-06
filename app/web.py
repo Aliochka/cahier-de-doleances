@@ -7,6 +7,7 @@ from datetime import date
 from decimal import Decimal
 from starlette.datastructures import URL
 from app.i18n import _, ngettext_template, get_current_language, LANGUAGES
+from app.helpers import clean_text_excerpt
 
 # Central Jinja2Templates instance for the whole app
 BASE_DIR = Path(__file__).resolve().parent
@@ -31,6 +32,7 @@ def _json_default(o):
 templates.env.filters["tojson"] = lambda v: json.dumps(
     v, ensure_ascii=False, separators=(",", ":"), default=_json_default
 )
+templates.env.filters["clean_text_excerpt"] = clean_text_excerpt
 templates.env.globals["now"] = lambda: datetime.now(ZoneInfo("Europe/Paris"))
 
 # Add i18n functions to templates

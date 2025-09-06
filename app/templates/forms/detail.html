@@ -1,6 +1,8 @@
 {% extends "base/base.html" %}
 {% set PAGE_TITLE = "Formulaire · " ~ form.name %}
-{% set PAGE_DESCRIPTION = "Questions et contributions pour « " ~ form.name ~ " »." %}
+{% set PAGE_DESCRIPTION = "Questions et contributions pour « " ~ form.name ~ " ». " ~ form.questions_count ~ " question" ~ ("s" if form.questions_count != 1 else "") ~ "." %}
+{% set CANONICAL_URL = url_for('form_detail', form_id=form.id) | string %}
+{% set OG_IMAGE_URL = url_for('og_form_image', form_id=form.id) | string %}
 
 {% block content %}
 <header class="page-header">

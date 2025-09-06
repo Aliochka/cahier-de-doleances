@@ -44,15 +44,33 @@
 {% endif %}
 
 {# --- CANONICAL (allowlist de query) --- #}
-{% set canonical_path = request.url.path %}
-{% set canonical_query = "" %}
-{% if on_answers_search or on_questions_search %}
-  {% if q %}{% set canonical_query = "?q=" ~ q | urlencode %}{% endif %}
+{% if CANONICAL_URL %}
+  {# URL canonique déjà définie dans le template de page #}
+  {% if CANONICAL_URL.startswith('http') %}
+    {% set CANONICAL_URL = CANONICAL_URL %}
+  {% else %}
+    {% set CANONICAL_URL = HOST ~ CANONICAL_URL %}
+  {% endif %}
+{% else %}
+  {% set canonical_path = request.url.path %}
+  {% set canonical_query = "" %}
+  {% if on_answers_search or on_questions_search %}
+    {% if q %}{% set canonical_query = "?q=" ~ q | urlencode %}{% endif %}
+  {% endif %}
+  {% set CANONICAL_URL = HOST ~ canonical_path ~ canonical_query %}
 {% endif %}
-{% set CANONICAL_URL = HOST ~ canonical_path ~ canonical_query %}
 
-{# --- OG image par défaut --- #}
-{% set OG_IMAGE = HOST ~ request.url_for('static', path='/img/og-default.jpg') %}
+{# --- OG image (personnalisée ou par défaut) --- #}
+{% if OG_IMAGE_URL %}
+  {% set OG_IMAGE_URL_STR = OG_IMAGE_URL | string %}
+  {% if OG_IMAGE_URL_STR.startswith('http') %}
+    {% set OG_IMAGE = OG_IMAGE_URL_STR %}
+  {% else %}
+    {% set OG_IMAGE = HOST ~ OG_IMAGE_URL_STR %}
+  {% endif %}
+{% else %}
+  {% set OG_IMAGE = HOST ~ request.url_for('static', path='/img/og-default.jpg') %}
+{% endif %}
 
 {# --- Robots meta (les routes search sont noindex ; on garde follow) --- #}
 {% set ROBOTS = (on_answers_search or on_questions_search) and "noindex, follow" or "index, follow" %}
@@ -72,7 +90,11 @@
 
 {# Open Graph #}
 <meta property="og:site_name" content="Cahier de doléances" />
+{% if OG_IMAGE_URL %}
+<meta property="og:type" content="article" />
+{% else %}
 <meta property="og:type" content="website" />
+{% endif %}
 <meta property="og:title" content="{{ COMPUTED_TITLE }}" />
 <meta property="og:description" content="{{ META_DESCRIPTION }}" />
 <meta property="og:url" content="{{ CANONICAL_URL }}" />
