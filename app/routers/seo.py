@@ -19,6 +19,29 @@ from app.db import SessionLocal
 
 router = APIRouter()
 
+@router.get("/og/test", name="og_test")
+async def og_test():
+    """Test endpoint pour diagnostiquer Playwright"""
+    try:
+        from playwright.async_api import async_playwright
+        
+        async with async_playwright() as p:
+            # Tenter de lancer Chromium
+            browser = await p.chromium.launch(args=['--no-sandbox', '--disable-dev-shm-usage'])
+            await browser.close()
+            
+            return {"status": "success", "message": "Playwright et Chromium fonctionnent correctement"}
+            
+    except ImportError as e:
+        return {"status": "error", "message": f"Playwright non installé: {str(e)}"}
+    except Exception as e:
+        import traceback
+        return {
+            "status": "error", 
+            "message": f"Erreur Playwright: {str(e)}", 
+            "traceback": traceback.format_exc()
+        }
+
 # Limites (prudents pour la perf)
 SITEMAP_LIMIT_QUESTIONS = 2000
 SITEMAP_LIMIT_AUTHORS   = 1000
