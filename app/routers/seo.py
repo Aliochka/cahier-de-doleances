@@ -51,6 +51,13 @@ CACHE_ROBOTS = "public, max-age=86400"
 CACHE_SITEMAP = "public, max-age=21600"
 CACHE_OG_IMAGE = "public, max-age=604800"  # 1 semaine
 
+# Cache en mémoire pour le sitemap
+_sitemap_cache = {
+    "xml": None,
+    "timestamp": None,
+    "ttl": 1800  # 30 minutes
+}
+
 # Configuration pour la génération d'images OG
 OG_CACHE_DIR = Path(os.getenv("OG_CACHE_DIR", tempfile.gettempdir())) / "og_cache"
 OG_CACHE_DIR.mkdir(exist_ok=True, parents=True)
@@ -112,77 +119,73 @@ Sitemap: {base}/sitemap.xml
         return Response(status_code=200, headers={"Cache-Control": CACHE_ROBOTS}, media_type="text/plain; charset=utf-8")
     return PlainTextResponse(body, headers={"Cache-Control": CACHE_ROBOTS})
 
-@router.api_route("/sitemap.xml", methods=["GET", "HEAD"], name="sitemap_xml")
-def sitemap_xml(request: Request):
-    if request.method == "HEAD":
-        return Response(status_code=200, headers={"Cache-Control": CACHE_SITEMAP}, media_type="application/xml; charset=utf-8")
-
-    # base absolue
-    scheme = request.headers.get("x-forwarded-proto") or request.url.scheme
-    netloc = request.headers.get("x-forwarded-host") or request.url.netloc
-    base = f"{scheme}://{netloc}"
-
+def _generate_sitemap_xml(base_url: str) -> str:
+    """Génère le XML du sitemap (fonction cachée)"""
     urls: list[tuple[str, str | None]] = []
 
     with SessionLocal() as db:
         # lastmod global (homepage) = dernière contribution
         home_lastmod = db.execute(text("SELECT MAX(submitted_at) FROM contributions")).scalar()
-        urls.append((f"{base}/", _fmt_iso(home_lastmod)))
+        urls.append((f"{base_url}/", _fmt_iso(home_lastmod)))
         
         # Pages de recherche principales
-        urls.append((f"{base}/search/questions", _fmt_iso(home_lastmod)))
-        urls.append((f"{base}/search/answers", _fmt_iso(home_lastmod)))
+        urls.append((f"{base_url}/search/questions", _fmt_iso(home_lastmod)))
+        urls.append((f"{base_url}/search/answers", _fmt_iso(home_lastmod)))
 
-        # Questions: canonical slug + lastmod = max(submitted_at des réponses)
+        # Questions (requête optimisée sans JOIN complexe)
         q_rows = db.execute(text("""
-            SELECT q.id, q.prompt, MAX(c.submitted_at) AS lastmod
+            SELECT q.id, q.prompt, q.updated_at
             FROM questions q
-            JOIN answers a       ON a.question_id = q.id
-            JOIN contributions c ON c.id = a.contribution_id
-            WHERE a.text IS NOT NULL
-            GROUP BY q.id, q.prompt
-            ORDER BY lastmod DESC NULLS LAST, q.id DESC
+            WHERE q.id IN (
+                SELECT DISTINCT a.question_id 
+                FROM answers a 
+                WHERE a.text IS NOT NULL
+            )
+            ORDER BY q.updated_at DESC NULLS LAST, q.id DESC
             LIMIT :lim
-        """), {"lim": SITEMAP_LIMIT_QUESTIONS}).mappings().all()
+        """), {"lim": 500}).mappings().all()  # Réduit la limite pour de meilleures perfs
 
         for r in q_rows:
             qslug = slugify(r["prompt"] or f"question-{r['id']}")
-            urls.append((f"{base}/questions/{r['id']}-{qslug}", _fmt_iso(r["lastmod"])))
+            urls.append((f"{base_url}/questions/{r['id']}-{qslug}", _fmt_iso(r["updated_at"])))
 
-        # Auteurs: canonical slug + lastmod = max(submitted_at)
+        # Auteurs (requête optimisée)
         a_rows = db.execute(text("""
-            SELECT au.id, au.name, MAX(c.submitted_at) AS lastmod
+            SELECT au.id, au.name, au.updated_at
             FROM authors au
-            JOIN contributions c ON c.author_id = au.id
-            JOIN answers a       ON a.contribution_id = c.id
-            WHERE a.text IS NOT NULL
-            GROUP BY au.id, au.name
-            ORDER BY lastmod DESC NULLS LAST, au.id DESC
+            WHERE au.id IN (
+                SELECT DISTINCT c.author_id
+                FROM contributions c
+                JOIN answers a ON a.contribution_id = c.id
+                WHERE a.text IS NOT NULL
+            )
+            ORDER BY au.updated_at DESC NULLS LAST, au.id DESC
             LIMIT :lim
-        """), {"lim": SITEMAP_LIMIT_AUTHORS}).mappings().all()
+        """), {"lim": 300}).mappings().all()
 
         for r in a_rows:
             name = r["name"] or f"Auteur #{r['id']}"
             aslug = slugify(name)
-            urls.append((f"{base}/authors/{r['id']}-{aslug}", _fmt_iso(r["lastmod"])))
+            urls.append((f"{base_url}/authors/{r['id']}-{aslug}", _fmt_iso(r["updated_at"])))
 
-        # Formulaires: lastmod = max(submitted_at des contributions liées)
+        # Formulaires (requête simplifiée)
         f_rows = db.execute(text("""
-            SELECT f.id, f.name, MAX(c.submitted_at) AS lastmod
+            SELECT f.id, f.name, f.updated_at
             FROM forms f
-            JOIN questions q ON q.form_id = f.id
-            JOIN answers a ON a.question_id = q.id
-            JOIN contributions c ON c.id = a.contribution_id
-            WHERE a.text IS NOT NULL
-            GROUP BY f.id, f.name
-            ORDER BY lastmod DESC NULLS LAST, f.id DESC
+            WHERE f.id IN (
+                SELECT DISTINCT q.form_id
+                FROM questions q
+                JOIN answers a ON a.question_id = q.id
+                WHERE a.text IS NOT NULL
+            )
+            ORDER BY f.updated_at DESC NULLS LAST, f.id DESC
             LIMIT :lim
         """), {"lim": SITEMAP_LIMIT_FORMS}).mappings().all()
 
         for r in f_rows:
-            urls.append((f"{base}/forms/{r['id']}", _fmt_iso(r["lastmod"])))
+            urls.append((f"{base_url}/forms/{r['id']}", _fmt_iso(r["updated_at"])))
 
-    # Rend XML
+    # Génère XML
     parts = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
@@ -194,13 +197,62 @@ def sitemap_xml(request: Request):
             parts.append(f"<lastmod>{lastmod}</lastmod>")
         parts.append("</url>")
     parts.append("</urlset>")
-    xml = "\n".join(parts)
+    
+    return "\n".join(parts)
 
-    return Response(
-        content=xml,
-        media_type="application/xml; charset=utf-8",
-        headers={"Cache-Control": CACHE_SITEMAP},
-    )
+@router.api_route("/sitemap.xml", methods=["GET", "HEAD"], name="sitemap_xml")
+def sitemap_xml(request: Request):
+    if request.method == "HEAD":
+        return Response(status_code=200, headers={"Cache-Control": CACHE_SITEMAP}, media_type="application/xml; charset=utf-8")
+
+    # Vérifier le cache d'abord
+    current_time = time.time()
+    if (_sitemap_cache["xml"] is not None and 
+        _sitemap_cache["timestamp"] is not None and
+        current_time - _sitemap_cache["timestamp"] < _sitemap_cache["ttl"]):
+        # Retourner depuis le cache
+        return Response(
+            content=_sitemap_cache["xml"],
+            media_type="application/xml; charset=utf-8",
+            headers={"Cache-Control": CACHE_SITEMAP, "X-Cache": "HIT"},
+        )
+
+    # Générer le sitemap
+    scheme = request.headers.get("x-forwarded-proto") or request.url.scheme
+    netloc = request.headers.get("x-forwarded-host") or request.url.netloc
+    base_url = f"{scheme}://{netloc}"
+    
+    try:
+        xml = _generate_sitemap_xml(base_url)
+        
+        # Mettre en cache
+        _sitemap_cache["xml"] = xml
+        _sitemap_cache["timestamp"] = current_time
+        
+        return Response(
+            content=xml,
+            media_type="application/xml; charset=utf-8",
+            headers={"Cache-Control": CACHE_SITEMAP, "X-Cache": "MISS"},
+        )
+    except Exception as e:
+        logger.error(f"Erreur génération sitemap: {str(e)}")
+        # Fallback basique si erreur
+        fallback_xml = f'''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>{base_url}/</loc></url>
+</urlset>'''
+        return Response(
+            content=fallback_xml,
+            media_type="application/xml; charset=utf-8",
+            headers={"Cache-Control": "no-cache"},
+        )
+
+@router.get("/sitemap/clear-cache", name="sitemap_clear_cache")
+def clear_sitemap_cache():
+    """Vide le cache du sitemap (utile pour forcer la régénération)"""
+    _sitemap_cache["xml"] = None
+    _sitemap_cache["timestamp"] = None
+    return {"status": "success", "message": "Cache du sitemap vidé"}
 
 
 def _generate_cache_key(answer_data: dict) -> str:
