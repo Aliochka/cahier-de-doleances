@@ -132,58 +132,54 @@ def _generate_sitemap_xml(base_url: str) -> str:
         urls.append((f"{base_url}/search/questions", _fmt_iso(home_lastmod)))
         urls.append((f"{base_url}/search/answers", _fmt_iso(home_lastmod)))
 
-        # Questions (requête optimisée sans JOIN complexe)
+        # Questions - utilise l'ancienne requête qui marche
         q_rows = db.execute(text("""
-            SELECT q.id, q.prompt, q.updated_at
+            SELECT q.id, q.prompt, MAX(c.submitted_at) AS lastmod
             FROM questions q
-            WHERE q.id IN (
-                SELECT DISTINCT a.question_id 
-                FROM answers a 
-                WHERE a.text IS NOT NULL
-            )
-            ORDER BY q.updated_at DESC NULLS LAST, q.id DESC
+            JOIN answers a       ON a.question_id = q.id
+            JOIN contributions c ON c.id = a.contribution_id
+            WHERE a.text IS NOT NULL
+            GROUP BY q.id, q.prompt
+            ORDER BY lastmod DESC NULLS LAST, q.id DESC
             LIMIT :lim
-        """), {"lim": 500}).mappings().all()  # Réduit la limite pour de meilleures perfs
+        """), {"lim": 500}).mappings().all()
 
         for r in q_rows:
             qslug = slugify(r["prompt"] or f"question-{r['id']}")
-            urls.append((f"{base_url}/questions/{r['id']}-{qslug}", _fmt_iso(r["updated_at"])))
+            urls.append((f"{base_url}/questions/{r['id']}-{qslug}", _fmt_iso(r["lastmod"])))
 
-        # Auteurs (requête optimisée)
+        # Auteurs - ancienne requête qui marche
         a_rows = db.execute(text("""
-            SELECT au.id, au.name, au.updated_at
+            SELECT au.id, au.name, MAX(c.submitted_at) AS lastmod
             FROM authors au
-            WHERE au.id IN (
-                SELECT DISTINCT c.author_id
-                FROM contributions c
-                JOIN answers a ON a.contribution_id = c.id
-                WHERE a.text IS NOT NULL
-            )
-            ORDER BY au.updated_at DESC NULLS LAST, au.id DESC
+            JOIN contributions c ON c.author_id = au.id
+            JOIN answers a       ON a.contribution_id = c.id
+            WHERE a.text IS NOT NULL
+            GROUP BY au.id, au.name
+            ORDER BY lastmod DESC NULLS LAST, au.id DESC
             LIMIT :lim
         """), {"lim": 300}).mappings().all()
 
         for r in a_rows:
             name = r["name"] or f"Auteur #{r['id']}"
             aslug = slugify(name)
-            urls.append((f"{base_url}/authors/{r['id']}-{aslug}", _fmt_iso(r["updated_at"])))
+            urls.append((f"{base_url}/authors/{r['id']}-{aslug}", _fmt_iso(r["lastmod"])))
 
-        # Formulaires (requête simplifiée)
+        # Formulaires - ancienne requête qui marche
         f_rows = db.execute(text("""
-            SELECT f.id, f.name, f.updated_at
+            SELECT f.id, f.name, MAX(c.submitted_at) AS lastmod
             FROM forms f
-            WHERE f.id IN (
-                SELECT DISTINCT q.form_id
-                FROM questions q
-                JOIN answers a ON a.question_id = q.id
-                WHERE a.text IS NOT NULL
-            )
-            ORDER BY f.updated_at DESC NULLS LAST, f.id DESC
+            JOIN questions q ON q.form_id = f.id
+            JOIN answers a ON a.question_id = q.id
+            JOIN contributions c ON c.id = a.contribution_id
+            WHERE a.text IS NOT NULL
+            GROUP BY f.id, f.name
+            ORDER BY lastmod DESC NULLS LAST, f.id DESC
             LIMIT :lim
         """), {"lim": SITEMAP_LIMIT_FORMS}).mappings().all()
 
         for r in f_rows:
-            urls.append((f"{base_url}/forms/{r['id']}", _fmt_iso(r["updated_at"])))
+            urls.append((f"{base_url}/forms/{r['id']}", _fmt_iso(r["lastmod"])))
 
     # Génère XML
     parts = [
