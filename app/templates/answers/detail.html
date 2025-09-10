@@ -44,6 +44,18 @@
       <blockquote class="quote">
         <p class="quote__text">{{ answer.text }}</p>
       </blockquote>
+      
+      <!-- Bouton marque-page -->
+      <div class="bookmark-action">
+        <button 
+          onclick="openBookmarkModal('answer', {{ answer.id }})" 
+          class="bookmark-btn"
+          id="bookmark-btn-answer-{{ answer.id }}"
+        >
+          <span class="bookmark-icon">📖</span>
+          <span class="bookmark-text">Ajouter aux marques-pages</span>
+        </button>
+      </div>
     </article>
   </section>
 {% endblock %}

@@ -85,6 +85,7 @@ def author_detail(
             SELECT
               au.id,
               au.name,
+              au.is_anonymous,
               (
                 SELECT COUNT(1)
                 FROM answers a
@@ -214,6 +215,7 @@ def author_detail(
             "author": {
                 "id": author_id,
                 "name": row["name"],
+                "is_anonymous": row.get("is_anonymous", False),
                 "answers_count": row["answers_count"],
                 "slug": canonical_slug,
             },

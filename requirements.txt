@@ -15,3 +15,7 @@ Babel==2.16.0
 itsdangerous==2.2.0
 # Open Graph image generation
 playwright==1.40.0
+# Authentication and email
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+mailjet-rest==1.3.4

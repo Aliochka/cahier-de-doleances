@@ -1,13 +1,45 @@
 {% extends "base/base.html" %}
-{% set author_name = author.name or ('Auteur #' ~ author.id) %}
+{% set is_anonymous = (author.is_anonymous is defined and author.is_anonymous) %}
+{% set author_name = (author.name if not is_anonymous else ('Auteur #' ~ author.id)) %}
 {% set PAGE_TITLE = author_name ~ " – Contributions" %}
 {% set PAGE_DESCRIPTION = "Contributions de " ~ author_name ~ " au Cahier de doléances. Découvrez ses avis et prises de position." %}
 
 {% block content %}
 
 <header class="page-header">
-  <h1 class="h1">{{ author_name }}</h1>
-  <p class="muted">ID : {{ author.id }} • {{ author.answers_count }} réponses</p>
+  <div class="page-header-content">
+    <div class="author-info">
+      <h1 class="h1">{{ author_name }}</h1>
+      <p class="muted">
+        ID : {{ author.id }} • {{ author.answers_count }} réponses
+        {% if is_anonymous %}
+          <span class="anonymous-badge">👤 Profil anonyme</span>
+        {% endif %}
+      </p>
+    </div>
+    
+    <!-- Boutons de contrôle si c'est sa propre page -->
+    <div class="author-controls" id="author-controls" style="display: none;">
+      <button id="toggle-anonymity-btn" class="btn btn-secondary">
+        <span id="anonymity-status">🔒 Anonymiser le profil</span>
+      </button>
+      <button id="edit-profile-btn" class="btn btn-primary" style="display: none;">
+        ✏️ Modifier le profil
+      </button>
+    </div>
+  </div>
+  
+  <!-- Bouton marque-page (réutilisé du code existant) -->
+  <div class="bookmark-action">
+    <button 
+      onclick="openBookmarkModal('author', {{ author.id }})" 
+      class="bookmark-btn"
+      id="bookmark-btn-author-{{ author.id }}"
+    >
+      <span class="bookmark-icon">📖</span>
+      <span class="bookmark-text">Ajouter aux marques-pages</span>
+    </button>
+  </div>
 </header>
 
 {% if q %}
@@ -30,5 +62,128 @@
   "about": { "@type": "Person", "name": _author_name, "identifier": author.id, "url": request.url }
 } %}
 <script type="application/ld+json">{{ _json | tojson | safe }}</script>
+
+<script>
+// Vérifier si l'utilisateur est connecté et si c'est sa page author
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    // Récupérer les infos de l'utilisateur connecté
+    const userResponse = await fetch('/auth/me', {
+      credentials: 'same-origin'
+    });
+    
+    if (userResponse.ok) {
+      // Utilisateur connecté, vérifier si c'est sa page author
+      const authorResponse = await fetch('/auth/author-info', {
+        credentials: 'same-origin'
+      });
+      
+      if (authorResponse.ok) {
+        const authorInfo = await authorResponse.json();
+        
+        // Si c'est sa page author, afficher les contrôles
+        if (authorInfo.author_id === {{ author.id }}) {
+          showAuthorControls(authorInfo);
+        }
+      }
+    }
+  } catch (error) {
+    console.log('User not authenticated or error checking author info');
+  }
+});
+
+function showAuthorControls(authorInfo) {
+  const controlsDiv = document.getElementById('author-controls');
+  const toggleBtn = document.getElementById('toggle-anonymity-btn');
+  const statusSpan = document.getElementById('anonymity-status');
+  const editBtn = document.getElementById('edit-profile-btn');
+  
+  if (controlsDiv) {
+    controlsDiv.style.display = 'block';
+    
+    // Mettre à jour le bouton selon l'état actuel
+    updateAnonymityButton(authorInfo.is_anonymous);
+    
+    // Afficher le bouton d'édition si le profil n'est pas anonyme
+    if (!authorInfo.is_anonymous && editBtn) {
+      editBtn.style.display = 'inline-block';
+    }
+    
+    // Gérer le clic sur le bouton d'anonymisation
+    toggleBtn.addEventListener('click', function() {
+      toggleAnonymity(!authorInfo.is_anonymous);
+    });
+    
+    // Gérer le clic sur le bouton d'édition
+    if (editBtn) {
+      editBtn.addEventListener('click', function() {
+        editProfile(authorInfo.display_name || '');
+      });
+    }
+  }
+}
+
+function updateAnonymityButton(isAnonymous) {
+  const statusSpan = document.getElementById('anonymity-status');
+  
+  if (statusSpan) {
+    if (isAnonymous) {
+      statusSpan.textContent = '🌐 Rendre le profil public';
+    } else {
+      statusSpan.textContent = '👤 Anonymiser le profil';
+    }
+  }
+}
+
+async function toggleAnonymity(makePublic) {
+  let displayName = null;
+  
+  // Si on veut rendre public, demander le nom d'affichage
+  if (makePublic) {
+    displayName = prompt('Entrez votre nom d\'affichage public :');
+    if (!displayName || displayName.trim().length < 2) {
+      alert('Un nom d\'affichage d\'au moins 2 caractères est requis');
+      return;
+    }
+  }
+  
+  try {
+    const response = await fetch('/auth/toggle-anonymity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        is_anonymous: !makePublic,
+        display_name: displayName
+      })
+    });
+    
+    const result = await response.json();
+    
+    if (response.ok) {
+      alert(result.message);
+      // Recharger la page pour voir les changements
+      window.location.reload();
+    } else {
+      alert('Erreur : ' + result.detail);
+    }
+  } catch (error) {
+    console.error('Error toggling anonymity:', error);
+    alert('Erreur de connexion');
+  }
+}
+
+function editProfile(currentName) {
+  const newName = prompt('Modifier votre nom d\'affichage :', currentName);
+  
+  if (newName !== null && newName.trim() !== currentName) {
+    toggleAnonymity(true); // Utiliser la même fonction avec le nouveau nom
+  }
+}
+</script>
+
+
 {% endblock %}
 

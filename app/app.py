@@ -26,7 +26,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.exception_handlers import http_exception_handler as fastapi_http_exception_handler
 
 from app.web import templates
-from app.routers import pages, search, authors, questions, answers, seo, forms, i18n
+from app.routers import pages, search, authors, questions, answers, seo, forms, i18n, auth, bookmarks
 from app.i18n import I18nMiddleware
 
 
@@ -179,6 +179,8 @@ app.include_router(answers.router)
 app.include_router(forms.router)
 app.include_router(seo.router)
 app.include_router(i18n.router)
+app.include_router(auth.router)
+app.include_router(bookmarks.router)
 
 # -----------------------------------------------------------------------------
 # Exception handlers

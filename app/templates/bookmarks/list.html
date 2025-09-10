@@ -1,0 +1,100 @@
+{% extends "base/base.html" %}
+{% block title %}Mes marques-pages{% endblock %}
+
+{% block content %}
+<main class="container mx-auto px-4 py-8 max-w-4xl">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Mes marques-pages</h1>
+        <div class="text-sm text-gray-600">
+            {{ total_bookmarks }} marque-page{{ "s" if total_bookmarks != 1 else "" }}
+        </div>
+    </div>
+
+    {% if total_bookmarks == 0 %}
+        <div class="text-center py-16">
+            <div class="mb-4">📖</div>
+            <h2 class="text-xl font-semibold mb-2">Aucun marque-page</h2>
+            <p class="text-gray-600 mb-4">Vous n'avez pas encore ajouté de marques-pages.</p>
+            <a href="/" class="text-blue-600 hover:text-blue-800 underline">
+                Parcourir les contenus
+            </a>
+        </div>
+    {% else %}
+        {% for page_type, bookmarks in bookmarks_by_type.items() %}
+            {% if bookmarks %}
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold mb-4 border-b pb-2">
+                        {% if page_type == 'question' %}
+                            Questions ({{ bookmarks|length }})
+                        {% elif page_type == 'answer' %}
+                            Réponses ({{ bookmarks|length }})
+                        {% elif page_type == 'author' %}
+                            Auteurs ({{ bookmarks|length }})
+                        {% endif %}
+                    </h2>
+                    
+                    <div class="space-y-3">
+                        {% for bookmark in bookmarks %}
+                            <div class="bg-white border rounded-lg p-4 hover:shadow-md transition-shadow">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex-1">
+                                        {% if page_type == 'question' %}
+                                            <a href="/questions/{{ bookmark.page_id }}" class="text-blue-600 hover:text-blue-800 font-medium">
+                                                Question #{{ bookmark.page_id }}
+                                            </a>
+                                        {% elif page_type == 'answer' %}
+                                            <a href="/answers/{{ bookmark.page_id }}" class="text-blue-600 hover:text-blue-800 font-medium">
+                                                Réponse #{{ bookmark.page_id }}
+                                            </a>
+                                        {% elif page_type == 'author' %}
+                                            <a href="/authors/{{ bookmark.page_id }}" class="text-blue-600 hover:text-blue-800 font-medium">
+                                                Auteur #{{ bookmark.page_id }}
+                                            </a>
+                                        {% endif %}
+                                        
+                                        <div class="text-sm text-gray-500 mt-1">
+                                            Ajouté le {{ bookmark.created_at.strftime('%d/%m/%Y à %H:%M') }}
+                                        </div>
+                                    </div>
+                                    
+                                    <button 
+                                        onclick="removeBookmark('{{ page_type }}', '{{ bookmark.page_id }}')"
+                                        class="text-red-600 hover:text-red-800 p-1"
+                                        title="Supprimer ce marque-page"
+                                    >
+                                        🗑️
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</main>
+
+<script>
+async function removeBookmark(pageType, pageId) {
+    if (!confirm('Êtes-vous sûr de vouloir supprimer ce marque-page ?')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`/bookmarks/${pageType}/${pageId}`, {
+            method: 'DELETE',
+            credentials: 'same-origin'
+        });
+        
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            alert('Erreur lors de la suppression du marque-page');
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Erreur de connexion');
+    }
+}
+</script>
+{% endblock %}

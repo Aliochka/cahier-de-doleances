@@ -17,6 +17,18 @@
   {% if question.answers_count is not none %}
     <p class="muted">{{ question.answers_count }} réponses</p>
   {% endif %}
+  
+  <!-- Bouton marque-page -->
+  <div class="bookmark-action">
+    <button 
+      onclick="openBookmarkModal('question', {{ question.id }})" 
+      class="bookmark-btn"
+      id="bookmark-btn-question-{{ question.id }}"
+    >
+      <span class="bookmark-icon">📖</span>
+      <span class="bookmark-text">Ajouter aux marques-pages</span>
+    </button>
+  </div>
 </header>
 
 {% if question.type == 'single_choice' or question.type == 'multi_choice' %}

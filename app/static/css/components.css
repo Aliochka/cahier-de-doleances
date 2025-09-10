@@ -1372,3 +1372,91 @@ a.btn:visited {
     height: 120px;
   }
 }
+
+/* =========================================
+   Author Profile Controls (anonymisation)
+   ========================================= */
+
+.page-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.author-info {
+  flex: 1;
+}
+
+.author-controls {
+  display: flex;
+  gap: var(--space-half);
+  flex-wrap: wrap;
+}
+
+.anonymous-badge {
+  background: var(--bg-alt);
+  color: var(--muted);
+  padding: var(--space-quarter) var(--space-half);
+  border-radius: 3px;
+  font-size: 12px;
+  margin-left: var(--space-half);
+  font-family: var(--font-typewriter);
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--space-half) var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: var(--font-typewriter);
+  transition: all 0.2s ease;
+  background: var(--bg);
+}
+
+.btn:hover {
+  background: var(--bg-alt);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: var(--muted);
+  color: var(--bg);
+  border-color: var(--muted);
+}
+
+.btn-secondary:hover {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--bg);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover, #1a5490);
+  border-color: var(--primary-hover, #1a5490);
+}
+
+@media (max-width: 768px) {
+  .page-header-content {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  
+  .author-controls {
+    align-self: stretch;
+  }
+  
+  .btn {
+    flex: 1;
+    text-align: center;
+  }
+}
