@@ -144,6 +144,7 @@ const COUNTRIES = {
     'PH': 'Philippines',
     'PK': 'Pakistan',
     'PL': 'Pologne',
+    'PS': 'Palestine',
     'PT': 'Portugal',
     'PW': 'Palaos',
     'PY': 'Paraguay',
