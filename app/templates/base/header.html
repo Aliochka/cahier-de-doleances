@@ -7,12 +7,8 @@
     <nav class="nav" role="navigation" aria-label="{{ _('Navigation principale', request) }}">
       <a href="{{ url_for('search_questions') }}" class="nav__link">{{ _('Questions', request) }}</a>
       <a href="{{ url_for('search_answers') }}" class="nav__link">{{ _('Réponses', request) }}</a>
-      
-      <!-- Menu utilisateur -->
-      <div class="user-menu">
-        <div id="auth-status" class="auth-loading">
-          <!-- Le contenu sera chargé par JavaScript -->
-        </div>
+      <div id="auth-status" class="nav__auth">
+        <!-- Le contenu sera chargé par JavaScript -->
       </div>
     </nav>
   </div>

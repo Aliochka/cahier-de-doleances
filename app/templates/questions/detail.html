@@ -12,13 +12,13 @@
 {% set OG_IMAGE_URL = url_for('og_question_image', question_id=question.id) %}
 
 {% block content %}
-<header class="page-header">
+<header class="page-header page-header--stack">
   <h1 class="h1">{{ question.title or ('Question #' ~ question.id) }}</h1>
   {% if question.answers_count is not none %}
     <p class="muted">{{ question.answers_count }} réponses</p>
   {% endif %}
   
-  <!-- Bouton marque-page -->
+  <!-- Bouton marque-page positionné sous le titre -->
   <div class="bookmark-action">
     <button 
       onclick="openBookmarkModal('question', {{ question.id }})" 

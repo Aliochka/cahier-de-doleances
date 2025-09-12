@@ -23,7 +23,7 @@ class Author(Base):
     
     # Relations
     contributions = relationship("Contribution", back_populates="author")
-    user = relationship("User", back_populates="author")
+    user = relationship("User", back_populates="author", foreign_keys=[user_id])
 
 # --- Forms & Questions
 class Form(Base):
@@ -178,7 +178,7 @@ class User(Base):
     
     # Relations
     bookmarks = relationship("Bookmark", back_populates="user", cascade="all, delete-orphan")
-    author = relationship("Author", back_populates="user")
+    author = relationship("Author", back_populates="user", foreign_keys="Author.user_id")
 
 class Bookmark(Base):
     __tablename__ = "bookmarks"

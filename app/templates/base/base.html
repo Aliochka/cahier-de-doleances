@@ -76,6 +76,37 @@
       </div>
     </div>
 
+    <!-- Modale de connexion générique -->
+    <div id="login-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Se connecter</h2>
+          <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Entrez votre adresse email pour recevoir un lien de connexion sécurisé.</p>
+          <form id="login-form" onsubmit="sendLoginLink(event)">
+            <div class="form-group">
+              <label for="login-email-input">Votre adresse email :</label>
+              <input 
+                type="email" 
+                id="login-email-input" 
+                name="email" 
+                required 
+                placeholder="votre@email.fr"
+                class="form-input"
+              />
+            </div>
+            <button type="submit" class="btn-primary" id="login-submit-btn">
+              <span class="btn-text">Envoyer le lien de connexion</span>
+              <span class="btn-loading" style="display: none;">⏳ Envoi...</span>
+            </button>
+          </form>
+          <div id="login-message" class="message" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+
     <script>
       // Variables globales pour le marque-page en cours
       let pendingBookmark = null;
@@ -104,8 +135,6 @@
         const authStatus = document.getElementById('auth-status');
         if (!authStatus) return;
         
-        authStatus.className = 'auth-status';
-        
         if (user) {
           // Vérifier si le profil est complet
           if (!user.profile_completed) {
@@ -114,22 +143,36 @@
           }
           
           authStatus.innerHTML = `
-            <div class="user-menu-dropdown">
-              <button class="user-menu-toggle">${user.email}</button>
-              <div class="user-menu-content">
-                <a href="/bookmarks" class="menu-item">📖 Mes marques-pages</a>
+            <div class="auth-user-menu">
+              <button class="auth-user-toggle" onclick="toggleUserDropdown()">${user.email} ▼</button>
+              <div class="auth-user-dropdown" id="auth-dropdown" style="display: none;">
+                <a href="/authors/${user.author_id || ''}" id="author-link">👤 Ma page auteur</a>
+                <a href="/bookmarks">📖 Mes marque-pages</a>
                 <form action="/auth/logout" method="post" style="margin: 0;">
-                  <button type="submit" class="menu-item logout-btn">🚪 Se déconnecter</button>
+                  <button type="submit">🚪 Se déconnecter</button>
                 </form>
               </div>
             </div>
           `;
           
+          // Récupérer l'author_id et afficher le lien si disponible
+          fetchAuthorInfo().then(authorInfo => {
+            if (authorInfo && authorInfo.author_id) {
+              const authorLink = document.getElementById('author-link');
+              if (authorLink) {
+                authorLink.href = authorInfo.author_url;
+                authorLink.style.display = 'block';
+              }
+            }
+          }).catch(() => {
+            // Ignorer l'erreur si l'utilisateur n'a pas d'author
+          });
+          
           // Met à jour les boutons de marque-page
           updateBookmarkButtons(user);
         } else {
           authStatus.innerHTML = `
-            <button onclick="openBookmarkModal()" class="auth-login-btn">
+            <button onclick="openLoginModal()" class="auth-login-btn">
               Se connecter
             </button>
           `;
@@ -388,10 +431,103 @@
       // Ferme les modales en cliquant à l'extérieur
       document.addEventListener('click', function(event) {
         const bookmarkModal = document.getElementById('bookmark-modal');
+        const loginModal = document.getElementById('login-modal');
+        
         if (event.target === bookmarkModal) {
           closeBookmarkModal();
         }
+        
+        if (event.target === loginModal) {
+          closeLoginModal();
+        }
         // Note: la modale de profil ne peut pas être fermée en cliquant dehors (obligatoire)
+      });
+
+      // Ouvre la modale de connexion
+      function openLoginModal() {
+        const modal = document.getElementById('login-modal');
+        modal.style.display = 'flex';
+      }
+
+      // Ferme la modale de connexion
+      function closeLoginModal() {
+        document.getElementById('login-modal').style.display = 'none';
+        document.getElementById('login-email-input').value = '';
+        document.getElementById('login-message').style.display = 'none';
+      }
+
+      // Envoie le lien de connexion via la modale générique
+      async function sendLoginLink(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('login-email-input').value;
+        const submitBtn = document.getElementById('login-submit-btn');
+        const message = document.getElementById('login-message');
+        
+        // UI loading
+        submitBtn.querySelector('.btn-text').style.display = 'none';
+        submitBtn.querySelector('.btn-loading').style.display = 'inline';
+        submitBtn.disabled = true;
+        
+        try {
+          const response = await fetch('/auth/send-link', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+            credentials: 'same-origin'
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok) {
+            message.innerHTML = `
+              <div class="success-message">
+                ✅ Un lien de connexion a été envoyé à <strong>${email}</strong>.<br>
+                Consultez votre boîte email et cliquez sur le lien pour vous connecter.
+              </div>
+            `;
+            message.style.display = 'block';
+            document.getElementById('login-form').style.display = 'none';
+          } else {
+            throw new Error(data.detail || 'Erreur lors de l\'envoi');
+          }
+        } catch (error) {
+          message.innerHTML = `<div class="error-message">❌ ${error.message}</div>`;
+          message.style.display = 'block';
+        } finally {
+          submitBtn.querySelector('.btn-text').style.display = 'inline';
+          submitBtn.querySelector('.btn-loading').style.display = 'none';
+          submitBtn.disabled = false;
+        }
+      }
+
+      // Toggle du menu utilisateur dropdown
+      function toggleUserDropdown() {
+        const dropdown = document.getElementById('auth-dropdown');
+        if (dropdown) {
+          dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        }
+      }
+
+      // Récupère les informations de l'author de l'utilisateur
+      async function fetchAuthorInfo() {
+        const response = await fetch('/auth/author-info', {
+          credentials: 'same-origin'
+        });
+        if (response.ok) {
+          return await response.json();
+        }
+        throw new Error('Pas d\'author associé');
+      }
+
+      // Ferme le dropdown si on clique ailleurs
+      document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('auth-dropdown');
+        const toggle = event.target.closest('.auth-user-toggle');
+        
+        if (dropdown && !toggle && dropdown.style.display === 'block') {
+          dropdown.style.display = 'none';
+        }
       });
 
       // Initialisation au chargement de la page
@@ -401,298 +537,5 @@
       });
     </script>
 
-    <style>
-      /* Styles pour la modale */
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
-
-      .modal-content {
-        background: white;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 500px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .modal-header {
-        padding: 20px 20px 10px;
-        border-bottom: 1px solid #eee;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .modal-header h2 {
-        margin: 0;
-        font-size: 18px;
-      }
-
-      .modal-close {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .modal-body {
-        padding: 20px;
-      }
-
-      .form-group {
-        margin-bottom: 15px;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 500;
-      }
-
-      .form-input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-      }
-
-      .btn-primary {
-        background: #2B2A26;
-        color: white;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        width: 100%;
-      }
-
-      .btn-primary:hover {
-        background: #1a1916;
-      }
-
-      .btn-primary:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      .message {
-        margin-top: 15px;
-        padding: 15px;
-        border-radius: 4px;
-      }
-
-      .success-message {
-        background: #d4edda;
-        color: #155724;
-        padding: 15px;
-        border-radius: 4px;
-      }
-
-      .error-message {
-        background: #f8d7da;
-        color: #721c24;
-        padding: 15px;
-        border-radius: 4px;
-      }
-
-      /* Styles pour les boutons marque-page */
-      .bookmark-action {
-        margin-top: 15px;
-      }
-
-      .bookmark-btn {
-        background: #f8f9fa;
-        border: 1px solid #dee2e6;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        transition: all 0.2s;
-      }
-
-      .bookmark-btn:hover {
-        background: #e9ecef;
-        border-color: #adb5bd;
-      }
-
-      /* Menu utilisateur */
-      .user-menu {
-        position: relative;
-      }
-
-      .auth-login-btn {
-        background: #2B2A26;
-        color: white;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-
-      .auth-login-btn:hover {
-        background: #1a1916;
-      }
-
-      .user-menu-dropdown {
-        position: relative;
-      }
-
-      .user-menu-toggle {
-        background: #f8f9fa;
-        border: 1px solid #dee2e6;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-
-      .user-menu-content {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        border: 1px solid #dee2e6;
-        border-radius: 4px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        min-width: 200px;
-        z-index: 100;
-        display: none;
-      }
-
-      .user-menu-dropdown:hover .user-menu-content {
-        display: block;
-      }
-
-      .menu-item {
-        display: block;
-        padding: 10px 16px;
-        text-decoration: none;
-        color: #333;
-        border: none;
-        background: none;
-        width: 100%;
-        text-align: left;
-        cursor: pointer;
-        font-size: 14px;
-      }
-
-      .menu-item:hover {
-        background: #f8f9fa;
-      }
-
-      .logout-btn {
-        border-top: 1px solid #eee;
-      }
-
-      /* Styles pour le sélecteur de nationalité */
-      .country-selector {
-        position: relative;
-        width: 100%;
-      }
-
-      .country-search {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
-
-      .country-list {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        max-height: 200px;
-        overflow-y: auto;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .country-item {
-        padding: 10px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .country-item:hover {
-        background: #f8f9fa;
-      }
-
-      .country-flag {
-        font-size: 18px;
-        width: 24px;
-      }
-
-      .selected-countries {
-        margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .country-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #e9ecef;
-        padding: 4px 8px;
-        border-radius: 16px;
-        font-size: 14px;
-      }
-
-      .country-tag button {
-        background: none;
-        border: none;
-        color: #dc3545;
-        font-weight: bold;
-        cursor: pointer;
-        padding: 0;
-        margin-left: 4px;
-        font-size: 16px;
-      }
-
-      .country-tag button:hover {
-        color: #a71e2a;
-      }
-
-      .form-help {
-        color: #6c757d;
-        font-size: 12px;
-        margin-top: 5px;
-        display: block;
-      }
-
-      .required {
-        color: #dc3545;
-      }
-    </style>
   </body>
 </html>

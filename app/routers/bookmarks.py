@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Request, HTTPException, Cookie, Depends
 from fastapi.responses import HTMLResponse
-from sqlalchemy.orm import Session
-from sqlalchemy import select, delete
+from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import select, delete, func
 from typing import Optional
 import logging
 
 from app.services.auth import auth_service
-from app.models import User, Bookmark
+from app.models import User, Bookmark, Question, Answer, Author, Contribution
 from app.db import SessionLocal
 from app.web import templates
 
@@ -113,7 +113,7 @@ async def list_user_bookmarks(
             .order_by(Bookmark.created_at.desc())
         ).scalars().all()
         
-        # Grouper par type de page pour un affichage organisé
+        # Grouper par type de page et enrichir avec les données associées
         bookmarks_by_type = {
             "question": [],
             "answer": [],
@@ -122,7 +122,65 @@ async def list_user_bookmarks(
         
         for bookmark in bookmarks:
             if bookmark.page_type in bookmarks_by_type:
-                bookmarks_by_type[bookmark.page_type].append(bookmark)
+                # Enrichir avec les données selon le type
+                if bookmark.page_type == "question":
+                    question = db.execute(
+                        select(Question)
+                        .where(Question.id == bookmark.page_id)
+                    ).scalar_one_or_none()
+                    
+                    if question:
+                        bookmark.content = question
+                        bookmarks_by_type[bookmark.page_type].append(bookmark)
+                        
+                elif bookmark.page_type == "answer":
+                    answer = db.execute(
+                        select(Answer)
+                        .options(joinedload(Answer.question))
+                        .where(Answer.id == bookmark.page_id)
+                    ).scalar_one_or_none()
+                    
+                    if answer:
+                        # Préparer les données pour le template answers/_card.html
+                        answer.body = answer.text  # Adapter le nom du champ
+                        answer.question_title = answer.question.prompt if answer.question else None
+                        answer.question_prompt = answer.question.prompt if answer.question else None
+                        # Les questions n'ont pas de slug dans ce modèle, on peut les ignorer
+                        answer.question_slug = None
+                        
+                        # Récupérer les infos d'auteur si disponibles via contribution
+                        if answer.contribution_id:
+                            contribution = db.execute(
+                                select(Contribution)
+                                .options(joinedload(Contribution.author))
+                                .where(Contribution.id == answer.contribution_id)
+                            ).scalar_one_or_none()
+                            
+                            if contribution and contribution.author:
+                                answer.author_id = contribution.author.id
+                                answer.author_name = contribution.author.name
+                                answer.author_slug = None  # Pas de slug dans ce modèle
+                        
+                        bookmark.content = answer
+                        bookmarks_by_type[bookmark.page_type].append(bookmark)
+                        
+                elif bookmark.page_type == "author":
+                    author = db.execute(
+                        select(Author)
+                        .where(Author.id == bookmark.page_id)
+                    ).scalar_one_or_none()
+                    
+                    if author:
+                        # Calculer le nombre de réponses via les contributions
+                        answers_count = db.execute(
+                            select(func.count(Answer.id))
+                            .join(Contribution, Answer.contribution_id == Contribution.id)
+                            .where(Contribution.author_id == author.id)
+                        ).scalar()
+                        
+                        author.answers_count = answers_count or 0
+                        bookmark.content = author
+                        bookmarks_by_type[bookmark.page_type].append(bookmark)
         
         return templates.TemplateResponse("bookmarks/list.html", {
             "request": request,
