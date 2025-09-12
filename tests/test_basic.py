@@ -20,7 +20,7 @@ def test_cache_functions_import():
     
     # Test basic functionality  
     assert get_cache_ttl_minutes(1) == 5  # Now caches rare queries for 5 min
-    assert get_cache_key("test", "cursor") == "search:test:cursor"
+    assert get_cache_key("test", "cursor") == "search:fts:test:cursor"
 
 
 @pytest.mark.cache
