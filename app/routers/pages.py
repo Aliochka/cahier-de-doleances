@@ -7,6 +7,7 @@ from app.db import SessionLocal
 
 router = APIRouter()
 
+
 @router.get("/", name="home", response_class=HTMLResponse)
 def home(request: Request):
     with SessionLocal() as db:

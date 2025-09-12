@@ -1,8 +1,18 @@
 {# Template pour la recherche globale - garde la logique conditionnelle #}
 {# Liste de réponses utilisant le composant _card.html #}
-{% for a in answers %}
-  {% include "answers/_card.html" with context %}
-{% endfor %}
+{% if answers %}
+  {% for a in answers %}
+    {% include "answers/_card.html" with context %}
+  {% endfor %}
+{% else %}
+  {% if on_author_page %}
+    <div class="empty-state">
+      <span class="empty-state-icon">💬</span>
+      <h2 class="h2">Aucune réponse</h2>
+      <p>Cet auteur n'a répondu à aucune question.</p>
+    </div>
+  {% endif %}
+{% endif %}
 
 {% if has_next and next_cursor %}
   <div class="search-load-more-sentinel"

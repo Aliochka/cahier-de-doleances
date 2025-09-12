@@ -1,5 +1,6 @@
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
-from sqlalchemy import String, Integer, BigInteger, ForeignKey, Text, DateTime, func
+from sqlalchemy import String, Integer, BigInteger, ForeignKey, Text, DateTime, func, Boolean, UniqueConstraint, Index
+from datetime import datetime
 
 class Base(DeclarativeBase):
     pass
@@ -15,8 +16,14 @@ class Author(Base):
     city: Mapped[str | None] = mapped_column(String)
     age_range: Mapped[str | None] = mapped_column(String)
     gender: Mapped[str | None] = mapped_column(String)
-
+    
+    # Liaison avec User pour les nouveaux comptes
+    user_id: Mapped[int | None] = mapped_column(BigInteger, ForeignKey("users.id"))
+    is_anonymous: Mapped[bool] = mapped_column(Boolean, default=True)
+    
+    # Relations
     contributions = relationship("Contribution", back_populates="author")
+    user = relationship("User", back_populates="author", foreign_keys=[user_id])
 
 # --- Forms & Questions
 class Form(Base):
@@ -151,3 +158,42 @@ class SearchCache(Base):
     results_json: Mapped[str] = mapped_column(Text)
     search_count: Mapped[int | None] = mapped_column(Integer, default=0)
     created_at: Mapped[DateTime | None] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+# --- Authentication & Bookmarks
+class User(Base):
+    __tablename__ = "users"
+    
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    last_login: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    
+    # Informations utilisateur
+    nationalities: Mapped[str | None] = mapped_column(Text)  # JSON array des codes pays ISO
+    profile_completed: Mapped[bool] = mapped_column(Boolean, default=False)
+    
+    # Liaison avec Author (page publique)
+    author_id: Mapped[int | None] = mapped_column(BigInteger, ForeignKey("authors.id"))
+    
+    # Relations
+    bookmarks = relationship("Bookmark", back_populates="user", cascade="all, delete-orphan")
+    author = relationship("Author", back_populates="user", foreign_keys="Author.user_id")
+
+class Bookmark(Base):
+    __tablename__ = "bookmarks"
+    
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("users.id"), index=True)
+    page_type: Mapped[str] = mapped_column(String(50))  # 'question', 'answer', 'form', 'author'
+    page_id: Mapped[int] = mapped_column(BigInteger)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    
+    # Relations
+    user = relationship("User", back_populates="bookmarks")
+    
+    # Contrainte d'unicité : un utilisateur ne peut pas avoir le même marque-page deux fois
+    __table_args__ = (
+        UniqueConstraint('user_id', 'page_type', 'page_id', name='unique_user_bookmark'),
+        Index('idx_bookmarks_user_type', 'user_id', 'page_type'),
+    )

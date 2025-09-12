@@ -37,6 +37,18 @@
       {% endif %}
       {% if answer.submitted_at %} — {{ answer.submitted_at }}{% endif %}
     </p>
+    
+    <!-- Bouton marque-page positionné sous le titre -->
+    <div class="bookmark-action">
+      <button 
+        onclick="openBookmarkModal('answer', {{ answer.id }})" 
+        class="bookmark-btn"
+        id="bookmark-btn-answer-{{ answer.id }}"
+      >
+        <span class="bookmark-icon">📖</span>
+        <span class="bookmark-text">Ajouter aux marques-pages</span>
+      </button>
+    </div>
   </header>
 
   <section class="answer-page">

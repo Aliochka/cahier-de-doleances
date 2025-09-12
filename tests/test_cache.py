@@ -47,9 +47,9 @@ class TestCacheIntelligence:
     
     def test_cache_key_generation(self):
         """Test cache key generation for different queries"""
-        assert get_cache_key("test", "") == "search:test:"
-        assert get_cache_key("test query", "cursor123") == "search:test query:cursor123"
-        assert get_cache_key("", "") == "search::"
+        assert get_cache_key("test", "") == "search:fts:test:"
+        assert get_cache_key("test query", "cursor123") == "search:fts:test query:cursor123"
+        assert get_cache_key("", "") == "search:timeline:"
     
     def test_cache_save_and_retrieve(self, test_db):
         """Test cache save and retrieval with datetime serialization"""
