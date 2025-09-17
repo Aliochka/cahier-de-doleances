@@ -1,205 +1,73 @@
-# ✅ SEO – Roadmap
+Bonjour,
 
-## 🎯 v0+ (socle technique propre)
-Objectif : que le site soit indexable et lisible par Google.  
+En 1247 louis IX recueille les premiers cahiers de doléances ces milliers de plaintes dénoncent des abus ou des dysfonctionnement.
 
-- [x] **Balises `<title>` dynamiques**
-  - Accueil, question, réponse, auteur  
-  - Toujours unique, suffixé par “Cahier de doléances”  
+En 1789 les plus célèbres des cahiers de doléances jouent leur rôle dans la Révolution Française
 
-- [x] **Balises `<meta description>` dynamiques**
-  - Exemple : `"Découvrez les contributions citoyennes à la question {titre}."`  
+Finalement en 2019 Emmanuel Macron relance les cahiers de doléances, à ma connaissance, rien n'en a été fait.
 
-- [x] **Balise `<h1>` unique par page**  
-  - Titre de la question ou de la réponse  
+J'ai fait ce site parce que j'ai l'impression que la parole des citoyens n'est ni entendue ni écoutée, je veux essayer de changer ça en créant une plateforme participative de questions politiques et de personnes qui y répondent, un genre d'institut de sondage collaboratif, ou un grand cahier de doléances.
 
-- [x] **Sitemap XML** (`/sitemap.xml`)  
-  - Liste : accueil, questions, réponses, auteurs  
+Ce site est tout jeune c'est plus qu'un bébé il a vu internet pour la première fois le 22 août 2025 : vous essuyez encore les plâtres ! Il est amené à se modifier de fond en comble si j'en trouve l'énergie et les moyens. 
 
-- [x] **robots.txt** (`/robots.txt`)  
-  - Avec lien vers sitemap  
+Un problème ? Une idée ? Une critique ou des caresses ? 
+-> contact@cahierdedoleances.fr
 
-- [x] **Canonical URL** sur chaque page  
-  - Évite duplicate content  
+Ici pas de pub, pas de trackers. 
+On est hébergé en France (cocorico)
+Tout est public et anonyme (sauf si vous décidez du contraire)
 
-- [ ] **Open Graph / Twitter Cards (version minimale)**  
-  - `og:title`, `og:description`, `og:url`, `og:image`  
+Plusieurs sources de données se mélangent : les questions du site ; les sources extérieures.
+A commencer par les 200 mille auteurs des 4 questionnaires du grand débat de 2019.
 
----
+J'espère un jour rassembler tous les cahiers de doléances qu'on puisse trouver pour créer une mine d'or pour scientifiques humains et dirigeants attentifs.
 
-## 🚀 v1 (SEO + contenu + performance)  
-Objectif : mieux se positionner sur des requêtes et améliorer l’expérience de recherche.  
+Les données anonymisées seront en open data afin que chacun puisse s'en saisir et les utiliser, on l'espère pour faire de la bonne politique.
 
-- [ ] **URLs propres avec slug**  
-  - `/questions/42-education-culture`  
-  - `/auteurs/dupont-jean`  
+Et s'il vous plaît écrivons avec notre langue d'humains, c'est ok d'être pas clair, de faire des fautes, de venir se corriger de modifier ses propos, seule compte votre opinion maintenant.
 
-- [ ] **Page d’accueil enrichie**  
-  - Texte explicatif sur le projet, ses objectifs, et comment participer  
-  - Liens internes vers les questions principales  
+Mais si vous voulez que les choses changent dans un sens il est sage de l'exprimer.
 
-- [ ] **Améliorer l’UX de lecture**  
-  - Meilleure typographie (espacement, lisibilité mobile)  
-  - Mise en avant des contributions longues  
+Je traîne avec des gens de droite parfois extrême, 
+certains mes amis
+Je traîne avec des gens de gauche, souvent extrême,
+selon mes envies,
+Avec des extrêmes centres qui me hérissent le poil,
+parfois des gentils !
+Je traîne avec des qui s'en fichent et c'est très bien.
+Globalement j'aime bien les humains
 
-- [ ] **Balises sémantiques**  
-  - `<article>`, `<section>`, `<header>`, `<footer>` autour des contenus  
+Le champ du politique est vaste nous avons bien plus en commun que nos plus profond désaccord (parfois irréconciliables)
 
-- [ ] **Données structurées (schema.org)**  
-  - Type `"Question"` pour les questions  
-  - Type `"Answer"` pour les réponses  
-  - Permet rich snippets dans Google  
+je trouve que l'honnêteté devrait plus être au coeur du spectacle, on participerait plus. 
 
-- [ ] **Texte alternatif (alt) sur images** (si tu en ajoutes plus tard)  
+Avec :
+Les guerres
+La crise climatique 
+La crise de la démocratie 
+Les limites du capitalisme et de l'idéologie néo libérale 
+La faillite des conservateurs 
+Le danger de l'extrême droite 
+Combien d'urgences encore ?
 
-- [ ] **Vitesse**
-  - Vérifier via PageSpeed Insights  
-  - Optimiser si besoin (lazyload, cache headers, compression)  
+Pourtant un jour ce sera derrière nous, d'une manière ou d'une autre l'espèce humaine aura réglé ses soucis.
 
-- [ ] **Suivi**
-  - Google Search Console : soumettre sitemap, suivre indexation  
-  - Analytics / Matomo : suivre trafic et requêtes  
+J'espère en bien.
 
-# ✅ Checklist d’implémentation — Recherche & Page Formulaire
+Tous ces points sont liés et une fois tout ça fini, on aura fait un tour complet dans nos têtes et dans nos sociétés : une Révolution 
 
-> Copie-colle tel quel. Aucune section n’impose du code ici.
+La révolution n'a pas besoin d'être violente mais elle a besoin d'être partout, dans la plupart des personnes et dans nos organisations économiques politiques ou associatives.
 
-## 0) Préparation
-- [x] Sauvegarder la version actuelle.
-- [x] Créer une branche `feat/search-forms-questions`.
+Cette prise de conscience a un nom, pour moi, c'est la sieste.
 
----
+(Je suis président autoproclamé du parti de la sieste)
+mais c'est une autre histoire.
 
-## 1) Données & Index
-- [x] Vérifier le modèle (Forms/Questions/Answers/Contributions) conforme à celui fourni.
-- [x] Index DB :
-  - [x] `questions(form_id, position)`
-  - [x] `answers(question_id)`
-  - [x] `answers(contribution_id, question_id)`
-  - [x] `contributions(form_id, submitted_at, id)`
-- [x] FTS :
-  - [x] `question_fts(prompt)` (FR, unaccent)
-  - [x] `form_fts(name)` (FR, unaccent)
-- [x] Compteur rapide :
-  - [x] Source pour **nb de réponses par question** (vue matérialisée ou table compteur + triggers).
-- [ ] Synonymes FR (liste courte, extensible) :
-  - [ ] Initialiser un petit lexique (éducation↔école, impôt↔fiscalité, climat↔environnement, etc.).
-- [ ] Fallback tolérance fautes :
-  - [ ] Dispositif **trigram** (table auxiliaire légère) sur `forms.name` et `questions.prompt`.
+Je suis anarchiste décroissant, technophile et pro entrepreneuriat,
+Vous avez le droit de ne pas être d'accord, d'ailleurs force est de constater que pas grand monde n'est d'accord avec moi !
 
----
+Je trouve que c'est mieux quand on ne vous prend pas pour des abrutis, écrivez ce que vous pensez, les autres s'occuperont de juger.
 
-## 2) Route & Contrat de la page de recherche
-- [ ] Conserver la route **`/search/questions`** (GET).
-- [ ] Paramètres :
-  - [ ] `q` (string) — conservé dans l’URL pour partage/SEO.
-  - [ ] Pagination indépendante **par section** (ex. `page_forms`, `page_questions`).
-- [ ] Réponse (côté serveur) — 2 collections :
-  - [ ] **Formulaires** : `id`, `name`, `questions_count`.
-  - [ ] **Questions** : `id`, `prompt_highlighted`, `answers_count`.
-- [ ] Tri : **strictement BM25** pour chaque section.
+Vous savez mon opinion ; à mon tour de vous demander : et vous quelles sont vos opinions, nous sommes à l'automne 2025, quelles sont vos doléances ?
 
----
-
-## 3) Mécanique de recherche “généreuse”
-- [ ] Normaliser les requêtes : lowercase + unaccent.
-- [ ] Expansion :
-  - [ ] Préfixes (ex. `écolo*`).
-  - [ ] Synonymes (ajout de tokens équivalents).
-- [ ] FTS5 :
-  - [ ] Interroger `form_fts(name)` et `question_fts(prompt)`.
-  - [ ] Récupérer score BM25 + `highlight()` pour Questions (titre uniquement).
-- [ ] Fallback fautes :
-  - [ ] Si trop peu de matches FTS : candidates via **trigram** → re-score via FTS (BM25) → limiter au top N.
-- [ ] Performance :
-  - [ ] Limites par lot (20/section).
-  - [ ] Debounce côté client (200–300 ms).
-  - [ ] Cache LRU 5–10 s (clé = requête normalisée).
-
----
-
-## 4) UI/UX — Page Recherche
-- [ ] Barre de recherche :
-  - [ ] Saisie + debounce (200–300 ms).
-  - [ ] Affichage de la requête et suppression rapide (X).
-- [ ] **Section “Formulaires”** :
-  - [ ] Carte : icône formulaire (stack/list), **Titre**, sous-ligne “Contient N questions”.
-  - [ ] Action par item : **“Voir le formulaire”** → `/forms/{form_id}`.
-  - [ ] **Scroll infini** par section (lot 20).
-- [ ] **Section “Questions”** :
-  - [ ] Ligne/carte : **Titre** avec surlignage (pas d’extrait).
-  - [ ] **Badge “0 réponse”** si `answers_count = 0`.
-  - [ ] Lien toujours actif vers la **page détail question**.
-  - [ ] **Scroll infini** par section (lot 20).
-- [ ] Empty state :
-  - [ ] Message simple si 0 résultat dans les deux sections.
-- [ ] Accessibilité :
-  - [ ] Roles/aria, focus visible, contraste badges.
-- [ ] Langue :
-  - [ ] FR uniquement.
-
----
-
-## 5) Nouvelle page — **Formulaire** `/forms/{form_id}`
-- [ ] Header :
-  - [ ] **Titre** du formulaire (name).
-  - [ ] **Compteur** : “N questions”.
-- [ ] Liste ordonnée des questions (Q1 → Qn) :
-  - [ ] Afficher `position` + `prompt`.
-  - [ ] Chaque item **lien** vers page **détail question**.
-- [ ] Bloc **Contributions** :
-  - [ ] Afficher **toutes les réponses** d’une **contribution** (ordre des questions).
-  - [ ] Navigation :
-    - [ ] Flèche **précédent** / **suivant** entre contributions du **même formulaire**.
-    - [ ] Bornes claires (1..M).
-  - [ ] Lien partageable :
-    - [ ] Paramètre d’URL **`?contrib={index}`** (index lisible dans l’ordre `submitted_at ASC, id ASC`).
-- [ ] Pas de stats détaillées par question (pour l’instant).
-
----
-
-## 6) États/Erreurs/Chargement
-- [ ] Indicateur de chargement discret par section.
-- [ ] Gestion des erreurs réseau (toast bref).
-- [ ] Pas de blocage inter-section (chargements indépendants).
-
----
-
-## 7) Télémétrie minimale (pour itérations)
-- [ ] Latence médiane / P95 de `/search/questions` par section.
-- [ ] % requêtes utilisant le fallback **trigram**.
-- [ ] CTR par type (Formulaire vs Question).
-- [ ] Navigation contributions : usage des flèches, profondeur moyenne parcourue.
-
----
-
-## 8) Tests d’acceptation
-- [ ] “écolo” → trouve “écologie” (préfixe) dans **les deux sections**.
-- [ ] “ecole” → trouve “école/éducation” (unaccent + synonymes).
-- [ ] faute simple “educaiton” → résultats pertinents (fallback trigram → re-score BM25).
-- [ ] Une **Question** avec 0 réponse :
-  - [ ] Affiche le **badge “0 réponse”**.
-  - [ ] Lien **actif** vers la question.
-- [ ] Page Formulaire :
-  - [ ] Affiche **N questions**, ordre Q1→Qn correct.
-  - [ ] Affiche toutes les réponses de la contribution courante.
-  - [ ] Flèches précédent/suivant fonctionnent et respectent les bornes.
-  - [ ] URL `?contrib=7` ouvre la **7ᵉ contribution** de ce formulaire.
-- [ ] Accessibilité :
-  - [ ] Focus visible sur éléments interactifs.
-  - [ ] Contraste badge/lien suffisant.
-
----
-
-## 9) Livraison
-- [ ] QA rapide (env de test).
-- [ ] Merge → déploiement.
-- [ ] Monitoring post-déploiement (latence, erreurs, CTR).
-
----
-
-## 10) Suivi (prochaines itérations — optionnel)
-- [ ] Page “Overview” formulaire (stats).
-- [ ] Amélioration liste synonymes FR.
-- [ ] Ajout paramètre stable `?contrib_id=` (sans casser `?contrib=`).
-- [ ] Badges “1 réponse / N réponses” (si souhaité plus tard).
+Romain Chaffal

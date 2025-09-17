@@ -1,4 +1,13 @@
 /* ---------- Page-specific styles ---------- */
+
+/* ---------- Page d'accueil ---------- */
+.home-content {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.7;
+}
 .search-context {
   margin-bottom: var(--space-4);
 }
