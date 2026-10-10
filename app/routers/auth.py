@@ -60,13 +60,7 @@ async def send_magic_link(request: Request, email_data: EmailRequest):
         magic_token = auth_service.create_magic_token(email)
 
         # Construire l'URL du lien magique
-        base_url = settings.BASE_URL
-        if hasattr(request, "headers"):
-            scheme = request.headers.get("x-forwarded-proto") or request.url.scheme
-            netloc = request.headers.get("x-forwarded-host") or request.url.netloc
-            base_url = f"{scheme}://{netloc}"
-
-        magic_link = f"{base_url}/auth/verify/{magic_token}"
+        magic_link = f"{settings.BASE_URL}/auth/verify/{magic_token}"
 
         # Envoyer l'email
         success = await email_service.send_magic_link(email, magic_link)
@@ -131,7 +125,7 @@ async def verify_magic_link(token: str, request: Request):
             value=session_token,
             max_age=60 * 60 * 24 * 7,  # 7 jours
             httponly=True,
-            secure=True,  # HTTPS uniquement en production
+            secure=settings.COOKIE_SECURE,
             samesite="lax",
         )
 
@@ -168,7 +162,9 @@ async def logout():
     Déconnecte l'utilisateur en supprimant le cookie de session
     """
     response = RedirectResponse(url="/", status_code=302)
-    response.delete_cookie(key="session_token", httponly=True, secure=True, samesite="lax")
+    response.delete_cookie(
+        key="session_token", httponly=True, secure=settings.COOKIE_SECURE, samesite="lax"
+    )
     return response
 
 

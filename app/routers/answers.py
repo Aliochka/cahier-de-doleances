@@ -77,4 +77,6 @@ def answer_detail(request: Request, answer_id: int):
         "submitted_at": row["submitted_at"],
     }
 
-    return templates.TemplateResponse("answers/detail.html", {"request": request, "answer": answer})
+    return templates.TemplateResponse(
+        request, "answers/detail.html", {"request": request, "answer": answer}
+    )

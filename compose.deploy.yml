@@ -1,0 +1,49 @@
+name: cahier-de-doleances-app
+
+services:
+  app:
+    image: cahier-de-doleances-app:${APP_IMAGE_TAG:?Set APP_IMAGE_TAG in .env.deploy}
+    build: .
+    env_file:
+      - .env.deploy
+    environment:
+      # Uvicorn/Gunicorn must not independently trust forwarded headers.
+      # FastAPI handles only the proxies explicitly listed in TRUSTED_PROXY_IPS.
+      FORWARDED_ALLOW_IPS: ""
+    ports:
+      - "${LAN_BIND_IP:?Set LAN_BIND_IP}:8000:8000"
+    networks:
+      - postgres-existing
+      - app-egress
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import os, urllib.request; r=urllib.request.Request('http://127.0.0.1:8000/healthz', headers={'Host': os.environ['HEALTHCHECK_HOST']}); urllib.request.urlopen(r, timeout=10).close()"
+      interval: 30s
+      timeout: 12s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  postgres-existing:
+    external: true
+    name: cahier-de-doleances_cahier-internal
+  # Outbound Mailjet access even when the PostgreSQL network is internal.
+  # This network publishes no ports; it can later accommodate a reverse proxy.
+  app-egress:
+    driver: bridge

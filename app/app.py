@@ -2,11 +2,9 @@
 from __future__ import annotations
 
 import logging
-import os
 from pathlib import Path
 
 from fastapi import FastAPI, Request
-from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.gzip import GZipMiddleware
@@ -23,7 +21,19 @@ from fastapi.exception_handlers import http_exception_handler as fastapi_http_ex
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.config import settings
-from app.routers import answers, auth, authors, bookmarks, forms, pages, questions, search, seo
+from app.logging_filters import redact_access_logs
+from app.routers import (
+    answers,
+    auth,
+    authors,
+    bookmarks,
+    forms,
+    health,
+    pages,
+    questions,
+    search,
+    seo,
+)
 from app.web import templates
 
 # -----------------------------------------------------------------------------
@@ -32,58 +42,7 @@ from app.web import templates
 APP_DIR = Path(__file__).resolve().parent
 STATIC_DIR = APP_DIR / "static"
 
-ENV = settings.ENV  # "prod" en prod Scalingo
-IS_PROD = ENV == "prod"
-
-CANONICAL_HOST = os.getenv("CANONICAL_HOST", "www.cahierdedoleances.fr")
-
-ALLOWED_HOSTS_BASE = {
-    CANONICAL_HOST,
-    "localhost",
-    "127.0.0.1",
-    "0.0.0.0",
-    "cahier-de-doleances.osc-fr1.scalingo.io",  # ajuste si besoin
-}
-
 log = logging.getLogger("uvicorn.error")
-
-
-# -----------------------------------------------------------------------------
-# Middleware de redirection vers le host canonique (ignore le port en local)
-# -----------------------------------------------------------------------------
-class WwwRedirectMiddleware(BaseHTTPMiddleware):
-    """
-    Redirige tout host ≠ CANONICAL_HOST vers le host canonique.
-    Ignore les hôtes de dev / réseaux locaux. 308 pour préserver méthode/query.
-    """
-
-    async def dispatch(self, request: Request, call_next):
-        # En dev, pas de redirection
-        if not IS_PROD:
-            return await call_next(request)
-
-        host_header = request.headers.get("host", "")  # ex: '127.0.0.1:8000'
-        hostname = (request.url.hostname or host_header.split(":", 1)[0]).lower()
-
-        if not hostname:
-            return await call_next(request)
-
-        # Réseaux/dev => pas de redirection
-        if (
-            hostname in ("localhost", "127.0.0.1")
-            or hostname.endswith(".local")
-            or hostname.startswith("10.")
-            or hostname.startswith("192.168.")
-        ):
-            return await call_next(request)
-
-        # Autorisés explicitement ?
-        if hostname == CANONICAL_HOST or hostname in ALLOWED_HOSTS_BASE:
-            return await call_next(request)
-
-        # Redirige vers l'hôte canonique (en https)
-        new_url = request.url.replace(netloc=CANONICAL_HOST, scheme="https")
-        return RedirectResponse(str(new_url), status_code=308)
 
 
 class SearchRobotsHeaderMiddleware(BaseHTTPMiddleware):
@@ -122,7 +81,7 @@ class TimeoutMiddleware(BaseHTTPMiddleware):
 
             if is_browser and not is_htmx:
                 resp = templates.TemplateResponse(
-                    "errors/timeout.html", {"request": request}, status_code=408
+                    request, "errors/timeout.html", {"request": request}, status_code=408
                 )
                 resp.headers["X-Robots-Tag"] = "noindex, nofollow"
                 return resp
@@ -135,7 +94,8 @@ class TimeoutMiddleware(BaseHTTPMiddleware):
 # -----------------------------------------------------------------------------
 # App
 # -----------------------------------------------------------------------------
-app = FastAPI()
+redact_access_logs()
+app = FastAPI(debug=False)
 
 # Application middlewares
 app.add_middleware(SearchRobotsHeaderMiddleware)
@@ -143,16 +103,10 @@ app.add_middleware(TimeoutMiddleware)
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 
 # Proxy and security (execute FIRST)
-app.add_middleware(ProxyHeadersMiddleware)
-if IS_PROD:
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.TRUSTED_PROXY_IPS)
+if settings.ENFORCE_HTTPS:
     app.add_middleware(HTTPSRedirectMiddleware)
-    app.add_middleware(WwwRedirectMiddleware)
-
-if IS_PROD:
-    allowed_hosts = list(ALLOWED_HOSTS_BASE) + [f"*.{CANONICAL_HOST.split('.', 1)[1]}"]
-else:
-    allowed_hosts = ["*"]
-app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.ALLOWED_HOSTS or ["*"])
 
 
 # -----------------------------------------------------------------------------
@@ -163,6 +117,7 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 # -----------------------------------------------------------------------------
 # Routers
 # -----------------------------------------------------------------------------
+app.include_router(health.router)
 app.include_router(pages.router)
 app.include_router(search.router)
 app.include_router(authors.router)
@@ -187,13 +142,13 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
     if is_browser and not is_htmx:
         if exc.status_code == 404:
             resp = templates.TemplateResponse(
-                "errors/404.html", {"request": request}, status_code=404
+                request, "errors/404.html", {"request": request}, status_code=404
             )
             resp.headers["X-Robots-Tag"] = "noindex, follow"
             return resp
         elif exc.status_code == 500:
             resp = templates.TemplateResponse(
-                "errors/500.html", {"request": request}, status_code=500
+                request, "errors/500.html", {"request": request}, status_code=500
             )
             resp.headers["X-Robots-Tag"] = "noindex, nofollow"
             return resp
@@ -213,7 +168,9 @@ async def general_exception_handler(request: Request, exc: Exception):
 
     # Page d'erreur personnalisée pour les navigateurs
     if is_browser and not is_htmx:
-        resp = templates.TemplateResponse("errors/500.html", {"request": request}, status_code=500)
+        resp = templates.TemplateResponse(
+            request, "errors/500.html", {"request": request}, status_code=500
+        )
         resp.headers["X-Robots-Tag"] = "noindex, nofollow"
         return resp
 

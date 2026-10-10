@@ -17,6 +17,7 @@ env/
 # Fichiers de config locaux
 *.env
 *.local
+.env.deploy
 
 # --- Data & DB ---
 data/

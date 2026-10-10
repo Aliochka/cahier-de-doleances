@@ -4,7 +4,8 @@ import secrets
 from datetime import datetime, timedelta, timezone
 from typing import List, Optional
 
-from jose import JWTError, jwt
+import jwt
+from jwt import InvalidTokenError as JWTError
 from sqlalchemy import select
 
 from app.config import settings

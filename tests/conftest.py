@@ -44,6 +44,8 @@ def web_data(test_engine, monkeypatch):
             "app.routers.authors",
             "app.routers.answers",
             "app.routers.seo",
+            "app.routers.bookmarks",
+            "app.services.auth",
         ):
             monkeypatch.setattr(import_module(module), "SessionLocal", factory)
         with factory() as db:

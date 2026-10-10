@@ -5,6 +5,14 @@
 
 > **Vision** : *Un pas de plus vers la révolution.*
 
+## Déploiement sur une base PostgreSQL existante
+
+Pour Wallace (`http://192.168.1.56:8000`), suivre le
+[guide de déploiement](docs/deploiement.md). Il utilise `compose.deploy.yml`,
+avec FastAPI uniquement, et préserve le PostgreSQL 17 existant. Les instructions
+d'installation depuis zéro ci-dessous concernent une **base locale neuve** et
+ne doivent pas être appliquées à la base restaurée du serveur.
+
 ---
 
 ## 🚀 Objectif du projet
@@ -183,11 +191,17 @@ nécessaires au lancement local sont :
 ```dotenv
 DATABASE_URL=postgresql:///cahier_doleances_local
 ENV=dev
-CANONICAL_HOST_URL=http://127.0.0.1:8000
+BASE_URL=http://127.0.0.1:8000
+COOKIE_SECURE=false
+ENFORCE_HTTPS=false
 ```
 
 L'application et Alembic chargent `.env` automatiquement. `ENV=dev` permet
-de servir le site localement en HTTP. `.env` est ignoré par Git.
+de servir le site localement en HTTP. `.env` est ignoré par Git. Générer une
+clé persistante avec `python -c 'import secrets; print(secrets.token_urlsafe(48))'`
+et la renseigner dans `SECRET_KEY`. Sans clé en développement, une clé temporaire
+est générée et les sessions expirent au redémarrage. En déploiement, une clé
+aléatoire d'au moins 32 caractères est obligatoire.
 
 #### Créer le schéma, sans importer de données
 
@@ -251,13 +265,15 @@ Depuis la racine du dépôt :
 ```bash
 source venv/bin/activate
 pg_isready
-alembic upgrade head
+alembic current
 uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Si PostgreSQL est arrêté, lancer `sudo systemctl start postgresql`.
 Il n'est pas nécessaire de recréer le rôle, la base, le fichier `.env`
 ou l'environnement virtuel à chaque lancement.
+Une divergence de révision doit être examinée avant toute migration ; le
+démarrage n'applique aucune migration automatiquement.
 
 ### Dépannage du lancement local
 

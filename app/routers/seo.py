@@ -7,6 +7,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse, Response
 from sqlalchemy import text
 
+from app.config import settings
 from app.db import SessionLocal
 from app.helpers import slugify
 
@@ -18,9 +19,7 @@ SITEMAP_LIMIT_FORMS = 50
 
 
 def _base_url(request: Request) -> str:
-    scheme = request.headers.get("x-forwarded-proto") or request.url.scheme
-    netloc = request.headers.get("x-forwarded-host") or request.url.netloc
-    return f"{scheme}://{netloc}"
+    return settings.BASE_URL
 
 
 def _fmt_iso(dt: datetime | None) -> str | None:

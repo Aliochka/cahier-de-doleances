@@ -257,6 +257,7 @@ def question_detail(
     # Rendu partiel pour HTMX
     if partial:
         return templates.TemplateResponse(
+            request,
             "partials/_question_answers_list.html",
             {
                 "request": request,
@@ -274,6 +275,7 @@ def question_detail(
 
     # Rendu complet
     return templates.TemplateResponse(
+        request,
         "questions/detail.html",
         {
             "request": request,
@@ -432,11 +434,13 @@ def question_answers_partial(
     if isinstance(resp, RedirectResponse):
         # si slug faux dans l’appel direct, on renvoie vide plutôt que rediriger
         return templates.TemplateResponse(
+            request,
             "partials/_answers_list.html",
             {"request": request, "answers": [], "page": 1, "total_pages": 1, "q": q or ""},
         )
     ctx = dict(resp.context)
     return templates.TemplateResponse(
+        request,
         "partials/_answers_list.html",
         {
             "request": request,

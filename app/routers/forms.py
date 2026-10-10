@@ -49,7 +49,7 @@ def form_detail(
         if not row_form:
             # 404 template si tu en as un
             return templates.TemplateResponse(
-                "errors/404.html", {"request": request}, status_code=404
+                request, "errors/404.html", {"request": request}, status_code=404
             )
 
         # Liste ordonnée des questions du formulaire
@@ -190,7 +190,7 @@ def form_detail(
             "on_form_page": True,
         }
 
-        return templates.TemplateResponse("forms/detail.html", ctx)
+        return templates.TemplateResponse(request, "forms/detail.html", ctx)
 
 
 @router.get("/forms/{form_id}/dashboard", name="form_dashboard", response_class=HTMLResponse)
@@ -219,7 +219,7 @@ def form_dashboard(request: Request, form_id: int):
 
         if not row_form:
             return templates.TemplateResponse(
-                "errors/404.html", {"request": request}, status_code=404
+                request, "errors/404.html", {"request": request}, status_code=404
             )
 
         questions = (
@@ -289,7 +289,7 @@ def form_dashboard(request: Request, form_id: int):
             "on_dashboard": True,
         }
 
-        return templates.TemplateResponse("forms/dashboard.html", ctx)
+        return templates.TemplateResponse(request, "forms/dashboard.html", ctx)
 
 
 @router.get(
@@ -398,4 +398,4 @@ def form_dashboard_stats(request: Request, form_id: int):
             "total_questions": len(all_stats),
         }
 
-        return templates.TemplateResponse("partials/_dashboard_charts.html", ctx)
+        return templates.TemplateResponse(request, "partials/_dashboard_charts.html", ctx)

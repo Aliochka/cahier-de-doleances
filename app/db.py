@@ -7,6 +7,8 @@ from dotenv import load_dotenv  # type: ignore
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from app.config import settings
+
 load_dotenv()
 
 
@@ -29,9 +31,13 @@ def _normalize_psycopg2(url: Optional[str]) -> str:
 def _pick_db_url() -> str:
     # Priorité : TEST_DATABASE_URL > DATABASE_URL > SCALINGO_POSTGRESQL_URL
     raw = (
-        os.getenv("TEST_DATABASE_URL")
-        or os.getenv("DATABASE_URL")
-        or os.getenv("SCALINGO_POSTGRESQL_URL")
+        os.getenv("DATABASE_URL")
+        if settings.ENV == "prod"
+        else (
+            os.getenv("TEST_DATABASE_URL")
+            or os.getenv("DATABASE_URL")
+            or os.getenv("SCALINGO_POSTGRESQL_URL")
+        )
     )
     normalized = _normalize_psycopg2(raw)
     if not normalized:
@@ -50,7 +56,9 @@ DB_URL = _pick_db_url()
 engine = create_engine(
     DB_URL,
     pool_pre_ping=True,
+    pool_timeout=5,
     pool_recycle=300,  # évite les connexions zombies en PaaS
+    connect_args={"connect_timeout": 5},
 )
 
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False, expire_on_commit=False)

@@ -174,6 +174,7 @@ async def list_user_bookmarks(request: Request, user: User = Depends(get_current
                         bookmarks_by_type[bookmark.page_type].append(bookmark)
 
         return templates.TemplateResponse(
+            request,
             "bookmarks/list.html",
             {
                 "request": request,

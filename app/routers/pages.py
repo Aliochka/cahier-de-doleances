@@ -35,4 +35,4 @@ def home(request: Request):
             )
 
     ctx = {"request": request, "forms": forms_list}
-    return templates.TemplateResponse("home/index.html", ctx)
+    return templates.TemplateResponse(request, "home/index.html", ctx)

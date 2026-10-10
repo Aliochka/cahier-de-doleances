@@ -230,6 +230,7 @@ def author_detail(
     total_pages = max(1, math.ceil(total / PER_PAGE))
 
     return templates.TemplateResponse(
+        request,
         "authors/detail.html",
         {
             "request": request,

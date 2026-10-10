@@ -10,6 +10,7 @@ from typing import Any
 from fastapi import APIRouter, Query, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy import text
+from sqlalchemy.exc import DBAPIError
 
 from app.db import SessionLocal
 from app.helpers import (
@@ -90,11 +91,11 @@ def search_answers(
                 params["last_id"] = int(cur.get("id", 0))
 
             # Optimisations PostgreSQL + timeout de sécurité
-            db.execute(text("SET work_mem = '64MB'"))
+            db.execute(text("SET LOCAL work_mem = '64MB'"))
             db.execute(
-                text("SET statement_timeout = '5000'")
+                text("SET LOCAL statement_timeout = '5000'")
             )  # 5 secondes MAX (au lieu de 30s+ par défaut)
-            db.execute(text("SET enable_seqscan = false"))
+            db.execute(text("SET LOCAL enable_seqscan = false"))
 
             try:
                 # Requête FTS optimisée avec limite 1789 comme l'original
@@ -134,15 +135,12 @@ def search_answers(
                     .all()
                 )
 
-            except Exception as e:
+            except DBAPIError as e:
+                db.rollback()
+                if getattr(e.orig, "pgcode", None) != "57014":
+                    raise
                 # Si timeout, fallback sur résultats vides
-                print(f"Search timeout for query '{q}': {e}")
                 rows = []
-
-            finally:
-                # Remettre les paramètres par défaut
-                db.execute(text("SET statement_timeout = 0"))
-                db.execute(text("SET enable_seqscan = true"))
 
         # --- Mode 2: timeline récente (q court ou vide)
         else:
@@ -233,13 +231,13 @@ def search_answers(
     if is_htmx:
         # Si c'est un infinite scroll (cursor présent), utiliser le template d'append
         if cursor:
-            resp = templates.TemplateResponse("partials/_answers_list_append.html", ctx)
+            resp = templates.TemplateResponse(request, "partials/_answers_list_append.html", ctx)
         else:
             # Première recherche HTMX, template complet
-            resp = templates.TemplateResponse("partials/_answers_list.html", ctx)
+            resp = templates.TemplateResponse(request, "partials/_answers_list.html", ctx)
         return resp
 
-    resp = templates.TemplateResponse("search/answers.html", ctx)
+    resp = templates.TemplateResponse(request, "search/answers.html", ctx)
     return resp
 
 
@@ -478,11 +476,11 @@ def search_questions(
     # Rendu partiel (htmx) : une seule section
     if is_htmx:
         if section == "forms":
-            return templates.TemplateResponse("partials/_forms_list.html", ctx)
+            return templates.TemplateResponse(request, "partials/_forms_list.html", ctx)
         if section == "questions":
-            return templates.TemplateResponse("partials/_questions_list.html", ctx)
+            return templates.TemplateResponse(request, "partials/_questions_list.html", ctx)
         # par défaut, recharge les deux colonnes
-        return templates.TemplateResponse("partials/_search_sections.html", ctx)
+        return templates.TemplateResponse(request, "partials/_search_sections.html", ctx)
 
     # Rendu complet (les 2 sections)
-    return templates.TemplateResponse("search/questions.html", ctx)
+    return templates.TemplateResponse(request, "search/questions.html", ctx)

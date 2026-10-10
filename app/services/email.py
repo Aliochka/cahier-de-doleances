@@ -12,7 +12,9 @@ class EmailService:
 
     def __init__(self):
         if not settings.MAILJET_API_KEY or not settings.MAILJET_SECRET_KEY:
-            logger.warning("Mailjet not configured - emails will be logged only")
+            logger.warning(
+                "Mailjet not configured; delivery unavailable unless development logging is enabled"
+            )
             self.client = None
         else:
             self.client = Client(
@@ -90,6 +92,9 @@ class EmailService:
         """Envoi d'email générique via Mailjet"""
 
         if not self.client:
+            if not settings.LOG_MAGIC_LINKS:
+                logger.error("Email delivery unavailable: configure Mailjet credentials")
+                return False
             # En mode développement, extraire et afficher clairement le lien magique
             import re
 
@@ -136,7 +141,7 @@ class EmailService:
                 logger.info(f"Email sent successfully to {to_email}")
                 return True
             else:
-                logger.error(f"Failed to send email: {result.status_code} - {result.json()}")
+                logger.error(f"Failed to send email: HTTP {result.status_code}")
                 return False
         except Exception as e:
             logger.error(f"Error sending email to {to_email}: {str(e)}")

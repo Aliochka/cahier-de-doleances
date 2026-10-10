@@ -78,7 +78,10 @@ def test_templates_render_without_translation_or_dynamic_og_routes(client, web_d
 
 
 @pytest.mark.integration
-def test_sitemap_is_valid_and_uses_the_current_request_host(client, web_data):
+def test_sitemap_uses_configured_origin_and_ignores_forwarded_host(client, web_data, monkeypatch):
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "BASE_URL", "http://testserver")
     namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     for host in ("premier.example", "second.example"):
         response = client.get("/sitemap.xml", headers={"x-forwarded-host": host})
@@ -86,8 +89,8 @@ def test_sitemap_is_valid_and_uses_the_current_request_host(client, web_data):
         urls = [
             n.text for n in ElementTree.fromstring(response.text).findall("s:url/s:loc", namespace)
         ]
-        assert f"http://{host}/forms/{web_data['form']}" in urls
-        assert all(url.startswith(f"http://{host}/") for url in urls)
+        assert f"http://testserver/forms/{web_data['form']}" in urls
+        assert all(url.startswith("http://testserver/") for url in urls)
     assert client.head("/sitemap.xml").content == b""
     robots = client.get("/robots.txt")
     assert "Sitemap: http://testserver/sitemap.xml" in robots.text
@@ -95,11 +98,20 @@ def test_sitemap_is_valid_and_uses_the_current_request_host(client, web_data):
 
 
 def test_retired_routes_are_not_registered():
+    from fastapi.testclient import TestClient
+
     from app.app import app
 
-    paths = {r.path for r in app.routes}
-    assert not {"/mentions", "/topics", "/og/test", "/og/status", "/sitemap/clear-cache"} & paths
-    assert not any(p.startswith(("/og/", "/set-language/")) for p in paths)
+    with TestClient(app) as client:
+        for path in (
+            "/mentions",
+            "/topics",
+            "/og/test",
+            "/og/status",
+            "/sitemap/clear-cache",
+            "/set-language/fr",
+        ):
+            assert client.get(path).status_code == 404
 
 
 @pytest.mark.integration

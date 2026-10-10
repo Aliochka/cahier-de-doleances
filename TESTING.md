@@ -44,11 +44,14 @@ la commande qui suit : elles ne modifient pas la base utilisée ensuite par
 le serveur. Ne pas exporter `TEST_DATABASE_URL` dans le terminal du serveur,
 car l'application donne priorité à cette variable pour ses connexions.
 
-La suite comprend 21 cas : 11 pour l'ingestion et 10 pour l'application.
+La suite conserve les 21 cas d'ingestion et de consultation et ajoute des
+régressions de configuration, de sécurité et d'authentification.
 Elle vérifie les limites des fichiers JSON, la reprise des téléchargements,
 les caractères nuls, les choix multiples et textes « autre », la réimportation,
 les compteurs, la pagination sans perte ni doublon, les statistiques sans cache,
-le rendu français et les liens de partage statiques, et les sitemaps par hôte.
+le rendu français et les liens de partage statiques, les sitemaps utilisant
+l'origine configurée, les cookies HTTP/HTTPS, les comptes, profils et marque-pages,
+la sérialisation JSON sûre et les contrôles de schéma en lecture seule.
 
 Les fixtures HTTP partagent une connexion avec des savepoints et remplacent
 les fabriques de sessions réellement utilisées par les routes. Même si une
@@ -59,7 +62,7 @@ n'est conservée.
 
 ## Automatisation
 
-La CI exécute Ruff, le contrôle de formatage, les migrations sur PostgreSQL 15
+La CI exécute Ruff, le contrôle de formatage, les migrations sur PostgreSQL 17
 et toute la suite avec Python 3.11. Le fichier `.pre-commit-config.yaml`
 fournit les hooks Ruff ; aucune installation de navigateur n'est requise.
 

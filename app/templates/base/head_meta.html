@@ -2,7 +2,7 @@
    META / SEO – base head
    ======================= #}
 {# --- Config --- #}
-{% set HOST = "https://www.cahierdedoleances.fr" %}
+{% set HOST = BASE_URL %}
 {% set TITLE_SUFFIX = " – Cahier de doléances" %}
 {% set MAX_TITLE = 65 %}
 {% set MAX_DESC  = 160 %}
@@ -102,7 +102,6 @@
 <link rel="stylesheet" href="{{ request.url_for('static', path='/css/layout.css') }}?v=2">
 <link rel="stylesheet" href="{{ request.url_for('static', path='/css/components.css') }}?v=3">
 <link rel="stylesheet" href="{{ request.url_for('static', path='/css/pages.css') }}?v=3">
-<link rel="icon" href="{{ request.url_for('static', path='/img/favicon.ico') }}">
 
 <script
   src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"

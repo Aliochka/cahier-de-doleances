@@ -1,4 +1,3 @@
-import json
 from datetime import date, datetime
 from decimal import Decimal
 from pathlib import Path
@@ -7,6 +6,7 @@ from zoneinfo import ZoneInfo
 from fastapi.templating import Jinja2Templates
 from starlette.datastructures import URL
 
+from app.config import settings
 from app.helpers import clean_text_excerpt
 
 # Central Jinja2Templates instance for the whole app
@@ -29,8 +29,7 @@ def _json_default(o):
     return str(o)
 
 
-templates.env.filters["tojson"] = lambda v: json.dumps(
-    v, ensure_ascii=False, separators=(",", ":"), default=_json_default
-)
+templates.env.policies["json.dumps_kwargs"] = {"ensure_ascii": False, "default": _json_default}
+templates.env.globals["BASE_URL"] = settings.BASE_URL
 templates.env.filters["clean_text_excerpt"] = clean_text_excerpt
 templates.env.globals["now"] = lambda: datetime.now(ZoneInfo("Europe/Paris"))
