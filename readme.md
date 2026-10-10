@@ -109,88 +109,184 @@ Ce script compare automatiquement :
 - Ignore les tables et colonnes générées automatiquement (Alembic, triggers FTS)
 - Charge la configuration depuis le fichier .env
 
-### 1. Lancer le projet
+### 1. Installation depuis zéro (Ubuntu / Debian)
 
-\`\`\`bash
-git clone https://github.com/[ton-org]/cahier-de-doleances.git
+Le site utilise **FastAPI, SQLAlchemy et PostgreSQL**. La procédure ci-dessous
+lance une instance locale avec une base sans contributions citoyennes.
+Elle a été vérifiée avec Python 3.10 et PostgreSQL 14 ; le fichier
+`.python-version` du dépôt indique Python 3.11.
+
+#### Installer les outils système
+
+Dans votre terminal, installer Git, Python avec le support des environnements
+virtuels, PostgreSQL et ses extensions :
+
+```bash
+sudo apt-get update
+sudo apt-get install -y git python3 python3-venv python3-pip postgresql postgresql-contrib curl
+sudo systemctl start postgresql
+pg_isready
+```
+
+`pg_isready` doit indiquer que PostgreSQL accepte les connexions.
+Les commandes `sudo` peuvent demander votre mot de passe système.
+
+#### Récupérer le projet
+
+```bash
+git clone https://github.com/Aliochka/cahier-de-doleances.git
 cd cahier-de-doleances
-python -m venv venv
+```
+
+Si vous avez déjà téléchargé le projet, ouvrez simplement un terminal dans
+son dossier. Toutes les commandes suivantes s'exécutent depuis cette racine.
+
+#### Créer le rôle et la base PostgreSQL
+
+Créer un rôle PostgreSQL portant le nom de votre utilisateur Linux,
+puis une base dédiée dont ce rôle sera propriétaire :
+
+```bash
+sudo -u postgres createuser --createdb "$(id -un)"
+createdb cahier_doleances_local
+psql cahier_doleances_local -c 'SELECT current_database(), current_user;'
+```
+
+Ces créations ne se font qu'une fois. Si le rôle ou la base existe déjà,
+passer la commande correspondante et vérifier la connexion avec `psql`.
+Pour cette procédure, utiliser une base neuve : les migrations ne vident
+pas une base existante.
+
+La connexion utilise le socket Unix local et l'authentification `peer` de
+PostgreSQL : le nom du rôle correspond à celui de votre session Linux.
+Aucun mot de passe PostgreSQL ni port TCP exposé n'est nécessaire.
+
+#### Installer les dépendances Python
+
+```bash
+python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
+
+#### Configurer l'environnement local
+
+Lors de la première installation :
 
 ```bash
-# Lancer le serveur
-gunicorn -k uvicorn.workers.UvicornWorker app.app:app --reload
+cp .env.example .env
 ```
 
-### 2. Créer la base de test
+Si `.env` existe déjà, modifier son contenu sans l'écraser. Les valeurs
+nécessaires au lancement local sont :
 
-# Sandbox DB Setup (SQLite)
+```dotenv
+DATABASE_URL=postgresql:///cahier_doleances_local
+ENV=dev
+CANONICAL_HOST_URL=http://127.0.0.1:8000
+```
 
-This sets `sandbox.db` as the **default** database for dev/tests, while keeping your heavy `gdn.db` for full ingestion.
+L'application et Alembic chargent `.env` automatiquement. `ENV=dev` permet
+de servir le site localement en HTTP. `.env` est ignoré par Git.
 
-## Resolution order
-1. `--db` CLI flag (if your scripts accept it)
-2. `GDN_DB_PATH` env var (e.g., from `.env`)
-3. Default: `./sandbox.db`
-
-## Files in this bundle
-- `scripts/make_sandbox.py` – creates/refreshes `sandbox.db`, runs Alembic migrations, then ingests test CSVs from `data/example`.
-- `app/config_db.py` – small helper to resolve the DB path/URL consistently.
-- `.env.example` – sample env file with `GDN_DB_PATH=./sandbox.db`.
-- `.gitignore.additions.txt` – lines to add to your repo's `.gitignore`.
-
-## Usage
-
-1. Copy files into your repo (keep relative paths).
-2. Add `.env` based on `.env.example` (or export `GDN_DB_PATH`).
-3. Ensure Alembic is configured (has `alembic.ini`, `alembic/`).
-4. Put small CSVs in `data/example/` (the seed).
-5. Run:
-
-   ```bash
-   python scripts/make_sandbox.py
-   ```
-
-   Or customize:
-
-   ```bash
-      python scripts/make_sandbox.py \       
-        --ingest-pairs 'data/example/democratie-et-citoyennete-tiny.csv::ingest/mappings/democratie_citoyennete.yml' \
-        --ingest-pairs 'data/example/la-fiscalite-et-les-depenses-publiques-tiny.csv::ingest/mappings/fiscalite_depenses.yml' \
-        --ingest-pairs 'data/example/la-transition-ecologique-tiny.csv::ingest/mappings/transition_ecologique.yml' \
-        --ingest-pairs 'data/example/organisation-de-letat-et-des-services-publics-tiny.csv::ingest/mappings/organisation_etat_services.yml'
-   ```
-
-## Alembic note
-
-The script sets `DATABASE_URL` during migration if not already set, using `GDN_DB_PATH`. You can also wire your `alembic/env.py` to read `DATABASE_URL` if present, otherwise fall back to `GDN_DB_PATH` or `./sandbox.db`.
-
-## Safety
-
-- `make_sandbox.py` **removes** any existing `sandbox.db` before recreating it.
-- It exits gracefully if no CSVs are found in `data/example/`.
-
-
-### 3. Ingestion des données
+#### Créer le schéma, sans importer de données
 
 ```bash
-python gdn_ingest.py ingest   --csv /chemin/vers/contributions.csv   --db gdn.db   --chunksize 5000
+alembic upgrade head
+alembic current
 ```
 
-### 4. Recherche plein texte
+La révision attendue est `restore_search_infra (head)`. Cette migration
+rétablit les colonnes, index de recherche et contraintes supprimés par une
+ancienne migration d'authentification. Il faut appliquer les migrations
+avant de démarrer le site.
+
+Les migrations créent les tables, extensions (`unaccent`, `pg_trgm`), index,
+déclencheurs et compteurs techniques. Elles n'importent aucun fichier de
+contributions.
+
+#### Démarrer le serveur
 
 ```bash
-python gdn_ingest.py search   --db gdn.db   --query "culture NEAR/5 patrimoine"   --limit 20
+uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-### 5. Rebuild du script en Rust (optionnel, pour performance)
+Ouvrir **http://127.0.0.1:8000**. Garder ce terminal ouvert ; `Ctrl+C`
+arrête le serveur. L'option `--reload` recharge le code modifié pendant
+le développement.
+
+### 2. Vérifier le lancement avec une base vide
+
+Dans un second terminal ouvert à la racine du projet :
 
 ```bash
-cargo build --release
-./target/release/gdn_ingest ...
+source venv/bin/activate
+alembic current
+psql cahier_doleances_local -c '
+SELECT
+  (SELECT count(*) FROM forms) AS forms,
+  (SELECT count(*) FROM questions) AS questions,
+  (SELECT count(*) FROM authors) AS authors,
+  (SELECT count(*) FROM contributions) AS contributions,
+  (SELECT count(*) FROM answers) AS answers,
+  (SELECT count(*) FROM users) AS users;
+'
+curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8000/
+curl -s -o /dev/null -w '%{http_code}\n' 'http://127.0.0.1:8000/search/answers?q=culture'
+curl -s -o /dev/null -w '%{http_code}\n' 'http://127.0.0.1:8000/search/questions?q=culture'
 ```
+
+Sur une installation neuve, les six compteurs doivent être à **0** et les
+trois requêtes HTTP doivent renvoyer **200**. Les pages de recherche sont
+accessibles mais leurs résultats restent vides jusqu'à l'import.
+
+Les pages `/mentions` et `/topics` n'ont pas encore de modèles HTML et
+renvoient **404**. Les pages de détail correspondant à des données absentes
+renvoient également 404. Sans configuration Mailjet, les e-mails sont
+journalisés et ne sont pas envoyés ; cela ne bloque pas le lancement.
+
+### 3. Relancer le projet après l'installation
+
+Depuis la racine du dépôt :
+
+```bash
+source venv/bin/activate
+pg_isready
+alembic upgrade head
+uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
+```
+
+Si PostgreSQL est arrêté, lancer `sudo systemctl start postgresql`.
+Il n'est pas nécessaire de recréer le rôle, la base, le fichier `.env`
+ou l'environnement virtuel à chaque lancement.
+
+### Dépannage du lancement local
+
+- **`sudo` demande un mot de passe** : exécuter la commande dans votre
+  terminal et saisir le mot de passe de votre session Linux.
+- **`role … does not exist`** : créer le rôle portant le nom retourné par
+  `id -un`, comme indiqué plus haut.
+- **`Peer authentication failed`** : exécuter l'application avec le même
+  utilisateur Linux que celui du rôle PostgreSQL, et conserver l'URL par
+  socket Unix indiquée dans `.env`.
+- **`database … does not exist`** : exécuter `createdb cahier_doleances_local`.
+- **`No database URL found`** : vérifier que `.env` se trouve à la racine,
+  contient `DATABASE_URL` et que le serveur est lancé depuis cette racine.
+- **Une autre base est utilisée** : les variables déjà exportées dans le
+  terminal priment sur `.env`. `TEST_DATABASE_URL` prime aussi sur
+  `DATABASE_URL` pour l'application ; `ALEMBIC_DATABASE_URL` peut remplacer
+  l'URL des migrations. Retirer ces substitutions pour le lancement local.
+- **Erreur de colonne de recherche absente** : activer `venv`, exécuter
+  `alembic upgrade head`, puis vérifier `alembic current`.
+- **`Address already in use`** : arrêter le serveur déjà lancé avec `Ctrl+C`,
+  ou choisir un autre port, par exemple `--port 8001`.
+
+### 4. Importer les données (étape suivante)
+
+Le téléchargement et l'import des données seront documentés après validation
+de la procédure PostgreSQL. Les anciens exemples utilisant SQLite,
+`make_sandbox.py` ou `gdn_ingest.py` ne constituent pas la procédure actuelle
+de lancement du site.
 
 ---
 

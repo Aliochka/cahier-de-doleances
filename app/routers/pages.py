@@ -1,6 +1,7 @@
 # app/routers/pages.py
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import HTMLResponse
+from jinja2 import TemplateNotFound
 from sqlalchemy import text
 from app.web import templates
 from app.db import SessionLocal
@@ -39,9 +40,15 @@ def home(request: Request):
 
 @router.get("/mentions", name="mentions", response_class=HTMLResponse)
 def mentions(request: Request):
-    return templates.TemplateResponse("mentions.html", {"request": request})
+    try:
+        return templates.TemplateResponse("mentions.html", {"request": request})
+    except TemplateNotFound:
+        raise HTTPException(status_code=404, detail="Page indisponible")
 
 @router.get("/topics", name="topics", response_class=HTMLResponse)
 def topics(request: Request):
-    return templates.TemplateResponse("topics.html", {"request": request})
+    try:
+        return templates.TemplateResponse("topics.html", {"request": request})
+    except TemplateNotFound:
+        raise HTTPException(status_code=404, detail="Page indisponible")
 
