@@ -1,77 +1,156 @@
 form:
-  name: Grand Débat - Organisation de l'État & services publics
-  version: v1
-  source: plateforme
+  name: Grand Débat - Organisation de l'État & services publics (questions rapides)
+  version: '2019-04-08'
+  source: e2a2d423-3011-49cc-8de8-7806eb8ff032
 defaults:
   author:
     source_author_id: authorId
-    zipcode: authorZipCode  
+    zipcode: authorZipCode
   contribution:
     source_contribution_id: id
     submitted_at: publishedAt
     source: plateforme-gdn
 questions:
 - code: Q86
-  prompt: Savez-vous quels sont les différents échelons administratifs (Etat, collectivités territoriales comme la région, la commune, opérateurs comme par exemple Pole Emploi ou la CAF) qui gèrent les différents services publics dans votre territoire ?
+  prompt: Savez-vous quels sont les différents échelons administratifs (Etat, collectivités territoriales
+    comme la région, la commune, opérateurs comme par exemple Pole Emploi ou la CAF) qui gèrent les différents
+    services publics dans votre territoire ?
   type: single_choice
   section: organisation
-  source_column: "QUXVlc3Rpb246ODY= - Savez-vous quels sont les différents échelons administratifs (Etat, collectivités territoriales comme la région, la commune, opérateurs comme par exemple Pole Emploi ou la CAF) qui gèrent les différents services publics dans votre territoire ?"
+  source_column: QUXVlc3Rpb246ODY= - Savez-vous quels sont les différents échelons administratifs (Etat,
+    collectivités territoriales comme la région, la commune, opérateurs comme par exemple Pole Emploi
+    ou la CAF) qui gèrent les différents services publics dans votre territoire ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 1
+  allow_other_text: true
 - code: Q87
-  prompt: Pensez-vous qu'il y a trop d'échelons administratifs en France ?
+  prompt: Pensez-vous qu’il y a trop d’échelons administratifs en France ?
   type: single_choice
   section: organisation
-  source_column: "QUXVlc3Rpb246ODc= - Pensez-vous qu'il y a trop d'échelons administratifs en France ?"
+  source_column: QUXVlc3Rpb246ODc= - Pensez-vous qu’il y a trop d’échelons administratifs en France ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 2
+  allow_other_text: true
 - code: Q85
   prompt: Quels sont les niveaux de collectivités territoriales auxquels vous êtes le plus attaché ?
-  type: text
+  type: multi_choice
   section: territoires
-  source_column: "QUXVlc3Rpb246ODU= - Quels sont les niveaux de collectivités territoriales auxquels vous êtes le plus attaché ?"
+  source_column: QUXVlc3Rpb246ODU= - Quels sont les niveaux de collectivités territoriales auxquels vous
+    êtes le plus attaché ?
+  position: 3
+  options:
+  - code: l-intercommunalite
+    label: L'intercommunalité
+    position: 1
+  - code: la-commune
+    label: La commune
+    position: 2
+  - code: la-region
+    label: La région
+    position: 3
+  - code: le-departement
+    label: Le département
+    position: 4
+  delimiter: '|'
+  allow_other_text: true
 - code: Q90
-  prompt: Lorsqu'un déplacement est nécessaire pour effectuer une démarche administrative, quelle distance pouvez-vous parcourir sans difficulté ?
-  type: text
+  prompt: Lorsqu'un déplacement est nécessaire pour effectuer une démarche administrative, quelle distance
+    pouvez-vous parcourir sans difficulté ?
+  type: single_choice
   section: accessibilité
-  source_column: "QUXVlc3Rpb246OTA= - Lorsqu'un déplacement est nécessaire pour effectuer une démarche administrative, quelle distance pouvez-vous parcourir sans difficulté ?"
+  source_column: QUXVlc3Rpb246OTA= - Lorsqu'un déplacement est nécessaire pour effectuer une démarche
+    administrative, quelle distance pouvez-vous parcourir sans difficulté ?
+  position: 4
+  options:
+  - code: jusqu-a-10-kms
+    label: jusqu'à 10 kms
+    position: 1
+  - code: jusqu-a-15-kms
+    label: jusqu'à 15 kms
+    position: 2
+  - code: jusqu-a-20-kms
+    label: jusqu'à 20 kms
+    position: 3
+  - code: jusqu-a-5-kms
+    label: jusqu'à 5 kms
+    position: 4
+  - code: plus-de-20-kms
+    label: plus de 20 kms
+    position: 5
+  allow_other_text: true
 - code: Q89
   prompt: Pour accéder à certains services publics, vous avez avant tout des besoins...
-  type: text
+  type: multi_choice
   section: accessibilité
-  source_column: "QUXVlc3Rpb246ODk= - Pour accéder à certains services publics, vous avez avant tout des besoins..."
+  source_column: QUXVlc3Rpb246ODk= - Pour accéder à certains services publics, vous avez avant tout des
+    besoins...
+  position: 5
+  options:
+  - code: numeriques
+    label: Numériques
+    position: 1
+  - code: physiques-pour-pouvoir-vous-rendre-sur-place
+    label: Physiques pour pouvoir vous rendre sur place
+    position: 2
+  - code: telephoniques
+    label: Téléphoniques
+    position: 3
+  delimiter: '|'
+  allow_other_text: true
 - code: Q98
-  prompt: Si vous rencontrez des difficultés pour effectuer vos démarches administratives sur Internet, de quel accompagnement souhaiteriez-vous bénéficier ?
-  type: text
+  prompt: Si vous rencontrez des difficultés pour effectuer vos démarches administratives sur Internet,
+    de quel accompagnement souhaiteriez-vous bénéficier ?
+  type: multi_choice
   section: numérique
-  source_column: "QUXVlc3Rpb246OTg= - Si vous rencontrez des difficultés pour effectuer vos démarches administratives sur Internet, de quel accompagnement souhaiteriez-vous bénéficier ?"
+  source_column: QUXVlc3Rpb246OTg= - Si vous rencontrez des difficultés pour effectuer vos démarches administratives
+    sur Internet, de quel accompagnement souhaiteriez-vous bénéficier ?
+  position: 6
+  options:
+  - code: une-aide-telephonique
+    label: Une aide téléphonique
+    position: 1
+  - code: une-formation-numerique
+    label: Une formation numérique
+    position: 2
+  - code: une-prise-en-charge-par-un-agent
+    label: Une prise en charge par un agent
+    position: 3
+  delimiter: '|'
+  allow_other_text: true
 - code: Q97
   prompt: Seriez-vous d'accord pour qu'un agent public effectue certaines démarches à votre place ?
   type: single_choice
   section: services
-  source_column: "QUXVlc3Rpb246OTc= - Seriez-vous d'accord pour qu'un agent public effectue certaines démarches à votre place ?"
+  source_column: QUXVlc3Rpb246OTc= - Seriez-vous d'accord pour qu'un agent public effectue certaines démarches
+    à votre place ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 7
+  allow_other_text: true
 - code: Q96
-  prompt: Que pensez-vous du regroupement dans un même lieu de plusieurs services publics (Maisons de services au public) ?
+  prompt: Que pensez-vous du regroupement dans un même lieu de plusieurs services publics (Maisons de
+    services au public) ?
   type: single_choice
   section: services
-  source_column: "QUXVlc3Rpb246OTY= - Que pensez-vous du regroupement dans un même lieu de plusieurs services publics (Maisons de services au public) ?"
+  source_column: QUXVlc3Rpb246OTY= - Que pensez-vous du regroupement dans un même lieu de plusieurs services
+    publics (Maisons de services au public) ?
   options:
   - code: bonne_chose
     label: Bonne chose
@@ -79,11 +158,14 @@ questions:
   - code: mauvaise_chose
     label: Mauvaise chose
     position: 2
+  position: 8
+  allow_other_text: true
 - code: Q95
   prompt: Que pensez-vous des services publics itinérants (bus de services publics) ?
   type: single_choice
   section: services
-  source_column: "QUXVlc3Rpb246OTU= - Que pensez-vous des services publics itinérants (bus de services publics) ?"
+  source_column: QUXVlc3Rpb246OTU= - Que pensez-vous des services publics itinérants (bus de services
+    publics) ?
   options:
   - code: bonne_chose
     label: Bonne chose
@@ -91,11 +173,13 @@ questions:
   - code: mauvaise_chose
     label: Mauvaise chose
     position: 2
+  position: 9
+  allow_other_text: true
 - code: Q94
   prompt: Que pensez-vous du service public sur prise de rendez-vous ?
   type: single_choice
   section: services
-  source_column: "QUXVlc3Rpb246OTQ= - Que pensez-vous du service public sur prise de rendez-vous ?"
+  source_column: QUXVlc3Rpb246OTQ= - Que pensez-vous du service public sur prise de rendez-vous ?
   options:
   - code: bonne_chose
     label: Bonne chose
@@ -103,11 +187,16 @@ questions:
   - code: mauvaise_chose
     label: Mauvaise chose
     position: 2
+  position: 10
+  allow_other_text: true
 - code: Q93
-  prompt: Que pensez-vous des agents publics polyvalents susceptibles de vous accompagner dans l'accomplissement de plusieurs démarches quelle que soit l'administration concernée ?
+  prompt: Que pensez-vous des agents publics polyvalents susceptibles de vous accompagner dans l'accomplissement
+    de plusieurs démarches quelle que soit l'administration concernée ?
   type: single_choice
   section: services
-  source_column: "QUXVlc3Rpb246OTM= - Que pensez-vous des agents publics polyvalents susceptibles de vous accompagner dans l'accomplissement de plusieurs démarches quelle que soit l'administration concernée ?"
+  source_column: QUXVlc3Rpb246OTM= - Que pensez-vous des agents publics polyvalents susceptibles de vous
+    accompagner dans l'accomplissement de plusieurs démarches quelle que soit l'administration concernée
+    ?
   options:
   - code: bonne_chose
     label: Bonne chose
@@ -115,15 +204,21 @@ questions:
   - code: mauvaise_chose
     label: Mauvaise chose
     position: 2
+  position: 11
+  allow_other_text: true
 - code: Q104
-  prompt: Avez-vous déjà renoncé à des droits / des allocations en raison de démarches administratives trop complexes ?
+  prompt: Avez-vous déjà renoncé à des droits / des allocations en raison de démarches administratives
+    trop complexes ?
   type: single_choice
   section: complexité
-  source_column: "QUXVlc3Rpb246MTA0 - Avez-vous déjà renoncé à des droits / des allocations en raison de démarches administratives trop complexes ?"
+  source_column: QUXVlc3Rpb246MTA0 - Avez-vous déjà renoncé à des droits / des allocations en raison de
+    démarches administratives trop complexes ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 12
+  allow_other_text: true

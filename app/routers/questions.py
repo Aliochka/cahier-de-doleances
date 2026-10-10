@@ -13,6 +13,7 @@ from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
 from app.web import templates
+from app.choice_stats import choice_statistics
 
 # Slugify helper (fallback)
 try:
@@ -126,7 +127,8 @@ def question_detail(
 
     limit = PER_PAGE + 1
     cur = _dec_cursor(cursor)
-    params = {"qid": question_id, "minlen": MIN_ANSWER_LEN, "limit": limit}
+    min_length = 1 if row["type"] in ("single_choice", "multi_choice") else MIN_ANSWER_LEN
+    params = {"qid": question_id, "minlen": min_length, "limit": limit}
     
     # Curseur pour pagination keyset
     cursor_sql = ""
@@ -315,68 +317,12 @@ def question_stats(
     if not question_row:
         raise HTTPException(status_code=404, detail="Question introuvable")
     
-    if question_row["type"] == "single_choice":
-        # Récupérer les statistiques par option pour single_choice
-        stats_rows = db.execute(
-            text("""
-                SELECT 
-                    o.id as option_id,
-                    o.label,
-                    o.position,
-                    COALESCE(COUNT(ao.option_id), 0) as count,
-                    COALESCE(ROUND(COUNT(ao.option_id) * 100.0 / NULLIF(SUM(COUNT(ao.option_id)) OVER(), 0), 2), 0) as percentage
-                FROM options o
-                LEFT JOIN answer_options ao ON ao.option_id = o.id
-                WHERE o.question_id = :qid
-                GROUP BY o.id, o.label, o.position
-                ORDER BY o.position
-            """),
-            {"qid": question_id},
-        ).mappings().all()
-        
-    elif question_row["type"] == "multi_choice":
-        # Pour multi_choice, analyser les réponses text avec des pipes
-        answers_rows = db.execute(
-            text("""
-                SELECT a.text
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE a.question_id = :qid
-                  AND a.text IS NOT NULL
-                  AND a.text LIKE '%|%'
-            """),
-            {"qid": question_id},
-        ).mappings().all()
-        
-        # Parser les options des réponses multi_choice
-        option_counts = {}
-        total_responses = 0
-        
-        for row in answers_rows:
-            if row["text"]:
-                options = [opt.strip() for opt in row["text"].split("|") if opt.strip()]
-                total_responses += 1
-                for option in options:
-                    option_counts[option] = option_counts.get(option, 0) + 1
-        
-        # Convertir en format compatible avec single_choice
-        stats_rows = []
-        for i, (label, count) in enumerate(sorted(option_counts.items(), key=lambda x: x[1], reverse=True)):
-            percentage = round(count * 100.0 / total_responses, 2) if total_responses > 0 else 0
-            stats_rows.append({
-                "option_id": i,
-                "label": label,
-                "position": i,
-                "count": count,
-                "percentage": percentage
-            })
-    
-    else:
-        raise HTTPException(status_code=400, detail=f"Cette question n'est pas de type single_choice ou multi_choice (type: {question_row['type']})")
-    
-    # Calculer le total des réponses
-    total_answers = sum(row["count"] for row in stats_rows)
-    
+    if question_row["type"] not in ("single_choice", "multi_choice"):
+        raise HTTPException(status_code=400, detail="Cette question n'est pas à choix")
+    result = choice_statistics(db, question_id)
+    stats_rows = result["stats"]
+    total_answers = result["total_answers"]
+
     # Formater les données pour Chart.js
     chart_data = {
         "labels": [row["label"] for row in stats_rows],
@@ -410,6 +356,7 @@ def question_stats(
             "type": question_row["type"]
         },
         "total_answers": total_answers,
+        "total_selections": result["total_selections"],
         "stats": [
             {
                 "option_id": row["option_id"],

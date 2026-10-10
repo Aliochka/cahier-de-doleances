@@ -9,6 +9,7 @@ from sqlalchemy import text
 from app.db import SessionLocal
 from app.web import templates
 from app.helpers import slugify  # type: ignore
+from app.choice_stats import choice_statistics
 
 router = APIRouter()
 
@@ -239,45 +240,18 @@ def form_dashboard(request: Request, form_id: int):
                     "slug": slugify(q["prompt"] or f"question-{q['id']}")
                 }
                 
-                # Stats pour single_choice
-                if q["type"] == "single_choice":
-                    try:
-                        stats_rows = db.execute(text("""
-                            SELECT 
-                                o.label, COALESCE(COUNT(ao.option_id), 0) as count
-                            FROM options o
-                            LEFT JOIN answer_options ao ON ao.option_id = o.id
-                            WHERE o.question_id = :qid
-                            GROUP BY o.id, o.label, o.position
-                            ORDER BY o.position LIMIT 10
-                        """), {"qid": q["id"]}).mappings().all()
-                        
-                        if stats_rows and sum(row["count"] for row in stats_rows) > 0:
-                            total_answers = sum(row["count"] for row in stats_rows)
-                            chart_data = {
-                                "labels": [row["label"][:30] for row in stats_rows],
-                                "datasets": [{
-                                    "data": [row["count"] for row in stats_rows],
-                                    "backgroundColor": ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"][:len(stats_rows)]
-                                }]
-                            }
-                            
-                            # Ajouter les stats détaillées pour le template
-                            chart_stats = []
-                            for i, row in enumerate(stats_rows):
-                                percentage = round(row["count"] * 100.0 / total_answers, 2) if total_answers > 0 else 0
-                                chart_stats.append({
-                                    "label": row["label"],
-                                    "count": row["count"],
-                                    "percentage": percentage
-                                })
-                            
-                            question_data["chart_data"] = chart_data
-                            question_data["chart_stats"] = chart_stats
-                            question_data["total_chart_answers"] = total_answers
-                    except:
-                        pass
-                
+                if q["type"] in ("single_choice", "multi_choice"):
+                    choice_result = choice_statistics(db, q["id"])
+                    stats_rows = choice_result["stats"]
+                    if choice_result["total_answers"]:
+                        question_data["chart_data"] = {
+                            "labels": [row["label"] for row in stats_rows],
+                            "datasets": [{"data": [row["count"] for row in stats_rows],
+                                          "backgroundColor": ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"]}]
+                        }
+                        question_data["chart_stats"] = stats_rows
+                        question_data["total_chart_answers"] = choice_result["total_answers"]
+
                 questions_list.append(question_data)
             
             # Sauver dans le cache PostgreSQL
@@ -342,59 +316,11 @@ def form_dashboard_stats(request: Request, form_id: int):
             qtype = question["type"]
             
             try:
-                if qtype == "single_choice":
-                    # Statistiques pour single_choice
-                    stats_rows = db.execute(text("""
-                        SELECT 
-                            o.id as option_id,
-                            o.label,
-                            o.position,
-                            COALESCE(COUNT(ao.option_id), 0) as count,
-                            COALESCE(ROUND(COUNT(ao.option_id) * 100.0 / NULLIF(SUM(COUNT(ao.option_id)) OVER(), 0), 2), 0) as percentage
-                        FROM options o
-                        LEFT JOIN answer_options ao ON ao.option_id = o.id
-                        WHERE o.question_id = :qid
-                        GROUP BY o.id, o.label, o.position
-                        ORDER BY o.position
-                        LIMIT 10
-                    """), {"qid": qid}).mappings().all()
-                    
-                elif qtype == "multi_choice":
-                    # Statistiques pour multi_choice (parsing des pipes)
-                    answers_rows = db.execute(text("""
-                        SELECT a.text
-                        FROM answers a
-                        JOIN contributions c ON c.id = a.contribution_id
-                        WHERE a.question_id = :qid
-                          AND a.text IS NOT NULL
-                          AND a.text LIKE '%|%'
-                    """), {"qid": qid}).mappings().all()
-                    
-                    # Parser les options
-                    option_counts = {}
-                    total_responses = 0
-                    
-                    for row in answers_rows:
-                        if row["text"]:
-                            options = [opt.strip() for opt in row["text"].split("|") if opt.strip()]
-                            total_responses += 1
-                            for option in options:
-                                option_counts[option] = option_counts.get(option, 0) + 1
-                    
-                    # Convertir en format standard (top 10)
-                    stats_rows = []
-                    for i, (label, count) in enumerate(sorted(option_counts.items(), key=lambda x: x[1], reverse=True)[:10]):
-                        percentage = round(count * 100.0 / total_responses, 2) if total_responses > 0 else 0
-                        stats_rows.append({
-                            "option_id": i,
-                            "label": label,
-                            "position": i,
-                            "count": count,
-                            "percentage": percentage
-                        })
-                
+                choice_result = choice_statistics(db, qid)
+                stats_rows = choice_result["stats"]
+
                 # Calculer le total et formater les données
-                total_answers = sum(row["count"] for row in stats_rows)
+                total_answers = choice_result["total_answers"]
                 
                 if total_answers > 0:  # Seulement si on a des données
                     # Données pour Chart.js compact

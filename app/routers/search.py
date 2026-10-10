@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from html import escape
 import base64
 import binascii
 import hashlib
@@ -300,27 +301,6 @@ def search_answers(
                 next_cursor = _enc_cursor({"id": tail["answer_id"]})
                 rows = rows[:-1]
 
-            # build output FTS avec highlighting Python
-            for r in rows:
-                # Highlighting en Python sur le texte complet 
-                raw_text = (r.get("answer_text") or "")[:MAX_TEXT_LEN]
-                highlighted = highlight_text_python(raw_text, q, max_words=35, min_words=15)
-                body = postprocess_excerpt(highlighted)
-                    
-                q_title = r["question_prompt"]
-                answers.append(
-                    {
-                        "id": r["answer_id"],
-                        "author_id": r["author_id"],
-                        "author_name": r["author_name"],
-                        "question_id": r["question_id"],
-                        "question_title": q_title,
-                        "question_slug": slugify(q_title or f"question-{r['question_id']}"),
-                        "created_at": r["submitted_at"],
-                        "body": body,
-                    }
-                )
-
         # --- Mode 2: timeline récente (q court ou vide)
         else:
             params = {"min_len": MIN_ANSWER_LEN, "limit": limit, "max_text": MAX_TEXT_LEN}
@@ -370,8 +350,11 @@ def search_answers(
 
         for r in rows:
             raw = (r["answer_text"] or "")[:MAX_TEXT_LEN]
-            snippet, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
-            snippet = postprocess_excerpt(snippet)
+            if len(q) >= 2:
+                snippet = postprocess_excerpt(highlight_text_python(escape(raw), q, max_words=35, min_words=15))
+            else:
+                snippet, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
+                snippet = postprocess_excerpt(snippet)
             q_title = r["question_prompt"]
             answers.append(
                 {
@@ -383,6 +366,7 @@ def search_answers(
                     "question_slug": slugify(q_title or f"question-{r['question_id']}"),
                     "created_at": r["submitted_at"],
                     "body": snippet,
+                    "body_is_html": len(q) >= 2,
                 }
             )
 

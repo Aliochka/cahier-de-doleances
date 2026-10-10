@@ -1,7 +1,7 @@
 form:
   name: Grand Débat - Transition écologique
-  version: v1
-  source: plateforme
+  version: '2019-03-21'
+  source: a6275209-9fd8-424f-a606-5beaead143bb
 defaults:
   author:
     source_author_id: authorId
@@ -12,134 +12,198 @@ defaults:
     title: title
     source: plateforme-gdn
 questions:
-- code: META_TITLE
-  prompt: Titre de la contribution
-  type: text
-  section: meta
-  source_column: title
 - code: Q160
-  prompt: Quel est aujourd'hui pour vous le problème concret le plus important dans
-    le domaine de l'environnement ?
-  type: text
-  section: diagnostic
-  source_column: QUXVlc3Rpb246MTYw - Quel est aujourd'hui pour vous le problème concret
-    le plus important dans le domaine de l'environnement ?
-- code: Q161
-  prompt: Que faudrait-il faire selon vous pour apporter des réponses à ce problème
+  prompt: Quel est aujourd'hui pour vous le problème concret le plus important dans le domaine de l'environnement
     ?
+  type: single_choice
+  section: diagnostic
+  source_column: QUXVlc3Rpb246MTYw - Quel est aujourd'hui pour vous le problème concret le plus important
+    dans le domaine de l'environnement ?
+  position: 1
+  options:
+  - code: l-erosion-du-littoral
+    label: L'érosion du littoral
+    position: 1
+  - code: la-biodiversite-et-la-disparition-de-certaines-especes
+    label: La biodiversité et la disparition de certaines espèces
+    position: 2
+  - code: la-pollution-de-l-air
+    label: La pollution de l'air
+    position: 3
+  - code: les-dereglements-climatiques-crue-secheresse
+    label: Les dérèglements climatiques (crue, sécheresse)
+    position: 4
+  allow_other_text: true
+- code: Q161
+  prompt: Que faudrait-il faire selon vous pour apporter des réponses à ce problème ?
   type: text
   section: solutions
-  source_column: QUXVlc3Rpb246MTYx - Que faudrait-il faire selon vous pour apporter
-    des réponses à ce problème ?
+  source_column: QUXVlc3Rpb246MTYx - Que faudrait-il faire selon vous pour apporter des réponses à ce
+    problème ?
+  position: 2
 - code: Q146
-  prompt: Diriez-vous que votre vie quotidienne est aujourd'hui touchée par le changement
-    climatique ?
+  prompt: Diriez-vous que votre vie quotidienne est aujourd'hui touchée par le changement climatique ?
   type: single_choice
   section: climat
-  source_column: QUXVlc3Rpb246MTQ2 - Diriez-vous que votre vie quotidienne est aujourd'hui
-    touchée par le changement climatique ?
-  options: &id001
+  source_column: QUXVlc3Rpb246MTQ2 - Diriez-vous que votre vie quotidienne est aujourd'hui touchée par
+    le changement climatique ?
+  options:
+  - code: non
+    label: Non
+    position: 1
   - code: oui
     label: Oui
+    position: 2
+  position: 3
+  allow_other_text: true
+- code: Q147
+  prompt: Si oui, de quelle manière votre vie quotidienne est-elle touchée par le changement climatique
+    ?
+  type: text
+  section: climat
+  source_column: QUXVlc3Rpb246MTQ3 - Si oui, de quelle manière votre vie quotidienne est-elle touchée
+    par le changement climatique ?
+  position: 4
+- code: Q148
+  prompt: À titre personnel, pensez-vous pouvoir contribuer à protéger l'environnement ?
+  type: single_choice
+  section: engagement
+  source_column: QUXVlc3Rpb246MTQ4 - À titre personnel, pensez-vous pouvoir contribuer à protéger l'environnement
+    ?
+  options:
+  - code: non
+    label: Non
+    position: 1
+  - code: oui
+    label: Oui
+    position: 2
+  position: 5
+  allow_other_text: true
+- code: Q149
+  prompt: Si oui, que faites-vous aujourd'hui pour protéger l'environnement et/ou que pourriez-vous faire
+    ?
+  type: text
+  section: engagement
+  source_column: QUXVlc3Rpb246MTQ5 - Si oui, que faites-vous aujourd'hui pour protéger l'environnement
+    et/ou que pourriez-vous faire ?
+  position: 6
+- code: Q150
+  prompt: Qu'est-ce qui pourrait vous inciter à changer vos comportements comme par exemple mieux entretenir
+    et régler votre chauffage, modifier votre manière de conduire ou renoncer à prendre votre véhicule
+    pour de très petites distances ?
+  type: text
+  section: comportements
+  source_column: QUXVlc3Rpb246MTUw - Qu'est-ce qui pourrait vous inciter à changer vos comportements comme
+    par exemple mieux entretenir et régler votre chauffage, modifier votre manière de conduire ou renoncer
+    à prendre votre véhicule pour de très petites distances ?
+  position: 7
+- code: Q151
+  prompt: Quelles seraient pour vous les solutions les plus simples et les plus supportables sur un plan
+    financier pour vous inciter à changer vos comportements ?
+  type: text
+  section: comportements
+  source_column: QUXVlc3Rpb246MTUx - Quelles seraient pour vous les solutions les plus simples et les
+    plus supportables sur un plan financier pour vous inciter à changer vos comportements ?
+  position: 8
+- code: Q152
+  prompt: Par rapport à votre mode de chauffage actuel, pensez-vous qu'il existe des solutions alternatives
+    plus écologiques ?
+  type: single_choice
+  section: chauffage
+  source_column: QUXVlc3Rpb246MTUy - Par rapport à votre mode de chauffage actuel, pensez-vous qu'il existe
+    des solutions alternatives plus écologiques ?
+  options:
+  - code: non
+    label: Non
+    position: 1
+  - code: oui
+    label: Oui
+    position: 2
+  position: 9
+  allow_other_text: true
+- code: Q153
+  prompt: Si oui, que faudrait-il faire pour vous convaincre ou vous aider à changer de mode de chauffage
+    ?
+  type: text
+  section: chauffage
+  source_column: QUXVlc3Rpb246MTUz - Si oui, que faudrait-il faire pour vous convaincre ou vous aider
+    à changer de mode de chauffage ?
+  position: 10
+- code: Q154
+  prompt: Avez-vous pour vos déplacements quotidiens la possibilité de recourir à des solutions de mobilité
+    alternatives à la voiture individuelle comme les transports en commun, le covoiturage, l'auto-partage,
+    le transport à la demande, le vélo, etc. ?
+  type: single_choice
+  section: mobilité
+  source_column: QUXVlc3Rpb246MTU0 - Avez-vous pour vos déplacements quotidiens la possibilité de recourir
+    à des solutions de mobilité alternatives à la voiture individuelle comme les transports en commun,
+    le covoiturage, l'auto-partage, le transport à la demande, le vélo, etc. ?
+  options:
+  - code: je-n-utilise-pas-la-voiture-pour-des-deplacements-quotidiens
+    label: Je n'utilise pas la voiture pour des déplacements quotidiens
     position: 1
   - code: non
     label: Non
     position: 2
-- code: Q147
-  prompt: Si oui, de quelle manière votre vie quotidienne est-elle touchée par le
-    changement climatique ?
-  type: text
-  section: climat
-  source_column: QUXVlc3Rpb246MTQ3 - Si oui, de quelle manière votre vie quotidienne
-    est-elle touchée par le changement climatique ?
-- code: Q148
-  prompt: À titre personnel, pensez-vous pouvoir contribuer à protéger l'environnement
-    ?
-  type: single_choice
-  section: engagement
-  source_column: QUXVlc3Rpb246MTQ4 - À titre personnel, pensez-vous pouvoir contribuer
-    à protéger l'environnement ?
-  options: *id001
-- code: Q149
-  prompt: Si oui, que faites-vous aujourd'hui pour protéger l'environnement et/ou
-    que pourriez-vous faire ?
-  type: text
-  section: engagement
-  source_column: QUXVlc3Rpb246MTQ5 - Si oui, que faites-vous aujourd'hui pour protéger
-    l'environnement et/ou que pourriez-vous faire ?
-- code: Q150
-  prompt: Qu'est-ce qui pourrait vous inciter à changer vos comportements (chauffage,
-    conduite, déplacements courts, etc.) ?
-  type: text
-  section: comportements
-  source_column: QUXVlc3Rpb246MTUw - Qu'est-ce qui pourrait vous inciter à changer
-    vos comportements comme par exemple mieux entretenir et régler votre chauffage,
-    modifier votre manière de conduire ou renoncer à prendre votre véhicule pour de
-    très petites distances ?
-- code: Q151
-  prompt: Quelles seraient les solutions les plus simples et les plus supportables
-    financièrement pour vous inciter à changer ?
-  type: text
-  section: comportements
-  source_column: QUXVlc3Rpb246MTUx - Quelles seraient pour vous les solutions les
-    plus simples et les plus supportables sur un plan financier pour vous inciter
-    à changer vos comportements ?
-- code: Q152
-  prompt: Par rapport à votre mode de chauffage actuel, existe-t-il des solutions
-    alternatives plus écologiques ?
-  type: single_choice
-  section: chauffage
-  source_column: QUXVlc3Rpb246MTUy - Par rapport à votre mode de chauffage actuel,
-    pensez-vous qu'il existe des solutions alternatives plus écologiques ?
-  options: *id001
-- code: Q153
-  prompt: Si oui, que faudrait-il faire pour vous convaincre ou vous aider à changer
-    de mode de chauffage ?
-  type: text
-  section: chauffage
-  source_column: QUXVlc3Rpb246MTUz - Si oui, que faudrait-il faire pour vous convaincre
-    ou vous aider à changer de mode de chauffage ?
-- code: Q154
-  prompt: Pour vos déplacements quotidiens, avez-vous la possibilité d'utiliser des
-    alternatives à la voiture individuelle ?
-  type: single_choice
-  section: mobilité
-  source_column: QUXVlc3Rpb246MTU0 - Avez-vous pour vos déplacements quotidiens la
-    possibilité de recourir à des solutions de mobilité alternatives à la voiture
-    individuelle comme les transports en commun, le covoiturage, l'auto-partage, le
-    transport à la demande, le vélo, etc. ?
-  options: *id001
+  - code: oui
+    label: Oui
+    position: 3
+  position: 11
+  allow_other_text: true
 - code: Q155
-  prompt: Si oui, que faudrait-il faire pour vous convaincre ou vous aider à utiliser
-    ces solutions alternatives ?
+  prompt: Si oui, que faudrait-il faire pour vous convaincre ou vous aider à utiliser ces solutions alternatives
+    ?
   type: text
   section: mobilité
-  source_column: QUXVlc3Rpb246MTU1 - Si oui, que faudrait-il faire pour vous convaincre
-    ou vous aider à utiliser ces solutions alternatives ?
+  source_column: QUXVlc3Rpb246MTU1 - Si oui, que faudrait-il faire pour vous convaincre ou vous aider
+    à utiliser ces solutions alternatives ?
+  position: 12
 - code: Q207
-  prompt: Si non, quelles alternatives de mobilité souhaiteriez-vous pouvoir utiliser
+  prompt: Si non, quelles sont les solutions de mobilité alternatives que vous souhaiteriez pouvoir utiliser
     ?
-  type: text
+  type: multi_choice
   section: mobilité
-  source_column: QUXVlc3Rpb246MjA3 - Si non, quelles sont les solutions de mobilité
-    alternatives que vous souhaiteriez pouvoir utiliser ?
+  source_column: QUXVlc3Rpb246MjA3 - Si non, quelles sont les solutions de mobilité alternatives que vous
+    souhaiteriez pouvoir utiliser ?
+  position: 13
+  options:
+  - code: l-auto-partage
+    label: L'auto partage
+    position: 1
+  - code: le-covoiturage
+    label: Le covoiturage
+    position: 2
+  - code: le-transport-a-la-demande
+    label: Le transport à la demande
+    position: 3
+  - code: le-velo
+    label: Le vélo
+    position: 4
+  - code: les-transports-en-commun
+    label: Les transports en commun
+    position: 5
+  delimiter: '|'
+  allow_other_text: true
 - code: Q157
-  prompt: Qui doit selon vous se charger de vous proposer ce type de solutions alternatives
-    ?
+  prompt: Et qui doit selon vous se charger de vous proposer ce type de solutions alternatives ?
   type: text
   section: mobilité
-  source_column: QUXVlc3Rpb246MTU3 - Et qui doit selon vous se charger de vous proposer
-    ce type de solutions alternatives ?
+  source_column: QUXVlc3Rpb246MTU3 - Et qui doit selon vous se charger de vous proposer ce type de solutions
+    alternatives ?
+  position: 14
 - code: Q158
-  prompt: Que pourrait faire la France pour faire partager ses choix en matière d'environnement
-    au niveau européen et international ?
+  prompt: Que pourrait faire la France pour faire partager ses choix en matière d'environnement au niveau
+    européen et international ?
   type: text
   section: politique_publique
-  source_column: QUXVlc3Rpb246MTU4 - Que pourrait faire la France pour faire partager
-    ses choix en matière d'environnement au niveau européen et international ?
+  source_column: QUXVlc3Rpb246MTU4 - Que pourrait faire la France pour faire partager ses choix en matière
+    d'environnement au niveau européen et international ?
+  position: 15
 - code: Q159
-  prompt: Autres points sur la transition écologique
+  prompt: Y a-t-il d'autres points sur la transition écologique sur lesquels vous souhaiteriez vous exprimer
+    ?
   type: text
   section: ouverture
-  source_column: QUXVlc3Rpb246MTU5 - Y a-t-il d'autres points sur la transition écologique
-    sur lesquels vous souhaiteriez vous exprimer ?
+  source_column: QUXVlc3Rpb246MTU5 - Y a-t-il d'autres points sur la transition écologique sur lesquels
+    vous souhaiteriez vous exprimer ?
+  position: 16

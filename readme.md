@@ -196,10 +196,9 @@ alembic upgrade head
 alembic current
 ```
 
-La révision attendue est `restore_search_infra (head)`. Cette migration
-rétablit les colonnes, index de recherche et contraintes supprimés par une
-ancienne migration d'authentification. Il faut appliquer les migrations
-avant de démarrer le site.
+La révision attendue est `gdn_bulk_counters (head)`. Les migrations rétablissent
+la recherche, créent le suivi des imports et maintiennent les compteurs par
+lot. Il faut les appliquer avant de démarrer le site.
 
 Les migrations créent les tables, extensions (`unaccent`, `pg_trgm`), index,
 déclencheurs et compteurs techniques. Elles n'importent aucun fichier de
@@ -281,12 +280,37 @@ ou l'environnement virtuel à chaque lancement.
 - **`Address already in use`** : arrêter le serveur déjà lancé avec `Ctrl+C`,
   ou choisir un autre port, par exemple `--port 8001`.
 
-### 4. Importer les données (étape suivante)
+### 4. Importer les données complètes
 
-Le téléchargement et l'import des données seront documentés après validation
-de la procédure PostgreSQL. Les anciens exemples utilisant SQLite,
-`make_sandbox.py` ou `gdn_ingest.py` ne constituent pas la procédure actuelle
-de lancement du site.
+La [procédure d'ingestion](docs/ingestion.md) détaille le téléchargement,
+le contrôle des sources, le pilote et l'import complet PostgreSQL. Après
+l'installation ci-dessus, pour récupérer les sept exports complets :
+
+```bash
+source venv/bin/activate
+python -m pip install -r requirements.txt
+alembic upgrade head
+python -m ingest.sources fetch --full
+python -m ingest.structured_sources fetch
+python -m ingest.structured_sources profile
+python -m ingest.structured_sources samples --rows 1000
+python -m ingest.postgres --samples
+python -m ingest.postgres
+python -m ingest.verify
+```
+
+Les JSON officiels distinguent les choix sélectionnés du texte « autre ».
+Une question à choix multiples reste **une seule question**, avec **une
+réponse par contribution** et plusieurs liens vers ses options. Les CSV
+servent à contrôler les identifiants et la complétude des JSON.
+
+L'import complet complète les données du pilote par upserts, sans doublons.
+Si l'import est interrompu, relancer `python -m ingest.postgres` : il reprend
+au dernier lot validé. Les résultats sont consignés dans le
+[rapport de vérification](docs/ingestion-resultats.md).
+
+Les anciens importeurs SQLite et Rust, ainsi que `scripts/import_from_csv.sh`,
+ne correspondent pas à cette procédure. Ne pas les combiner avec elle.
 
 ---
 

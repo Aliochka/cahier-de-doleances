@@ -1,7 +1,7 @@
 form:
   name: Grand Débat - Fiscalité & dépenses publiques
-  version: v1
-  source: plateforme
+  version: '2019-03-21'
+  source: bc085888-e6bd-445d-b3f4-632190c29e3f
 defaults:
   author:
     source_author_id: authorId
@@ -12,68 +12,76 @@ defaults:
     title: title
     source: plateforme-gdn
 questions:
-- code: META_TITLE
-  prompt: Titre de la contribution
-  type: text
-  section: meta
-  source_column: title
 - code: Q162
-  prompt: Quelles sont toutes les choses qui pourraient être faites pour améliorer
-    l'information des citoyens sur l'utilisation des impôts ?
+  prompt: Quelles sont toutes les choses qui pourraient être faites pour améliorer l'information des citoyens
+    sur l'utilisation des impôts ?
   type: text
   section: information
-  source_column: QUXVlc3Rpb246MTYy - Quelles sont toutes les choses qui pourraient
-    être faites pour améliorer l'information des citoyens sur l'utilisation des impôts
-    ?
+  source_column: QUXVlc3Rpb246MTYy - Quelles sont toutes les choses qui pourraient être faites pour améliorer
+    l'information des citoyens sur l'utilisation des impôts ?
+  position: 1
 - code: Q163
-  prompt: Que faudrait-il faire pour rendre la fiscalité plus juste et plus efficace
-    ?
+  prompt: Que faudrait-il faire pour rendre la fiscalité plus juste et plus efficace ?
   type: text
   section: justice_fiscale
-  source_column: QUXVlc3Rpb246MTYz - Que faudrait-il faire pour rendre la fiscalité
-    plus juste et plus efficace ?
+  source_column: QUXVlc3Rpb246MTYz - Que faudrait-il faire pour rendre la fiscalité plus juste et plus
+    efficace ?
+  position: 2
 - code: Q164
   prompt: Quels sont selon vous les impôts qu'il faut baisser en priorité ?
   type: text
   section: impots_a_baisser
-  source_column: QUXVlc3Rpb246MTY0 - Quels sont selon vous les impôts qu'il faut baisser
-    en priorité ?
+  source_column: QUXVlc3Rpb246MTY0 - Quels sont selon vous les impôts qu'il faut baisser en priorité ?
+  position: 3
 - code: Q206
-  prompt: Afin de financer les dépenses sociales, faut-il selon vous…
-  type: single_choice
+  prompt: Afin de financer les dépenses sociales, faut-il selon vous...
+  type: multi_choice
   section: depenses_sociales
-  source_column: QUXVlc3Rpb246MjA2 - Afin de financer les dépenses sociales, faut-il
-    selon vous...
+  source_column: QUXVlc3Rpb246MjA2 - Afin de financer les dépenses sociales, faut-il selon vous...
   options:
-  - code: oui
-    label: Oui
+  - code: augmenter-le-temps-de-travail
+    label: Augmenter le temps de travail
     position: 1
-  - code: non
-    label: Non
+  - code: augmenter-les-impots
+    label: Augmenter les impôts
     position: 2
+  - code: reculer-l-age-de-la-retraite
+    label: Reculer l'âge de la retraite
+    position: 3
+  - code: revoir-les-conditions-d-attribution-de-certaines-aides-sociales
+    label: Revoir les conditions d'attribution de certaines aides sociales
+    position: 4
+  position: 4
+  delimiter: '|'
+  allow_other_text: true
 - code: Q205
-  prompt: Si les conditions d'attribution de certaines aides sociales doivent être
-    revues, lesquelles ?
+  prompt: S'il faut selon vous revoir les conditions d'attribution de certaines aides sociales, lesquelles
+    doivent être concernées ?
   type: text
   section: aides_sociales
-  source_column: QUXVlc3Rpb246MjA1 - S'il faut selon vous revoir les conditions d'attribution
-    de certaines aides sociales, lesquelles doivent être concernées ?
+  source_column: QUXVlc3Rpb246MjA1 - S'il faut selon vous revoir les conditions d'attribution de certaines
+    aides sociales, lesquelles doivent être concernées ?
+  position: 5
 - code: Q165
-  prompt: Domaines prioritaires où notre protection sociale doit être renforcée ?
+  prompt: Quels sont les domaines prioritaires où notre protection sociale doit être renforcée ?
   type: text
   section: protection_sociale
-  source_column: QUXVlc3Rpb246MTY1 - Quels sont les domaines prioritaires où notre
-    protection sociale doit être renforcée ?
+  source_column: QUXVlc3Rpb246MTY1 - Quels sont les domaines prioritaires où notre protection sociale
+    doit être renforcée ?
+  position: 6
 - code: Q166
-  prompt: Pour quelles politiques publiques / domaines seriez-vous prêts à payer plus
-    d'impôts ?
+  prompt: Pour quelle(s) politique(s) publique(s) ou pour quels domaines d'action publique, seriez-vous
+    prêts à payer plus d'impôts ?
   type: text
   section: acceptabilite_fiscale
-  source_column: QUXVlc3Rpb246MTY2 - Pour quelle(s) politique(s) publique(s) ou pour
-    quels domaines d'action publique, seriez-vous prêts à payer plus d'impôts ?
+  source_column: QUXVlc3Rpb246MTY2 - Pour quelle(s) politique(s) publique(s) ou pour quels domaines d'action
+    publique, seriez-vous prêts à payer plus d'impôts ?
+  position: 7
 - code: Q167
-  prompt: Autres points sur les impôts et les dépenses
+  prompt: Y a-t-il d'autres points sur les impôts et les dépenses sur lesquels vous souhaiteriez vous
+    exprimer ?
   type: text
   section: ouverture
-  source_column: QUXVlc3Rpb246MTY3 - Y a-t-il d'autres points sur les impôts et les
-    dépenses sur lesquels vous souhaiteriez vous exprimer ?
+  source_column: QUXVlc3Rpb246MTY3 - Y a-t-il d'autres points sur les impôts et les dépenses sur lesquels
+    vous souhaiteriez vous exprimer ?
+  position: 8

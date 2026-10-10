@@ -1,90 +1,130 @@
 form:
-  name: Grand Débat - Démocratie & citoyenneté
-  version: v1
-  source: plateforme
+  name: Grand Débat - Démocratie & citoyenneté (questions rapides)
+  version: '2019-04-08'
+  source: 00f08a5d-b400-4cf8-9737-fddb7e7a8147
 defaults:
   author:
     source_author_id: authorId
-    zipcode: authorZipCode  
+    zipcode: authorZipCode
   contribution:
     source_contribution_id: id
     submitted_at: publishedAt
     source: plateforme-gdn
 questions:
 - code: Q72
-  prompt: Selon vous, faut-il introduire une dose de proportionnelle pour certaines élections, lesquelles ?
-  type: text
+  prompt: Selon vous, faut-il introduire une dose de proportionnelle pour certaines élections, lesquelles
+    ?
+  type: multi_choice
   section: élections
-  source_column: "QUXVlc3Rpb246NzI= - Selon vous, faut-il introduire une dose de proportionnelle pour certaines élections, lesquelles ?"
+  source_column: QUXVlc3Rpb246NzI= - Selon vous, faut-il introduire une dose de proportionnelle pour certaines
+    élections, lesquelles ?
+  position: 1
+  options:
+  - code: departementales
+    label: Départementales
+    position: 1
+  - code: il-ne-faut-pas-introduire-de-proportionnelle
+    label: Il ne faut pas introduire de proportionnelle
+    position: 2
+  - code: legislatives
+    label: Législatives
+    position: 3
+  - code: regionales
+    label: Régionales
+    position: 4
+  delimiter: '|'
+  allow_other_text: true
 - code: Q74
-  prompt: Pensez-vous qu'il serait souhaitable de réduire le nombre de parlementaires (députés + sénateurs = 925) ?
+  prompt: Pensez-vous qu'il serait souhaitable de réduire le nombre de parlementaires (députés + sénateurs
+    = 925) ?
   type: single_choice
   section: institutions
-  source_column: "QUXVlc3Rpb246NzQ= - Pensez-vous qu'il serait souhaitable de réduire le nombre de parlementaires (députés + sénateurs = 925) ?"
+  source_column: QUXVlc3Rpb246NzQ= - Pensez-vous qu'il serait souhaitable de réduire le nombre de parlementaires
+    (députés + sénateurs = 925) ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 2
+  allow_other_text: true
 - code: Q76
   prompt: Faut-il rendre le vote obligatoire ?
   type: single_choice
   section: élections
-  source_column: "QUXVlc3Rpb246NzY= - Faut-il rendre le vote obligatoire ?"
+  source_column: QUXVlc3Rpb246NzY= - Faut-il rendre le vote obligatoire ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 3
+  allow_other_text: true
 - code: Q78
   prompt: Faut-il avoir davantage recours au référendum au niveau national ?
   type: single_choice
   section: participation
-  source_column: "QUXVlc3Rpb246Nzg= - Faut-il avoir davantage recours au référendum au niveau national ?"
+  source_column: QUXVlc3Rpb246Nzg= - Faut-il avoir davantage recours au référendum au niveau national
+    ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 4
+  allow_other_text: true
 - code: Q77
   prompt: Faut-il avoir davantage recours au référendum au niveau local ?
   type: single_choice
   section: participation
-  source_column: "QUXVlc3Rpb246Nzc= - Faut-il avoir davantage recours au référendum au niveau local ?"
+  source_column: QUXVlc3Rpb246Nzc= - Faut-il avoir davantage recours au référendum au niveau local ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 5
+  allow_other_text: true
 - code: Q80
   prompt: Faut-il tirer au sort des citoyens non élus pour les associer à la décision publique ?
   type: single_choice
   section: participation
-  source_column: "QUXVlc3Rpb246ODA= - Faut-il tirer au sort des citoyens non élus pour les associer à la décision publique ?"
+  source_column: QUXVlc3Rpb246ODA= - Faut-il tirer au sort des citoyens non élus pour les associer à la
+    décision publique ?
   options:
-  - code: oui
-    label: Oui
+  - code: je-ne-sais-pas
+    label: Je ne sais pas
     position: 1
   - code: non
     label: Non
     position: 2
+  - code: oui
+    label: Oui
+    position: 3
+  position: 6
+  allow_other_text: true
 - code: Q83
-  prompt: Diriez-vous que l'application de la laïcité en France est aujourd'hui
+  prompt: 'Diriez-vous que l''application de la laïcité en France est aujourd''hui:'
   type: single_choice
   section: laïcité
-  source_column: "QUXVlc3Rpb246ODM= - Diriez-vous que l'application de la laïcité en France est aujourd'hui:"
+  source_column: 'QUXVlc3Rpb246ODM= - Diriez-vous que l''application de la laïcité en France est aujourd''hui:'
   options:
-  - code: satisfaisante
-    label: Satisfaisante
-    position: 1
   - code: a_ameliorer
     label: A améliorer
+    position: 1
+  - code: a-modifier-profondement
+    label: A modifier profondément
     position: 2
+  - code: satisfaisante
+    label: Satisfaisante
+    position: 3
+  position: 7
+  allow_other_text: true

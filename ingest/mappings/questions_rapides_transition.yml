@@ -1,69 +1,146 @@
 form:
-  name: Grand Débat - Transition écologique
-  version: v1
-  source: plateforme
+  name: Grand Débat - Transition écologique (questions rapides)
+  version: '2019-04-08'
+  source: 9506723c-1810-4b2a-bd91-7ef1f222090f
 defaults:
   author:
     source_author_id: authorId
-    zipcode: authorZipCode  
+    zipcode: authorZipCode
   contribution:
     source_contribution_id: id
     submitted_at: publishedAt
     source: plateforme-gdn
 questions:
 - code: Q57
-  prompt: Pensez-vous que vos actions en faveur de l'environnement peuvent vous permettre de faire des économies ?
+  prompt: Pensez-vous que vos actions en faveur de l'environnement peuvent vous permettre de faire des
+    économies ?
   type: single_choice
   section: économie
-  source_column: "QUXVlc3Rpb246NTc= - Pensez-vous que vos actions en faveur de l'environnement peuvent vous permettre de faire des économies ?"
+  source_column: QUXVlc3Rpb246NTc= - Pensez-vous que vos actions en faveur de l'environnement peuvent
+    vous permettre de faire des économies ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 1
+  allow_other_text: true
 - code: Q55
-  prompt: Diriez-vous que vous connaissez les aides et dispositifs qui sont aujourd'hui proposés par l'Etat, les collectivités, les entreprises et les associations pour l'isolation et le chauffage des logements, et pour les déplacements ?
+  prompt: Diriez-vous que vous connaissez les aides et dispositifs qui sont aujourd'hui proposés par l'Etat,
+    les collectivités, les entreprises et les associations pour l'isolation et le chauffage des logements,
+    et pour les déplacements ?
   type: single_choice
   section: aides
-  source_column: "QUXVlc3Rpb246NTU= - Diriez-vous que vous connaissez les aides et dispositifs qui sont aujourd'hui proposés par l'Etat, les collectivités, les entreprises et les associations pour l'isolation et le chauffage des logements, et pour les déplacements ?"
+  source_column: QUXVlc3Rpb246NTU= - Diriez-vous que vous connaissez les aides et dispositifs qui sont
+    aujourd'hui proposés par l'Etat, les collectivités, les entreprises et les associations pour l'isolation
+    et le chauffage des logements, et pour les déplacements ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 2
+  allow_other_text: true
 - code: Q58
-  prompt: Pensez-vous que les taxes sur le diesel et sur l'essence peuvent permettre de modifier les comportements des utilisateurs ?
+  prompt: Pensez-vous que les taxes sur le diesel et sur l’essence peuvent permettre de modifier les comportements
+    des utilisateurs ?
   type: single_choice
   section: fiscalité
-  source_column: "QUXVlc3Rpb246NTg= - Pensez-vous que les taxes sur le diesel et sur l'essence peuvent permettre de modifier les comportements des utilisateurs ?"
+  source_column: QUXVlc3Rpb246NTg= - Pensez-vous que les taxes sur le diesel et sur l’essence peuvent
+    permettre de modifier les comportements des utilisateurs ?
   options:
-  - code: oui
-    label: Oui
-    position: 1
   - code: non
     label: Non
+    position: 1
+  - code: oui
+    label: Oui
     position: 2
+  position: 3
+  allow_other_text: true
 - code: Q62
-  prompt: À quoi les recettes liées aux taxes sur le diesel et l'essence doivent-elles avant tout servir ?
-  type: text
+  prompt: À quoi les recettes liées aux taxes sur le diesel et l’essence doivent-elles avant tout servir
+    ?
+  type: single_choice
   section: fiscalité
-  source_column: "QUXVlc3Rpb246NjI= - À quoi les recettes liées aux taxes sur le diesel et l'essence doivent-elles avant tout servir ?"
+  source_column: QUXVlc3Rpb246NjI= - À quoi les recettes liées aux taxes sur le diesel et l’essence doivent-elles
+    avant tout servir ?
+  position: 4
+  options:
+  - code: a-baisser-dautres-impots-comme-par-exemple-limpot-sur-le-revenu
+    label: À baisser d’autres impôts comme par exemple l’impôt sur le revenu ?
+    position: 1
+  - code: a-financer-des-aides-pour-accompagner-les-francais-dans-la-transition-ecologique
+    label: À financer des aides pour accompagner les Français dans la transition écologique ?
+    position: 2
+  - code: a-financer-des-investissements-en-faveur-du-climat
+    label: À financer des investissements en faveur du climat ?
+    position: 3
+  allow_other_text: true
 - code: Q61
-  prompt: Selon vous, la transition écologique doit être avant tout financée
-  type: text
+  prompt: 'Selon vous, la transition écologique doit être avant tout financée :'
+  type: single_choice
   section: financement
-  source_column: "QUXVlc3Rpb246NjE= - Selon vous, la transition écologique doit être avant tout financée :"
+  source_column: 'QUXVlc3Rpb246NjE= - Selon vous, la transition écologique doit être avant tout financée
+    :'
+  position: 5
+  options:
+  - code: je-ne-sais-pas
+    label: Je ne sais pas
+    position: 1
+  - code: les-deux
+    label: Les deux
+    position: 2
+  - code: par-la-fiscalite-ecologique
+    label: Par la fiscalité écologique
+    position: 3
+  - code: par-le-budget-general-de-letat
+    label: Par le budget général de l’État
+    position: 4
+  allow_other_text: true
 - code: Q60
   prompt: Et qui doit être en priorité concerné par le financement de la transition écologique ?
-  type: text
+  type: multi_choice
   section: financement
-  source_column: "QUXVlc3Rpb246NjA= - Et qui doit être en priorité concerné par le financement de la transition écologique ?"
+  source_column: QUXVlc3Rpb246NjA= - Et qui doit être en priorité concerné par le financement de la transition
+    écologique ?
+  position: 6
+  options:
+  - code: les-administrations
+    label: Les administrations
+    position: 1
+  - code: les-entreprises
+    label: Les entreprises
+    position: 2
+  - code: les-particuliers
+    label: Les particuliers
+    position: 3
+  - code: tout-le-monde
+    label: Tout le monde
+    position: 4
+  delimiter: '|'
+  allow_other_text: true
 - code: Q59
-  prompt: Que faudrait-il faire pour protéger la biodiversité et le climat tout en maintenant des activités agricoles et industrielles compétitives par rapport à leurs concurrents étrangers, notamment européens ?
-  type: text
+  prompt: Que faudrait-il faire pour protéger la biodiversité et le climat tout en maintenant des activités
+    agricoles et industrielles compétitives par rapport à leurs concurrents étrangers, notamment européens
+    ?
+  type: single_choice
   section: compétitivité
-  source_column: "QUXVlc3Rpb246NTk= - Que faudrait-il faire pour protéger la biodiversité et le climat tout en maintenant des activités agricoles et industrielles compétitives par rapport à leurs concurrents étrangers, notamment européens ?"
+  source_column: QUXVlc3Rpb246NTk= - Que faudrait-il faire pour protéger la biodiversité et le climat
+    tout en maintenant des activités agricoles et industrielles compétitives par rapport à leurs concurrents
+    étrangers, notamment européens ?
+  position: 7
+  options:
+  - code: cofinancer-un-plan-dinvestissement-pour-changer-les-modes-de-production
+    label: Cofinancer un plan d’investissement pour changer les modes de production
+    position: 1
+  - code: modifier-les-accords-commerciaux
+    label: Modifier les accords commerciaux
+    position: 2
+  - code: taxer-les-produits-importes-qui-degradent-lenvironnement
+    label: Taxer les produits importés qui dégradent l’environnement
+    position: 3
+  allow_other_text: true

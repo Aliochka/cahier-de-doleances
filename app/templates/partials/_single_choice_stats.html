@@ -57,7 +57,7 @@
       const questionType = '{{ question.type }}';
       let totalMessage;
       if (questionType === 'multi_choice') {
-        totalMessage = `${data.total_answers.toLocaleString('fr-FR')} sélections au total`;
+        totalMessage = `${data.total_answers.toLocaleString('fr-FR')} réponses, ${data.total_selections.toLocaleString('fr-FR')} choix sélectionnés`;
       } else {
         totalMessage = `${data.total_answers.toLocaleString('fr-FR')} réponses au total`;
       }

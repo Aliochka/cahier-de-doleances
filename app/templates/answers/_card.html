@@ -13,7 +13,11 @@
   
   <div class="answer-card__content is-truncated">
     {% if a.body and a.body.strip() %}
-      {{ a.body|safe }}
+      {% if a.body_is_html %}
+        {{ a.body|safe }}
+      {% else %}
+        {{ a.body }}
+      {% endif %}
     {% else %}
       <em class="muted">Aucune réponse pour cette question</em>
     {% endif %}
