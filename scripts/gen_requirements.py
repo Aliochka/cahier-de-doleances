@@ -8,9 +8,24 @@ from pathlib import Path
 
 # --- Réglages répertoires à ignorer ---
 IGNORE_DIRS = {
-    ".git", ".hg", ".svn", "__pycache__", ".mypy_cache", ".pytest_cache",
-    "venv", ".venv", "env", ".env", "node_modules", "dist", "build",
-    ".idea", ".vscode", ".ruff_cache", ".tox", ".cache"
+    ".git",
+    ".hg",
+    ".svn",
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache",
+    "venv",
+    ".venv",
+    "env",
+    ".env",
+    "node_modules",
+    "dist",
+    "build",
+    ".idea",
+    ".vscode",
+    ".ruff_cache",
+    ".tox",
+    ".cache",
 }
 
 # --- Détection stdlib (3.10+) ---
@@ -19,14 +34,72 @@ try:
 except Exception:
     # fallback minimaliste si indispo (old Python)
     STDLIB = {
-        "abc","argparse","asyncio","base64","collections","concurrent","contextlib","copy",
-        "csv","ctypes","dataclasses","datetime","decimal","enum","functools","fractions",
-        "glob","gzip","hashlib","heapq","html","http","imaplib","inspect","io","ipaddress",
-        "itertools","json","logging","math","multiprocessing","numbers","operator","os",
-        "pathlib","pickle","platform","plistlib","queue","random","re","sched","secrets",
-        "selectors","shlex","signal","socket","sqlite3","statistics","string","subprocess",
-        "sys","tempfile","textwrap","threading","time","typing","unittest","urllib","uuid",
-        "venv","warnings","weakref","xml","zipfile","zoneinfo"
+        "abc",
+        "argparse",
+        "asyncio",
+        "base64",
+        "collections",
+        "concurrent",
+        "contextlib",
+        "copy",
+        "csv",
+        "ctypes",
+        "dataclasses",
+        "datetime",
+        "decimal",
+        "enum",
+        "functools",
+        "fractions",
+        "glob",
+        "gzip",
+        "hashlib",
+        "heapq",
+        "html",
+        "http",
+        "imaplib",
+        "inspect",
+        "io",
+        "ipaddress",
+        "itertools",
+        "json",
+        "logging",
+        "math",
+        "multiprocessing",
+        "numbers",
+        "operator",
+        "os",
+        "pathlib",
+        "pickle",
+        "platform",
+        "plistlib",
+        "queue",
+        "random",
+        "re",
+        "sched",
+        "secrets",
+        "selectors",
+        "shlex",
+        "signal",
+        "socket",
+        "sqlite3",
+        "statistics",
+        "string",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "textwrap",
+        "threading",
+        "time",
+        "typing",
+        "unittest",
+        "urllib",
+        "uuid",
+        "venv",
+        "warnings",
+        "weakref",
+        "xml",
+        "zipfile",
+        "zoneinfo",
     }
 
 # --- Mapping import -> package PyPI ---
@@ -39,7 +112,6 @@ PKG_MAP = {
     "httpx": "httpx",
     "requests": "requests",
     "aiohttp": "aiohttp",
-
     # Data / SciPy
     "numpy": "numpy",
     "pandas": "pandas",
@@ -48,7 +120,6 @@ PKG_MAP = {
     "matplotlib": "matplotlib",
     "seaborn": "seaborn",
     "statsmodels": "statsmodels",
-
     # NLP / ML
     "spacy": "spacy",
     "nltk": "nltk",
@@ -57,7 +128,6 @@ PKG_MAP = {
     "tensorflow": "tensorflow",
     "xgboost": "xgboost",
     "lightgbm": "lightgbm",
-
     # Parsing / IO
     "yaml": "PyYAML",
     "toml": "toml",
@@ -70,21 +140,17 @@ PKG_MAP = {
     "reportlab": "reportlab",
     "lxml": "lxml",
     "bs4": "beautifulsoup4",
-
     # Images / Vision
     "PIL": "Pillow",
     "cv2": "opencv-python",
-
     # Data viz
     "plotly": "plotly",
     "altair": "altair",
-
     # DB / ORM
     "sqlalchemy": "SQLAlchemy",
     "psycopg2": "psycopg2-binary",
     "psycopg": "psycopg[binary]",
     "pymongo": "pymongo",
-
     # Utils
     "tqdm": "tqdm",
     "python_dotenv": "python-dotenv",
@@ -94,16 +160,18 @@ PKG_MAP = {
 }
 
 IMPORT_RE = re.compile(
-    r'^\s*(?:from\s+([a-zA-Z0-9_\.]+)\s+import|import\s+([a-zA-Z0-9_\.]+))',
-    re.UNICODE
+    r"^\s*(?:from\s+([a-zA-Z0-9_\.]+)\s+import|import\s+([a-zA-Z0-9_\.]+))", re.UNICODE
 )
+
 
 def top_level_module(name: str) -> str:
     return name.split(".")[0]
 
+
 def is_ignored_dir(path: Path) -> bool:
     parts = set(p.name for p in path.parts)
     return bool(parts & IGNORE_DIRS)
+
 
 def list_local_top_packages(project_root: Path) -> set:
     """Paquets/modules locaux (dossiers avec __init__.py ou .py top-level) à exclure."""
@@ -116,6 +184,7 @@ def list_local_top_packages(project_root: Path) -> set:
         if p.is_file() and p.suffix == ".py":
             locals_.add(p.stem)
     return locals_
+
 
 def scan_imports(project_root: Path) -> set:
     found = set()
@@ -144,6 +213,7 @@ def scan_imports(project_root: Path) -> set:
                 continue
     return found
 
+
 def map_to_pypi(modules: set, locals_: set) -> list:
     reqs = set()
     for m in modules:
@@ -155,6 +225,7 @@ def map_to_pypi(modules: set, locals_: set) -> list:
         reqs.add(pkg)
     return sorted(reqs, key=str.lower)
 
+
 def main():
     root = Path(".").resolve()
     locals_ = list_local_top_packages(root)
@@ -165,6 +236,7 @@ def main():
     with open(out, "w", encoding="utf-8") as fh:
         fh.write("\n".join(requirements) + ("\n" if requirements else ""))
     print(f"✅ requirements.txt généré ({len(requirements)} paquets).")
+
 
 if __name__ == "__main__":
     main()

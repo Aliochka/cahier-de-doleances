@@ -1,4 +1,5 @@
 """Maintain answer counters per SQL statement for efficient bulk imports."""
+
 from alembic import op
 
 revision = "gdn_bulk_counters"
@@ -8,7 +9,12 @@ depends_on = None
 
 
 def upgrade():
-    for name in ("trg_answers_after_insert", "trg_answers_after_delete", "trg_answers_after_update", "trg_answers_valid_all"):
+    for name in (
+        "trg_answers_after_insert",
+        "trg_answers_after_delete",
+        "trg_answers_after_update",
+        "trg_answers_valid_all",
+    ):
         op.execute(f"DROP TRIGGER IF EXISTS {name} ON answers")
     op.execute("""
         CREATE FUNCTION gdn_answer_stats_insert() RETURNS trigger LANGUAGE plpgsql AS $$

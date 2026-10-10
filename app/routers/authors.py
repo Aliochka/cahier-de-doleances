@@ -2,8 +2,9 @@
 from __future__ import annotations
 
 import math
-from fastapi import APIRouter, Request, Query, Depends, HTTPException
-from fastapi.responses import HTMLResponse, RedirectResponse, Response, JSONResponse
+
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
@@ -14,9 +15,12 @@ from app.web import templates
 try:
     from app.helpers import slugify  # type: ignore
 except Exception:
-    import re, unicodedata
+    import re
+    import unicodedata
+
     _keep = re.compile(r"[^a-z0-9\s-]")
     _collapse = re.compile(r"[-\s]+")
+
     def slugify(value: str | None, maxlen: int = 60) -> str:
         if not value:
             return "contenu"
@@ -25,7 +29,8 @@ except Exception:
         value = "".join(ch for ch in value if not unicodedata.combining(ch)).lower()
         value = _keep.sub(" ", value)
         value = _collapse.sub("-", value).strip("-")
-        return (value[:maxlen].rstrip("-") or "contenu")
+        return value[:maxlen].rstrip("-") or "contenu"
+
 
 router = APIRouter()
 
@@ -62,10 +67,14 @@ def author_detail(
 ):
     # HEAD rapide : valide l'existence + slug canonique sans tout charger
     if request.method == "HEAD":
-        row = db.execute(
-            text("SELECT name FROM authors WHERE id = :aid"),
-            {"aid": author_id},
-        ).mappings().first()
+        row = (
+            db.execute(
+                text("SELECT name FROM authors WHERE id = :aid"),
+                {"aid": author_id},
+            )
+            .mappings()
+            .first()
+        )
         if not row:
             raise HTTPException(status_code=404, detail="Auteur introuvable")
         canonical = slugify((row["name"] or f"Auteur #{author_id}"), maxlen=60)
@@ -79,9 +88,10 @@ def author_detail(
     offset = (page - 1) * PER_PAGE
 
     # Auteur
-    row = db.execute(
-        text(
-            """
+    row = (
+        db.execute(
+            text(
+                """
             SELECT
               au.id,
               au.name,
@@ -96,9 +106,12 @@ def author_detail(
             FROM authors au
             WHERE au.id = :aid
             """
-        ),
-        {"aid": author_id},
-    ).mappings().first()
+            ),
+            {"aid": author_id},
+        )
+        .mappings()
+        .first()
+    )
     if not row:
         raise HTTPException(status_code=404, detail="Auteur introuvable")
 
@@ -132,9 +145,10 @@ def author_detail(
             {"aid": author_id, "q": match},
         ).scalar_one()
 
-        rows = db.execute(
-            text(
-                """
+        rows = (
+            db.execute(
+                text(
+                    """
                 SELECT
                   a.id           AS answer_id,
                   a.text         AS answer_text,
@@ -151,9 +165,12 @@ def author_detail(
                 ORDER BY bm25(answers_fts) ASC, c.submitted_at DESC
                 LIMIT :limit OFFSET :offset
                 """
-            ),
-            {"aid": author_id, "q": match, "limit": PER_PAGE, "offset": offset},
-        ).mappings().all()
+                ),
+                {"aid": author_id, "q": match, "limit": PER_PAGE, "offset": offset},
+            )
+            .mappings()
+            .all()
+        )
     else:
         total = db.execute(
             text(
@@ -168,9 +185,10 @@ def author_detail(
             {"aid": author_id},
         ).scalar_one()
 
-        rows = db.execute(
-            text(
-                """
+        rows = (
+            db.execute(
+                text(
+                    """
                 SELECT
                   a.id           AS answer_id,
                   a.text         AS answer_text,
@@ -185,9 +203,12 @@ def author_detail(
                 ORDER BY c.submitted_at DESC
                 LIMIT :limit OFFSET :offset
                 """
-            ),
-            {"aid": author_id, "limit": PER_PAGE, "offset": offset},
-        ).mappings().all()
+                ),
+                {"aid": author_id, "limit": PER_PAGE, "offset": offset},
+            )
+            .mappings()
+            .all()
+        )
 
     # Mapping vers le format attendu par answers/_card.html
     answers = []
@@ -244,10 +265,14 @@ def author_detail_legacy(
     page: int = Query(1, ge=1),
     db: Session = Depends(get_db),
 ):
-    row = db.execute(
-        text("SELECT id, name FROM authors WHERE id = :aid"),
-        {"aid": author_id},
-    ).mappings().first()
+    row = (
+        db.execute(
+            text("SELECT id, name FROM authors WHERE id = :aid"),
+            {"aid": author_id},
+        )
+        .mappings()
+        .first()
+    )
     if not row:
         raise HTTPException(status_code=404, detail="Auteur introuvable")
 
@@ -258,4 +283,3 @@ def author_detail_legacy(
     elif page and page != 1:
         url += f"?page={page}"
     return RedirectResponse(url, status_code=308)
-

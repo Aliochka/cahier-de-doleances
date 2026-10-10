@@ -23,12 +23,15 @@ print(f"Max ID = {max_id}")
 for start in range(1, max_id + 1, CHUNK):
     end = start + CHUNK - 1
     print(f"Insertion {start} → {end}...")
-    c.execute(f"""
+    c.execute(
+        """
         INSERT INTO contrib_fts(rowid, title, text)
         SELECT id, IFNULL(title,''), IFNULL(text,'')
         FROM contributions
         WHERE id BETWEEN ? AND ?;
-    """, (start, end))
+    """,
+        (start, end),
+    )
     conn.commit()
 
 print("Optimisation...")

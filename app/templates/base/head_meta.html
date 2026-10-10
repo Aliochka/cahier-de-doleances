@@ -60,17 +60,7 @@
   {% set CANONICAL_URL = HOST ~ canonical_path ~ canonical_query %}
 {% endif %}
 
-{# --- OG image (personnalisée ou par défaut) --- #}
-{% if OG_IMAGE_URL %}
-  {% set OG_IMAGE_URL_STR = OG_IMAGE_URL | string %}
-  {% if OG_IMAGE_URL_STR.startswith('http') %}
-    {% set OG_IMAGE = OG_IMAGE_URL_STR %}
-  {% else %}
-    {% set OG_IMAGE = HOST ~ OG_IMAGE_URL_STR %}
-  {% endif %}
-{% else %}
-  {% set OG_IMAGE = HOST ~ request.url_for('static', path='/img/og-default.jpg') %}
-{% endif %}
+{% set OG_IMAGE = request.url_for('static', path='img/og-default.jpg') | string %}
 
 {# --- Robots meta (les routes search sont noindex ; on garde follow) --- #}
 {% set ROBOTS = (on_answers_search or on_questions_search) and "noindex, follow" or "index, follow" %}
@@ -90,11 +80,7 @@
 
 {# Open Graph #}
 <meta property="og:site_name" content="Cahier de doléances" />
-{% if OG_IMAGE_URL %}
-<meta property="og:type" content="article" />
-{% else %}
 <meta property="og:type" content="website" />
-{% endif %}
 <meta property="og:title" content="{{ COMPUTED_TITLE }}" />
 <meta property="og:description" content="{{ META_DESCRIPTION }}" />
 <meta property="og:url" content="{{ CANONICAL_URL }}" />
@@ -130,8 +116,3 @@
 
 <!-- Auto-hide header on scroll -->
 <script src="{{ request.url_for('static', path='/js/scroll-header.js') }}?v=1" defer></script>
-
-<!-- Auto-show floating footer on scroll (infinite scroll pages) -->
-<script src="{{ request.url_for('static', path='/js/scroll-footer.js') }}?v=1" defer></script>
-
-

@@ -1,53 +1,30 @@
-version: '3.8'
-
 services:
   app:
     build: .
     ports:
       - "8000:8000"
     environment:
-      # Configuration base de données (à adapter selon votre environnement)
-      - DATABASE_URL=postgresql://user:password@db:5432/cahier_doleances
-      
-      # Configuration cache OG (persistant via volume)
-      - OG_CACHE_DIR=/home/app/og_cache
-      
-      # Configuration logging
-      - LOG_LEVEL=INFO
-      
-      # Variables d'environnement de production
-      - ENVIRONMENT=production
-      
-    volumes:
-      # Volume persistant pour le cache des images OG
-      - og_cache:/home/app/og_cache
-      
+      DATABASE_URL: postgresql://user:password@db:5432/cahier_doleances
+      ENV: dev
+      CANONICAL_HOST_URL: http://127.0.0.1:8000
+    command: sh -c 'alembic upgrade head && gunicorn app.app:app -w 2 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000'
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: unless-stopped
-    
-    # Limites de ressources (Playwright peut consommer beaucoup de mémoire)
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-          cpus: '2.0'
-        reservations:
-          memory: 1G
-          cpus: '1.0'
-
   db:
     image: postgres:15
     environment:
-      - POSTGRES_DB=cahier_doleances
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      POSTGRES_DB: cahier_doleances
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d cahier_doleances"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     restart: unless-stopped
-
 volumes:
-  og_cache:
-    driver: local
   postgres_data:
-    driver: local

@@ -12,7 +12,6 @@
 {% set CANONICAL_URL = url_for('answer_detail', answer_id=answer.id) | string %}
 
 {# Image OG dynamique #}
-{% set OG_IMAGE_URL = url_for('og_answer_image', answer_id=answer.id) %}
 
 {% block content %}
 

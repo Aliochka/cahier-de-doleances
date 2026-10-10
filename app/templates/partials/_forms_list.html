@@ -11,7 +11,7 @@
 
   {% if has_next_forms and next_cursor_forms %}
     <div class="forms-load-more-sentinel"
-         hx-get="{{ url_for('search_questions') }}?partial=1&section=forms{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_forms={{ next_cursor_forms|urlencode }}"
+         hx-get="{{ url_for('search_questions') }}?partial=1&amp;section=forms{% if q %}&amp;q={{ q|urlencode }}{% endif %}&amp;cursor_forms={{ next_cursor_forms|urlencode }}"
          hx-trigger="intersect once"
          hx-target="#forms-list"
          hx-swap="beforeend">

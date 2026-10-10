@@ -1,30 +1,17 @@
 # app/routers/forms.py
 from __future__ import annotations
 
-import json
-
-from fastapi import APIRouter, Request, Query, HTTPException
+from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy import text
-from app.db import SessionLocal
-from app.web import templates
-from app.helpers import slugify  # type: ignore
+
 from app.choice_stats import choice_statistics
+from app.db import SessionLocal
+from app.helpers import slugify  # type: ignore
+from app.web import templates
 
 router = APIRouter()
 
-
-
-# Cache TTL en secondes (30 minutes)
-DASHBOARD_CACHE_TTL = 1800
-
-def invalidate_dashboard_cache(db, form_id: int):
-    """Invalide le cache dashboard pour un formulaire"""
-    db.execute(
-        text("DELETE FROM dashboard_cache WHERE form_id = :form_id"),
-        {"form_id": form_id}
-    )
-    db.commit()
 
 @router.get("/forms/{form_id}", name="form_detail", response_class=HTMLResponse)
 def form_detail(
@@ -43,8 +30,9 @@ def form_detail(
 
     with SessionLocal() as db:
         # 1) Infos formulaire + questions (ordre)
-        row_form = db.execute(
-            text("""
+        row_form = (
+            db.execute(
+                text("""
                 SELECT f.id, f.name,
                        COUNT(q.id)::int AS questions_count
                 FROM forms f
@@ -52,57 +40,77 @@ def form_detail(
                 WHERE f.id = :fid
                 GROUP BY f.id
             """),
-            {"fid": form_id},
-        ).mappings().first()
+                {"fid": form_id},
+            )
+            .mappings()
+            .first()
+        )
 
         if not row_form:
             # 404 template si tu en as un
-            return templates.TemplateResponse("errors/404.html", {"request": request}, status_code=404)
+            return templates.TemplateResponse(
+                "errors/404.html", {"request": request}, status_code=404
+            )
 
         # Liste ordonnée des questions du formulaire
-        rows_questions = db.execute(
-            text("""
+        rows_questions = (
+            db.execute(
+                text("""
                 SELECT q.id, q.position, q.prompt
                 FROM questions q
                 WHERE q.form_id = :fid
                 ORDER BY COALESCE(q.position, 999999), q.id
             """),
-            {"fid": form_id},
-        ).mappings().all()
+                {"fid": form_id},
+            )
+            .mappings()
+            .all()
+        )
 
         # 2) Compte des contributions et sélection de l'index demandé
-        row_counts = db.execute(
-            text("""
+        row_counts = (
+            db.execute(
+                text("""
                 SELECT COUNT(*)::int AS total
                 FROM contributions c
                 WHERE c.form_id = :fid
             """),
-            {"fid": form_id},
-        ).mappings().first()
+                {"fid": form_id},
+            )
+            .mappings()
+            .first()
+        )
 
         total_contribs = row_counts["total"] if row_counts else 0
 
-        contrib_idx = max(1, min(contrib_int, max(total_contribs, 1)))  # clamp 1..M (si 0, on force à 1)
+        contrib_idx = max(
+            1, min(contrib_int, max(total_contribs, 1))
+        )  # clamp 1..M (si 0, on force à 1)
 
         # ID de la contribution k (ordre stable submitted_at ASC, id ASC)
-        row_contrib = db.execute(
-            text("""
+        row_contrib = (
+            db.execute(
+                text("""
                 SELECT c.id
                 FROM contributions c
                 WHERE c.form_id = :fid
                 ORDER BY c.submitted_at ASC NULLS LAST, c.id ASC
                 OFFSET :off LIMIT 1
             """),
-            {"fid": form_id, "off": contrib_idx - 1},
-        ).mappings().first()
+                {"fid": form_id, "off": contrib_idx - 1},
+            )
+            .mappings()
+            .first()
+        )
 
         current_contrib_id = row_contrib["id"] if row_contrib else None
 
         # 3) Réponses de la contribution courante avec métadonnées pour answer cards
         answers = []
         if current_contrib_id is not None:
-            rows_answers = db.execute(
-                text("""
+            rows_answers = (
+                db.execute(
+                    text("""
                     SELECT a.id, a.question_id, a.text, q.prompt,
                            c.author_id, c.submitted_at
                     FROM answers a
@@ -113,25 +121,30 @@ def form_detail(
                       AND trim(a.text) != ''
                     ORDER BY COALESCE(q.position, 999999), q.id
                 """),
-                {"cid": current_contrib_id},
-            ).mappings().all()
-            
+                    {"cid": current_contrib_id},
+                )
+                .mappings()
+                .all()
+            )
+
             for r in rows_answers:
-                answers.append({
-                    "id": r["id"],
-                    "question_id": r["question_id"],
-                    "question_title": r["prompt"],
-                    "question_slug": slugify(r["prompt"] or f"question-{r['question_id']}"),
-                    "body": r["text"],
-                    "author_id": r["author_id"],
-                    "created_at": r["submitted_at"],
-                })
+                answers.append(
+                    {
+                        "id": r["id"],
+                        "question_id": r["question_id"],
+                        "question_title": r["prompt"],
+                        "question_slug": slugify(r["prompt"] or f"question-{r['question_id']}"),
+                        "body": r["text"],
+                        "author_id": r["author_id"],
+                        "created_at": r["submitted_at"],
+                    }
+                )
 
         # 4) Construction de toutes les questions avec ou sans réponses pour affichage complet
         questions = []
         answers_map: dict[int, dict] = {a["question_id"]: a for a in answers}
         all_answers = []  # Toutes les questions formatées comme des answer cards
-        
+
         for q in rows_questions:
             qid = int(q["id"])
             prompt = q["prompt"]
@@ -143,22 +156,24 @@ def form_detail(
                 "answer_text": answers_map.get(qid, {}).get("body", ""),
             }
             questions.append(question)
-            
+
             # Créer un objet answer card pour chaque question
             if qid in answers_map:
                 # Question avec réponse existante
                 all_answers.append(answers_map[qid])
             else:
                 # Question sans réponse - créer une entry vide
-                all_answers.append({
-                    "id": None,
-                    "question_id": qid,
-                    "question_title": prompt,
-                    "question_slug": slugify(prompt or f"question-{qid}"),
-                    "body": "",  # Réponse vide
-                    "author_id": None,
-                    "created_at": None,
-                })
+                all_answers.append(
+                    {
+                        "id": None,
+                        "question_id": qid,
+                        "question_title": prompt,
+                        "question_slug": slugify(prompt or f"question-{qid}"),
+                        "body": "",  # Réponse vide
+                        "author_id": None,
+                        "created_at": None,
+                    }
+                )
 
         ctx = {
             "request": request,
@@ -183,11 +198,12 @@ def form_dashboard(request: Request, form_id: int):
     """
     Page dashboard d'un formulaire avec graphiques et liste des questions
     """
-    
+
     with SessionLocal() as db:
         # Infos formulaire + questions
-        row_form = db.execute(
-            text("""
+        row_form = (
+            db.execute(
+                text("""
                 SELECT f.id, f.name,
                        COUNT(q.id)::int AS questions_count
                 FROM forms f
@@ -195,80 +211,72 @@ def form_dashboard(request: Request, form_id: int):
                 WHERE f.id = :fid
                 GROUP BY f.id
             """),
-            {"fid": form_id},
-        ).mappings().first()
+                {"fid": form_id},
+            )
+            .mappings()
+            .first()
+        )
 
         if not row_form:
-            return templates.TemplateResponse("errors/404.html", {"request": request}, status_code=404)
+            return templates.TemplateResponse(
+                "errors/404.html", {"request": request}, status_code=404
+            )
 
-        # Cache PostgreSQL simple qui fonctionne
-        cached_result = db.execute(
-            text("""
-                SELECT stats_json, updated_at 
-                FROM dashboard_cache 
-                WHERE form_id = :form_id 
-                  AND updated_at > NOW() - INTERVAL '30 minutes'
-            """),
-            {"form_id": form_id}
-        ).mappings().first()
-        
-        if cached_result:
-            # Cache hit !
-            questions_list = json.loads(cached_result["stats_json"])
-        else:
-            # Cache miss - calculer les stats
-            questions = db.execute(
+        questions = (
+            db.execute(
                 text("""
-                    SELECT q.id, q.prompt, q.type, q.position,
-                           COALESCE(st.answers_count, 0)::int AS answers_count
-                    FROM questions q
-                    LEFT JOIN question_stats st ON st.question_id = q.id
-                    WHERE q.form_id = :fid
-                    ORDER BY COALESCE(q.position, 999999), q.id
-                """),
+                SELECT q.id, q.prompt, q.type, q.position,
+                       COALESCE(st.answers_count, 0)::int AS answers_count
+                FROM questions q
+                LEFT JOIN question_stats st ON st.question_id = q.id
+                WHERE q.form_id = :fid
+                ORDER BY COALESCE(q.position, 999999), q.id
+            """),
                 {"fid": form_id},
-            ).mappings().all()
+            )
+            .mappings()
+            .all()
+        )
 
-            questions_list = []
-            for q in questions:
-                question_data = {
-                    "id": q["id"],
-                    "prompt": q["prompt"],
-                    "type": q["type"],
-                    "position": q["position"],
-                    "answers_count": q["answers_count"],
-                    "slug": slugify(q["prompt"] or f"question-{q['id']}")
-                }
-                
-                if q["type"] in ("single_choice", "multi_choice"):
-                    choice_result = choice_statistics(db, q["id"])
-                    stats_rows = choice_result["stats"]
-                    if choice_result["total_answers"]:
-                        question_data["chart_data"] = {
-                            "labels": [row["label"] for row in stats_rows],
-                            "datasets": [{"data": [row["count"] for row in stats_rows],
-                                          "backgroundColor": ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"]}]
-                        }
-                        question_data["chart_stats"] = stats_rows
-                        question_data["total_chart_answers"] = choice_result["total_answers"]
+        questions_list = []
+        for q in questions:
+            question_data = {
+                "id": q["id"],
+                "prompt": q["prompt"],
+                "type": q["type"],
+                "position": q["position"],
+                "answers_count": q["answers_count"],
+                "slug": slugify(q["prompt"] or f"question-{q['id']}"),
+            }
 
-                questions_list.append(question_data)
-            
-            # Sauver dans le cache PostgreSQL
-            try:
-                db.execute(
-                    text("""
-                        INSERT INTO dashboard_cache (form_id, stats_json, updated_at)
-                        VALUES (:form_id, :stats_json, NOW())
-                        ON CONFLICT (form_id) 
-                        DO UPDATE SET stats_json = :stats_json, updated_at = NOW()
-                    """),
-                    {"form_id": form_id, "stats_json": json.dumps(questions_list, ensure_ascii=False)}
-                )
-                db.commit()
-            except Exception as e:
-                # Pas grave si la sauvegarde cache échoue
-                db.rollback()
+            if q["type"] in ("single_choice", "multi_choice"):
+                choice_result = choice_statistics(db, q["id"])
+                stats_rows = choice_result["stats"]
+                if choice_result["total_answers"]:
+                    question_data["chart_data"] = {
+                        "labels": [row["label"] for row in stats_rows],
+                        "datasets": [
+                            {
+                                "data": [row["count"] for row in stats_rows],
+                                "backgroundColor": [
+                                    "#3b82f6",
+                                    "#ef4444",
+                                    "#10b981",
+                                    "#f59e0b",
+                                    "#8b5cf6",
+                                    "#06b6d4",
+                                    "#f97316",
+                                    "#84cc16",
+                                    "#ec4899",
+                                    "#6366f1",
+                                ],
+                            }
+                        ],
+                    }
+                    question_data["chart_stats"] = stats_rows
+                    question_data["total_chart_answers"] = choice_result["total_answers"]
+
+            questions_list.append(question_data)
 
         ctx = {
             "request": request,
@@ -284,7 +292,9 @@ def form_dashboard(request: Request, form_id: int):
         return templates.TemplateResponse("forms/dashboard.html", ctx)
 
 
-@router.get("/forms/{form_id}/dashboard-stats", name="form_dashboard_stats", response_class=HTMLResponse)
+@router.get(
+    "/forms/{form_id}/dashboard-stats", name="form_dashboard_stats", response_class=HTMLResponse
+)
 def form_dashboard_stats(request: Request, form_id: int):
     """
     Récupère toutes les statistiques des questions single_choice/multi_choice d'un formulaire
@@ -292,72 +302,100 @@ def form_dashboard_stats(request: Request, form_id: int):
     """
     with SessionLocal() as db:
         # Vérifier que le formulaire existe
-        form_row = db.execute(
-            text("SELECT id, name FROM forms WHERE id = :fid"),
-            {"fid": form_id}
-        ).mappings().first()
-        
+        form_row = (
+            db.execute(text("SELECT id, name FROM forms WHERE id = :fid"), {"fid": form_id})
+            .mappings()
+            .first()
+        )
+
         if not form_row:
             raise HTTPException(status_code=404, detail="Formulaire introuvable")
-        
+
         # Récupérer toutes les questions single_choice/multi_choice du formulaire
-        questions = db.execute(text("""
+        questions = (
+            db.execute(
+                text("""
             SELECT q.id, q.prompt, q.type, q.position
             FROM questions q
             WHERE q.form_id = :fid 
               AND q.type IN ('single_choice', 'multi_choice')
             ORDER BY COALESCE(q.position, 999999), q.id
-        """), {"fid": form_id}).mappings().all()
-        
+        """),
+                {"fid": form_id},
+            )
+            .mappings()
+            .all()
+        )
+
         all_stats = []
-        
+
         for question in questions:
             qid = question["id"]
             qtype = question["type"]
-            
+
             try:
                 choice_result = choice_statistics(db, qid)
                 stats_rows = choice_result["stats"]
 
                 # Calculer le total et formater les données
                 total_answers = choice_result["total_answers"]
-                
+
                 if total_answers > 0:  # Seulement si on a des données
                     # Données pour Chart.js compact
                     chart_data = {
-                        "labels": [row["label"][:30] + ("..." if len(row["label"]) > 30 else "") for row in stats_rows],  # Limiter la longueur
-                        "datasets": [{
-                            "data": [row["count"] for row in stats_rows],
-                            "backgroundColor": ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#f97316", "#84cc16", "#ec4899", "#6366f1"][:len(stats_rows)]
-                        }]
+                        "labels": [
+                            row["label"][:30] + ("..." if len(row["label"]) > 30 else "")
+                            for row in stats_rows
+                        ],  # Limiter la longueur
+                        "datasets": [
+                            {
+                                "data": [row["count"] for row in stats_rows],
+                                "backgroundColor": [
+                                    "#3b82f6",
+                                    "#ef4444",
+                                    "#10b981",
+                                    "#f59e0b",
+                                    "#8b5cf6",
+                                    "#06b6d4",
+                                    "#f97316",
+                                    "#84cc16",
+                                    "#ec4899",
+                                    "#6366f1",
+                                ][: len(stats_rows)],
+                            }
+                        ],
                     }
-                    
+
                     question_stats = {
                         "question_id": qid,
-                        "question_prompt": question["prompt"][:80] + ("..." if len(question["prompt"]) > 80 else ""),  # Titre court
+                        "question_prompt": question["prompt"][:80]
+                        + ("..." if len(question["prompt"]) > 80 else ""),  # Titre court
                         "question_type": qtype,
                         "total_answers": total_answers,
                         "chart_data": chart_data,
-                        "stats": [{
-                            "label": row["label"],
-                            "count": row["count"],
-                            "percentage": row["percentage"]
-                        } for row in stats_rows]
+                        "stats": [
+                            {
+                                "label": row["label"],
+                                "count": row["count"],
+                                "percentage": row["percentage"],
+                            }
+                            for row in stats_rows
+                        ],
                     }
-                    
+
                     all_stats.append(question_stats)
-                    
+
             except Exception as e:
                 print(f"Erreur pour question {qid}: {e}")
                 continue
-        
+
         # Retourner le template HTML pour les graphiques
         ctx = {
             "request": request,
             "form_id": form_id,
             "form_name": form_row["name"],
             "questions_stats": all_stats,
-            "total_questions": len(all_stats)
+            "total_questions": len(all_stats),
         }
-        
+
         return templates.TemplateResponse("partials/_dashboard_charts.html", ctx)

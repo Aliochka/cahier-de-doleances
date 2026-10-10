@@ -1,0 +1,15 @@
+.git
+.env*
+venv
+.venv
+data
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+notebooks
+
+.aws
+.codex
+.agents
+*.log

@@ -196,9 +196,10 @@ alembic upgrade head
 alembic current
 ```
 
-La révision attendue est `gdn_bulk_counters (head)`. Les migrations rétablissent
-la recherche, créent le suivi des imports et maintiennent les compteurs par
-lot. Il faut les appliquer avant de démarrer le site.
+La révision attendue est `remove_runtime_caches (head)`. Les migrations rétablissent
+la recherche, créent le suivi des imports, maintiennent les compteurs par
+lot et retirent les anciennes tables de cache. Il faut les appliquer avant
+de démarrer le site.
 
 Les migrations créent les tables, extensions (`unaccent`, `pg_trgm`), index,
 déclencheurs et compteurs techniques. Elles n'importent aucun fichier de
@@ -239,10 +240,9 @@ Sur une installation neuve, les six compteurs doivent être à **0** et les
 trois requêtes HTTP doivent renvoyer **200**. Les pages de recherche sont
 accessibles mais leurs résultats restent vides jusqu'à l'import.
 
-Les pages `/mentions` et `/topics` n'ont pas encore de modèles HTML et
-renvoient **404**. Les pages de détail correspondant à des données absentes
-renvoient également 404. Sans configuration Mailjet, les e-mails sont
-journalisés et ne sont pas envoyés ; cela ne bloque pas le lancement.
+Les routes incomplètes `/mentions` et `/topics` ont été retirées. Les pages
+de détail correspondant à des données absentes renvoient 404. Sans configuration
+Mailjet, les e-mails sont journalisés et ne sont pas envoyés ; cela ne bloque pas le lancement.
 
 ### 3. Relancer le projet après l'installation
 
@@ -309,8 +309,28 @@ Si l'import est interrompu, relancer `python -m ingest.postgres` : il reprend
 au dernier lot validé. Les résultats sont consignés dans le
 [rapport de vérification](docs/ingestion-resultats.md).
 
-Les anciens importeurs SQLite et Rust, ainsi que `scripts/import_from_csv.sh`,
+L’ancien importeur `ingest/gdn_ingest.py` et `scripts/import_from_csv.sh`
 ne correspondent pas à cette procédure. Ne pas les combiner avec elle.
+
+### 5. Linter et tests
+
+```bash
+source venv/bin/activate
+python -m pip install -r requirements-dev.txt
+ruff check .
+ruff format --check app ingest scripts tests migrations/env.py
+python -m pytest
+```
+
+Le [guide des tests](TESTING.md) explique comment exécuter toute la suite sur
+une base PostgreSQL de test séparée. Sans cette base, les tests d’intégration
+sont signalés comme ignorés. Le [mini audit](docs/nettoyage-repo.md) détaille
+les suppressions et les tests conservés.
+
+L’interface est en français. Les images de partage utilisent le fichier
+statique existant ; aucun navigateur Playwright ni cache applicatif n’est
+nécessaire. Les dépendances facultatives des analyses et notebooks sont dans
+`requirements-analysis.txt`, à installer avec Python 3.11 ou supérieur.
 
 ---
 
@@ -322,4 +342,3 @@ Voir le fichier [LICENSE](./LICENSE) pour plus de détails.
 ---
 
 ## ✊ Un pas de plus vers la révolution
-

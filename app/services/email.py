@@ -1,29 +1,30 @@
-from mailjet_rest import Client
 import logging
-from typing import Optional
+
+from mailjet_rest import Client
+
 from app.config import settings
 
 logger = logging.getLogger(__name__)
 
+
 class EmailService:
     """Service d'envoi d'email avec Mailjet"""
-    
+
     def __init__(self):
         if not settings.MAILJET_API_KEY or not settings.MAILJET_SECRET_KEY:
             logger.warning("Mailjet not configured - emails will be logged only")
             self.client = None
         else:
             self.client = Client(
-                auth=(settings.MAILJET_API_KEY, settings.MAILJET_SECRET_KEY),
-                version='v3.1'
+                auth=(settings.MAILJET_API_KEY, settings.MAILJET_SECRET_KEY), version="v3.1"
             )
-    
+
     async def send_magic_link(self, email: str, magic_link: str) -> bool:
         """
         Envoie un lien magique de connexion par email
         """
         subject = "Connexion à votre compte - Cahier de doléances"
-        
+
         html_content = f"""
         <!DOCTYPE html>
         <html lang="fr">
@@ -61,7 +62,7 @@ class EmailService:
         </body>
         </html>
         """
-        
+
         text_content = f"""
         Connexion à votre compte - Cahier de doléances
         
@@ -78,67 +79,57 @@ class EmailService:
         Cahier de doléances
         Plateforme de participation citoyenne
         """
-        
+
         return await self._send_email(
-            to_email=email,
-            subject=subject,
-            html_content=html_content,
-            text_content=text_content
+            to_email=email, subject=subject, html_content=html_content, text_content=text_content
         )
-    
+
     async def _send_email(
-        self, 
-        to_email: str, 
-        subject: str, 
-        html_content: str, 
-        text_content: str
+        self, to_email: str, subject: str, html_content: str, text_content: str
     ) -> bool:
         """Envoi d'email générique via Mailjet"""
-        
+
         if not self.client:
             # En mode développement, extraire et afficher clairement le lien magique
             import re
-            magic_link_match = re.search(r'http[s]?://[^\s<>"]+/auth/verify/[^\s<>"]+', text_content)
-            
+
+            magic_link_match = re.search(
+                r'http[s]?://[^\s<>"]+/auth/verify/[^\s<>"]+', text_content
+            )
+
             print("\n" + "=" * 60)
             print("📧 EMAIL DE DÉVELOPPEMENT")
             print(f"À: {to_email}")
             print(f"Objet: {subject}")
-            
+
             if magic_link_match:
                 magic_link = magic_link_match.group()
-                print(f"🔗 LIEN MAGIQUE À COPIER:")
+                print("🔗 LIEN MAGIQUE À COPIER:")
                 print(f"   {magic_link}")
             else:
                 print("❌ Lien magique non trouvé dans le contenu")
-                
+
             print("=" * 60 + "\n")
-            
+
             # Log pour les fichiers de logs aussi
-            logger.info(f"Magic link sent to {to_email}: {magic_link if magic_link_match else 'not found'}")
+            logger.info(
+                f"Magic link sent to {to_email}: {magic_link if magic_link_match else 'not found'}"
+            )
             return True
-        
+
         data = {
-            'Messages': [
+            "Messages": [
                 {
-                    "From": {
-                        "Email": settings.FROM_EMAIL,
-                        "Name": settings.FROM_NAME
-                    },
-                    "To": [
-                        {
-                            "Email": to_email,
-                            "Name": ""
-                        }
-                    ],
+                    "From": {"Email": settings.FROM_EMAIL, "Name": settings.FROM_NAME},
+                    "To": [{"Email": to_email, "Name": ""}],
                     "Subject": subject,
                     "TextPart": text_content,
                     "HTMLPart": html_content,
-                    "CustomID": f"magic-link-{to_email}"
+                    "CustomID": f"magic-link-{to_email}",
                 }
             ]
         }
-        
+
         try:
             result = self.client.send.create(data=data)
             if result.status_code == 200:
@@ -150,6 +141,7 @@ class EmailService:
         except Exception as e:
             logger.error(f"Error sending email to {to_email}: {str(e)}")
             return False
+
 
 # Singleton
 email_service = EmailService()

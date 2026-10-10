@@ -1,5 +1,5 @@
-import sqlite3
 import csv
+import sqlite3
 
 db_path = "gdn.db"
 output_csv = "culture_jeunesse_counts.csv"
@@ -7,17 +7,17 @@ output_csv = "culture_jeunesse_counts.csv"
 keywords = {
     "jeunesse": "jeunesse OR jeune*",
     "étudiant": "étudiant* OR etudiant*",
-    "pass_culture": "\"pass culture\" OR \"Pass Culture\"",
-    "mjc": "mjc OR \"maison des jeunes\"",
+    "pass_culture": '"pass culture" OR "Pass Culture"',
+    "mjc": 'mjc OR "maison des jeunes"',
     "scouts": "scout*",
-    "colonies": "colonie OR \"colonies de vacances\"",
-    "education_populaire": "\"éducation populaire\"",
-    "centre_social": "\"centre social\"",
-    "foyer_jeunes": "\"foyer des jeunes\"",
+    "colonies": 'colonie OR "colonies de vacances"',
+    "education_populaire": '"éducation populaire"',
+    "centre_social": '"centre social"',
+    "foyer_jeunes": '"foyer des jeunes"',
     "université": "université",
     "lycéen": "lycéen*",
     "collégien": "collégien*",
-    "animation_socioculturelle": "\"animation socio-culturelle\""
+    "animation_socioculturelle": '"animation socio-culturelle"',
 }
 
 conn = sqlite3.connect(db_path)

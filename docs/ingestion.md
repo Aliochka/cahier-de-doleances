@@ -129,8 +129,9 @@ L'import est exécuté par lots de 1 000 contributions (réglable avec
 `--batch-size`). Chaque lot valide les réponses et leurs liens avant de
 commettre les données et sa progression dans `gdn_import_runs`. Les compteurs
 sont maintenus par des triggers SQL par instruction, les index plein texte
-par les colonnes et triggers de recherche. Les caches du site sont invalidés
-à la fin de chaque formulaire et les statistiques SQL sont actualisées.
+par les colonnes et triggers de recherche. Les statistiques du planificateur
+SQL sont actualisées pendant l’import et à sa fin ; le site n’utilise plus de
+cache applicatif.
 
 La vérification finale contrôle les sept empreintes, les nombres de
 contributions et de réponses contre le profil source, les questions, les
@@ -172,11 +173,13 @@ le problème puis reprendre ; ne pas ignorer silencieusement les réponses.
 
 ```bash
 python -m unittest discover -s tests/ingest -v
-GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_local python -m unittest discover -s tests/ingest -v
+GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test python -m unittest discover -s tests/ingest -v
 ```
 
 La première commande teste les lecteurs et transformations sans réseau ;
-la seconde ajoute un test PostgreSQL qui annule ses données à la fin. Il
+la seconde ajoute un test PostgreSQL qui annule ses données à la fin, après
+création de la base de test et application des migrations selon
+[TESTING.md](../TESTING.md). Il
 vérifie la réimportation, le remplacement des choix, les pourcentages,
 les mises à jour et suppressions, et les compteurs.
 
@@ -191,5 +194,5 @@ Il écrit [ingestion-audit.md](ingestion-audit.md). C'est un audit préliminaire
 des premiers enregistrements ; le profil JSON complet et la vérification
 PostgreSQL sont les contrôles de référence pour l'import final.
 
-Les anciens importeurs `ingest/gdn_ingest.py`, le programme Rust et
-`scripts/import_from_csv.sh` ne doivent pas être combinés avec cette procédure.
+L’ancien importeur `ingest/gdn_ingest.py` et `scripts/import_from_csv.sh`
+ne doivent pas être combinés avec cette procédure.

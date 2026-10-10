@@ -1,6 +1,7 @@
 """Track resumable, verified imports of official source snapshots."""
-from alembic import op
+
 import sqlalchemy as sa
+from alembic import op
 from sqlalchemy.dialects.postgresql import JSONB
 
 revision = "gdn_import_progress"
@@ -18,7 +19,9 @@ def upgrade():
         sa.Column("rows_processed", sa.BigInteger(), nullable=False, server_default="0"),
         sa.Column("completed", sa.Boolean(), nullable=False, server_default="false"),
         sa.Column("stats", JSONB(), nullable=False, server_default=sa.text("'{}'::jsonb")),
-        sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
     )
 
 

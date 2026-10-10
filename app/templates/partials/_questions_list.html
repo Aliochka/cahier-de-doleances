@@ -11,7 +11,7 @@
 
   {% if has_next_questions and next_cursor_questions %}
     <div class="questions-load-more-sentinel"
-         hx-get="{{ url_for('search_questions') }}?partial=1&section=questions{% if q %}&q={{ q|urlencode }}{% endif %}&cursor_questions={{ next_cursor_questions|urlencode }}"
+         hx-get="{{ url_for('search_questions') }}?partial=1&amp;section=questions{% if q %}&amp;q={{ q|urlencode }}{% endif %}&amp;cursor_questions={{ next_cursor_questions|urlencode }}"
          hx-trigger="intersect once"
          hx-target="#questions-list"
          hx-swap="beforeend">

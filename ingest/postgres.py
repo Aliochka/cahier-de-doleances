@@ -3,6 +3,7 @@
 Run from the repository root: python -m ingest.postgres --samples
 or python -m ingest.postgres for the complete exports.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -19,7 +20,7 @@ import yaml
 from psycopg2.extras import Json
 
 from ingest.sources import ROOT, SOURCES, digest, identity
-from ingest.structured_sources import JSON_SOURCES, iter_records, choice_value, question_code
+from ingest.structured_sources import JSON_SOURCES, choice_value, iter_records, question_code
 
 csv.field_size_limit(2**31 - 1)
 
@@ -116,18 +117,33 @@ def stage_record(key, row, questions):
                 if option["code"] not in selected:
                     selected.append(option["code"])
             if question["type"] == "single_choice" and len(selected) > 1:
-                raise ValueError(f"Plusieurs choix sur une question classée unique : {question['code']}")
+                raise ValueError(
+                    f"Plusieurs choix sur une question classée unique : {question['code']}"
+                )
             other = choice["other"]
             parts = choice["labels"] + ([other] if other and other.strip() else [])
-            answer = {"body": "\n".join(parts), "selected_codes": selected,
-                      "value_json": {"source_value": response["value"], "labels": choice["labels"],
-                                     "selected_codes": selected, "other_text": [other] if other and other.strip() else []}} if parts else None
+            answer = (
+                {
+                    "body": "\n".join(parts),
+                    "selected_codes": selected,
+                    "value_json": {
+                        "source_value": response["value"],
+                        "labels": choice["labels"],
+                        "selected_codes": selected,
+                        "other_text": [other] if other and other.strip() else [],
+                    },
+                }
+                if parts
+                else None
+            )
         elif question["type"] != "text" and response.get("value"):
             raise ValueError(f"Valeur de choix non structurée : {question['code']}")
         else:
             original = response.get("value") or ""
             formatted = response.get("formattedValue")
-            presentation = formatted if isinstance(formatted, str) and formatted.strip() else original
+            presentation = (
+                formatted if isinstance(formatted, str) and formatted.strip() else original
+            )
             answer = parse_text_answer(presentation)
         if answer:
             nul_count = answer["body"].count("\x00")
@@ -139,13 +155,21 @@ def stage_record(key, row, questions):
                 answer["value_json"]["normalizations"] = {"nul_characters": nul_count}
                 other = answer["value_json"].get("other_text")
                 if other:
-                    answer["value_json"]["other_text"] = [v.replace("\x00", "\ufffd") for v in other]
+                    answer["value_json"]["other_text"] = [
+                        v.replace("\x00", "\ufffd") for v in other
+                    ]
             answer["question_id"] = question["id"]
             answers.append(answer)
-    return (f"{key}:{source_id}", (row.get("authorId") or "").strip(), row.get("authorZipCode") or "",
-            timestamp(row.get("publishedAt") or ""), (row.get("title") or "").replace("\x00", "\ufffd"),
-            hashlib.sha256((key + "\0" + raw_json).encode()).hexdigest(), raw_json,
-            json.dumps(answers, ensure_ascii=False))
+    return (
+        f"{key}:{source_id}",
+        (row.get("authorId") or "").strip(),
+        row.get("authorZipCode") or "",
+        timestamp(row.get("publishedAt") or ""),
+        (row.get("title") or "").replace("\x00", "\ufffd"),
+        hashlib.sha256((key + "\0" + raw_json).encode()).hexdigest(),
+        raw_json,
+        json.dumps(answers, ensure_ascii=False),
+    )
 
 
 def prepare_schema(cursor):
@@ -169,28 +193,52 @@ def provision(cursor, key, mapping, questions):
     form = mapping["form"]
     if forms:
         form_id = forms[0][0]
-        cursor.execute("UPDATE forms SET name=%s,version=%s WHERE id=%s", (form["name"], form["version"], form_id))
+        cursor.execute(
+            "UPDATE forms SET name=%s,version=%s WHERE id=%s",
+            (form["name"], form["version"], form_id),
+        )
     else:
-        cursor.execute("INSERT INTO forms(name,version,source) VALUES (%s,%s,%s) RETURNING id",
-                       (form["name"], form["version"], SOURCES[key]))
+        cursor.execute(
+            "INSERT INTO forms(name,version,source) VALUES (%s,%s,%s) RETURNING id",
+            (form["name"], form["version"], SOURCES[key]),
+        )
         form_id = cursor.fetchone()[0]
     for q in questions:
-        cursor.execute("""
+        cursor.execute(
+            """
             INSERT INTO questions(form_id,question_code,prompt,section,position,type,options_json)
             VALUES (%s,%s,%s,%s,%s,%s,%s)
             ON CONFLICT(form_id,question_code) DO UPDATE SET prompt=EXCLUDED.prompt,
               section=EXCLUDED.section, position=EXCLUDED.position, type=EXCLUDED.type,
               options_json=EXCLUDED.options_json
             RETURNING id
-        """, (form_id, q["code"], q["prompt"], q.get("section"), q["position"], q["type"],
-               json.dumps({"source_column": q["column"], "delimiter": q.get("delimiter"),
-                           "allow_other_text": q.get("allow_other_text", False)}, ensure_ascii=False)))
+        """,
+            (
+                form_id,
+                q["code"],
+                q["prompt"],
+                q.get("section"),
+                q["position"],
+                q["type"],
+                json.dumps(
+                    {
+                        "source_column": q["column"],
+                        "delimiter": q.get("delimiter"),
+                        "allow_other_text": q.get("allow_other_text", False),
+                    },
+                    ensure_ascii=False,
+                ),
+            ),
+        )
         q["id"] = cursor.fetchone()[0]
         for option in q.get("options", []):
-            cursor.execute("""
+            cursor.execute(
+                """
                 INSERT INTO options(question_id,code,label,position) VALUES (%s,%s,%s,%s)
                 ON CONFLICT(question_id,code) DO UPDATE SET label=EXCLUDED.label,position=EXCLUDED.position
-            """, (q["id"], option["code"], option["label"], option["position"]))
+            """,
+                (q["id"], option["code"], option["label"], option["position"]),
+            )
     return form_id
 
 
@@ -214,7 +262,8 @@ def process_batch(cursor, key, form_id, records):
         ON CONFLICT(source_author_id) DO NOTHING;
     """)
     cursor.execute("ANALYZE gdn_answers")
-    cursor.execute("""
+    cursor.execute(
+        """
         INSERT INTO contributions(source_contribution_id,author_id,form_id,source,submitted_at,
                                   title,import_batch_id,raw_hash,raw_json)
         SELECT s.source_id, au.id, %s, %s, NULLIF(s.submitted_at,'')::timestamp,
@@ -244,7 +293,9 @@ def process_batch(cursor, key, form_id, records):
         CROSS JOIN LATERAL jsonb_array_elements_text(s.selected_codes) code
         JOIN options o ON o.question_id=s.question_id AND o.code=code.value
         ON CONFLICT DO NOTHING;
-    """, (form_id, "gdn:" + key, "gdn:" + key))
+    """,
+        (form_id, "gdn:" + key, "gdn:" + key),
+    )
     # Validate each batch while its source values are still available.
     cursor.execute("""
         SELECT count(*) FROM gdn_answers s
@@ -263,22 +314,28 @@ def verify_source(cursor, key, form_id, questions, stats):
     cursor.execute("SELECT count(*) FROM contributions WHERE form_id=%s", (form_id,))
     if cursor.fetchone()[0] != stats["rows"]:
         raise ValueError(f"{key}: nombre de contributions différent de la source")
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT q.id, count(a.id), COALESCE(st.answers_count,0)
         FROM questions q LEFT JOIN answers a ON a.question_id=q.id
         LEFT JOIN question_stats st ON st.question_id=q.id
         WHERE q.form_id=%s GROUP BY q.id,st.answers_count
-    """, (form_id,))
+    """,
+        (form_id,),
+    )
     actual = {qid: (number, count) for qid, number, count in cursor.fetchall()}
     for q in questions:
         expected = stats["answers"].get(q["code"], 0)
         if actual.get(q["id"]) != (expected, expected):
             raise ValueError(f"{key}/{q['code']}: réponses ou compteur incohérents")
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT count(*) FROM answers a JOIN contributions c ON c.id=a.contribution_id
         JOIN answer_options ao ON ao.answer_id=a.id JOIN options o ON o.id=ao.option_id
         WHERE c.form_id=%s AND o.question_id<>a.question_id
-    """, (form_id,))
+    """,
+        (form_id,),
+    )
     if cursor.fetchone()[0]:
         raise ValueError("Une option est rattachée à une autre question")
 
@@ -305,36 +362,54 @@ def import_source(connection, key, args):
     with path.open(encoding="utf-8-sig") as stream, connection.cursor() as cursor:
         reader = iter_records(stream, allow_missing_array_end=not args.samples)
         first = next(reader)
-        header = ["id", "authorId", "publishedAt"] + ["Q" + r["questionId"] + " - " + r["questionTitle"] for r in first["responses"]]
+        header = ["id", "authorId", "publishedAt"] + [
+            "Q" + r["questionId"] + " - " + r["questionTitle"] for r in first["responses"]
+        ]
         questions = compile_mapping(mapping, header)
         reader = chain([first], reader)
         if expected_profile:
             for q in questions:
                 expected = expected_profile["questions"][q["code"]]
-                if q["type"] != expected["type"] or {o["label"] for o in q.get("options", [])} != set(expected["labels"]):
+                if q["type"] != expected["type"] or {
+                    o["label"] for o in q.get("options", [])
+                } != set(expected["labels"]):
                     raise ValueError(f"{key}/{q['code']}: mapping différent du profil complet")
-        cursor.execute("SELECT file_sha256,mapping_sha256,rows_processed,completed,stats FROM gdn_import_runs WHERE source_key=%s", (key,))
+        cursor.execute(
+            "SELECT file_sha256,mapping_sha256,rows_processed,completed,stats FROM gdn_import_runs WHERE source_key=%s",
+            (key,),
+        )
         previous = cursor.fetchone()
         if args.samples and previous and previous[2] > manifest["sample_rows_written"]:
-            raise ValueError(f"{key}: refus d'un pilote réduit après l'import complet ; utiliser une base séparée")
+            raise ValueError(
+                f"{key}: refus d'un pilote réduit après l'import complet ; utiliser une base séparée"
+            )
         same = previous and previous[:2] == (file_hash, mapping_hash)
         if same and previous[3] and not args.restart:
             print(f"{key}: déjà importé et vérifié ({previous[2]} lignes)", flush=True)
             return
         if previous and not same and not previous[3] and not args.restart:
-            raise ValueError(f"{key}: import incomplet d'un autre fichier/mapping ; vérifier puis utiliser --restart")
-        stats = previous[4] if same and not args.restart else {"rows": 0, "answers": {}, "links": {}, "other": {}}
+            raise ValueError(
+                f"{key}: import incomplet d'un autre fichier/mapping ; vérifier puis utiliser --restart"
+            )
+        stats = (
+            previous[4]
+            if same and not args.restart
+            else {"rows": 0, "answers": {}, "links": {}, "other": {}}
+        )
         stats.setdefault("nul_replacements", 0)
         resume = stats["rows"]
         form_id = provision(cursor, key, mapping, questions)
         codes_by_id = {q["id"]: q["code"] for q in questions}
-        cursor.execute("""
+        cursor.execute(
+            """
             INSERT INTO gdn_import_runs(source_key,file_sha256,mapping_sha256,rows_processed,completed,stats)
             VALUES (%s,%s,%s,%s,false,%s)
             ON CONFLICT(source_key) DO UPDATE SET file_sha256=EXCLUDED.file_sha256,
               mapping_sha256=EXCLUDED.mapping_sha256,rows_processed=EXCLUDED.rows_processed,
               completed=false,stats=EXCLUDED.stats,updated_at=now()
-        """, (key, file_hash, mapping_hash, resume, Json(stats)))
+        """,
+            (key, file_hash, mapping_hash, resume, Json(stats)),
+        )
         connection.commit()
         print(f"{key}: import à partir de la ligne {resume + 1}", flush=True)
         # Keep planner estimates current as the database grows from a pilot
@@ -358,16 +433,28 @@ def import_source(connection, key, args):
                 for answer in json.loads(record[-1]):
                     code = codes_by_id[answer["question_id"]]
                     stats["answers"][code] = stats["answers"].get(code, 0) + 1
-                    stats["links"][code] = stats["links"].get(code, 0) + len(answer["selected_codes"])
+                    stats["links"][code] = stats["links"].get(code, 0) + len(
+                        answer["selected_codes"]
+                    )
                     other = (answer["value_json"] or {}).get("other_text", [])
                     stats["other"][code] = stats["other"].get(code, 0) + bool(other)
-                    stats["nul_replacements"] += (answer["value_json"] or {}).get("normalizations", {}).get("nul_characters", 0)
+                    stats["nul_replacements"] += (
+                        (answer["value_json"] or {})
+                        .get("normalizations", {})
+                        .get("nul_characters", 0)
+                    )
             process_batch(cursor, key, form_id, records)
             stats["rows"] += len(rows)
             resume = stats["rows"]
-            cursor.execute("UPDATE gdn_import_runs SET rows_processed=%s,stats=%s,updated_at=now() WHERE source_key=%s", (resume, Json(stats), key))
+            cursor.execute(
+                "UPDATE gdn_import_runs SET rows_processed=%s,stats=%s,updated_at=now() WHERE source_key=%s",
+                (resume, Json(stats), key),
+            )
             connection.commit()
-            print(f"  {key}: {resume} contributions, {sum(stats['answers'].values())} réponses", flush=True)
+            print(
+                f"  {key}: {resume} contributions, {sum(stats['answers'].values())} réponses",
+                flush=True,
+            )
             if resume // 50000 != (resume - len(rows)) // 50000:
                 for table in ("authors", "contributions", "answers", "answer_options"):
                     cursor.execute(f"ANALYZE {table}")
@@ -378,11 +465,13 @@ def import_source(connection, key, args):
             for q in questions:
                 expected = expected_profile["questions"][q["code"]]
                 if stats["answers"].get(q["code"], 0) != expected["answers"]:
-                    raise ValueError(f"{key}/{q['code']}: nombre de réponses différent du profil complet")
+                    raise ValueError(
+                        f"{key}/{q['code']}: nombre de réponses différent du profil complet"
+                    )
         verify_source(cursor, key, form_id, questions, stats)
-        cursor.execute("DELETE FROM search_cache")
-        cursor.execute("DELETE FROM dashboard_cache WHERE form_id=%s", (form_id,))
-        cursor.execute("UPDATE gdn_import_runs SET completed=true,updated_at=now() WHERE source_key=%s", (key,))
+        cursor.execute(
+            "UPDATE gdn_import_runs SET completed=true,updated_at=now() WHERE source_key=%s", (key,)
+        )
         connection.commit()
         print(f"{key}: import complet et contrôles OK", flush=True)
 
@@ -393,11 +482,14 @@ def main():
     parser.add_argument("--directory", type=Path, default=ROOT / "data/gdn")
     parser.add_argument("--source", choices=list(SOURCES), action="append")
     parser.add_argument("--batch-size", type=int, default=1000)
-    parser.add_argument("--restart", action="store_true", help="Relire depuis le début, par upserts sans effacement")
+    parser.add_argument(
+        "--restart", action="store_true", help="Relire depuis le début, par upserts sans effacement"
+    )
     args = parser.parse_args()
     if args.batch_size <= 0:
         parser.error("--batch-size doit être positif")
     from app.db import engine
+
     if engine.dialect.name != "postgresql":
         parser.error("PostgreSQL est obligatoire")
     connection = engine.raw_connection()
@@ -411,7 +503,14 @@ def main():
         for key in args.source or SOURCES:
             import_source(connection, key, args)
         with connection.cursor() as cursor:
-            for table in ("authors", "contributions", "answers", "answer_options", "questions", "options"):
+            for table in (
+                "authors",
+                "contributions",
+                "answers",
+                "answer_options",
+                "questions",
+                "options",
+            ):
                 cursor.execute(f"ANALYZE {table}")
         connection.commit()
     except BaseException:

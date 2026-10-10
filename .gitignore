@@ -39,10 +39,6 @@ sandbox.db-shm
 sandbox.db-wal
 
 
-# --- Rust ---
-/target/
-Cargo.lock   # garde-le si tu veux figer les dépendances Rust
-
 # --- Node / Frontend ---
 node_modules/
 npm-debug.log*
@@ -73,3 +69,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Local test and lint outputs
+.pytest_cache/
+.ruff_cache/

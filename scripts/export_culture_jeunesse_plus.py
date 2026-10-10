@@ -1,5 +1,5 @@
-import sqlite3
 import csv
+import sqlite3
 
 db_path = "gdn.db"
 output_csv = "culture_jeunesse_plus.csv"

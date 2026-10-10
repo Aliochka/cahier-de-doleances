@@ -11,9 +11,7 @@
     <main id="main" class="container">
       {% block content %}{% endblock %}
     </main>
-    {% if has_infinite_scroll %}
-      {% include "base/floating_footer.html" %}
-    {% else %}
+    {% if not has_infinite_scroll %}
       {% include "base/footer.html" %}
     {% endif %}
     {% block jsonld %}{% endblock %}

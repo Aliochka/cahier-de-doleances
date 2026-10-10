@@ -1,274 +1,71 @@
-# Guide de Tests - Cahier de Doléances
+# Vérifications du projet
 
-Ce guide décrit la stratégie de tests mise en place pour éviter de casser la production.
+Les tests utilisent les sources synthétiques et PostgreSQL, sans navigateur
+ni téléchargement des exports nationaux. Ruff vérifie le Python du dépôt ;
+les imports des migrations historiques sont conservés. Sa configuration est
+dans [ruff.toml](ruff.toml), suivant la
+[documentation officielle](https://docs.astral.sh/ruff/configuration/).
 
-## 🏗️ Architecture des Tests
+## Installer les outils
 
-### Structure des Tests
-```
-tests/                          # Tests unitaires et d'intégration
-├── conftest.py                 # Configuration pytest, fixtures
-├── test_cache.py              # Tests cache intelligent
-├── test_performance.py        # Tests de performance
-├── routers/
-│   ├── test_search.py         # Tests recherche FTS + timeline
-│   ├── test_forms.py          # Tests formulaires + dashboard
-│   └── test_*.py              # Tests par router
-└── integration/
-    └── test_infinite_scroll.py # Tests HTMX scroll
+Après l'installation décrite dans le README :
 
-e2e/                           # Tests End-to-End
-├── conftest.py               # Configuration Playwright
-├── pages/                    # Page Objects
-└── tests/                    # Tests E2E par fonctionnalité
-
-scripts/
-├── run_tests.py             # Script d'exécution des tests
-└── setup_testing.py         # Setup environnement test
-```
-
-## 🚀 Installation et Setup
-
-### Setup Initial
 ```bash
-# Installation complète environnement de test
-python scripts/setup_testing.py
-
-# Ou installation manuelle
-pip install -r requirements-dev.txt
-playwright install chromium
-pre-commit install
+source venv/bin/activate
+python -m pip install -r requirements-dev.txt
+ruff check .
+ruff format --check app ingest scripts tests migrations/env.py
+python -m pytest
 ```
 
-## 📊 Types de Tests
+Sans base de test configurée, les tests PostgreSQL sont signalés comme
+ignorés. Les tests des lecteurs JSON/CSV, de reprise HTTP et de transformation
+des réponses s'exécutent sans connexion à PostgreSQL ni accès réseau.
+Les tests `unittest` d'ingestion peuvent aussi être lancés seuls :
 
-### 1. Tests Critiques ⚡
-**Tests indispensables qui ne doivent jamais échouer**
 ```bash
-# Tests cache + infinite scroll
-python scripts/run_tests.py --critical
-
-# Ou directement
-pytest tests/ -m "cache or scroll" --no-cov -x
+python -m unittest discover -s tests/ingest -v
 ```
 
-**Couvre :**
-- Cache intelligent (TTL basé sur popularité)
-- Infinite scroll sans duplication de header
-- Templates HTMX (full vs append)
-- Transaction handling du cache
+## Exécuter tous les tests sur une base séparée
 
-### 2. Tests Rapides 🏃‍♂️
-**Tests unitaires rapides pour le développement**
+Créer une base de test vide avec le rôle PostgreSQL local configuré dans le
+README. Appliquer les **vraies migrations** ; `Base.metadata.create_all()`
+ne crée pas les index et triggers nécessaires à la recherche et aux compteurs.
+
 ```bash
-python scripts/run_tests.py --quick
+createdb cahier_doleances_test
+ALEMBIC_DATABASE_URL=postgresql:///cahier_doleances_test alembic upgrade head
+TEST_DATABASE_URL=postgresql:///cahier_doleances_test GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test python -m pytest
 ```
 
-**Couvre :**
-- Tests unitaires < 1s
-- Fonctionnalité de base
-- Exclude les tests lents/performance
+`ALEMBIC_DATABASE_URL` et les variables de test sont définies uniquement pour
+la commande qui suit : elles ne modifient pas la base utilisée ensuite par
+le serveur. Ne pas exporter `TEST_DATABASE_URL` dans le terminal du serveur,
+car l'application donne priorité à cette variable pour ses connexions.
 
-### 3. Tests de Performance 📈
-**Tests avec benchmarks et mesures de performance**
-```bash
-python scripts/run_tests.py --performance
-```
+La suite comprend 21 cas : 11 pour l'ingestion et 10 pour l'application.
+Elle vérifie les limites des fichiers JSON, la reprise des téléchargements,
+les caractères nuls, les choix multiples et textes « autre », la réimportation,
+les compteurs, la pagination sans perte ni doublon, les statistiques sans cache,
+le rendu français et les liens de partage statiques, et les sitemaps par hôte.
 
-**Couvre :**
-- Cache hit vs miss (10x+ amélioration)
-- Dashboard cache (évite N+1 queries)
-- Memory leaks infinite scroll
-- Database query performance
+Les fixtures HTTP partagent une connexion avec des savepoints et remplacent
+les fabriques de sessions réellement utilisées par les routes. Même si une
+route ou un test appelle `commit()`, la transaction extérieure est annulée en
+fin de test. Le test d'import utilise également une transaction annulée.
+Les séquences d'identifiants peuvent avancer ; aucune contribution de test
+n'est conservée.
 
-### 4. Tests d'Intégration 🔗
-**Tests inter-composants**
-```bash
-python scripts/run_tests.py --integration
-```
+## Automatisation
 
-**Couvre :**
-- Cache + Search endpoints
-- HTMX + Backend integration
-- Error handling cross-system
+La CI exécute Ruff, le contrôle de formatage, les migrations sur PostgreSQL 15
+et toute la suite avec Python 3.11. Le fichier `.pre-commit-config.yaml`
+fournit les hooks Ruff ; aucune installation de navigateur n'est requise.
 
-### 5. Tests E2E 🌐
-**Tests navigateur complet**
-```bash
-# Lancer serveur test + tests E2E
-python -m pytest e2e/ --browser=chromium
+Les anciens tests et leur infrastructure ont été audités dans
+[docs/nettoyage-repo.md](docs/nettoyage-repo.md).
 
-# Avec interface visuelle (dev)
-python -m pytest e2e/ --browser=chromium --headed
-```
-
-**Couvre :**
-- Scroll infini visuel (pas de duplication header)
-- Navigation complète utilisateur
-- Performance perçue
-- Accessibilité
-
-## 🛡️ Pre-commit Hooks
-
-**Tests automatiques avant chaque commit :**
-```bash
-# Configurés automatiquement
-git commit -m "fix: ..."
-
-# Tests qui s'exécutent :
-# 1. Tests critiques (cache + scroll)
-# 2. Linting (flake8, black, isort)
-# 3. Formatage automatique
-```
-
-## 📋 Tests par Fonctionnalité
-
-### Cache Intelligent
-```bash
-pytest tests/test_cache.py -v
-```
-- Popularité → TTL (1 req = 0min, 10 req = 15min, 30+ req = 30min)
-- Serialization datetime → string
-- Transaction commit/rollback
-- Cache hit performance
-
-### Infinite Scroll
-```bash
-pytest tests/ -m scroll -v
-```
-- Template `_answers_list.html` vs `_answers_list_append.html`
-- Pas de duplication header/search bar
-- Cursors pagination
-- HTMX detection headers
-
-### Recherche
-```bash
-pytest tests/routers/test_search.py -v
-```
-- FTS vs timeline mode
-- Cache application selon popularité
-- Error handling (cursors malformés, etc.)
-
-### Dashboard Formulaires
-```bash
-pytest tests/routers/test_forms.py -v
-```
-- Cache PostgreSQL 30min TTL
-- Graphiques Chart.js single/multi choice
-- Cache invalidation
-
-## 🔧 Configuration et Variables
-
-### Variables d'Environnement Test
-```bash
-ENV=test                    # Mode test
-DATABASE_URL=sqlite:///:memory:  # DB en mémoire (rapide)
-# ou postgresql://test:test@localhost:5432/test
-```
-
-### Markers Pytest
-```bash
--m "cache"        # Tests cache uniquement
--m "scroll"       # Tests infinite scroll
--m "performance"  # Tests performance/benchmark
--m "slow"         # Tests lents (exclus par défaut)
--m "integration"  # Tests d'intégration
--m "e2e"         # Tests End-to-End
-```
-
-## 📊 Coverage et Métriques
-
-### Coverage Reports
-```bash
-# HTML report
-pytest tests/ --cov=app --cov-report=html
-open htmlcov/index.html
-
-# Terminal report
-pytest tests/ --cov=app --cov-report=term-missing
-
-# Minimum 80% coverage requis
-pytest tests/ --cov-fail-under=80
-```
-
-### Performance Benchmarks
-```bash
-# Run benchmarks
-pytest tests/ -m performance --benchmark-only
-
-# Compare avec baseline
-pytest tests/ -m performance --benchmark-compare
-
-# Sauvegarder baseline
-pytest tests/ -m performance --benchmark-save=baseline
-```
-
-## 🚨 Debug Tests Échoués
-
-### Tests Critiques Échoués
-```bash
-# Run avec debug détaillé
-pytest tests/ -m "cache or scroll" -vvv --tb=long --pdb
-
-# Test spécifique
-pytest tests/test_cache.py::TestCacheIntelligence::test_cache_save_and_retrieve -vvv
-```
-
-### Tests E2E Échoués
-```bash
-# Avec interface pour voir ce qui se passe
-pytest e2e/ --browser=chromium --headed --slowmo=1000
-
-# Screenshots et traces automatiques en cas d'échec
-ls test-results/
-```
-
-### Debugging Cache
-```bash
-# Vérifier cache en DB
-python -c "
-from app.db import SessionLocal
-from app.models import SearchCache, SearchStats
-with SessionLocal() as db:
-    print('Cache entries:', db.query(SearchCache).count())
-    print('Search stats:', db.query(SearchStats).count())
-"
-```
-
-## 🔄 CI/CD Pipeline
-
-### GitHub Actions
-- **Push main/develop** : Tests complets
-- **Pull Request** : Tests critiques + unitaires
-- **Staging deploy** : Tests E2E post-deploy
-- **Production deploy** : Seulement si tous les tests passent
-
-### Pipeline Stages
-1. **Tests Critiques** (2 min)
-2. **Tests Unitaires** (5 min)
-3. **Tests Intégration** (10 min)
-4. **Tests E2E** (15 min) - staging uniquement
-5. **Performance Tests** (10 min) - main branch
-
-## 🎯 Stratégie Anti-Régression
-
-### Tests Obligatoires Avant Deploy
-```bash
-# Minimum viable (pre-commit)
-python scripts/run_tests.py --critical
-
-# Recommandé avant push
-python scripts/run_tests.py --quick --coverage
-
-# Complet avant release
-python scripts/run_tests.py --all
-python -m pytest e2e/
-```
-
-### Monitoring Production
-- Cache hit rate > 80%
-- Page load < 2s average
-- Zero infinite scroll errors
-- Database queries < 100ms
-
-Cette stratégie garantit qu'on détecte les régressions **avant** qu'elles atteignent la production ! 🛡️
+Les notebooks et analyses facultatives ont leurs propres dépendances dans
+`requirements-analysis.txt` (Python 3.11 ou supérieur). Elles ne sont pas
+nécessaires pour lancer le site, importer les données ou exécuter les tests.

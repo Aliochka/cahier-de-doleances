@@ -1,4 +1,5 @@
 """Fetch the official structured JSON equivalents, preserving labels and other text."""
+
 from __future__ import annotations
 
 import argparse
@@ -6,15 +7,16 @@ import base64
 import csv
 import json
 import zipfile
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from itertools import islice, zip_longest
 from pathlib import Path
 from urllib.request import Request, urlopen
-from concurrent.futures import ThreadPoolExecutor
 
-from ingest.sources import DATASET, ROOT, digest
 import yaml
 from slugify import slugify
+
+from ingest.sources import DATASET, ROOT, digest
 
 JSON_SOURCES = {
     "organisation_etat_services": "7164c640-0a24-479c-a2cc-4aaad72d4b53",
@@ -43,7 +45,9 @@ def choice_value(response):
         except json.JSONDecodeError:
             return None
         if isinstance(parsed, dict) and "labels" in parsed and "other" in parsed:
-            if not isinstance(parsed["labels"], list) or any(not isinstance(label, str) for label in parsed["labels"]):
+            if not isinstance(parsed["labels"], list) or any(
+                not isinstance(label, str) for label in parsed["labels"]
+            ):
                 raise ValueError("Liste de choix invalide")
             if parsed["other"] is not None and not isinstance(parsed["other"], str):
                 raise ValueError("Texte autre invalide")
@@ -142,8 +146,11 @@ def download_resource(folder, resource, key, resource_id):
     http_state_path = download_path.with_suffix(".http.json")
     state = json.loads(http_state_path.read_text()) if http_state_path.exists() else {}
     validator = state.get("etag") or state.get("last_modified")
-    if (state.get("url") != resource["url"] or not validator
-            or (resource.get("filesize") and offset >= resource["filesize"])):
+    if (
+        state.get("url") != resource["url"]
+        or not validator
+        or (resource.get("filesize") and offset >= resource["filesize"])
+    ):
         offset = 0
     headers = {"Range": f"bytes={offset}-", "If-Range": validator} if offset else {}
     request = Request(resource["url"], headers=headers)
@@ -151,8 +158,15 @@ def download_resource(folder, resource, key, resource_id):
         resumed = response.status == 206 and offset > 0
         if resumed and not response.headers.get("Content-Range", "").startswith(f"bytes {offset}-"):
             raise ValueError("Reprise HTTP incohérente")
-        http_state_path.write_text(json.dumps({"url": resource["url"], "etag": response.headers.get("ETag"),
-                                              "last_modified": response.headers.get("Last-Modified")}))
+        http_state_path.write_text(
+            json.dumps(
+                {
+                    "url": resource["url"],
+                    "etag": response.headers.get("ETag"),
+                    "last_modified": response.headers.get("Last-Modified"),
+                }
+            )
+        )
         with download_path.open("ab" if resumed else "wb") as output:
             for block in iter(lambda: response.read(1024 * 1024), b""):
                 output.write(block)
@@ -161,20 +175,37 @@ def download_resource(folder, resource, key, resource_id):
         raise ValueError(f"{key}: taille source incorrecte")
     if zipped:
         with zipfile.ZipFile(download_path) as archive:
-            names = [n for n in archive.namelist() if n.lower().endswith(".json") and not n.startswith("__MACOSX/")]
+            names = [
+                n
+                for n in archive.namelist()
+                if n.lower().endswith(".json") and not n.startswith("__MACOSX/")
+            ]
             if len(names) != 1:
                 raise ValueError("L'archive doit contenir un seul export JSON")
             with archive.open(names[0]) as source, partial.open("wb") as output:
                 for block in iter(lambda: source.read(1024 * 1024), b""):
                     output.write(block)
     partial.replace(target)
-    manifest_path.write_text(json.dumps({
-        "dataset": DATASET, "resource_id": resource_id, "url": resource["url"],
-        "title": resource["title"], "retrieved_at": datetime.now(timezone.utc).isoformat(),
-        "source_size_bytes": size, "size_bytes": target.stat().st_size,
-        "sha256": digest(target), "sample_rows_requested": None,
-    }, ensure_ascii=False, indent=2) + "\n")
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "dataset": DATASET,
+                "resource_id": resource_id,
+                "url": resource["url"],
+                "title": resource["title"],
+                "retrieved_at": datetime.now(timezone.utc).isoformat(),
+                "source_size_bytes": size,
+                "size_bytes": target.stat().st_size,
+                "sha256": digest(target),
+                "sample_rows_requested": None,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n"
+    )
     print(f"{key}: JSON complet vérifié ({target.stat().st_size} octets)", flush=True)
+
 
 def samples(args):
     folder = args.directory / "samples-json"
@@ -189,9 +220,15 @@ def samples(args):
             records = list(islice(iter_records(stream, allow_missing_array_end=True), args.rows))
         target = folder / source.name
         target.write_text(json.dumps(records, ensure_ascii=False) + "\n")
-        manifest.update(sha256=digest(target), size_bytes=target.stat().st_size,
-                        sample_rows_requested=args.rows, sample_rows_written=len(records))
-        target.with_suffix(".manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+        manifest.update(
+            sha256=digest(target),
+            size_bytes=target.stat().st_size,
+            sample_rows_requested=args.rows,
+            sample_rows_written=len(records),
+        )
+        target.with_suffix(".manifest.json").write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+        )
         print(f"{key}: {len(records)} contributions JSON échantillonnées", flush=True)
 
 
@@ -199,7 +236,11 @@ def profile(args):
     """Derive option catalogs only from explicit official labels, never free text."""
     folder = args.directory / ("samples-json" if args.samples else "raw-json")
     output = args.directory / ("sample-profile.json" if args.samples else "full-profile.json")
-    report = json.loads(output.read_text()) if output.exists() else {"mode": "samples" if args.samples else "full", "sources": {}}
+    report = (
+        json.loads(output.read_text())
+        if output.exists()
+        else {"mode": "samples" if args.samples else "full", "sources": {}}
+    )
     for key in args.source or JSON_SOURCES:
         resource_id = JSON_SOURCES[key]
         path = folder / f"{key}.json"
@@ -211,14 +252,21 @@ def profile(args):
         csv_manifest = json.loads(csv_path.with_suffix(".manifest.json").read_text())
         if csv_manifest["sha256"] != digest(csv_path):
             raise ValueError(f"{key}: empreinte CSV invalide")
-        with path.open(encoding="utf-8-sig") as stream, csv_path.open(encoding="utf-8-sig", newline="") as csv_stream:
+        with (
+            path.open(encoding="utf-8-sig") as stream,
+            csv_path.open(encoding="utf-8-sig", newline="") as csv_stream,
+        ):
             csv_reader = csv.DictReader(csv_stream, strict=True)
             csv_columns = {h.split(" - ", 1)[0]: h for h in csv_reader.fieldnames}
-            for record, csv_row in zip_longest(iter_records(stream, allow_missing_array_end=not args.samples), csv_reader):
+            for record, csv_row in zip_longest(
+                iter_records(stream, allow_missing_array_end=not args.samples), csv_reader
+            ):
                 if record is None or csv_row is None or None in csv_row:
                     raise ValueError(f"{key}: longueur ou largeur CSV/JSON différente")
                 if str(record["id"]) != csv_row["id"]:
-                    raise ValueError(f"{key}: ordre/identifiant CSV et JSON différent à la ligne {total + 1}")
+                    raise ValueError(
+                        f"{key}: ordre/identifiant CSV et JSON différent à la ligne {total + 1}"
+                    )
                 total += 1
                 seen = set()
                 for response in record["responses"]:
@@ -226,14 +274,28 @@ def profile(args):
                     if code in seen:
                         raise ValueError(f"{key}: question dupliquée dans une contribution")
                     seen.add(code)
-                    entry = found.setdefault(code, {"title": response["questionTitle"], "question_id": response["questionId"],
-                                                   "labels": set(), "choice_records": 0, "text_records": 0,
-                                                   "max_selections": 0, "other_records": 0, "answers": 0,
-                                                   "csv_value_differences": 0})
+                    entry = found.setdefault(
+                        code,
+                        {
+                            "title": response["questionTitle"],
+                            "question_id": response["questionId"],
+                            "labels": set(),
+                            "choice_records": 0,
+                            "text_records": 0,
+                            "max_selections": 0,
+                            "other_records": 0,
+                            "answers": 0,
+                            "csv_value_differences": 0,
+                        },
+                    )
                     if entry["title"] != response["questionTitle"]:
                         raise ValueError(f"{key}/{code}: intitulé variable")
                     choice = choice_value(response)
-                    formatted = "|".join(choice["labels"] + ([choice["other"]] if choice["other"] else [])) if choice is not None else response.get("value")
+                    formatted = (
+                        "|".join(choice["labels"] + ([choice["other"]] if choice["other"] else []))
+                        if choice is not None
+                        else response.get("value")
+                    )
                     column = csv_columns.get("Q" + response["questionId"])
                     if column is None:
                         raise ValueError(f"{key}/{code}: question absente du CSV")
@@ -243,11 +305,17 @@ def profile(args):
                     if choice is not None:
                         entry["choice_records"] += 1
                         entry["labels"].update(choice["labels"])
-                        entry["max_selections"] = max(entry["max_selections"], len(set(choice["labels"])))
+                        entry["max_selections"] = max(
+                            entry["max_selections"], len(set(choice["labels"]))
+                        )
                         entry["other_records"] += bool((choice["other"] or "").strip())
-                        entry["answers"] += bool(choice["labels"] or (choice["other"] or "").strip())
+                        entry["answers"] += bool(
+                            choice["labels"] or (choice["other"] or "").strip()
+                        )
                         if len(entry["labels"]) > 100:
-                            raise ValueError(f"{key}/{code}: plus de 100 labels officiels, vérifier la source")
+                            raise ValueError(
+                                f"{key}/{code}: plus de 100 labels officiels, vérifier la source"
+                            )
                     elif response.get("value") is not None and str(response["value"]).strip():
                         entry["text_records"] += 1
                         entry["answers"] += 1
@@ -262,10 +330,16 @@ def profile(args):
             q["prompt"] = entry["title"]
             q["source_column"] = "Q" + entry["question_id"] + " - " + entry["title"]
             if entry["choice_records"]:
-                q["type"] = "multi_choice" if entry["max_selections"] > 1 or q["type"] == "multi_choice" else "single_choice"
+                q["type"] = (
+                    "multi_choice"
+                    if entry["max_selections"] > 1 or q["type"] == "multi_choice"
+                    else "single_choice"
+                )
                 previous = {o["label"]: o["code"] for o in q.get("options", [])}
-                q["options"] = [{"code": previous.get(label, slugify(label)), "label": label, "position": i}
-                                for i, label in enumerate(sorted(entry["labels"]), 1)]
+                q["options"] = [
+                    {"code": previous.get(label, slugify(label)), "label": label, "position": i}
+                    for i, label in enumerate(sorted(entry["labels"]), 1)
+                ]
                 q["allow_other_text"] = True
                 if q["type"] == "multi_choice":
                     q["delimiter"] = "|"
@@ -275,8 +349,15 @@ def profile(args):
                     q.pop(obsolete, None)
             entry["type"] = q["type"]
             entry["labels"] = sorted(entry["labels"])
-        mapping_path.write_text(yaml.safe_dump(mapping, allow_unicode=True, sort_keys=False, width=100))
-        report["sources"][key] = {"rows": total, "resource_id": resource_id, "sha256": manifest["sha256"], "questions": found}
+        mapping_path.write_text(
+            yaml.safe_dump(mapping, allow_unicode=True, sort_keys=False, width=100)
+        )
+        report["sources"][key] = {
+            "rows": total,
+            "resource_id": resource_id,
+            "sha256": manifest["sha256"],
+            "questions": found,
+        }
         print(f"{key}: {total} contributions, {len(found)} questions profilées", flush=True)
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
 

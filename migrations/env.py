@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 import os
-import sys
 import pathlib
+import sys
 from logging.config import fileConfig
 
 from alembic import context
@@ -11,7 +11,8 @@ from sqlalchemy import engine_from_config, pool
 
 # --- Charger .env sans override (prod Scalingo restera intacte)
 try:
-    from dotenv import load_dotenv, find_dotenv  # type: ignore
+    from dotenv import find_dotenv, load_dotenv  # type: ignore
+
     load_dotenv(find_dotenv(), override=False)
 except Exception:
     pass

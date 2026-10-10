@@ -1,4 +1,5 @@
 """Download and inspect the seven final GDN CSV exports without touching the DB."""
+
 from __future__ import annotations
 
 import argparse
@@ -51,9 +52,11 @@ def fetch(args):
         manifest_path = folder / f"{key}.manifest.json"
         if target.exists() and manifest_path.exists():
             manifest = json.loads(manifest_path.read_text())
-            if (manifest["resource_id"] == resource_id
-                    and manifest["sample_rows_requested"] == (None if args.full else args.rows)
-                    and manifest["sha256"] == digest(target)):
+            if (
+                manifest["resource_id"] == resource_id
+                and manifest["sample_rows_requested"] == (None if args.full else args.rows)
+                and manifest["sha256"] == digest(target)
+            ):
                 print(f"{key}: fichier déjà vérifié", flush=True)
                 continue
         partial = target.with_suffix(".part")
@@ -67,7 +70,9 @@ def fetch(args):
                 if expected_size and partial.stat().st_size != expected_size:
                     raise ValueError(f"{key}: taille différente du catalogue")
             else:
-                reader = csv.reader(io.TextIOWrapper(response, encoding="utf-8-sig", newline=""), strict=True)
+                reader = csv.reader(
+                    io.TextIOWrapper(response, encoding="utf-8-sig", newline=""), strict=True
+                )
                 header = next(reader)
                 row_count = 0
                 with partial.open("w", encoding="utf-8", newline="") as output:
@@ -91,7 +96,10 @@ def fetch(args):
             "sha256": digest(target),
         }
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-        print(f"{key}: {row_count if row_count is not None else 'export complet'} lignes, {manifest['size_bytes']} octets", flush=True)
+        print(
+            f"{key}: {row_count if row_count is not None else 'export complet'} lignes, {manifest['size_bytes']} octets",
+            flush=True,
+        )
 
 
 def identity(column):
@@ -104,10 +112,16 @@ def escape(value):
 
 def audit(args):
     folder = args.directory / ("raw" if args.full else "samples")
-    report = ["# Audit des exports Grand Débat National", "",
-              "Source : https://www.data.gouv.fr/datasets/donnees-ouvertes-du-grand-debat-national", "",
-              "Cet audit ne modifie aucune base. Les valeurs libres et les identifiants personnels ne sont pas reproduits.", "",
-              "Les échantillons sont les premières lignes, pas un tirage représentatif. Une absence de séparateur dans un échantillon ne prouve pas qu'une question est à choix unique.", ""]
+    report = [
+        "# Audit des exports Grand Débat National",
+        "",
+        "Source : https://www.data.gouv.fr/datasets/donnees-ouvertes-du-grand-debat-national",
+        "",
+        "Cet audit ne modifie aucune base. Les valeurs libres et les identifiants personnels ne sont pas reproduits.",
+        "",
+        "Les échantillons sont les premières lignes, pas un tirage représentatif. Une absence de séparateur dans un échantillon ne prouve pas qu'une question est à choix unique.",
+        "",
+    ]
     for key, resource_id in SOURCES.items():
         path = folder / f"{key}.csv"
         manifest = json.loads(path.with_suffix(".manifest.json").read_text())
@@ -135,21 +149,35 @@ def audit(args):
         mapping = yaml.safe_load((ROOT / "ingest/mappings" / f"{key}.yml").read_text())
         by_identity = {identity(h): h for h in columns}
         mapped = Counter(identity(q.get("source_column", "")) for q in mapping["questions"])
-        report.extend([f"## {key}", "", f"Ressource `{resource_id}` — {n} lignes analysées — SHA-256 `{manifest['sha256']}`.", "",
-                       f"Export {'complet' if manifest['sample_rows_requested'] is None else 'partiel'} : [{escape(manifest['title'])}]({manifest['url']}).", "",
-                       "| Code mapping | Type actuel | Réponses non vides | Valeurs distinctes | Réponses avec `\\|` | Question source |",
-                       "| --- | --- | ---: | ---: | ---: | --- |"])
+        report.extend(
+            [
+                f"## {key}",
+                "",
+                f"Ressource `{resource_id}` — {n} lignes analysées — SHA-256 `{manifest['sha256']}`.",
+                "",
+                f"Export {'complet' if manifest['sample_rows_requested'] is None else 'partiel'} : [{escape(manifest['title'])}]({manifest['url']}).",
+                "",
+                "| Code mapping | Type actuel | Réponses non vides | Valeurs distinctes | Réponses avec `\\|` | Question source |",
+                "| --- | --- | ---: | ---: | ---: | --- |",
+            ]
+        )
         notes = []
         for q in mapping["questions"]:
             configured = q.get("source_column", "")
             actual = configured if configured in header else by_identity.get(identity(configured))
             if actual in counts:
                 values = counts[actual]
-                report.append(f"| {q['code']} | {q['type']} | {sum(values.values())} | {len(values)} | {pipe_counts[actual]} | {escape(actual.split(' - ', 1)[1])} |")
+                report.append(
+                    f"| {q['code']} | {q['type']} | {sum(values.values())} | {len(values)} | {pipe_counts[actual]} | {escape(actual.split(' - ', 1)[1])} |"
+                )
                 if pipe_counts[actual] and q["type"] != "multi_choice":
-                    notes.append(f"À examiner : **{q['code']}** contient des séparateurs de choix mais est classée `{q['type']}`.")
+                    notes.append(
+                        f"À examiner : **{q['code']}** contient des séparateurs de choix mais est classée `{q['type']}`."
+                    )
                 if configured != actual:
-                    notes.append(f"L'en-tête exact du mapping **{q['code']}** diffère du CSV (identifiant source reconnu).")
+                    notes.append(
+                        f"L'en-tête exact du mapping **{q['code']}** diffère du CSV (identifiant source reconnu)."
+                    )
             elif configured not in header:
                 notes.append(f"**Colonne absente : {q['code']}**.")
         report.append("")
@@ -157,9 +185,15 @@ def audit(args):
         missing = [h for h in columns if not mapped[identity(h)]]
         duplicate = [h for h, number in mapped.items() if h and number > 1]
         if missing:
-            report.append("\n**Questions source non couvertes :** " + "; ".join(escape(h) for h in missing) + ".\n")
+            report.append(
+                "\n**Questions source non couvertes :** "
+                + "; ".join(escape(h) for h in missing)
+                + ".\n"
+            )
         if duplicate:
-            report.append("\n**Colonnes affectées à plusieurs questions :** " + "; ".join(duplicate) + ".\n")
+            report.append(
+                "\n**Colonnes affectées à plusieurs questions :** " + "; ".join(duplicate) + ".\n"
+            )
         report.append("")
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text("\n".join(report) + "\n")

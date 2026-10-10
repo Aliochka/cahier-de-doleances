@@ -20,11 +20,23 @@ Usage :
 
   python gdn_ingest.py rebuild-fts --db sqlite:///sandbox.db
 """
+
 from __future__ import annotations
-import argparse, csv, glob, gzip, hashlib, io, json, os, re, sys, zipfile
+
+import argparse
+import csv
+import glob
+import gzip
+import hashlib
+import io
+import json
+import os
+import re
+import sys
+import zipfile
 from collections import defaultdict
-from typing import Dict, Any, Iterable, Optional, List
 from contextlib import contextmanager
+from typing import Any, Dict, Iterable, List, Optional
 
 # Augmente la taille max d'un champ CSV (défaut 128 Ko)
 try:
@@ -35,34 +47,38 @@ except OverflowError:
 try:
     import yaml
 except ImportError:
-    print("pyyaml est requis : pip install pyyaml", file=sys.stderr); sys.exit(1)
+    print("pyyaml est requis : pip install pyyaml", file=sys.stderr)
+    sys.exit(1)
 
 try:
     from slugify import slugify as _slugify
+
     def slugify(x: str) -> str:
         return _slugify(x or "", lowercase=True, separator="-")
 except Exception:
+
     def slugify(x: str) -> str:
         s = (x or "").strip().lower()
         s = re.sub(r"\s+", "-", s)
         s = re.sub(r"[^a-z0-9\-_\/]+", "", s)
         return s
 
-from sqlalchemy import create_engine, event, select, text as sql_text
+
+from sqlalchemy import create_engine, event, select
+from sqlalchemy import text as sql_text
 from sqlalchemy.orm import Session
 
 # Import des modèles depuis l'app (assume que ce script est lancé à la racine du repo)
 sys.path.append(os.getcwd())
-from app.models import (
-    Author, Contribution, Answer, Form, Question, Option,
-    AnswerOption, Topic, TopicAlias, ContributionTopic
-)
+from app.models import Answer, AnswerOption, Author, Contribution, Form, Option, Question
 
 # -------------------- Connexion & PRAGMA --------------------
+
 
 def make_engine(url: str, apply_pragmas: bool = True):
     engine = create_engine(url, future=True, connect_args={"check_same_thread": False})
     if apply_pragmas:
+
         @event.listens_for(engine, "connect")
         def set_sqlite_pragmas(dbapi_connection, connection_record):
             cur = dbapi_connection.cursor()
@@ -74,41 +90,57 @@ def make_engine(url: str, apply_pragmas: bool = True):
                 # cur.execute("PRAGMA mmap_size=268435456")  # 256 Mo si supporté
             finally:
                 cur.close()
+
     return engine
+
 
 # -------------------- IO CSV --------------------
 
+
 def open_any(path: str) -> Iterable[Dict[str, str]]:
     """Ouvre CSV (plain/gz/zip) et yield des dict-rows UTF-8."""
+
     def _reader(fileobj):
         buf = io.TextIOWrapper(fileobj, encoding="utf-8-sig", newline="")
         dr = csv.DictReader(buf)
         for row in dr:
-            yield { (k or "").strip(): (v or "").strip() for k, v in row.items() }
+            yield {(k or "").strip(): (v or "").strip() for k, v in row.items()}
 
     if path.endswith(".gz"):
         with gzip.open(path, "rb") as f:
-            for row in _reader(f): yield row
+            for row in _reader(f):
+                yield row
     elif path.endswith(".zip"):
         with zipfile.ZipFile(path) as z:
             for name in z.namelist():
                 if name.lower().endswith(".csv"):
                     with z.open(name) as f:
-                        for row in _reader(f): yield row
+                        for row in _reader(f):
+                            yield row
                     break
     else:
         with open(path, "rb") as f:
-            for row in _reader(f): yield row
+            for row in _reader(f):
+                yield row
+
 
 # -------------------- Utils --------------------
 
+
 def sha256_of_row(row: Dict[str, str]) -> str:
-    return hashlib.sha256(json.dumps(row, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+    return hashlib.sha256(
+        json.dumps(row, sort_keys=True, ensure_ascii=False).encode("utf-8")
+    ).hexdigest()
+
 
 def truthy(val: str | None) -> bool:
-    if val is None: return False
+    if val is None:
+        return False
     s = val.strip().lower()
-    return s in {"1","true","vrai","yes","oui","y","x","checked"} or (s.isdigit() and int(s)>0)
+    return s in {"1", "true", "vrai", "yes", "oui", "y", "x", "checked"} or (
+        s.isdigit() and int(s) > 0
+    )
+
 
 @contextmanager
 def session_scope(engine):
@@ -121,6 +153,7 @@ def session_scope(engine):
         raise
     finally:
         s.close()
+
 
 # -------------------- FTS Triggers helpers --------------------
 
@@ -149,31 +182,47 @@ DEF_DROP_TRIGGERS = [
     "DROP TRIGGER IF EXISTS answers_ai;",
 ]
 
+
 def drop_fts_triggers(s: Session):
     for stmt in DEF_DROP_TRIGGERS:
         s.execute(sql_text(stmt))
+
 
 def create_fts_triggers(s: Session):
     for k, ddl in FTS_TRIGGERS.items():
         s.execute(sql_text(ddl))
 
+
 def rebuild_fts(s: Session):
     s.execute(sql_text("INSERT INTO answers_fts(answers_fts) VALUES('rebuild');"))
 
+
 # -------------------- Mapping helpers --------------------
 
+
 def get_or_create_form(s: Session, form_info: Dict[str, Any]) -> Form:
-    q = s.execute(select(Form).where(
-        Form.name==form_info.get("name"),
-        Form.version==form_info.get("version"),
-        Form.source==form_info.get("source"),
-    )).scalars().first()
-    if q: return q
-    f = Form(name=form_info.get("name","Grand Débat"),
-             version=form_info.get("version"),
-             source=form_info.get("source"))
-    s.add(f); s.flush()
+    q = (
+        s.execute(
+            select(Form).where(
+                Form.name == form_info.get("name"),
+                Form.version == form_info.get("version"),
+                Form.source == form_info.get("source"),
+            )
+        )
+        .scalars()
+        .first()
+    )
+    if q:
+        return q
+    f = Form(
+        name=form_info.get("name", "Grand Débat"),
+        version=form_info.get("version"),
+        source=form_info.get("source"),
+    )
+    s.add(f)
+    s.flush()
     return f
+
 
 # caches globaux sur une ingestion
 class Caches:
@@ -182,12 +231,19 @@ class Caches:
         self.static_opt_by_label: dict[int, dict[str, Option]] = defaultdict(dict)
         self.dynamic_opt_seen: dict[int, set[str]] = defaultdict(set)
 
+
 # Précharger questions + options statiques
 def preload_questions_and_options(s: Session, form: Form, mapping: Dict[str, Any]) -> Caches:
     caches = Caches()
     for qm in mapping.get("questions", []):
         code = qm["code"]
-        q = s.execute(select(Question).where(Question.form_id==form.id, Question.question_code==code)).scalars().first()
+        q = (
+            s.execute(
+                select(Question).where(Question.form_id == form.id, Question.question_code == code)
+            )
+            .scalars()
+            .first()
+        )
         if not q:
             q = Question(
                 form_id=form.id,
@@ -196,34 +252,53 @@ def preload_questions_and_options(s: Session, form: Form, mapping: Dict[str, Any
                 section=qm.get("section"),
                 position=qm.get("position"),
                 type=qm["type"],
-                options_json=json.dumps(qm.get("meta") or {}, ensure_ascii=False)
+                options_json=json.dumps(qm.get("meta") or {}, ensure_ascii=False),
             )
-            s.add(q); s.flush()
+            s.add(q)
+            s.flush()
         caches.q_by_code[code] = q
         # options statiques
-        for opt in (qm.get("options") or []):
-            o = s.execute(select(Option).where(Option.question_id==q.id, Option.code==opt["code"]))\
-                .scalars().first()
+        for opt in qm.get("options") or []:
+            o = (
+                s.execute(
+                    select(Option).where(Option.question_id == q.id, Option.code == opt["code"])
+                )
+                .scalars()
+                .first()
+            )
             if not o:
-                o = Option(question_id=q.id, code=opt["code"], label=opt["label"],
-                           position=opt.get("position"), meta_json=json.dumps(opt.get("meta") or {}, ensure_ascii=False))
-                s.add(o); s.flush()
+                o = Option(
+                    question_id=q.id,
+                    code=opt["code"],
+                    label=opt["label"],
+                    position=opt.get("position"),
+                    meta_json=json.dumps(opt.get("meta") or {}, ensure_ascii=False),
+                )
+                s.add(o)
+                s.flush()
             caches.static_opt_by_label[q.id][o.label] = o
     return caches
 
+
 # auteur / contribution
 def get_or_create_author(s: Session, amap: Dict[str, Any], row: Dict[str, str]) -> Optional[Author]:
-    if not amap: return None
+    if not amap:
+        return None
     email_hash_col = amap.get("email_hash")
     email_hash = row.get(email_hash_col) if email_hash_col else None
     source_author_id_col = amap.get("source_author_id")
     source_author_id = row.get(source_author_id_col) if source_author_id_col else None
     q = None
     if email_hash:
-        q = s.execute(select(Author).where(Author.email_hash==email_hash)).scalars().first()
+        q = s.execute(select(Author).where(Author.email_hash == email_hash)).scalars().first()
     elif source_author_id:
-        q = s.execute(select(Author).where(Author.source_author_id==source_author_id)).scalars().first()
-    if q: return q
+        q = (
+            s.execute(select(Author).where(Author.source_author_id == source_author_id))
+            .scalars()
+            .first()
+        )
+    if q:
+        return q
     a = Author(
         source_author_id=source_author_id,
         name=row.get(amap.get("name")) if amap.get("name") else None,
@@ -233,15 +308,27 @@ def get_or_create_author(s: Session, amap: Dict[str, Any], row: Dict[str, str]) 
         age_range=row.get(amap.get("age_range")) if amap.get("age_range") else None,
         gender=row.get(amap.get("gender")) if amap.get("gender") else None,
     )
-    s.add(a); s.flush()
+    s.add(a)
+    s.flush()
     return a
 
-def get_or_create_contribution(s: Session, cmap: Dict[str, Any], row: Dict[str,str], form: Form, author: Optional[Author], import_batch_id: str) -> Contribution:
+
+def get_or_create_contribution(
+    s: Session,
+    cmap: Dict[str, Any],
+    row: Dict[str, str],
+    form: Form,
+    author: Optional[Author],
+    import_batch_id: str,
+) -> Contribution:
     raw_hash = sha256_of_row(row)
-    ex = s.execute(select(Contribution).where(Contribution.raw_hash==raw_hash)).scalars().first()
-    if ex: return ex
+    ex = s.execute(select(Contribution).where(Contribution.raw_hash == raw_hash)).scalars().first()
+    if ex:
+        return ex
     c = Contribution(
-        source_contribution_id=row.get(cmap.get("source_contribution_id")) if cmap.get("source_contribution_id") else None,
+        source_contribution_id=row.get(cmap.get("source_contribution_id"))
+        if cmap.get("source_contribution_id")
+        else None,
         author_id=author.id if author else None,
         form_id=form.id,
         source=cmap.get("source") or None,
@@ -252,15 +339,29 @@ def get_or_create_contribution(s: Session, cmap: Dict[str, Any], row: Dict[str,s
         raw_hash=raw_hash,
         raw_json=json.dumps(row, ensure_ascii=False),
     )
-    s.add(c); s.flush()
+    s.add(c)
+    s.flush()
     return c
+
 
 # -------------------- Ensure helpers (anti-doublon) --------------------
 
-def find_answer(s: Session, contribution_id: int, question_id: int):
-    return s.execute(select(Answer).where(Answer.contribution_id==contribution_id, Answer.question_id==question_id)).scalars().first()
 
-def ensure_text_answer(s: Session, contribution_id: int, question_id: int, text_value: str, joiner: str = "\n\n"):
+def find_answer(s: Session, contribution_id: int, question_id: int):
+    return (
+        s.execute(
+            select(Answer).where(
+                Answer.contribution_id == contribution_id, Answer.question_id == question_id
+            )
+        )
+        .scalars()
+        .first()
+    )
+
+
+def ensure_text_answer(
+    s: Session, contribution_id: int, question_id: int, text_value: str, joiner: str = "\n\n"
+):
     if not text_value:
         return
     ex = find_answer(s, contribution_id, question_id)
@@ -271,14 +372,22 @@ def ensure_text_answer(s: Session, contribution_id: int, question_id: int, text_
         else:
             ex.text = text_value
         return
-    s.add(Answer(contribution_id=contribution_id, question_id=question_id, position=1, text=text_value))
+    s.add(
+        Answer(
+            contribution_id=contribution_id, question_id=question_id, position=1, text=text_value
+        )
+    )
+
 
 def ensure_single_choice(s: Session, contribution_id: int, q: Question, option: Option):
     ex = find_answer(s, contribution_id, q.id)
     if not ex:
         ex = Answer(contribution_id=contribution_id, question_id=q.id, position=1)
-        s.add(ex); s.flush()
-    existing = s.execute(select(AnswerOption).where(AnswerOption.answer_id==ex.id)).scalars().all()
+        s.add(ex)
+        s.flush()
+    existing = (
+        s.execute(select(AnswerOption).where(AnswerOption.answer_id == ex.id)).scalars().all()
+    )
     if existing:
         if not any(ao.option_id == option.id for ao in existing):
             for ao in existing:
@@ -288,43 +397,72 @@ def ensure_single_choice(s: Session, contribution_id: int, q: Question, option: 
     else:
         s.add(AnswerOption(answer_id=ex.id, option_id=option.id))
 
+
 def ensure_multi_choice(s: Session, contribution_id: int, q: Question, options: list[Option]):
     if not options:
         return
     ex = find_answer(s, contribution_id, q.id)
     if not ex:
         ex = Answer(contribution_id=contribution_id, question_id=q.id, position=1)
-        s.add(ex); s.flush()
-    existing_ids = {ao.option_id for ao in s.execute(select(AnswerOption).where(AnswerOption.answer_id==ex.id)).scalars().all()}
+        s.add(ex)
+        s.flush()
+    existing_ids = {
+        ao.option_id
+        for ao in s.execute(select(AnswerOption).where(AnswerOption.answer_id == ex.id))
+        .scalars()
+        .all()
+    }
     for o in options:
         if o and o.id not in existing_ids:
             s.add(AnswerOption(answer_id=ex.id, option_id=o.id))
 
+
 # dynamic options cache
-def get_or_create_dynamic_option_cached(s: Session, caches: Caches, q: Question, raw_value: str) -> Optional[Option]:
+def get_or_create_dynamic_option_cached(
+    s: Session, caches: Caches, q: Question, raw_value: str
+) -> Optional[Option]:
     lab = (raw_value or "").strip()
     if not lab:
         return None
     if lab in caches.dynamic_opt_seen[q.id]:
-        return s.execute(select(Option).where(Option.question_id==q.id, Option.label==lab)).scalars().first()
+        return (
+            s.execute(select(Option).where(Option.question_id == q.id, Option.label == lab))
+            .scalars()
+            .first()
+        )
     code = slugify(lab)[:64] or "na"
-    o = s.execute(select(Option).where(Option.question_id==q.id, Option.code==code)).scalars().first()
+    o = (
+        s.execute(select(Option).where(Option.question_id == q.id, Option.code == code))
+        .scalars()
+        .first()
+    )
     if not o:
         o = Option(question_id=q.id, code=code, label=lab)
-        s.add(o); s.flush()
+        s.add(o)
+        s.flush()
     caches.dynamic_opt_seen[q.id].add(lab)
     return o
 
+
 # -------------------- Ingestion d'une ligne --------------------
 
-def ingest_answers_for_row(s: Session, row: Dict[str,str], form: Form, mapping: Dict[str,Any], contribution: Contribution, *, caches: Caches):
+
+def ingest_answers_for_row(
+    s: Session,
+    row: Dict[str, str],
+    form: Form,
+    mapping: Dict[str, Any],
+    contribution: Contribution,
+    *,
+    caches: Caches,
+):
     with s.no_autoflush:
         for qm in mapping.get("questions", []):
             q = caches.q_by_code[qm["code"]]
             qtype = qm["type"]
 
             if qtype == "free_text":
-                src = (qm.get("source") or {})
+                src = qm.get("source") or {}
                 cols = src.get("columns") or []
                 joiner = src.get("joiner") or "\n\n"
                 parts = [row.get(col, "").strip() for col in cols if row.get(col)]
@@ -345,7 +483,14 @@ def ingest_answers_for_row(s: Session, row: Dict[str,str], form: Form, mapping: 
                     if ex:
                         ex.value_json = vjson
                     else:
-                        s.add(Answer(contribution_id=contribution.id, question_id=q.id, position=1, value_json=vjson))
+                        s.add(
+                            Answer(
+                                contribution_id=contribution.id,
+                                question_id=q.id,
+                                position=1,
+                                value_json=vjson,
+                            )
+                        )
 
             elif qtype == "single_choice":
                 col = qm.get("source_column")
@@ -364,16 +509,29 @@ def ingest_answers_for_row(s: Session, row: Dict[str,str], form: Form, mapping: 
             elif qtype == "multi_choice":
                 selected: list[Option] = []
                 # booléens par option
-                for opt in (qm.get("options") or []):
+                for opt in qm.get("options") or []:
                     col = opt.get("source_column")
                     if col and truthy(row.get(col)):
                         o = caches.static_opt_by_label.get(q.id, {}).get(opt["label"])
                         if not o:
-                            o = s.execute(select(Option).where(Option.question_id==q.id, Option.code==opt["code"]))\
-                                  .scalars().first()
+                            o = (
+                                s.execute(
+                                    select(Option).where(
+                                        Option.question_id == q.id, Option.code == opt["code"]
+                                    )
+                                )
+                                .scalars()
+                                .first()
+                            )
                             if not o:
-                                o = Option(question_id=q.id, code=opt["code"], label=opt["label"], position=opt.get("position"))
-                                s.add(o); s.flush()
+                                o = Option(
+                                    question_id=q.id,
+                                    code=opt["code"],
+                                    label=opt["label"],
+                                    position=opt.get("position"),
+                                )
+                                s.add(o)
+                                s.flush()
                             caches.static_opt_by_label[q.id][o.label] = o
                         selected.append(o)
                 # colonne séparée avec délimiteur
@@ -385,12 +543,15 @@ def ingest_answers_for_row(s: Session, row: Dict[str,str], form: Form, mapping: 
                         parts = [p.strip() for p in raw.split(delim) if p.strip()]
                         for p in parts:
                             o = get_or_create_dynamic_option_cached(s, caches, q, p)
-                            if o: selected.append(o)
+                            if o:
+                                selected.append(o)
                 ensure_multi_choice(s, contribution.id, q, selected)
             else:
                 pass
 
+
 # -------------------- Commandes --------------------
+
 
 def cmd_ingest(args):
     engine = make_engine(args.db, apply_pragmas=not args.no_pragmas)
@@ -442,6 +603,7 @@ def cmd_ingest(args):
 
     print(f"[ingest] Terminé. Lignes traitées ~ {total}")
 
+
 def cmd_rebuild_fts(args):
     engine = make_engine(args.db)
     with session_scope(engine) as s:
@@ -457,10 +619,18 @@ def main():
     p_ing.add_argument("--db", required=True, help="sqlite:///gdn.db")
     p_ing.add_argument("--csv", nargs="+", required=True, help="chemin(s) ou globs")
     p_ing.add_argument("--mapping", required=True, help="YAML de mapping")
-    p_ing.add_argument("--batch", default="import_"+os.environ.get("USER","user"), help="import_batch_id")
+    p_ing.add_argument(
+        "--batch", default="import_" + os.environ.get("USER", "user"), help="import_batch_id"
+    )
     p_ing.add_argument("--commit-every", type=int, default=10000, help="commit périodique")
-    p_ing.add_argument("--defer-fts", action="store_true", help="désactive les triggers FTS pendant l'ingestion puis rebuild à la fin")
-    p_ing.add_argument("--no-pragmas", action="store_true", help="ne pas appliquer les PRAGMA SQLite (débug)")
+    p_ing.add_argument(
+        "--defer-fts",
+        action="store_true",
+        help="désactive les triggers FTS pendant l'ingestion puis rebuild à la fin",
+    )
+    p_ing.add_argument(
+        "--no-pragmas", action="store_true", help="ne pas appliquer les PRAGMA SQLite (débug)"
+    )
     p_ing.set_defaults(func=cmd_ingest)
 
     p_fts = sub.add_parser("rebuild-fts", help="reconstruire l'index FTS")
@@ -469,6 +639,7 @@ def main():
 
     args = p.parse_args()
     args.func(args)
+
 
 if __name__ == "__main__":
     main()

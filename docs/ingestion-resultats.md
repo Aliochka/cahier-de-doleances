@@ -1,6 +1,6 @@
 # Import complet du Grand Débat National
 
-Vérifié le 2026-10-10T10:20:41.992729+00:00.
+Vérifié le 2026-10-10T10:37:22.456224+00:00.
 
 Les sept exports JSON officiels ont été comparés aux CSV : mêmes identifiants, même ordre et même nombre de contributions. Les différences de cellules CSV sont comptées ci-dessous ; les valeurs JSON originales sont conservées.
 

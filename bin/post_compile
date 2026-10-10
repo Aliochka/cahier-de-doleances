@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# Post-compile script pour installer les browsers Playwright
-
-echo "-----> Installing Playwright browsers"
-
-# Install only Chromium to save space and time
-python -m playwright install chromium
-
-echo "-----> Playwright browsers installed successfully"

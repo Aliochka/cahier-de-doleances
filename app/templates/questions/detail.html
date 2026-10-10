@@ -9,7 +9,6 @@
 {% set CANONICAL_URL = url_for('question_detail', question_id=question.id, slug=question.slug) | string %}
 
 {# Image OG dynamique #}
-{% set OG_IMAGE_URL = url_for('og_question_image', question_id=question.id) %}
 
 {% block content %}
 <header class="page-header page-header--stack">

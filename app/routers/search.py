@@ -1,158 +1,39 @@
 # app/routers/search.py
 from __future__ import annotations
 
-import json
-from html import escape
 import base64
 import binascii
-import hashlib
-import datetime
+import json
+from html import escape
 from typing import Any
 
-from fastapi import APIRouter, Request, Query
+from fastapi import APIRouter, Query, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy import text
 
 from app.db import SessionLocal
+from app.helpers import (
+    highlight_text_python,
+    postprocess_excerpt,
+    slugify,  # type: ignore
+)
 from app.web import templates
-from app.helpers import postprocess_excerpt, highlight_text_python
-from app.helpers import slugify  # type: ignore
-
 
 router = APIRouter()
 
-
-# Cache helper functions
-def get_cache_key(query: str = "", cursor: str = "") -> str:
-    """Generate cache key for search query"""
-    if not query.strip():
-        return f"search:timeline:{cursor}" if cursor else "search:timeline:"
-    
-    # Normalize query for consistent caching  
-    normalized_query = query.strip().lower()
-    # Différencier FTS vs Timeline dans la clé de cache
-    mode = "fts" if len(normalized_query) >= 2 else "timeline"
-    key_base = f"search:{mode}:{normalized_query}:{cursor}"
-    
-    return key_base
-
-
-def get_search_popularity(db, query: str) -> int:
-    """Get search count for a query"""
-    if not query.strip():
-        return 1000  # Timeline is always "popular"
-    
-    result = db.execute(
-        text("SELECT search_count FROM search_stats WHERE query_text = :query"),
-        {"query": query.strip().lower()}
-    ).mappings().first()
-    
-    return result["search_count"] if result else 0
-
-
-def get_cache_ttl_minutes(popularity: int) -> int:
-    """Get TTL in minutes based on query popularity"""
-    if popularity >= 1000:
-        return 60  # Timeline: 1 hour (était 30min)
-    elif popularity >= 100:
-        return 45  # Very popular: 45 minutes (était 30min)
-    elif popularity >= 20:
-        return 30  # Popular: 30 minutes (était 15min)
-    elif popularity >= 5:
-        return 15  # Medium: 15 minutes (était 5min)
-    else:
-        return 5   # Rare: 5 minutes cache (était 0 = no cache)
-
-
-def track_search_query(db, query: str):
-    """Increment search counter for a query"""
-    if not query.strip():
-        return  # Don't track timeline
-        
-    normalized_query = query.strip().lower()
-    # Truncate query to fit database column (varchar(255))
-    truncated_query = normalized_query[:255]
-    
-    try:
-        # Upsert search stats
-        db.execute(
-            text("""
-                INSERT INTO search_stats (query_text, search_count, last_searched)
-                VALUES (:query, 1, NOW())
-                ON CONFLICT (query_text)
-                DO UPDATE SET 
-                    search_count = search_stats.search_count + 1,
-                    last_searched = NOW()
-            """),
-            {"query": truncated_query}
-        )
-        # Don't commit here - let the session context manager handle it
-    except Exception:
-        raise  # Re-raise to let the session context handle rollback
-
-
-def get_cached_results(db, cache_key: str, ttl_minutes: int) -> dict | None:
-    """Get cached results if not expired"""
-    if ttl_minutes == 0:
-        return None  # No cache for rare queries
-        
-    try:
-        result = db.execute(
-            text("""
-                SELECT results_json, created_at 
-                FROM search_cache 
-                WHERE cache_key = :key
-                  AND created_at > NOW() - INTERVAL '%s minutes'
-            """ % ttl_minutes),
-            {"key": cache_key}
-        ).mappings().first()
-        
-        if result:
-            return json.loads(result["results_json"])
-            
-    except Exception:
-        pass  # Silent fail
-        
-    return None
-
-
-def save_cached_results(db, cache_key: str, results: dict, popularity: int):
-    """Save results to cache"""
-    try:
-        db.execute(
-            text("""
-                INSERT INTO search_cache (cache_key, results_json, search_count, created_at)
-                VALUES (:key, :json, :count, NOW())
-                ON CONFLICT (cache_key)
-                DO UPDATE SET 
-                    results_json = :json,
-                    search_count = :count,
-                    created_at = NOW()
-            """),
-            {
-                "key": cache_key, 
-                "json": json.dumps(results, ensure_ascii=False, default=str),
-                "count": popularity
-            }
-        )
-        db.commit()
-            
-    except Exception:
-        try:
-            db.rollback()
-        except:
-            pass  # Silent fail
 
 PER_PAGE = 20
 MAX_TEXT_LEN = 20_000
 MIN_ANSWER_LEN = 40
 PREVIEW_MAXLEN = 1000
 
+
 # --- utils cursor opaque (base64 urlsafe(JSON)) ---
 def _enc_cursor(obj: dict) -> str:
     raw = json.dumps(obj, separators=(",", ":"), ensure_ascii=False).encode()
     s = base64.urlsafe_b64encode(raw).decode()
     return s.rstrip("=")
+
 
 def _dec_cursor(s: str | None) -> dict | None:
     if not s:
@@ -164,6 +45,7 @@ def _dec_cursor(s: str | None) -> dict | None:
     except (ValueError, json.JSONDecodeError, UnicodeDecodeError, binascii.Error):
         # Return None for invalid cursors instead of crashing
         return None
+
 
 # --- helpers UI ---
 def _clean_snippet(s: str, maxlen: int) -> tuple[str, bool]:
@@ -184,12 +66,11 @@ def _clean_snippet(s: str, maxlen: int) -> tuple[str, bool]:
 def search_answers(
     request: Request,
     q: str = Query("", description="Requête"),
-    page: int = Query(1, ge=1),                 # compat (non utilisé)
-    cursor: str | None = Query(None),           # scroll infini
-    partial: bool = Query(False),               # rendu fragment (htmx)
+    page: int = Query(1, ge=1),  # compat (non utilisé)
+    cursor: str | None = Query(None),  # scroll infini
+    partial: bool = Query(False),  # rendu fragment (htmx)
 ):
     q = (q or "").strip()
-    
 
     answers: list[dict[str, Any]] = []
     has_next = False
@@ -198,44 +79,8 @@ def search_answers(
     limit = PER_PAGE + 1
     cur = _dec_cursor(cursor)
 
-    # Cache logic with single session like dashboard cache
     with SessionLocal() as db:
-        # Track search query
-        track_search_query(db, q)
-        
-        # Check cache
-        cache_key = get_cache_key(q, cursor or "")
-        popularity = get_search_popularity(db, q)
-        ttl_minutes = get_cache_ttl_minutes(popularity)
-        
-        cached_results = get_cached_results(db, cache_key, ttl_minutes)
-        if cached_results:
-            # Cache hit! Return cached results avec le bon template (partiel ou complet)
-            ctx_cached = {
-                "request": request,
-                "q": q,
-                "answers": cached_results["answers"],
-                "has_next": cached_results["has_next"],
-                "next_cursor": cached_results.get("next_cursor"),
-                "search_mode": "answers"
-            }
-            
-            # Détection HTMX pour cache hit aussi
-            is_htmx_cached = partial or "HX-Request" in request.headers
-            if is_htmx_cached:
-                if cursor:
-                    return templates.TemplateResponse("partials/_answers_list_append.html", ctx_cached)
-                else:
-                    return templates.TemplateResponse("partials/_answers_list.html", ctx_cached)
-            
-            return templates.TemplateResponse("search/answers.html", ctx_cached)
-
-        # Initialize variables for both modes
         rows = []
-        has_next = False
-        next_cursor = None
-        
-        # Cache miss - proceed with normal search
         # --- Mode 1: FTS quand q >= 2
         if len(q) >= 2:
             params = {"q": q, "limit": limit, "maxlen": MAX_TEXT_LEN}
@@ -246,14 +91,17 @@ def search_answers(
 
             # Optimisations PostgreSQL + timeout de sécurité
             db.execute(text("SET work_mem = '64MB'"))
-            db.execute(text("SET statement_timeout = '5000'"))  # 5 secondes MAX (au lieu de 30s+ par défaut)
+            db.execute(
+                text("SET statement_timeout = '5000'")
+            )  # 5 secondes MAX (au lieu de 30s+ par défaut)
             db.execute(text("SET enable_seqscan = false"))
-            
+
             try:
                 # Requête FTS optimisée avec limite 1789 comme l'original
-                rows = db.execute(
-                    text(
-                        f"""
+                rows = (
+                    db.execute(
+                        text(
+                            f"""
                         WITH fts_matches AS (
                             SELECT a.id, a.question_id, a.contribution_id, a.text
                             FROM answers a
@@ -279,27 +127,22 @@ def search_answers(
                         ORDER BY fm.id DESC
                         LIMIT :limit
                         """
-                    ),
-                    params,
-                ).mappings().all()
-                
-                
+                        ),
+                        params,
+                    )
+                    .mappings()
+                    .all()
+                )
+
             except Exception as e:
                 # Si timeout, fallback sur résultats vides
                 print(f"Search timeout for query '{q}': {e}")
                 rows = []
-            
+
             finally:
                 # Remettre les paramètres par défaut
-                db.execute(text("SET statement_timeout = 0"))  
+                db.execute(text("SET statement_timeout = 0"))
                 db.execute(text("SET enable_seqscan = true"))
-
-            # sentinelle + next_cursor pour FTS
-            if len(rows) == limit:
-                has_next = True
-                tail = rows[-1]
-                next_cursor = _enc_cursor({"id": tail["answer_id"]})
-                rows = rows[:-1]
 
         # --- Mode 2: timeline récente (q court ou vide)
         else:
@@ -309,9 +152,10 @@ def search_answers(
                 cursor_sql = "AND a.id < :last_id"
                 params["last_id"] = int(cur.get("id", 0))
 
-            rows = db.execute(
-                text(
-                    f"""
+            rows = (
+                db.execute(
+                    text(
+                        f"""
                     WITH recent_answers AS (
                         SELECT a.id, a.text, a.question_id, c.id as contribution_id, c.author_id, c.submitted_at
                         FROM answers a
@@ -338,20 +182,24 @@ def search_answers(
                     ORDER BY ra.id DESC
                     LIMIT :limit
                     """
-                ),
-                params,
-            ).mappings().all()
+                    ),
+                    params,
+                )
+                .mappings()
+                .all()
+            )
 
         if len(rows) == limit:
             has_next = True
-            tail = rows[-1]
-            next_cursor = _enc_cursor({"id": tail["answer_id"]})
             rows = rows[:-1]
+            next_cursor = _enc_cursor({"id": rows[-1]["answer_id"]})
 
         for r in rows:
             raw = (r["answer_text"] or "")[:MAX_TEXT_LEN]
             if len(q) >= 2:
-                snippet = postprocess_excerpt(highlight_text_python(escape(raw), q, max_words=35, min_words=15))
+                snippet = postprocess_excerpt(
+                    highlight_text_python(escape(raw), q, max_words=35, min_words=15)
+                )
             else:
                 snippet, _ = _clean_snippet(raw, PREVIEW_MAXLEN)
                 snippet = postprocess_excerpt(snippet)
@@ -370,20 +218,6 @@ def search_answers(
                 }
             )
 
-        # Save to cache after successful search (same session) - AFTER both modes
-        # Re-get cache info for saving (variables may be out of scope)
-        cache_key_save = get_cache_key(q, cursor or "")
-        popularity_save = get_search_popularity(db, q)
-        ttl_minutes_save = get_cache_ttl_minutes(popularity_save)
-        
-        if ttl_minutes_save > 0:  # Only cache if worth it
-            cache_data = {
-                "answers": answers,
-                "has_next": has_next,
-                "next_cursor": next_cursor
-            }
-            save_cached_results(db, cache_key_save, cache_data, popularity_save)
-
     ctx = {
         "request": request,
         "q": q,
@@ -395,7 +229,7 @@ def search_answers(
     }
     # Détecter les requêtes HTMX via headers ou paramètre
     is_htmx = partial or "HX-Request" in request.headers
-    
+
     if is_htmx:
         # Si c'est un infinite scroll (cursor présent), utiliser le template d'append
         if cursor:
@@ -458,8 +292,8 @@ def search_questions(
                 if cur_forms:
                     cursor_sql = """
                       HAVING
-                        score < :last_score
-                        OR (score = :last_score AND MAX(f.id) < :last_id)
+                        ts_rank((f.tsv_name)::tsvector, s.tsq) < CAST(:last_score AS real)
+                        OR (ts_rank((f.tsv_name)::tsvector, s.tsq) = CAST(:last_score AS real) AND f.id < :last_id)
                     """
                     params["last_score"] = float(cur_forms.get("score", 0.0))
                     params["last_id"] = int(cur_forms.get("id", 0))
@@ -505,11 +339,11 @@ def search_questions(
 
             if len(rows) == limit:
                 has_next_forms = True
+                rows = rows[:-1]
                 tail = rows[-1]
                 # si q vide : pas de score
                 score_val = float(tail.get("score", 0.0) or 0.0)
                 next_cursor_forms = _enc_cursor({"id": int(tail["id"]), "score": score_val})
-                rows = rows[:-1]
 
             for r in rows:
                 forms.append(
@@ -533,8 +367,8 @@ def search_questions(
                 if cur_questions:
                     cursor_sql = """
                       AND (
-                        ranked.score < :last_score
-                        OR (ranked.score = :last_score AND ranked.id < :last_id)
+                        ranked.score < CAST(:last_score AS real)
+                        OR (ranked.score = CAST(:last_score AS real) AND ranked.id < :last_id)
                       )
                     """
                     params["last_score"] = float(cur_questions.get("score", 0.0))
@@ -598,10 +432,10 @@ def search_questions(
 
             if len(rows) == limit:
                 has_next_questions = True
+                rows = rows[:-1]
                 tail = rows[-1]
                 score_val = float(tail.get("score", 0.0) or 0.0)
                 next_cursor_questions = _enc_cursor({"id": int(tail["id"]), "score": score_val})
-                rows = rows[:-1]
 
             for r in rows:
                 title = r.get("prompt")
@@ -640,7 +474,7 @@ def search_questions(
 
     # Détecter les requêtes HTMX via headers ou paramètre
     is_htmx = partial or "HX-Request" in request.headers
-    
+
     # Rendu partiel (htmx) : une seule section
     if is_htmx:
         if section == "forms":
@@ -652,4 +486,3 @@ def search_questions(
 
     # Rendu complet (les 2 sections)
     return templates.TemplateResponse("search/questions.html", ctx)
-
