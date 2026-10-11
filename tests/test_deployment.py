@@ -136,10 +136,13 @@ def test_login_and_logout_cookie_flags(secure, monkeypatch):
             follow_redirects=False,
         )
         assert response.status_code == 302
+        assert response.headers["cache-control"] == "private, no-store"
         cookie = response.headers["set-cookie"]
         assert "HttpOnly" in cookie and "SameSite=lax" in cookie
         assert ("Secure" in cookie) == secure
-        logout = client.post("/auth/logout", follow_redirects=False)
+        logout = client.post(
+            "/auth/logout", follow_redirects=False, headers={"Origin": settings.BASE_URL}
+        )
         assert ("Secure" in logout.headers["set-cookie"]) == secure
         assert "Max-Age=0" in logout.headers["set-cookie"]
 
@@ -162,7 +165,11 @@ def test_magic_links_use_configured_origin(monkeypatch, origin):
         response = client.post(
             "/auth/send-link",
             json={"email": "audit@example.org"},
-            headers={"x-forwarded-host": "attacker.example", "x-forwarded-proto": "https"},
+            headers={
+                "Origin": origin,
+                "x-forwarded-host": "attacker.example",
+                "x-forwarded-proto": "https",
+            },
         )
         assert response.status_code == 200
     assert links[0].startswith(f"{origin}/auth/verify/")
@@ -434,7 +441,11 @@ def test_disabled_email_login_does_not_issue_or_send_tokens(monkeypatch):
 
     monkeypatch.setattr(auth_service, "create_magic_token", forbidden)
     with TestClient(app) as client:
-        response = client.post("/auth/send-link", json={"email": "audit@example.org"})
+        response = client.post(
+            "/auth/send-link",
+            json={"email": "audit@example.org"},
+            headers={"Origin": settings.BASE_URL},
+        )
         assert response.status_code == 503
         assert "temporairement" in response.json()["detail"]
 

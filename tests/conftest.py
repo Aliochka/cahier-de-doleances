@@ -125,6 +125,7 @@ def web_data(test_engine, monkeypatch):
 @pytest.fixture
 def client(web_data):
     from app.app import app
+    from app.config import settings
 
-    with TestClient(app) as client:
+    with TestClient(app, headers={"Origin": settings.BASE_URL}) as client:
         yield client

@@ -34,6 +34,7 @@ from app.routers import (
     search,
     seo,
 )
+from app.security import AccountSecurityMiddleware, private_response
 from app.web import templates
 
 # -----------------------------------------------------------------------------
@@ -122,6 +123,7 @@ class LocalHealthHTTPSRedirectMiddleware(HTTPSRedirectMiddleware):
 if settings.ENFORCE_HTTPS:
     app.add_middleware(LocalHealthHTTPSRedirectMiddleware)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.ALLOWED_HOSTS or ["*"])
+app.add_middleware(AccountSecurityMiddleware)
 # Added last, executed first: scheme must be resolved before HTTPS redirection.
 app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.TRUSTED_PROXY_IPS)
 
@@ -189,9 +191,11 @@ async def general_exception_handler(request: Request, exc: Exception):
             request, "errors/500.html", {"request": request}, status_code=500
         )
         resp.headers["X-Robots-Tag"] = "noindex, nofollow"
-        return resp
+        return private_response(request, resp)
 
     # JSON pour les API/HTMX
     from fastapi.responses import JSONResponse
 
-    return JSONResponse(status_code=500, content={"detail": "Internal server error"})
+    return private_response(
+        request, JSONResponse(status_code=500, content={"detail": "Internal server error"})
+    )
