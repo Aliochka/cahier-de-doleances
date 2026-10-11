@@ -31,5 +31,6 @@ def _json_default(o):
 
 templates.env.policies["json.dumps_kwargs"] = {"ensure_ascii": False, "default": _json_default}
 templates.env.globals["BASE_URL"] = settings.BASE_URL
+templates.env.globals["LOGIN_EMAIL_ENABLED"] = settings.LOGIN_EMAIL_ENABLED
 templates.env.filters["clean_text_excerpt"] = clean_text_excerpt
 templates.env.globals["now"] = lambda: datetime.now(ZoneInfo("Europe/Paris"))

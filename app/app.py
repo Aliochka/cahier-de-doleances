@@ -102,11 +102,28 @@ app.add_middleware(SearchRobotsHeaderMiddleware)
 app.add_middleware(TimeoutMiddleware)
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 
+
+class LocalHealthHTTPSRedirectMiddleware(HTTPSRedirectMiddleware):
+    async def __call__(self, scope, receive, send):
+        # Only the container's loopback readiness probe may use plain HTTP.
+        client = scope.get("client")
+        if (
+            scope["type"] == "http"
+            and scope.get("path") == "/healthz"
+            and client
+            and client[0] in {"127.0.0.1", "::1"}
+        ):
+            await self.app(scope, receive, send)
+        else:
+            await super().__call__(scope, receive, send)
+
+
 # Proxy and security (execute FIRST)
-app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.TRUSTED_PROXY_IPS)
 if settings.ENFORCE_HTTPS:
-    app.add_middleware(HTTPSRedirectMiddleware)
+    app.add_middleware(LocalHealthHTTPSRedirectMiddleware)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.ALLOWED_HOSTS or ["*"])
+# Added last, executed first: scheme must be resolved before HTTPS redirection.
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.TRUSTED_PROXY_IPS)
 
 
 # -----------------------------------------------------------------------------

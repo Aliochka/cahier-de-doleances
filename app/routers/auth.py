@@ -49,6 +49,11 @@ async def send_magic_link(request: Request, email_data: EmailRequest):
     """
     Envoie un lien magique de connexion par email
     """
+    if not settings.LOGIN_EMAIL_ENABLED:
+        raise HTTPException(
+            status_code=503,
+            detail="La connexion par courriel est temporairement indisponible. La consultation reste accessible.",
+        )
     email = str(email_data.email).lower().strip()
 
     # Validation basique de l'email

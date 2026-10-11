@@ -80,6 +80,7 @@ class Settings:
             logging.getLogger(__name__).warning(
                 "SECRET_KEY missing: temporary development key; sessions expire on restart"
             )
+        self.LOGIN_EMAIL_ENABLED = _boolean(env, "LOGIN_EMAIL_ENABLED", True)
         self.ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7
         self.MAILJET_API_KEY = env.get("MAILJET_API_KEY", "")
         self.MAILJET_SECRET_KEY = env.get("MAILJET_SECRET_KEY", "")

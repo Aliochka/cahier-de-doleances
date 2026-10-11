@@ -144,7 +144,8 @@ def test_login_and_logout_cookie_flags(secure, monkeypatch):
         assert "Max-Age=0" in logout.headers["set-cookie"]
 
 
-def test_magic_links_use_configured_origin(monkeypatch):
+@pytest.mark.parametrize("origin", ["http://192.168.1.56:8000", "https://cahierdedoleances.fr"])
+def test_magic_links_use_configured_origin(monkeypatch, origin):
     from app.app import app
     from app.config import settings
     from app.services.email import email_service
@@ -155,7 +156,7 @@ def test_magic_links_use_configured_origin(monkeypatch):
         links.append(link)
         return True
 
-    monkeypatch.setattr(settings, "BASE_URL", "http://192.168.1.56:8000")
+    monkeypatch.setattr(settings, "BASE_URL", origin)
     monkeypatch.setattr(email_service, "send_magic_link", capture)
     with TestClient(app) as client:
         response = client.post(
@@ -164,7 +165,7 @@ def test_magic_links_use_configured_origin(monkeypatch):
             headers={"x-forwarded-host": "attacker.example", "x-forwarded-proto": "https"},
         )
         assert response.status_code == 200
-    assert links[0].startswith("http://192.168.1.56:8000/auth/verify/")
+    assert links[0].startswith(f"{origin}/auth/verify/")
 
 
 def test_production_email_failure_does_not_log_login_token(monkeypatch, capsys):
@@ -270,8 +271,13 @@ def test_deployment_compose_owns_no_postgres_or_data_volume():
     from pathlib import Path
 
     compose = yaml.safe_load(Path("compose.deploy.yml").read_text())
-    assert set(compose["services"]) == {"app"}
-    assert "volumes" not in compose and "volumes" not in compose["services"]["app"]
+    assert set(compose["services"]) == {"app", "caddy"}
+    assert set(compose["volumes"]) == {"caddy-data", "caddy-config"}
+    assert "volumes" not in compose["services"]["app"]
+    assert "ports" not in compose["services"]["app"]
+    assert "postgres-existing" not in compose["services"]["caddy"]["networks"]
+    assert compose["networks"]["proxy-private"]["internal"]
+    assert compose["services"]["caddy"]["networks"]["proxy-private"]["ipv4_address"] == "172.30.80.2"
     assert compose["networks"]["postgres-existing"] == {
         "external": True,
         "name": "cahier-de-doleances_cahier-internal",
@@ -351,3 +357,87 @@ def test_search_rolls_back_failed_transactions_and_only_masks_timeouts(code, mon
         with pytest.raises(OperationalError):
             search.search_answers(request, q="culture", page=1, cursor=None, partial=False)
     assert session.rolled_back
+
+
+def test_https_proxy_order_trust_and_local_health_probe():
+    env = dict(os.environ) | lan_env() | {
+        "BASE_URL": "https://cahierdedoleances.fr",
+        "ALLOWED_HOSTS": "cahierdedoleances.fr,localhost",
+        "COOKIE_SECURE": "true",
+        "ENFORCE_HTTPS": "true",
+        "TRUSTED_PROXY_IPS": "172.30.80.2",
+        "DATABASE_URL": "postgresql:///unused",
+    }
+    for name in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL"):
+        env.pop(name, None)
+    code = """
+import asyncio
+from app.app import app
+
+async def request(peer, path, proto=None, host="cahierdedoleances.fr"):
+    messages = []
+    headers = [(b"host", host.encode())]
+    if proto:
+        headers.append((b"x-forwarded-proto", proto.encode()))
+    scope = {"type": "http", "asgi": {"version": "3.0"}, "http_version": "1.1",
+             "method": "GET", "scheme": "http", "path": path,
+             "raw_path": path.encode(), "query_string": b"", "root_path": "",
+             "headers": headers, "client": (peer, 1234), "server": ("app", 8000)}
+    async def receive():
+        return {"type": "http.request", "body": b"", "more_body": False}
+    async def send(message):
+        messages.append(message)
+    await app(scope, receive, send)
+    return next(m for m in messages if m["type"] == "http.response.start")
+
+async def main():
+    path = "/static/css/reset.css"
+    assert (await request("172.30.80.2", path, "https"))["status"] == 200
+    assert (await request("198.51.100.7", path, "https"))["status"] == 307
+    assert (await request("172.30.80.2", path, "http"))["status"] == 307
+    assert (await request("172.30.80.2", path, "https", "evil.example"))["status"] == 400
+    # Prove the real readiness route is reached without connecting to any DB.
+    from types import SimpleNamespace
+    from app.routers import health
+    class Connection:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+        def begin(self): return self
+        def execute(self, query): pass
+    health.engine = SimpleNamespace(connect=Connection)
+    assert (await request("127.0.0.1", "/healthz", host="localhost"))["status"] == 200
+    assert (await request("198.51.100.7", "/healthz"))["status"] == 307
+    assert (await request("127.0.0.1", path))["status"] == 307
+
+asyncio.run(main())
+"""
+    subprocess.run([sys.executable, "-c", code], env=env, check=True,
+                   capture_output=True, text=True)
+
+
+def test_disabled_email_login_does_not_issue_or_send_tokens(monkeypatch):
+    from app.app import app
+    from app.config import settings
+    from app.services.auth import auth_service
+
+    monkeypatch.setattr(settings, "LOGIN_EMAIL_ENABLED", False)
+    def forbidden(*args):
+        pytest.fail("Disabled login must not generate a token")
+    monkeypatch.setattr(auth_service, "create_magic_token", forbidden)
+    with TestClient(app) as client:
+        response = client.post("/auth/send-link", json={"email": "audit@example.org"})
+        assert response.status_code == 503
+        assert "temporairement" in response.json()["detail"]
+
+
+def test_unavailable_login_forms_are_hidden():
+    from app.web import templates
+
+    rendered = templates.env.get_template("base/base.html").render(
+        LOGIN_EMAIL_ENABLED=False,
+        request=SimpleNamespace(url_for=lambda *args, **kwargs: "/static/asset",
+                                url=SimpleNamespace(path="/")),
+    )
+    assert 'hidden id="login-form"' in rendered
+    assert 'hidden id="bookmark-login-form"' in rendered
+    assert "connexion par courriel est temporairement indisponible" in rendered

@@ -1,360 +1,381 @@
-# Déployer FastAPI sur Wallace, avec PostgreSQL existant
+# Déployer temporairement https://cahierdedoleances.fr sur Wallace
 
-Ce guide prépare une installation sur **http://192.168.1.56:8000**. Les commandes
-sont destinées à être exécutées manuellement par l'administrateur de Wallace.
-La préparation du dépôt n'exécute aucune commande sur ce serveur.
+Toutes les opérations de ce guide sont **manuelles, après validation du dépôt**.
+Aucune commande n'a été exécutée sur Wallace pendant la préparation.
+L'installation LAN est déjà fonctionnelle : ne pas réinstaller PostgreSQL.
 
 ## Architecture et invariants
 
-- `/srv/cahier-de-doleances` : projet PostgreSQL existant, conservé intégralement.
-- `/srv/cahier-de-doleances-app` : dépôt et projet Compose FastAPI indépendant.
-- Conteneur PostgreSQL : `cahier-postgres`, PostgreSQL 17, rôle `cahier`, base
-  `cahier_doleances`, révision `remove_runtime_caches`.
-- Réseau partagé existant : `cahier-de-doleances_cahier-internal`.
-- FastAPI seul publie `192.168.1.56:8000`. Aucun volume PostgreSQL n'est défini
-  ni monté dans son Compose. Un second réseau bridge fournit les connexions
-  sortantes nécessaires à Mailjet, même si le réseau PostgreSQL est `internal`.
+- PostgreSQL 17 reste dans `/srv/cahier-de-doleances`, sur le SSD monté à
+  `/data/postgresql`, avec son réseau `cahier-de-doleances_cahier-internal`.
+- Le dépôt applicatif reste dans `/srv/cahier-de-doleances-app`, projet Compose
+  `cahier-de-doleances-app`. Ne pas changer ce nom entre les commandes.
+- `compose.deploy.yml` est la cible HTTPS : seul Caddy publie les ports TCP
+  `192.168.1.56:80` et `192.168.1.56:443`. FastAPI ne publie aucun port.
+- `compose.deploy.lan.yml`, ajouté **après** ce fichier, conserve temporairement
+  `192.168.1.56:8000` et les paramètres HTTP LAN. Il sert aussi au retour arrière.
+- Caddy et FastAPI partagent un réseau privé `internal`, `172.30.80.0/24`.
+  Caddy y possède l'adresse fixe `172.30.80.2`, seule adresse de proxy autorisée.
+  Vérifier l'absence de conflit avec les réseaux Docker, LAN et VPN avant démarrage.
+  En cas de conflit, adapter ensemble le sous-réseau, l'adresse Caddy et
+  `TRUSTED_PROXY_IPS` ; ne pas autoriser un sous-réseau entier pour contourner cela.
+- Caddy n'est pas membre du réseau PostgreSQL. FastAPI conserve un réseau sortant
+  pour Mailjet ; Caddy a son propre réseau sortant pour DNS et ACME.
+- Les volumes `cahier-de-doleances-app_caddy-data` et
+  `cahier-de-doleances-app_caddy-config` conservent certificats, clés et état.
+  Les préserver lors des mises à jour et arrêts, avec un accès administrateur privé.
 
-Utiliser **toujours** `-f compose.deploy.yml --env-file .env.deploy` pour les
-commandes applicatives. `docker-compose.yml` est réservé au développement
-avec une autre base. Aucun démarrage ne lance Alembic automatiquement, y compris
-dans le Compose de développement : son schéma neuf doit être préparé manuellement.
+Ne jamais utiliser `down -v`, supprimer les volumes PostgreSQL ou Caddy, lancer
+un import, ni exécuter Alembic `upgrade`, `downgrade` ou `stamp` dans cette procédure.
+Aucun démarrage n'exécute de migration. Les précontrôles sont en lecture seule.
+Les comptes, profils et marque-pages gardent leurs écritures métier normales.
+Ne jamais lancer pytest contre la base de Wallace.
 
-Ne jamais supprimer/recréer les volumes PostgreSQL, utiliser `down -v`, restaurer
-une base par-dessus celle-ci, lancer un import, ou appliquer `upgrade`, `downgrade`
-ou `stamp` dans cette procédure. Une divergence de schéma arrête le déploiement ;
-elle nécessite une analyse et une validation séparées.
+## Configuration Caddy et FastAPI
 
-La consultation des contributions est en lecture seule. Les comptes, profils et
-marque-pages conservent leurs écritures normales dans `users`, `authors` et
-`bookmarks`. Le précontrôle et le healthcheck utilisent des transactions en lecture
-seule ; cela ne rend pas toutes les connexions applicatives read-only.
+Le [Caddyfile](../Caddyfile) déclare uniquement `cahierdedoleances.fr`, transmet
+les requêtes à `app:8000` et conserve le Host public. Caddy obtient et renouvelle
+les certificats automatiquement et redirige HTTP vers HTTPS. Aucun plugin DNS
+OVH, aucun identifiant OVH et aucun service supplémentaire ne sont nécessaires.
+Voir la [documentation HTTPS automatique](https://caddyserver.com/docs/automatic-https).
 
-## Prérequis et inspection du PostgreSQL existant
+Caddy ignore les valeurs `X-Forwarded-*` fournies par les visiteurs et produit
+les en-têtes de proxy ; `Forwarded` est retiré. Ne pas ajouter `trusted_proxies`
+à Caddy pour cette architecture sans proxy en amont. Voir la
+[documentation reverse_proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy).
+Gunicorn/Uvicorn ont `FORWARDED_ALLOW_IPS` vide : seule la couche FastAPI traite
+ces en-têtes, avant la redirection HTTPS, depuis `172.30.80.2` exclusivement.
+Cela évite la double interprétation, l'usurpation directe et les boucles HTTPS.
 
-Git, Docker et Docker Compose v2 sont nécessaires. Vérifier les versions :
+Le healthcheck FastAPI passe en HTTP uniquement depuis le loopback du conteneur
+sur `/healthz`, avec un Host autorisé. Toute autre route garde la protection HTTPS.
+Le healthcheck Caddy utilise un listener `127.0.0.1:8080` **non publié**, qui teste
+le proxy vers le vrai `/healthz` avec le protocole HTTPS annoncé. Ces contrôles
+vérifient `SELECT 1`, pas le million de contributions. Ils ne vérifient pas le
+certificat public : la recette Internet reste obligatoire.
 
-```bash
-git --version
-docker --version
-docker compose version
-```
+Les deux services ont `restart: unless-stopped` et des logs Docker limités à
+3 fichiers de 10 Mo. `unhealthy` seul ne provoque pas un redémarrage Docker.
+HSTS dure seulement 300 secondes, sans sous-domaines ni preload, pour permettre
+le retrait temporaire. Les réponses comprennent aussi `nosniff` et une politique
+Referrer. Aucune CSP nouvelle n'est imposée aux scripts, graphiques et CDN existants.
 
-Vérifier que l'adresse `192.168.1.56` appartient à Wallace et que le port 8000
-est libre. Vérifier la RAM, l'espace disque et la disponibilité de la sauvegarde
-indépendante. Garder suffisamment d'espace pour l'image et la sauvegarde existante.
+## Variables de production et secrets
 
-Avant tout démarrage, lire le Compose actuellement installé dans
-`/srv/cahier-de-doleances`, sans l'écraser. Examiner les noms de projet, les ports,
-les volumes/montages et les réseaux. Ne partager aucun mot de passe ou fichier
-d'environnement. Ces commandes complémentaires ne montrent pas les secrets :
-
-```bash
-docker inspect cahier-postgres --format '{{.Config.Image}}'
-docker inspect cahier-postgres --format '{{json .Mounts}}'
-docker inspect cahier-postgres --format '{{json .NetworkSettings.Networks}}'
-docker inspect cahier-postgres --format '{{json .NetworkSettings.Ports}}'
-docker network inspect cahier-de-doleances_cahier-internal
-docker port cahier-postgres
-```
-
-Le conteneur doit déjà être membre du réseau indiqué. Si le réseau est absent,
-ou si le conteneur n'en fait pas partie, **arrêter ici** : ne pas créer un réseau
-de substitution ou recréer PostgreSQL. Le précontrôle ci-dessous vérifiera
-effectivement la résolution DNS de `cahier-postgres` depuis le réseau applicatif.
-
-Si 5432 est publié, vérifier ses adresses d'écoute et son accessibilité réelle.
-FastAPI ne nécessite aucune publication du port PostgreSQL. Vérifier aussi les
-redirections de la box et les règles IPv6 : ni 5432 ni 8000 ne doivent être ouverts
-sur Internet pour cette phase. Une publication Docker mérite un contrôle propre,
-elle ne doit pas être supposée bloquée par les seules règles habituelles du pare-feu.
-
-## A — Récupérer le dépôt
-
-Les changements de déploiement doivent d'abord être commités et poussés sur GitHub
-depuis le poste de développement. Choisir et noter le commit validé. Depuis un
-compte ayant les droits sur `/srv`, cloner dans le **nouveau** répertoire :
+Conserver la clé `SECRET_KEY`, le mot de passe PostgreSQL et les paramètres
+`EXPECTED_*` de l'installation actuelle. **Ne pas écraser `.env.deploy` avec
+l'exemple**. Avant modification :
 
 ```bash
-git clone https://github.com/Aliochka/cahier-de-doleances.git /srv/cahier-de-doleances-app
 cd /srv/cahier-de-doleances-app
-git checkout --detach <COMMIT_VALIDE>
-test -f compose.deploy.yml
-git rev-parse HEAD
-```
-
-Remplacer `<COMMIT_VALIDE>` par le SHA contenant ces fichiers. Si le répertoire
-applicatif existe déjà, suivre la section mises à jour ; ne pas recloner ni écraser
-des fichiers locaux. Ne pas déplacer le répertoire PostgreSQL.
-
-## Variables d'environnement
-
-Pour une première installation uniquement :
-
-```bash
 umask 077
-cp .env.deploy.example .env.deploy
-chmod 600 .env.deploy
-python3 -c 'import secrets; print(secrets.token_urlsafe(48))'
+cp .env.deploy .env.deploy.lan-backup
+chmod 600 .env.deploy .env.deploy.lan-backup
 ```
 
-Python est utilisé ici seulement pour générer une clé ; `openssl rand -hex 48`
-est une alternative. Éditer `.env.deploy` dans un éditeur privé et renseigner :
+`.env.deploy.lan-backup` est ignoré par Git et exclu du contexte Docker.
+Dans un éditeur privé, adapter `.env.deploy` selon [.env.deploy.example](../.env.deploy.example) :
 
-| Variable | Valeur ou rôle |
+| Variable | Valeur publique |
 |---|---|
-| `APP_IMAGE_TAG` | Tag unique de cette version, par exemple `lan-001`. Ne pas réutiliser un tag déjà déployé. |
+| `APP_IMAGE_TAG` | Nouveau tag unique, par exemple `https-001` ; conserver l'ancienne image. |
 | `LAN_BIND_IP` | `192.168.1.56` |
-| `ENV` | `prod` : validations de déploiement, sans forcer HTTPS lorsque désactivé explicitement. |
-| `BASE_URL` | `http://192.168.1.56:8000` |
-| `ALLOWED_HOSTS` | `192.168.1.56,127.0.0.1,localhost`, sans ports et sans joker global. |
-| `HEALTHCHECK_HOST` | `192.168.1.56`, doit être autorisé. |
-| `COOKIE_SECURE` | `false`, opt-in explicite pour les tests HTTP privés. `HttpOnly` et `SameSite=Lax` restent actifs. |
-| `ENFORCE_HTTPS` | `false` pour cette phase. |
-| `TRUSTED_PROXY_IPS` | Vide : aucun proxy actuellement. |
-| `SECRET_KEY` | Clé aléatoire générée ci-dessus, au moins 32 caractères. Conserver cette clé lors des mises à jour. |
-| `DATABASE_URL` | `postgresql+psycopg2://cahier:MOT_DE_PASSE_ENCODE@cahier-postgres:5432/cahier_doleances` |
-| `EXPECTED_DB_*`, `EXPECTED_PG_MAJOR`, `EXPECTED_ALEMBIC_REVISION` | Conserver les valeurs confirmées du fichier exemple. |
-| `MAILJET_API_KEY`, `MAILJET_SECRET_KEY` | Identifiants nécessaires pour envoyer les liens de connexion. |
-| `FROM_EMAIL` | Adresse d'expéditeur validée dans Mailjet ; ne pas configurer le domaine ici. |
-| `LOG_MAGIC_LINKS` | `false`, obligatoire en déploiement. |
+| `ENV` | `prod` |
+| `BASE_URL` | `https://cahierdedoleances.fr` |
+| `ALLOWED_HOSTS` | `cahierdedoleances.fr,127.0.0.1,localhost` |
+| `HEALTHCHECK_HOST` | `localhost` |
+| `COOKIE_SECURE` | `true` |
+| `ENFORCE_HTTPS` | `true` |
+| `TRUSTED_PROXY_IPS` | `172.30.80.2`, jamais `*` ou une plage ouverte |
+| `LOGIN_EMAIL_ENABLED` | `false` tant que Mailjet est indisponible |
+| `LOG_MAGIC_LINKS` | `false`, obligatoire en production |
+| `SECRET_KEY` | Conserver la clé existante d'au moins 32 caractères. |
+| `DATABASE_URL` | URL existante vers `cahier-postgres:5432/cahier_doleances`, rôle `cahier`. |
+| `EXPECTED_DB_HOST/NAME/USER` | `cahier-postgres` / `cahier_doleances` / `cahier` |
+| `EXPECTED_PG_MAJOR` | `17` |
+| `EXPECTED_ALEMBIC_REVISION` | `remove_runtime_caches` |
+| `MAILJET_API_KEY`, `MAILJET_SECRET_KEY` | Clés privées, conservées ou renseignées quand disponibles. |
+| `FROM_EMAIL`, `FROM_NAME` | Expéditeur validé Mailjet, nom du site. |
 
-Utiliser le mot de passe **existant**, sans modifier le rôle PostgreSQL. Encoder
-les caractères spéciaux du mot de passe pour une URL (`@` → `%40`, `#` → `%23`,
-`%` → `%25`, `/` → `%2F`, etc.). Conserver les guillemets simples autour de
-`DATABASE_URL` dans le fichier pour éviter l'interpolation Compose des `$`.
-Ne pas placer de secret dans la ligne de commande ou l'historique du terminal.
+Conserver les guillemets simples de `DATABASE_URL` et encoder les caractères
+spéciaux du mot de passe dans l'URL. Ne pas définir `TEST_DATABASE_URL`,
+`ALEMBIC_DATABASE_URL` ou `SCALINGO_POSTGRESQL_URL`. Ne pas placer de secrets dans
+Git, les commandes, captures ou tickets. `docker compose config --quiet` valide
+sans les afficher ; un `config` normal ou `inspect` complet peut les révéler.
+Caddy reçoit seulement sa configuration, pas les secrets applicatifs.
 
-Ne définir ni `TEST_DATABASE_URL`, ni `ALEMBIC_DATABASE_URL`, ni
-`SCALINGO_POSTGRESQL_URL` dans `.env.deploy`. Le conteneur n'embarque pas `.env`.
-Les variables de test sont refusées par la configuration de production et le
-précontrôle. `.env.deploy` est ignoré par Git et exclu du contexte Docker.
+## Authentification pendant l'indisponibilité de Mailjet
 
-Sans Mailjet, le site démarre et les comptes existants restent présents, mais la
-demande de lien de connexion échoue explicitement. Aucun lien de connexion n'est
-journalisé en production. Ne pas réactiver leur journalisation pour contourner
-une configuration Mailjet absente. En HTTP, les sessions circulent sans chiffrement :
-réserver cette phase au réseau privé de confiance.
+Sans courriel, un nouveau visiteur ne peut pas obtenir son lien magique ; une
+session expirée ne peut pas être renouvelée. Les comptes, profils et marque-pages
+existants restent présents. Les cookies LAN liés à l'adresse IP ne se transfèrent
+pas au domaine public, même avec la même clé JWT.
 
-## B — Valider le Compose et construire l'image
+`LOGIN_EMAIL_ENABLED=false` masque les deux formulaires d'envoi et affiche un
+message d'indisponibilité dans les modales de connexion et de marque-pages.
+L'API `/auth/send-link` renvoie 503 sans générer de token ni contacter Mailjet.
+Les sessions existantes, la vérification de liens déjà émis, les profils,
+marque-pages et la déconnexion restent actifs. La consultation, la recherche
+et les statistiques restent accessibles sans compte. Le réglage vaut `true`
+par défaut hors de cet exemple : ce changement est explicite et réversible.
+Ne pas contourner Mailjet en affichant des tokens ou en désactivant l'authentification.
 
-Toutes les commandes suivantes s'exécutent dans `/srv/cahier-de-doleances-app`.
-`config --quiet` valide sans afficher les secrets résolus :
+Après réparation de Mailjet, tester avec un compte de recette : réception réelle,
+lien commençant par l'origine HTTPS publique, connexion, profil, marque-page,
+déconnexion. Pour cette recette puis l'ouverture, mettre `LOGIN_EMAIL_ENABLED=true`
+et recréer `app`. En mode de transition LAN, les liens utilisent encore l'origine
+LAN : la recette d'authentification publique doit attendre la bascule finale.
+Les liens magiques restent réutilisables pendant leur validité, comme auparavant.
 
-```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml config --quiet
-docker compose --env-file .env.deploy -f compose.deploy.yml build app
-```
+## 1 — Préparer la version sur Wallace, sans interrompre le LAN
 
-La construction ne se connecte pas à PostgreSQL. L'image contient l'application,
-les templates, les fichiers statiques et les migrations pour consultation de
-leur état. Elle n'embarque ni données, ni secrets, ni outils d'ingestion.
-Elle démarre Gunicorn avec deux workers Uvicorn, sans reload ni migrations.
-
-## C — Vérifier DNS et connexion, en lecture seule
-
-```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app python -m app.deployment_check --connection-only
-```
-
-Le rapport doit afficher `status: ok`, le nom `cahier-postgres`, ses adresses
-résolues, `database: cahier_doleances`, `user: cahier`, une version PostgreSQL
-17 et `transaction_read_only: on`. Le processus termine avec le code 1 en cas
-de divergence ou d'échec. Ne pas poursuivre dans ce cas.
-
-Cette commande lance uniquement un conteneur FastAPI temporaire sur les réseaux
-définis. Elle ne démarre, n'arrête et ne recrée aucun conteneur PostgreSQL.
-Le mode read-only et les délais SQL sont imposés dès l'établissement de connexion.
-
-## D — Vérifier Alembic et les objets PostgreSQL
-
-```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app python -m app.deployment_check
-```
-
-Le contrôle compare les heads du dépôt et `alembic_version` à
-`remove_runtime_caches`. Il vérifie les tables et colonnes utilisées par le site,
-les extensions `unaccent` et `pg_trgm`, la recherche française sans accents et
-la présence/validité des index critiques et les privilèges nécessaires aux comptes,
-profils et marque-pages, y compris leurs séquences. Aucun objet manquant n'est créé.
-
-Pour confirmer le nombre de contributions, une fois et séparément du healthcheck :
-
-```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app python -m app.deployment_check --count-contributions
-```
-
-Le résultat attendu est **1 589 285**. Le comptage est limité à 30 secondes ; un
-dépassement de délai est un échec à analyser, sans relancer en boucle. Les autres
-requêtes du précontrôle sont limitées à 5 secondes.
-
-Pour consulter les commandes Alembic elles-mêmes :
-
-```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app alembic heads
-docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps -e PGOPTIONS='-c default_transaction_read_only=on -c statement_timeout=5000' app alembic current
-```
-
-`heads` lit les fichiers ; `current` consulte la base sous protection read-only.
-Ne pas utiliser `upgrade`, `downgrade` ou `stamp`, même si les versions diffèrent.
-L'utilisateur applicatif doit posséder les droits de consultation et les droits
-d'écriture/séquences nécessaires aux comptes et marque-pages ; toute modification
-de privilèges doit être étudiée séparément, sans changer le schéma automatiquement.
-
-## E — Démarrer uniquement FastAPI
-
-Après réussite des contrôles :
-
-```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml up -d --no-deps --no-build app
-docker compose --env-file .env.deploy -f compose.deploy.yml ps
-```
-
-Attendre que le conteneur soit `healthy`. Le healthcheck vérifie `SELECT 1` toutes
-les 30 secondes et ne parcourt pas les contributions. Un statut `unhealthy`
-n'entraîne pas automatiquement un redémarrage Docker : consulter les logs.
-La politique `unless-stopped` redémarre un processus qui se termine.
-
-Le conteneur fonctionne sans privilèges, sans capacités Linux supplémentaires,
-avec un système de fichiers en lecture seule et `/tmp` en mémoire.
-
-## F — Tester depuis le LAN
-
-Depuis Wallace puis depuis un autre ordinateur du LAN :
-
-```bash
-curl --fail http://192.168.1.56:8000/healthz
-curl --fail -o /dev/null http://192.168.1.56:8000/
-curl --fail -o /dev/null 'http://192.168.1.56:8000/search/answers?q=culture'
-curl --fail -o /dev/null http://192.168.1.56:8000/static/css/reset.css
-curl --fail -o /dev/null http://192.168.1.56:8000/static/js/scroll-header.js
-```
-
-Le healthcheck renvoie `{"status":"ok"}` et les pages/fichiers renvoient 200.
-Ouvrir ensuite **http://192.168.1.56:8000** dans un navigateur. Aucun renvoi vers
-HTTPS ou vers le domaine public ne doit intervenir. Un Host non autorisé doit
-être refusé avec 400.
-
-## G — Recette fonctionnelle
-
-| Fonction | Vérification manuelle |
-|---|---|
-| Navigation | Accueil, liens, retour arrière et pagination. |
-| Recherche | Questions et réponses, mots avec/sans accents, absence de doublons au chargement suivant. |
-| Contributions | Ouvrir une réponse textuelle et une réponse à choix multiples ; vérifier qu'elle reste une réponse avec plusieurs sélections. |
-| Auteurs | Ouvrir une page auteur depuis une contribution et consulter ses réponses. |
-| Questionnaires | Ouvrir un formulaire et ses questions. |
-| Statistiques | Ouvrir les tableaux de bord et graphiques ; vérifier nombres et sélections multiples. |
-| HTMX | Charger les pages suivantes/filtres ; vérifier les fragments dans l'onglet Réseau du navigateur. |
-| Statiques | Styles, image de partage et JavaScript chargés sans 404. |
-| Authentification | Demander un lien à une adresse de test, recevoir le courriel, vérifier son origine `http://192.168.1.56:8000`, l'ouvrir depuis le LAN. |
-| Cookies | `session_token` avec `HttpOnly`, `SameSite=Lax`, sans `Secure` uniquement pour cette phase HTTP. |
-| Profils | Compléter/modifier le profil du compte de test, recharger et vérifier la persistance. |
-| Marque-pages | Ajouter, consulter et retirer un marque-page ; tester après reconnexion. |
-| Déconnexion | Se déconnecter et vérifier que les pages privées exigent une connexion. |
-
-La recette d'authentification crée/modifie normalement un compte et ses
-marque-pages. Elle n'importe ni ne remplace les contributions existantes.
-HTMX, Chart.js et les polices sont chargés depuis des CDN : les navigateurs doivent
-avoir accès à Internet. Mailjet nécessite une connexion sortante depuis FastAPI.
-Ne jamais exécuter pytest ou les tests d'ingestion contre la base de Wallace.
-
-## Logs et diagnostic
-
-```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml logs --tail=100 app
-docker compose --env-file .env.deploy -f compose.deploy.yml logs -f app
-docker compose --env-file .env.deploy -f compose.deploy.yml ps
-```
-
-`Ctrl+C` arrête le suivi des logs, pas le service. Docker limite les journaux à
-trois fichiers de 10 Mo. Les chemins de connexion `/auth/verify/...` sont masqués
-dans les logs d'accès. Les logs peuvent contenir des adresses de comptes : conserver
-un accès administrateur restreint. Ne pas partager `docker compose config` sans
-`--quiet`, ni un `docker inspect` complet incluant l'environnement.
-
-Une erreur DNS se vérifie en relançant le contrôle de connexion ; une erreur de
-schéma avec le contrôle complet. Une connexion qui refuse les identifiants ne se
-résout pas en restaurant une nouvelle base. Une erreur Mailjet nécessite des clés
-valides et un expéditeur autorisé.
-
-## Mises à jour
-
-1. Noter le commit et `APP_IMAGE_TAG` actuellement déployés. Garder l'ancienne
-   image locale et une copie privée de `.env.deploy` si sa configuration doit changer.
-2. Vérifier que les changements sont compatibles avec `remove_runtime_caches`.
-   Une migration nouvelle implique une procédure séparée, pas ce déploiement.
-3. Récupérer le nouveau commit validé :
+Noter l'ancien commit et tag d'image, garder l'image locale et la sauvegarde privée.
+Après publication manuelle du commit validé depuis le poste de développement :
 
 ```bash
 cd /srv/cahier-de-doleances-app
 git status --short
 git rev-parse HEAD
 git fetch origin
-git checkout --detach <NOUVEAU_COMMIT_VALIDE>
+git checkout --detach <COMMIT_VALIDE>
+docker network ls
+docker network inspect cahier-de-doleances_cahier-internal
+docker inspect cahier-postgres --format '{{json .NetworkSettings.Ports}}'
+docker port cahier-postgres
+findmnt /data/postgresql
+ss -lnt
 ```
 
-4. Changer `APP_IMAGE_TAG` dans `.env.deploy` (par exemple `lan-002`), en conservant
-   `SECRET_KEY`, les identifiants et les valeurs de contrôle. Ne pas écraser ce fichier
-   avec l'exemple. Valider, construire et contrôler :
+Confirmer le réseau existant, le montage SSD, l'absence de publication PostgreSQL
+et la disponibilité de 80/443. Si PostgreSQL est publié, suspendre l'ouverture
+publique et faire examiner sa configuration séparément : ce dépôt ne la modifie pas.
+Vérifier également les règles Docker, pare-feu, VPN et IPv6 : ne pas supposer
+qu'une règle UFW seule filtre toutes les publications Docker.
+
+Après adaptation de `.env.deploy` :
 
 ```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml config --quiet
+docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml config --quiet
 docker compose --env-file .env.deploy -f compose.deploy.yml build app
+docker compose --env-file .env.deploy -f compose.deploy.yml pull caddy
+docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps caddy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app python -m app.deployment_check
 ```
 
-5. Après réussite seulement :
+Le précontrôle doit indiquer `status: ok`, PostgreSQL 17 et la révision attendue.
+Il ne crée aucun objet et ne lance aucune migration. En cas d'échec, arrêter ici.
+Le contrôle de quantité optionnel est `python -m app.deployment_check --count-contributions`
+avec la même commande `run` : résultat attendu 1 589 285, sans boucle de recomptage.
+
+Démarrer d'abord FastAPI avec l'override LAN, puis Caddy :
 
 ```bash
-docker compose --env-file .env.deploy -f compose.deploy.yml up -d --no-deps --no-build app
-docker compose --env-file .env.deploy -f compose.deploy.yml ps
+docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml up -d --no-deps --no-build app
+docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml up -d --no-deps caddy
+docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml ps
 curl --fail http://192.168.1.56:8000/healthz
+curl --fail -o /dev/null 'http://192.168.1.56:8000/search/answers?q=culture'
 ```
 
-Effectuer la recette principale. Une courte interruption est possible pendant
-le remplacement du conteneur FastAPI. Ne pas supprimer les anciennes images avant
-validation et ne pas utiliser de commande générale de nettoyage des volumes.
+Une courte interruption pendant le remplacement de FastAPI est possible.
+Le port 8000 reste lié uniquement à l'adresse LAN ; ne jamais le rediriger sur la box.
+La transition conserve HTTP et les cookies LAN non sécurisés ; ne pas y tester des
+comptes sensibles. Elle sert à valider Caddy avant d'activer HTTPS côté FastAPI.
 
-## Retour arrière
+## 2 — DNS OVHcloud et Freebox, opérations manuelles
 
-Revenir au commit et au tag d'image notés avant la mise à jour. Restaurer la
-configuration privée précédente si nécessaire, tout en conservant la clé JWT :
+Sauvegarder les valeurs DNS et les règles de ports actuelles pour pouvoir revenir
+à leur état antérieur. Dans la zone DNS OVHcloud de `cahierdedoleances.fr`, modifier
+l'enregistrement **A du domaine racine** vers `88.163.85.242`. Un TTL de 300 secondes
+facilite cette phase ; attendre l'expiration de l'ancien TTL. Retirer les A
+concurrents ou redirections web OVH qui ciblent un ancien hébergement. Ne pas
+modifier NS, MX, SPF, DKIM ou les entrées des autres services. `www` n'est pas
+configuré par ce Caddyfile : ne pas le promettre aux visiteurs. Vérifier les CAA
+éventuels, qui doivent autoriser l'autorité utilisée par Caddy.
+Voir le [guide DNS OVHcloud](https://docs.ovhcloud.com/en/guides/web-cloud/domains/faq-domain-dns).
+
+Pour cette installation **IPv4 uniquement**, retirer tout AAAA du domaine racine
+qui annoncerait un autre serveur ou une IPv6 non validée. Un AAAA erroné peut
+faire échouer clients et validation ACME. Ne pas remplacer par l'IPv6 de la box.
+Ne publier un AAAA à l'avenir qu'après validation de l'adresse stable de Wallace,
+des écouteurs Docker IPv6, du pare-feu et de tests externes `curl -6`.
+L'IPv6 Free est activé automatiquement : l'absence de AAAA ne protège pas une
+adresse connue. Vérifier qu'aucun service Wallace, notamment 5432/8000, n'est
+accessible par son IPv6 globale ; vérifier le pare-feu IPv6 Freebox et Wallace.
+Voir [Free IPv6](https://assistance.free.fr/articles/356) et
+[OVHcloud AAAA](https://docs.ovhcloud.com/fr/guides/web-cloud/domains/dns-zone-aaaa-record-creation).
+
+Dans Freebox OS, Paramètres de la Freebox, mode avancé, Gestion des ports,
+créer seulement ces redirections (intitulés à vérifier sur la version installée) :
+
+| Protocole | Port WAN début/fin | Destination | Port LAN |
+|---|---|---|---|
+| TCP | 80 / 80 | 192.168.1.56 | 80 |
+| TCP | 443 / 443 | 192.168.1.56 | 443 |
+
+Fixer le bail DHCP de Wallace à cette adresse. Selon les informations fournies,
+80 et 443 appartiennent à la plage partagée 0–16383 : pas de demande full-stack
+nécessaire. Confirmer ces informations dans Freebox OS. Pas de DMZ, pas d'ouverture
+5432/8000, pas d'UDP 443 (HTTP/3 désactivé ici). Vérifier que l'accès distant
+Freebox n'occupe pas ces ports et qu'aucune autre règle ne les utilise.
+
+## 3 — Certificat et recette depuis Internet
+
+Caddy tentera automatiquement l'émission une fois DNS et ports accessibles.
+Les challenges HTTP-01/TLS-ALPN-01 passent par TCP 80/443 ; autoriser DNS et HTTPS
+sortants pour Caddy. Ne pas supprimer les volumes pour relancer une émission,
+ne pas redémarrer en boucle après un échec : inspecter DNS, AAAA, CAA, ports et logs.
+Les renouvellements requièrent aussi que le serveur et l'accès public restent
+fonctionnels. Après une longue extinction, un certificat expiré nécessitera
+une nouvelle émission au redémarrage. L'heure système doit être correcte.
+
+Depuis une connexion extérieure (mobile sans Wi-Fi ou autre machine distante) :
 
 ```bash
-cd /srv/cahier-de-doleances-app
-git checkout --detach <ANCIEN_COMMIT_VALIDE>
+dig +short A cahierdedoleances.fr
+dig +short AAAA cahierdedoleances.fr
+curl -4 -I http://cahierdedoleances.fr/
+curl -4 --fail --max-redirs 3 -L -o /dev/null https://cahierdedoleances.fr/
+curl -4 --fail https://cahierdedoleances.fr/healthz
+curl -4 --fail -o /dev/null 'https://cahierdedoleances.fr/search/answers?q=culture'
+curl -4 -I https://cahierdedoleances.fr/static/css/reset.css
+curl -4 -I -H 'X-Forwarded-Proto: http' https://cahierdedoleances.fr/static/css/reset.css
+curl -4 -I -H 'X-Forwarded-Proto: https' http://cahierdedoleances.fr/
+openssl s_client -connect cahierdedoleances.fr:443 -servername cahierdedoleances.fr -verify_return_error </dev/null
 ```
 
-Rétablir l'ancien `APP_IMAGE_TAG` dans `.env.deploy`, puis :
+A doit être `88.163.85.242`, AAAA vide. HTTP doit rediriger vers le domaine HTTPS,
+même avec un faux en-tête. HTTPS doit réussir avec certificat valide, sans `-k`,
+sans boucle et avec les en-têtes attendus. Inspecter aussi le certificat dans le
+navigateur (domaine, chaîne, expiration). Le test du faux en-tête HTTPS doit être
+répété après la bascule finale. Le healthcheck Docker ne suffit pas pour la recette TLS.
+Pour vérifier le mode courriel indisponible (attendu : HTTP 503, sans envoi) :
+
+```bash
+curl -4 -i https://cahierdedoleances.fr/auth/send-link -H 'Content-Type: application/json' --data '{"email":"recette@example.org"}'
+```
+
+Tester que TCP 8000 et 5432 sont inaccessibles depuis Internet (avec un outil de
+scan depuis l'extérieur) ; si Wallace a une IPv6 globale, tester aussi cette adresse
+pour tous les ports concernés, même sans AAAA. En IPv4 seul, `curl -6` sur le domaine
+ne doit pas atteindre un autre hébergement. Un test LAN ne prouve pas l'accès Internet.
+
+## 4 — Bascule finale : HTTPS FastAPI et suppression de 8000
+
+Après réussite de la recette Caddy, utiliser **uniquement** le Compose de base.
+Cela applique les valeurs HTTPS de `.env.deploy` et retire la publication 8000 :
 
 ```bash
 docker compose --env-file .env.deploy -f compose.deploy.yml config --quiet
-docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps --pull never app python -m app.deployment_check
-docker compose --env-file .env.deploy -f compose.deploy.yml up -d --no-deps --no-build --pull never app
+docker compose --env-file .env.deploy -f compose.deploy.yml up -d --no-deps --no-build app
+docker compose --env-file .env.deploy -f compose.deploy.yml ps
+docker compose --env-file .env.deploy -f compose.deploy.yml port app 8000
+docker compose --env-file .env.deploy -f compose.deploy.yml logs --tail=100 caddy app
+```
+
+`port app 8000` doit indiquer qu'aucun port n'est publié (peut terminer non-zéro).
+Depuis une autre machine LAN, `http://192.168.1.56:8000` doit devenir inaccessible.
+Refaire **tous** les tests Internet ci-dessus, notamment faux `X-Forwarded-Proto`,
+redirections, `/healthz` et recherche. Attendre les deux services `healthy`.
+Ne plus utiliser l'override LAN pour les mises à jour publiques.
+
+Recette navigateur après bascule :
+
+| Fonction | Vérification |
+|---|---|
+| Navigation | Accueil, contributions, auteurs, formulaires, questions, pagination. |
+| Recherche | Questions/réponses, mots avec et sans accents, filtres et fragments HTMX sans doublons. |
+| Contributions | Texte libre et choix multiples avec toutes les sélections. |
+| Statistiques | Tableaux, graphiques, nombres et choix multiples. |
+| Statiques | CSS, JS, images, CDN ; aucune URL interne, aucun contenu mixte HTTP. |
+| Connexion indisponible | Les deux modales annoncent l'indisponibilité, sans formulaire d'envoi ; consultation possible. |
+| API indisponible | `/auth/send-link` renvoie 503 si le réglage est désactivé. |
+| Après réparation Mailjet | Réception du lien HTTPS, connexion, profil, ajout/retrait de marque-page, persistance et déconnexion. |
+| Cookies après connexion | `session_token` avec `Secure`, `HttpOnly`, `SameSite=Lax` ; mêmes attributs à la suppression. |
+
+Les essais de compte effectuent des écritures métier normales ; utiliser seulement
+un compte de recette autorisé. Aucun test automatique ne doit cibler les données
+Wallace. Si le domaine n'est pas accessible depuis le LAN à cause du NAT loopback,
+utiliser un DNS LAN ou temporairement `curl --resolve cahierdedoleances.fr:443:192.168.1.56`
+avec l'URL HTTPS publique ; ne pas désactiver la vérification TLS.
+
+## Logs, mises à jour et retour arrière
+
+```bash
+docker compose --env-file .env.deploy -f compose.deploy.yml logs --tail=100 caddy app
+docker compose --env-file .env.deploy -f compose.deploy.yml logs -f caddy app
+docker compose --env-file .env.deploy -f compose.deploy.yml ps
+```
+
+`Ctrl+C` quitte le suivi. Caddy journalise ses opérations et erreurs, sans log
+d'accès ajouté : les chemins de liens magiques contiennent des tokens.
+Les logs d'accès FastAPI masquent `/auth/verify/...`. Les erreurs peuvent encore
+contenir des informations personnelles ou des requêtes : accès administrateur,
+pas de partage brut des logs, pas de mode debug en production.
+
+Pour une mise à jour : noter commit/tag, conserver l'ancienne image et la clé JWT,
+récupérer le commit validé, changer le tag, refaire `config --quiet`, `build app`,
+précontrôle puis `up -d --no-deps --no-build app` avec le Compose de base seulement.
+Pour une mise à jour Caddy, valider le Caddyfile puis recréer Caddy en gardant ses
+volumes et le nom du projet. Une interruption courte est possible.
+
+**Retour immédiat au LAN**, sans changer de version : retirer d'abord les deux
+redirections Freebox et toute ouverture IPv6 éventuelle, puis :
+
+```bash
+cd /srv/cahier-de-doleances-app
+docker compose --env-file .env.deploy -f compose.deploy.yml stop caddy
+docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml config --quiet
+docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml up -d --no-deps --no-build app
 curl --fail http://192.168.1.56:8000/healthz
 ```
 
-Ne pas reconstruire sous l'ancien tag : réutiliser l'image déjà validée. Ce retour
-arrière ne touche ni PostgreSQL, ni ses volumes, ni ses données. Il ne supprime pas
-les profils ou marque-pages créés pendant la mise à jour et n'exécute aucune
-migration inverse. Vérifier qu'aucune écriture métier incompatible n'a été ajoutée
-par la nouvelle version avant de revenir en arrière.
+Le même binaire et les comptes sont conservés ; seul l'accès devient HTTP LAN.
+La désactivation de courriel reste celle de `.env.deploy`. Pour revenir également
+à l'ancienne version : après arrêt Caddy, restaurer l'ancien commit, le fichier
+privé `.env.deploy.lan-backup` vers `.env.deploy` et l'ancien tag, puis utiliser
+le Compose de cet ancien commit : `config --quiet`, précontrôle `run --rm --no-deps
+--pull never app python -m app.deployment_check`, puis `up -d --no-deps --no-build
+--pull never app`. Ne pas reconstruire sous l'ancien tag et ne pas appliquer de
+migration inverse. Garder les volumes Caddy pour une prochaine tentative.
 
-## Évolution HTTPS ultérieure, hors de cette phase
+## Arrêt temporaire, redémarrage et retrait de l'exposition
 
-Après installation séparée et validation de Caddy : utiliser une `BASE_URL` HTTPS,
-mettre `COOKIE_SECURE=true`, activer `ENFORCE_HTTPS` et adapter `ALLOWED_HOSTS`.
-Configurer seulement les adresses du proxy dans `TRUSTED_PROXY_IPS`, jamais `*`,
-et adapter aussi le healthcheck pour éviter une redirection vers un HTTPS interne
-non servi. Restreindre alors l'accès direct au port 8000 ou supprimer sa publication.
-Le réseau applicatif distinct permet cette évolution sans déplacer PostgreSQL.
+Pour retirer l'accès public : supprimer manuellement les redirections TCP 80/443
+Freebox et les éventuelles autorisations IPv6, arrêter Caddy, restaurer ou retirer
+l'enregistrement A public selon la sauvegarde DNS (la propagation n'est pas immédiate).
+Conserver les entrées des autres services. Vérifier depuis Internet l'inaccessibilité.
+Le DNS seul n'arrête pas l'accès à une IP connue. Attendre au plus 300 secondes
+pour l'expiration du HSTS déjà mémorisé ; ce domaine reste destiné à HTTPS.
 
-Avant une exposition publique, revoir aussi les limites de trafic/authentification
-et le fonctionnement existant des liens magiques, qui restent réutilisables pendant
-leur durée de validité. Le remplacement de la bibliothèque JWT conserve le format
-HS256 et ne modifie ni les comptes ni le schéma ; un changement de `SECRET_KEY`
-invalide cependant toutes les sessions et tous les liens déjà émis.
+Avant extinction de Wallace :
 
-Aucun domaine, reverse proxy, service RAG ou accès Internet entrant n'est configuré
-par ce guide.
+```bash
+cd /srv/cahier-de-doleances-app
+docker compose --env-file .env.deploy -f compose.deploy.yml stop -t 30 caddy app
+cd /srv/cahier-de-doleances
+docker compose stop -t 60
+sudo shutdown -h now
+```
+
+La commande PostgreSQL suppose le même Compose et les mêmes options que lors du
+démarrage existant : s'il utilise d'autres fichiers/options, reprendre **sa commande
+habituelle**, sans modifier sa configuration. Vérifier qu'il est bien arrêté avant
+extinction. Ne pas débrancher le SSD et ne pas démonter un volume utilisé.
+
+Au redémarrage, vérifier d'abord `findmnt /data/postgresql`, puis relancer
+PostgreSQL avec sa commande existante dans `/srv/cahier-de-doleances`.
+Un montage manquant impose l'arrêt de la procédure. Ensuite :
+
+```bash
+cd /srv/cahier-de-doleances-app
+docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app python -m app.deployment_check
+docker compose --env-file .env.deploy -f compose.deploy.yml up -d --no-deps --no-build app caddy
+docker compose --env-file .env.deploy -f compose.deploy.yml ps
+```
+
+Ces commandes réutilisent les volumes/certificats. Si l'accès doit rester LAN,
+utiliser l'override LAN et démarrer seulement `app`, sans Caddy et sans redirections.
+Pour réexposer le domaine, refaire les contrôles DNS/ports et toute la recette
+Internet. Les conteneurs explicitement arrêtés avec `stop` ne redémarrent pas
+simplement par la politique `unless-stopped` : utiliser `up -d`.

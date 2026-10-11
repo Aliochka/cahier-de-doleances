@@ -1,0 +1,35 @@
+{
+	# TCP only: no UDP/443 mapping required for this temporary installation.
+	servers {
+		protocols h1 h2
+	}
+}
+
+cahierdedoleances.fr {
+	# Short HSTS for a temporary installation; no includeSubDomains/preload.
+	header {
+		Strict-Transport-Security "max-age=300"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+	# Caddy replaces client-supplied forwarding headers by default.
+	# Do not configure trusted_proxies: Caddy is the Internet edge.
+	reverse_proxy app:8000 {
+		header_up -Forwarded
+	}
+	# No access log: /auth/verify/* contains bearer tokens.
+}
+
+http://127.0.0.1:8080 {
+	bind 127.0.0.1
+	@health path /healthz
+	handle @health {
+		reverse_proxy app:8000 {
+			header_up Host cahierdedoleances.fr
+			header_up X-Forwarded-Proto https
+		}
+	}
+	handle {
+		respond 404
+	}
+}

@@ -1,0 +1,10 @@
+# Temporary LAN access and rollback. Never use after HTTPS validation.
+services:
+  app:
+    ports:
+      - "${LAN_BIND_IP:?Set LAN_BIND_IP}:8000:8000"
+    environment:
+      BASE_URL: "http://${LAN_BIND_IP}:8000"
+      ALLOWED_HOSTS: "${LAN_BIND_IP},cahierdedoleances.fr,127.0.0.1,localhost"
+      COOKIE_SECURE: "false"
+      ENFORCE_HTTPS: "false"

@@ -27,8 +27,11 @@
           <button class="modal-close" onclick="closeBookmarkModal()">&times;</button>
         </div>
         <div class="modal-body">
-          <p>Connectez-vous pour ajouter cette page à vos marques-pages.</p>
-          <form id="bookmark-login-form" onsubmit="sendMagicLink(event)">
+          {% if LOGIN_EMAIL_ENABLED %}<p>Connectez-vous pour ajouter cette page à vos marques-pages.</p>{% endif %}
+          {% if not LOGIN_EMAIL_ENABLED %}
+          <p>La connexion par courriel est temporairement indisponible. Vous pouvez consulter le site ; les comptes et marques-pages sont conservés.</p>
+          {% endif %}
+          <form {% if not LOGIN_EMAIL_ENABLED %}hidden{% endif %} id="bookmark-login-form" onsubmit="sendMagicLink(event)">
             <div class="form-group">
               <label for="bookmark-email">Votre adresse email :</label>
               <input 
@@ -82,8 +85,11 @@
           <button class="modal-close" onclick="closeLoginModal()">&times;</button>
         </div>
         <div class="modal-body">
-          <p>Entrez votre adresse email pour recevoir un lien de connexion sécurisé.</p>
-          <form id="login-form" onsubmit="sendLoginLink(event)">
+          {% if LOGIN_EMAIL_ENABLED %}<p>Entrez votre adresse email pour recevoir un lien de connexion sécurisé.</p>{% endif %}
+          {% if not LOGIN_EMAIL_ENABLED %}
+          <p>La connexion par courriel est temporairement indisponible. Vous pouvez consulter le site ; les comptes et marques-pages sont conservés.</p>
+          {% endif %}
+          <form {% if not LOGIN_EMAIL_ENABLED %}hidden{% endif %} id="login-form" onsubmit="sendLoginLink(event)">
             <div class="form-group">
               <label for="login-email-input">Votre adresse email :</label>
               <input 
@@ -216,7 +222,7 @@
             // Utilisateur non connecté, ouvrir la modale
             pendingBookmark = { pageType, pageId };
             document.getElementById('bookmark-modal').style.display = 'flex';
-            document.getElementById('bookmark-email').focus();
+            {% if LOGIN_EMAIL_ENABLED %}document.getElementById('bookmark-email').focus();{% endif %}
           }
         });
       }

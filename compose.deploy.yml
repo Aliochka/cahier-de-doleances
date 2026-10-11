@@ -10,11 +10,10 @@ services:
       # Uvicorn/Gunicorn must not independently trust forwarded headers.
       # FastAPI handles only the proxies explicitly listed in TRUSTED_PROXY_IPS.
       FORWARDED_ALLOW_IPS: ""
-    ports:
-      - "${LAN_BIND_IP:?Set LAN_BIND_IP}:8000:8000"
     networks:
       - postgres-existing
       - app-egress
+      - proxy-private
     restart: unless-stopped
     read_only: true
     tmpfs:
@@ -39,11 +38,53 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  caddy:
+    image: caddy:2.11.2-alpine
+    ports:
+      # Explicit IPv4 binding; IPv6 publication requires a separate review.
+      - "${LAN_BIND_IP:?Set LAN_BIND_IP}:80:80/tcp"
+      - "${LAN_BIND_IP:?Set LAN_BIND_IP}:443:443/tcp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      proxy-private:
+        ipv4_address: 172.30.80.2
+      caddy-egress: {}
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      # Local-only listener proxies the real app readiness check.
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 12s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  caddy-data:
+  caddy-config:
+
 networks:
   postgres-existing:
     external: true
     name: cahier-de-doleances_cahier-internal
   # Outbound Mailjet access even when the PostgreSQL network is internal.
-  # This network publishes no ports; it can later accommodate a reverse proxy.
+  # No published ports.
   app-egress:
+    driver: bridge
+  proxy-private:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.30.80.0/24
+  caddy-egress:
     driver: bridge
