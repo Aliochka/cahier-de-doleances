@@ -9,3 +9,6 @@ test-results/
 !package.json
 !tsconfig.json
 !biome.json
+
+!contracts/openapi.json
+!tools/openapi/package.json
