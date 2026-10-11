@@ -8,6 +8,7 @@ from sqlalchemy import text
 from app.choice_stats import choice_statistics
 from app.db import SessionLocal
 from app.helpers import slugify  # type: ignore
+from app.services.forms import form_questions, get_form
 from app.web import templates
 
 router = APIRouter()
@@ -30,21 +31,7 @@ def form_detail(
 
     with SessionLocal() as db:
         # 1) Infos formulaire + questions (ordre)
-        row_form = (
-            db.execute(
-                text("""
-                SELECT f.id, f.name,
-                       COUNT(q.id)::int AS questions_count
-                FROM forms f
-                LEFT JOIN questions q ON q.form_id = f.id
-                WHERE f.id = :fid
-                GROUP BY f.id
-            """),
-                {"fid": form_id},
-            )
-            .mappings()
-            .first()
-        )
+        row_form = get_form(db, form_id)
 
         if not row_form:
             # 404 template si tu en as un
@@ -53,19 +40,7 @@ def form_detail(
             )
 
         # Liste ordonnée des questions du formulaire
-        rows_questions = (
-            db.execute(
-                text("""
-                SELECT q.id, q.position, q.prompt
-                FROM questions q
-                WHERE q.form_id = :fid
-                ORDER BY COALESCE(q.position, 999999), q.id
-            """),
-                {"fid": form_id},
-            )
-            .mappings()
-            .all()
-        )
+        rows_questions = form_questions(db, form_id)
 
         # 2) Compte des contributions et sélection de l'index demandé
         row_counts = (
@@ -201,21 +176,7 @@ def form_dashboard(request: Request, form_id: int):
 
     with SessionLocal() as db:
         # Infos formulaire + questions
-        row_form = (
-            db.execute(
-                text("""
-                SELECT f.id, f.name,
-                       COUNT(q.id)::int AS questions_count
-                FROM forms f
-                LEFT JOIN questions q ON q.form_id = f.id
-                WHERE f.id = :fid
-                GROUP BY f.id
-            """),
-                {"fid": form_id},
-            )
-            .mappings()
-            .first()
-        )
+        row_form = get_form(db, form_id)
 
         if not row_form:
             return templates.TemplateResponse(

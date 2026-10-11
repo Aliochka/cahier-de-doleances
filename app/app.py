@@ -25,6 +25,7 @@ from app.config import settings
 from app.logging_filters import redact_access_logs
 from app.routers import (
     answers,
+    api_forms,
     auth,
     authors,
     bookmarks,
@@ -82,7 +83,7 @@ class TimeoutMiddleware(BaseHTTPMiddleware):
             is_browser = ("text/html" in accepts) or ("*/*" in accepts)
             is_htmx = request.headers.get("hx-request") == "true"
 
-            if is_browser and not is_htmx:
+            if is_browser and not is_htmx and not request.url.path.startswith("/api/v1/"):
                 resp = templates.TemplateResponse(
                     request, "errors/timeout.html", {"request": request}, status_code=408
                 )
@@ -145,6 +146,7 @@ app.include_router(authors.router)
 app.include_router(questions.router)
 app.include_router(answers.router)
 app.include_router(forms.router)
+app.include_router(api_forms.router)
 app.include_router(seo.router)
 app.include_router(auth.router)
 app.include_router(bookmarks.router)
@@ -193,6 +195,20 @@ async def search_timeout_handler(request: Request, exc: SearchTimeout):
 
 @app.exception_handler(DBAPIError)
 async def database_exception_handler(request: Request, exc: DBAPIError):
+    if request.url.path.startswith("/api/v1/"):
+        from fastapi.responses import JSONResponse
+        from sqlalchemy.exc import OperationalError
+
+        status = 503 if isinstance(exc, OperationalError) else 500
+        log.error("Public API database failure", exc_info=exc)
+        return private_response(
+            request,
+            JSONResponse(
+                {"detail": "Service indisponible" if status == 503 else "Internal server error"},
+                status_code=status,
+                headers={"Cache-Control": "no-store"},
+            ),
+        )
     if request.url.path in {"/search/answers", "/search/questions"}:
         log.error("Database search failed", exc_info=exc)
         return search_error_response(request, timeout=False)
@@ -204,6 +220,9 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
     accepts = request.headers.get("accept", "")
     is_browser = ("text/html" in accepts) or ("*/*" in accepts)
     is_htmx = request.headers.get("hx-request") == "true"
+
+    if request.url.path.startswith("/api/v1/"):
+        return await fastapi_http_exception_handler(request, exc)
 
     # Pages d'erreur personnalisées pour les navigateurs (pas HTMX)
     if is_browser and not is_htmx:
@@ -234,7 +253,7 @@ async def general_exception_handler(request: Request, exc: Exception):
     log.error(f"Unhandled exception: {exc}", exc_info=True)
 
     # Page d'erreur personnalisée pour les navigateurs
-    if is_browser and not is_htmx:
+    if is_browser and not is_htmx and not request.url.path.startswith("/api/v1/"):
         resp = templates.TemplateResponse(
             request, "errors/500.html", {"request": request}, status_code=500
         )
