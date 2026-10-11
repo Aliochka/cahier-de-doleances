@@ -1,9 +1,9 @@
 # app/routers/pages.py
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from sqlalchemy import text
 
 from app.db import SessionLocal
+from app.services.forms import list_forms
 from app.web import templates
 
 router = APIRouter()
@@ -13,20 +13,7 @@ router = APIRouter()
 def home(request: Request):
     with SessionLocal() as db:
         # Récupérer tous les formulaires avec leur nombre de questions
-        forms = (
-            db.execute(
-                text("""
-                SELECT f.id, f.name,
-                       COUNT(q.id)::int AS questions_count
-                FROM forms f
-                LEFT JOIN questions q ON q.form_id = f.id
-                GROUP BY f.id, f.name
-                ORDER BY f.id
-            """)
-            )
-            .mappings()
-            .all()
-        )
+        forms = list_forms(db)
 
         forms_list = []
         for form in forms:
