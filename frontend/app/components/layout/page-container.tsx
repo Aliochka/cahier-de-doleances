@@ -1,17 +1,20 @@
-import type { ReactNode } from "react";
-import { css } from "../../../styled-system/css";
+import type { ComponentProps } from "react";
+import { css, cx } from "../../../styled-system/css";
 
-export function PageContainer({ children }: { children: ReactNode }) {
+export function PageContainer({ className, ...props }: ComponentProps<"div">) {
   return (
-    <main
-      className={css({
-        maxWidth: "48rem",
-        mx: "auto",
-        px: { base: "4", md: "8" },
-        py: "10",
-      })}
-    >
-      {children}
-    </main>
+    <div
+      {...props}
+      className={cx(
+        css({
+          width: "100%",
+          maxWidth: "page",
+          mx: "auto",
+          px: { base: "4", md: "8" },
+          py: "6",
+        }),
+        className,
+      )}
+    />
   );
 }

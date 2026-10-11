@@ -6,7 +6,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { css } from "../styled-system/css";
 import type { Route } from "./+types/root";
+import { Footer } from "./components/layout/footer";
+import { Header } from "./components/layout/header";
 import { PageContainer } from "./components/layout/page-container";
 import "./styles/global.css";
 
@@ -20,7 +23,31 @@ export function Layout({ children }: { children: ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <a
+          href="#main-content"
+          className={css({
+            position: "fixed",
+            top: "2",
+            left: "2",
+            transform: "translateY(-200%)",
+            zIndex: "modal",
+            background: "surface",
+            p: "3",
+            border: "panel",
+            _focus: { transform: "translateY(0)" },
+          })}
+        >
+          Aller au contenu principal
+        </a>
+        <Header />
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className={css({ flex: "1", minWidth: 0 })}
+        >
+          {children}
+        </main>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
