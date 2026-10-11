@@ -1,0 +1,85 @@
+name: Frontend
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Frontend checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7
+      # The workflow always finishes, including documentation-only PRs. Do not
+      # use workflow-level paths filters if this check becomes required.
+      - name: Detect relevant changes
+        id: changes
+        working-directory: .
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" || "$BASE_SHA" =~ ^0+$ ]]; then
+            echo "frontend=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git fetch --no-tags --depth=1 origin "$BASE_SHA" "$HEAD_SHA"
+          changed=false
+          files=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          while IFS= read -r file; do
+            case "$file" in
+              frontend/*.md) ;;
+              frontend/*|.github/workflows/frontend.yml) changed=true ;;
+            esac
+          done <<< "$files"
+          echo "frontend=$changed" >> "$GITHUB_OUTPUT"
+      - uses: pnpm/action-setup@v6
+        if: steps.changes.outputs.frontend == 'true'
+        with:
+          package_json_file: frontend/package.json
+          run_install: false
+      - uses: actions/setup-node@v7
+        if: steps.changes.outputs.frontend == 'true'
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - name: Install locked dependencies
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Biome
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm check
+      - name: TypeScript and route types
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm typecheck
+      - name: Unit and component tests
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm test
+      - name: Build without external network and verify SSR artifacts
+        if: steps.changes.outputs.frontend == 'true'
+        run: |
+          pnpm build:offline
+          pnpm test:build
+      - name: Install Chromium for browser tests
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Browser tests
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm test:e2e
+      - uses: actions/upload-artifact@v7
+        if: failure() && steps.changes.outputs.frontend == 'true'
+        with:
+          name: frontend-browser-failures
+          path: frontend/test-results/
+          if-no-files-found: ignore
