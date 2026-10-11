@@ -50,3 +50,18 @@ test("Netlify produces a Node function that prefers prerendered files", async ()
   assert.equal(handler.config.preferStatic, true);
   assert.match(handler.config.generator, /@netlify\/vite-plugin-react-router/);
 });
+
+test("development components route is absent from the production manifest and returns 404", async () => {
+  assert.equal(
+    Object.values(build.routes).some(
+      (route) => route.path === "dev/components",
+    ),
+    false,
+  );
+  const response = await createRequestHandler(
+    build,
+    "production",
+  )(new Request("http://localhost/dev/components"));
+  assert.equal(response.status, 404);
+  assert.doesNotMatch(await response.text(), /Atelier des composants/);
+});
