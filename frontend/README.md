@@ -53,8 +53,9 @@ app/
   root.tsx                 document français, assets et erreurs sûres
   routes.ts                configuration officielle du routage framework
   routes/home.tsx          accueil temporaire, titre et description HTML
-  components/layout/       PageContainer
-  components/ui/           Disclosure, seule démonstration Ark UI
+  routes/dev.components.tsx atelier des composants, développement uniquement
+  components/layout/       Header, Footer, PageContainer
+  components/ui/           primitives natives, Tabs, Dialog, Disclosure
   styles/global.css        ordre des couches CSS
 tests/                     setup RTL et contrôles des artefacts de build
 e2e/                       tests navigateur
@@ -91,8 +92,8 @@ les utilitaires ; les fondations du projet restent limitées aux besoins actuels
 [Ark UI](https://ark-ui.com/docs/overview/getting-started) fournit les interactions
 accessibles, sans style visuel imposé. `Disclosure` associe sa primitive
 Collapsible aux classes Panda : contenu ouvert côté serveur, états ARIA et
-interaction clavier après hydratation. FRONT-002 construira les autres
-composants progressivement. Biome est le seul outil de lint et formatage du
+interaction clavier après hydratation. Tabs et Dialog encapsulent les primitives Ark pour la navigation clavier, le
+focus et les relations ARIA. Biome est le seul outil de lint et formatage du
 frontend, avec ses règles recommandées et les fichiers générés exclus.
 
 ## Netlify et CI
@@ -120,6 +121,53 @@ Playwright. Le workflow Python existant est inchangé. Les PR externes n'obtienn
 aucun secret supplémentaire. Les versions exactes installées sont dans
 `package.json` et `pnpm-lock.yaml`.
 
-Prochaines tâches : FRONT-002 (composants communs), FRONT-003 (client API,
-loaders/erreurs) et CONTRACT-001 (types générés depuis OpenAPI). Aucune n'est
-entamée par ce socle.
+Prochaines tâches : FRONT-003 (client API, loaders/erreurs) et CONTRACT-001
+(types générés depuis OpenAPI). Aucune n’est entamée ici.
+
+## Design system
+
+L’identité archive conserve le papier clair, le bleu et le rouge tampon. La
+police système sert à la lecture ; la famille machine à écrire marque les titres
+et l’identité sans charger de police externe. Le contenu est limité à 1 100 px,
+avec un token `reading` plus étroit pour les textes longs.
+
+Les composants utilisent les tokens sémantiques (`surface`, `text`, `muted`,
+`primary`, `danger`, etc.) dans `panda.config.ts`, plutôt que des couleurs
+littérales. Les recettes Panda `cva` définissent les variantes simples.
+
+| Composant | Usage et variantes |
+| --- | --- |
+| Button | Bouton natif ; `primary`, `secondary`, `quiet`, `destructive` ; tailles `small`, `medium`, `large` ; `loading` conserve le libellé et désactive l’action. |
+| Input | Champ natif avec `label`, `description` et `error` ; conserve `name`, `type`, `required`, `disabled` et les attributs HTML. |
+| Card | Article visuel ; donner un titre et éventuellement `aria-labelledby`. Aucune interaction implicite. |
+| Tabs | `Root`, `List`, `Trigger`, `Content` ; variantes `underline`, `enclosed`. `value` / `onValueChange` permettent un contrôle externe futur par l’URL. |
+| Dialog | `Root`, `Trigger`, `Content`, `CloseTrigger` ; `Content` exige un `title`, accepte une `description`. Utiliser `asChild` sur les déclencheurs avec Button. |
+| Alert | `info`, `success`, `warning`, `error` ; aucune annonce par défaut. `announcement="polite"` donne un statut, `"assertive"` une alerte urgente. |
+| Skeleton | `line` ou `block`, décoratif et masqué aux lecteurs d’écran ; le parent décrit le chargement et porte `aria-busy` si nécessaire. |
+
+Les composants acceptent leurs attributs HTML et `className`. Ark UI intervient
+pour les comportements complexes ; un bouton ou champ simple reste natif.
+Pour ajouter un composant, partir du HTML approprié, utiliser les tokens Panda,
+limiter ses propriétés et tester son comportement accessible. La logique métier
+restera dans les futures fonctionnalités, pas dans `components/ui/`.
+
+`root.tsx` assemble le header, un unique main avec lien d’évitement et le footer.
+Recherche et Enquêtes sont indiquées « À venir », sans lien vers une fausse page.
+
+### Atelier et accessibilité
+
+Lancer `pnpm dev`, puis ouvrir `/dev/components`. La configuration des routes
+inclut l’atelier uniquement lorsque `NODE_ENV` vaut `development`. Il est absent
+du manifeste serveur et des bundles JavaScript de production, hors pré-rendu.
+Les tests de build et Playwright vérifient une réponse HTTP **404** en production.
+Les styles partagés peuvent naturellement rester dans le CSS extrait.
+
+Après `pnpm build:offline`, `pnpm test:e2e` démarre le serveur de production sur
+4173 et le serveur de développement sur 4174. Chromium vérifie SSR/hydratation,
+clavier des onglets, piège/restauration du focus des dialogues, lien d’évitement,
+réduction des animations et absence de débordement à 320, 768 et 1 280 px.
+
+Vérifier aussi manuellement Tab/Maj+Tab, Échap, les noms et descriptions avec un
+lecteur d’écran, le zoom à 200–400 % et les textes longs. Les tests ciblés et Ark
+UI ne constituent pas une certification WCAG/RGAA. Toute nouvelle combinaison
+de couleurs doit conserver les contrastes AA ; ne pas supprimer le focus visible.
