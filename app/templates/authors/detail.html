@@ -33,14 +33,13 @@
   </div>
 </header>
 
-{% if q %}
-  <p class="search-context">Filtré par « <strong>{{ q }}</strong> »</p>
-{% endif %}
+
 
 {# Afficher le titre de la question dans la liste des réponses #}
 {% set on_question_page = false %}
 {% set on_author_page = true %}
 {% include "partials/_answers_list.html" with context %}
+{% include "partials/_pagination.html" %}
 
 {% endblock %}
 

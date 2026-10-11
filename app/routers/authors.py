@@ -62,7 +62,6 @@ def author_detail(
     request: Request,
     author_id: int,
     slug: str,
-    q: str | None = Query(None),
     page: int = Query(1, ge=1),
     db: Session = Depends(get_db),
 ):
@@ -85,7 +84,6 @@ def author_detail(
         return Response(status_code=200)
 
     # GET normal
-    q = (q or "").strip()
     offset = (page - 1) * PER_PAGE
 
     # Auteur
@@ -123,90 +121,43 @@ def author_detail(
         url = url.replace(query=request.url.query)
         return RedirectResponse(url, status_code=308)
 
-    # Listing des réponses (FTS via answers_fts si q, sinon récent)
-    if q:
-        q_esc = q.replace('"', '""')
-        match = f'"{q_esc}"' if " " in q_esc else q_esc
+    total = db.execute(
+        text(
+            """
+            SELECT COUNT(1)
+            FROM answers a
+            JOIN contributions c ON c.id = a.contribution_id
+            WHERE c.author_id = :aid
+              AND a.text IS NOT NULL
+            """
+        ),
+        {"aid": author_id},
+    ).scalar_one()
 
-        total = db.execute(
+    rows = (
+        db.execute(
             text(
                 """
-                SELECT COUNT(1)
-                FROM answers_fts
-                JOIN answers a       ON a.id = answers_fts.rowid
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE c.author_id = :aid
-                  AND a.text IS NOT NULL
-                  AND answers_fts MATCH :q
-                """
+            SELECT
+              a.id           AS answer_id,
+              a.text         AS answer_text,
+              a.question_id  AS question_id,
+              q.prompt       AS question_prompt,
+              c.submitted_at AS submitted_at
+            FROM answers a
+            JOIN contributions c ON c.id = a.contribution_id
+            JOIN questions q     ON q.id = a.question_id
+            WHERE c.author_id = :aid
+              AND a.text IS NOT NULL
+            ORDER BY c.submitted_at DESC NULLS FIRST, a.id DESC
+            LIMIT :limit OFFSET :offset
+            """
             ),
-            {"aid": author_id, "q": match},
-        ).scalar_one()
-
-        rows = (
-            db.execute(
-                text(
-                    """
-                SELECT
-                  a.id           AS answer_id,
-                  a.text         AS answer_text,
-                  a.question_id  AS question_id,
-                  q.prompt       AS question_prompt,
-                  c.submitted_at AS submitted_at
-                FROM answers_fts
-                JOIN answers a       ON a.id = answers_fts.rowid
-                JOIN contributions c ON c.id = a.contribution_id
-                JOIN questions q     ON q.id = a.question_id
-                WHERE c.author_id = :aid
-                  AND a.text IS NOT NULL
-                  AND answers_fts MATCH :q
-                ORDER BY bm25(answers_fts) ASC, c.submitted_at DESC
-                LIMIT :limit OFFSET :offset
-                """
-                ),
-                {"aid": author_id, "q": match, "limit": PER_PAGE, "offset": offset},
-            )
-            .mappings()
-            .all()
+            {"aid": author_id, "limit": PER_PAGE, "offset": offset},
         )
-    else:
-        total = db.execute(
-            text(
-                """
-                SELECT COUNT(1)
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE c.author_id = :aid
-                  AND a.text IS NOT NULL
-                """
-            ),
-            {"aid": author_id},
-        ).scalar_one()
-
-        rows = (
-            db.execute(
-                text(
-                    """
-                SELECT
-                  a.id           AS answer_id,
-                  a.text         AS answer_text,
-                  a.question_id  AS question_id,
-                  q.prompt       AS question_prompt,
-                  c.submitted_at AS submitted_at
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                JOIN questions q     ON q.id = a.question_id
-                WHERE c.author_id = :aid
-                  AND a.text IS NOT NULL
-                ORDER BY c.submitted_at DESC
-                LIMIT :limit OFFSET :offset
-                """
-                ),
-                {"aid": author_id, "limit": PER_PAGE, "offset": offset},
-            )
-            .mappings()
-            .all()
-        )
+        .mappings()
+        .all()
+    )
 
     # Mapping vers le format attendu par answers/_card.html
     answers = []
@@ -238,7 +189,6 @@ def author_detail(
                 "slug": canonical_slug,
             },
             "answers": answers,
-            "q": q,
             "page": page,
             "total_pages": total_pages,
         },
@@ -258,7 +208,6 @@ def author_detail(
 def author_detail_legacy(
     request: Request,
     author_id: int,
-    q: str | None = Query(None),
     page: int = Query(1, ge=1),
     db: Session = Depends(get_db),
 ):
