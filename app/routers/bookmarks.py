@@ -3,6 +3,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Request
 from sqlalchemy import delete, func, select
+from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import joinedload
 
 from app.db import SessionLocal
@@ -36,30 +37,24 @@ async def add_bookmark(page_type: str, page_id: int, user: User = Depends(get_cu
         )
 
     with SessionLocal() as db:
-        # Vérifier si le marque-page existe déjà
-        existing = db.execute(
-            select(Bookmark).where(
-                Bookmark.user_id == user.id,
-                Bookmark.page_type == page_type,
-                Bookmark.page_id == page_id,
-            )
+        # La contrainte arbitre aussi les insertions concurrentes en base.
+        bookmark_id = db.execute(
+            insert(Bookmark)
+            .values(user_id=user.id, page_type=page_type, page_id=page_id)
+            .on_conflict_do_nothing(constraint="unique_user_bookmark")
+            .returning(Bookmark.id)
         ).scalar_one_or_none()
-
-        if existing:
-            return {"message": "Marque-page déjà existant", "success": True}
-
-        # Créer le nouveau marque-page
-        bookmark = Bookmark(user_id=user.id, page_type=page_type, page_id=page_id)
-
-        db.add(bookmark)
         db.commit()
+
+        if bookmark_id is None:
+            return {"message": "Marque-page déjà existant", "success": True}
 
         logger.info(f"User {user.email} bookmarked {page_type}:{page_id}")
 
         return {
             "message": "Marque-page ajouté avec succès",
             "success": True,
-            "bookmark_id": bookmark.id,
+            "bookmark_id": bookmark_id,
         }
 
 

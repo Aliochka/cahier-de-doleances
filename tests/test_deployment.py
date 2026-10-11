@@ -327,10 +327,11 @@ def test_health_success_on_test_database(test_engine, monkeypatch):
 
 
 @pytest.mark.parametrize("code", ["57014", "42P01"])
-def test_search_rolls_back_failed_transactions_and_only_masks_timeouts(code, monkeypatch):
+def test_search_rolls_back_failed_transactions_and_distinguishes_timeouts(code, monkeypatch):
     from starlette.requests import Request
 
     from app.routers import search
+    from app.search_errors import SearchTimeout
 
     class Session:
         rolled_back = False
@@ -356,12 +357,8 @@ def test_search_rolls_back_failed_transactions_and_only_masks_timeouts(code, mon
     request = Request({"type": "http", "method": "GET", "path": "/search/answers", "headers": []})
     monkeypatch.setattr(search.templates, "TemplateResponse", lambda request, name, ctx: ctx)
     if code == "57014":
-        assert (
-            search.search_answers(request, q="culture", page=1, cursor=None, partial=False)[
-                "answers"
-            ]
-            == []
-        )
+        with pytest.raises(SearchTimeout):
+            search.search_answers(request, q="culture", page=1, cursor=None, partial=False)
     else:
         with pytest.raises(OperationalError):
             search.search_answers(request, q="culture", page=1, cursor=None, partial=False)
