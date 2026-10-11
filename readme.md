@@ -348,6 +348,69 @@ statique existant ; aucun navigateur Playwright ni cache applicatif n’est
 nécessaire. Les dépendances facultatives des analyses et notebooks sont dans
 `requirements-analysis.txt`, à installer avec Python 3.11 ou supérieur.
 
+### Mise en prod
+
+1. Vérifier le montage du SSD
+```
+findmnt /data/postgresql
+ls -l /data/postgresql/.ssd-mounted
+```
+
+2. Démarrer PostgreSQL
+```
+cd /srv/cahier-de-doleances
+sudo docker compose up -d
+```
+
+3. Démarrer FastAPI
+```
+cd /srv/cahier-de-doleances-app
+
+sudo docker compose \
+  --env-file .env.deploy \
+  -f compose.deploy.yml \
+  up -d
+```
+
+
+4. Vérifier les conteneurs
+```
+sudo docker ps
+```
+
+
+5. Consulter les logs de l'application
+```
+sudo docker compose \
+  --env-file .env.deploy \
+  -f compose.deploy.yml \
+  logs -f
+```
+
+#### Arrêt propre du serveur
+1. Arrêter l'application :
+
+```
+cd /srv/cahier-de-doleances-app
+
+sudo docker compose \
+  --env-file .env.deploy \
+  -f compose.deploy.yml \
+  down
+```
+
+2. Arrêter PostgreSQL :
+```
+cd /srv/cahier-de-doleances
+sudo docker compose down
+```
+
+3. Éteindre le serveur :
+```
+sudo shutdown -h now
+```
+
+
 ---
 
 ## 📜 Licence
