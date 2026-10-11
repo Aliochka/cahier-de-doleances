@@ -35,6 +35,27 @@ class Settings:
         ):
             raise ValueError("BASE_URL must be an HTTP(S) origin without credentials or path")
         self.COOKIE_SECURE = _boolean(env, "COOKIE_SECURE", url.scheme == "https")
+        self.CSRF_TRUSTED_ORIGINS = [
+            origin.strip()
+            for origin in env.get("CSRF_TRUSTED_ORIGINS", "").split(",")
+            if origin.strip()
+        ]
+        # Keep validation local to settings to avoid importing the application.
+        for origin in self.CSRF_TRUSTED_ORIGINS:
+            extra = urlsplit(origin)
+            if (
+                extra.scheme not in {"http", "https"}
+                or not extra.hostname
+                or extra.username is not None
+                or extra.password is not None
+                or extra.path
+                or extra.query
+                or extra.fragment
+                or any(c.isspace() for c in origin)
+                or any(c in origin for c in "\\*")
+            ):
+                raise ValueError("CSRF_TRUSTED_ORIGINS requires exact HTTP(S) origins")
+            _ = extra.port  # Reject invalid port numbers at startup.
         self.ENFORCE_HTTPS = _boolean(env, "ENFORCE_HTTPS", url.scheme == "https")
         self.ALLOWED_HOSTS = [
             h.strip() for h in env.get("ALLOWED_HOSTS", "").split(",") if h.strip()
