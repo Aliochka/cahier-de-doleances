@@ -277,7 +277,9 @@ def test_deployment_compose_owns_no_postgres_or_data_volume():
     assert "ports" not in compose["services"]["app"]
     assert "postgres-existing" not in compose["services"]["caddy"]["networks"]
     assert compose["networks"]["proxy-private"]["internal"]
-    assert compose["services"]["caddy"]["networks"]["proxy-private"]["ipv4_address"] == "172.30.80.2"
+    assert (
+        compose["services"]["caddy"]["networks"]["proxy-private"]["ipv4_address"] == "172.30.80.2"
+    )
     assert compose["networks"]["postgres-existing"] == {
         "external": True,
         "name": "cahier-de-doleances_cahier-internal",
@@ -360,14 +362,18 @@ def test_search_rolls_back_failed_transactions_and_only_masks_timeouts(code, mon
 
 
 def test_https_proxy_order_trust_and_local_health_probe():
-    env = dict(os.environ) | lan_env() | {
-        "BASE_URL": "https://cahierdedoleances.fr",
-        "ALLOWED_HOSTS": "cahierdedoleances.fr,localhost",
-        "COOKIE_SECURE": "true",
-        "ENFORCE_HTTPS": "true",
-        "TRUSTED_PROXY_IPS": "172.30.80.2",
-        "DATABASE_URL": "postgresql:///unused",
-    }
+    env = (
+        dict(os.environ)
+        | lan_env()
+        | {
+            "BASE_URL": "https://cahierdedoleances.fr",
+            "ALLOWED_HOSTS": "cahierdedoleances.fr,localhost",
+            "COOKIE_SECURE": "true",
+            "ENFORCE_HTTPS": "true",
+            "TRUSTED_PROXY_IPS": "172.30.80.2",
+            "DATABASE_URL": "postgresql:///unused",
+        }
+    )
     for name in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL"):
         env.pop(name, None)
     code = """
@@ -411,8 +417,9 @@ async def main():
 
 asyncio.run(main())
 """
-    subprocess.run([sys.executable, "-c", code], env=env, check=True,
-                   capture_output=True, text=True)
+    subprocess.run(
+        [sys.executable, "-c", code], env=env, check=True, capture_output=True, text=True
+    )
 
 
 def test_disabled_email_login_does_not_issue_or_send_tokens(monkeypatch):
@@ -421,8 +428,10 @@ def test_disabled_email_login_does_not_issue_or_send_tokens(monkeypatch):
     from app.services.auth import auth_service
 
     monkeypatch.setattr(settings, "LOGIN_EMAIL_ENABLED", False)
+
     def forbidden(*args):
         pytest.fail("Disabled login must not generate a token")
+
     monkeypatch.setattr(auth_service, "create_magic_token", forbidden)
     with TestClient(app) as client:
         response = client.post("/auth/send-link", json={"email": "audit@example.org"})
@@ -435,8 +444,9 @@ def test_unavailable_login_forms_are_hidden():
 
     rendered = templates.env.get_template("base/base.html").render(
         LOGIN_EMAIL_ENABLED=False,
-        request=SimpleNamespace(url_for=lambda *args, **kwargs: "/static/asset",
-                                url=SimpleNamespace(path="/")),
+        request=SimpleNamespace(
+            url_for=lambda *args, **kwargs: "/static/asset", url=SimpleNamespace(path="/")
+        ),
     )
     assert 'hidden id="login-form"' in rendered
     assert 'hidden id="bookmark-login-form"' in rendered
