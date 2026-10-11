@@ -65,3 +65,37 @@ test("development components route is absent from the production manifest and re
   assert.equal(response.status, 404);
   assert.doesNotMatch(await response.text(), /Atelier des composants/);
 });
+
+test("normal build excludes API fixtures and private server configuration", async () => {
+  assert.equal(
+    Object.values(build.routes).some((route) => route.path === "_test/api"),
+    false,
+  );
+  const assets = await readdir("build/client/assets");
+  for (const file of assets.filter((file) => file.endsWith(".js"))) {
+    const content = await readFile(`build/client/assets/${file}`, "utf8");
+    assert.doesNotMatch(
+      content,
+      /API_BASE_URL|backend-internal\.invalid|127\.0\.0\.1:4176/,
+    );
+  }
+});
+test("fixed Netlify proxy keeps the API prefix and splat", async () => {
+  const config = await readFile("netlify.toml", "utf8");
+  assert.match(config, /from = "\/api\/\*"/);
+  assert.match(
+    config,
+    /to = "https:\/\/api\.cahierdedoleances\.fr\/api\/:splat"/,
+  );
+  assert.match(config, /status = 200/);
+  const incoming = new URL(
+    "http://localhost/api/v1/forms/9007199254740993?q=%C3%A9cole&cursor=a%2Bb",
+  );
+  const template = config.match(/to = "([^"\n]+\/:splat)"/)[1];
+  const target = new URL(
+    template.replace(":splat", incoming.pathname.slice("/api/".length)),
+  );
+  target.search = incoming.search;
+  assert.equal(target.pathname, incoming.pathname);
+  assert.equal(target.search, incoming.search);
+});

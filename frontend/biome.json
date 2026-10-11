@@ -12,7 +12,8 @@
       "!!test-results",
       "!!pnpm-lock.yaml",
       "!!contracts/openapi.json",
-      "!!contracts/api.generated.ts"
+      "!!contracts/api.generated.ts",
+      "!!build-test"
     ]
   },
   "vcs": {

@@ -218,3 +218,133 @@ les dérives et compile les types. Elle régénère deux fois pour contrôler le
 déterminisme. Le workflow termine aussi sur les changements documentaires, sans
 installer les outils. La CI frontend vérifie les types depuis le JSON versionné,
 sans Python. Le build Netlify ne régénère rien et ne dépend jamais de Wallace.
+
+## Client public et loaders (FRONT-003)
+
+`app/lib/api.ts` utilise `fetch`, les types OpenAPI générés et une union de
+résultats `{ok: true, data}` / `{ok: false, kind, status?}`. Les corps des erreurs
+HTTP ne sont jamais relayés. Les réponses réussies sont validées à la frontière
+JSON avec des gardes typées, sans second jeu d’interfaces. `listForms()` et
+`getForm(id)` restent des lectures publiques : cookies omis, cache désactivé,
+redirections réseau refusées. Les paramètres supplémentaires peuvent être encodés
+avec `URLSearchParams` ; aucun paramètre métier de recherche n’est ajouté.
+
+Les paramètres BIGINT utilisent les identifiants chaînes des modèles de réponse
+pour construire le chemin. Ce petit adaptateur HTTP n’utilise pas le type
+numérique du paramètre OpenAPI comme représentation mémoire de l’identifiant :
+aucun `Number` ou `parseInt` n’est appliqué aux identifiants. Le contrat backend
+reste inchangé. Les futures opérations ayant leurs propres paramètres devront
+s’appuyer sur leurs types générés ; pas de client HTTP générique supplémentaire.
+
+### Serveur et navigateur
+
+Les loaders framework s’exécutent **sur le serveur**, aussi lors des navigations
+internes : React Router demande leurs données au serveur via ses propres
+requêtes `.data`. Aucun `clientLoader` n’est introduit. Dans un futur loader :
+
+```tsx
+import { getForm } from "../lib/api.server";
+import { requireApiData } from "../lib/api-errors";
+
+// Exemple seulement : les pages métier ne sont pas encore migrées.
+export async function loader({ request, params }) {
+  return requireApiData(await getForm(params.id, { signal: request.signal }));
+}
+```
+
+`api.server.ts` lit **API_BASE_URL**, origine backend complète sans chemin,
+identifiants, query ou fragment. HTTPS est requis sauf sur le loopback local.
+Elle n’est lue/validée que lorsqu’un loader appelle l’API. Absente ou invalide,
+elle donne un secours 503 sans appel réseau. Ne jamais utiliser `VITE_*` pour
+cette valeur et ne jamais la passer aux composants ou données du loader.
+
+Exemple local, avec une API de développement indépendante de Wallace :
+
+```sh
+API_BASE_URL=http://127.0.0.1:8000 pnpm dev
+```
+
+Le navigateur, lorsqu’un appel direct sera nécessaire, utilise
+`createPublicApi()` sans origine : `/api/v1/…` reste relatif au site. Il n’existe
+pas encore de proxy Vite de développement ; les tests interceptent ces appels.
+Le build et l’accueil pré-rendu n’appellent aucune API et ne nécessitent pas
+`API_BASE_URL`, Python ou PostgreSQL.
+
+### Erreurs, délais et maintenance
+
+Les catégories distinguent demande invalide (400/422), accès refusé (401/403),
+absence (404), erreur applicative (500), indisponibilité (502/503), délai serveur
+(408/504), délai client, erreur réseau, annulation et réponse invalide.
+Les messages sont définis dans `api-errors.ts`, sans SQL, URL interne ou trace.
+Une réponse invalide devient 502 ; un échec réseau ou de configuration devient
+503 ; un délai devient 504. Une erreur 500 reste ponctuelle.
+
+Le délai maximal est **20 secondes**, comprenant la lecture du corps. Il reste
+sous la limite documentée du [proxy Netlify de 26 secondes](https://docs.netlify.com/manage/routing/redirects/rewrites-proxies/), avec une marge ; les [fonctions Node synchrones](https://docs.netlify.com/build/functions/configuration/)
+ont une limite distincte, actuellement 60 secondes. Ces limites d’hébergement
+restent à vérifier en prévisualisation. `request.signal` est propagé ; React
+Router empêche les résultats d’une navigation obsolète de remplacer la suivante.
+La propagation jusqu’au backend peut dépendre de la plateforme ; même si une
+connexion cliente disparaît, le délai client demeure borné.
+
+`LoadingState` fournit Skeleton et annonce une attente prolongée après huit
+secondes. Pendant une navigation, les données précédentes restent affichées.
+`EmptyState` et `ErrorState` distinguent absence, erreur ponctuelle et maintenance.
+Le réessai est manuel via `useRevalidator`, sans retry automatique ni écriture.
+Une panne concerne la route consultée, jamais un état global persistant.
+
+Les loaders **attendent** les données essentielles et `requireApiData` lance une
+réponse React Router avec le bon statut et des en-têtes `private, no-store` et
+`X-Robots-Tag: noindex, nofollow`. La racine reprend les en-têtes d’erreur et rend
+un secours indépendant de FastAPI. Le streaming SSR par défaut est conservé :
+les erreurs de loader sont connues avant l’envoi du document. Ne pas différer les
+données essentielles dans une promesse/Suspense : une erreur après envoi des
+en-têtes ne pourrait plus transformer HTTP 200 en 503. Lors d’une première visite
+SSR, le statut doit être déterminé avant de rendre le HTML ; le Skeleton sert
+aux navigations internes, pas à un envoi prématuré du document.
+
+### Proxy et sécurité
+
+`netlify.toml` prépare une réécriture fixe :
+`/api/* → https://api.cahierdedoleances.fr/api/:splat`, HTTP 200 de proxy, sans
+redirect navigateur. Les chemins et query sont conservés. Aucun choix d’upstream
+ne provient de l’utilisateur ; aucun Origin/Host d’entrée n’est relayé par le
+client serveur. La règle n’ajoute pas d’en-tête pour contourner CSRF.
+
+Netlify doit conserver les politiques `private, no-store` et `Set-Cookie` du
+backend. Aucun cache CDN n’est ajouté ici. Les règles de headers pour fichiers
+statiques ne sont pas utilisées comme prétendue protection des réponses proxy.
+La recette réelle de proxy (méthodes, cookies, Origin, Set-Cookie et cache)
+nécessitera une prévisualisation avec un backend de test : aucun déploiement
+ou appel de production n’est effectué. Le sous-domaine API et API-004A devront
+être disponibles avant utilisation réelle de cette règle.
+
+Cette couche est volontairement publique et sans session. Pour migrer les comptes,
+prévoir une politique authentifiée explicite, la vérification d’Origin côté
+FastAPI et la propagation séparée des cookies/Set-Cookie lors du SSR. Ne pas
+réutiliser implicitement les lectures publiques pour une opération privée.
+
+### Vérification sans Wallace
+
+```sh
+pnpm check
+pnpm typecheck
+pnpm test
+pnpm contract:check
+pnpm build:offline
+pnpm test:build
+pnpm test:e2e
+```
+
+Playwright compile un build séparé `build-test/` avec une route technique
+`/_test/api`, puis lance des serveurs loopback : API synthétique 4176, SSR de test
+4175, SSR sans API 4177, production normale 4173 et atelier 4174. Les tests
+vérifient les vrais HTTP 404/500/503/504, le HTML initial, le réessai, l’attente
+prolongée, les résultats obsolètes, les cookies omis et l’absence d’origine
+interne dans les assets. Les règles de proxy sont vérifiées sans API de production.
+`FRONTEND_TEST_ROUTES=1` est réservé aux tests ; il est refusé lorsque Netlify
+exécute le build. Le build normal exclut cette route et son code. Ne pas définir
+cette variable dans les environnements de déploiement.
+
+FRONT-005A pourra utiliser ces loaders et états pour les formulaires. Aucun
+parcours métier, compte ou marque-page n’a été migré dans FRONT-003.

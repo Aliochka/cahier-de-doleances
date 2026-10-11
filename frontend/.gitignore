@@ -12,3 +12,4 @@ test-results/
 
 !contracts/openapi.json
 !tools/openapi/package.json
+build-test/
