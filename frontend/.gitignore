@@ -1,0 +1,11 @@
+node_modules/
+build/
+.react-router/
+.netlify/
+styled-system/
+coverage/
+playwright-report/
+test-results/
+!package.json
+!tsconfig.json
+!biome.json

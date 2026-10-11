@@ -1,0 +1,54 @@
+{
+  "name": "cahier-de-doleances-frontend",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.11.2",
+  "engines": {
+    "node": "24.21.x"
+  },
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "react-router dev --host 127.0.0.1",
+    "build": "react-router build",
+    "build:offline": "node --import ./tests/no-network.mjs ./node_modules/@react-router/dev/bin.cjs build",
+    "start": "react-router-serve build/server/index.js",
+    "typecheck": "react-router typegen && tsc --noEmit",
+    "lint": "biome lint .",
+    "format:check": "biome format .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:build": "node --import ./tests/no-network.mjs --test tests/build.test.mjs"
+  },
+  "dependencies": {
+    "@ark-ui/react": "5.39.3",
+    "@react-router/node": "8.4.0",
+    "@react-router/serve": "8.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-router": "8.4.0",
+    "isbot": "5.2.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@netlify/vite-plugin-react-router": "4.0.0",
+    "@pandacss/dev": "2.2.0",
+    "@pandacss/preset-base": "2.2.0",
+    "@pandacss/preset-panda": "2.2.0",
+    "@pandacss/vite": "2.2.0",
+    "@playwright/test": "1.64.0",
+    "@react-router/dev": "8.4.0",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.7",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "jsdom": "30.1.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "vitest": "5.0.3"
+  }
+}
