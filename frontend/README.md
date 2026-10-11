@@ -171,3 +171,50 @@ Vérifier aussi manuellement Tab/Maj+Tab, Échap, les noms et descriptions avec 
 lecteur d’écran, le zoom à 200–400 % et les textes longs. Les tests ciblés et Ark
 UI ne constituent pas une certification WCAG/RGAA. Toute nouvelle combinaison
 de couleurs doit conserver les contrastes AA ; ne pas supprimer le focus visible.
+
+## Contrat FastAPI / TypeScript
+
+FastAPI reste la source de vérité. `contracts/openapi.json` contient uniquement
+les routes `/api/v1` et la fermeture transitive de leurs composants référencés.
+`contracts/api.generated.ts` est généré automatiquement, sans édition manuelle.
+Ces **deux fichiers doivent être commités** après toute évolution de l’API.
+
+Depuis `frontend/`, avec l’environnement Python du backend activé :
+
+```sh
+pnpm contract:generate      # export Python puis types TypeScript
+pnpm contract:check         # vérifie les snapshots et leur présence dans HEAD
+pnpm contract:types:check   # vérification Node seule, sans Python
+pnpm typecheck             # compile aussi le contrat et son exemple d’utilisation
+```
+
+`scripts/export_openapi.py` appelle `app.openapi()` sans serveur HTTP. Son
+processus utilise exclusivement des réglages synthétiques, désactive dotenv et
+interdit les connexions réseau et psycopg2. La génération TypeScript réutilise
+aussi le garde réseau Node des tests de build. Les créations d’Engine SQLAlchemy
+restent paresseuses ; aucune base active ou secret n’est nécessaire. Le JSON
+est trié, encodé en UTF-8 et n’inclut aucun horodatage. Les avertissements de
+doublons des anciennes routes HTML sont filtrés lors de l’export ; les identifiants
+d’opération `/api/v1` doivent être uniques et sont vérifiés explicitement.
+
+Pour ajouter une réponse, définir un modèle Pydantic explicite et le déclarer
+sur la route FastAPI enregistrée, avec un `operation_id` stable. Régénérer,
+vérifier et commiter les deux artefacts. Les types `components`, `paths` et
+`operations` permettent au futur client de sélectionner les réponses et erreurs
+sans recopier les modèles. Voir `app/contract.test.ts`. Les identifiants BIGINT
+restent des chaînes ; les valeurs nulles et champs facultatifs sont conservés.
+Les paramètres de chemin décrits comme entiers dans OpenAPI restent numériques
+dans le type généré : FRONT-003 devra préserver les identifiants chaînes lors de
+la construction des URL, sans conversion en `Number` pour les grands BIGINT.
+
+`openapi-typescript` 7.13.0 utilise l’API du compilateur TypeScript 5, incompatible
+avec TypeScript 7. Le petit package privé `tools/openapi/` fixe TypeScript 5.9.3
+pour la génération uniquement. L’application conserve TypeScript 7.0.2 et ses
+contrôles stricts. pnpm gère les deux avec un lockfile commun ; aucun compilateur
+supplémentaire ne fait partie du bundle public.
+
+La CI **API contract checks** installe Python et Node sans PostgreSQL, contrôle
+les dérives et compile les types. Elle régénère deux fois pour contrôler le
+déterminisme. Le workflow termine aussi sur les changements documentaires, sans
+installer les outils. La CI frontend vérifie les types depuis le JSON versionné,
+sans Python. Le build Netlify ne régénère rien et ne dépend jamais de Wallace.

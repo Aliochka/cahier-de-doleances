@@ -1,0 +1,87 @@
+name: API contract
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: API contract checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7
+      # The workflow always finishes, including documentation-only PRs. Do not
+      # use workflow-level paths filters if this check becomes required.
+      - name: Detect relevant changes
+        id: changes
+        working-directory: .
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" || "$BASE_SHA" =~ ^0+$ ]]; then
+            echo "contract=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git fetch --no-tags --depth=1 origin "$BASE_SHA" "$HEAD_SHA"
+          changed=false
+          files=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          while IFS= read -r file; do
+            case "$file" in
+              frontend/*.md) ;;
+              app/*|scripts/export_openapi.py|tests/test_openapi_export.py|requirements*.txt|.python-version|frontend/contracts/*|frontend/tools/openapi/*|frontend/app/contract.test.ts|frontend/tests/no-network.mjs|frontend/package.json|frontend/pnpm-lock.yaml|frontend/pnpm-workspace.yaml|frontend/tsconfig.json|.github/workflows/contract.yml) changed=true ;;
+            esac
+          done <<< "$files"
+          echo "contract=$changed" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@v5
+        if: steps.changes.outputs.contract == 'true'
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Install backend tooling
+        if: steps.changes.outputs.contract == 'true'
+        run: python -m pip install -r ../requirements-dev.txt
+      - uses: pnpm/action-setup@v6
+        if: steps.changes.outputs.contract == 'true'
+        with:
+          package_json_file: frontend/package.json
+          run_install: false
+      - uses: actions/setup-node@v7
+        if: steps.changes.outputs.contract == 'true'
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - name: Install locked frontend dependencies
+        if: steps.changes.outputs.contract == 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Check schema and TypeScript drift
+        if: steps.changes.outputs.contract == 'true'
+        run: pnpm contract:check
+      - name: Offline export, reference and determinism tests
+        if: steps.changes.outputs.contract == 'true'
+        run: python -m pytest ../tests/test_openapi_export.py
+      - name: Compile generated types and usage example
+        if: steps.changes.outputs.contract == 'true'
+        run: pnpm typecheck
+      - name: Regenerate twice and verify committed artifacts
+        if: steps.changes.outputs.contract == 'true'
+        run: |
+          pnpm contract:generate
+          cp contracts/openapi.json /tmp/contract-first.json
+          cp contracts/api.generated.ts /tmp/contract-first.ts
+          pnpm contract:generate
+          cmp contracts/openapi.json /tmp/contract-first.json
+          cmp contracts/api.generated.ts /tmp/contract-first.ts
+          git diff --exit-code -- contracts/openapi.json contracts/api.generated.ts
