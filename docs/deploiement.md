@@ -33,9 +33,14 @@ Ne jamais lancer pytest contre la base de Wallace.
 
 ## Configuration Caddy et FastAPI
 
-Le [Caddyfile](../Caddyfile) déclare uniquement `cahierdedoleances.fr`, transmet
-les requêtes à `app:8000` et conserve le Host public. Caddy obtient et renouvelle
-les certificats automatiquement et redirige HTTP vers HTTPS. Aucun plugin DNS
+Le [Caddyfile](../Caddyfile) transmet les requêtes de `cahierdedoleances.fr`
+à `app:8000` et conserve le Host public. `www.cahierdedoleances.fr` redirige
+vers `https://cahierdedoleances.fr` avec le code **308**, en conservant le chemin
+et les paramètres de requête grâce à `{uri}`. Ce sous-domaine ne transmet aucune
+requête à FastAPI et ne nécessite aucun changement de `ALLOWED_HOSTS` ou `BASE_URL`.
+Voir la [documentation redir](https://caddyserver.com/docs/caddyfile/directives/redir).
+Caddy obtient et renouvelle automatiquement les certificats pour **les deux domaines**
+et redirige HTTP vers HTTPS pour chacun. Aucun plugin DNS
 OVH, aucun identifiant OVH et aucun service supplémentaire ne sont nécessaires.
 Voir la [documentation HTTPS automatique](https://caddyserver.com/docs/automatic-https).
 
@@ -189,13 +194,14 @@ Sauvegarder les valeurs DNS et les règles de ports actuelles pour pouvoir reven
 l'enregistrement **A du domaine racine** vers `88.163.85.242`. Un TTL de 300 secondes
 facilite cette phase ; attendre l'expiration de l'ancien TTL. Retirer les A
 concurrents ou redirections web OVH qui ciblent un ancien hébergement. Ne pas
-modifier NS, MX, SPF, DKIM ou les entrées des autres services. `www` n'est pas
-configuré par ce Caddyfile : ne pas le promettre aux visiteurs. Vérifier les CAA
-éventuels, qui doivent autoriser l'autorité utilisée par Caddy.
+modifier NS, MX, SPF, DKIM ou les entrées des autres services. Ajouter ou remplacer
+l'entrée **CNAME `www` vers `cahierdedoleances.fr.`**, sans A/AAAA concurrent sur
+`www` ; elle doit résoudre vers la même IPv4. Vérifier les CAA éventuels pour les
+deux noms, qui doivent autoriser l'autorité utilisée par Caddy.
 Voir le [guide DNS OVHcloud](https://docs.ovhcloud.com/en/guides/web-cloud/domains/faq-domain-dns).
 
-Pour cette installation **IPv4 uniquement**, retirer tout AAAA du domaine racine
-qui annoncerait un autre serveur ou une IPv6 non validée. Un AAAA erroné peut
+Pour cette installation **IPv4 uniquement**, contrôler le domaine racine et `www`
+et retirer tout AAAA qui annoncerait un autre serveur ou une IPv6 non validée. Un AAAA erroné peut
 faire échouer clients et validation ACME. Ne pas remplacer par l'IPv6 de la box.
 Ne publier un AAAA à l'avenir qu'après validation de l'adresse stable de Wallace,
 des écouteurs Docker IPv6, du pare-feu et de tests externes `curl -6`.
@@ -221,7 +227,9 @@ Freebox n'occupe pas ces ports et qu'aucune autre règle ne les utilise.
 
 ## 3 — Certificat et recette depuis Internet
 
-Caddy tentera automatiquement l'émission une fois DNS et ports accessibles.
+Caddy tentera automatiquement l'émission pour les deux domaines une fois leurs
+DNS et les ports accessibles. `www` nécessite un certificat valide avant de pouvoir
+servir sa redirection HTTPS.
 Les challenges HTTP-01/TLS-ALPN-01 passent par TCP 80/443 ; autoriser DNS et HTTPS
 sortants pour Caddy. Ne pas supprimer les volumes pour relancer une émission,
 ne pas redémarrer en boucle après un échec : inspecter DNS, AAAA, CAA, ports et logs.
@@ -234,6 +242,12 @@ Depuis une connexion extérieure (mobile sans Wi-Fi ou autre machine distante) :
 ```bash
 dig +short A cahierdedoleances.fr
 dig +short AAAA cahierdedoleances.fr
+dig +short CNAME www.cahierdedoleances.fr
+dig +short A www.cahierdedoleances.fr
+dig +short AAAA www.cahierdedoleances.fr
+curl -4 -I 'http://www.cahierdedoleances.fr/search/answers?q=culture&page=2'
+curl -4 -I 'https://www.cahierdedoleances.fr/search/answers?q=culture&page=2'
+curl -4 --fail --max-redirs 3 -L -o /dev/null 'http://www.cahierdedoleances.fr/search/answers?q=culture&page=2'
 curl -4 -I http://cahierdedoleances.fr/
 curl -4 --fail --max-redirs 3 -L -o /dev/null https://cahierdedoleances.fr/
 curl -4 --fail https://cahierdedoleances.fr/healthz
@@ -242,9 +256,15 @@ curl -4 -I https://cahierdedoleances.fr/static/css/reset.css
 curl -4 -I -H 'X-Forwarded-Proto: http' https://cahierdedoleances.fr/static/css/reset.css
 curl -4 -I -H 'X-Forwarded-Proto: https' http://cahierdedoleances.fr/
 openssl s_client -connect cahierdedoleances.fr:443 -servername cahierdedoleances.fr -verify_return_error </dev/null
+openssl s_client -connect www.cahierdedoleances.fr:443 -servername www.cahierdedoleances.fr -verify_return_error </dev/null
 ```
 
-A doit être `88.163.85.242`, AAAA vide. HTTP doit rediriger vers le domaine HTTPS,
+Les deux noms doivent résoudre vers `88.163.85.242`, sans adresse IPv6 annoncée
+(`dig` peut afficher la cible CNAME pour `www`). HTTPS sur `www` doit renvoyer 308
+avec `Location: https://cahierdedoleances.fr/search/answers?q=culture&page=2`.
+HTTP sur `www` redirige d'abord en 308 vers son HTTPS, puis vers le domaine racine ;
+le chemin et les paramètres doivent rester identiques aux deux étapes.
+HTTP sur le domaine racine doit rediriger vers son HTTPS,
 même avec un faux en-tête. HTTPS doit réussir avec certificat valide, sans `-k`,
 sans boucle et avec les en-têtes attendus. Inspecter aussi le certificat dans le
 navigateur (domaine, chaîne, expiration). Le test du faux en-tête HTTPS doit être
@@ -343,7 +363,8 @@ migration inverse. Garder les volumes Caddy pour une prochaine tentative.
 
 Pour retirer l'accès public : supprimer manuellement les redirections TCP 80/443
 Freebox et les éventuelles autorisations IPv6, arrêter Caddy, restaurer ou retirer
-l'enregistrement A public selon la sauvegarde DNS (la propagation n'est pas immédiate).
+l'enregistrement A public et le CNAME `www` selon la sauvegarde DNS
+(la propagation n'est pas immédiate).
 Conserver les entrées des autres services. Vérifier depuis Internet l'inaccessibilité.
 Le DNS seul n'arrête pas l'accès à une IP connue. Attendre au plus 300 secondes
 pour l'expiration du HSTS déjà mémorisé ; ce domaine reste destiné à HTTPS.

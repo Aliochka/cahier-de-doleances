@@ -20,6 +20,11 @@ cahierdedoleances.fr {
 	# No access log: /auth/verify/* contains bearer tokens.
 }
 
+www.cahierdedoleances.fr {
+	# Preserve the path and query string; automatic HTTPS also covers www.
+	redir https://cahierdedoleances.fr{uri} 308
+}
+
 http://127.0.0.1:8080 {
 	bind 127.0.0.1
 	@health path /healthz
