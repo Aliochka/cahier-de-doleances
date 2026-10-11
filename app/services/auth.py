@@ -176,43 +176,6 @@ class AuthService:
             )
             return user
 
-    def toggle_author_anonymity(
-        self, user_id: int, is_anonymous: bool, display_name: Optional[str] = None
-    ) -> Optional[User]:
-        """
-        Bascule l'anonymat de l'Author associé à un User
-        """
-        with SessionLocal() as db:
-            user = db.execute(
-                select(User).where(User.id == user_id, User.is_active.is_(True))
-            ).scalar_one_or_none()
-
-            if not user or not user.author_id:
-                return None
-
-            author = db.execute(
-                select(Author).where(Author.id == user.author_id)
-            ).scalar_one_or_none()
-
-            if not author:
-                return None
-
-            # Mettre à jour l'anonymat et le nom
-            author.is_anonymous = is_anonymous
-
-            if not is_anonymous and display_name:
-                author.name = display_name
-            elif is_anonymous:
-                author.name = None  # Effacer le nom si on repasse en anonyme
-
-            db.commit()
-            db.refresh(user)
-
-            logger.info(
-                f"Updated anonymity for user {user.email}: is_anonymous={is_anonymous}, name={author.name}"
-            )
-            return user
-
 
 # Singleton
 auth_service = AuthService()

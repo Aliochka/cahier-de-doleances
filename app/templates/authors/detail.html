@@ -30,10 +30,6 @@
       </div>
     </div>
     
-    <!-- Boutons de contrôle temporairement désactivés -->
-    <div class="author-controls" id="author-controls" style="display: none;">
-      <!-- Contrôles d'anonymat temporairement masqués -->
-    </div>
   </div>
 </header>
 
@@ -49,7 +45,7 @@
 {% endblock %}
 
 {% block jsonld %}
-{% set _author_name = (author.name or ("Auteur #" ~ author.id)) %}
+{% set _author_name = author_name %}
 {% set _json = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
@@ -57,13 +53,6 @@
   "about": { "@type": "Person", "name": _author_name, "identifier": author.id, "url": request.url }
 } %}
 <script type="application/ld+json">{{ _json | tojson | safe }}</script>
-
-<script>
-// Fonctionnalités d'anonymat temporairement désactivées
-// Tous les profils sont anonymes par défaut
-console.log('Author controls disabled - all profiles are anonymous by default');
-</script>
-
 
 {% endblock %}
 

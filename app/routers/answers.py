@@ -6,6 +6,7 @@ from fastapi.responses import HTMLResponse
 from sqlalchemy import text
 
 from app.db import SessionLocal
+from app.helpers import public_author
 from app.web import templates
 
 # slugify helper (fallback si indisponible)
@@ -45,6 +46,7 @@ def answer_detail(request: Request, answer_id: int):
                 q.prompt        AS question_prompt,
                 c.author_id     AS author_id,
                 au.name         AS author_name,
+                au.is_anonymous AS author_is_anonymous,
                 c.submitted_at  AS submitted_at
             FROM answers a
             JOIN contributions c ON c.id = a.contribution_id
@@ -62,8 +64,7 @@ def answer_detail(request: Request, answer_id: int):
         raise HTTPException(status_code=404, detail="Réponse introuvable")
 
     q_slug = slugify(row["question_prompt"] or f"question-{row['question_id']}")
-    author_label = row["author_name"] or f"Auteur #{row['author_id']}"
-    author_slug = slugify(author_label)
+    author = public_author(row["author_id"], row["author_name"], row["author_is_anonymous"])
 
     answer = {
         "id": row["answer_id"],
@@ -72,8 +73,8 @@ def answer_detail(request: Request, answer_id: int):
         "question_prompt": row["question_prompt"],
         "question_slug": q_slug,  # → /questions/{id}-{slug}
         "author_id": row["author_id"],
-        "author_name": row["author_name"],
-        "author_slug": author_slug,  # → /authors/{id}-{slug}
+        "author_name": author["name"],
+        "author_slug": author["slug"],  # → /authors/{id}-{slug}
         "submitted_at": row["submitted_at"],
     }
 

@@ -33,17 +33,6 @@ class ProfileUpdateResponse(BaseModel):
     success: bool
 
 
-class AnonymityToggleRequest(BaseModel):
-    is_anonymous: bool
-    display_name: Optional[str] = None  # Requis si is_anonymous=False
-
-
-class AnonymityToggleResponse(BaseModel):
-    message: str
-    success: bool
-    is_anonymous: bool
-
-
 @router.post("/auth/send-link", response_model=LoginResponse)
 async def send_magic_link(request: Request, email_data: EmailRequest):
     """
@@ -496,69 +485,6 @@ async def complete_profile(
         logger.error(f"Error updating profile for user {user.email}: {str(e)}")
         raise HTTPException(
             status_code=500, detail="Erreur interne lors de la mise à jour du profil"
-        )
-
-
-@router.post("/auth/toggle-anonymity", response_model=AnonymityToggleResponse)
-async def toggle_author_anonymity(
-    anonymity_data: AnonymityToggleRequest, session_token: Optional[str] = Cookie(None)
-):
-    """
-    Bascule l'anonymat de la page author de l'utilisateur connecté
-    """
-    user = auth_service.get_current_user(session_token)
-
-    if not user:
-        raise HTTPException(status_code=401, detail="Non connecté")
-
-    # Si l'utilisateur veut rendre son profil public, un nom d'affichage est requis
-    if not anonymity_data.is_anonymous:
-        if not anonymity_data.display_name or not anonymity_data.display_name.strip():
-            raise HTTPException(
-                status_code=400, detail="Un nom d'affichage est requis pour rendre le profil public"
-            )
-
-        # Valider la longueur du nom d'affichage
-        display_name = anonymity_data.display_name.strip()
-        if len(display_name) < 2:
-            raise HTTPException(
-                status_code=400, detail="Le nom d'affichage doit contenir au moins 2 caractères"
-            )
-        if len(display_name) > 100:
-            raise HTTPException(
-                status_code=400, detail="Le nom d'affichage ne peut pas dépasser 100 caractères"
-            )
-
-    try:
-        # Basculer l'anonymat de l'author
-        updated_user = auth_service.toggle_author_anonymity(
-            user.id,
-            is_anonymous=anonymity_data.is_anonymous,
-            display_name=anonymity_data.display_name,
-        )
-
-        if updated_user:
-            message = (
-                "Profil rendu anonyme"
-                if anonymity_data.is_anonymous
-                else f"Profil rendu public sous le nom '{anonymity_data.display_name}'"
-            )
-            logger.info(
-                f"Anonymity toggled for user {user.email}: is_anonymous={anonymity_data.is_anonymous}"
-            )
-
-            return AnonymityToggleResponse(
-                message=message, success=True, is_anonymous=anonymity_data.is_anonymous
-            )
-        else:
-            raise HTTPException(
-                status_code=500, detail="Erreur lors de la mise à jour de l'anonymat"
-            )
-
-    except Exception as e:
-        logger.error(f"Error toggling anonymity for user {user.email}: {str(e)}")
-        raise HTTPException(
-            status_code=500, detail="Erreur interne lors de la mise à jour de l'anonymat"
         )
 
 

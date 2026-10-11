@@ -9,6 +9,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
+from app.helpers import public_author
 from app.web import templates
 
 # Slugify helper (fallback si le helper dédié n'est pas dispo)
@@ -69,7 +70,7 @@ def author_detail(
     if request.method == "HEAD":
         row = (
             db.execute(
-                text("SELECT name FROM authors WHERE id = :aid"),
+                text("SELECT name, is_anonymous FROM authors WHERE id = :aid"),
                 {"aid": author_id},
             )
             .mappings()
@@ -77,10 +78,10 @@ def author_detail(
         )
         if not row:
             raise HTTPException(status_code=404, detail="Auteur introuvable")
-        canonical = slugify((row["name"] or f"Auteur #{author_id}"), maxlen=60)
+        canonical = public_author(author_id, row["name"], row["is_anonymous"])["slug"]
         if slug != canonical:
             url = request.url_for("author_detail", author_id=author_id, slug=canonical)
-            return RedirectResponse(url, status_code=308)
+            return RedirectResponse(url.replace(query=request.url.query), status_code=308)
         return Response(status_code=200)
 
     # GET normal
@@ -115,14 +116,11 @@ def author_detail(
     if not row:
         raise HTTPException(status_code=404, detail="Auteur introuvable")
 
-    author_name = row["name"] or f"Auteur #{author_id}"
-    canonical_slug = slugify(author_name, maxlen=60)
+    author = public_author(author_id, row["name"], row["is_anonymous"])
+    canonical_slug = author["slug"]
     if slug != canonical_slug:
         url = request.url_for("author_detail", author_id=author_id, slug=canonical_slug)
-        if q:
-            url += f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
-        elif page and page != 1:
-            url += f"?page={page}"
+        url = url.replace(query=request.url.query)
         return RedirectResponse(url, status_code=308)
 
     # Listing des réponses (FTS via answers_fts si q, sinon récent)
@@ -235,9 +233,7 @@ def author_detail(
         {
             "request": request,
             "author": {
-                "id": author_id,
-                "name": row["name"],
-                "is_anonymous": row.get("is_anonymous", False),
+                **author,
                 "answers_count": row["answers_count"],
                 "slug": canonical_slug,
             },
@@ -268,7 +264,7 @@ def author_detail_legacy(
 ):
     row = (
         db.execute(
-            text("SELECT id, name FROM authors WHERE id = :aid"),
+            text("SELECT id, name, is_anonymous FROM authors WHERE id = :aid"),
             {"aid": author_id},
         )
         .mappings()
@@ -277,10 +273,7 @@ def author_detail_legacy(
     if not row:
         raise HTTPException(status_code=404, detail="Auteur introuvable")
 
-    canonical_slug = slugify(row["name"] or f"Auteur #{author_id}", maxlen=60)
+    canonical_slug = public_author(author_id, row["name"], row["is_anonymous"])["slug"]
     url = request.url_for("author_detail", author_id=author_id, slug=canonical_slug)
-    if q:
-        url += f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
-    elif page and page != 1:
-        url += f"?page={page}"
+    url = url.replace(query=request.url.query)
     return RedirectResponse(url, status_code=308)
