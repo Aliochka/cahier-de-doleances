@@ -157,18 +157,20 @@ def test_legacy_and_old_named_slugs_redirect_safely(public_pages, method):
     assert client.head(f"/authors/42-{public['slug']}").status_code == 200
 
 
-def test_author_pagination_and_search_contract_are_preserved(public_pages):
+def test_author_pagination_ignores_retired_search(public_pages):
     client, stored, calls = public_pages
     slug = public_author(42, stored["name"], stored["is_anonymous"])["slug"]
     page = client.get(f"/authors/42-{slug}", params={"page": 2})
     assert page.status_code == 200
     assert re.findall(r'id="answer-(\d+)"', page.text) == ["3", "2", "1"]
-    # Exercise the existing filter with a stub, not a replacement SQL implementation.
+    # Historical search URLs now list the same unfiltered answers.
     filtered = client.get(f"/authors/42-{slug}", params={"q": "culture", "page": 2})
     assert filtered.status_code == 200
     assert re.findall(r'id="answer-(\d+)"', filtered.text) == ["3", "2", "1"]
-    assert any("answers_fts MATCH :q" in sql and params["q"] == "culture" for sql, params in calls)
-    assert any("bm25(answers_fts)" in sql and params["offset"] == 20 for sql, params in calls)
+    assert not any("answers_fts" in sql or "bm25" in sql for sql, _ in calls)
+    assert not any("q" in params for _, params in calls)
+    assert "Filtré par" not in filtered.text
+    assert "/authors/42-" in filtered.text and "?page=1" in filtered.text
 
 
 def test_anonymity_mutation_is_removed():

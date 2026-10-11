@@ -4,6 +4,7 @@ from __future__ import annotations
 import base64
 import binascii
 import json
+from datetime import datetime
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
@@ -52,13 +53,25 @@ def _enc_cursor(obj: dict) -> str:
 def _dec_cursor(s: str | None) -> dict | None:
     if not s:
         return None
+    if len(s) > 1024:
+        raise HTTPException(status_code=400, detail="Curseur invalide")
     try:
         pad = "=" * ((4 - len(s) % 4) % 4)
-        data = base64.urlsafe_b64decode(s + pad)
-        return json.loads(data.decode())
-    except (ValueError, json.JSONDecodeError, UnicodeDecodeError, binascii.Error):
-        # Return None for invalid cursors instead of crashing
-        return None
+        data = base64.b64decode(s + pad, altchars=b"-_", validate=True)
+        cursor = json.loads(data.decode())
+        if not isinstance(cursor, dict):
+            raise ValueError("Invalid cursor shape")
+        answer_id = cursor["id"]
+        date = cursor["date"]
+        if type(answer_id) is not int or answer_id <= 0:
+            raise ValueError("Invalid answer ID")
+        if date is not None:
+            if not isinstance(date, str):
+                raise ValueError("Invalid date")
+            date = datetime.fromisoformat(date).isoformat()
+        return {"id": answer_id, "date": date}
+    except (KeyError, ValueError, TypeError, UnicodeDecodeError, binascii.Error):
+        raise HTTPException(status_code=400, detail="Curseur invalide") from None
 
 
 def get_db():
@@ -69,73 +82,9 @@ def get_db():
         db.close()
 
 
-# =========================================================
-# 0) INDEX /questions → redirige vers /search/questions
-#    (évite le 404 JSON)
-# =========================================================
-@router.api_route(
-    "/questions", methods=["GET", "HEAD"], response_class=HTMLResponse, name="questions_index"
-)
-def questions_index(request: Request):
-    url = request.url_for("search_questions")
-    return RedirectResponse(url, status_code=308)
-
-
-# =========================================================
-# 1) DÉTAIL (canonique) /questions/{id:int}-{slug}  — GET + HEAD
-# =========================================================
-@router.api_route(
-    "/questions/{question_id:int}-{slug}",
-    methods=["GET", "HEAD"],
-    response_class=HTMLResponse,
-    name="question_detail",
-)
-def question_detail(
-    request: Request,
-    question_id: int,
-    slug: str,
-    q: str | None = Query(None, description="Filtre texte dans les réponses"),
-    page: int = Query(1, ge=1),  # legacy compat
-    cursor: str | None = Query(None),  # scroll infini
-    partial: bool = Query(False),  # rendu fragment (htmx)
-    db: Session = Depends(get_db),
+def _question_answers(
+    db: Session, question_id: int, question_type: str, q: str | None, cursor: str | None
 ):
-    # HEAD rapide : valide existence + slug sans charger la page
-    if request.method == "HEAD":
-        row = (
-            db.execute(text("SELECT prompt FROM questions WHERE id = :qid"), {"qid": question_id})
-            .mappings()
-            .first()
-        )
-        if not row:
-            raise HTTPException(status_code=404, detail="Question introuvable")
-        canonical = slugify(row["prompt"] or f"question-{question_id}")
-        if slug != canonical:
-            url = request.url_for("question_detail", question_id=question_id, slug=canonical)
-            return RedirectResponse(url, status_code=308)
-        return Response(status_code=200)
-
-    # --- Question
-    row = (
-        db.execute(
-            text("SELECT id, question_code, prompt, type FROM questions WHERE id = :qid"),
-            {"qid": question_id},
-        )
-        .mappings()
-        .first()
-    )
-    if not row:
-        raise HTTPException(status_code=404, detail="Question introuvable")
-
-    canonical_slug = slugify(row["prompt"] or f"question-{question_id}")
-    if slug != canonical_slug:
-        url = request.url_for("question_detail", question_id=question_id, slug=canonical_slug)
-        if q:
-            url = str(url) + f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
-        elif page and page != 1:
-            url = str(url) + f"?page={page}"
-        return RedirectResponse(url, status_code=308)
-
     # --- Scroll infini + filtre
     q = (q or "").strip()
     answers: list[dict[str, Any]] = []
@@ -145,7 +94,7 @@ def question_detail(
 
     limit = PER_PAGE + 1
     cur = _dec_cursor(cursor)
-    min_length = 1 if row["type"] in ("single_choice", "multi_choice") else MIN_ANSWER_LEN
+    min_length = 1 if question_type in ("single_choice", "multi_choice") else MIN_ANSWER_LEN
     params = {"qid": question_id, "minlen": min_length, "limit": limit}
 
     # Curseur pour pagination keyset
@@ -157,8 +106,14 @@ def question_detail(
                 OR (c.submitted_at = :last_date AND a.id < :last_id)
             )
         """
-        params["last_date"] = cur.get("date")
-        params["last_id"] = int(cur.get("id", 0))
+        if cur["date"] is None:
+            cursor_sql = """
+                AND ((c.submitted_at IS NULL AND a.id < :last_id)
+                     OR c.submitted_at IS NOT NULL)
+            """
+        else:
+            params["last_date"] = cur["date"]
+        params["last_id"] = cur["id"]
 
     # Total count (uniquement si pas de curseur - pour affichage initial)
     if not cursor:
@@ -202,7 +157,7 @@ def question_detail(
                   AND char_length(btrim(a.text)) >= :minlen
                   AND a.text ILIKE :like
                   {cursor_sql}
-                ORDER BY c.submitted_at DESC, a.id DESC
+                ORDER BY c.submitted_at DESC NULLS FIRST, a.id DESC
                 LIMIT :limit
             """),
                 {**params, "like": f"%{q}%"},
@@ -222,7 +177,7 @@ def question_detail(
                   AND a.text IS NOT NULL
                   AND char_length(btrim(a.text)) >= :minlen
                   {cursor_sql}
-                ORDER BY c.submitted_at DESC, a.id DESC
+                ORDER BY c.submitted_at DESC NULLS FIRST, a.id DESC
                 LIMIT :limit
             """),
                 params,
@@ -253,6 +208,77 @@ def question_detail(
         }
         for r in rows
     ]
+
+    return answers, has_next, next_cursor, total
+
+
+# =========================================================
+# 0) INDEX /questions → redirige vers /search/questions
+#    (évite le 404 JSON)
+# =========================================================
+@router.api_route(
+    "/questions", methods=["GET", "HEAD"], response_class=HTMLResponse, name="questions_index"
+)
+def questions_index(request: Request):
+    url = request.url_for("search_questions")
+    return RedirectResponse(url.replace(query=request.url.query), status_code=308)
+
+
+# =========================================================
+# 1) DÉTAIL (canonique) /questions/{id:int}-{slug}  — GET + HEAD
+# =========================================================
+@router.api_route(
+    "/questions/{question_id:int}-{slug}",
+    methods=["GET", "HEAD"],
+    response_class=HTMLResponse,
+    name="question_detail",
+)
+def question_detail(
+    request: Request,
+    question_id: int,
+    slug: str,
+    q: str | None = Query(None, description="Filtre texte dans les réponses"),
+    page: int = Query(1, ge=1),  # legacy compat
+    cursor: str | None = Query(None),  # scroll infini
+    partial: bool = Query(False),  # rendu fragment (htmx)
+    db: Session = Depends(get_db),
+):
+    # HEAD rapide : valide existence + slug sans charger la page
+    if request.method == "HEAD":
+        row = (
+            db.execute(text("SELECT prompt FROM questions WHERE id = :qid"), {"qid": question_id})
+            .mappings()
+            .first()
+        )
+        if not row:
+            raise HTTPException(status_code=404, detail="Question introuvable")
+        canonical = slugify(row["prompt"] or f"question-{question_id}")
+        if slug != canonical:
+            url = request.url_for("question_detail", question_id=question_id, slug=canonical)
+            return RedirectResponse(url.replace(query=request.url.query), status_code=308)
+        return Response(status_code=200)
+
+    # --- Question
+    row = (
+        db.execute(
+            text("SELECT id, question_code, prompt, type FROM questions WHERE id = :qid"),
+            {"qid": question_id},
+        )
+        .mappings()
+        .first()
+    )
+    if not row:
+        raise HTTPException(status_code=404, detail="Question introuvable")
+
+    canonical_slug = slugify(row["prompt"] or f"question-{question_id}")
+    if slug != canonical_slug:
+        url = request.url_for("question_detail", question_id=question_id, slug=canonical_slug)
+        return RedirectResponse(url.replace(query=request.url.query), status_code=308)
+
+    q = (q or "").strip()
+    answers, has_next, next_cursor, total = _question_answers(
+        db, question_id, row["type"], q, cursor
+    )
 
     # Rendu partiel pour HTMX
     if partial:
@@ -326,11 +352,7 @@ def question_detail_legacy(
 
     canonical = slugify(row["prompt"] or f"question-{question_id}")
     url = request.url_for("question_detail", question_id=question_id, slug=canonical)
-    if q:
-        url += f"?q={q}" + (f"&page={page}" if page and page != 1 else "")
-    elif page and page != 1:
-        url += f"?page={page}"
-    return RedirectResponse(url, status_code=308)
+    return RedirectResponse(url.replace(query=request.url.query), status_code=308)
 
 
 # =========================================================
@@ -426,27 +448,31 @@ def question_answers_partial(
     request: Request,
     question_id: int,
     q: str | None = Query(None),
-    page: int = Query(1, ge=1),
+    page: int = Query(1, ge=1),  # legacy compatibility
+    cursor: str | None = Query(None),
     db: Session = Depends(get_db),
 ):
-    # Réutilise la vue principale pour rester DRY
-    resp = question_detail(request, question_id, slug=slugify("x"), q=q, page=page, db=db)
-    if isinstance(resp, RedirectResponse):
-        # si slug faux dans l’appel direct, on renvoie vide plutôt que rediriger
-        return templates.TemplateResponse(
-            request,
-            "partials/_answers_list.html",
-            {"request": request, "answers": [], "page": 1, "total_pages": 1, "q": q or ""},
+    row = (
+        db.execute(
+            text("SELECT id, prompt, type FROM questions WHERE id = :qid"), {"qid": question_id}
         )
-    ctx = dict(resp.context)
+        .mappings()
+        .first()
+    )
+    if not row:
+        raise HTTPException(status_code=404, detail="Question introuvable")
+    q = (q or "").strip()
+    answers, has_next, next_cursor, _ = _question_answers(db, question_id, row["type"], q, cursor)
     return templates.TemplateResponse(
         request,
-        "partials/_answers_list.html",
+        "partials/_question_answers_list.html",
         {
             "request": request,
-            "answers": ctx.get("answers", []),
-            "page": ctx.get("page", 1),
-            "total_pages": ctx.get("total_pages", 1),
-            "q": ctx.get("q", ""),
+            "answers": answers,
+            "has_next": has_next,
+            "next_cursor": next_cursor,
+            "q": q,
+            "question": {"id": question_id, "slug": slugify(row["prompt"])},
+            "on_question_page": True,
         },
     )
