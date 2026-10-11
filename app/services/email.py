@@ -1,6 +1,7 @@
 import logging
 
 from mailjet_rest import Client
+from starlette.concurrency import run_in_threadpool
 
 from app.config import settings
 
@@ -136,7 +137,7 @@ class EmailService:
         }
 
         try:
-            result = self.client.send.create(data=data)
+            result = await run_in_threadpool(self.client.send.create, data=data)
             if result.status_code == 200:
                 logger.info(f"Email sent successfully to {to_email}")
                 return True
