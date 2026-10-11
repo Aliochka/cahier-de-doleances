@@ -25,7 +25,7 @@ def get_current_user(session_token: Optional[str] = Cookie(None)) -> User:
 
 
 @router.post("/bookmarks/{page_type}/{page_id}")
-async def add_bookmark(page_type: str, page_id: int, user: User = Depends(get_current_user)):
+def add_bookmark(page_type: str, page_id: int, user: User = Depends(get_current_user)):
     """
     Ajoute un marque-page pour l'utilisateur connecté
     """
@@ -59,7 +59,7 @@ async def add_bookmark(page_type: str, page_id: int, user: User = Depends(get_cu
 
 
 @router.delete("/bookmarks/{page_type}/{page_id}")
-async def remove_bookmark(page_type: str, page_id: int, user: User = Depends(get_current_user)):
+def remove_bookmark(page_type: str, page_id: int, user: User = Depends(get_current_user)):
     """
     Supprime un marque-page pour l'utilisateur connecté
     """
@@ -90,7 +90,7 @@ async def remove_bookmark(page_type: str, page_id: int, user: User = Depends(get
 
 
 @router.get("/bookmarks")
-async def list_user_bookmarks(request: Request, user: User = Depends(get_current_user)):
+def list_user_bookmarks(request: Request, user: User = Depends(get_current_user)):
     """
     Affiche la page des marque-pages de l'utilisateur
     """
@@ -188,9 +188,7 @@ async def list_user_bookmarks(request: Request, user: User = Depends(get_current
 
 
 @router.get("/bookmarks/check/{page_type}/{page_id}")
-async def check_bookmark_status(
-    page_type: str, page_id: int, user: User = Depends(get_current_user)
-):
+def check_bookmark_status(page_type: str, page_id: int, user: User = Depends(get_current_user)):
     """
     Vérifie si une page est dans les marque-pages de l'utilisateur
     """

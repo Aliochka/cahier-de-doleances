@@ -74,7 +74,7 @@ async def send_magic_link(request: Request, email_data: EmailRequest):
 
 
 @router.get("/auth/verify/{token}")
-async def verify_magic_link(token: str, request: Request):
+def verify_magic_link(token: str, request: Request):
     """
     Vérifie un lien magique et connecte l'utilisateur
     """
@@ -151,7 +151,7 @@ async def verify_magic_link(token: str, request: Request):
 
 
 @router.post("/auth/logout")
-async def logout():
+def logout():
     """
     Déconnecte l'utilisateur en supprimant le cookie de session
     """
@@ -163,7 +163,7 @@ async def logout():
 
 
 @router.get("/auth/me")
-async def get_current_user_info(session_token: Optional[str] = Cookie(None)):
+def get_current_user_info(session_token: Optional[str] = Cookie(None)):
     """
     Retourne les informations de l'utilisateur connecté (pour les requêtes AJAX)
     """
@@ -192,7 +192,7 @@ async def get_current_user_info(session_token: Optional[str] = Cookie(None)):
 
 
 @router.post("/auth/complete-profile", response_model=ProfileUpdateResponse)
-async def complete_profile(
+def complete_profile(
     profile_data: ProfileUpdateRequest, session_token: Optional[str] = Cookie(None)
 ):
     """
@@ -489,7 +489,7 @@ async def complete_profile(
 
 
 @router.get("/auth/author-info")
-async def get_author_info(session_token: Optional[str] = Cookie(None)):
+def get_author_info(session_token: Optional[str] = Cookie(None)):
     """
     Retourne les informations author de l'utilisateur connecté
     """
