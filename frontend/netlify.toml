@@ -5,3 +5,11 @@ publish = "build/client"
 [build.environment]
 NODE_VERSION = "24.21.0"
 PNPM_VERSION = "12.11.2"
+
+# Fixed upstream only. Preserve paths, query strings, methods and backend headers.
+# Private/no-store and Set-Cookie policy remains the responsibility of FastAPI.
+[[redirects]]
+from = "/api/*"
+to = "https://api.cahierdedoleances.fr/api/:splat"
+status = 200
+force = true

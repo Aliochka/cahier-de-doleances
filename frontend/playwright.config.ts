@@ -9,6 +9,31 @@ export default defineConfig({
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: [
     {
+      command: "pnpm start:test",
+      url: "http://127.0.0.1:4177",
+      env: {
+        PORT: "4177",
+        HOST: "127.0.0.1",
+        API_BASE_URL: "http://127.0.0.1:1",
+      },
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command: "node tests/mock-api.mjs",
+      url: "http://127.0.0.1:4176/reset",
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command: "pnpm start:test",
+      url: "http://127.0.0.1:4175",
+      env: {
+        PORT: "4175",
+        HOST: "127.0.0.1",
+        API_BASE_URL: "http://127.0.0.1:4176",
+      },
+      reuseExistingServer: !process.env.CI,
+    },
+    {
       command: "pnpm start",
       url: "http://127.0.0.1:4173",
       env: { PORT: "4173", HOST: "127.0.0.1" },
