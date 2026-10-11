@@ -6,6 +6,7 @@ from sqlalchemy import delete, func, select
 from sqlalchemy.orm import joinedload
 
 from app.db import SessionLocal
+from app.helpers import public_author
 from app.models import Answer, Author, Bookmark, Contribution, Question, User
 from app.services.auth import auth_service
 from app.web import templates
@@ -150,7 +151,11 @@ async def list_user_bookmarks(request: Request, user: User = Depends(get_current
 
                             if contribution and contribution.author:
                                 answer.author_id = contribution.author.id
-                                answer.author_name = contribution.author.name
+                                answer.author_name = public_author(
+                                    contribution.author.id,
+                                    contribution.author.name,
+                                    contribution.author.is_anonymous,
+                                )["name"]
                                 answer.author_slug = None  # Pas de slug dans ce modèle
 
                         bookmark.content = answer
@@ -169,8 +174,10 @@ async def list_user_bookmarks(request: Request, user: User = Depends(get_current
                             .where(Contribution.author_id == author.id)
                         ).scalar()
 
-                        author.answers_count = answers_count or 0
-                        bookmark.content = author
+                        bookmark.content = {
+                            **public_author(author.id, author.name, author.is_anonymous),
+                            "answers_count": answers_count or 0,
+                        }
                         bookmarks_by_type[bookmark.page_type].append(bookmark)
 
         return templates.TemplateResponse(

@@ -9,7 +9,7 @@ from sqlalchemy import text
 
 from app.config import settings
 from app.db import SessionLocal
-from app.helpers import slugify
+from app.helpers import public_author, slugify
 
 router = APIRouter()
 
@@ -58,17 +58,17 @@ def _generate_sitemap_xml(base_url: str) -> str:
             urls.append((f"{base_url}/questions/{q['id']}-{slugify(q['prompt'])}", None))
         authors = db.execute(
             text("""
-            SELECT au.id, au.name, MAX(c.submitted_at) AS lastmod
+            SELECT au.id, au.name, au.is_anonymous, MAX(c.submitted_at) AS lastmod
             FROM authors au JOIN contributions c ON c.author_id=au.id
-            GROUP BY au.id,au.name ORDER BY lastmod DESC NULLS LAST,au.id DESC
+            GROUP BY au.id,au.name,au.is_anonymous ORDER BY lastmod DESC NULLS LAST,au.id DESC
             LIMIT :lim
         """),
             {"lim": SITEMAP_LIMIT_AUTHORS},
         ).mappings()
         for author in authors:
-            name = author["name"] or f"Auteur #{author['id']}"
+            public = public_author(author["id"], author["name"], author["is_anonymous"])
             urls.append(
-                (f"{base_url}/authors/{author['id']}-{slugify(name)}", _fmt_iso(author["lastmod"]))
+                (f"{base_url}/authors/{author['id']}-{public['slug']}", _fmt_iso(author["lastmod"]))
             )
         forms = db.execute(
             text("""

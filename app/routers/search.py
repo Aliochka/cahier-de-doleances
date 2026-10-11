@@ -16,6 +16,7 @@ from app.db import SessionLocal
 from app.helpers import (
     highlight_text_python,
     postprocess_excerpt,
+    public_author,
     slugify,  # type: ignore
 )
 from app.web import templates
@@ -118,6 +119,7 @@ def search_answers(
                             c.author_id         AS author_id,
                             c.submitted_at      AS submitted_at,
                             au.name             AS author_name,
+                            au.is_anonymous     AS author_is_anonymous,
                             LEFT(fm.text, :maxlen) AS answer_text
                         FROM fts_matches fm
                         JOIN questions q ON q.id = fm.question_id
@@ -173,7 +175,8 @@ def search_answers(
                         q.prompt        AS question_prompt,
                         ra.author_id    AS author_id,
                         ra.submitted_at AS submitted_at,
-                        au.name         AS author_name
+                        au.name         AS author_name,
+                        au.is_anonymous AS author_is_anonymous
                     FROM recent_answers ra
                     JOIN questions q ON q.id = ra.question_id
                     LEFT JOIN authors au ON au.id = ra.author_id
@@ -206,7 +209,9 @@ def search_answers(
                 {
                     "id": r["answer_id"],
                     "author_id": r["author_id"],
-                    "author_name": r["author_name"],
+                    "author_name": public_author(
+                        r["author_id"], r["author_name"], r["author_is_anonymous"]
+                    )["name"],
                     "question_id": r["question_id"],
                     "question_title": q_title,
                     "question_slug": slugify(q_title or f"question-{r['question_id']}"),

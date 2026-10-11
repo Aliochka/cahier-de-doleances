@@ -80,6 +80,21 @@ def slugify(value: str | None, maxlen: int = 60) -> str:
     return value or "contenu"
 
 
+def public_author(author_id: int | None, name: str | None, is_anonymous: bool | None) -> dict:
+    """Project an author for display without changing the stored identity.
+
+    Only an explicitly non-anonymous author may expose a stored name.
+    """
+    label = name if is_anonymous is False and name else None
+    label = label or (f"Auteur #{author_id}" if author_id is not None else "Auteur anonyme")
+    return {
+        "id": author_id,
+        "name": label,
+        "slug": slugify(label),
+        "is_anonymous": is_anonymous is not False,
+    }
+
+
 def clean_text_excerpt(text: str, max_chars: int = 300) -> str:
     """
     Génère un extrait propre de texte pour les métadonnées OG/Twitter

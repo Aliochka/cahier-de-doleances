@@ -1391,12 +1391,6 @@ a.btn:visited {
   flex: 1;
 }
 
-.author-controls {
-  display: flex;
-  gap: var(--space-half);
-  flex-wrap: wrap;
-}
-
 .anonymous-badge {
   background: var(--bg-alt);
   color: var(--muted);
@@ -1451,10 +1445,6 @@ a.btn:visited {
   .page-header-content {
     flex-direction: column;
     gap: var(--space-1);
-  }
-  
-  .author-controls {
-    align-self: stretch;
   }
   
   .btn {
