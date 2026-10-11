@@ -1,5 +1,6 @@
 packages:
   - .
+  - tools/openapi
 # Only the native tools needed for compilation may run dependency build scripts.
 allowBuilds:
   esbuild: true
