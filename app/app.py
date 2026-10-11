@@ -6,6 +6,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
+from sqlalchemy.exc import DBAPIError
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
@@ -34,6 +35,7 @@ from app.routers import (
     search,
     seo,
 )
+from app.search_errors import SearchTimeout
 from app.security import AccountSecurityMiddleware, private_response
 from app.web import templates
 
@@ -151,6 +153,52 @@ app.include_router(bookmarks.router)
 # -----------------------------------------------------------------------------
 # Exception handlers
 # -----------------------------------------------------------------------------
+def search_error_response(request: Request, *, timeout: bool):
+    from fastapi.responses import JSONResponse
+
+    status = 504 if timeout else 500
+    code = "search_timeout" if timeout else "search_failed"
+    message = (
+        "La recherche a dépassé son délai. Réessayez ou simplifiez votre recherche."
+        if timeout
+        else "La recherche a rencontré une erreur. Veuillez réessayer."
+    )
+    headers = {"Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow"}
+    if request.headers.get("hx-request") == "true" or request.query_params.get("partial") in {
+        "true",
+        "1",
+    }:
+        headers.update(
+            {
+                "X-Search-Error": code,
+                "HX-Retarget": "#search-error",
+                "HX-Reswap": "innerHTML",
+                "HX-Push-Url": "false",
+            }
+        )
+        return templates.TemplateResponse(
+            request, "errors/search.html", {"message": message}, status_code=status, headers=headers
+        )
+    accepts = request.headers.get("accept", "")
+    if "text/html" in accepts or "*/*" in accepts:
+        name = "errors/timeout.html" if timeout else "errors/500.html"
+        return templates.TemplateResponse(request, name, {}, status_code=status, headers=headers)
+    return JSONResponse({"detail": message, "code": code}, status_code=status, headers=headers)
+
+
+@app.exception_handler(SearchTimeout)
+async def search_timeout_handler(request: Request, exc: SearchTimeout):
+    return search_error_response(request, timeout=True)
+
+
+@app.exception_handler(DBAPIError)
+async def database_exception_handler(request: Request, exc: DBAPIError):
+    if request.url.path in {"/search/answers", "/search/questions"}:
+        log.error("Database search failed", exc_info=exc)
+        return search_error_response(request, timeout=False)
+    return await general_exception_handler(request, exc)
+
+
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
     accepts = request.headers.get("accept", "")

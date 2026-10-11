@@ -10,7 +10,6 @@ from typing import Any
 from fastapi import APIRouter, Query, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy import text
-from sqlalchemy.exc import DBAPIError
 
 from app.db import SessionLocal
 from app.helpers import (
@@ -19,6 +18,7 @@ from app.helpers import (
     public_author,
     slugify,  # type: ignore
 )
+from app.search_errors import handle_search_errors
 from app.web import templates
 
 router = APIRouter()
@@ -81,7 +81,7 @@ def search_answers(
     limit = PER_PAGE + 1
     cur = _dec_cursor(cursor)
 
-    with SessionLocal() as db:
+    with SessionLocal() as db, handle_search_errors(db):
         rows = []
         # --- Mode 1: FTS quand q >= 2
         if len(q) >= 2:
@@ -98,51 +98,43 @@ def search_answers(
             )  # 5 secondes MAX (au lieu de 30s+ par défaut)
             db.execute(text("SET LOCAL enable_seqscan = false"))
 
-            try:
-                # Requête FTS optimisée avec limite 1789 comme l'original
-                rows = (
-                    db.execute(
-                        text(
-                            f"""
-                        WITH fts_matches AS (
-                            SELECT a.id, a.question_id, a.contribution_id, a.text
-                            FROM answers a
-                            WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
-                              AND char_length(btrim(a.text)) >= 60
-                            ORDER BY a.id DESC
-                            LIMIT 1789
-                        )
-                        SELECT
-                            fm.id               AS answer_id,
-                            fm.question_id      AS question_id,
-                            q.prompt            AS question_prompt,
-                            c.author_id         AS author_id,
-                            c.submitted_at      AS submitted_at,
-                            au.name             AS author_name,
-                            au.is_anonymous     AS author_is_anonymous,
-                            LEFT(fm.text, :maxlen) AS answer_text
-                        FROM fts_matches fm
-                        JOIN questions q ON q.id = fm.question_id
-                        JOIN contributions c ON c.id = fm.contribution_id
-                        LEFT JOIN authors au ON au.id = c.author_id
-                        WHERE q.type NOT IN ('single_choice', 'multi_choice')
-                          {cursor_sql}
-                        ORDER BY fm.id DESC
-                        LIMIT :limit
-                        """
-                        ),
-                        params,
+            # Requête FTS optimisée avec limite 1789 comme l'original
+            rows = (
+                db.execute(
+                    text(
+                        f"""
+                    WITH fts_matches AS (
+                        SELECT a.id, a.question_id, a.contribution_id, a.text
+                        FROM answers a
+                        WHERE a.text_tsv @@ websearch_to_tsquery('fr_unaccent', :q)
+                          AND char_length(btrim(a.text)) >= 60
+                        ORDER BY a.id DESC
+                        LIMIT 1789
                     )
-                    .mappings()
-                    .all()
+                    SELECT
+                        fm.id               AS answer_id,
+                        fm.question_id      AS question_id,
+                        q.prompt            AS question_prompt,
+                        c.author_id         AS author_id,
+                        c.submitted_at      AS submitted_at,
+                        au.name             AS author_name,
+                        au.is_anonymous     AS author_is_anonymous,
+                        LEFT(fm.text, :maxlen) AS answer_text
+                    FROM fts_matches fm
+                    JOIN questions q ON q.id = fm.question_id
+                    JOIN contributions c ON c.id = fm.contribution_id
+                    LEFT JOIN authors au ON au.id = c.author_id
+                    WHERE q.type NOT IN ('single_choice', 'multi_choice')
+                      {cursor_sql}
+                    ORDER BY fm.id DESC
+                    LIMIT :limit
+                    """
+                    ),
+                    params,
                 )
-
-            except DBAPIError as e:
-                db.rollback()
-                if getattr(e.orig, "pgcode", None) != "57014":
-                    raise
-                # Si timeout, fallback sur résultats vides
-                rows = []
+                .mappings()
+                .all()
+            )
 
         # --- Mode 2: timeline récente (q court ou vide)
         else:
@@ -284,7 +276,7 @@ def search_questions(
 
     limit = PER_PAGE + 1  # +1 pour détecter la page suivante
 
-    with SessionLocal() as db:
+    with SessionLocal() as db, handle_search_errors(db):
         # -------------------------------------------------
         # SECTION "FORMULAIRES"
         # -------------------------------------------------
