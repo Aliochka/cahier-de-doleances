@@ -19,16 +19,21 @@
     "check:fix": "biome check --write .",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "test:build": "node --import ./tests/no-network.mjs --test tests/build.test.mjs"
+    "test:build": "node --import ./tests/no-network.mjs --test tests/build.test.mjs",
+    "contract:export": "python ../scripts/export_openapi.py",
+    "contract:types": "pnpm --filter @cahier/openapi-generator exec node --import ../../tests/no-network.mjs ./node_modules/openapi-typescript/bin/cli.js ../../contracts/openapi.json -o ../../contracts/api.generated.ts",
+    "contract:generate": "pnpm contract:export && pnpm contract:types",
+    "contract:check": "python ../scripts/export_openapi.py --check && pnpm contract:types:check",
+    "contract:types:check": "pnpm --filter @cahier/openapi-generator exec node --import ../../tests/no-network.mjs ./node_modules/openapi-typescript/bin/cli.js ../../contracts/openapi.json -o ../../contracts/api.generated.ts --check"
   },
   "dependencies": {
     "@ark-ui/react": "5.39.3",
     "@react-router/node": "8.4.0",
     "@react-router/serve": "8.4.0",
+    "isbot": "5.2.2",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "react-router": "8.4.0",
-    "isbot": "5.2.2"
+    "react-router": "8.4.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
