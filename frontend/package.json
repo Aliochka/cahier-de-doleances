@@ -23,7 +23,7 @@
     "contract:export": "python ../scripts/export_openapi.py",
     "contract:types": "pnpm --filter @cahier/openapi-generator exec node --import ../../tests/no-network.mjs ./node_modules/openapi-typescript/bin/cli.js ../../contracts/openapi.json -o ../../contracts/api.generated.ts",
     "contract:generate": "pnpm contract:export && pnpm contract:types",
-    "contract:check": "python ../scripts/export_openapi.py --check && pnpm contract:types:check",
+    "contract:check": "python ../scripts/export_openapi.py --check && pnpm contract:types:check && git diff --exit-code HEAD -- contracts/openapi.json contracts/api.generated.ts",
     "contract:types:check": "pnpm --filter @cahier/openapi-generator exec node --import ../../tests/no-network.mjs ./node_modules/openapi-typescript/bin/cli.js ../../contracts/openapi.json -o ../../contracts/api.generated.ts --check"
   },
   "dependencies": {

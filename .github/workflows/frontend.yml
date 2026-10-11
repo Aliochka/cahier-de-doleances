@@ -60,6 +60,9 @@ jobs:
       - name: Biome
         if: steps.changes.outputs.frontend == 'true'
         run: pnpm check
+      - name: Check generated types against the committed schema
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm contract:types:check
       - name: TypeScript and route types
         if: steps.changes.outputs.frontend == 'true'
         run: pnpm typecheck
