@@ -114,7 +114,7 @@ test("navigation interne, retour arrière, clavier et hydratation", async ({
     "Quel mode de consultation privilégier ?",
     "Quels sujets souhaitez-vous aborder ?",
   ]);
-  await expect(questions.getByRole("link")).toHaveCount(0);
+  await expect(questions.getByRole("link")).toHaveCount(3);
   await page.goBack();
   await expect(
     page.getByRole("heading", { name: "Enquêtes", exact: true }),

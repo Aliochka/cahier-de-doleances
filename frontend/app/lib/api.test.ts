@@ -172,3 +172,53 @@ describe("configuration serveur", () => {
     );
   });
 });
+
+it("lit les nouvelles opérations avec leurs types générés et les IDs exacts", async () => {
+  const { question, answers, stats } = await import(
+    "../features/questions/fixtures.test-support"
+  );
+  const transport = vi
+    .fn<typeof fetch>()
+    .mockResolvedValueOnce(Response.json(question))
+    .mockResolvedValueOnce(Response.json(answers))
+    .mockResolvedValueOnce(Response.json(stats));
+  const api = createPublicApi("", transport);
+  expect(await api.getQuestion(question.id)).toEqual({
+    ok: true,
+    data: question,
+  });
+  expect(
+    await api.getQuestionAnswers(question.id, {
+      cursor: "opaque+/=",
+      page_size: 20,
+    }),
+  ).toEqual({ ok: true, data: answers });
+  expect(await api.getQuestionStats(question.id)).toEqual({
+    ok: true,
+    data: stats,
+  });
+  expect(transport).toHaveBeenNthCalledWith(
+    2,
+    `/api/v1/questions/${question.id}/answers?cursor=opaque%2B%2F%3D&page_size=20`,
+    expect.objectContaining({ credentials: "omit", cache: "no-store" }),
+  );
+});
+it("rejette des réponses incompatibles sans convertir les IDs numériques", async () => {
+  const { question, answers, stats } = await import(
+    "../features/questions/fixtures.test-support"
+  );
+  const transport = vi
+    .fn<typeof fetch>()
+    .mockResolvedValueOnce(Response.json({ ...question, id: 9007199254741022 }))
+    .mockResolvedValueOnce(Response.json({ ...answers, next_cursor: null }))
+    .mockResolvedValueOnce(
+      Response.json({ ...stats, percentage_denominator: "persons" }),
+    );
+  const api = createPublicApi("", transport);
+  for (const result of [
+    await api.getQuestion(question.id),
+    await api.getQuestionAnswers(question.id),
+    await api.getQuestionStats(question.id),
+  ])
+    expect(result).toEqual({ ok: false, kind: "invalid_response" });
+});

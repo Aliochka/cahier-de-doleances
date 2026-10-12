@@ -8,6 +8,7 @@ export default [
   index("routes/home.tsx"),
   route("enquetes", "routes/surveys.tsx"),
   route("forms/:formId", "routes/form.tsx"),
+  route("questions/:questionKey", "routes/question.tsx"),
   ...(process.env.FRONTEND_TEST_ROUTES === "1"
     ? [route("_test/api", "../tests/routes/api.tsx")]
     : []),

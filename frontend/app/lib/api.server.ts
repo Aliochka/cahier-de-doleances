@@ -1,8 +1,12 @@
 import {
+  type AnswerPage,
+  type AnswersQuery,
   type ApiResult,
   createPublicApi,
   type FormDetail,
   type Forms,
+  type QuestionDetail,
+  type QuestionStatistics,
   type RequestOptions,
 } from "./api";
 
@@ -42,5 +46,37 @@ export function getForm(
   const origin = backendOrigin();
   return origin
     ? createPublicApi(origin).getForm(id, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+
+export function getQuestion(
+  id: string,
+  options: RequestOptions = {},
+): Promise<ApiResult<QuestionDetail>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getQuestion(id, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+export function getQuestionAnswers(
+  id: string,
+  query: AnswersQuery = {},
+  options: RequestOptions = {},
+): Promise<ApiResult<AnswerPage>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getQuestionAnswers(id, query, options)
+    : Promise.resolve({
+        ok: false,
+        kind: "configuration",
+      });
+}
+export function getQuestionStats(
+  id: string,
+  options: RequestOptions = {},
+): Promise<ApiResult<QuestionStatistics>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getQuestionStats(id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
