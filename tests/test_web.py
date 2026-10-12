@@ -10,6 +10,21 @@ from sqlalchemy import text
 
 
 @pytest.mark.integration
+def test_optional_contribution_metric_preserves_historical_choice_statistics(web_data):
+    from app.choice_stats import choice_statistics
+
+    with web_data["factory"]() as db:
+        historical = choice_statistics(db, web_data["multi"])
+        extended = choice_statistics(db, web_data["multi"], include_contributions=True)
+    assert historical["answered_contributions_count"] is None
+    assert extended["answered_contributions_count"] == 2
+    assert extended["total_answers"] == historical["total_answers"] == 2
+    assert extended["total_selections"] == historical["total_selections"] == 3
+    assert extended["stats"] == historical["stats"]
+    assert extended["other_text_answers_count"] == 0
+
+
+@pytest.mark.integration
 @pytest.mark.parametrize("query", ["", "culture"])
 def test_search_pagination_has_exactly_one_card_per_answer(client, web_data, query):
     first = client.get("/search/answers", params={"q": query})

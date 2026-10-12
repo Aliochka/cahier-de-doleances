@@ -49,7 +49,7 @@ def question_client(monkeypatch):
     class Session:
         def execute(self, query, params):
             sql = str(query)
-            if "FROM questions WHERE" in sql:
+            if "FROM questions WHERE" in sql or "FROM questions q JOIN forms" in sql:
                 if params["qid"] != 7:
                     return Result(None)
                 return Result({"id": 7, "prompt": "Quelle culture ?", "type": "text"})

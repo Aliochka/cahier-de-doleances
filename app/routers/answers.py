@@ -3,10 +3,10 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import HTMLResponse
-from sqlalchemy import text
 
 from app.db import SessionLocal
 from app.helpers import public_author
+from app.services.answers import get_answer
 from app.web import templates
 
 # slugify helper (fallback si indisponible)
@@ -36,29 +36,7 @@ router = APIRouter()
 @router.get("/answers/{answer_id}", response_class=HTMLResponse, name="answer_detail")
 def answer_detail(request: Request, answer_id: int):
     with SessionLocal() as db:
-        row = (
-            db.execute(
-                text("""
-            SELECT
-                a.id            AS answer_id,
-                a.text          AS answer_text,
-                q.id            AS question_id,
-                q.prompt        AS question_prompt,
-                c.author_id     AS author_id,
-                au.name         AS author_name,
-                au.is_anonymous AS author_is_anonymous,
-                c.submitted_at  AS submitted_at
-            FROM answers a
-            JOIN contributions c ON c.id = a.contribution_id
-            LEFT JOIN authors au  ON au.id = c.author_id
-            JOIN questions q      ON q.id = a.question_id
-            WHERE a.id = :aid
-        """),
-                {"aid": answer_id},
-            )
-            .mappings()
-            .first()
-        )
+        row = get_answer(db, answer_id)
 
     if not row:
         raise HTTPException(status_code=404, detail="Réponse introuvable")
