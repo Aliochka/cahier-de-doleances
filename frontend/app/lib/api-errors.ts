@@ -36,3 +36,18 @@ export function requireApiData<T>(result: ApiResult<T>): T {
     { status: failureStatus(result), headers: ERROR_HEADERS },
   );
 }
+
+export function apiPageHeaders({
+  errorHeaders,
+  loaderHeaders,
+}: {
+  errorHeaders?: Headers;
+  loaderHeaders: Headers;
+}) {
+  const headers = new Headers(errorHeaders ?? loaderHeaders);
+  if (errorHeaders) {
+    for (const [name, value] of Object.entries(ERROR_HEADERS))
+      headers.set(name, value);
+  }
+  return headers;
+}

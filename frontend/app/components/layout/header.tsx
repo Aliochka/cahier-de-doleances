@@ -1,8 +1,10 @@
-import { NavLink } from "react-router";
+import { Link, NavLink, useMatch } from "react-router";
 import { css } from "../../../styled-system/css";
 import { PageContainer } from "./page-container";
 
 export function Header() {
+  const surveysMatch = useMatch("/enquetes");
+  const formMatch = useMatch("/forms/:formId");
   return (
     <header
       className={css({
@@ -47,21 +49,35 @@ export function Header() {
               fontSize: "navigation",
             })}
           >
-            {["Recherche", "Enquêtes"].map((label) => (
-              <li key={label}>
-                <span
-                  aria-disabled="true"
-                  className={css({
-                    color: "muted",
-                    display: "inline-flex",
-                    flexDirection: "column",
-                  })}
-                >
-                  {label}
-                  <span className={css({ fontSize: "caption" })}>À venir</span>
-                </span>
-              </li>
-            ))}
+            <li>
+              <span
+                aria-disabled="true"
+                className={css({
+                  color: "muted",
+                  display: "inline-flex",
+                  flexDirection: "column",
+                })}
+              >
+                Recherche
+                <span className={css({ fontSize: "caption" })}>À venir</span>
+              </span>
+            </li>
+            <li>
+              <Link
+                to="/enquetes"
+                aria-current={
+                  surveysMatch ? "page" : formMatch ? "location" : undefined
+                }
+                className={css({
+                  display: "inline-flex",
+                  alignItems: "center",
+                  minHeight: "control",
+                  "&[aria-current]": { fontWeight: "bold" },
+                })}
+              >
+                Enquêtes
+              </Link>
+            </li>
           </ul>
         </nav>
       </PageContainer>
