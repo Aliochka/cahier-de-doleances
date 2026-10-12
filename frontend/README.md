@@ -1,7 +1,8 @@
 # Frontend en développement
 
-Ce socle ne remplace pas l'interface Jinja/HTMX en production. Il ne contient
-aucun client FastAPI, proxy API, compte utilisateur ni accès PostgreSQL.
+Ce frontend en développement ne remplace pas l’interface Jinja/HTMX en production.
+Il consulte l’API publique FastAPI ; les comptes et marque-pages restent à migrer.
+Il ne se connecte jamais directement à PostgreSQL.
 
 ## Installation et commandes
 
@@ -364,8 +365,8 @@ et l’ordre retourné par l’API est conservé sans tri. Les numéros affiché
 liste indiquent le rang de présentation ; une position historique absente ne
 supprime pas la question. Les types connus sont présentés en français, sans
 modifier la donnée ; un type inconnu reste affichable sans libellé inventé.
-L’API ne fournit pas de description de formulaire. Les questions sont non
-interactives jusqu’à la migration de leurs pages (FRONT-006).
+L’API ne fournit pas de description de formulaire. Depuis FRONT-006A, les questions
+sont des liens vers leurs pages React, sans passage par Jinja.
 
 Le HTML SSR contient titres et questions, avec titre, description et canonical
 sur `https://cahierdedoleances.fr`. Seul l’accueil est pré-rendu ; le build n’appelle
@@ -386,3 +387,79 @@ interne et le retour arrière, le clavier, le réessai, l’attente prolongée, 
 sans JavaScript et le responsive à 320 px/zoom 200 %. L’API de test est synthétique
 et limitée au loopback. Cela ne remplace pas une recette RGAA complète ni la
 validation ultérieure du SSR et du cache en prévisualisation Netlify.
+
+
+## Questions, réponses et statistiques (FRONT-006A)
+
+Les URL historiques `/questions/{id}-{slug}` sont reprises par la route
+`questions/:questionKey` : React Router accepte un paramètre par segment, puis
+le loader extrait le préfixe décimal sans conversion en nombre. L’API fournit
+le slug officiel ; un slug ancien ou une URL sans slug redirige en **308**,
+avec paramètres conservés. Le loader utilise son argument **`url` normalisé**,
+pas `request.url` qui conserve le suffixe interne `.data` durant les navigations.
+
+`getQuestion`, `getQuestionAnswers` et `getQuestionStats` réutilisent le transport
+public de FRONT-003, les types OpenAPI et `API_BASE_URL` côté serveur. Chaque
+chargement lit le détail, puis uniquement les réponses **ou** les statistiques.
+Les appels omettent les cookies, propagent l’annulation et gardent la limite
+existante de 20 secondes par appel. Aucun accès API n’a lieu pendant le build.
+
+Les questions ouvertes utilisent des liens **« Voir les réponses suivantes »**
+avec `?cursor=…`, à 20 réponses par lot. Le curseur reste opaque, encodé par
+`URLSearchParams`. Les lots successifs fonctionnent sans JavaScript, avec retour
+au premier lot et historique du navigateur ; pas de numéros ni défilement infini.
+Après une erreur de pagination côté client, le dernier lot de cette question
+reste visible avec une indication explicite. Un accès direct à un lot en erreur
+ne fabrique pas de réponses et propose un réessai, aussi utilisable sans JavaScript.
+Les textes sont échappés, leurs sauts de ligne conservés. Les dates affichent le
+jour calendaire fourni par l’API, sans décalage selon le fuseau du navigateur
+(les dates historiques PostgreSQL sont sans fuseau). Les textes tronqués sont
+signalés ; aucun lien vers les pages Auteur, Réponse ou Contribution encore absentes.
+
+Les choix affichent toutes les métriques définies dans `docs/api-questions.md` et
+un **tableau HTML complet dès le SSR**, dans l’ordre API. Les pourcentages fournis
+ne sont pas recalculés ni renormalisés : dénominateur `total_answers`, et somme
+pouvant dépasser 100 % pour les choix multiples. Les contributions distinctes
+ne sont pas présentées comme des personnes.
+
+**Recharts 3.10.1** fournit les barres horizontales, axes et infobulles. Il accepte
+React 19 selon ses peer dependencies. Le composant `stats-chart.tsx` est importé
+à la demande après hydratation, dans un chunk distinct (~108 Ko gzip au build
+initial de cette tâche) : il n’est pas nécessaire aux pages Accueil ou Enquêtes.
+Aucun accès aux dimensions du navigateur au SSR. Une hauteur est réservée pour
+limiter les déplacements ; les numéros des barres renvoient aux libellés complets
+du tableau et des infobulles. Animations désactivées, couleurs Panda, navigation
+clavier Recharts et alternative tabulaire permanente. Les fixtures de test sont
+exclues de l’extraction CSS Panda.
+
+Les pages initiales fonctionnelles sont indexables et ont titre, description et
+canonical. Chaque lot à curseur a une canonical contenant **son propre curseur**
+et **`noindex, follow`**, pour éviter d’indexer les pages de pagination. Les autres
+paramètres ne figurent pas dans la canonical ; aucun filtre de recherche n’est
+implémenté ici. Les erreurs gardent leur statut réel (404, 503, 504, etc.),
+`noindex, nofollow` et `private, no-store`. Une panne des statistiques ou réponses
+conserve le contexte de la question et renvoie le statut adapté, sans maintenance
+globale. Les pages statiques restent disponibles.
+
+Pour une démonstration locale sans PostgreSQL ni Wallace, dans deux terminaux :
+
+```sh
+# Depuis frontend/
+node tests/mock-api.mjs
+```
+
+```sh
+# Depuis frontend/, dans l’autre terminal
+API_BASE_URL=http://127.0.0.1:4176 pnpm dev
+```
+
+Ouvrir `/enquetes`, puis un formulaire et une question. Cette API contient
+uniquement des données fictives et sert maintenant questions, lots et statistiques.
+Pour l’API locale réelle : `API_BASE_URL=http://127.0.0.1:8000 pnpm dev`.
+Les commandes de vérification restent `pnpm check`, `pnpm typecheck`, `pnpm test`,
+`pnpm build:offline`, `pnpm test:build`, `pnpm contract:check` et `pnpm test:e2e`.
+Les nouveaux tests navigateur vérifient les statuts HTTP, les slugs, la pagination
+sans JavaScript, les erreurs partielles, le graphique au clavier, l’hydratation,
+le mobile et le zoom 200 %. Une recette RGAA avec lecteurs d’écran réels reste
+nécessaire avant production. Ni FRONT-006B ni les dashboards FRONT-005B ne sont
+implémentés ici.
