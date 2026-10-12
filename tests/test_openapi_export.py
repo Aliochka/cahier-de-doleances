@@ -40,7 +40,14 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
     from fastapi.openapi.models import OpenAPI
 
     OpenAPI.model_validate(schema)
-    assert set(schema["paths"]) == {"/api/v1/forms", "/api/v1/forms/{form_id}"}
+    assert set(schema["paths"]) == {
+        "/api/v1/forms",
+        "/api/v1/forms/{form_id}",
+        "/api/v1/questions/{question_id}",
+        "/api/v1/questions/{question_id}/answers",
+        "/api/v1/questions/{question_id}/stats",
+        "/api/v1/answers/{answer_id}",
+    }
     operations = [path["get"]["operationId"] for path in schema["paths"].values()]
     assert len(set(operations)) == len(operations)
     models = schema["components"]["schemas"]
@@ -51,10 +58,33 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
         "ApiError",
         "HTTPValidationError",
         "ValidationError",
+        "QuestionForm",
+        "QuestionDetail",
+        "PublicAuthor",
+        "PublicAnswer",
+        "AnswerPage",
+        "AnswerDetail",
+        "ChoiceCategory",
+        "QuestionStatistics",
     }
     for model in ("FormSummary", "FormDetail", "FormQuestion"):
         assert models[model]["properties"]["id"]["type"] == "string"
     assert models["FormQuestion"]["properties"]["form_id"]["type"] == "string"
+    for model in ("QuestionDetail", "PublicAnswer", "AnswerDetail", "PublicAuthor", "QuestionForm"):
+        assert models[model]["properties"]["id"]["type"] == "string"
+    for path, item in schema["paths"].items():
+        if "questions/{question_id}" in path or "answers/{answer_id}" in path:
+            parameter = next(p for p in item["get"]["parameters"] if p["in"] == "path")
+            assert parameter["schema"]["type"] == "string"
+            assert {"200", "404", "422", "408", "500", "503", "504"} <= set(
+                item["get"]["responses"]
+            )
+    assert "400" in schema["paths"]["/api/v1/questions/{question_id}/stats"]["get"]["responses"]
+    assert (
+        models["QuestionStatistics"]["properties"]["percentage_denominator"]["const"]
+        == "total_answers"
+    )
+
     assert {"200", "404", "422", "408", "500", "503"} <= set(
         schema["paths"]["/api/v1/forms/{form_id}"]["get"]["responses"]
     )

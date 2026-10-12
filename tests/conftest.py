@@ -41,6 +41,7 @@ def web_data(test_engine, monkeypatch):
             "app.routers.search",
             "app.routers.forms",
             "app.routers.api_forms",
+            "app.routers.api_questions",
             "app.routers.questions",
             "app.routers.authors",
             "app.routers.answers",
