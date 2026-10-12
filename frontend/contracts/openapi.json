@@ -121,6 +121,50 @@
         "title": "AnswerPage",
         "type": "object"
       },
+      "AnswerSearchPage": {
+        "properties": {
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SearchAnswer"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Curseur opaque ID décroissant, à réutiliser uniquement avec le même terme.",
+            "title": "Next Cursor"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "q": {
+            "title": "Q",
+            "type": "string"
+          }
+        },
+        "required": [
+          "q",
+          "items",
+          "page_size",
+          "has_next",
+          "next_cursor"
+        ],
+        "title": "AnswerSearchPage",
+        "type": "object"
+      },
       "ApiError": {
         "properties": {
           "detail": {
@@ -214,6 +258,192 @@
           "next_after_id"
         ],
         "title": "AuthorFormsPage",
+        "type": "object"
+      },
+      "CatalogForm": {
+        "properties": {
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "form",
+            "default": "form",
+            "title": "Kind",
+            "type": "string"
+          },
+          "name": {
+            "description": "Nom public du formulaire historique.",
+            "title": "Name",
+            "type": "string"
+          },
+          "questions_count": {
+            "description": "Nombre de questions, avec ou sans réponses.",
+            "minimum": 0.0,
+            "title": "Questions Count",
+            "type": "integer"
+          },
+          "url": {
+            "description": "Chemin relatif de la page HTML historique.",
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "questions_count",
+          "url"
+        ],
+        "title": "CatalogForm",
+        "type": "object"
+      },
+      "CatalogQuestion": {
+        "properties": {
+          "answers_count": {
+            "description": "Compteur historique de question, sans comptage des résultats.",
+            "minimum": 0.0,
+            "title": "Answers Count",
+            "type": "integer"
+          },
+          "form": {
+            "$ref": "#/components/schemas/QuestionForm"
+          },
+          "form_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Form Id",
+            "type": "string"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "question",
+            "default": "question",
+            "title": "Kind",
+            "type": "string"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Ordre déclaré dans le questionnaire ; peut être absent.",
+            "title": "Position"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "slug": {
+            "description": "Slug construit avec le helper des routes HTML.",
+            "title": "Slug",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.",
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "description": "Chemin relatif vers la question historique.",
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "form_id",
+          "prompt",
+          "type",
+          "position",
+          "slug",
+          "url",
+          "form",
+          "answers_count"
+        ],
+        "title": "CatalogQuestion",
+        "type": "object"
+      },
+      "CatalogSearchPage": {
+        "properties": {
+          "forms": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogForm"
+            },
+            "title": "Forms",
+            "type": "array"
+          },
+          "has_next_forms": {
+            "title": "Has Next Forms",
+            "type": "boolean"
+          },
+          "has_next_questions": {
+            "title": "Has Next Questions",
+            "type": "boolean"
+          },
+          "next_cursor_forms": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Curseur opaque score/ID de la section formulaires.",
+            "title": "Next Cursor Forms"
+          },
+          "next_cursor_questions": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Curseur opaque score/ID de la section questions.",
+            "title": "Next Cursor Questions"
+          },
+          "page_size": {
+            "description": "Limite par section, pas un total combiné.",
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "q": {
+            "title": "Q",
+            "type": "string"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogQuestion"
+            },
+            "title": "Questions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "q",
+          "forms",
+          "questions",
+          "page_size",
+          "has_next_forms",
+          "has_next_questions",
+          "next_cursor_forms",
+          "next_cursor_questions"
+        ],
+        "title": "CatalogSearchPage",
         "type": "object"
       },
       "ChoiceCategory": {
@@ -865,6 +1095,77 @@
           "categories"
         ],
         "title": "QuestionStatistics",
+        "type": "object"
+      },
+      "SearchAnswer": {
+        "properties": {
+          "author": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PublicAuthor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "contribution_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Contribution Id",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/components/schemas/QuestionForm"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_truncated": {
+            "title": "Is Truncated",
+            "type": "boolean"
+          },
+          "question": {
+            "$ref": "#/components/schemas/FormQuestion"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          },
+          "text": {
+            "description": "Préfixe brut fidèle, 1 000 caractères maximum, sans HTML ajouté.",
+            "title": "Text",
+            "type": "string"
+          },
+          "url": {
+            "description": "Page React de contribution par ID, avec ancre answer-{id}.",
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "contribution_id",
+          "text",
+          "is_truncated",
+          "submitted_at",
+          "author",
+          "question",
+          "form",
+          "url"
+        ],
+        "title": "SearchAnswer",
         "type": "object"
       },
       "SelectedOption": {
@@ -1967,6 +2268,284 @@
         "summary": "Statistiques des choix, sans paramètres graphiques",
         "tags": [
           "Public questions and answers"
+        ]
+      }
+    },
+    "/api/v1/search/answers": {
+      "get": {
+        "operationId": "search_public_answers",
+        "parameters": [
+          {
+            "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
+              "maxLength": 512,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 1024,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerSearchPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Recherche plein texte des réponses, ordre historique ID décroissant",
+        "tags": [
+          "Public search"
+        ]
+      }
+    },
+    "/api/v1/search/catalog": {
+      "get": {
+        "operationId": "search_public_catalog",
+        "parameters": [
+          {
+            "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
+              "maxLength": 512,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
+            "in": "query",
+            "name": "cursor_forms",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 1024,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
+              "title": "Cursor Forms"
+            }
+          },
+          {
+            "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
+            "in": "query",
+            "name": "cursor_questions",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 1024,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
+              "title": "Cursor Questions"
+            }
+          },
+          {
+            "description": "Omettre pour les deux sections ; une section limite la recherche et le SQL à celle-ci.",
+            "in": "query",
+            "name": "section",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "forms",
+                    "questions"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Omettre pour les deux sections ; une section limite la recherche et le SQL à celle-ci.",
+              "title": "Section"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogSearchPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Questions et formulaires, sections indépendantes classées par ts_rank puis ID",
+        "tags": [
+          "Public search"
         ]
       }
     }

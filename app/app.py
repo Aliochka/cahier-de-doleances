@@ -28,6 +28,7 @@ from app.routers import (
     api_contributions,
     api_forms,
     api_questions,
+    api_search,
     auth,
     authors,
     bookmarks,
@@ -150,6 +151,7 @@ app.include_router(answers.router)
 app.include_router(forms.router)
 app.include_router(api_forms.router)
 app.include_router(api_questions.router)
+app.include_router(api_search.router)
 app.include_router(api_contributions.router)
 app.include_router(seo.router)
 app.include_router(auth.router)
