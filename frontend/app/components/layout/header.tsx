@@ -50,17 +50,17 @@ export function Header() {
             })}
           >
             <li>
-              <span
-                aria-disabled="true"
+              <NavLink
+                to="/recherche"
                 className={css({
-                  color: "muted",
                   display: "inline-flex",
-                  flexDirection: "column",
+                  alignItems: "center",
+                  minHeight: "control",
+                  "&[aria-current]": { fontWeight: "bold" },
                 })}
               >
                 Recherche
-                <span className={css({ fontSize: "caption" })}>À venir</span>
-              </span>
+              </NavLink>
             </li>
             <li>
               <Link

@@ -41,6 +41,14 @@ export type ContributionDetail = components["schemas"]["ContributionDetail"];
 export type AuthorFormsQuery = NonNullable<
   operations["list_public_author_forms"]["parameters"]["query"]
 >;
+export type AnswerSearchPage = components["schemas"]["AnswerSearchPage"];
+export type CatalogSearchPage = components["schemas"]["CatalogSearchPage"];
+export type AnswerSearchQuery = NonNullable<
+  operations["search_public_answers"]["parameters"]["query"]
+>;
+export type CatalogSearchQuery = NonNullable<
+  operations["search_public_catalog"]["parameters"]["query"]
+>;
 type FormSummary = components["schemas"]["FormSummary"];
 
 export function httpFailure(status: number): ApiFailure {
@@ -274,6 +282,74 @@ function statistics(value: unknown): value is QuestionStatistics {
   );
 }
 
+function pageSize(value: unknown): boolean {
+  return (
+    typeof value === "number" &&
+    Number.isInteger(value) &&
+    value >= 1 &&
+    value <= 100
+  );
+}
+function continuation(hasNext: unknown, cursor: unknown): boolean {
+  return (
+    typeof hasNext === "boolean" &&
+    (cursor === null || typeof cursor === "string") &&
+    (!hasNext ||
+      (typeof cursor === "string" &&
+        cursor.length > 0 &&
+        cursor.length <= 1024))
+  );
+}
+function answerSearch(value: unknown): value is AnswerSearchPage {
+  return (
+    record(value) &&
+    typeof value.q === "string" &&
+    pageSize(value.page_size) &&
+    continuation(value.has_next, value.next_cursor) &&
+    Array.isArray(value.items) &&
+    value.items.every(
+      (item: unknown) =>
+        record(item) &&
+        publicId(item.id) &&
+        publicId(item.contribution_id) &&
+        typeof item.text === "string" &&
+        typeof item.is_truncated === "boolean" &&
+        date(item.submitted_at) &&
+        (item.author === null || author(item.author)) &&
+        formQuestion(item.question) &&
+        formContext(item.form) &&
+        item.question.form_id === item.form.id &&
+        item.url ===
+          `/forms/${item.form.id}/contributions/${item.contribution_id}#answer-${item.id}`,
+    )
+  );
+}
+function catalogSearch(value: unknown): value is CatalogSearchPage {
+  return (
+    record(value) &&
+    typeof value.q === "string" &&
+    pageSize(value.page_size) &&
+    continuation(value.has_next_forms, value.next_cursor_forms) &&
+    continuation(value.has_next_questions, value.next_cursor_questions) &&
+    Array.isArray(value.forms) &&
+    value.forms.every(
+      (f: unknown) => record(f) && f.kind === "form" && summary(f),
+    ) &&
+    Array.isArray(value.questions) &&
+    value.questions.every(
+      (q: unknown) =>
+        record(q) &&
+        q.kind === "question" &&
+        formContext(q.form) &&
+        q.form_id === q.form.id &&
+        typeof q.answers_count === "number" &&
+        Number.isInteger(q.answers_count) &&
+        q.answers_count >= 0 &&
+        formQuestion(q),
+    )
+  );
+}
+
 /** Read-only public transport. It never forwards account cookies or API error bodies. */
 export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
   async function read<T>(
@@ -339,7 +415,46 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
   const authorPath = "/api/v1/authors/{author_id}" satisfies keyof paths;
   const contributionPath =
     "/api/v1/forms/{form_id}/contributions/{contribution_id}" satisfies keyof paths;
+  const answerSearchPath = "/api/v1/search/answers" satisfies keyof paths;
+  const catalogSearchPath = "/api/v1/search/catalog" satisfies keyof paths;
   return {
+    searchAnswers: (
+      query: AnswerSearchQuery = {},
+      options: RequestOptions = {},
+    ) => {
+      const params = new URLSearchParams();
+      if (query.q !== undefined) params.set("q", query.q);
+      if (query.cursor !== undefined && query.cursor !== null)
+        params.set("cursor", query.cursor);
+      if (query.page_size !== undefined)
+        params.set("page_size", String(query.page_size));
+      return read(answerSearchPath, answerSearch, {
+        ...options,
+        query: params,
+      });
+    },
+    searchCatalog: (
+      query: CatalogSearchQuery = {},
+      options: RequestOptions = {},
+    ) => {
+      const params = new URLSearchParams();
+      if (query.q !== undefined) params.set("q", query.q);
+      if (query.cursor_forms !== undefined && query.cursor_forms !== null)
+        params.set("cursor_forms", query.cursor_forms);
+      if (
+        query.cursor_questions !== undefined &&
+        query.cursor_questions !== null
+      )
+        params.set("cursor_questions", query.cursor_questions);
+      if (query.page_size !== undefined)
+        params.set("page_size", String(query.page_size));
+      if (query.section !== undefined && query.section !== null)
+        params.set("section", query.section);
+      return read(catalogSearchPath, catalogSearch, {
+        ...options,
+        query: params,
+      });
+    },
     getAuthor: (id: string, options: RequestOptions = {}) =>
       publicId(id)
         ? read(

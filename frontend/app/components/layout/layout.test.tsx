@@ -5,7 +5,7 @@ import { Footer } from "./footer";
 import { Header } from "./header";
 import { PageContainer } from "./page-container";
 
-it("identifie l'accueil actif et annonce les destinations à venir sans faux liens", () => {
+it("identifie l'accueil actif et propose les destinations disponibles", () => {
   render(
     <MemoryRouter>
       <Header />
@@ -18,11 +18,10 @@ it("identifie l'accueil actif et annonce les destinations à venir sans faux lie
   expect(
     screen.getByRole("link", { name: "Accueil — Cahier de doléances" }),
   ).toHaveAttribute("aria-current", "page");
-  for (const name of ["Recherche"]) {
-    const destination = screen.getByText(name);
-    expect(destination).toHaveAttribute("aria-disabled", "true");
-    expect(destination).not.toHaveAttribute("href");
-  }
+  expect(screen.getByRole("link", { name: "Recherche" })).toHaveAttribute(
+    "href",
+    "/recherche",
+  );
   expect(screen.getByRole("link", { name: "Enquêtes" })).toHaveAttribute(
     "href",
     "/enquetes",
@@ -55,5 +54,17 @@ it("situe un formulaire dans la section Enquêtes sans le déclarer comme la pag
   expect(screen.getByRole("link", { name: "Enquêtes" })).toHaveAttribute(
     "aria-current",
     "location",
+  );
+});
+
+it("indique la recherche active même avec des paramètres", () => {
+  render(
+    <MemoryRouter initialEntries={["/recherche?q=école&tab=catalog"]}>
+      <Header />
+    </MemoryRouter>,
+  );
+  expect(screen.getByRole("link", { name: "Recherche" })).toHaveAttribute(
+    "aria-current",
+    "page",
   );
 });
