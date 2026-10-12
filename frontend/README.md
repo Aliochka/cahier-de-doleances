@@ -348,3 +348,41 @@ cette variable dans les environnements de déploiement.
 
 FRONT-005A pourra utiliser ces loaders et états pour les formulaires. Aucun
 parcours métier, compte ou marque-page n’a été migré dans FRONT-003.
+
+
+## Enquêtes et formulaires (FRONT-005A)
+
+`/enquetes` charge `GET /api/v1/forms` ; `/forms/:formId` charge le détail avec
+`getForm` côté serveur. Les navigations React Router utilisent également les
+loaders serveur, sans appel navigateur direct ni redirection vers Jinja. Pour
+les essayer : `API_BASE_URL=http://127.0.0.1:8000 pnpm dev`, avec une API locale.
+
+Les composants métier restent dans `app/features/surveys/` : cartes de formulaires,
+liste de questions et frontière d’erreur réutilisant les états de FRONT-003.
+Les modèles proviennent des types OpenAPI. Les identifiants restent des chaînes,
+et l’ordre retourné par l’API est conservé sans tri. Les numéros affichés dans la
+liste indiquent le rang de présentation ; une position historique absente ne
+supprime pas la question. Les types connus sont présentés en français, sans
+modifier la donnée ; un type inconnu reste affichable sans libellé inventé.
+L’API ne fournit pas de description de formulaire. Les questions sont non
+interactives jusqu’à la migration de leurs pages (FRONT-006).
+
+Le HTML SSR contient titres et questions, avec titre, description et canonical
+sur `https://cahierdedoleances.fr`. Seul l’accueil est pré-rendu ; le build n’appelle
+pas l’API. Les réponses dynamiques conservent `private, no-store`, sans cache CDN.
+Les erreurs gardent leurs vrais statuts et `noindex`, avec réessai manuel et retour
+vers Enquêtes. Recherche demeure annoncée « À venir ».
+
+Une URL historique comportant **`?contrib=…`**, même vide, affiche une explication
+avec **HTTP 501**, `noindex, nofollow` et `private, no-store`, sans appeler l’API.
+Elle n’affiche pas le questionnaire à la place d’une contribution et ne renvoie
+pas vers Jinja. Un lien explicite permet de consulter le questionnaire sans ce
+paramètre. La consultation de contributions reste à migrer ; aucun lien historique
+n’est réécrit ni aucune donnée modifiée.
+
+Les tests `pnpm test` et `pnpm test:e2e` couvrent les loaders, l’ordre, les BIGINT,
+les états vides, le HTML SSR et les vrais statuts HTTP, `contrib`, la navigation
+interne et le retour arrière, le clavier, le réessai, l’attente prolongée, la lecture
+sans JavaScript et le responsive à 320 px/zoom 200 %. L’API de test est synthétique
+et limitée au loopback. Cela ne remplace pas une recette RGAA complète ni la
+validation ultérieure du SSR et du cache en prévisualisation Netlify.
