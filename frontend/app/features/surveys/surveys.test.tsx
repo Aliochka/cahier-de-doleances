@@ -59,8 +59,12 @@ it("présente le titre, le compteur et un lien React sans perte BIGINT", () => {
   expect(screen.getByText("1 question")).toBeVisible();
 });
 
-it("conserve toutes les questions, leur texte complet et l'ordre API sans lien factice", () => {
-  render(<QuestionList questions={questions} />);
+it("conserve toutes les questions, leur texte complet et l'ordre API avec liens React historiques", () => {
+  render(
+    <MemoryRouter>
+      <QuestionList questions={questions} />
+    </MemoryRouter>,
+  );
   const items = within(
     screen.getByRole("list", { name: "Questions du formulaire" }),
   ).getAllByRole("listitem");
@@ -71,17 +75,25 @@ it("conserve toutes les questions, leur texte complet et l'ordre API sans lien f
   expect(items[0]).toHaveTextContent("Réponse libre");
   expect(items[1]).toHaveTextContent("Choix unique");
   expect(items[2]).toHaveTextContent("Choix multiples");
-  expect(screen.queryByRole("link")).not.toBeInTheDocument();
+  expect(
+    screen.getAllByRole("link").map((link) => link.getAttribute("href")),
+  ).toEqual(questions.map((question) => question.url));
   expect(screen.queryByRole("button")).not.toBeInTheDocument();
 });
 
 it("annonce un questionnaire vide et accepte un type futur sans l'inventer", () => {
-  const { rerender } = render(<QuestionList questions={[]} />);
+  const { rerender } = render(
+    <MemoryRouter>
+      <QuestionList questions={[]} />
+    </MemoryRouter>,
+  );
   expect(
     screen.getByText("Ce formulaire ne contient aucune question."),
   ).toBeVisible();
   rerender(
-    <QuestionList questions={[{ ...questions[0], type: "constructor" }]} />,
+    <MemoryRouter>
+      <QuestionList questions={[{ ...questions[0], type: "constructor" }]} />
+    </MemoryRouter>,
   );
   expect(screen.getByText("Question 1")).toBeVisible();
   expect(screen.queryByText("Réponse libre")).not.toBeInTheDocument();

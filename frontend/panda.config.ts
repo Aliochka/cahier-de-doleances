@@ -4,7 +4,7 @@ export default defineConfig({
   presets: ["@pandacss/preset-base", "@pandacss/preset-panda"],
   preflight: true,
   include: ["./app/**/*.{ts,tsx}"],
-  exclude: [],
+  exclude: ["./app/**/*.test.{ts,tsx}", "./app/**/*.test-support.ts"],
   outdir: "styled-system",
   jsxFramework: "react",
   theme: {

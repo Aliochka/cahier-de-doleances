@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { css } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import type { FormDetail } from "../../lib/api";
@@ -52,7 +53,9 @@ export function QuestionList({
               overflowWrap: "anywhere",
             })}
           >
-            {question.prompt}
+            <Link to={`/questions/${question.id}-${question.slug}`}>
+              {question.prompt}
+            </Link>
           </h2>
         </li>
       ))}
