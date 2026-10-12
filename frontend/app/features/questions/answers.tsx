@@ -7,10 +7,12 @@ export function Answers({
   page,
   path,
   cursor,
+  formId,
 }: {
   page: AnswerPage;
   path: string;
   cursor: string | null;
+  formId: string;
 }) {
   return (
     <section aria-labelledby="answers-title">
@@ -38,7 +40,13 @@ export function Answers({
               })}
             >
               <p className={css({ color: "muted", mb: "3" })}>
-                {answer.author?.name ?? "Auteur non renseigné"}
+                {answer.author ? (
+                  <Link to={`/authors/${answer.author.id}`}>
+                    {answer.author.name}
+                  </Link>
+                ) : (
+                  "Auteur non renseigné"
+                )}
                 {answer.submitted_at && (
                   <>
                     {" "}
@@ -66,10 +74,17 @@ export function Answers({
               </p>
               {answer.is_truncated && (
                 <p className={css({ color: "muted", mt: "3" })}>
-                  Texte abrégé dans cette liste. La consultation intégrale d’une
-                  réponse sera disponible ultérieurement.
+                  Texte abrégé dans cette liste. Le texte intégral est
+                  disponible dans la contribution.
                 </p>
               )}
+              <p className={css({ mt: "4" })}>
+                <Link
+                  to={`/forms/${formId}/contributions/${answer.contribution_id}#answer-${answer.id}`}
+                >
+                  Voir la contribution complète
+                </Link>
+              </p>
             </li>
           ))}
         </ol>

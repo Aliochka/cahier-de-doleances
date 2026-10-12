@@ -16,10 +16,11 @@ vi.mock("./stats-chart", () => ({
   ),
 }));
 
-it("préserve textes, paragraphes et auteurs publics sans liens indisponibles ni HTML brut", () => {
+it("préserve textes, paragraphes et auteurs publics avec liens React sans HTML brut", () => {
   render(
     <MemoryRouter>
       <Answers
+        formId="9007199254740995"
         page={answers}
         path="/questions/9007199254741022-test"
         cursor={null}
@@ -35,7 +36,16 @@ it("préserve textes, paragraphes et auteurs publics sans liens indisponibles ni
     ),
   ).toBeVisible();
   expect(document.querySelector("script")).toBeNull();
-  expect(screen.getAllByRole("link")).toHaveLength(1);
+  expect(screen.getAllByRole("link")).toHaveLength(3);
+  expect(
+    screen.getByRole("link", { name: "Voir la contribution complète" }),
+  ).toHaveAttribute(
+    "href",
+    "/forms/9007199254740995/contributions/9007199254742993#answer-9007199254741993",
+  );
+  expect(
+    screen.getByRole("link", { name: answers.items[0]?.author?.name }),
+  ).toHaveAttribute("href", `/authors/${answers.items[0]?.author?.id}`);
   expect(
     screen.getByRole("link", { name: "Voir les réponses suivantes" }),
   ).toHaveAttribute(
@@ -48,6 +58,7 @@ it("annonce une fin de pagination et un lot vide sans numéro de page", () => {
   render(
     <MemoryRouter>
       <Answers
+        formId="9007199254740995"
         page={{ ...answers, items: [], has_next: false, next_cursor: null }}
         path="/questions/1-test"
         cursor="opaque"
@@ -111,6 +122,7 @@ it("affiche la date historique sans dépendre du fuseau du navigateur", () => {
   render(
     <MemoryRouter>
       <Answers
+        formId="9007199254740995"
         page={{
           ...answers,
           items: answers.items.map((answer) => ({

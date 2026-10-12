@@ -45,6 +45,83 @@ const questions = [
     url: "/questions/9007199254741021-sujets",
   },
 ];
+const author = {
+  id: "9007199254743993",
+  name: "Auteur anonyme",
+  is_anonymous: true,
+  slug: "anonyme",
+  url: "/authors/9007199254743993-anonyme",
+};
+const contributionIds = [
+  "9007199254742993",
+  "9007199254742994",
+  "9007199254742995",
+];
+const reference = (id) => ({
+  id,
+  submitted_at: "2019-01-15T00:00:00",
+  api_url: `/api/v1/forms/${forms[0].id}/contributions/${id}`,
+});
+const fullContribution = (id) => ({
+  form: { id: forms[0].id, name: forms[0].name, url: forms[0].url },
+  contribution: reference(id),
+  author: id === "9007199254742995" ? null : author,
+  legacy_index: null,
+  answers:
+    id === "9007199254742995"
+      ? []
+      : [
+          {
+            id: "9007199254741993",
+            position: 1,
+            question: questions[0],
+            text:
+              "Une réponse citoyenne.\n\nUn second paragraphe. <script>alert('non fiable')</script>\n" +
+              "Texte complet très long. ".repeat(1500),
+            selected_options: [],
+            other_text: [],
+            value: null,
+          },
+          {
+            id: "9007199254741992",
+            position: 2,
+            question: questions[0],
+            text: "Réponse du lot suivant.",
+            selected_options: [],
+            other_text: [],
+            value: null,
+          },
+          {
+            id: "9007199254741994",
+            position: 1,
+            question: questions[2],
+            text: "Choix sélectionnés",
+            selected_options: [
+              {
+                id: "9007199254744993",
+                label: "Consultations citoyennes",
+                position: 1,
+              },
+              {
+                id: "9007199254744994",
+                label: "Réunions locales",
+                position: 2,
+              },
+            ],
+            other_text: ["Autre proposition"],
+            value: null,
+          },
+          {
+            id: "9007199254741995",
+            position: 1,
+            question: questions[1],
+            text: null,
+            selected_options: [],
+            other_text: [],
+            value: "42",
+          },
+        ],
+});
 let retry = 0;
 let formRetry = 0;
 const server = createServer((request, response) => {
@@ -64,6 +141,103 @@ const server = createServer((request, response) => {
   if (request.headers.cookie) {
     response.statusCode = 403;
     response.end("{}");
+    return;
+  }
+  const authorMatch = /^\/api\/v1\/authors\/(\d+)(\/forms)?$/.exec(
+    url.pathname,
+  );
+  const contributionMatch =
+    /^\/api\/v1\/forms\/(\d+)\/contributions\/(\d+)$/.exec(url.pathname);
+  if (authorMatch || contributionMatch) {
+    const id = authorMatch?.[1] ?? contributionMatch[2];
+    const status = ["404", "500", "503", "504"].includes(id)
+      ? Number(id)
+      : contributionMatch &&
+          contributionMatch[1] !==
+            (id === "9007199254742996" ? forms[1].id : forms[0].id)
+        ? 404
+        : 200;
+    response.statusCode = status;
+    if (status !== 200) {
+      response.end(
+        JSON.stringify({ detail: "private SQL / credentials / host" }),
+      );
+      return;
+    }
+    if (contributionMatch) {
+      response.end(
+        JSON.stringify(
+          id === "9007199254742996"
+            ? {
+                ...fullContribution("9007199254742995"),
+                contribution: {
+                  ...reference(id),
+                  api_url: `/api/v1/forms/${forms[1].id}/contributions/${id}`,
+                },
+                form: {
+                  id: forms[1].id,
+                  name: forms[1].name,
+                  url: forms[1].url,
+                },
+              }
+            : fullContribution(id),
+        ),
+      );
+      return;
+    }
+    const publicAuthor =
+      id === "9007199254743993"
+        ? author
+        : { ...author, id, name: "Pseudonyme public", is_anonymous: false };
+    if (!authorMatch[2]) {
+      response.end(JSON.stringify(publicAuthor));
+      return;
+    }
+    const after = url.searchParams.get("after_id");
+    if (id === "102") {
+      response.statusCode = 503;
+      response.end("{}");
+      return;
+    }
+    const empty = id === "100";
+    response.end(
+      JSON.stringify({
+        author_id: id,
+        forms: empty
+          ? []
+          : after
+            ? [
+                {
+                  id: forms[0].id,
+                  name: forms[0].name,
+                  url: forms[0].url,
+                  contributions: [reference(contributionIds[2])],
+                },
+                {
+                  id: forms[1].id,
+                  name: forms[1].name,
+                  url: forms[1].url,
+                  contributions: [
+                    {
+                      ...reference("9007199254742996"),
+                      api_url: `/api/v1/forms/${forms[1].id}/contributions/9007199254742996`,
+                    },
+                  ],
+                },
+              ]
+            : [
+                {
+                  id: forms[0].id,
+                  name: forms[0].name,
+                  url: forms[0].url,
+                  contributions: contributionIds.slice(0, 2).map(reference),
+                },
+              ],
+        page_size: 20,
+        has_next: !after && !empty,
+        next_after_id: !after && !empty ? contributionIds[1] : null,
+      }),
+    );
     return;
   }
   const questionMatch =

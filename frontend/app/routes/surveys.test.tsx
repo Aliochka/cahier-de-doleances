@@ -92,16 +92,15 @@ it("transmet l'identifiant exact et le signal au loader formulaire", async () =>
 it.each(["?contrib=2", "?contrib=", "?contrib=invalide"])(
   "traite explicitement l'ancienne URL %s sans lire ni substituer le formulaire",
   async (query) => {
-    const result = await formLoader(args(`/forms/9007199254740993${query}`));
-    expect(result.data).toEqual({
-      mode: "contribution",
-      formId: "9007199254740993",
-    });
-    expect(result.init).toMatchObject({
-      status: 501,
-      headers: {
-        "Cache-Control": "private, no-store",
-        "X-Robots-Tag": "noindex, nofollow",
+    await expect(
+      formLoader(args(`/forms/9007199254740993${query}`)),
+    ).rejects.toMatchObject({
+      init: {
+        status: 404,
+        headers: {
+          "Cache-Control": "private, no-store",
+          "X-Robots-Tag": "noindex, nofollow",
+        },
       },
     });
     expect(getForm).not.toHaveBeenCalled();

@@ -35,6 +35,12 @@ export type QuestionStatistics = components["schemas"]["QuestionStatistics"];
 export type AnswersQuery = NonNullable<
   operations["list_public_question_answers"]["parameters"]["query"]
 >;
+export type PublicAuthor = components["schemas"]["PublicAuthor"];
+export type AuthorFormsPage = components["schemas"]["AuthorFormsPage"];
+export type ContributionDetail = components["schemas"]["ContributionDetail"];
+export type AuthorFormsQuery = NonNullable<
+  operations["list_public_author_forms"]["parameters"]["query"]
+>;
 type FormSummary = components["schemas"]["FormSummary"];
 
 export function httpFailure(status: number): ApiFailure {
@@ -141,6 +147,100 @@ function answerPage(value: unknown): value is AnswerPage {
     )
   );
 }
+function date(value: unknown): boolean {
+  return (
+    value === null ||
+    (typeof value === "string" && !Number.isNaN(Date.parse(value)))
+  );
+}
+function author(value: unknown): value is PublicAuthor {
+  return (
+    record(value) &&
+    publicId(value.id) &&
+    typeof value.name === "string" &&
+    typeof value.is_anonymous === "boolean" &&
+    typeof value.slug === "string" &&
+    typeof value.url === "string"
+  );
+}
+function reference(
+  value: unknown,
+): value is components["schemas"]["ContributionReference"] {
+  return (
+    record(value) &&
+    publicId(value.id) &&
+    date(value.submitted_at) &&
+    typeof value.api_url === "string"
+  );
+}
+function formContext(
+  value: unknown,
+): value is components["schemas"]["QuestionForm"] {
+  return (
+    record(value) &&
+    publicId(value.id) &&
+    typeof value.name === "string" &&
+    typeof value.url === "string"
+  );
+}
+function authorForms(value: unknown): value is AuthorFormsPage {
+  return (
+    record(value) &&
+    publicId(value.author_id) &&
+    typeof value.has_next === "boolean" &&
+    typeof value.page_size === "number" &&
+    Number.isInteger(value.page_size) &&
+    value.page_size >= 1 &&
+    value.page_size <= 100 &&
+    (value.next_after_id === null || publicId(value.next_after_id)) &&
+    (!value.has_next || publicId(value.next_after_id)) &&
+    Array.isArray(value.forms) &&
+    value.forms.every(
+      (f: unknown) =>
+        record(f) &&
+        Array.isArray(f.contributions) &&
+        f.contributions.every(reference) &&
+        formContext(f),
+    )
+  );
+}
+function contribution(value: unknown): value is ContributionDetail {
+  if (!record(value) || !formContext(value.form)) return false;
+  const formId = value.form.id;
+  return (
+    reference(value.contribution) &&
+    (value.author === null || author(value.author)) &&
+    (value.legacy_index === null ||
+      value.legacy_index === undefined ||
+      publicId(value.legacy_index)) &&
+    Array.isArray(value.answers) &&
+    new Set(value.answers.map((a: unknown) => (record(a) ? a.id : undefined)))
+      .size === value.answers.length &&
+    value.answers.every(
+      (a: unknown) =>
+        record(a) &&
+        publicId(a.id) &&
+        formQuestion(a.question) &&
+        a.question.form_id === formId &&
+        (a.position === null ||
+          (typeof a.position === "number" && Number.isInteger(a.position))) &&
+        (a.text === null || typeof a.text === "string") &&
+        (a.value === null || typeof a.value === "string") &&
+        Array.isArray(a.other_text) &&
+        a.other_text.every((v: unknown) => typeof v === "string") &&
+        Array.isArray(a.selected_options) &&
+        a.selected_options.every(
+          (o: unknown) =>
+            record(o) &&
+            publicId(o.id) &&
+            typeof o.label === "string" &&
+            (o.position === null ||
+              (typeof o.position === "number" && Number.isInteger(o.position))),
+        ),
+    )
+  );
+}
+
 function statistics(value: unknown): value is QuestionStatistics {
   return (
     record(value) &&
@@ -236,7 +336,59 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
   const questionPath = "/api/v1/questions/{question_id}" satisfies keyof paths;
   const pathFor = (id: string) =>
     questionPath.replace("{question_id}", encodeURIComponent(id));
+  const authorPath = "/api/v1/authors/{author_id}" satisfies keyof paths;
+  const contributionPath =
+    "/api/v1/forms/{form_id}/contributions/{contribution_id}" satisfies keyof paths;
   return {
+    getAuthor: (id: string, options: RequestOptions = {}) =>
+      publicId(id)
+        ? read(
+            authorPath.replace("{author_id}", encodeURIComponent(id)),
+            author,
+            options,
+          )
+        : Promise.resolve<ApiResult<PublicAuthor>>({
+            ok: false,
+            kind: "request",
+          }),
+    getAuthorForms: (
+      id: string,
+      query: AuthorFormsQuery = {},
+      options: RequestOptions = {},
+    ) => {
+      const params = new URLSearchParams();
+      if (query.after_id !== undefined && query.after_id !== null)
+        params.set("after_id", query.after_id);
+      if (query.page_size !== undefined)
+        params.set("page_size", String(query.page_size));
+      return publicId(id)
+        ? read(
+            `${authorPath.replace("{author_id}", encodeURIComponent(id))}/forms`,
+            authorForms,
+            { ...options, query: params },
+          )
+        : Promise.resolve<ApiResult<AuthorFormsPage>>({
+            ok: false,
+            kind: "request",
+          });
+    },
+    getContribution: (
+      formId: string,
+      id: string,
+      options: RequestOptions = {},
+    ) =>
+      publicId(formId) && publicId(id)
+        ? read(
+            contributionPath
+              .replace("{form_id}", encodeURIComponent(formId))
+              .replace("{contribution_id}", encodeURIComponent(id)),
+            contribution,
+            options,
+          )
+        : Promise.resolve<ApiResult<ContributionDetail>>({
+            ok: false,
+            kind: "request",
+          }),
     getQuestion: (id: QuestionDetail["id"], options: RequestOptions = {}) =>
       publicId(id)
         ? read(pathFor(id), question, options)
