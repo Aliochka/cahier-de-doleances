@@ -374,12 +374,10 @@ pas l’API. Les réponses dynamiques conservent `private, no-store`, sans cache
 Les erreurs gardent leurs vrais statuts et `noindex`, avec réessai manuel et retour
 vers Enquêtes. Recherche demeure annoncée « À venir ».
 
-Une URL historique comportant **`?contrib=…`**, même vide, affiche une explication
-avec **HTTP 501**, `noindex, nofollow` et `private, no-store`, sans appeler l’API.
-Elle n’affiche pas le questionnaire à la place d’une contribution et ne renvoie
-pas vers Jinja. Un lien explicite permet de consulter le questionnaire sans ce
-paramètre. La consultation de contributions reste à migrer ; aucun lien historique
-n’est réécrit ni aucune donnée modifiée.
+Une URL comportant **`?contrib=…`**, même vide, retourne désormais **HTTP 404**,
+`noindex, nofollow` et `private, no-store`, sans appeler l’API. React utilise
+exclusivement `/forms/{formId}/contributions/{contributionId}` avec l’ID PostgreSQL.
+Aucun rang historique ni redirection vers Jinja n’est utilisé.
 
 Les tests `pnpm test` et `pnpm test:e2e` couvrent les loaders, l’ordre, les BIGINT,
 les états vides, le HTML SSR et les vrais statuts HTTP, `contrib`, la navigation
@@ -414,7 +412,8 @@ ne fabrique pas de réponses et propose un réessai, aussi utilisable sans JavaS
 Les textes sont échappés, leurs sauts de ligne conservés. Les dates affichent le
 jour calendaire fourni par l’API, sans décalage selon le fuseau du navigateur
 (les dates historiques PostgreSQL sont sans fuseau). Les textes tronqués sont
-signalés ; aucun lien vers les pages Auteur, Réponse ou Contribution encore absentes.
+signalés ; les liens Auteur et Contribution sont maintenant actifs. Aucune page
+Réponse individuelle n’est créée.
 
 Les choix affichent toutes les métriques définies dans `docs/api-questions.md` et
 un **tableau HTML complet dès le SSR**, dans l’ordre API. Les pourcentages fournis
@@ -463,3 +462,37 @@ sans JavaScript, les erreurs partielles, le graphique au clavier, l’hydratatio
 le mobile et le zoom 200 %. Une recette RGAA avec lecteurs d’écran réels reste
 nécessaire avant production. Ni FRONT-006B ni les dashboards FRONT-005B ne sont
 implémentés ici.
+
+
+## Auteurs et contributions (FRONT-006B)
+
+- `/authors/:authorId` affiche le nom public de l’API et les formulaires avec des
+  liens distincts pour chaque contribution. Deux appels serveur : auteur et lot
+  de contributions (20 par défaut). La pagination `after_id` propose des liens
+  natifs vers les lots suivants, sans charger toutes les réponses d’un auteur.
+  Les formulaires sont regroupés dans chaque lot ; un formulaire peut réapparaître
+  dans le suivant. Chaque contribution reste séparée, dans l’ordre API.
+- `/forms/:formId/contributions/:contributionId` charge un seul endpoint : contexte,
+  auteur éventuellement absent, toutes les réponses réelles et choix sélectionnés.
+  Les composants métier sont dans `features/authors` et `features/contributions`.
+  Aucun tri ni calcul métier n’est ajouté ; textes complets échappés, sauts de ligne
+  conservés, réponses multiples et valeurs nulles respectées.
+- Depuis une question, les liens utilisent le formulaire du loader et les IDs
+  contribution/réponse déjà présents dans le lot : aucune requête par réponse.
+  Les liens auteurs utilisent uniquement l’ID et le nom publics, y compris pour
+  les auteurs anonymes ; aucune identité privée n’est reconstruite.
+- Les ancres `#answer-{id}` sont présentes dès le SSR. CSS `:target` les met en
+  évidence sans JavaScript ; après une navigation React Router (`pushState`), une
+  petite adaptation marque le même élément et lui donne le focus sans défilement
+  personnalisé. `scroll-margin` réserve un espace au-dessus de la réponse.
+- Les pages fonctionnelles ont titre, description et canonical HTTPS sans fragment.
+  Les lots d’auteur suivants ont leur canonical avec curseur et `noindex, follow`.
+  Les erreurs gardent les vrais statuts 404/500/503/504, `noindex` et `private,
+  no-store`. Une erreur de liste d’auteur conserve son nom et propose un réessai ;
+  aucune liste manquante n’est inventée. La configuration API reste serveur uniquement.
+
+`pnpm test`, `pnpm test:e2e`, `pnpm build:offline` et `pnpm test:build` vérifient les
+BIGINT, les réponses multiples, le HTML SSR, les ancres sans JavaScript et après
+hydratation, les parcours au clavier, l’arrière et les écrans à 320 px/zoom 200 %.
+L’API simulée reste locale, sans Wallace. Ces tests ne constituent pas une recette
+RGAA complète. Aucun nouveau sitemap, compte ou marque-page n’est ajouté.

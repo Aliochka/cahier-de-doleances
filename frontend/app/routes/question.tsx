@@ -153,7 +153,14 @@ export default function Question({
           )}
         </section>
       )}
-      {page && <Answers page={page} path={path} cursor={pageCursor} />}
+      {page && (
+        <Answers
+          formId={question.form.id}
+          page={page}
+          path={path}
+          cursor={pageCursor}
+        />
+      )}
       {stats && <Statistics stats={stats} />}
     </PageContainer>
   );

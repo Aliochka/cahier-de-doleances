@@ -2,9 +2,13 @@ import {
   type AnswerPage,
   type AnswersQuery,
   type ApiResult,
+  type AuthorFormsPage,
+  type AuthorFormsQuery,
+  type ContributionDetail,
   createPublicApi,
   type FormDetail,
   type Forms,
+  type PublicAuthor,
   type QuestionDetail,
   type QuestionStatistics,
   type RequestOptions,
@@ -78,5 +82,35 @@ export function getQuestionStats(
   const origin = backendOrigin();
   return origin
     ? createPublicApi(origin).getQuestionStats(id, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+
+export function getAuthor(
+  id: string,
+  options: RequestOptions = {},
+): Promise<ApiResult<PublicAuthor>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getAuthor(id, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+export function getAuthorForms(
+  id: string,
+  query: AuthorFormsQuery = {},
+  options: RequestOptions = {},
+): Promise<ApiResult<AuthorFormsPage>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getAuthorForms(id, query, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+export function getContribution(
+  formId: string,
+  id: string,
+  options: RequestOptions = {},
+): Promise<ApiResult<ContributionDetail>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getContribution(formId, id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }

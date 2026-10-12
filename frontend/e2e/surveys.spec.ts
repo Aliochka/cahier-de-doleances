@@ -69,14 +69,18 @@ test("une URL contrib reste explicite et non indexable, sans substitution ni dé
   const response = await request.get(
     `http://127.0.0.1:4177${formPath}?contrib=2`,
   );
-  expect(response.status()).toBe(501);
+  expect(response.status()).toBe(404);
   expect(response.headers()["x-robots-tag"]).toContain("noindex");
   const html = await response.text();
-  expect(html).toContain("Consultation de contribution indisponible");
+  expect(html).toContain("introuvable");
   expect(html).not.toContain("Comment améliorer la participation citoyenne");
   expect(html).not.toContain('rel="canonical"');
   await page.goto(`${origin}${formPath}?contrib=2`);
-  await page.getByRole("link", { name: "Consulter le questionnaire" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Page introuvable" }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Retour aux enquêtes" }).click();
+  await page.getByRole("link", { name: "Participation citoyenne" }).click();
   await expect(page).toHaveURL(`${origin}${formPath}`);
   await expect(
     page.getByRole("list", { name: "Questions du formulaire" }),
