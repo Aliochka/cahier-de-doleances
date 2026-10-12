@@ -25,6 +25,7 @@ from app.config import settings
 from app.logging_filters import redact_access_logs
 from app.routers import (
     answers,
+    api_contributions,
     api_forms,
     api_questions,
     auth,
@@ -149,6 +150,7 @@ app.include_router(answers.router)
 app.include_router(forms.router)
 app.include_router(api_forms.router)
 app.include_router(api_questions.router)
+app.include_router(api_contributions.router)
 app.include_router(seo.router)
 app.include_router(auth.router)
 app.include_router(bookmarks.router)

@@ -134,6 +134,88 @@
         "title": "ApiError",
         "type": "object"
       },
+      "AuthorForm": {
+        "properties": {
+          "contributions": {
+            "items": {
+              "$ref": "#/components/schemas/ContributionReference"
+            },
+            "title": "Contributions",
+            "type": "array"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url",
+          "contributions"
+        ],
+        "title": "AuthorForm",
+        "type": "object"
+      },
+      "AuthorFormsPage": {
+        "properties": {
+          "author_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Author Id",
+            "type": "string"
+          },
+          "forms": {
+            "description": "Formulaires sans doublons dans ce lot de contributions.",
+            "items": {
+              "$ref": "#/components/schemas/AuthorForm"
+            },
+            "title": "Forms",
+            "type": "array"
+          },
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "next_after_id": {
+            "anyOf": [
+              {
+                "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+                "pattern": "^[0-9]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Dernier ID du lot. Pagination des contributions, pas des formulaires ; un formulaire peut réapparaître dans un lot suivant.",
+            "title": "Next After Id"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "author_id",
+          "forms",
+          "page_size",
+          "has_next",
+          "next_after_id"
+        ],
+        "title": "AuthorFormsPage",
+        "type": "object"
+      },
       "ChoiceCategory": {
         "properties": {
           "count": {
@@ -195,6 +277,164 @@
           "percentage"
         ],
         "title": "ChoiceCategory",
+        "type": "object"
+      },
+      "ContributionAnswer": {
+        "properties": {
+          "id": {
+            "description": "Ancre frontend possible : answer-{id}.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "other_text": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Other Text",
+            "type": "array"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Position de la réponse au sein d'une même question.",
+            "title": "Position"
+          },
+          "question": {
+            "$ref": "#/components/schemas/FormQuestion"
+          },
+          "selected_options": {
+            "items": {
+              "$ref": "#/components/schemas/SelectedOption"
+            },
+            "title": "Selected Options",
+            "type": "array"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Texte public brut complet ; null et vide conservés pour les lignes existantes.",
+            "title": "Text"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Valeur publique des questions number/scale/date ; aucun JSON brut.",
+            "title": "Value"
+          }
+        },
+        "required": [
+          "id",
+          "position",
+          "question",
+          "text",
+          "selected_options",
+          "other_text",
+          "value"
+        ],
+        "title": "ContributionAnswer",
+        "type": "object"
+      },
+      "ContributionDetail": {
+        "properties": {
+          "answers": {
+            "description": "Lignes réelles uniquement, par COALESCE(question.position,999999), question.id, answer.position NULLS LAST, answer.id.",
+            "items": {
+              "$ref": "#/components/schemas/ContributionAnswer"
+            },
+            "title": "Answers",
+            "type": "array"
+          },
+          "author": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PublicAuthor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "contribution": {
+            "$ref": "#/components/schemas/ContributionReference"
+          },
+          "form": {
+            "$ref": "#/components/schemas/QuestionForm"
+          },
+          "legacy_index": {
+            "anyOf": [
+              {
+                "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+                "pattern": "^[0-9]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Rang historique 1..M, uniquement lors d'une résolution par contrib. Ce n'est pas l'ID en base.",
+            "title": "Legacy Index"
+          }
+        },
+        "required": [
+          "form",
+          "contribution",
+          "author",
+          "answers"
+        ],
+        "title": "ContributionDetail",
+        "type": "object"
+      },
+      "ContributionReference": {
+        "properties": {
+          "api_url": {
+            "description": "Lecture JSON par ID de contribution, pas par rang historique.",
+            "title": "Api Url",
+            "type": "string"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          }
+        },
+        "required": [
+          "id",
+          "submitted_at",
+          "api_url"
+        ],
+        "title": "ContributionReference",
         "type": "object"
       },
       "FormDetail": {
@@ -627,6 +867,38 @@
         "title": "QuestionStatistics",
         "type": "object"
       },
+      "SelectedOption": {
+        "properties": {
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Position"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "position"
+        ],
+        "title": "SelectedOption",
+        "type": "object"
+      },
       "ValidationError": {
         "properties": {
           "ctx": {
@@ -772,6 +1044,232 @@
         ]
       }
     },
+    "/api/v1/authors/{author_id}": {
+      "get": {
+        "operationId": "get_public_author",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "author_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Author Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicAuthor"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable ou contribution d'un autre formulaire."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Consulter la représentation publique d'un auteur",
+        "tags": [
+          "Public authors and contributions"
+        ]
+      }
+    },
+    "/api/v1/authors/{author_id}/forms": {
+      "get": {
+        "operationId": "list_public_author_forms",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "author_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Author Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "description": "BIGINT positif, chaîne décimale.",
+                  "maxLength": 19,
+                  "minLength": 1,
+                  "pattern": "^[0-9]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorFormsPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable ou contribution d'un autre formulaire."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Formulaires regroupés dans un lot borné de contributions d'un auteur",
+        "tags": [
+          "Public authors and contributions"
+        ]
+      }
+    },
     "/api/v1/forms": {
       "get": {
         "description": "Ordre stable par identifiant. Une liste vide reste une réponse 200.",
@@ -911,6 +1409,227 @@
         "summary": "Consulter un formulaire et toutes ses questions",
         "tags": [
           "Public forms"
+        ]
+      }
+    },
+    "/api/v1/forms/{form_id}/contributions": {
+      "get": {
+        "operationId": "get_public_legacy_contribution",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "form_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Form Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rang 1..M selon date ASC NULLS LAST, ID ASC. Invalide ou hors plage : repli/clamp historique.",
+            "in": "query",
+            "name": "contrib",
+            "required": false,
+            "schema": {
+              "default": "1",
+              "description": "Rang 1..M selon date ASC NULLS LAST, ID ASC. Invalide ou hors plage : repli/clamp historique.",
+              "maxLength": 19,
+              "title": "Contrib",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributionDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable ou contribution d'un autre formulaire."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Résoudre le paramètre historique contrib (rang, jamais ID en base)",
+        "tags": [
+          "Public authors and contributions"
+        ]
+      }
+    },
+    "/api/v1/forms/{form_id}/contributions/{contribution_id}": {
+      "get": {
+        "operationId": "get_public_contribution",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "form_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Form Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "contribution_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Contribution Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributionDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable ou contribution d'un autre formulaire."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Consulter toutes les réponses d'une contribution par son ID en base",
+        "tags": [
+          "Public authors and contributions"
         ]
       }
     },
