@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
 from app.helpers import public_author
+from app.services.authors import get_author
 from app.web import templates
 
 # Slugify helper (fallback si le helper dédié n'est pas dispo)
@@ -67,14 +68,7 @@ def author_detail(
 ):
     # HEAD rapide : valide l'existence + slug canonique sans tout charger
     if request.method == "HEAD":
-        row = (
-            db.execute(
-                text("SELECT name, is_anonymous FROM authors WHERE id = :aid"),
-                {"aid": author_id},
-            )
-            .mappings()
-            .first()
-        )
+        row = get_author(db, author_id)
         if not row:
             raise HTTPException(status_code=404, detail="Auteur introuvable")
         canonical = public_author(author_id, row["name"], row["is_anonymous"])["slug"]
@@ -211,14 +205,7 @@ def author_detail_legacy(
     page: int = Query(1, ge=1),
     db: Session = Depends(get_db),
 ):
-    row = (
-        db.execute(
-            text("SELECT id, name, is_anonymous FROM authors WHERE id = :aid"),
-            {"aid": author_id},
-        )
-        .mappings()
-        .first()
-    )
+    row = get_author(db, author_id)
     if not row:
         raise HTTPException(status_code=404, detail="Auteur introuvable")
 

@@ -47,6 +47,10 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
         "/api/v1/questions/{question_id}/answers",
         "/api/v1/questions/{question_id}/stats",
         "/api/v1/answers/{answer_id}",
+        "/api/v1/authors/{author_id}",
+        "/api/v1/authors/{author_id}/forms",
+        "/api/v1/forms/{form_id}/contributions",
+        "/api/v1/forms/{form_id}/contributions/{contribution_id}",
     }
     operations = [path["get"]["operationId"] for path in schema["paths"].values()]
     assert len(set(operations)) == len(operations)
@@ -66,6 +70,12 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
         "AnswerDetail",
         "ChoiceCategory",
         "QuestionStatistics",
+        "AuthorForm",
+        "AuthorFormsPage",
+        "ContributionAnswer",
+        "ContributionDetail",
+        "ContributionReference",
+        "SelectedOption",
     }
     for model in ("FormSummary", "FormDetail", "FormQuestion"):
         assert models[model]["properties"]["id"]["type"] == "string"

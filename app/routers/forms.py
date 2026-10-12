@@ -8,6 +8,7 @@ from sqlalchemy import text
 from app.choice_stats import choice_statistics
 from app.db import SessionLocal
 from app.helpers import slugify  # type: ignore
+from app.services.contributions import contribution_answers, select_legacy_contribution
 from app.services.forms import form_questions, get_form
 from app.web import templates
 
@@ -20,15 +21,6 @@ def form_detail(
     form_id: int,
     contrib: str | None = Query("1", description="Index (1..M) de la contribution à afficher"),
 ):
-    # Parse contrib parameter manually to handle invalid values gracefully
-    contrib_int = 1  # default
-    if contrib:
-        try:
-            contrib_int = int(contrib)
-        except (ValueError, TypeError):
-            contrib_int = 1  # fallback for invalid values like "invalid"
-    contrib_int = max(1, contrib_int)  # clamp to minimum 1
-
     with SessionLocal() as db:
         # 1) Infos formulaire + questions (ordre)
         row_form = get_form(db, form_id)
@@ -42,65 +34,15 @@ def form_detail(
         # Liste ordonnée des questions du formulaire
         rows_questions = form_questions(db, form_id)
 
-        # 2) Compte des contributions et sélection de l'index demandé
-        row_counts = (
-            db.execute(
-                text("""
-                SELECT COUNT(*)::int AS total
-                FROM contributions c
-                WHERE c.form_id = :fid
-            """),
-                {"fid": form_id},
-            )
-            .mappings()
-            .first()
+        # Historical contrib is a 1-based ordinal, not a contribution ID.
+        total_contribs, contrib_idx, current_contrib_id = select_legacy_contribution(
+            db, form_id, contrib
         )
-
-        total_contribs = row_counts["total"] if row_counts else 0
-
-        contrib_idx = max(
-            1, min(contrib_int, max(total_contribs, 1))
-        )  # clamp 1..M (si 0, on force à 1)
-
-        # ID de la contribution k (ordre stable submitted_at ASC, id ASC)
-        row_contrib = (
-            db.execute(
-                text("""
-                SELECT c.id
-                FROM contributions c
-                WHERE c.form_id = :fid
-                ORDER BY c.submitted_at ASC NULLS LAST, c.id ASC
-                OFFSET :off LIMIT 1
-            """),
-                {"fid": form_id, "off": contrib_idx - 1},
-            )
-            .mappings()
-            .first()
-        )
-
-        current_contrib_id = row_contrib["id"] if row_contrib else None
 
         # 3) Réponses de la contribution courante avec métadonnées pour answer cards
         answers = []
         if current_contrib_id is not None:
-            rows_answers = (
-                db.execute(
-                    text("""
-                    SELECT a.id, a.question_id, a.text, q.prompt,
-                           c.author_id, c.submitted_at
-                    FROM answers a
-                    JOIN questions q ON q.id = a.question_id
-                    JOIN contributions c ON c.id = a.contribution_id
-                    WHERE a.contribution_id = :cid
-                      AND a.text IS NOT NULL
-                      AND trim(a.text) != ''
-                    ORDER BY COALESCE(q.position, 999999), q.id
-                """),
-                    {"cid": current_contrib_id},
-                )
-                .mappings()
-                .all()
-            )
+            rows_answers = contribution_answers(db, current_contrib_id)
 
             for r in rows_answers:
                 answers.append(

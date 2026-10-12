@@ -21,6 +21,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/authors/{author_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Consulter la représentation publique d'un auteur */
+        get: operations["get_public_author"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/authors/{author_id}/forms": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Formulaires regroupés dans un lot borné de contributions d'un auteur */
+        get: operations["list_public_author_forms"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/forms": {
         parameters: {
             query?: never;
@@ -50,6 +84,40 @@ export interface paths {
         };
         /** Consulter un formulaire et toutes ses questions */
         get: operations["get_public_form"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/forms/{form_id}/contributions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Résoudre le paramètre historique contrib (rang, jamais ID en base) */
+        get: operations["get_public_legacy_contribution"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/forms/{form_id}/contributions/{contribution_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Consulter toutes les réponses d'une contribution par son ID en base */
+        get: operations["get_public_contribution"];
         put?: never;
         post?: never;
         delete?: never;
@@ -183,6 +251,42 @@ export interface components {
             /** Detail */
             detail: string;
         };
+        /** AuthorForm */
+        AuthorForm: {
+            /** Contributions */
+            contributions: components["schemas"]["ContributionReference"][];
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Url */
+            url: string;
+        };
+        /** AuthorFormsPage */
+        AuthorFormsPage: {
+            /**
+             * Author Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            author_id: string;
+            /**
+             * Forms
+             * @description Formulaires sans doublons dans ce lot de contributions.
+             */
+            forms: components["schemas"]["AuthorForm"][];
+            /** Has Next */
+            has_next: boolean;
+            /**
+             * Next After Id
+             * @description Dernier ID du lot. Pagination des contributions, pas des formulaires ; un formulaire peut réapparaître dans un lot suivant.
+             */
+            next_after_id: string | null;
+            /** Page Size */
+            page_size: number;
+        };
         /** ChoiceCategory */
         ChoiceCategory: {
             /**
@@ -209,6 +313,65 @@ export interface components {
             percentage: number;
             /** Position */
             position: number | null;
+        };
+        /** ContributionAnswer */
+        ContributionAnswer: {
+            /**
+             * Id
+             * @description Ancre frontend possible : answer-{id}.
+             */
+            id: string;
+            /** Other Text */
+            other_text: string[];
+            /**
+             * Position
+             * @description Position de la réponse au sein d'une même question.
+             */
+            position: number | null;
+            question: components["schemas"]["FormQuestion"];
+            /** Selected Options */
+            selected_options: components["schemas"]["SelectedOption"][];
+            /**
+             * Text
+             * @description Texte public brut complet ; null et vide conservés pour les lignes existantes.
+             */
+            text: string | null;
+            /**
+             * Value
+             * @description Valeur publique des questions number/scale/date ; aucun JSON brut.
+             */
+            value: string | null;
+        };
+        /** ContributionDetail */
+        ContributionDetail: {
+            /**
+             * Answers
+             * @description Lignes réelles uniquement, par COALESCE(question.position,999999), question.id, answer.position NULLS LAST, answer.id.
+             */
+            answers: components["schemas"]["ContributionAnswer"][];
+            author: components["schemas"]["PublicAuthor"] | null;
+            contribution: components["schemas"]["ContributionReference"];
+            form: components["schemas"]["QuestionForm"];
+            /**
+             * Legacy Index
+             * @description Rang historique 1..M, uniquement lors d'une résolution par contrib. Ce n'est pas l'ID en base.
+             */
+            legacy_index?: string | null;
+        };
+        /** ContributionReference */
+        ContributionReference: {
+            /**
+             * Api Url
+             * @description Lecture JSON par ID de contribution, pas par rang historique.
+             */
+            api_url: string;
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Submitted At */
+            submitted_at: string | null;
         };
         /** FormDetail */
         FormDetail: {
@@ -459,6 +622,18 @@ export interface components {
              */
             type: "single_choice" | "multi_choice";
         };
+        /** SelectedOption */
+        SelectedOption: {
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Label */
+            label: string;
+            /** Position */
+            position: number | null;
+        };
         /** ValidationError */
         ValidationError: {
             /** Context */
@@ -503,6 +678,163 @@ export interface operations {
                 };
             };
             /** @description Ressource introuvable. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    get_public_author: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                author_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicAuthor"];
+                };
+            };
+            /** @description Ressource introuvable ou contribution d'un autre formulaire. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    list_public_author_forms: {
+        parameters: {
+            query?: {
+                page_size?: number;
+                after_id?: string | null;
+            };
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                author_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthorFormsPage"];
+                };
+            };
+            /** @description Ressource introuvable ou contribution d'un autre formulaire. */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -664,6 +996,165 @@ export interface operations {
             };
             /** @description Base de données indisponible. */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    get_public_legacy_contribution: {
+        parameters: {
+            query?: {
+                /** @description Rang 1..M selon date ASC NULLS LAST, ID ASC. Invalide ou hors plage : repli/clamp historique. */
+                contrib?: string;
+            };
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                form_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContributionDetail"];
+                };
+            };
+            /** @description Ressource introuvable ou contribution d'un autre formulaire. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    get_public_contribution: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                form_id: string;
+                /** @description BIGINT positif, chaîne décimale. */
+                contribution_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContributionDetail"];
+                };
+            };
+            /** @description Ressource introuvable ou contribution d'un autre formulaire. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
                 headers: {
                     [name: string]: unknown;
                 };

@@ -3,7 +3,7 @@
 from datetime import datetime
 from typing import Annotated, Literal
 
-from fastapi import Path
+from fastapi import Path, Query
 from pydantic import AfterValidator, BaseModel, Field
 
 from app.schemas.forms import FormQuestion, PublicId
@@ -18,6 +18,18 @@ def _bigint(value: str) -> str:
 PathId = Annotated[
     str,
     Path(
+        pattern=r"^[0-9]+$",
+        min_length=1,
+        max_length=19,
+        description="BIGINT positif, chaîne décimale.",
+    ),
+    AfterValidator(_bigint),
+]
+
+
+QueryId = Annotated[
+    str,
+    Query(
         pattern=r"^[0-9]+$",
         min_length=1,
         max_length=19,
