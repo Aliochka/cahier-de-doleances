@@ -41,6 +41,8 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
 
     OpenAPI.model_validate(schema)
     assert set(schema["paths"]) == {
+        "/api/v1/search/answers",
+        "/api/v1/search/catalog",
         "/api/v1/forms",
         "/api/v1/forms/{form_id}",
         "/api/v1/questions/{question_id}",
@@ -76,6 +78,11 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
         "ContributionDetail",
         "ContributionReference",
         "SelectedOption",
+        "SearchAnswer",
+        "AnswerSearchPage",
+        "CatalogForm",
+        "CatalogQuestion",
+        "CatalogSearchPage",
     }
     for model in ("FormSummary", "FormDetail", "FormQuestion"):
         assert models[model]["properties"]["id"]["type"] == "string"

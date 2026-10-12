@@ -189,6 +189,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/search/answers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Recherche plein texte des réponses, ordre historique ID décroissant */
+        get: operations["search_public_answers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/search/catalog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Questions et formulaires, sections indépendantes classées par ts_rank puis ID */
+        get: operations["search_public_catalog"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -246,6 +280,22 @@ export interface components {
              */
             question_id: string;
         };
+        /** AnswerSearchPage */
+        AnswerSearchPage: {
+            /** Has Next */
+            has_next: boolean;
+            /** Items */
+            items: components["schemas"]["SearchAnswer"][];
+            /**
+             * Next Cursor
+             * @description Curseur opaque ID décroissant, à réutiliser uniquement avec le même terme.
+             */
+            next_cursor: string | null;
+            /** Page Size */
+            page_size: number;
+            /** Q */
+            q: string;
+        };
         /** ApiError */
         ApiError: {
             /** Detail */
@@ -286,6 +336,110 @@ export interface components {
             next_after_id: string | null;
             /** Page Size */
             page_size: number;
+        };
+        /** CatalogForm */
+        CatalogForm: {
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /**
+             * Kind
+             * @default form
+             * @constant
+             */
+            kind: "form";
+            /**
+             * Name
+             * @description Nom public du formulaire historique.
+             */
+            name: string;
+            /**
+             * Questions Count
+             * @description Nombre de questions, avec ou sans réponses.
+             */
+            questions_count: number;
+            /**
+             * Url
+             * @description Chemin relatif de la page HTML historique.
+             */
+            url: string;
+        };
+        /** CatalogQuestion */
+        CatalogQuestion: {
+            /**
+             * Answers Count
+             * @description Compteur historique de question, sans comptage des résultats.
+             */
+            answers_count: number;
+            form: components["schemas"]["QuestionForm"];
+            /**
+             * Form Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            form_id: string;
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /**
+             * Kind
+             * @default question
+             * @constant
+             */
+            kind: "question";
+            /**
+             * Position
+             * @description Ordre déclaré dans le questionnaire ; peut être absent.
+             */
+            position: number | null;
+            /** Prompt */
+            prompt: string;
+            /**
+             * Slug
+             * @description Slug construit avec le helper des routes HTML.
+             */
+            slug: string;
+            /**
+             * Type
+             * @description Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.
+             */
+            type: string;
+            /**
+             * Url
+             * @description Chemin relatif vers la question historique.
+             */
+            url: string;
+        };
+        /** CatalogSearchPage */
+        CatalogSearchPage: {
+            /** Forms */
+            forms: components["schemas"]["CatalogForm"][];
+            /** Has Next Forms */
+            has_next_forms: boolean;
+            /** Has Next Questions */
+            has_next_questions: boolean;
+            /**
+             * Next Cursor Forms
+             * @description Curseur opaque score/ID de la section formulaires.
+             */
+            next_cursor_forms: string | null;
+            /**
+             * Next Cursor Questions
+             * @description Curseur opaque score/ID de la section questions.
+             */
+            next_cursor_questions: string | null;
+            /**
+             * Page Size
+             * @description Limite par section, pas un total combiné.
+             */
+            page_size: number;
+            /** Q */
+            q: string;
+            /** Questions */
+            questions: components["schemas"]["CatalogQuestion"][];
         };
         /** ChoiceCategory */
         ChoiceCategory: {
@@ -621,6 +775,36 @@ export interface components {
              * @enum {string}
              */
             type: "single_choice" | "multi_choice";
+        };
+        /** SearchAnswer */
+        SearchAnswer: {
+            author: components["schemas"]["PublicAuthor"] | null;
+            /**
+             * Contribution Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            contribution_id: string;
+            form: components["schemas"]["QuestionForm"];
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Is Truncated */
+            is_truncated: boolean;
+            question: components["schemas"]["FormQuestion"];
+            /** Submitted At */
+            submitted_at: string | null;
+            /**
+             * Text
+             * @description Préfixe brut fidèle, 1 000 caractères maximum, sans HTML ajouté.
+             */
+            text: string;
+            /**
+             * Url
+             * @description Page React de contribution par ID, avec ancre answer-{id}.
+             */
+            url: string;
         };
         /** SelectedOption */
         SelectedOption: {
@@ -1360,6 +1544,152 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    search_public_answers: {
+        parameters: {
+            query?: {
+                /** @description Terme recherché, espaces extérieurs retirés. Maximum 512 caractères. */
+                q?: string;
+                page_size?: number;
+                /** @description Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend. */
+                cursor?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnswerSearchPage"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    search_public_catalog: {
+        parameters: {
+            query?: {
+                /** @description Terme recherché, espaces extérieurs retirés. Maximum 512 caractères. */
+                q?: string;
+                page_size?: number;
+                /** @description Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend. */
+                cursor_forms?: string | null;
+                /** @description Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend. */
+                cursor_questions?: string | null;
+                /** @description Omettre pour les deux sections ; une section limite la recherche et le SQL à celle-ci. */
+                section?: ("forms" | "questions") | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CatalogSearchPage"];
                 };
             };
             /** @description Délai HTTP dépassé. */
