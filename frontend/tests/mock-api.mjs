@@ -122,12 +122,140 @@ const fullContribution = (id) => ({
           },
         ],
 });
+let searchRetry = 0;
+const searchCalls = [];
 let retry = 0;
 let formRetry = 0;
 const server = createServer((request, response) => {
   const url = new URL(request.url, "http://127.0.0.1");
   response.setHeader("Content-Type", "application/json");
   response.setHeader("Cache-Control", "private, no-store");
+  if (url.pathname === "/search-reset") {
+    searchCalls.length = 0;
+    searchRetry = 0;
+    response.end("{}");
+    return;
+  }
+  if (url.pathname === "/search-calls") {
+    response.end(JSON.stringify(searchCalls));
+    return;
+  }
+  if (
+    ["/api/v1/search/answers", "/api/v1/search/catalog"].includes(url.pathname)
+  ) {
+    if (request.headers.cookie) {
+      response.statusCode = 403;
+      response.end("{}");
+      return;
+    }
+    const q = url.searchParams.get("q") ?? "";
+    searchCalls.push({ path: url.pathname, query: url.search });
+    if (
+      ["422", "500", "503", "504"].includes(q) ||
+      (q === "retry" && searchRetry++ === 0)
+    ) {
+      response.statusCode = q === "retry" ? 503 : Number(q);
+      response.end(
+        JSON.stringify({ detail: "private SQL SECRET http://private-host" }),
+      );
+      return;
+    }
+    if (q === "invalid-json") {
+      response.end("{invalid");
+      return;
+    }
+    const cursor = url.searchParams.get("cursor");
+    if (cursor === "fail") {
+      response.statusCode = 503;
+      response.end("{}");
+      return;
+    }
+    const empty = q === "absent" || q.length < 2;
+    const send = () => {
+      if (url.pathname.endsWith("/answers")) {
+        const items = empty
+          ? []
+          : (cursor
+              ? ["9007199254741992"]
+              : ["9007199254741993", "9007199254741994"]
+            ).map((id, index) => ({
+              id,
+              contribution_id: contributionIds[0],
+              text: cursor
+                ? "Réponse du lot suivant."
+                : index === 0
+                  ? `Première réponse pour ${q}.\n\n<script>alert('non fiable')</script>\n` +
+                    "Texte long. ".repeat(60)
+                  : "Seconde réponse.",
+              is_truncated: index === 0 && !cursor,
+              submitted_at: null,
+              author:
+                index === 0
+                  ? {
+                      ...author,
+                      id: "9007199254743994",
+                      name: "Pseudonyme public",
+                      is_anonymous: false,
+                    }
+                  : author,
+              question: questions[0],
+              form: { id: forms[0].id, name: forms[0].name, url: forms[0].url },
+              url: `/forms/${forms[0].id}/contributions/${contributionIds[0]}#answer-${id}`,
+            }));
+        response.end(
+          JSON.stringify({
+            q,
+            items,
+            page_size: 20,
+            has_next: !cursor && !empty,
+            next_cursor:
+              cursor || empty
+                ? null
+                : q === "pagination-error"
+                  ? "fail"
+                  : "answer+2/=opaque",
+          }),
+        );
+      } else {
+        const formCursor = url.searchParams.get("cursor_forms");
+        const questionCursor = url.searchParams.get("cursor_questions");
+        response.end(
+          JSON.stringify({
+            q,
+            page_size: 20,
+            forms: empty
+              ? []
+              : (formCursor ? [forms[1]] : forms).map((f) => ({
+                  ...f,
+                  kind: "form",
+                })),
+            questions: empty
+              ? []
+              : (questionCursor ? [questions[2]] : questions).map((item) => ({
+                  ...item,
+                  kind: "question",
+                  form: {
+                    id: forms[0].id,
+                    name: forms[0].name,
+                    url: forms[0].url,
+                  },
+                  answers_count: 100,
+                })),
+            has_next_forms: !empty && !formCursor,
+            has_next_questions: !empty && !questionCursor,
+            next_cursor_forms: empty || formCursor ? null : "forms+2/=opaque",
+            next_cursor_questions:
+              empty || questionCursor ? null : "questions+2/=opaque",
+          }),
+        );
+      }
+    };
+    if (q === "slow") {
+      const timer = setTimeout(send, 8500);
+      response.on("close", () => clearTimeout(timer));
+    } else send();
+    return;
+  }
   if (url.pathname === "/reset-form") {
     formRetry = 0;
     response.end("{}");

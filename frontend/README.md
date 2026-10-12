@@ -496,3 +496,53 @@ BIGINT, les réponses multiples, le HTML SSR, les ancres sans JavaScript et apr�
 hydratation, les parcours au clavier, l’arrière et les écrans à 320 px/zoom 200 %.
 L’API simulée reste locale, sans Wallace. Ces tests ne constituent pas une recette
 RGAA complète. Aucun nouveau sitemap, compte ou marque-page n’est ajouté.
+
+## Recherche unifiée (FRONT-004)
+
+`/recherche?q=…&tab=answers|catalog` utilise un formulaire GET : la saisie reste un
+brouillon jusqu’au bouton **Rechercher** ou à Entrée (512 caractères maximum).
+L’URL définit la recherche active. Les catégories sont des liens de navigation,
+accessibles sans JavaScript, avec `aria-current` ; elles gardent le terme soumis,
+préservent le brouillon côté client et effacent les curseurs. Aucun préchargement,
+appel par frappe, polling ou retry automatique n’est ajouté.
+
+Le loader serveur appelle uniquement `/api/v1/search/answers` ou
+`/api/v1/search/catalog` via le client existant et `API_BASE_URL`. Les méthodes et
+modèles utilisent le contrat généré, sans conversion des BIGINT. Les appels publics
+omettent les cookies et propagent le signal d’annulation ; aucun appel ne part
+pendant le build. Les navigations React Router utilisent ce même loader serveur.
+
+- Réponses : ordre API par ID décroissant, extraits échappés avec sauts de ligne,
+  liens `/forms/{form_id}/contributions/{contribution_id}#answer-{answer_id}`.
+  Seuls les auteurs non anonymes ont un lien dans ces résultats.
+- Catalogue : deux listes **Enquêtes** et **Questions**, dans l’ordre de pertinence
+  fourni par l’API pour chaque catégorie. Les liens de question utilisent l’URL
+  déjà construite par le backend ; aucun nouveau slug n’est calculé.
+- Pagination : 20 résultats par défaut, curseurs opaques `cursor` pour les réponses,
+  `cursor_forms` et `cursor_questions` pour le catalogue. Les deux listes du catalogue
+  sont paginées séparément ; avancer une liste conserve le curseur courant de l’autre.
+  Le retour arrière du navigateur retrouve les lots précédents. Une nouvelle
+  soumission remet tous les curseurs à zéro. Aucun total exact ni numéro de page.
+
+Le HTML initial contient les résultats, les liens et le formulaire. Une recherche
+vide ne contacte pas l’API. Les pages réussies, y compris sans résultat, répondent
+200 avec `noindex, follow`, une canonical fixe `https://cahierdedoleances.fr/recherche`
+et `Cache-Control: private, no-store`. Les erreurs conservent leur statut réel
+(422/500/502/503/504), un formulaire utilisable et un réessai manuel ; elles ne sont
+ni indexées ni mises en cache. Pendant la navigation, les anciens résultats restent
+visibles avec le chargement global et le message après huit secondes. Après un échec,
+le dernier lot réussi reste affiché côté client, explicitement identifié par son
+terme et sa catégorie. Le secours SSR est autonome, sans dépendance à Wallace.
+
+La recherche Réponses est limitée aux **1 789 derniers candidats FTS** et n’est
+pas exhaustive ; ce n’est pas un classement par pertinence. La limite ne concerne
+pas le catalogue. Les syntaxes des deux moteurs diffèrent : voir
+[la documentation backend](../docs/api-search.md). Une révision de cette limite et
+les mesures de coût sur le corpus complet restent des travaux backend ultérieurs.
+
+Validation : `pnpm check`, `pnpm typecheck`, `pnpm test`, `pnpm build:offline`,
+`pnpm test:build`, `pnpm contract:check`, `pnpm test:e2e`. Les tests utilisent l’API
+synthétique locale, couvrent SSR/statuts/noindex, Entrée/bouton, requêtes indépendantes,
+pagination sans JavaScript, annulation, réessai, ancres, clavier et écrans 320 px/zoom
+200 %. Une recette RGAA avec lecteurs d’écran réels reste nécessaire avant production.
+Le frontend ne remplace pas encore Jinja ; aucun déploiement n’est effectué.
