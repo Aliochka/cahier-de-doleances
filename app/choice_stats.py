@@ -3,7 +3,7 @@
 from sqlalchemy import text
 
 
-def choice_statistics(db, question_id):
+def choice_statistics(db, question_id, *, include_contributions=False):
     total = (
         db.execute(
             text("SELECT COALESCE(answers_count,0) FROM question_stats WHERE question_id=:qid"),
@@ -27,13 +27,34 @@ def choice_statistics(db, question_id):
     stats = [
         dict(row, percentage=round(row["count"] * 100.0 / total, 2) if total else 0) for row in rows
     ]
-    other = db.execute(
-        text("""
-        SELECT count(*) FROM answers WHERE question_id=:qid
-          AND COALESCE(jsonb_array_length(value_json::jsonb->'other_text'),0)>0
-    """),
-        {"qid": question_id},
-    ).scalar_one()
+    # Keep legacy dashboard work unchanged; the new distinct-contribution metric
+    # is explicitly requested only by the versioned API.
+    answered_contributions = None
+    if include_contributions:
+        extra = (
+            db.execute(
+                text("""
+            SELECT count(*) FILTER (
+                       WHERE COALESCE(jsonb_array_length(value_json::jsonb->'other_text'),0)>0
+                   ) AS other_count,
+                   count(DISTINCT contribution_id) AS answered_contributions_count
+            FROM answers WHERE question_id=:qid
+        """),
+                {"qid": question_id},
+            )
+            .mappings()
+            .one()
+        )
+        other = extra["other_count"]
+        answered_contributions = extra["answered_contributions_count"]
+    else:
+        other = db.execute(
+            text("""
+            SELECT count(*) FROM answers WHERE question_id=:qid
+              AND COALESCE(jsonb_array_length(value_json::jsonb->'other_text'),0)>0
+            """),
+            {"qid": question_id},
+        ).scalar_one()
     if other:
         stats.append(
             {
@@ -46,6 +67,8 @@ def choice_statistics(db, question_id):
         )
     return {
         "total_answers": total,
+        "answered_contributions_count": answered_contributions,
+        "other_text_answers_count": other,
         "total_selections": sum(row["count"] for row in stats),
         "stats": stats,
     }

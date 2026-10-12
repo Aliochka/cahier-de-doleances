@@ -1,12 +1,6 @@
 # app/routers/questions.py
 from __future__ import annotations
 
-import base64
-import binascii
-import json
-from datetime import datetime
-from typing import Any
-
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from sqlalchemy import text
@@ -14,6 +8,9 @@ from sqlalchemy.orm import Session
 
 from app.choice_stats import choice_statistics
 from app.db import SessionLocal
+from app.services.questions import MAX_TEXT_LEN, get_question, read_question_answers
+from app.services.questions import _dec_cursor as _dec_cursor
+from app.services.questions import _enc_cursor as _enc_cursor
 from app.web import templates
 
 # Slugify helper (fallback)
@@ -38,41 +35,6 @@ except Exception:
 
 router = APIRouter()
 
-PER_PAGE = 20
-MIN_ANSWER_LEN = 60
-MAX_TEXT_LEN = 20_000
-
-
-# --- utils cursor opaque (base64 urlsafe(JSON)) ---
-def _enc_cursor(obj: dict) -> str:
-    raw = json.dumps(obj, separators=(",", ":"), ensure_ascii=False).encode()
-    s = base64.urlsafe_b64encode(raw).decode()
-    return s.rstrip("=")
-
-
-def _dec_cursor(s: str | None) -> dict | None:
-    if not s:
-        return None
-    if len(s) > 1024:
-        raise HTTPException(status_code=400, detail="Curseur invalide")
-    try:
-        pad = "=" * ((4 - len(s) % 4) % 4)
-        data = base64.b64decode(s + pad, altchars=b"-_", validate=True)
-        cursor = json.loads(data.decode())
-        if not isinstance(cursor, dict):
-            raise ValueError("Invalid cursor shape")
-        answer_id = cursor["id"]
-        date = cursor["date"]
-        if type(answer_id) is not int or answer_id <= 0:
-            raise ValueError("Invalid answer ID")
-        if date is not None:
-            if not isinstance(date, str):
-                raise ValueError("Invalid date")
-            date = datetime.fromisoformat(date).isoformat()
-        return {"id": answer_id, "date": date}
-    except (KeyError, ValueError, TypeError, UnicodeDecodeError, binascii.Error):
-        raise HTTPException(status_code=400, detail="Curseur invalide") from None
-
 
 def get_db():
     db = SessionLocal()
@@ -85,119 +47,9 @@ def get_db():
 def _question_answers(
     db: Session, question_id: int, question_type: str, q: str | None, cursor: str | None
 ):
-    # --- Scroll infini + filtre
-    q = (q or "").strip()
-    answers: list[dict[str, Any]] = []
-    has_next = False
-    next_cursor: str | None = None
-    total = 0
-
-    limit = PER_PAGE + 1
-    cur = _dec_cursor(cursor)
-    min_length = 1 if question_type in ("single_choice", "multi_choice") else MIN_ANSWER_LEN
-    params = {"qid": question_id, "minlen": min_length, "limit": limit}
-
-    # Curseur pour pagination keyset
-    cursor_sql = ""
-    if cur:
-        cursor_sql = """
-            AND (
-                c.submitted_at < :last_date
-                OR (c.submitted_at = :last_date AND a.id < :last_id)
-            )
-        """
-        if cur["date"] is None:
-            cursor_sql = """
-                AND ((c.submitted_at IS NULL AND a.id < :last_id)
-                     OR c.submitted_at IS NOT NULL)
-            """
-        else:
-            params["last_date"] = cur["date"]
-        params["last_id"] = cur["id"]
-
-    # Total count (uniquement si pas de curseur - pour affichage initial)
-    if not cursor:
-        if q:
-            total = db.execute(
-                text("""
-                    SELECT COUNT(1)
-                    FROM answers a
-                    JOIN contributions c ON c.id = a.contribution_id
-                    WHERE a.question_id = :qid
-                      AND a.text IS NOT NULL
-                      AND char_length(btrim(a.text)) >= :minlen
-                      AND a.text ILIKE :like
-                """),
-                {**params, "like": f"%{q}%"},
-            ).scalar_one()
-        else:
-            total = db.execute(
-                text("""
-                    SELECT COUNT(1)
-                    FROM answers a
-                    JOIN contributions c ON c.id = a.contribution_id
-                    WHERE a.question_id = :qid
-                      AND a.text IS NOT NULL
-                      AND char_length(btrim(a.text)) >= :minlen
-                """),
-                params,
-            ).scalar_one()
-
-    # Requête avec curseur
-    if q:
-        rows = (
-            db.execute(
-                text(f"""
-                SELECT a.id AS answer_id, a.text AS answer_text,
-                       c.author_id AS author_id, c.submitted_at AS submitted_at
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE a.question_id = :qid
-                  AND a.text IS NOT NULL
-                  AND char_length(btrim(a.text)) >= :minlen
-                  AND a.text ILIKE :like
-                  {cursor_sql}
-                ORDER BY c.submitted_at DESC NULLS FIRST, a.id DESC
-                LIMIT :limit
-            """),
-                {**params, "like": f"%{q}%"},
-            )
-            .mappings()
-            .all()
-        )
-    else:
-        rows = (
-            db.execute(
-                text(f"""
-                SELECT a.id AS answer_id, a.text AS answer_text,
-                       c.author_id AS author_id, c.submitted_at AS submitted_at
-                FROM answers a
-                JOIN contributions c ON c.id = a.contribution_id
-                WHERE a.question_id = :qid
-                  AND a.text IS NOT NULL
-                  AND char_length(btrim(a.text)) >= :minlen
-                  {cursor_sql}
-                ORDER BY c.submitted_at DESC NULLS FIRST, a.id DESC
-                LIMIT :limit
-            """),
-                params,
-            )
-            .mappings()
-            .all()
-        )
-
-    # Traitement des résultats
-    if len(rows) > PER_PAGE:
-        has_next = True
-        rows = rows[:-1]  # Retire le dernier élément (sentinel)
-        last_row = rows[-1]
-        next_cursor = _enc_cursor(
-            {
-                "date": last_row["submitted_at"].isoformat() if last_row["submitted_at"] else None,
-                "id": last_row["answer_id"],
-            }
-        )
-
+    rows, has_next, next_cursor, total = read_question_answers(
+        db, question_id, question_type, q, cursor
+    )
     answers = [
         {
             "id": r["answer_id"],
@@ -208,7 +60,6 @@ def _question_answers(
         }
         for r in rows
     ]
-
     return answers, has_next, next_cursor, total
 
 
@@ -259,14 +110,7 @@ def question_detail(
         return Response(status_code=200)
 
     # --- Question
-    row = (
-        db.execute(
-            text("SELECT id, question_code, prompt, type FROM questions WHERE id = :qid"),
-            {"qid": question_id},
-        )
-        .mappings()
-        .first()
-    )
+    row = get_question(db, question_id)
     if not row:
         raise HTTPException(status_code=404, detail="Question introuvable")
 
@@ -369,14 +213,7 @@ def question_stats(
     db: Session = Depends(get_db),
 ):
     # Vérifier que la question existe et est de type single_choice
-    question_row = (
-        db.execute(
-            text("SELECT id, type, prompt FROM questions WHERE id = :qid"),
-            {"qid": question_id},
-        )
-        .mappings()
-        .first()
-    )
+    question_row = get_question(db, question_id)
 
     if not question_row:
         raise HTTPException(status_code=404, detail="Question introuvable")
@@ -452,13 +289,7 @@ def question_answers_partial(
     cursor: str | None = Query(None),
     db: Session = Depends(get_db),
 ):
-    row = (
-        db.execute(
-            text("SELECT id, prompt, type FROM questions WHERE id = :qid"), {"qid": question_id}
-        )
-        .mappings()
-        .first()
-    )
+    row = get_question(db, question_id)
     if not row:
         raise HTTPException(status_code=404, detail="Question introuvable")
     q = (q or "").strip()
