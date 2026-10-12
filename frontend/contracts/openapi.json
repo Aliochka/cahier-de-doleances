@@ -1,6 +1,126 @@
 {
   "components": {
     "schemas": {
+      "AnswerDetail": {
+        "properties": {
+          "author": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PublicAuthor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "contribution_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Contribution Id",
+            "type": "string"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_truncated": {
+            "description": "Liste limitée à 20 000 caractères ; détail sans troncature.",
+            "title": "Is Truncated",
+            "type": "boolean"
+          },
+          "question": {
+            "$ref": "#/components/schemas/FormQuestion"
+          },
+          "question_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Question Id",
+            "type": "string"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          },
+          "text": {
+            "description": "Texte brut public, pas du HTML fiable. À échapper au rendu.",
+            "title": "Text",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "question_id",
+          "contribution_id",
+          "text",
+          "is_truncated",
+          "submitted_at",
+          "author",
+          "url",
+          "question"
+        ],
+        "title": "AnswerDetail",
+        "type": "object"
+      },
+      "AnswerPage": {
+        "properties": {
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PublicAnswer"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Curseur opaque ; ne pas décoder ni convertir ses IDs.",
+            "title": "Next Cursor"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "question_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Question Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question_id",
+          "items",
+          "page_size",
+          "has_next",
+          "next_cursor"
+        ],
+        "title": "AnswerPage",
+        "type": "object"
+      },
       "ApiError": {
         "properties": {
           "detail": {
@@ -12,6 +132,69 @@
           "detail"
         ],
         "title": "ApiError",
+        "type": "object"
+      },
+      "ChoiceCategory": {
+        "properties": {
+          "count": {
+            "description": "Sélections de l'option, ou réponses avec autre texte.",
+            "minimum": 0.0,
+            "title": "Count",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "option",
+              "other_text"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "option_id": {
+            "anyOf": [
+              {
+                "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+                "pattern": "^[0-9]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Null pour la catégorie synthétique other_text.",
+            "title": "Option Id"
+          },
+          "percentage": {
+            "description": "100 × count / total_answers, arrondi à 2 décimales.",
+            "minimum": 0.0,
+            "title": "Percentage",
+            "type": "number"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Position"
+          }
+        },
+        "required": [
+          "option_id",
+          "kind",
+          "label",
+          "position",
+          "count",
+          "percentage"
+        ],
+        "title": "ChoiceCategory",
         "type": "object"
       },
       "FormDetail": {
@@ -162,6 +345,288 @@
         "title": "HTTPValidationError",
         "type": "object"
       },
+      "PublicAnswer": {
+        "properties": {
+          "author": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PublicAuthor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "contribution_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Contribution Id",
+            "type": "string"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_truncated": {
+            "description": "Liste limitée à 20 000 caractères ; détail sans troncature.",
+            "title": "Is Truncated",
+            "type": "boolean"
+          },
+          "question_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Question Id",
+            "type": "string"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          },
+          "text": {
+            "description": "Texte brut public, pas du HTML fiable. À échapper au rendu.",
+            "title": "Text",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "question_id",
+          "contribution_id",
+          "text",
+          "is_truncated",
+          "submitted_at",
+          "author",
+          "url"
+        ],
+        "title": "PublicAnswer",
+        "type": "object"
+      },
+      "PublicAuthor": {
+        "properties": {
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_anonymous": {
+            "title": "Is Anonymous",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Nom public ou libellé neutre selon les règles d'anonymat.",
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "is_anonymous",
+          "slug",
+          "url"
+        ],
+        "title": "PublicAuthor",
+        "type": "object"
+      },
+      "QuestionDetail": {
+        "properties": {
+          "display_mode": {
+            "description": "choice pour single_choice/multi_choice ; text pour les autres types historiques.",
+            "enum": [
+              "text",
+              "choice"
+            ],
+            "title": "Display Mode",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/components/schemas/QuestionForm"
+          },
+          "form_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Form Id",
+            "type": "string"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Ordre déclaré dans le questionnaire ; peut être absent.",
+            "title": "Position"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "slug": {
+            "description": "Slug construit avec le helper des routes HTML.",
+            "title": "Slug",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.",
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "description": "Chemin relatif vers la question historique.",
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "form_id",
+          "prompt",
+          "type",
+          "position",
+          "slug",
+          "url",
+          "form",
+          "display_mode"
+        ],
+        "title": "QuestionDetail",
+        "type": "object"
+      },
+      "QuestionForm": {
+        "properties": {
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url"
+        ],
+        "title": "QuestionForm",
+        "type": "object"
+      },
+      "QuestionStatistics": {
+        "properties": {
+          "answered_contributions_count": {
+            "description": "Contributions distinctes ayant une réponse ; pas des personnes uniques.",
+            "minimum": 0.0,
+            "title": "Answered Contributions Count",
+            "type": "integer"
+          },
+          "categories": {
+            "description": "Options par position ASC NULLS LAST, id ASC ; autre texte ajouté en fin s'il existe.",
+            "items": {
+              "$ref": "#/components/schemas/ChoiceCategory"
+            },
+            "title": "Categories",
+            "type": "array"
+          },
+          "other_text_answers_count": {
+            "minimum": 0.0,
+            "title": "Other Text Answers Count",
+            "type": "integer"
+          },
+          "percentage_decimal_places": {
+            "const": 2,
+            "default": 2,
+            "title": "Percentage Decimal Places",
+            "type": "integer"
+          },
+          "percentage_denominator": {
+            "const": "total_answers",
+            "default": "total_answers",
+            "title": "Percentage Denominator",
+            "type": "string"
+          },
+          "question_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Question Id",
+            "type": "string"
+          },
+          "total_answers": {
+            "description": "Lignes answers, compteur historique maintenu par triggers.",
+            "minimum": 0.0,
+            "title": "Total Answers",
+            "type": "integer"
+          },
+          "total_option_selections": {
+            "description": "Liens answer_options, hors catégorie autre texte.",
+            "minimum": 0.0,
+            "title": "Total Option Selections",
+            "type": "integer"
+          },
+          "total_selections": {
+            "description": "Somme historique des catégories, incluant une catégorie autre texte par réponse.",
+            "minimum": 0.0,
+            "title": "Total Selections",
+            "type": "integer"
+          },
+          "type": {
+            "enum": [
+              "single_choice",
+              "multi_choice"
+            ],
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question_id",
+          "type",
+          "total_answers",
+          "answered_contributions_count",
+          "total_selections",
+          "total_option_selections",
+          "other_text_answers_count",
+          "categories"
+        ],
+        "title": "QuestionStatistics",
+        "type": "object"
+      },
       "ValidationError": {
         "properties": {
           "ctx": {
@@ -210,6 +675,103 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v1/answers/{answer_id}": {
+      "get": {
+        "operationId": "get_public_answer",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "answer_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Answer Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Consulter une réponse complète et sa question",
+        "tags": [
+          "Public questions and answers"
+        ]
+      }
+    },
     "/api/v1/forms": {
       "get": {
         "description": "Ordre stable par identifiant. Une liste vide reste une réponse 200.",
@@ -349,6 +911,343 @@
         "summary": "Consulter un formulaire et toutes ses questions",
         "tags": [
           "Public forms"
+        ]
+      }
+    },
+    "/api/v1/questions/{question_id}": {
+      "get": {
+        "operationId": "get_public_question",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Question Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Consulter une question sans ses réponses",
+        "tags": [
+          "Public questions and answers"
+        ]
+      }
+    },
+    "/api/v1/questions/{question_id}/answers": {
+      "get": {
+        "description": "Date DESC NULLS FIRST, id DESC ; une sentinelle, sans OFFSET ni comptage.\n\nFiltre historique : texte non vide pour choix, au moins 60 caractères nettoyés\npour les autres types. Texte de liste limité à 20 000 caractères.",
+        "operationId": "list_public_question_answers",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Question Id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "20 par défaut, maximum 100.",
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "description": "20 par défaut, maximum 100.",
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Curseur opaque de la page précédente.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 1024,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Curseur opaque de la page précédente.",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Parcourir les réponses textuelles par curseur",
+        "tags": [
+          "Public questions and answers"
+        ]
+      }
+    },
+    "/api/v1/questions/{question_id}/stats": {
+      "get": {
+        "description": "Pourcentages historiques par ligne de réponse ; leur somme peut dépasser 100 %.\n\nContributions distinctes ≠ personnes uniques. Une réponse avec autre texte\ncompte une fois dans la catégorie synthétique, pas une fois par texte.",
+        "operationId": "get_public_question_statistics",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Question Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionStatistics"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Question non à choix."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Ressource introuvable."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Statistiques des choix, sans paramètres graphiques",
+        "tags": [
+          "Public questions and answers"
         ]
       }
     }

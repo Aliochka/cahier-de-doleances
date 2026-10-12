@@ -26,6 +26,7 @@ from app.logging_filters import redact_access_logs
 from app.routers import (
     answers,
     api_forms,
+    api_questions,
     auth,
     authors,
     bookmarks,
@@ -147,6 +148,7 @@ app.include_router(questions.router)
 app.include_router(answers.router)
 app.include_router(forms.router)
 app.include_router(api_forms.router)
+app.include_router(api_questions.router)
 app.include_router(seo.router)
 app.include_router(auth.router)
 app.include_router(bookmarks.router)
@@ -166,6 +168,16 @@ def search_error_response(request: Request, *, timeout: bool):
         else "La recherche a rencontré une erreur. Veuillez réessayer."
     )
     headers = {"Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow"}
+    if request.url.path.startswith("/api/v1/"):
+        return JSONResponse(
+            {
+                "detail": "Le délai de réponse a été dépassé."
+                if timeout
+                else "Internal server error"
+            },
+            status_code=status,
+            headers=headers,
+        )
     if request.headers.get("hx-request") == "true" or request.query_params.get("partial") in {
         "true",
         "1",

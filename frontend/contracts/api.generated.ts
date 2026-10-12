@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+    "/api/v1/answers/{answer_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Consulter une réponse complète et sa question */
+        get: operations["get_public_answer"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/forms": {
         parameters: {
             query?: never;
@@ -41,14 +58,157 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/questions/{question_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Consulter une question sans ses réponses */
+        get: operations["get_public_question"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/questions/{question_id}/answers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Parcourir les réponses textuelles par curseur
+         * @description Date DESC NULLS FIRST, id DESC ; une sentinelle, sans OFFSET ni comptage.
+         *
+         *     Filtre historique : texte non vide pour choix, au moins 60 caractères nettoyés
+         *     pour les autres types. Texte de liste limité à 20 000 caractères.
+         */
+        get: operations["list_public_question_answers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/questions/{question_id}/stats": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Statistiques des choix, sans paramètres graphiques
+         * @description Pourcentages historiques par ligne de réponse ; leur somme peut dépasser 100 %.
+         *
+         *     Contributions distinctes ≠ personnes uniques. Une réponse avec autre texte
+         *     compte une fois dans la catégorie synthétique, pas une fois par texte.
+         */
+        get: operations["get_public_question_statistics"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AnswerDetail */
+        AnswerDetail: {
+            author: components["schemas"]["PublicAuthor"] | null;
+            /**
+             * Contribution Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            contribution_id: string;
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /**
+             * Is Truncated
+             * @description Liste limitée à 20 000 caractères ; détail sans troncature.
+             */
+            is_truncated: boolean;
+            question: components["schemas"]["FormQuestion"];
+            /**
+             * Question Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            question_id: string;
+            /** Submitted At */
+            submitted_at: string | null;
+            /**
+             * Text
+             * @description Texte brut public, pas du HTML fiable. À échapper au rendu.
+             */
+            text: string;
+            /** Url */
+            url: string;
+        };
+        /** AnswerPage */
+        AnswerPage: {
+            /** Has Next */
+            has_next: boolean;
+            /** Items */
+            items: components["schemas"]["PublicAnswer"][];
+            /**
+             * Next Cursor
+             * @description Curseur opaque ; ne pas décoder ni convertir ses IDs.
+             */
+            next_cursor: string | null;
+            /** Page Size */
+            page_size: number;
+            /**
+             * Question Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            question_id: string;
+        };
         /** ApiError */
         ApiError: {
             /** Detail */
             detail: string;
+        };
+        /** ChoiceCategory */
+        ChoiceCategory: {
+            /**
+             * Count
+             * @description Sélections de l'option, ou réponses avec autre texte.
+             */
+            count: number;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "option" | "other_text";
+            /** Label */
+            label: string;
+            /**
+             * Option Id
+             * @description Null pour la catégorie synthétique other_text.
+             */
+            option_id: string | null;
+            /**
+             * Percentage
+             * @description 100 × count / total_answers, arrondi à 2 décimales.
+             */
+            percentage: number;
+            /** Position */
+            position: number | null;
         };
         /** FormDetail */
         FormDetail: {
@@ -141,6 +301,164 @@ export interface components {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
+        /** PublicAnswer */
+        PublicAnswer: {
+            author: components["schemas"]["PublicAuthor"] | null;
+            /**
+             * Contribution Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            contribution_id: string;
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /**
+             * Is Truncated
+             * @description Liste limitée à 20 000 caractères ; détail sans troncature.
+             */
+            is_truncated: boolean;
+            /**
+             * Question Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            question_id: string;
+            /** Submitted At */
+            submitted_at: string | null;
+            /**
+             * Text
+             * @description Texte brut public, pas du HTML fiable. À échapper au rendu.
+             */
+            text: string;
+            /** Url */
+            url: string;
+        };
+        /** PublicAuthor */
+        PublicAuthor: {
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Is Anonymous */
+            is_anonymous: boolean;
+            /**
+             * Name
+             * @description Nom public ou libellé neutre selon les règles d'anonymat.
+             */
+            name: string;
+            /** Slug */
+            slug: string;
+            /** Url */
+            url: string;
+        };
+        /** QuestionDetail */
+        QuestionDetail: {
+            /**
+             * Display Mode
+             * @description choice pour single_choice/multi_choice ; text pour les autres types historiques.
+             * @enum {string}
+             */
+            display_mode: "text" | "choice";
+            form: components["schemas"]["QuestionForm"];
+            /**
+             * Form Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            form_id: string;
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /**
+             * Position
+             * @description Ordre déclaré dans le questionnaire ; peut être absent.
+             */
+            position: number | null;
+            /** Prompt */
+            prompt: string;
+            /**
+             * Slug
+             * @description Slug construit avec le helper des routes HTML.
+             */
+            slug: string;
+            /**
+             * Type
+             * @description Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.
+             */
+            type: string;
+            /**
+             * Url
+             * @description Chemin relatif vers la question historique.
+             */
+            url: string;
+        };
+        /** QuestionForm */
+        QuestionForm: {
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Url */
+            url: string;
+        };
+        /** QuestionStatistics */
+        QuestionStatistics: {
+            /**
+             * Answered Contributions Count
+             * @description Contributions distinctes ayant une réponse ; pas des personnes uniques.
+             */
+            answered_contributions_count: number;
+            /**
+             * Categories
+             * @description Options par position ASC NULLS LAST, id ASC ; autre texte ajouté en fin s'il existe.
+             */
+            categories: components["schemas"]["ChoiceCategory"][];
+            /** Other Text Answers Count */
+            other_text_answers_count: number;
+            /**
+             * Percentage Decimal Places
+             * @default 2
+             * @constant
+             */
+            percentage_decimal_places: 2;
+            /**
+             * Percentage Denominator
+             * @default total_answers
+             * @constant
+             */
+            percentage_denominator: "total_answers";
+            /**
+             * Question Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            question_id: string;
+            /**
+             * Total Answers
+             * @description Lignes answers, compteur historique maintenu par triggers.
+             */
+            total_answers: number;
+            /**
+             * Total Option Selections
+             * @description Liens answer_options, hors catégorie autre texte.
+             */
+            total_option_selections: number;
+            /**
+             * Total Selections
+             * @description Somme historique des catégories, incluant une catégorie autre texte par réponse.
+             */
+            total_selections: number;
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "single_choice" | "multi_choice";
+        };
         /** ValidationError */
         ValidationError: {
             /** Context */
@@ -163,6 +481,83 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    get_public_answer: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                answer_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnswerDetail"];
+                };
+            };
+            /** @description Ressource introuvable. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
     list_public_forms: {
         parameters: {
             query?: never;
@@ -269,6 +664,251 @@ export interface operations {
             };
             /** @description Base de données indisponible. */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    get_public_question: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionDetail"];
+                };
+            };
+            /** @description Ressource introuvable. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    list_public_question_answers: {
+        parameters: {
+            query?: {
+                /** @description 20 par défaut, maximum 100. */
+                page_size?: number;
+                /** @description Curseur opaque de la page précédente. */
+                cursor?: string | null;
+            };
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnswerPage"];
+                };
+            };
+            /** @description Ressource introuvable. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    get_public_question_statistics: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionStatistics"];
+                };
+            };
+            /** @description Question non à choix. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Ressource introuvable. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
                 headers: {
                     [name: string]: unknown;
                 };

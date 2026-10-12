@@ -3,6 +3,8 @@
 Le contrat complet est généré par FastAPI dans `/openapi.json` et consultable
 sur `/docs`. Aucune authentification n'est nécessaire. Ce lot n'expose ni
 réponses individuelles, ni statistiques, ni données de compte ou d'importation.
+Les endpoints de questions, réponses et statistiques ajoutés ensuite sont décrits
+dans [API-004B](api-questions.md).
 
 - `GET /api/v1/forms` : tableau complet, trié par identifiant, de
   `{id, name, questions_count, url}`. Sans formulaire : `200` avec `[]`.
