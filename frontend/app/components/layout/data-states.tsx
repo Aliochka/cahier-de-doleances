@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { isRouteErrorResponse, useRevalidator } from "react-router";
 import { css } from "../../../styled-system/css";
 import { type ApiErrorKind, LONG_WAIT_MS } from "../../lib/api";
 import { errorMessages } from "../../lib/api-errors";
@@ -85,4 +86,39 @@ export function EmptyState({
   children?: string;
 }) {
   return <Alert>{children}</Alert>;
+}
+
+export function RouteErrorState({
+  error,
+  showLoading = true,
+}: {
+  error: unknown;
+  showLoading?: boolean;
+}) {
+  const revalidator = useRevalidator();
+  let kind: ApiErrorKind = "application";
+  if (isRouteErrorResponse(error)) {
+    const payload: unknown = error.data;
+    if (
+      typeof payload === "object" &&
+      payload !== null &&
+      "kind" in payload &&
+      typeof payload.kind === "string" &&
+      Object.hasOwn(errorMessages, payload.kind)
+    ) {
+      // The own-key check restricts this value to our public, safe error taxonomy.
+      kind = payload.kind as ApiErrorKind;
+    } else if (error.status === 404) kind = "missing";
+    else if (error.status === 503) kind = "unavailable";
+  }
+  return (
+    <>
+      <ErrorState
+        kind={kind}
+        retry={() => void revalidator.revalidate()}
+        pending={revalidator.state !== "idle"}
+      />
+      {showLoading && <LoadingState active={revalidator.state !== "idle"} />}
+    </>
+  );
 }

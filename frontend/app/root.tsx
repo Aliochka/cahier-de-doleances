@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import {
-  isRouteErrorResponse,
   Links,
   Outlet,
   Scripts,
@@ -10,12 +9,11 @@ import {
 } from "react-router";
 import { css } from "../styled-system/css";
 import type { Route } from "./+types/root";
-import { ErrorState, LoadingState } from "./components/layout/data-states";
+import { LoadingState, RouteErrorState } from "./components/layout/data-states";
 import { Footer } from "./components/layout/footer";
 import { Header } from "./components/layout/header";
 import { PageContainer } from "./components/layout/page-container";
-import type { ApiErrorKind } from "./lib/api";
-import { ERROR_HEADERS, errorMessages } from "./lib/api-errors";
+import { apiPageHeaders } from "./lib/api-errors";
 import "./styles/global.css";
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -78,39 +76,11 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  const revalidator = useRevalidator();
-  let kind: ApiErrorKind = "application";
-  if (isRouteErrorResponse(error)) {
-    const payload: unknown = error.data;
-    if (
-      typeof payload === "object" &&
-      payload !== null &&
-      "kind" in payload &&
-      typeof payload.kind === "string" &&
-      Object.hasOwn(errorMessages, payload.kind)
-    ) {
-      // The own-key check restricts this value to our public, safe error taxonomy.
-      kind = payload.kind as ApiErrorKind;
-    } else if (error.status === 404) kind = "missing";
-    else if (error.status === 503) kind = "unavailable";
-  }
   return (
     <PageContainer>
-      <ErrorState
-        kind={kind}
-        retry={() => void revalidator.revalidate()}
-        pending={revalidator.state !== "idle"}
-      />
-      <LoadingState active={revalidator.state !== "idle"} />
+      <RouteErrorState error={error} />
     </PageContainer>
   );
 }
 
-export function headers({ errorHeaders, loaderHeaders }: Route.HeadersArgs) {
-  const headers = new Headers(errorHeaders ?? loaderHeaders);
-  if (errorHeaders) {
-    for (const [name, value] of Object.entries(ERROR_HEADERS))
-      headers.set(name, value);
-  }
-  return headers;
-}
+export const headers = apiPageHeaders;
