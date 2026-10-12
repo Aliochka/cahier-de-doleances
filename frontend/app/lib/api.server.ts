@@ -1,9 +1,13 @@
 import {
   type AnswerPage,
+  type AnswerSearchPage,
+  type AnswerSearchQuery,
   type AnswersQuery,
   type ApiResult,
   type AuthorFormsPage,
   type AuthorFormsQuery,
+  type CatalogSearchPage,
+  type CatalogSearchQuery,
   type ContributionDetail,
   createPublicApi,
   type FormDetail,
@@ -112,5 +116,24 @@ export function getContribution(
   const origin = backendOrigin();
   return origin
     ? createPublicApi(origin).getContribution(formId, id, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+
+export function searchAnswers(
+  query: AnswerSearchQuery = {},
+  options: RequestOptions = {},
+): Promise<ApiResult<AnswerSearchPage>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).searchAnswers(query, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+export function searchCatalog(
+  query: CatalogSearchQuery = {},
+  options: RequestOptions = {},
+): Promise<ApiResult<CatalogSearchPage>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).searchCatalog(query, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
