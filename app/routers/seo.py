@@ -9,7 +9,7 @@ from sqlalchemy import text
 
 from app.config import settings
 from app.db import SessionLocal
-from app.helpers import public_author, slugify
+from app.helpers import slugify
 
 router = APIRouter()
 
@@ -42,10 +42,7 @@ def _generate_sitemap_xml(base_url: str) -> str:
         home_lastmod = _fmt_iso(
             db.execute(text("SELECT MAX(submitted_at) FROM contributions")).scalar()
         )
-        urls.extend(
-            (f"{base_url}{path}", home_lastmod)
-            for path in ("/", "/search/questions", "/search/answers")
-        )
+        urls.extend((f"{base_url}{path}", home_lastmod) for path in ("/", "/enquetes"))
         questions = db.execute(
             text("""
             SELECT q.id, q.prompt FROM questions q
@@ -66,10 +63,7 @@ def _generate_sitemap_xml(base_url: str) -> str:
             {"lim": SITEMAP_LIMIT_AUTHORS},
         ).mappings()
         for author in authors:
-            public = public_author(author["id"], author["name"], author["is_anonymous"])
-            urls.append(
-                (f"{base_url}/authors/{author['id']}-{public['slug']}", _fmt_iso(author["lastmod"]))
-            )
+            urls.append((f"{base_url}/authors/{author['id']}", _fmt_iso(author["lastmod"])))
         forms = db.execute(
             text("""
             SELECT f.id, MAX(c.submitted_at) AS lastmod

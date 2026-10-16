@@ -30,8 +30,7 @@ situés hors de ce jeu de candidats ne sont pas parcourables, même si le terme
 correspond à davantage de réponses. Aucun total exact n’est calculé.
 
 Les recherches de moins de deux caractères retournent une liste vide, sans
-ouvrir de session SQL. La route Jinja conserve son ancien comportement : pour
-ces recherches, une consultation des réponses récentes (minimum 40 caractères).
+ouvrir de session SQL.
 
 Chaque résultat fournit `id`, `contribution_id`, `question`, `form`, `author`
 public éventuellement absent, `submitted_at`, `text`, `is_truncated` et `url` :
@@ -45,14 +44,14 @@ contribution sont exclues uniquement en JSON pour éviter une ancre introuvable.
 
 ## Questions et enquêtes
 
-Réutilisation des deux sections Jinja : noms de formulaires et libellés de
+Deux sections : noms de formulaires et libellés de
 questions seulement, sans recherche de descriptions (champ absent), d’auteurs
 ou de réponses. `plainto_tsquery('french', unaccent(:q))` combine les lexèmes
 français ; les opérateurs web des réponses ne sont pas interprétés ici.
 
 Chaque section est classée par **ts_rank DESC, id DESC**. Le curseur contient le
 score PostgreSQL réel et l’ID ; les comparaisons restent converties en `real`
-comme dans Jinja. Les tests couvrent scores différents et ex æquo, sans doublons
+à la précision PostgreSQL. Les tests couvrent scores différents et ex æquo, sans doublons
 ni omissions dans des données inchangées. Les curseurs doivent être réutilisés
 avec le même terme et la même section ; changer le terme exige leur remise à zéro.
 Aucun snapshot n’est garanti en cas de modification du corpus entre deux pages.
@@ -64,14 +63,12 @@ lien `/questions/{id}-{slug}`). Slugs construits par le helper existant.
 les sections séparément. `section=forms` ou `section=questions` limite le SQL à
 une seule section ; sans ce paramètre, deux lectures de catalogue sont faites.
 `page_size` s’applique à chaque section. Aucun classement commun entre catégories
-n’est inventé. Une recherche vide retourne deux listes vides sans SQL ; la
-consultation générale Jinja reste inchangée.
+n’est inventé. Une recherche vide retourne deux listes vides sans SQL.
 
 ## Mutualisation, confidentialité et coût
 
 `app/services/search.py` contient les lectures et les curseurs historiques.
-Les routes HTML conservent leur représentation, surlignage et fragments HTMX ;
-les modèles Pydantic JSON sélectionnent explicitement les champs publics. La
+Les modèles Pydantic JSON sélectionnent explicitement les champs publics. La
 projection `public_author()` protège les noms anonymes ; aucun champ de compte,
 hash, donnée brute ou métadonnée d’importation n’est exposé. Les textes libres
 peuvent néanmoins contenir des informations personnelles à la source.
@@ -79,7 +76,7 @@ peuvent néanmoins contenir des informations personnelles à la source.
 Budget : réponses **1 SELECT**, catalogue **2 SELECT** ou **1 SELECT** si une
 section est demandée, indépendamment du nombre de résultats. LIMIT page_size+1,
 pas d’OFFSET ni de comptage exact du corpus. Le compte des questions par formulaire
-et le compteur `question_stats` sont hérités de Jinja. Timeout JSON 5 secondes ;
+et le compteur `question_stats` conservent leur définition historique. Timeout JSON 5 secondes ;
 réponses FTS conservent aussi les SET LOCAL work_mem=64MB et enable_seqscan=false.
 Ces réglages historiques peuvent consommer des ressources sous concurrence ;
 aucun nouveau réglage global, index, cache ou moteur n’est ajouté.

@@ -199,15 +199,6 @@ def test_public_author_confidentiality(client, contribution_data, accept):
         assert author["name"].startswith(label)
         assert "private" not in response.text and "Nom confidentiel" not in response.text
         assert "set-cookie" not in response.headers
-        html = client.get(author["url"])
-        assert html.status_code == 200
-        assert author["name"] in html.text
-        assert "Nom confidentiel" not in html.text
-        assert (
-            client.get(f"/authors/{author['id']}", follow_redirects=False)
-            .headers["location"]
-            .endswith(author["url"])
-        )
 
 
 @pytest.mark.integration
@@ -325,13 +316,6 @@ def test_historical_ordinal_is_not_id(client, contribution_data, selector, rank)
         assert payload["legacy_index"] == "5"
         rank = 5
     assert payload["contribution"]["id"] == expected[rank - 1]
-    html = client.get(f"/forms/{d['form']}", params={"contrib": selector})
-    assert html.status_code == 200
-    assert f"Contribution {rank} / 5" in html.text
-    for answer in payload["answers"]:
-        if answer["text"]:
-            # Jinja historically keeps one answer per question; multiplicity remains in JSON.
-            assert answer["question"]["prompt"] in html.text
 
 
 @pytest.mark.integration
@@ -497,8 +481,3 @@ def test_openapi_contract_ids_and_names(tmp_path):
         ("SelectedOption", "id"),
     ]:
         assert schema["components"]["schemas"][model]["properties"][field]["type"] == "string"
-    # Reversed route names continue to designate HTML, never the new API.
-    from app.app import app
-
-    assert str(app.url_path_for("author_detail", author_id=1, slug="auteur")) == "/authors/1-auteur"
-    assert str(app.url_path_for("form_detail", form_id=1)) == "/forms/1"

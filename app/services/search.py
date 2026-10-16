@@ -1,4 +1,4 @@
-"""Historical PostgreSQL searches shared by HTML and JSON; preserve order and candidate caps."""
+"""PostgreSQL searches for the public API; preserve order and candidate caps."""
 
 import base64
 import binascii

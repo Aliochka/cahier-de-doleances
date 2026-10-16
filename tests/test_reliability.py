@@ -9,79 +9,15 @@ import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import delete, func, select, text
 from sqlalchemy.dialects.postgresql import Insert
-from sqlalchemy.exc import DBAPIError, OperationalError
+from sqlalchemy.exc import DBAPIError
 from sqlalchemy.orm import Session, sessionmaker
 
 from app.app import app
 from app.config import settings
 from app.models import Bookmark, User
-from app.routers import bookmarks, search
+from app.routers import bookmarks
 from app.search_errors import SearchTimeout, handle_search_errors
 from app.services.auth import auth_service
-
-
-class SearchSession:
-    def __init__(self, code=None):
-        self.code = code
-        self.rolled_back = False
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *args):
-        pass
-
-    def execute(self, statement, *args):
-        if str(statement).startswith("SET LOCAL"):
-            return None
-        if self.code:
-            raise OperationalError("private-query", {}, SimpleNamespace(pgcode=self.code))
-        return self
-
-    def mappings(self):
-        return self
-
-    def all(self):
-        return []
-
-    def rollback(self):
-        self.rolled_back = True
-
-
-@pytest.mark.parametrize("path", ["/search/answers", "/search/questions"])
-@pytest.mark.parametrize("code,status", [(None, 200), ("57014", 504), ("42P01", 500)])
-@pytest.mark.parametrize("representation", ["html", "htmx", "partial", "json"])
-def test_search_results_and_errors_are_distinct(monkeypatch, path, code, status, representation):
-    session = SearchSession(code)
-    monkeypatch.setattr(search, "SessionLocal", lambda: session)
-    headers = {"Accept": "application/json" if representation == "json" else "text/html"}
-    if representation == "htmx":
-        headers["HX-Request"] = "true"
-    params = {"q": "culture"}
-    if representation == "partial":
-        params["partial"] = "true"
-    with TestClient(app) as client:
-        response = client.get(path, params=params, headers=headers)
-    assert response.status_code == status
-    assert session.rolled_back == (code is not None)
-    assert "private-query" not in response.text
-    assert "42P01" not in response.text and "57014" not in response.text
-    if code:
-        assert response.headers["cache-control"] == "no-store"
-        assert "noindex" in response.headers["x-robots-tag"]
-        expected = "search_timeout" if status == 504 else "search_failed"
-        if representation == "json":
-            assert response.json()["code"] == expected
-        elif representation in {"htmx", "partial"}:
-            assert '<p role="alert">' in response.text and "<html" not in response.text
-            assert response.headers["hx-retarget"] == "#search-error"
-            assert response.headers["hx-reswap"] == "innerHTML"
-            assert response.headers["x-search-error"] == expected
-        else:
-            assert "<html" in response.text
-    elif representation == "html":
-        assert 'id="search-error"' in response.text
-        assert "js/search-errors.js" in response.text
 
 
 @pytest.mark.parametrize("inserted_id", [123, None])

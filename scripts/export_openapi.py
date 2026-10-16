@@ -37,7 +37,6 @@ def export_schema() -> dict:
     from app.app import app
 
     # Generate from the real application, including future registered API routers.
-    # Legacy HTML operation-ID warnings do not concern the filtered contract.
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", message="Duplicate Operation ID .*", category=UserWarning)
         schema = app.openapi()

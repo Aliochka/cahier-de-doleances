@@ -71,22 +71,6 @@ def test_http_lan_requires_explicit_insecure_cookie_opt_in():
         Settings(lan_env() | {"BASE_URL": "https://192.168.1.56:8000"})
 
 
-def test_jsonld_cannot_escape_script_and_keeps_custom_serialization():
-    from decimal import Decimal
-
-    from starlette.datastructures import URL
-
-    from app.web import templates
-
-    payload = '</script><script>alert("x")</script>'
-    output = templates.env.from_string("<script>{{ value|tojson|safe }}</script>").render(
-        value={"name": payload, "url": URL("http://example.test"), "number": Decimal("1.5")}
-    )
-    assert output.count("</script>") == 1
-    data = json.loads(output.removeprefix("<script>").removesuffix("</script>"))
-    assert data == {"name": payload, "url": "http://example.test", "number": 1.5}
-
-
 def test_access_logs_redact_magic_link_tokens():
     from app.logging_filters import RedactMagicLinkFilter
 
@@ -228,10 +212,10 @@ def test_production_lan_host_validation_and_no_https_redirect():
 from fastapi.testclient import TestClient
 from app.app import app
 with TestClient(app, base_url="http://192.168.1.56:8000") as client:
-    response = client.get("/static/css/reset.css", follow_redirects=False,
+    response = client.get("/openapi.json", follow_redirects=False,
                           headers={"x-forwarded-host": "attacker.example", "x-forwarded-proto": "https"})
     assert response.status_code == 200
-    assert client.get("/static/css/reset.css", headers={"host": "attacker.example"}).status_code == 400
+    assert client.get("/openapi.json", headers={"host": "attacker.example"}).status_code == 400
     assert client.get("/auth/me").status_code == 401
 """
     subprocess.run(
@@ -255,7 +239,7 @@ def test_accounts_profiles_and_bookmarks_on_http(client, web_data, monkeypatch):
     assert client.get("/auth/me").json()["profile_completed"]
     path = f"/bookmarks/question/{web_data['multi']}"
     assert client.post(path).status_code == 200
-    assert client.get("/bookmarks").status_code == 200
+    assert client.get(f"/bookmarks/check/question/{web_data['multi']}").json()["is_bookmarked"]
     assert client.delete(path).json()["success"]
     client.post("/auth/logout", follow_redirects=False)
     assert client.get("/auth/me").status_code == 401
@@ -326,45 +310,6 @@ def test_health_success_on_test_database(test_engine, monkeypatch):
         assert client.get("/healthz").json() == {"status": "ok"}
 
 
-@pytest.mark.parametrize("code", ["57014", "42P01"])
-def test_search_rolls_back_failed_transactions_and_distinguishes_timeouts(code, monkeypatch):
-    from starlette.requests import Request
-
-    from app.routers import search
-    from app.search_errors import SearchTimeout
-
-    class Session:
-        rolled_back = False
-
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            pass
-
-        def execute(self, query, *args):
-            sql = str(query)
-            if sql.startswith("SET LOCAL"):
-                assert not self.rolled_back
-                return None
-            raise OperationalError("", {}, SimpleNamespace(pgcode=code))
-
-        def rollback(self):
-            self.rolled_back = True
-
-    session = Session()
-    monkeypatch.setattr(search, "SessionLocal", lambda: session)
-    request = Request({"type": "http", "method": "GET", "path": "/search/answers", "headers": []})
-    monkeypatch.setattr(search.templates, "TemplateResponse", lambda request, name, ctx: ctx)
-    if code == "57014":
-        with pytest.raises(SearchTimeout):
-            search.search_answers(request, q="culture", page=1, cursor=None, partial=False)
-    else:
-        with pytest.raises(OperationalError):
-            search.search_answers(request, q="culture", page=1, cursor=None, partial=False)
-    assert session.rolled_back
-
-
 def test_https_proxy_order_trust_and_local_health_probe():
     env = (
         dict(os.environ)
@@ -401,7 +346,7 @@ async def request(peer, path, proto=None, host="cahierdedoleances.fr"):
     return next(m for m in messages if m["type"] == "http.response.start")
 
 async def main():
-    path = "/static/css/reset.css"
+    path = "/openapi.json"
     assert (await request("172.30.80.2", path, "https"))["status"] == 200
     assert (await request("198.51.100.7", path, "https"))["status"] == 307
     assert (await request("172.30.80.2", path, "http"))["status"] == 307
@@ -445,17 +390,3 @@ def test_disabled_email_login_does_not_issue_or_send_tokens(monkeypatch):
         )
         assert response.status_code == 503
         assert "temporairement" in response.json()["detail"]
-
-
-def test_unavailable_login_forms_are_hidden():
-    from app.web import templates
-
-    rendered = templates.env.get_template("base/base.html").render(
-        LOGIN_EMAIL_ENABLED=False,
-        request=SimpleNamespace(
-            url_for=lambda *args, **kwargs: "/static/asset", url=SimpleNamespace(path="/")
-        ),
-    )
-    assert 'hidden id="login-form"' in rendered
-    assert 'hidden id="bookmark-login-form"' in rendered
-    assert "connexion par courriel est temporairement indisponible" in rendered

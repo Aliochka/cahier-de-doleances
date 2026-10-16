@@ -1,4 +1,4 @@
-"""Grouped statistics retain single-question and Jinja semantics with a fixed SQL budget."""
+"""Grouped statistics retain single-question and historical semantics with a fixed SQL budget."""
 
 import json
 from types import SimpleNamespace
@@ -100,10 +100,6 @@ def test_grouped_parity_order_totals_and_public_fields(client, dashboard_data):
     ):
         assert forbidden not in response.text
     assert "set-cookie" not in response.headers
-    html = client.get(f"/forms/{data['form']}/dashboard")
-    assert html.status_code == 200 and "Choix unique" in html.text and "Vélo" in html.text
-    assert "66.67" in html.text
-    assert client.get(f"/forms/{data['form']}/dashboard-stats").status_code == 200
 
 
 def test_empty_form_bigint_and_nonchoice_questions(client, web_data):

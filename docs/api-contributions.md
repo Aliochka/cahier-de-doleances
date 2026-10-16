@@ -34,13 +34,10 @@ peut n'avoir aucun auteur ; une question peut avoir plusieurs réponses, avec de
 positions distinctes. Il n'existe pas de statut supplémentaire « non publiable ».
 Les noms des auteurs anonymes sont remplacés par la projection neutre existante.
 
-Dans Jinja, `/forms/{id}?contrib=…` désigne un rang 1..M selon la date croissante
-(NULLS LAST), puis l'ID croissant : **ce n'est pas l'ID en base**. Le résolveur JSON
-partage cette sélection, y compris le repli sur 1 pour un rang invalide et le
-bornage au dernier rang disponible. L'ancien parcours Jinja reste inchangé.
-Ne pas insérer un ID de contribution dans `?contrib=…`. FRONT-006B pourra utiliser
-un paramètre explicite distinct (par exemple `contribution_id`) pour les nouveaux
-liens par ID et résoudre les anciens liens avec le sélecteur historique.
+Le résolveur JSON des anciens liens `?contrib=…` utilise un rang 1..M selon
+la date croissante (NULLS LAST), puis l'ID croissant, avec repli sur 1 pour un
+rang invalide et bornage au dernier rang disponible. Le front React utilise
+`/forms/{form_id}/contributions/{contribution_id}` avec l'identifiant en base.
 
 `GET /api/v1/answers/{answer_id}` reste disponible : `contribution_id` et
 `question.form_id` permettent déjà de retrouver la contribution, puis d'ajouter

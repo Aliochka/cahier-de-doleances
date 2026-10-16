@@ -91,7 +91,7 @@ def test_slow_account_sql_does_not_block_another_request(monkeypatch):
             try:
                 await asyncio.wait_for(wait_until_entered(entered), timeout=2)
                 assert not task.done()
-                response = await asyncio.wait_for(client.get("/static/css/reset.css"), timeout=2)
+                response = await asyncio.wait_for(client.get("/openapi.json"), timeout=2)
                 assert response.status_code == 200
                 assert threads[0] != threading.get_ident()
             finally:

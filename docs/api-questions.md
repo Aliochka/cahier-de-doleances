@@ -41,7 +41,7 @@ Le filtre de visibilité historique est conservé : texte non vide pour les choi
 au moins 60 caractères après `btrim` pour les autres types. Les textes de liste
 sont limités à 20 000 caractères, avec `is_truncated`. Le détail individuel reste
 complet, comme la page HTML. Aucun filtre de mots-clés n'est ajouté à cette API.
-La consultation Jinja/HTMX et son filtre existant restent disponibles.
+La consultation et les filtres sont fournis par le frontend React.
 
 Tous les identifiants JSON **et les nouveaux paramètres de chemin** sont des
 chaînes décimales positives, limitées au BIGINT PostgreSQL. Les conversions en
@@ -65,9 +65,8 @@ avec `option_id: null` ; aucun identifiant artificiel d'option n'est inventé.
 - `other_text_answers_count` : réponses ayant au moins un `other_text`, une fois
   par réponse, même si plusieurs textes sont présents.
 - `total_selections` : somme historique de toutes les catégories, donc sélections
-  d'options **plus** réponses avec autre texte. Cette définition est celle de Jinja.
-- `percentage` : `100 × count / total_answers`, avec le même `round(..., 2)` que
-  Jinja (deux décimales, zéro si le dénominateur vaut zéro). Le contrat explicite
+  d'options **plus** réponses avec autre texte.
+- `percentage` : `100 × count / total_answers`, avec `round(..., 2)` (deux décimales, zéro si le dénominateur vaut zéro). Le contrat explicite
   `percentage_denominator` et `percentage_decimal_places`. Une somme dépassant
   100 % pour les choix multiples est normale ; les arrondis ne sont pas renormalisés.
 
@@ -77,7 +76,7 @@ par l'API : les dashboards ne font pas cette agrégation supplémentaire.
 
 ## Erreurs, coût et vérification
 
-Les erreurs sont JSON quel que soit `Accept` ou HTMX : 404 absent, 422 paramètres
+Les erreurs sont JSON quel que soit `Accept` ou des autres en-têtes : 404 absent, 422 paramètres
 invalides, 400 statistiques demandées pour un type non à choix, 503 base
 indisponible, 500 inattendu, 504 délai SQL dépassé, 408 délai du middleware HTTP.
 Les requêtes SQL de ce lot ont une limite locale de cinq secondes et utilisent

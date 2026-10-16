@@ -3,7 +3,7 @@
 import pytest
 
 from app.schemas.search import AnswerSearchPage, CatalogSearchPage
-from app.services.search import read_answer_search, read_catalog_search
+from app.services.search import read_catalog_search
 
 
 @pytest.fixture
@@ -226,44 +226,6 @@ def test_catalog_score_id_pagination_matches_historical_service(client, search_d
         assert result_ids == expected and len(result_ids) == len(set(result_ids))
     absent = client.get("/api/v1/search/catalog", params={"q": "introuvablezzzz"}).json()
     assert absent["forms"] == absent["questions"] == []
-
-
-@pytest.mark.integration
-def test_jinja_parity_html_sections_and_timeline(client, search_data, monkeypatch):
-    from app.routers import search
-
-    contexts = []
-    original = search.templates.TemplateResponse
-
-    def capture(request, name, context, **kwargs):
-        contexts.append((name, context))
-        return original(request, name, context, **kwargs)
-
-    monkeypatch.setattr(search.templates, "TemplateResponse", capture)
-    response = client.get("/search/answers", params={"q": "ecologie"})
-    assert response.status_code == 200 and "Nom privé" not in response.text
-    html_ids = [str(a["id"]) for a in contexts[-1][1]["answers"]]
-    with search_data["factory"]() as db:
-        rows, more, cursor = read_answer_search(db, "ecologie", None)
-    assert html_ids == [str(r["answer_id"]) for r in rows]
-    assert contexts[-1][1]["has_next"] == more
-    response = client.get(
-        "/search/answers", params={"q": "ecologie", "cursor": cursor, "partial": True}
-    )
-    assert response.status_code == 200 and contexts[-1][0].endswith("_answers_list_append.html")
-    response = client.get("/search/answers", params={"q": ""})
-    assert response.status_code == 200 and contexts[-1][1]["answers"]
-    for section in (None, "forms", "questions"):
-        response = client.get(
-            "/search/questions",
-            params={"q": "ecologie", **({"section": section, "partial": True} if section else {})},
-        )
-        assert response.status_code == 200
-        ctx = contexts[-1][1]
-        with search_data["factory"]() as db:
-            forms, questions, *_ = read_catalog_search(db, "ecologie", None, None, section=section)
-        assert [f["id"] for f in ctx["forms"]] == [r["id"] for r in forms]
-        assert [q["id"] for q in ctx["questions"]] == [r["id"] for r in questions]
 
 
 @pytest.mark.parametrize("endpoint,queries", [("answers", ["", " ", "x"]), ("catalog", ["", " "])])
@@ -551,61 +513,3 @@ def test_results_resolve_to_full_contributions_and_plain_catalog_syntax(client, 
     )
     catalog = client.get("/api/v1/search/catalog", params={"q": "ecologie -inexistant"}).json()
     assert catalog["forms"] == catalog["questions"] == []
-
-
-@pytest.mark.integration
-def test_jinja_catalog_continuations_preserve_rank_and_ties(client, search_data, monkeypatch):
-    from app.models import Form, Question
-    from app.routers import search
-
-    with search_data["factory"]() as db:
-        for index in range(20):
-            db.add(
-                Form(
-                    id=9007199254746800 + index,
-                    name="Écologie bibliothèque",
-                    source=f"legacy-search-page-{index}",
-                )
-            )
-            db.add(
-                Question(
-                    id=1900000200 + index,
-                    form_id=int(search_data["form"]),
-                    question_code=f"EXTRA{index}",
-                    prompt="Écologie bibliothèque",
-                    type="text",
-                    position=index + 10,
-                )
-            )
-        db.commit()
-    contexts = []
-    original = search.templates.TemplateResponse
-
-    def capture(request, name, context, **kwargs):
-        contexts.append(context)
-        return original(request, name, context, **kwargs)
-
-    monkeypatch.setattr(search.templates, "TemplateResponse", capture)
-    with search_data["factory"]() as db:
-        forms, questions, *_ = read_catalog_search(db, "ecologie", None, None, page_size=100)
-    for section, expected in [("forms", forms), ("questions", questions)]:
-        ids, cursor = [], None
-        for _ in range(4):
-            response = client.get(
-                "/search/questions",
-                params={
-                    "q": "ecologie",
-                    "section": section,
-                    "partial": True,
-                    **({f"cursor_{section}": cursor} if cursor else {}),
-                },
-            )
-            assert response.status_code == 200
-            context = contexts[-1]
-            ids.extend(item["id"] for item in context[section])
-            cursor = context[f"next_cursor_{section}"]
-            if not context[f"has_next_{section}"]:
-                assert cursor is None
-                break
-        assert ids == [row["id"] for row in expected]
-        assert len(ids) > 20 and len(ids) == len(set(ids))

@@ -1,6 +1,6 @@
 # Frontend en développement
 
-Ce frontend en développement ne remplace pas l’interface Jinja/HTMX en production.
+Le frontend React est la seule interface web. Le backend FastAPI expose les API JSON ; les anciens templates et assets ont été supprimés.
 Il consulte l’API publique FastAPI ; les comptes et marque-pages restent à migrer.
 Il ne se connecte jamais directement à PostgreSQL.
 
@@ -85,7 +85,7 @@ officiel et génère les utilitaires typés dans `styled-system/`. `prepare` les
 génère à l'installation pour TypeScript et l'éditeur ; Vite extrait le CSS au
 build. Ce dossier et les sorties de compilation ne sont pas versionnés.
 Les tokens et couleurs sémantiques de `panda.config.ts` reprennent le thème
-archive de `app/static/css/variables.css` du backend : papier, encre, bleu
+palette historique du projet : papier, encre, bleu
 `#203A8F`, rouge `#A83A3A`, typographie de machine à écrire avec repli local.
 Aucune police distante n'est chargée. Les presets Panda officiels fournissent
 les utilitaires ; les fondations du projet restent limitées aux besoins actuels.
@@ -355,7 +355,7 @@ parcours métier, compte ou marque-page n’a été migré dans FRONT-003.
 
 `/enquetes` charge `GET /api/v1/forms` ; `/forms/:formId` charge le détail avec
 `getForm` côté serveur. Les navigations React Router utilisent également les
-loaders serveur, sans appel navigateur direct ni redirection vers Jinja. Pour
+loaders serveur, sans appel navigateur direct. Pour
 les essayer : `API_BASE_URL=http://127.0.0.1:8000 pnpm dev`, avec une API locale.
 
 Les composants métier restent dans `app/features/surveys/` : cartes de formulaires,
@@ -366,7 +366,7 @@ liste indiquent le rang de présentation ; une position historique absente ne
 supprime pas la question. Les types connus sont présentés en français, sans
 modifier la donnée ; un type inconnu reste affichable sans libellé inventé.
 L’API ne fournit pas de description de formulaire. Depuis FRONT-006A, les questions
-sont des liens vers leurs pages React, sans passage par Jinja.
+sont des liens vers leurs pages React, via le routeur React.
 
 Le HTML SSR contient titres et questions, avec titre, description et canonical
 sur `https://cahierdedoleances.fr`. Seul l’accueil est pré-rendu ; le build n’appelle
@@ -377,7 +377,7 @@ vers Enquêtes. Recherche demeure annoncée « À venir ».
 Une URL comportant **`?contrib=…`**, même vide, retourne désormais **HTTP 404**,
 `noindex, nofollow` et `private, no-store`, sans appeler l’API. React utilise
 exclusivement `/forms/{formId}/contributions/{contributionId}` avec l’ID PostgreSQL.
-Aucun rang historique ni redirection vers Jinja n’est utilisé.
+Les liens utilisent les identifiants de contribution.
 
 Les tests `pnpm test` et `pnpm test:e2e` couvrent les loaders, l’ordre, les BIGINT,
 les états vides, le HTML SSR et les vrais statuts HTTP, `contrib`, la navigation
@@ -545,7 +545,7 @@ Validation : `pnpm check`, `pnpm typecheck`, `pnpm test`, `pnpm build:offline`,
 synthétique locale, couvrent SSR/statuts/noindex, Entrée/bouton, requêtes indépendantes,
 pagination sans JavaScript, annulation, réessai, ancres, clavier et écrans 320 px/zoom
 200 %. Une recette RGAA avec lecteurs d’écran réels reste nécessaire avant production.
-Le frontend ne remplace pas encore Jinja ; aucun déploiement n’est effectué.
+Le frontend React et le backend API se déploient séparément.
 
 ## Tableaux de bord par formulaire (DASH-001)
 

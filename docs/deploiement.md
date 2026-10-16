@@ -179,7 +179,7 @@ docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.la
 docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml up -d --no-deps caddy
 docker compose --env-file .env.deploy -f compose.deploy.yml -f compose.deploy.lan.yml ps
 curl --fail http://192.168.1.56:8000/healthz
-curl --fail -o /dev/null 'http://192.168.1.56:8000/search/answers?q=culture'
+curl --fail -o /dev/null 'http://192.168.1.56:8000/api/v1/search/answers?q=culture'
 ```
 
 Une courte interruption pendant le remplacement de FastAPI est possible.
@@ -245,13 +245,13 @@ dig +short AAAA cahierdedoleances.fr
 dig +short CNAME www.cahierdedoleances.fr
 dig +short A www.cahierdedoleances.fr
 dig +short AAAA www.cahierdedoleances.fr
-curl -4 -I 'http://www.cahierdedoleances.fr/search/answers?q=culture&page=2'
-curl -4 -I 'https://www.cahierdedoleances.fr/search/answers?q=culture&page=2'
-curl -4 --fail --max-redirs 3 -L -o /dev/null 'http://www.cahierdedoleances.fr/search/answers?q=culture&page=2'
+curl -4 -I 'http://www.cahierdedoleances.fr/api/v1/search/answers?q=culture&page=2'
+curl -4 -I 'https://www.cahierdedoleances.fr/api/v1/search/answers?q=culture&page=2'
+curl -4 --fail --max-redirs 3 -L -o /dev/null 'http://www.cahierdedoleances.fr/api/v1/search/answers?q=culture&page=2'
 curl -4 -I http://cahierdedoleances.fr/
 curl -4 --fail --max-redirs 3 -L -o /dev/null https://cahierdedoleances.fr/
 curl -4 --fail https://cahierdedoleances.fr/healthz
-curl -4 --fail -o /dev/null 'https://cahierdedoleances.fr/search/answers?q=culture'
+curl -4 --fail -o /dev/null 'https://cahierdedoleances.fr/api/v1/search/answers?q=culture'
 curl -4 -I https://cahierdedoleances.fr/static/css/reset.css
 curl -4 -I -H 'X-Forwarded-Proto: http' https://cahierdedoleances.fr/static/css/reset.css
 curl -4 -I -H 'X-Forwarded-Proto: https' http://cahierdedoleances.fr/
@@ -261,7 +261,7 @@ openssl s_client -connect www.cahierdedoleances.fr:443 -servername www.cahierded
 
 Les deux noms doivent résoudre vers `88.163.85.242`, sans adresse IPv6 annoncée
 (`dig` peut afficher la cible CNAME pour `www`). HTTPS sur `www` doit renvoyer 308
-avec `Location: https://cahierdedoleances.fr/search/answers?q=culture&page=2`.
+avec `Location: https://cahierdedoleances.fr/api/v1/search/answers?q=culture&page=2`.
 HTTP sur `www` redirige d'abord en 308 vers son HTTPS, puis vers le domaine racine ;
 le chemin et les paramètres doivent rester identiques aux deux étapes.
 HTTP sur le domaine racine doit rediriger vers son HTTPS,
@@ -304,7 +304,7 @@ Recette navigateur après bascule :
 | Fonction | Vérification |
 |---|---|
 | Navigation | Accueil, contributions, auteurs, formulaires, questions, pagination. |
-| Recherche | Questions/réponses, mots avec et sans accents, filtres et fragments HTMX sans doublons. |
+| Recherche | Questions/réponses, mots avec et sans accents, filtres et pagination sans doublons. |
 | Contributions | Texte libre et choix multiples avec toutes les sélections. |
 | Statistiques | Tableaux, graphiques, nombres et choix multiples. |
 | Statiques | CSS, JS, images, CDN ; aucune URL interne, aucun contenu mixte HTTP. |

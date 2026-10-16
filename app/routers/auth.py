@@ -4,7 +4,7 @@ import re
 from typing import List, Optional
 
 from fastapi import APIRouter, Cookie, HTTPException, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel, EmailStr
 
 from app.config import settings
@@ -82,28 +82,7 @@ def verify_magic_link(token: str, request: Request):
     email = auth_service.verify_magic_token(token)
 
     if not email:
-        # Token invalide ou expiré
-        return HTMLResponse(
-            """
-        <!DOCTYPE html>
-        <html lang="fr">
-        <head>
-            <meta charset="utf-8">
-            <title>Lien invalide</title>
-            <style>
-                body { font-family: system-ui, sans-serif; text-align: center; padding: 50px; }
-                .error { color: #dc3545; }
-            </style>
-        </head>
-        <body>
-            <h1 class="error">Lien invalide ou expiré</h1>
-            <p>Ce lien de connexion n'est plus valide. Veuillez en demander un nouveau.</p>
-            <a href="/">Retour à l'accueil</a>
-        </body>
-        </html>
-        """,
-            status_code=400,
-        )
+        return JSONResponse({"detail": "Lien invalide ou expiré"}, status_code=400)
 
     try:
         # Créer ou récupérer l'utilisateur
@@ -127,27 +106,7 @@ def verify_magic_link(token: str, request: Request):
 
     except Exception as e:
         logger.error(f"Error during magic link verification: {str(e)}")
-        return HTMLResponse(
-            """
-        <!DOCTYPE html>
-        <html lang="fr">
-        <head>
-            <meta charset="utf-8">
-            <title>Erreur de connexion</title>
-            <style>
-                body { font-family: system-ui, sans-serif; text-align: center; padding: 50px; }
-                .error { color: #dc3545; }
-            </style>
-        </head>
-        <body>
-            <h1 class="error">Erreur de connexion</h1>
-            <p>Une erreur est survenue lors de la connexion. Veuillez réessayer.</p>
-            <a href="/">Retour à l'accueil</a>
-        </body>
-        </html>
-        """,
-            status_code=500,
-        )
+        return JSONResponse({"detail": "Erreur de connexion"}, status_code=500)
 
 
 @router.post("/auth/logout")

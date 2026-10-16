@@ -1,3 +1,9 @@
+> Interface web : React dans `frontend/`. FastAPI fournit les routes JSON
+> `/api/v1`, l’authentification, les opérations de marque-pages, la santé et le SEO.
+> Le backend ne sert plus de pages HTML ni de fichiers `/static`.
+> Le proxy de production doit envoyer les pages vers le serveur React ; les
+> configurations de déploiement FastAPI seules ne servent que le backend.
+
 # Cahier de doléances
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
@@ -64,7 +70,6 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 
 - [x] page formulaire
 - [ ] bugs
-  - [ ] l'url partial qui pop http://127.0.0.1:8000/search/answers?partial=1&q=politique
   - [x]  page answer contenu responsive
 - [x] SEO technique
 - [x] perf page question
@@ -246,8 +251,8 @@ SELECT
   (SELECT count(*) FROM users) AS users;
 '
 curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8000/
-curl -s -o /dev/null -w '%{http_code}\n' 'http://127.0.0.1:8000/search/answers?q=culture'
-curl -s -o /dev/null -w '%{http_code}\n' 'http://127.0.0.1:8000/search/questions?q=culture'
+curl -s -o /dev/null -w '%{http_code}\n' 'http://127.0.0.1:8000/api/v1/search/answers?q=culture'
+curl -s -o /dev/null -w '%{http_code}\n' 'http://127.0.0.1:8000/api/v1/search/catalog?q=culture'
 ```
 
 Sur une installation neuve, les six compteurs doivent être à **0** et les

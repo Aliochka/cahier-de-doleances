@@ -37,16 +37,10 @@ def web_data(test_engine, monkeypatch):
         )
         for module in (
             "app.db",
-            "app.routers.pages",
-            "app.routers.search",
-            "app.routers.forms",
             "app.routers.api_forms",
             "app.routers.api_questions",
             "app.routers.api_search",
             "app.routers.api_contributions",
-            "app.routers.questions",
-            "app.routers.authors",
-            "app.routers.answers",
             "app.routers.seo",
             "app.routers.bookmarks",
             "app.services.auth",

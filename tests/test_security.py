@@ -122,7 +122,7 @@ def test_every_account_write_checks_origin(account_client, method, path):
         ("GET", "/auth/me", None, 401),
         ("GET", "/auth/author-info", None, 401),
         ("GET", "/auth/verify/invalid", None, 400),
-        ("GET", "/bookmarks", None, 401),
+        ("GET", "/bookmarks", None, 404),
         ("GET", "/bookmarks/check/question/42", None, 401),
         ("POST", "/auth/complete-profile", {"nationalities": ["FR"]}, 401),
         ("POST", "/auth/send-link", {"email": "invalid"}, 422),
@@ -163,7 +163,7 @@ def test_unexpected_private_error_is_not_cached(account_client, monkeypatch, acc
 
 
 def test_public_cache_is_unchanged_but_session_responses_are_private(account_client):
-    path = "/static/css/reset.css"
+    path = "/openapi.json"
     public = account_client.get(path)
     assert public.status_code == 200
     assert "no-store" not in public.headers.get("cache-control", "")

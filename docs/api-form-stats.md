@@ -6,13 +6,8 @@ La réponse contient `form` (id, name, url) et `questions`, une liste de couples
 `question` (`FormQuestion`) / `stats` (`QuestionStatistics`). OpenAPI définit les
 modèles et les erreurs JSON, indépendamment de l’en-tête Accept.
 
-Les routes Jinja permettent un dashboard pour tout formulaire existant, sans liste
-blanche ni exclusion particulière de questions à choix. La page historique liste
-aussi les questions ouvertes, sans graphique ; seuls les choix unique/multiple
-avec des réponses reçoivent un graphique. Le fragment dashboard-stats omet les
-questions sans réponses. La nouvelle API inclut toutes les questions à choix,
-même sans données, et laisse les questions ouvertes à la page Formulaire.
-Aucun autre type de statistique n’est présent dans ces routes.
+L'API inclut toutes les questions à choix, même sans données, et laisse les
+questions ouvertes à la page Formulaire React.
 
 Ordre : `COALESCE(position,999999), id` pour les questions ; position ASC NULLS LAST,
 ID ASC pour les options, puis « Autre (texte libre) » si présent. Les options à
@@ -24,7 +19,7 @@ base inaccessible 503, timeout SQL 504 avec rollback, sans détails techniques.
 ## Calculs et coût
 
 `choice_statistics_many()` est partagé avec `choice_statistics()` utilisé par
-Jinja et l’endpoint individuel. La mise en forme JSON utilise aussi le même helper
+l’endpoint individuel. La mise en forme JSON utilise aussi le même helper
 `statistics_fields()`. Aucun second calcul ni normalisation frontend.
 
 - `total_answers` vient de `question_stats.answers_count`, maintenu par triggers.
@@ -53,5 +48,5 @@ Les mesures sur le corpus complet restent à faire avant production ; aucun cach
 index, schéma ou mécanisme d’import n’est modifié dans cette tâche.
 
 Les tests PostgreSQL isolés comparent chaque bloc avec l’endpoint individuel,
-vérifient les valeurs attendues, la compatibilité Jinja, le budget SQL, les BIGINT,
+vérifient les valeurs attendues, le budget SQL, les BIGINT,
 les erreurs JSON et un véritable statement_timeout suivi d’un rollback.

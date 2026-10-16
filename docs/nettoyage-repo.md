@@ -17,7 +17,7 @@ après une modification en base et les sitemaps générés pour deux hôtes
 différents. Elle a révélé puis couvert des défauts de pagination : utilisation
 de la ligne sentinelle comme curseur, comparaison du score FTS avec une
 précision différente du type PostgreSQL `real`, et alias de score utilisé dans
-`HAVING`. Les séparateurs des URL HTMX sont échappés en HTML.
+`HAVING`.
 
 ## Fonctionnalités et installation
 

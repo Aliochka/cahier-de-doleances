@@ -168,6 +168,7 @@ def test_text_filters_truncation_bigints_and_answer_detail(client, web_data):
         "url",
     }
     response = client.get(item["url"].replace("/answers/", "/api/v1/answers/"))
+    assert response.status_code == 200
     detail = response.json()
     AnswerDetail.model_validate(detail)
     assert detail["text"] == answer.text
@@ -175,7 +176,6 @@ def test_text_filters_truncation_bigints_and_answer_detail(client, web_data):
     assert detail["question"]["id"] == str(web_data["text_question"])
     assert detail["question"]["form_id"] == str(web_data["form"])
     assert "confidentiel" not in response.text
-    assert client.get(item["url"]).status_code == 200
     first = client.get(
         f"/api/v1/questions/{web_data['text_question']}/answers", params={"page_size": 1}
     ).json()
@@ -271,13 +271,6 @@ def test_multi_stats_other_text_empty_options_and_distinct_contributions(client,
     assert api["categories"][2]["option_id"] == "9007199254740993"
     assert api["categories"][-1]["option_id"] is None
     assert api["categories"][-1]["kind"] == "other_text"
-    legacy = client.get(f"/questions/{web_data['multi']}/stats").json()
-    assert api["total_answers"] == legacy["total_answers"]
-    assert api["total_selections"] == legacy["total_selections"]
-    assert [(c["label"], c["count"], c["percentage"]) for c in api["categories"]] == [
-        (c["label"], c["count"], c["percentage"]) for c in legacy["stats"]
-    ]
-    assert "Option sans sélection" in client.get(f"/forms/{web_data['form']}/dashboard").text
 
 
 @pytest.mark.integration
@@ -419,7 +412,7 @@ def test_unexpected_errors_do_not_leak(monkeypatch):
 
 
 @pytest.mark.integration
-def test_missing_resources_and_html_parity(client, web_data):
+def test_missing_resources_return_json(client, web_data):
     for path in [
         "/questions/9223372036854775807",
         "/questions/9223372036854775807/answers",
@@ -429,14 +422,6 @@ def test_missing_resources_and_html_parity(client, web_data):
         response = client.get(f"/api/v1{path}", headers={"Accept": "text/html"})
         assert response.status_code == 404
         assert response.headers["content-type"] == "application/json"
-    detail = client.get(f"/api/v1/questions/{web_data['text_question']}").json()
-    html = client.get(detail["url"])
-    assert html.status_code == 200
-    assert detail["prompt"] in html.text
-    for answer in client.get(f"/api/v1/questions/{detail['id']}/answers").json()["items"]:
-        assert f'id="answer-{answer["id"]}"' in html.text
-    partial = client.get(f"/questions/{detail['id']}/partials/answers", params={"q": "culture"})
-    assert partial.status_code == 200 and "<html" not in partial.text
 
 
 @pytest.mark.integration
@@ -539,14 +524,9 @@ def test_public_payload_independent_of_cookies(client, web_data):
         assert "set-cookie" not in session.headers
 
 
-def test_api_route_names_preserve_historical_reverse_urls():
+def test_api_route_names_resolve_public_endpoints():
     from app.app import app
 
-    assert (
-        str(app.url_path_for("question_detail", question_id=1, slug="question"))
-        == "/questions/1-question"
-    )
-    assert str(app.url_path_for("answer_detail", answer_id=1)) == "/answers/1"
     assert (
         str(app.url_path_for("api_question_detail", question_id="9007199254740993"))
         == "/api/v1/questions/9007199254740993"

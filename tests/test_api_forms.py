@@ -72,20 +72,6 @@ def test_list_detail_and_html_parity(client, web_data):
         assert question["form_id"] == str(web_data["form"])
         assert question["url"] == f"/questions/{question['id']}-{question['slug']}"
     assert client.get(f"/api/v1/forms/{empty.id}").json()["questions"] == []
-    home = client.get("/")
-    assert home.status_code == 200
-    assert f"/forms/{empty.id}" in home.text
-    for contrib in ["1", "2", "invalid"]:
-        page = client.get(f"/forms/{web_data['form']}?contrib={contrib}")
-        assert page.status_code == 200
-        for question in detail["questions"]:
-            assert question["prompt"] in page.text
-            assert question["url"] in page.text
-        assert "Culture numéro" in page.text
-    assert (
-        client.get(f"/forms/{web_data['form']}?contrib=2").text
-        != client.get(f"/forms/{web_data['form']}?contrib=1").text
-    )
 
 
 @pytest.mark.integration
