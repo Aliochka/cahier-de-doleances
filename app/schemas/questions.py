@@ -120,3 +120,15 @@ class QuestionStatistics(BaseModel):
     categories: list[ChoiceCategory] = Field(
         description="Options par position ASC NULLS LAST, id ASC ; autre texte ajouté en fin s'il existe."
     )
+
+
+class FormQuestionStatistics(BaseModel):
+    question: FormQuestion
+    stats: QuestionStatistics
+
+
+class FormStatistics(BaseModel):
+    form: QuestionForm
+    questions: list[FormQuestionStatistics] = Field(
+        description="Choix uniques et multiples, COALESCE(position,999999), id ; inclut les questions sans réponse."
+    )
