@@ -546,3 +546,33 @@ synthétique locale, couvrent SSR/statuts/noindex, Entrée/bouton, requêtes ind
 pagination sans JavaScript, annulation, réessai, ancres, clavier et écrans 320 px/zoom
 200 %. Une recette RGAA avec lecteurs d’écran réels reste nécessaire avant production.
 Le frontend ne remplace pas encore Jinja ; aucun déploiement n’est effectué.
+
+## Tableaux de bord par formulaire (DASH-001)
+
+`/forms/:formId/dashboard` utilise un seul appel serveur
+`GET /api/v1/forms/{form_id}/stats` et les types OpenAPI générés. Depuis le
+formulaire, « Voir le tableau de bord » apparaît si ses questions déjà chargées
+contiennent un choix unique ou multiple, sans appel supplémentaire.
+
+Le loader attend les données essentielles avant le SSR et réutilise les erreurs,
+le timeout, l’annulation et le cache `private, no-store` existants. La page fournit
+une canonical fixe par formulaire, titre, description et liens vers formulaire,
+enquêtes et questions. Les erreurs gardent leurs statuts 404/500/503/504 et noindex.
+Une page sans statistiques est un état vide 200 ; sans réponse enregistrée elle
+est non indexable. Les dashboards avec données peuvent être indexés.
+
+Les composants `Statistics` et Recharts des pages Question sont réutilisés, sans
+calcul métier ni nouveau tri. Le tableau HTML complet est toujours rendu côté
+serveur, disponible sans JavaScript et accompagné des dénominateurs et totaux.
+Chaque graphique est ouvert par un `<details>` natif : Recharts n’est importé
+qu’après ouverture côté client. Plusieurs graphiques partagent le même module,
+les autres pages ne le chargent pas. Les IDs des titres sont uniques et les
+sections conservent une hiérarchie h1/h2/h3. Les textes longs restent complets.
+
+`pnpm test`, `pnpm test:e2e`, `pnpm build:offline`, `pnpm test:build`, `pnpm check`,
+`pnpm typecheck` et `pnpm contract:check` couvrent les données groupées, le SSR,
+les statuts HTTP, les tableaux sans JavaScript, la navigation au clavier,
+l’hydratation, les graphiques à la demande et le mobile/zoom 200 %. Les tests
+utilisent uniquement l’API synthétique locale. Une recette RGAA complète avec
+lecteurs d’écran et les mesures sur le corpus réel restent nécessaires.
+Voir [les définitions et le budget SQL](../docs/api-form-stats.md).

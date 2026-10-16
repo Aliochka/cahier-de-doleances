@@ -42,6 +42,15 @@ export default function Form({ loaderData }: Route.ComponentProps) {
         {loaderData.form.questions_count !== 1 ? "s" : ""} · Grand Débat
         National
       </p>
+      {loaderData.form.questions.some((question) =>
+        ["single_choice", "multi_choice"].includes(question.type),
+      ) && (
+        <p className={css({ mb: "8" })}>
+          <Link to={`/forms/${loaderData.form.id}/dashboard`}>
+            Voir le tableau de bord
+          </Link>
+        </p>
+      )}
       <QuestionList questions={loaderData.form.questions} />
     </PageContainer>
   );

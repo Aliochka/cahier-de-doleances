@@ -122,6 +122,52 @@ const fullContribution = (id) => ({
           },
         ],
 });
+const questionStatistics = (source) => ({
+  question_id: source.id,
+  type: source.type,
+  total_answers: 10,
+  answered_contributions_count: 8,
+  total_option_selections: 13,
+  other_text_answers_count: 1,
+  total_selections: 14,
+  percentage_denominator: "total_answers",
+  percentage_decimal_places: 2,
+  categories: [
+    {
+      option_id: "9007199254744993",
+      kind: "option",
+      label:
+        "Renforcer les consultations citoyennes, y compris dans les territoires les plus éloignés et pour toutes les générations",
+      position: 1,
+      count: 8,
+      percentage: 80,
+    },
+    {
+      option_id: "9007199254744994",
+      kind: "option",
+      label: "Organiser des réunions locales",
+      position: 2,
+      count: 5,
+      percentage: 50,
+    },
+    {
+      option_id: "9007199254744995",
+      kind: "option",
+      label: "Option sans sélection",
+      position: null,
+      count: 0,
+      percentage: 0,
+    },
+    {
+      option_id: null,
+      kind: "other_text",
+      label: "Autre texte",
+      position: null,
+      count: 1,
+      percentage: 10,
+    },
+  ],
+});
 let searchRetry = 0;
 const searchCalls = [];
 let retry = 0;
@@ -269,6 +315,29 @@ const server = createServer((request, response) => {
   if (request.headers.cookie) {
     response.statusCode = 403;
     response.end("{}");
+    return;
+  }
+  const dashboardMatch = /^\/api\/v1\/forms\/(\d+)\/stats$/.exec(url.pathname);
+  if (dashboardMatch) {
+    const id = dashboardMatch[1];
+    if (["404", "500", "503", "504"].includes(id)) {
+      response.statusCode = Number(id);
+      response.end(
+        JSON.stringify({ detail: "private SQL SECRET http://private-host" }),
+      );
+      return;
+    }
+    response.end(
+      JSON.stringify({
+        form: { id, name: forms[0].name, url: `/forms/${id}` },
+        questions:
+          id !== forms[0].id
+            ? []
+            : questions
+                .filter((q) => q.type !== "text")
+                .map((q) => ({ question: q, stats: questionStatistics(q) })),
+      }),
+    );
     return;
   }
   const authorMatch = /^\/api\/v1\/authors\/(\d+)(\/forms)?$/.exec(
@@ -443,54 +512,7 @@ const server = createServer((request, response) => {
       );
       return;
     }
-    response.end(
-      JSON.stringify({
-        question_id: qid,
-        type: source.type,
-        total_answers: 10,
-        answered_contributions_count: 8,
-        total_option_selections: 13,
-        other_text_answers_count: 1,
-        total_selections: 14,
-        percentage_denominator: "total_answers",
-        percentage_decimal_places: 2,
-        categories: [
-          {
-            option_id: "9007199254744993",
-            kind: "option",
-            label:
-              "Renforcer les consultations citoyennes, y compris dans les territoires les plus éloignés et pour toutes les générations",
-            position: 1,
-            count: 8,
-            percentage: 80,
-          },
-          {
-            option_id: "9007199254744994",
-            kind: "option",
-            label: "Organiser des réunions locales",
-            position: 2,
-            count: 5,
-            percentage: 50,
-          },
-          {
-            option_id: "9007199254744995",
-            kind: "option",
-            label: "Option sans sélection",
-            position: null,
-            count: 0,
-            percentage: 0,
-          },
-          {
-            option_id: null,
-            kind: "other_text",
-            label: "Autre texte",
-            position: null,
-            count: 1,
-            percentage: 10,
-          },
-        ],
-      }),
-    );
+    response.end(JSON.stringify(questionStatistics(source)));
     return;
   }
   if (url.pathname === "/api/v1/forms") {

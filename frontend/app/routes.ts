@@ -13,6 +13,7 @@ export default [
     "forms/:formId/contributions/:contributionId",
     "routes/contribution.tsx",
   ),
+  route("forms/:formId/dashboard", "routes/dashboard.tsx"),
   route("forms/:formId", "routes/form.tsx"),
   route("questions/:questionKey", "routes/question.tsx"),
   ...(process.env.FRONTEND_TEST_ROUTES === "1"
