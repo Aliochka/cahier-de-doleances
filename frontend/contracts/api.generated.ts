@@ -126,6 +126,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/forms/{form_id}/stats": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Statistiques groupées des questions à choix du formulaire
+         * @description Cinq lectures SQL, zéro requête par question ; dénominateurs et arrondis historiques.
+         */
+        get: operations["get_public_form_statistics"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/questions/{question_id}": {
         parameters: {
             query?: never;
@@ -589,6 +609,20 @@ export interface components {
              * @description Chemin relatif vers la question historique.
              */
             url: string;
+        };
+        /** FormQuestionStatistics */
+        FormQuestionStatistics: {
+            question: components["schemas"]["FormQuestion"];
+            stats: components["schemas"]["QuestionStatistics"];
+        };
+        /** FormStatistics */
+        FormStatistics: {
+            form: components["schemas"]["QuestionForm"];
+            /**
+             * Questions
+             * @description Choix uniques et multiples, COALESCE(position,999999), id ; inclut les questions sans réponse.
+             */
+            questions: components["schemas"]["FormQuestionStatistics"][];
         };
         /** FormSummary */
         FormSummary: {
@@ -1329,6 +1363,83 @@ export interface operations {
                 };
             };
             /** @description Base indisponible. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai SQL dépassé ; transaction annulée. */
+            504: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    get_public_form_statistics: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description BIGINT positif, chaîne décimale. */
+                form_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FormStatistics"];
+                };
+            };
+            /** @description Formulaire introuvable. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Délai HTTP dépassé. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Erreur inattendue, sans détails internes. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Base de données indisponible. */
             503: {
                 headers: {
                     [name: string]: unknown;

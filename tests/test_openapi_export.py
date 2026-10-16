@@ -45,6 +45,7 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
         "/api/v1/search/catalog",
         "/api/v1/forms",
         "/api/v1/forms/{form_id}",
+        "/api/v1/forms/{form_id}/stats",
         "/api/v1/questions/{question_id}",
         "/api/v1/questions/{question_id}/answers",
         "/api/v1/questions/{question_id}/stats",
@@ -59,6 +60,8 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
     models = schema["components"]["schemas"]
     assert set(models) == {
         "FormSummary",
+        "FormStatistics",
+        "FormQuestionStatistics",
         "FormDetail",
         "FormQuestion",
         "ApiError",

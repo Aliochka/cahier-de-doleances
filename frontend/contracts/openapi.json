@@ -768,6 +768,43 @@
         "title": "FormQuestion",
         "type": "object"
       },
+      "FormQuestionStatistics": {
+        "properties": {
+          "question": {
+            "$ref": "#/components/schemas/FormQuestion"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/QuestionStatistics"
+          }
+        },
+        "required": [
+          "question",
+          "stats"
+        ],
+        "title": "FormQuestionStatistics",
+        "type": "object"
+      },
+      "FormStatistics": {
+        "properties": {
+          "form": {
+            "$ref": "#/components/schemas/QuestionForm"
+          },
+          "questions": {
+            "description": "Choix uniques et multiples, COALESCE(position,999999), id ; inclut les questions sans réponse.",
+            "items": {
+              "$ref": "#/components/schemas/FormQuestionStatistics"
+            },
+            "title": "Questions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "form",
+          "questions"
+        ],
+        "title": "FormStatistics",
+        "type": "object"
+      },
       "FormSummary": {
         "properties": {
           "id": {
@@ -1931,6 +1968,104 @@
         "summary": "Consulter toutes les réponses d'une contribution par son ID en base",
         "tags": [
           "Public authors and contributions"
+        ]
+      }
+    },
+    "/api/v1/forms/{form_id}/stats": {
+      "get": {
+        "description": "Cinq lectures SQL, zéro requête par question ; dénominateurs et arrondis historiques.",
+        "operationId": "get_public_form_statistics",
+        "parameters": [
+          {
+            "description": "BIGINT positif, chaîne décimale.",
+            "in": "path",
+            "name": "form_id",
+            "required": true,
+            "schema": {
+              "description": "BIGINT positif, chaîne décimale.",
+              "maxLength": 19,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "title": "Form Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormStatistics"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Formulaire introuvable."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai HTTP dépassé."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Erreur inattendue, sans détails internes."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Base de données indisponible."
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Délai SQL dépassé ; transaction annulée."
+          }
+        },
+        "summary": "Statistiques groupées des questions à choix du formulaire",
+        "tags": [
+          "Public forms"
         ]
       }
     },

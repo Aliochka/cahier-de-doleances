@@ -181,26 +181,7 @@ def question_statistics(question_id: PathId) -> QuestionStatistics:
         if row["type"] not in ("single_choice", "multi_choice"):
             raise HTTPException(400, "Cette question n'est pas à choix")
         result = choice_statistics(db, row["id"], include_contributions=True)
-        return QuestionStatistics(
-            question_id=str(row["id"]),
-            type=row["type"],
-            total_answers=result["total_answers"],
-            answered_contributions_count=result["answered_contributions_count"],
-            total_selections=result["total_selections"],
-            total_option_selections=result["total_selections"] - result["other_text_answers_count"],
-            other_text_answers_count=result["other_text_answers_count"],
-            categories=[
-                ChoiceCategory(
-                    option_id=str(r["option_id"]) if r["option_id"] else None,
-                    kind="option" if r["option_id"] else "other_text",
-                    label=r["label"],
-                    position=r["position"],
-                    count=r["count"],
-                    percentage=r["percentage"],
-                )
-                for r in result["stats"]
-            ],
-        )
+        return statistics_fields(row, result)
 
 
 @router.get(
@@ -228,3 +209,26 @@ def answer_detail(answer_id: PathId) -> AnswerDetail:
         return AnswerDetail(
             **answer_fields(row, row["question_id"], truncate=False).model_dump(), question=question
         )
+
+
+def statistics_fields(row, result) -> QuestionStatistics:
+    return QuestionStatistics(
+        question_id=str(row["id"]),
+        type=row["type"],
+        total_answers=result["total_answers"],
+        answered_contributions_count=result["answered_contributions_count"],
+        total_selections=result["total_selections"],
+        total_option_selections=result["total_selections"] - result["other_text_answers_count"],
+        other_text_answers_count=result["other_text_answers_count"],
+        categories=[
+            ChoiceCategory(
+                option_id=str(r["option_id"]) if r["option_id"] else None,
+                kind="option" if r["option_id"] else "other_text",
+                label=r["label"],
+                position=r["position"],
+                count=r["count"],
+                percentage=r["percentage"],
+            )
+            for r in result["stats"]
+        ],
+    )

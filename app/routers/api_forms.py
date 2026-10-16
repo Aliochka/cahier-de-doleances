@@ -5,9 +5,13 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException, Path
 from sqlalchemy.engine import RowMapping
 
+from app.choice_stats import choice_statistics_many
 from app.db import SessionLocal
 from app.helpers import slugify
+from app.routers.api_questions import limit_sql, question_fields, statistics_fields
 from app.schemas.forms import ApiError, FormDetail, FormQuestion, FormSummary
+from app.schemas.questions import FormQuestionStatistics, FormStatistics, PathId, QuestionForm
+from app.search_errors import handle_search_errors
 from app.services.forms import form_questions, get_form, list_forms
 
 router = APIRouter(
@@ -74,3 +78,39 @@ def forms_detail(
                 )
             )
         return FormDetail(**summary(form).model_dump(), questions=questions)
+
+
+@router.get(
+    "/{form_id}/stats",
+    response_model=FormStatistics,
+    operation_id="get_public_form_statistics",
+    summary="Statistiques groupées des questions à choix du formulaire",
+    responses={
+        404: {"model": ApiError, "description": "Formulaire introuvable."},
+        504: {"model": ApiError, "description": "Délai SQL dépassé ; transaction annulée."},
+    },
+)
+def form_statistics(form_id: PathId) -> FormStatistics:
+    """Cinq lectures SQL, zéro requête par question ; dénominateurs et arrondis historiques."""
+    with SessionLocal() as db, handle_search_errors(db):
+        limit_sql(db)
+        form = get_form(db, int(form_id))
+        if form is None:
+            raise HTTPException(404, "Formulaire introuvable")
+        questions = [
+            q
+            for q in form_questions(db, int(form_id))
+            if q["type"] in ("single_choice", "multi_choice")
+        ]
+        statistics = choice_statistics_many(
+            db, [q["id"] for q in questions], include_contributions=True
+        )
+        return FormStatistics(
+            form=QuestionForm(id=str(form["id"]), name=form["name"], url=f"/forms/{form['id']}"),
+            questions=[
+                FormQuestionStatistics(
+                    question=question_fields(q), stats=statistics_fields(q, statistics[q["id"]])
+                )
+                for q in questions
+            ],
+        )
