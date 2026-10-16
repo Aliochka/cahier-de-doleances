@@ -11,6 +11,7 @@ import {
   type ContributionDetail,
   createPublicApi,
   type FormDetail,
+  type FormStatistics,
   type Forms,
   type PublicAuthor,
   type QuestionDetail,
@@ -135,5 +136,15 @@ export function searchCatalog(
   const origin = backendOrigin();
   return origin
     ? createPublicApi(origin).searchCatalog(query, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}
+
+export function getFormStats(
+  id: string,
+  options: RequestOptions = {},
+): Promise<ApiResult<FormStatistics>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getFormStats(id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }

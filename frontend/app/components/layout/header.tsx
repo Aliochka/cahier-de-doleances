@@ -4,7 +4,7 @@ import { PageContainer } from "./page-container";
 
 export function Header() {
   const surveysMatch = useMatch("/enquetes");
-  const formMatch = useMatch("/forms/:formId");
+  const formMatch = useMatch("/forms/:formId/*");
   return (
     <header
       className={css({

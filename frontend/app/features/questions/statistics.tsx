@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useId, useState } from "react";
 import { css } from "../../../styled-system/css";
 import type { QuestionStatistics } from "../../lib/api";
 
@@ -6,12 +6,49 @@ const Chart = lazy(() => import("./stats-chart"));
 const number = new Intl.NumberFormat("fr-FR");
 const percentage = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 });
 
-export function Statistics({ stats }: { stats: QuestionStatistics }) {
+export function Statistics({
+  stats,
+  deferChart = false,
+  headingLevel = 2,
+}: {
+  stats: QuestionStatistics;
+  deferChart?: boolean;
+  headingLevel?: 2 | 3;
+}) {
+  const titleId = useId();
+  const Heading = headingLevel === 3 ? "h3" : "h2";
+  const [chartOpen, setChartOpen] = useState(!deferChart);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  const graph = (
+    <section
+      aria-label="Graphique des sélections"
+      className={css({ my: "6", minWidth: 0 })}
+      style={{ minHeight: stats.categories.length * 48 + 64 }}
+    >
+      {!mounted && (
+        <p>
+          Le graphique interactif complète le tableau ci-dessous, disponible
+          sans JavaScript.
+        </p>
+      )}
+      {mounted && (
+        <Suspense
+          fallback={
+            <p>
+              Chargement du graphique… Les résultats sont disponibles dans le
+              tableau.
+            </p>
+          }
+        >
+          <Chart stats={stats} />
+        </Suspense>
+      )}
+    </section>
+  );
   return (
-    <section aria-labelledby="stats-title">
-      <h2 id="stats-title">Résultats de la question</h2>
+    <section aria-labelledby={titleId}>
+      <Heading id={titleId}>Résultats de la question</Heading>
       <dl className={css({ display: "grid", gap: "3", mb: "6" })}>
         <div>
           <dt>Réponses enregistrées</dt>
@@ -51,30 +88,24 @@ export function Statistics({ stats }: { stats: QuestionStatistics }) {
       )}
       {stats.categories.length > 0 ? (
         <>
-          <section
-            aria-label="Graphique des sélections"
-            className={css({ my: "6", minWidth: 0 })}
-            style={{ minHeight: stats.categories.length * 48 + 64 }}
-          >
-            {!mounted && (
-              <p>
-                Le graphique interactif complète le tableau ci-dessous,
-                disponible sans JavaScript.
-              </p>
-            )}
-            {mounted && (
-              <Suspense
-                fallback={
-                  <p>
-                    Chargement du graphique… Les résultats sont disponibles dans
-                    le tableau.
-                  </p>
-                }
-              >
-                <Chart stats={stats} />
-              </Suspense>
-            )}
-          </section>
+          {deferChart ? (
+            <details
+              onToggle={(event) => setChartOpen(event.currentTarget.open)}
+            >
+              <summary className={css({ cursor: "pointer", py: "3" })}>
+                Afficher le graphique
+              </summary>
+              {!mounted && (
+                <p>
+                  Le graphique nécessite JavaScript ; les valeurs restent
+                  disponibles dans le tableau.
+                </p>
+              )}
+              {chartOpen && graph}
+            </details>
+          ) : (
+            graph
+          )}
           <p>Les numéros du graphique correspondent aux lignes du tableau.</p>
           <table
             className={css({

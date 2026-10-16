@@ -25,6 +25,7 @@ export type RequestOptions = {
   timeoutMs?: number;
   query?: URLSearchParams;
 };
+export type FormStatistics = components["schemas"]["FormStatistics"];
 export type Forms =
   operations["list_public_forms"]["responses"][200]["content"]["application/json"];
 export type FormDetail =
@@ -350,6 +351,23 @@ function catalogSearch(value: unknown): value is CatalogSearchPage {
   );
 }
 
+function formStatistics(value: unknown): value is FormStatistics {
+  if (!record(value) || !formContext(value.form)) return false;
+  const formId = value.form.id;
+  return (
+    Array.isArray(value.questions) &&
+    value.questions.every(
+      (entry: unknown) =>
+        record(entry) &&
+        statistics(entry.stats) &&
+        formQuestion(entry.question) &&
+        entry.question.form_id === formId &&
+        entry.question.id === entry.stats.question_id &&
+        entry.question.type === entry.stats.type,
+    )
+  );
+}
+
 /** Read-only public transport. It never forwards account cookies or API error bodies. */
 export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
   async function read<T>(
@@ -417,7 +435,19 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
     "/api/v1/forms/{form_id}/contributions/{contribution_id}" satisfies keyof paths;
   const answerSearchPath = "/api/v1/search/answers" satisfies keyof paths;
   const catalogSearchPath = "/api/v1/search/catalog" satisfies keyof paths;
+  const formStatsPath = "/api/v1/forms/{form_id}/stats" satisfies keyof paths;
   return {
+    getFormStats: (id: string, options: RequestOptions = {}) =>
+      publicId(id)
+        ? read(
+            formStatsPath.replace("{form_id}", encodeURIComponent(id)),
+            formStatistics,
+            options,
+          )
+        : Promise.resolve<ApiResult<FormStatistics>>({
+            ok: false,
+            kind: "request",
+          }),
     searchAnswers: (
       query: AnswerSearchQuery = {},
       options: RequestOptions = {},
