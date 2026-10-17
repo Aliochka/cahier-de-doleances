@@ -122,6 +122,9 @@ Ce script compare automatiquement :
 - Ignore les tables et colonnes générées automatiquement (Alembic, triggers FTS)
 - Charge la configuration depuis le fichier .env
 
+Pour migrer une installation locale existante de PostgreSQL 14 vers 17, suivre
+[la procédure de migration](docs/postgresql-local-17.md).
+
 ### 1. Installation depuis zéro (Ubuntu / Debian)
 
 Le site utilise **FastAPI, SQLAlchemy et PostgreSQL**. La procédure ci-dessous
