@@ -1,0 +1,12 @@
+# Configuration locale : seul le modèle sans secrets est versionné.
+.env
+.env.*
+!.env.example
+
+# Les exclusions globales couvrent déjà .venv/, data/ et les caches Python/uv.
+models/
+embeddings/
+indexes/
+artifacts/
+.cache/
+*.egg-info/
