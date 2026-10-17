@@ -9,11 +9,10 @@ PC. Le dépôt doit contenir les migrations et scripts décrits ici.
 Depuis la racine du projet, avec PostgreSQL configuré dans `.env` :
 
 ```bash
-source venv/bin/activate
-python -m pip install -r requirements.txt
-alembic upgrade head
-python -m ingest.sources fetch --full
-python -m ingest.structured_sources fetch
+uv sync --locked
+uv run --locked alembic upgrade head
+uv run --locked python -m ingest.sources fetch --full
+uv run --locked python -m ingest.structured_sources fetch
 ```
 
 Le [catalogue officiel](https://www.data.gouv.fr/datasets/donnees-ouvertes-du-grand-debat-national)
@@ -40,7 +39,7 @@ ne modifient pas PostgreSQL.
 ## 2. Vérifier les sources et les questions
 
 ```bash
-python -m ingest.structured_sources profile
+uv run --locked python -m ingest.structured_sources profile
 ```
 
 Le profilage lit les fichiers progressivement. Il compare les identifiants,
@@ -68,8 +67,8 @@ titres et valeurs d'origine sont conservés.
 ## 3. Importer un pilote de 1 000 contributions par formulaire
 
 ```bash
-python -m ingest.structured_sources samples --rows 1000
-python -m ingest.postgres --samples
+uv run --locked python -m ingest.structured_sources samples --rows 1000
+uv run --locked python -m ingest.postgres --samples
 ```
 
 Les échantillons JSON sont conservés dans `data/gdn/samples-json/`.
@@ -104,7 +103,7 @@ Les graphiques incluent les personnes qui n'ont coché qu'un seul choix.
 Pour vérifier la réimportation du pilote, **avant l'import complet** :
 
 ```bash
-python -m ingest.postgres --samples --restart
+uv run --locked python -m ingest.postgres --samples --restart
 ```
 
 Cette commande relit les données et actualise les mêmes identifiants. Les
@@ -115,8 +114,8 @@ de contributions pour ce formulaire. Utiliser une base séparée dans ce cas.
 ## 4. Importer toutes les contributions et vérifier le résultat
 
 ```bash
-python -m ingest.postgres
-python -m ingest.verify
+uv run --locked python -m ingest.postgres
+uv run --locked python -m ingest.verify
 ```
 
 Le même importeur complète les contributions du pilote par upserts. Les
@@ -144,7 +143,7 @@ textes libres ni les identifiants personnels.
 Après une interruption :
 
 ```bash
-python -m ingest.postgres
+uv run --locked python -m ingest.postgres
 ```
 
 La reprise repart après le dernier lot commis, en vérifiant que le fichier
@@ -155,7 +154,7 @@ Pour travailler sur un seul formulaire (possible aussi avec plusieurs
 arguments `--source`) :
 
 ```bash
-python -m ingest.postgres --source transition_ecologique
+uv run --locked python -m ingest.postgres --source transition_ecologique
 ```
 
 Si un mapping ou fichier a changé pendant un import incomplet, l'importeur
@@ -172,8 +171,8 @@ le problème puis reprendre ; ne pas ignorer silencieusement les réponses.
 ## Tests et ancien audit CSV
 
 ```bash
-python -m unittest discover -s tests/ingest -v
-GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test python -m unittest discover -s tests/ingest -v
+uv run --locked python -m unittest discover -s tests/ingest -v
+GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test uv run --locked python -m unittest discover -s tests/ingest -v
 ```
 
 La première commande teste les lecteurs et transformations sans réseau ;
@@ -186,8 +185,8 @@ les mises à jour et suppressions, et les compteurs.
 L'audit initial des CSV reste disponible :
 
 ```bash
-python -m ingest.sources fetch --rows 1000
-python -m ingest.sources audit
+uv run --locked python -m ingest.sources fetch --rows 1000
+uv run --locked python -m ingest.sources audit
 ```
 
 Il écrit [ingestion-audit.md](ingestion-audit.md). C'est un audit préliminaire

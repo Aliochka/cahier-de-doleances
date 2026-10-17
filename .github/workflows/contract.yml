@@ -39,7 +39,7 @@ jobs:
           while IFS= read -r file; do
             case "$file" in
               frontend/*.md) ;;
-              app/*|scripts/export_openapi.py|tests/test_openapi_export.py|requirements*.txt|.python-version|frontend/contracts/*|frontend/tools/openapi/*|frontend/app/contract.test.ts|frontend/tests/no-network.mjs|frontend/package.json|frontend/pnpm-lock.yaml|frontend/pnpm-workspace.yaml|frontend/tsconfig.json|.github/workflows/contract.yml) changed=true ;;
+              app/*|scripts/export_openapi.py|tests/test_openapi_export.py|pyproject.toml|uv.lock|.python-version|frontend/contracts/*|frontend/tools/openapi/*|frontend/app/contract.test.ts|frontend/tests/no-network.mjs|frontend/package.json|frontend/pnpm-lock.yaml|frontend/pnpm-workspace.yaml|frontend/tsconfig.json|.github/workflows/contract.yml) changed=true ;;
             esac
           done <<< "$files"
           echo "contract=$changed" >> "$GITHUB_OUTPUT"
@@ -47,11 +47,15 @@ jobs:
         if: steps.changes.outputs.contract == 'true'
         with:
           python-version-file: .python-version
-          cache: pip
-          cache-dependency-path: requirements*.txt
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        if: steps.changes.outputs.contract == 'true'
+        with:
+          version: '0.13.1'
+          enable-cache: true
+          cache-dependency-glob: uv.lock
       - name: Install backend tooling
         if: steps.changes.outputs.contract == 'true'
-        run: python -m pip install -r ../requirements-dev.txt
+        run: uv sync --project .. --locked --dev
       - uses: pnpm/action-setup@v6
         if: steps.changes.outputs.contract == 'true'
         with:
@@ -71,7 +75,7 @@ jobs:
         run: pnpm contract:check
       - name: Offline export, reference and determinism tests
         if: steps.changes.outputs.contract == 'true'
-        run: python -m pytest ../tests/test_openapi_export.py
+        run: uv run --project .. --locked python -m pytest ../tests/test_openapi_export.py
       - name: Compile generated types and usage example
         if: steps.changes.outputs.contract == 'true'
         run: pnpm typecheck

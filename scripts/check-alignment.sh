@@ -9,4 +9,4 @@ echo "💡 Le script charge automatiquement DATABASE_URL depuis le fichier .env"
 echo ""
 
 # Lancer le script Python (il charge automatiquement le .env)
-python scripts/check_model_alignment.py
+uv run --locked python scripts/check_model_alignment.py

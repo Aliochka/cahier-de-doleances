@@ -4,6 +4,46 @@ Toutes les opérations de ce guide sont **manuelles, après validation du dépô
 Aucune commande n'a été exécutée sur Wallace pendant la préparation.
 L'installation LAN est déjà fonctionnelle : ne pas réinstaller PostgreSQL.
 
+## Construction Python avec uv (RAG-002)
+
+Les dépendances du backend sont déclarées dans `pyproject.toml` et verrouillées
+dans `uv.lock`, à conserver ensemble dans le dépôt. Les anciens fichiers
+`requirements.txt` et `requirements-dev.txt` ont été supprimés.
+
+Le Dockerfile utilise uv **0.13.1** uniquement dans une étape de construction,
+avec `uv sync --locked --no-dev --no-install-project`. L'étape finale reçoit
+uniquement l'environnement `/opt/venv` et le code déjà copié auparavant : uv,
+pytest, Ruff et les dépendances GPU n'y sont pas installés. Le `PATH` rend
+`python`, `gunicorn` et `alembic` accessibles comme auparavant, sans `uv run`
+dans le conteneur. Aucun environnement local n'est copié.
+
+Les commandes Compose, le démarrage Gunicorn, l'utilisateur non privilégié,
+les contrôles de santé, les variables de production, les réseaux et les volumes
+restent inchangés. uv n'a pas besoin d'être installé sur l'hôte Wallace pour
+construire cette image. Aucun démarrage ne synchronise les dépendances et
+aucune migration n'est ajoutée à la construction.
+
+Le verrou fixe les versions transitives et leurs empreintes. Les images
+`python:3.11-slim-bookworm` et `ghcr.io/astral-sh/uv:0.13.1` sont référencées par
+tag, pas par digest : cela ne garantit pas une image identique octet pour octet
+entre deux reconstructions. La construction nécessite l'accès aux registres
+d'images et aux distributions Python verrouillées.
+
+Pour la recette de la nouvelle image, conserver la procédure manuelle et le
+précontrôle décrits plus bas. Vérifier avant toute mise en service :
+
+```bash
+docker compose --env-file .env.deploy -f compose.deploy.yml build app
+docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app python -m app.deployment_check
+docker compose --env-file .env.deploy -f compose.deploy.yml run --rm --no-deps app python -c 'import importlib.util; assert all(importlib.util.find_spec(name) is None for name in ("pytest", "ruff", "torch", "transformers"))'
+```
+
+La migration uv a été validée localement hors Docker ; la construction et le
+démarrage de l'image restent à vérifier sur une machine disposant de Docker.
+Aucune opération RAG-002 n'a été exécutée sur Wallace. Les anciens fichiers
+Scalingo (`.buildpacks`, `Procfile`) ne constituent pas une procédure validée
+pour cette migration ; la cible de déploiement maintenue ici est Docker.
+
 ## Architecture et invariants
 
 - PostgreSQL 17 reste dans `/srv/cahier-de-doleances`, sur le SSD monté à

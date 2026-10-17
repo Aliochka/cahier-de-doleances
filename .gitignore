@@ -74,6 +74,8 @@ Thumbs.db
 # Local test and lint outputs
 .pytest_cache/
 .ruff_cache/
+.uv-cache/
+.cache/uv/
 
 # Private deployment rollback snapshot
 .env.deploy.*backup

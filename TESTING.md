@@ -11,11 +11,10 @@ dans [ruff.toml](ruff.toml), suivant la
 Après l'installation décrite dans le README :
 
 ```bash
-source venv/bin/activate
-python -m pip install -r requirements-dev.txt
-ruff check .
-ruff format --check app ingest scripts tests migrations/env.py
-python -m pytest
+uv sync --locked --dev
+uv run --locked ruff check .
+uv run --locked ruff format --check app ingest scripts tests migrations/env.py
+uv run --locked python -m pytest
 ```
 
 Sans base de test configurée, les tests PostgreSQL sont signalés comme
@@ -24,7 +23,7 @@ des réponses s'exécutent sans connexion à PostgreSQL ni accès réseau.
 Les tests `unittest` d'ingestion peuvent aussi être lancés seuls :
 
 ```bash
-python -m unittest discover -s tests/ingest -v
+uv run --locked python -m unittest discover -s tests/ingest -v
 ```
 
 ## Exécuter tous les tests sur une base séparée
@@ -35,8 +34,8 @@ ne crée pas les index et triggers nécessaires à la recherche et aux compteurs
 
 ```bash
 createdb cahier_doleances_test
-ALEMBIC_DATABASE_URL=postgresql:///cahier_doleances_test alembic upgrade head
-TEST_DATABASE_URL=postgresql:///cahier_doleances_test GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test python -m pytest
+ALEMBIC_DATABASE_URL=postgresql:///cahier_doleances_test uv run --locked alembic upgrade head
+TEST_DATABASE_URL=postgresql:///cahier_doleances_test GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test uv run --locked python -m pytest
 ```
 
 `ALEMBIC_DATABASE_URL` et les variables de test sont définies uniquement pour
@@ -69,6 +68,13 @@ fournit les hooks Ruff ; aucune installation de navigateur n'est requise.
 Les anciens tests et leur infrastructure ont été audités dans
 [docs/nettoyage-repo.md](docs/nettoyage-repo.md).
 
-Les notebooks et analyses facultatives ont leurs propres dépendances dans
-`requirements-analysis.txt` (Python 3.11 ou supérieur). Elles ne sont pas
-nécessaires pour lancer le site, importer les données ou exécuter les tests.
+La CI utilise uv 0.13.1 et `uv sync --locked --dev` : un verrou absent ou
+incohérent fait échouer l'installation. `uv lock --check` vérifie le verrou
+sans le modifier. `.venv/` contient le backend et ses outils de développement.
+Les anciens notebooks et analyses NLP restent hors de cet environnement ;
+aucune dépendance GPU n'est nécessaire aux tests.
+
+La CI construit aussi l'image de production, vérifie l'absence des outils de
+développement et de uv dans cette image, puis démarre le conteneur avec les
+restrictions de sécurité et vérifie `/healthz` contre PostgreSQL de test.
+Ces étapes nécessitent Docker ; elles ne se connectent jamais à Wallace.

@@ -2,12 +2,43 @@
 .env*
 venv
 .venv
+**/.venv
+.cache
+**/.cache
+.uv-cache
+**/.uv-cache
+*.egg-info
 data
 __pycache__
+**/__pycache__
 *.pyc
 .pytest_cache
+**/.pytest_cache
 .ruff_cache
+**/.ruff_cache
+.mypy_cache
+.coverage
+htmlcov
 notebooks
+node_modules
+frontend
+# Le RAG est un projet local indépendant, jamais construit avec le backend.
+# Cela exclut aussi ses modèles, embeddings, index et données expérimentales.
+rag
+models
+embeddings
+vector_indexes
+checkpoints
+.huggingface
+*.safetensors
+*.gguf
+*.onnx
+*.bin
+*.pt
+*.pth
+*.npy
+*.npz
+*.faiss
 
 .aws
 .codex

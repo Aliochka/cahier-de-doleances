@@ -1,14 +1,25 @@
-FROM python:3.11-slim-bookworm
+FROM python:3.11-slim-bookworm AS python-base
+
+FROM python-base AS dependencies
+COPY --from=ghcr.io/astral-sh/uv:0.13.1 /uv /usr/local/bin/uv
+ENV UV_PYTHON_DOWNLOADS=never \
+    UV_PROJECT_ENVIRONMENT=/opt/venv \
+    UV_LINK_MODE=copy
+WORKDIR /build
+COPY pyproject.toml uv.lock .python-version ./
+RUN uv sync --locked --no-dev --no-install-project --no-cache
+
+FROM python-base AS runtime
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PATH="/opt/venv/bin:$PATH"
 
 RUN useradd --create-home --shell /bin/bash app
 WORKDIR /home/app
-COPY requirements.txt .
-RUN pip install --upgrade pip==26.2.1 setuptools==84.0.0 && pip install -r requirements.txt
+COPY --from=dependencies /opt/venv /opt/venv
 COPY --chown=app:app app ./app
 COPY --chown=app:app migrations ./migrations
 COPY --chown=app:app alembic.ini .

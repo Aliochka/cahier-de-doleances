@@ -90,7 +90,7 @@ Depuis la racine du projet, lancer les tests avec la base dédiée :
 ```bash
 TEST_DATABASE_URL=postgresql:///cahier_doleances_test \
 GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test \
-venv/bin/python -m pytest -q
+uv run --locked python -m pytest -q
 ```
 
 L'URL `postgresql:///cahier_doleances_local` reste identique. Relancer ensuite

@@ -41,7 +41,9 @@ précision différente du type PostgreSQL `real`, et alias de score utilisé dan
   Python actifs ont été nettoyés et formatés. L'historique des migrations est
   conservé ; une migration supplémentaire applique le retrait des caches.
 - Les dépendances de développement se limitent à pytest, httpx et Ruff. Les
-  bibliothèques d'analyse sont déplacées dans `requirements-analysis.txt`.
+  bibliothèques d'analyse avaient été déplacées dans un fichier facultatif,
+  supprimé depuis. Depuis RAG-002, le backend utilise `pyproject.toml` et
+  `uv.lock` ; les analyses NLP restent hors de son environnement.
   Le doublon PyYAML d'une autre version est supprimé.
 - La CI utilise les migrations et une base PostgreSQL distincte ; ses tâches
   navigateur, benchmarks et seuil de couverture arbitraire ont été retirées.

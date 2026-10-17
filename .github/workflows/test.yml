@@ -33,13 +33,58 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: '0.13.1'
+          enable-cache: true
+          cache-dependency-glob: uv.lock
       - name: Install dependencies
-        run: python -m pip install -r requirements-dev.txt
+        run: uv sync --locked --dev
       - name: Lint
-        run: ruff check .
+        run: uv run --locked ruff check .
       - name: Check formatting
-        run: ruff format --check app ingest scripts tests migrations/env.py
+        run: uv run --locked ruff format --check app ingest scripts tests migrations/env.py
       - name: Migrate the test database
-        run: alembic upgrade head
+        run: uv run --locked alembic upgrade head
       - name: Test
-        run: python -m pytest
+        run: uv run --locked python -m pytest
+      - name: Build production image from the lock
+        run: docker build --tag cahier-backend:ci .
+      - name: Check production dependencies
+        run: |
+          docker run --rm cahier-backend:ci python -c '
+          import importlib.util
+          import shutil
+          import alembic, fastapi, psycopg2, sqlalchemy, uvicorn_worker
+          assert shutil.which("uv") is None
+          assert all(importlib.util.find_spec(name) is None for name in ("pytest", "httpx", "ruff", "torch", "transformers"))
+          '
+      - name: Start production image and check health
+        run: |
+          docker run --detach --name cahier-backend-smoke --network host \
+            --read-only --tmpfs /tmp:size=64m,mode=1777 \
+            --cap-drop ALL --security-opt no-new-privileges:true \
+            -e ENV=test -e DATABASE_URL="$DATABASE_URL" \
+            -e BASE_URL=http://127.0.0.1:8000 \
+            -e COOKIE_SECURE=false -e ENFORCE_HTTPS=false \
+            cahier-backend:ci
+          uv run --locked python - <<'PY'
+          import time
+          import urllib.error
+          import urllib.request
+
+          for attempt in range(30):
+              try:
+                  with urllib.request.urlopen("http://127.0.0.1:8000/healthz", timeout=2) as response:
+                      assert response.status == 200
+                  break
+              except (OSError, urllib.error.URLError):
+                  if attempt == 29:
+                      raise
+                  time.sleep(1)
+          PY
+      - name: Production image logs and cleanup
+        if: always()
+        run: |
+          docker logs cahier-backend-smoke 2>/dev/null || true
+          docker rm --force cahier-backend-smoke 2>/dev/null || true

@@ -112,7 +112,7 @@ Pour s'assurer que les modèles SQLAlchemy sont alignés avec la structure Postg
 ./scripts/check-alignment.sh
 
 # Ou directement via Python
-python scripts/check_model_alignment.py
+uv run --locked python scripts/check_model_alignment.py
 ```
 
 Ce script compare automatiquement :
@@ -129,17 +129,16 @@ Pour migrer une installation locale existante de PostgreSQL 14 vers 17, suivre
 
 Le site utilise **FastAPI, SQLAlchemy et PostgreSQL**. La procédure ci-dessous
 lance une instance locale avec une base sans contributions citoyennes.
-Elle a été vérifiée avec Python 3.10 et PostgreSQL 14 ; le fichier
-`.python-version` du dépôt indique Python 3.11.
+Python 3.11 est la référence, fixée par `.python-version` et `pyproject.toml`.
+PostgreSQL 17 est utilisé pour les tests et sur Wallace.
 
 #### Installer les outils système
 
-Dans votre terminal, installer Git, Python avec le support des environnements
-virtuels, PostgreSQL et ses extensions :
+Dans votre terminal, installer Git, PostgreSQL et ses extensions :
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y git python3 python3-venv python3-pip postgresql postgresql-contrib curl
+sudo apt-get install -y git postgresql postgresql-contrib curl
 sudo systemctl start postgresql
 pg_isready
 ```
@@ -179,11 +178,57 @@ Aucun mot de passe PostgreSQL ni port TCP exposé n'est nécessaire.
 
 #### Installer les dépendances Python
 
+Installer [uv](https://docs.astral.sh/uv/getting-started/installation/),
+version **0.13.1**, utilisée aussi en CI et dans Docker :
+
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-python -m pip install -r requirements.txt
+curl -LsSf https://astral.sh/uv/0.13.1/install.sh | sh
 ```
+
+Ouvrir ensuite un nouveau terminal si nécessaire pour disposer de `uv` dans
+le `PATH`, puis, à la racine du dépôt :
+
+```bash
+uv python install 3.11
+uv sync --locked
+```
+
+`pyproject.toml` déclare les dépendances ; `uv.lock` verrouille également les
+dépendances transitives. `uv sync --locked` installe le backend et le groupe
+`dev` (pytest, httpx, Ruff) dans `.venv/`. Pour les seules dépendances de
+production : `uv sync --locked --no-dev`. Utiliser ensuite
+`uv run --locked --no-dev …` pour conserver ce profil ; `uv run --locked …`
+inclut le groupe de développement par défaut.
+
+Il n'est pas nécessaire d'activer l'environnement. Si l'ancien `venv/` est
+actif, le quitter avec `deactivate` ; uv utilise désormais `.venv/`.
+Le backend reste exécuté depuis la racine, sans installation du code comme
+package. Aucun workspace uv n'est déclaré : le futur `rag/` aura son propre
+`pyproject.toml`, verrou et environnement, sans dépendance au backend.
+Le frontend conserve pnpm.
+
+Les scripts de maintenance s'exécutent depuis la racine avec
+`uv run --locked python scripts/nom_du_script.py`. Cela place aussi Alembic
+dans le `PATH` des sous-processus. Les scripts d'analyse NLP historiques ne
+sont pas couverts par les dépendances du backend ; ne pas y ajouter leurs
+modèles ou bibliothèques GPU.
+
+Pour faire évoluer les dépendances :
+
+```bash
+uv add 'nom-du-paquet==VERSION'
+uv add --dev 'outil==VERSION'
+uv remove nom-du-paquet
+uv lock --check
+```
+
+Pour mettre à jour une dépendance directement fixée, utiliser
+`uv add 'nom-du-paquet==NOUVELLE_VERSION'` (ou `--dev`). Pour une dépendance
+transitive compatible avec les contraintes : `uv lock --upgrade-package nom`.
+Examiner le diff de `pyproject.toml` et `uv.lock`, puis relancer les contrôles.
+Les anciens fichiers requirements ne sont plus maintenus. Si un outil externe
+en exige un, exporter le verrou avec
+`uv export --locked --no-dev --format requirements-txt --output-file /tmp/cahier-requirements.txt`.
 
 #### Configurer l'environnement local
 
@@ -206,7 +251,7 @@ ENFORCE_HTTPS=false
 
 L'application et Alembic chargent `.env` automatiquement. `ENV=dev` permet
 de servir le site localement en HTTP. `.env` est ignoré par Git. Générer une
-clé persistante avec `python -c 'import secrets; print(secrets.token_urlsafe(48))'`
+clé persistante avec `uv run --locked python -c 'import secrets; print(secrets.token_urlsafe(48))'`
 et la renseigner dans `SECRET_KEY`. Sans clé en développement, une clé temporaire
 est générée et les sessions expirent au redémarrage. En déploiement, une clé
 aléatoire d'au moins 32 caractères est obligatoire.
@@ -214,8 +259,8 @@ aléatoire d'au moins 32 caractères est obligatoire.
 #### Créer le schéma, sans importer de données
 
 ```bash
-alembic upgrade head
-alembic current
+uv run --locked alembic upgrade head
+uv run --locked alembic current
 ```
 
 La révision attendue est `remove_runtime_caches (head)`. Les migrations rétablissent
@@ -230,7 +275,7 @@ contributions.
 #### Démarrer le serveur
 
 ```bash
-uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
+uv run --locked uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Ouvrir **http://127.0.0.1:8000**. Garder ce terminal ouvert ; `Ctrl+C`
@@ -242,8 +287,8 @@ le développement.
 Dans un second terminal ouvert à la racine du projet :
 
 ```bash
-source venv/bin/activate
-alembic current
+uv sync --locked
+uv run --locked alembic current
 psql cahier_doleances_local -c '
 SELECT
   (SELECT count(*) FROM forms) AS forms,
@@ -271,10 +316,10 @@ Mailjet, les e-mails sont journalisés et ne sont pas envoyés ; cela ne bloque 
 Depuis la racine du dépôt :
 
 ```bash
-source venv/bin/activate
+uv sync --locked
 pg_isready
-alembic current
-uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
+uv run --locked alembic current
+uv run --locked uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Si PostgreSQL est arrêté, lancer `sudo systemctl start postgresql`.
@@ -299,8 +344,8 @@ démarrage n'applique aucune migration automatiquement.
   terminal priment sur `.env`. `TEST_DATABASE_URL` prime aussi sur
   `DATABASE_URL` pour l'application ; `ALEMBIC_DATABASE_URL` peut remplacer
   l'URL des migrations. Retirer ces substitutions pour le lancement local.
-- **Erreur de colonne de recherche absente** : activer `venv`, exécuter
-  `alembic upgrade head`, puis vérifier `alembic current`.
+- **Erreur de colonne de recherche absente** : exécuter
+  `uv run --locked alembic upgrade head`, puis vérifier `uv run --locked alembic current`.
 - **`Address already in use`** : arrêter le serveur déjà lancé avec `Ctrl+C`,
   ou choisir un autre port, par exemple `--port 8001`.
 
@@ -311,16 +356,15 @@ le contrôle des sources, le pilote et l'import complet PostgreSQL. Après
 l'installation ci-dessus, pour récupérer les sept exports complets :
 
 ```bash
-source venv/bin/activate
-python -m pip install -r requirements.txt
-alembic upgrade head
-python -m ingest.sources fetch --full
-python -m ingest.structured_sources fetch
-python -m ingest.structured_sources profile
-python -m ingest.structured_sources samples --rows 1000
-python -m ingest.postgres --samples
-python -m ingest.postgres
-python -m ingest.verify
+uv sync --locked
+uv run --locked alembic upgrade head
+uv run --locked python -m ingest.sources fetch --full
+uv run --locked python -m ingest.structured_sources fetch
+uv run --locked python -m ingest.structured_sources profile
+uv run --locked python -m ingest.structured_sources samples --rows 1000
+uv run --locked python -m ingest.postgres --samples
+uv run --locked python -m ingest.postgres
+uv run --locked python -m ingest.verify
 ```
 
 Les JSON officiels distinguent les choix sélectionnés du texte « autre ».
@@ -329,7 +373,7 @@ réponse par contribution** et plusieurs liens vers ses options. Les CSV
 servent à contrôler les identifiants et la complétude des JSON.
 
 L'import complet complète les données du pilote par upserts, sans doublons.
-Si l'import est interrompu, relancer `python -m ingest.postgres` : il reprend
+Si l'import est interrompu, relancer `uv run --locked python -m ingest.postgres` : il reprend
 au dernier lot validé. Les résultats sont consignés dans le
 [rapport de vérification](docs/ingestion-resultats.md).
 
@@ -339,11 +383,10 @@ ne correspondent pas à cette procédure. Ne pas les combiner avec elle.
 ### 5. Linter et tests
 
 ```bash
-source venv/bin/activate
-python -m pip install -r requirements-dev.txt
-ruff check .
-ruff format --check app ingest scripts tests migrations/env.py
-python -m pytest
+uv sync --locked --dev
+uv run --locked ruff check .
+uv run --locked ruff format --check app ingest scripts tests migrations/env.py
+uv run --locked python -m pytest
 ```
 
 Le [guide des tests](TESTING.md) explique comment exécuter toute la suite sur
@@ -353,8 +396,9 @@ les suppressions et les tests conservés.
 
 L’interface est en français. Les images de partage utilisent le fichier
 statique existant ; aucun navigateur Playwright ni cache applicatif n’est
-nécessaire. Les dépendances facultatives des analyses et notebooks sont dans
-`requirements-analysis.txt`, à installer avec Python 3.11 ou supérieur.
+nécessaire. Les anciens notebooks et analyses NLP ne font pas partie de
+l'environnement backend. Leurs dépendances lourdes ne sont pas installées ;
+le futur projet RAG les gérera indépendamment selon ses besoins.
 
 ### Mise en prod
 

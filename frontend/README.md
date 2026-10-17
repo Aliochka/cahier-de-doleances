@@ -180,7 +180,9 @@ les routes `/api/v1` et la fermeture transitive de leurs composants référencé
 `contracts/api.generated.ts` est généré automatiquement, sans édition manuelle.
 Ces **deux fichiers doivent être commités** après toute évolution de l’API.
 
-Depuis `frontend/`, avec l’environnement Python du backend activé :
+Installer uv 0.13.1 et exécuter `uv sync --locked` à la racine une première
+fois (voir le README du dépôt). Depuis `frontend/`, sans activation manuelle
+de l’environnement Python :
 
 ```sh
 pnpm contract:generate      # export Python puis types TypeScript
@@ -188,6 +190,9 @@ pnpm contract:check         # vérifie les snapshots et leur présence dans HEAD
 pnpm contract:types:check   # vérification Node seule, sans Python
 pnpm typecheck             # compile aussi le contrat et son exemple d’utilisation
 ```
+
+Les scripts d’export appellent `uv run --project .. --locked python` pour
+utiliser le verrou et `.venv/` du backend, même depuis `frontend/`.
 
 `scripts/export_openapi.py` appelle `app.openapi()` sans serveur HTTP. Son
 processus utilise exclusivement des réglages synthétiques, désactive dotenv et
