@@ -423,3 +423,17 @@ def test_migration_rejects_actual_source_even_if_engine_factory_is_misdirected(
             ).scalar_one()
             is None
         )
+
+
+def test_sampling_reuses_persisted_units_without_source_modification(stored):
+    from cahier_rag.evaluation.sampling import select_sample
+
+    store, spec, fixture = stored
+    state = store.create_extraction(spec)
+    run_extraction(store, state.extraction_id)
+    options = dict(size=3, seed=17, method="random", frame={"version": "synthetic"})
+    a = select_sample(store.iter_documents(state.extraction_id), **options)
+    b = select_sample(store.iter_documents(state.extraction_id), **options)
+    assert a["selected_hash"] == b["selected_hash"]
+    assert a["candidate_count"] == 5
+    assert len({d["document_id"] for d in a["documents"]}) == 3

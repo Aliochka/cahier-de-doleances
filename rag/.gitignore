@@ -10,3 +10,9 @@ indexes/
 artifacts/
 .cache/
 *.egg-info/
+
+# Les corpus, candidats et annotations réels restent locaux.
+*.jsonl
+evaluation/local/
+# Le jeu de requêtes ne contient aucun texte du corpus.
+!evaluation/queries.json

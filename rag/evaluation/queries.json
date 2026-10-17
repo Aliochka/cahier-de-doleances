@@ -1,0 +1,362 @@
+[
+  {
+    "query_id": "fiscalite-01",
+    "text": "Comment rendre les impôts plus justes entre ménages ?",
+    "domain": "fiscalite",
+    "category": "thematique",
+    "family": "fiscalite-0",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-02",
+    "text": "Quelles mesures proposent les citoyens pour lutter contre la fraude fiscale ?",
+    "domain": "fiscalite",
+    "category": "propositions",
+    "family": "fiscalite-1",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-03",
+    "text": "Retrouver les contributions qui évoquent le rétablissement de l’ISF.",
+    "domain": "fiscalite",
+    "category": "expression",
+    "family": "fiscalite-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-04",
+    "text": "Faire davantage contribuer les personnes qui possèdent un patrimoine important.",
+    "domain": "fiscalite",
+    "category": "semantique",
+    "family": "fiscalite-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-05",
+    "text": "Que veulent changer les personnes qui répondent « la TVA » à une question fiscale ?",
+    "domain": "fiscalite",
+    "category": "contexte",
+    "family": "fiscalite-4",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-06",
+    "text": "Moins de prélèvements et davantage de services : quels arbitrages sont proposés ?",
+    "domain": "fiscalite",
+    "category": "difficile",
+    "family": "fiscalite-5",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-07",
+    "text": "Quels avis sont exprimés sur le financement des dépenses publiques ?",
+    "domain": "fiscalite",
+    "category": "thematique",
+    "family": "fiscalite-6",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-08",
+    "text": "Quelles propositions visent à rendre les niches fiscales plus transparentes ?",
+    "domain": "fiscalite",
+    "category": "propositions",
+    "family": "fiscalite-7",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-09",
+    "text": "Retrouver les réponses mentionnant le quotient familial.",
+    "domain": "fiscalite",
+    "category": "expression",
+    "family": "fiscalite-8",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "fiscalite-10",
+    "text": "Comment empêcher les grandes sociétés de déplacer leurs bénéfices pour moins payer ?",
+    "domain": "fiscalite",
+    "category": "semantique",
+    "family": "fiscalite-9",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-01",
+    "text": "Quels changements sont souhaités pour la représentation politique ?",
+    "domain": "democratie",
+    "category": "thematique",
+    "family": "democratie-0",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-02",
+    "text": "Comment associer les citoyens aux décisions entre deux élections ?",
+    "domain": "democratie",
+    "category": "propositions",
+    "family": "democratie-1",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-03",
+    "text": "Retrouver les propositions sur le référendum d’initiative citoyenne.",
+    "domain": "democratie",
+    "category": "expression",
+    "family": "democratie-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-04",
+    "text": "Permettre aux électeurs de proposer directement une loi.",
+    "domain": "democratie",
+    "category": "semantique",
+    "family": "democratie-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-05",
+    "text": "À quoi correspondent les réponses « le vote blanc » dans les questions sur les élections ?",
+    "domain": "democratie",
+    "category": "contexte",
+    "family": "democratie-4",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-06",
+    "text": "Quelles contributions discutent les limites de la démocratie directe ?",
+    "domain": "democratie",
+    "category": "difficile",
+    "family": "democratie-5",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-07",
+    "text": "Quels avis concernent le cumul des mandats ?",
+    "domain": "democratie",
+    "category": "thematique",
+    "family": "democratie-6",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-08",
+    "text": "Quelles solutions proposent les citoyens pour contrôler les élus ?",
+    "domain": "democratie",
+    "category": "propositions",
+    "family": "democratie-7",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-09",
+    "text": "Retrouver les réponses mentionnant la proportionnelle.",
+    "domain": "democratie",
+    "category": "expression",
+    "family": "democratie-8",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "democratie-10",
+    "text": "Comment faire entendre les citoyens qui ne se sentent représentés par personne ?",
+    "domain": "democratie",
+    "category": "semantique",
+    "family": "democratie-9",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-01",
+    "text": "Quels problèmes d’accès aux services publics sont évoqués dans les campagnes ?",
+    "domain": "services_publics",
+    "category": "thematique",
+    "family": "services_publics-0",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-02",
+    "text": "Quelles propositions permettraient de maintenir des guichets de proximité ?",
+    "domain": "services_publics",
+    "category": "propositions",
+    "family": "services_publics-1",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-03",
+    "text": "Retrouver les contributions qui parlent des maisons de services au public.",
+    "domain": "services_publics",
+    "category": "expression",
+    "family": "services_publics-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-04",
+    "text": "Pouvoir effectuer une démarche administrative avec une personne plutôt que sur Internet.",
+    "domain": "services_publics",
+    "category": "semantique",
+    "family": "services_publics-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-05",
+    "text": "Quel service les citoyens désignent-ils par « la santé » dans leurs réponses courtes ?",
+    "domain": "services_publics",
+    "category": "contexte",
+    "family": "services_publics-4",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-06",
+    "text": "Comment concilier simplification administrative et égalité de traitement ?",
+    "domain": "services_publics",
+    "category": "difficile",
+    "family": "services_publics-5",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-07",
+    "text": "Quels avis portent sur la répartition des compétences entre collectivités ?",
+    "domain": "services_publics",
+    "category": "thematique",
+    "family": "services_publics-6",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-08",
+    "text": "Quelles mesures sont proposées contre les déserts médicaux ?",
+    "domain": "services_publics",
+    "category": "propositions",
+    "family": "services_publics-7",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-09",
+    "text": "Retrouver les réponses citant les sous-préfectures.",
+    "domain": "services_publics",
+    "category": "expression",
+    "family": "services_publics-8",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "services_publics-10",
+    "text": "Éviter de parcourir de nombreux kilomètres pour obtenir un document officiel.",
+    "domain": "services_publics",
+    "category": "semantique",
+    "family": "services_publics-9",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-01",
+    "text": "Quels obstacles empêchent les citoyens de réduire leur consommation d’énergie ?",
+    "domain": "ecologie",
+    "category": "thematique",
+    "family": "ecologie-0",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-02",
+    "text": "Quelles aides sont proposées pour isoler les logements ?",
+    "domain": "ecologie",
+    "category": "propositions",
+    "family": "ecologie-1",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-03",
+    "text": "Retrouver les contributions mentionnant la taxe carbone.",
+    "domain": "ecologie",
+    "category": "expression",
+    "family": "ecologie-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-04",
+    "text": "Se déplacer quotidiennement sans devoir utiliser sa voiture personnelle.",
+    "domain": "ecologie",
+    "category": "semantique",
+    "family": "ecologie-2",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-05",
+    "text": "Que signifie « le prix » dans les réponses sur les changements écologiques ?",
+    "domain": "ecologie",
+    "category": "contexte",
+    "family": "ecologie-4",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-06",
+    "text": "Comment répartir les coûts de la transition écologique sans pénaliser les ménages modestes ?",
+    "domain": "ecologie",
+    "category": "difficile",
+    "family": "ecologie-5",
+    "split": "development",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-07",
+    "text": "Quels avis concernent la réduction des déchets ?",
+    "domain": "ecologie",
+    "category": "thematique",
+    "family": "ecologie-6",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-08",
+    "text": "Quelles actions locales sont proposées pour développer les transports collectifs ?",
+    "domain": "ecologie",
+    "category": "propositions",
+    "family": "ecologie-7",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-09",
+    "text": "Retrouver les réponses mentionnant les circuits courts.",
+    "domain": "ecologie",
+    "category": "expression",
+    "family": "ecologie-8",
+    "split": "evaluation",
+    "version": "v1"
+  },
+  {
+    "query_id": "ecologie-10",
+    "text": "Réparer les objets plus facilement au lieu de les jeter et d’en acheter de nouveaux.",
+    "domain": "ecologie",
+    "category": "semantique",
+    "family": "ecologie-9",
+    "split": "evaluation",
+    "version": "v1"
+  }
+]

@@ -1,4 +1,4 @@
-# RAG local — Extraction et stockage documentaire
+# RAG local — Extraction, stockage et évaluation
 
 Ce sous-projet prépare le futur moteur de recherche et RAG documentaire du
 Cahier de doléances. Il appartient au monorepo, mais possède son propre projet
@@ -208,6 +208,29 @@ document. Un arrêt volontaire conserve le statut `running`, reprenable.
 Voir [le stockage et ses limites](stockage.md) et le
 [compte rendu RAG-005](rapport-rag-005.md).
 
+## Échantillons et évaluation — RAG-006
+
+Le module `evaluation` sélectionne des jeux aléatoires et stratifiés sur un cadre
+explicite d’extractions terminées, avec manifestes et partitions par contribution
+et texte identique. Le tirage aléatoire porte sur ce cadre ; il ne constitue pas
+un tirage uniforme sur tout le corpus. La cible expérimentale est de 10 000 à
+20 000 unités ; les essais locaux peuvent être plus petits.
+
+Le fichier [de requêtes](evaluation/queries.json) contient 40 requêtes françaises,
+réparties entre développement et évaluation. Les annotations restent humaines.
+Les métriques Precision@k, Recall@k, MRR et nDCG@k distinguent les non-jugés des
+notes zéro et publient leur couverture. Aucun score réel n’est disponible avant
+annotation. Les fichiers locaux restent sous `evaluation/local/`, ignoré par Git.
+
+```bash
+uv run --locked cahier-rag-eval --help
+uv run --locked cahier-rag-eval describe --sample evaluation/local/random.json
+```
+
+Voir le [protocole, les formats et les commandes](evaluation.md) et le
+[compte rendu RAG-006](rapport-rag-006.md). Aucun modèle, index ou moteur de
+recherche n’est ajouté.
+
 ## Tests et qualité
 
 Depuis `rag/` :
@@ -265,6 +288,7 @@ rag/
 │   ├── extraction.py         Paramètres et versions d’extraction
 │   ├── storage.py            Persistance atomique et restitution
 │   ├── pipeline.py           Lecture, écriture et reprise
+│   ├── evaluation/           Échantillons, jugements, métriques et CLI
 │   ├── migrate.py            Initialisation Alembic sécurisée
 │   └── migrations/           Environnement et révisions autonomes
 └── tests/
@@ -277,7 +301,7 @@ Le moteur de recherche n'existe pas encore. Aucun modèle d'embedding, LLM,
 stockage vectoriel ou index sémantique n’est installé. Le projet ne crée pas
 les bases : le schéma RAG est appliqué explicitement à une base préexistante.
 Le contrat, le lecteur et le stockage documentaire existent ; les modules
-`indexing`, `search`, `reranking`, `generation` et `evaluation` seront introduits
+`indexing`, `search`, `reranking` et `generation` seront introduits
 lorsqu’ils auront un contenu utile. La recherche restera indépendante du LLM.
 
 L'audit RAG-001 est historique : sa recommandation pip/venv a été remplacée
