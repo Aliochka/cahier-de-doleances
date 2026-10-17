@@ -6,6 +6,7 @@ from sqlalchemy import (
     Column,
     DateTime,
     ForeignKey,
+    ForeignKeyConstraint,
     Index,
     Integer,
     MetaData,
@@ -15,7 +16,7 @@ from sqlalchemy import (
     UniqueConstraint,
     func,
 )
-from sqlalchemy.dialects.postgresql import JSONB, UUID
+from sqlalchemy.dialects.postgresql import JSONB, TSVECTOR, UUID
 
 metadata = MetaData(schema="rag")
 
@@ -114,3 +115,44 @@ checkpoints = Table(
         name="valid_completion",
     ),
 )
+
+# Index lexical dérivé ; les unités et leur contexte restent inchangés.
+
+lexical_corpora = Table(
+    "lexical_corpora",
+    metadata,
+    Column("sample_hash", String(64), primary_key=True),
+    Column("document_count", Integer, nullable=False),
+    Column("configuration", JSONB, nullable=False),
+    Column("created_at", DateTime(timezone=True), nullable=False, server_default=func.now()),
+    CheckConstraint("document_count > 0 AND document_count <= 20000", name="lexical_bounded_size"),
+)
+lexical_members = Table(
+    "lexical_members",
+    metadata,
+    Column(
+        "sample_hash",
+        String(64),
+        ForeignKey("rag.lexical_corpora.sample_hash", ondelete="CASCADE"),
+        primary_key=True,
+    ),
+    Column("document_id", Text, ForeignKey("rag.text_units.document_id"), primary_key=True),
+    Column("content_hash", String(64), nullable=False),
+    Column("split", String(16), nullable=False),
+    CheckConstraint("split IN ('development','evaluation')", name="lexical_known_split"),
+)
+lexical_vectors = Table(
+    "lexical_vectors",
+    metadata,
+    Column("sample_hash", String(64), primary_key=True),
+    Column("strategy", String(32), primary_key=True),
+    Column("document_id", Text, primary_key=True),
+    Column("search_vector", TSVECTOR, nullable=False),
+    ForeignKeyConstraint(
+        ["sample_hash", "document_id"],
+        ["rag.lexical_members.sample_hash", "rag.lexical_members.document_id"],
+        ondelete="CASCADE",
+    ),
+    CheckConstraint("strategy IN ('answer','question','title')", name="lexical_known_strategy"),
+)
+Index("ix_rag_lexical_vector_gin", lexical_vectors.c.search_vector, postgresql_using="gin")

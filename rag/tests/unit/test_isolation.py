@@ -47,6 +47,9 @@ import cahier_rag.evaluation.sampling
 import cahier_rag.evaluation.metrics
 import cahier_rag.evaluation.files
 import cahier_rag.evaluation.cli
+import cahier_rag.search.lexical
+import cahier_rag.search.evaluation
+import cahier_rag.search.cli
 from cahier_rag.__main__ import main
 assert main(["check-config", "--env-file", sys.argv[1]]) == 0
 assert not any(name == "app" or name.startswith("app.") for name in sys.modules)

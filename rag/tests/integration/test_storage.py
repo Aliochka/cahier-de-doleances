@@ -76,13 +76,16 @@ def test_migration_is_independent_and_repeatable(rag_databases, stored):
             connection.execute(
                 text("SELECT version_num FROM public.rag_alembic_version")
             ).scalar_one()
-            == "rag_0001"
+            == "rag_0002"
         )
         assert set(inspect(connection).get_table_names(schema="rag")) == {
             "text_units",
             "extractions",
             "extraction_documents",
             "checkpoints",
+            "lexical_corpora",
+            "lexical_members",
+            "lexical_vectors",
         }
         assert (
             connection.execute(text("SELECT to_regclass('public.alembic_version')")).scalar_one()

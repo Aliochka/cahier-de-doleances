@@ -1,4 +1,4 @@
-# RAG local — Extraction, stockage et évaluation
+# RAG local — Corpus, recherche lexicale et évaluation
 
 Ce sous-projet prépare le futur moteur de recherche et RAG documentaire du
 Cahier de doléances. Il appartient au monorepo, mais possède son propre projet
@@ -245,6 +245,25 @@ La [procédure de constitution](corpus-experimental.md) documente le plan répar
 les commandes et la reprise. Les manifestes locaux sont ignorés par Git ; ils
 ne sont pas intégrés à l’image publique. Aucun modèle n’est installé.
 
+## Recherche lexicale — RAG-008
+
+Le moteur `cahier_rag.search.lexical` interroge exclusivement les 20 000 membres
+du manifeste RAG-007. Il propose trois variantes : réponse seule (`answer`), avec
+question (`question`), puis avec question et titre (`title`). PostgreSQL français,
+`tsvector`, GIN et `ts_rank_cd` assurent la recherche, sans modèle ni LLM.
+
+```bash
+uv run --locked cahier-rag schema-upgrade --env-file .env.local
+uv run --locked cahier-rag-search --env-file .env.local rebuild
+uv run --locked cahier-rag-search --env-file .env.local search '"services publics"' --strategy answer
+```
+
+La CLI recherche en développement par défaut ; `--split all` choisit tout le
+corpus explicitement. Les exports des 40 requêtes sont séparés par partition,
+avec candidats non jugés et latences. Aucun score de qualité n’est disponible.
+Voir [l’interface et les commandes](recherche-lexicale.md) et le
+[rapport d’exécution](rapport-rag-008.md).
+
 ## Tests et qualité
 
 Depuis `rag/` :
@@ -303,6 +322,7 @@ rag/
 │   ├── storage.py            Persistance atomique et restitution
 │   ├── pipeline.py           Lecture, écriture et reprise
 │   ├── evaluation/           Échantillons, jugements, métriques et CLI
+│   ├── search/               Baseline lexicale et exports de classements
 │   ├── migrate.py            Initialisation Alembic sécurisée
 │   └── migrations/           Environnement et révisions autonomes
 └── tests/
@@ -311,11 +331,11 @@ rag/
     └── integration/          PostgreSQL de test explicitement sélectionné
 ```
 
-Le moteur de recherche n'existe pas encore. Aucun modèle d'embedding, LLM,
+Le moteur lexical local existe. Aucun modèle d'embedding, LLM,
 stockage vectoriel ou index sémantique n’est installé. Le projet ne crée pas
 les bases : le schéma RAG est appliqué explicitement à une base préexistante.
-Le contrat, le lecteur et le stockage documentaire existent ; les modules
-`indexing`, `search`, `reranking` et `generation` seront introduits
+Le contrat, le lecteur et le stockage documentaire existent. Les futurs modules
+vectoriels, `reranking` et `generation` seront introduits
 lorsqu’ils auront un contenu utile. La recherche restera indépendante du LLM.
 
 L'audit RAG-001 est historique : sa recommandation pip/venv a été remplacée
