@@ -38,3 +38,11 @@ def test_invalid_configuration_fails_without_secret_or_traceback(monkeypatch, ca
     assert "RAG_SOURCE_DATABASE_URL" in output.err
     assert "TOP-SECRET" not in output.out + output.err
     assert "Traceback" not in output.err
+
+
+def test_extraction_refuses_missing_or_excessive_limit_before_any_connection(capsys):
+    with pytest.raises(SystemExit) as error:
+        main(["extract"])
+    assert error.value.code == 2
+    assert main(["extract", "--limit", "10001"]) == 2
+    assert "10000" in capsys.readouterr().err

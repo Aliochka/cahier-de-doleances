@@ -1,4 +1,4 @@
-# RAG local — Socle et lecteur documentaire
+# RAG local — Extraction et stockage documentaire
 
 Ce sous-projet prépare le futur moteur de recherche et RAG documentaire du
 Cahier de doléances. Il appartient au monorepo, mais possède son propre projet
@@ -35,7 +35,7 @@ avec `deactivate`. Aucun workspace uv ne relie les deux projets ; le manifeste
 et le verrou racine ne sont pas utilisés par `uv sync` exécuté dans `rag/`.
 
 Les dépendances d'exécution sont SQLAlchemy 2.0.43, psycopg2-binary 2.9.10 et
-python-dotenv 1.2.4, aux mêmes versions que le backend. Elles permettent les
+python-dotenv 1.2.4 et Alembic 1.16.5, aux mêmes versions que le backend. Elles permettent les
 fabriques PostgreSQL et la lecture facultative d'un fichier explicitement
 choisi. La configuration utilise des dataclasses de la bibliothèque standard.
 pytest 9.1.1 et Ruff 0.17.0 sont dans le groupe `dev` indépendant.
@@ -53,7 +53,7 @@ uv run --locked --no-dev python -m cahier_rag --version
 | Variable | Destination | Obligation |
 |---|---|---|
 | `RAG_SOURCE_DATABASE_URL` | Corpus original, accès en lecture seule | Lors d'une opération source |
-| `RAG_DATABASE_URL` | Future base expérimentale distincte | Lors d'une opération RAG |
+| `RAG_DATABASE_URL` | Base expérimentale distincte | Lors d'une opération RAG |
 
 Les noms `cahier_doleances` et `cahier_rag` dans `.env.example` sont des
 exemples configurables, pas des bases créées. La documentation locale existante
@@ -103,8 +103,9 @@ avec des rôles ou mots de passe différents. Elle rapproche les ports implicite
 les noms d'hôtes en casse différente et les adresses locales courantes.
 Elle ne fait aucune résolution DNS : deux alias d'hôte différents, un tunnel
 ou des chemins de sockets équivalents peuvent masquer un même serveur.
-Privilégier des destinations explicites et vérifier les rôles avant tout futur
-traitement. Une base logique distincte n'isole pas les ressources physiques
+Les migrations et le stockage vérifient aussi l’identité réelle des bases
+(identifiant système du cluster et OID), avant toute écriture ; les alias ne
+contournent donc pas cette protection. Voir [les garanties du stockage](stockage.md). Une base logique distincte n'isole pas les ressources physiques
 d'une instance PostgreSQL partagée.
 
 ## Primitives PostgreSQL
@@ -121,9 +122,9 @@ la transaction et la connexion à la sortie, y compris en cas d'erreur.
 Le moteur source configure également cette option par défaut. L'appelant reste
 responsable de libérer le pool avec `engine.dispose()`.
 
-Pour le futur stockage expérimental, utiliser le moteur RAG et ses transactions
-explicites (`engine.begin()`), puis `engine.dispose()`. Aucun schéma ni
-traitement d'écriture RAG n'est fourni pour le moment.
+Le stockage expérimental utilise `RagStore` et `DatabaseGuard` : transactions
+RAG explicites, contrôle des destinations et fermeture des connexions sources
+avant toute écriture. Les moteurs sont libérés explicitement.
 
 La protection source devra aussi reposer sur un **rôle PostgreSQL limité à la
 lecture**, sans droits de création ni d'écriture sur les tables du corpus.
@@ -183,6 +184,30 @@ Voir [le contrat et les règles d'extraction](extraction.md) pour les champs,
 l'identité, les empreintes, les anomalies JSON, la reprise et les limites.
 Le [compte rendu RAG-004](rapport-rag-004.md) détaille les validations effectuées.
 
+## Stockage documentaire — RAG-005
+
+Le schéma indépendant `rag` conserve les unités, manifestes, associations et
+checkpoints. Les migrations ne créent aucune base ni aucun rôle. Les deux bases
+doivent exister et la source doit être accessible pour les contrôles d’identité.
+
+Depuis `rag/`, après configuration locale :
+
+```bash
+uv run --locked cahier-rag schema-upgrade --env-file .env.local
+uv run --locked cahier-rag extract --env-file .env.local --limit 20 --questionnaire-id 7 --batch-size 10 --max-source-rows 1000 --max-batches 1
+uv run --locked cahier-rag status UUID_DU_MANIFESTE --env-file .env.local
+uv run --locked cahier-rag resume UUID_DU_MANIFESTE --env-file .env.local
+```
+
+La CLI affiche l’UUID avant de commencer et des métadonnées de progression,
+sans texte documentaire. La limite est obligatoire et plafonnée à 10 000 unités.
+Les paramètres et versions sont immuables lors d’une reprise. Une limite séparée
+borne les lignes sources retournées, y compris lorsque les lots n’émettent aucun
+document. Un arrêt volontaire conserve le statut `running`, reprenable.
+
+Voir [le stockage et ses limites](stockage.md) et le
+[compte rendu RAG-005](rapport-rag-005.md).
+
 ## Tests et qualité
 
 Depuis `rag/` :
@@ -205,13 +230,17 @@ si `RAG_TEST_DATABASE_URL` est absent. Pour les exécuter sur une base dédiée,
 **déjà migrée** avec les migrations du backend :
 
 ```bash
-RAG_TEST_DATABASE_URL=postgresql:///cahier_doleances_test uv run --locked python -m pytest
+RAG_TEST_DATABASE_URL=postgresql:///cahier_doleances_test \
+RAG_STORAGE_TEST_DATABASE_URL=postgresql:///cahier_rag_test \
+uv run --locked python -m pytest
 ```
 
 La base doit porter un nom terminé par `_test` et être à la révision
 `remove_runtime_caches`. Aucun repli sur les URL du backend. Les fixtures
 insèrent puis retirent leurs seules données synthétiques ; aucune migration
-ni création de table n'est effectuée. Ne jamais utiliser le corpus réel pour
+ni création de table source n'est effectuée. Les tests de stockage appliquent
+les migrations RAG sur la seconde base dédiée, également suffixée `_test`.
+Les bases elles-mêmes ne sont jamais créées automatiquement. Ne jamais utiliser le corpus réel pour
 ces tests d'écriture. Les tests utilisent les index, compteurs et contraintes
 existants, sans `Base.metadata.create_all()`.
 
@@ -226,27 +255,30 @@ rag/
 ├── uv.lock                   Verrou propre au RAG
 ├── src/cahier_rag/
 │   ├── __init__.py           Package sans effets de bord
-│   ├── __main__.py           Diagnostic CLI sans connexion
+│   ├── __main__.py           Diagnostics et commandes locales
 │   ├── config.py             Chargement et validation explicites
 │   ├── db.py                 Moteurs et transaction source READ ONLY
 │   ├── contracts.py          Unités, identité, empreintes et JSON
-│   └── sources/gdn.py        Adaptateur PostgreSQL et curseurs
+│   ├── sources/gdn.py        Adaptateur PostgreSQL et curseurs
+│   ├── safety.py             Contrôle des identités réelles des bases
+│   ├── schema.py             Tables SQLAlchemy Core du stockage
+│   ├── extraction.py         Paramètres et versions d’extraction
+│   ├── storage.py            Persistance atomique et restitution
+│   ├── pipeline.py           Lecture, écriture et reprise
+│   ├── migrate.py            Initialisation Alembic sécurisée
+│   └── migrations/           Environnement et révisions autonomes
 └── tests/
     ├── conftest.py            Environnement isolé
     ├── unit/                 Tests sans réseau, y compris contrat et lecteur
     └── integration/          PostgreSQL de test explicitement sélectionné
 ```
 
-Le moteur de recherche n'existe pas encore. Aucun modèle d'embedding n'est
-installé, aucun LLM n'est intégré, aucune base RAG n'a été créée par cette
-tâche et aucune indexation du corpus n'a été effectuée. Le contrat d'extraction
-et son lecteur existent ; il n'y a ni table RAG, migration RAG, extension
-vectorielle, serveur HTTP, échantillon ou jeu d'évaluation.
-
-RAG-005 pourra introduire le stockage documentaire expérimental. Les modules
+Le moteur de recherche n'existe pas encore. Aucun modèle d'embedding, LLM,
+stockage vectoriel ou index sémantique n’est installé. Le projet ne crée pas
+les bases : le schéma RAG est appliqué explicitement à une base préexistante.
+Le contrat, le lecteur et le stockage documentaire existent ; les modules
 `indexing`, `search`, `reranking`, `generation` et `evaluation` seront introduits
-seulement lorsqu'ils auront un contenu utile. La recherche devra rester
-indépendante de la génération LLM.
+lorsqu’ils auront un contenu utile. La recherche restera indépendante du LLM.
 
 L'audit RAG-001 est historique : sa recommandation pip/venv a été remplacée
 par la décision uv de RAG-002. Les paramètres, contrats et migrations futurs

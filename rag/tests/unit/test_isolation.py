@@ -39,6 +39,10 @@ import cahier_rag.config
 import cahier_rag.db
 import cahier_rag.contracts
 import cahier_rag.sources.gdn
+import cahier_rag.safety
+import cahier_rag.storage
+import cahier_rag.pipeline
+import cahier_rag.migrate
 from cahier_rag.__main__ import main
 assert main(["check-config", "--env-file", sys.argv[1]]) == 0
 assert not any(name == "app" or name.startswith("app.") for name in sys.modules)
