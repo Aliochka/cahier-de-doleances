@@ -1,4 +1,4 @@
-# Socle autonome du RAG — RAG-003
+# RAG local — Socle et lecteur documentaire
 
 Ce sous-projet prépare le futur moteur de recherche et RAG documentaire du
 Cahier de doléances. Il appartient au monorepo, mais possède son propre projet
@@ -14,8 +14,9 @@ n'est modifié par cette tâche.
 
 - uv **0.13.1**, comme le backend (installation décrite dans le README racine).
 - Python **3.11**. uv peut l'installer si nécessaire.
-- Aucun PostgreSQL, Docker, GPU ou accès réseau requis pour les tests et les
-  diagnostics une fois les dépendances installées.
+- Aucun PostgreSQL, Docker, GPU ou accès réseau requis pour les tests unitaires
+  et les diagnostics une fois les dépendances installées. La lecture du corpus
+  et les tests d'intégration nécessitent un PostgreSQL explicitement configuré.
 
 Depuis la racine du dépôt :
 
@@ -121,13 +122,66 @@ Le moteur source configure également cette option par défaut. L'appelant reste
 responsable de libérer le pool avec `engine.dispose()`.
 
 Pour le futur stockage expérimental, utiliser le moteur RAG et ses transactions
-explicites (`engine.begin()`), puis `engine.dispose()`. Aucun schéma, requête
-documentaire ou traitement d'écriture n'est fourni pour le moment.
+explicites (`engine.begin()`), puis `engine.dispose()`. Aucun schéma ni
+traitement d'écriture RAG n'est fourni pour le moment.
 
 La protection source devra aussi reposer sur un **rôle PostgreSQL limité à la
 lecture**, sans droits de création ni d'écriture sur les tables du corpus.
 Ce rôle n'est ni créé ni vérifié ici. Les options de transaction ne remplacent
-pas les privilèges du serveur. Cette tâche ne vérifie aucune connexion réelle.
+pas les privilèges du serveur. Les intégrations vérifient le mode READ ONLY
+sur une base de test ; elles ne provisionnent ni ne valident un rôle de production.
+
+## Contrat et lecteur source — RAG-004
+
+`contracts.TextUnit` représente une unité textuelle extraite, avec son texte,
+la question, le questionnaire et le titre conservés séparément. Ce n'est pas
+un futur segment d'embedding. Les IDs restent des `int` en Python et deviennent
+des chaînes décimales dans `to_dict()` et `to_json()`.
+
+Les types `open_answer` et `other_text` distinguent les réponses ouvertes et
+les éléments de `value_json.other_text`. Les libellés sélectionnés ne sont
+jamais utilisés comme texte libre. Le lecteur ne normalise ni ne segmente
+les textes et conserve les occurrences répétées.
+
+Depuis `rag/`, après configuration explicite des variables RAG :
+
+```python
+from cahier_rag.config import load_settings
+from cahier_rag.db import create_source_engine
+from cahier_rag.sources.gdn import GdnReader
+
+engine = create_source_engine(load_settings(env_file=".env.local"))
+try:
+    reader = GdnReader(engine, corpus_id="gdn-2019", batch_size=100)
+    for batch in reader.iter_batches(limit=10):
+        for document in batch.documents:
+            # Aucun texte n'est affiché ; le futur stockage recevra les objets.
+            print(document.document_id, document.content_hash)
+        resume = batch.next_cursor
+finally:
+    engine.dispose()
+```
+
+`GdnReader` accepte aussi les filtres `questionnaire_id`, `contribution_id`
+et `unit_type=UnitType.OPEN_ANSWER` ou `UnitType.OTHER_TEXT`.
+`iter_documents(after=cursor, limit=10)` permet une lecture document par
+document. Chaque lot ferme ses résultats, sa transaction READ ONLY et sa
+connexion **avant** de remettre les objets au consommateur. Un arrêt anticipé
+ne laisse donc pas de connexion ouverte.
+
+`batch_size` borne les lignes `answers` lues par requête, et non les unités
+émises : un tableau `other_text` peut fournir plusieurs unités. Les lots vides
+font avancer le curseur. `Cursor.after_document(document)` permet aussi de
+reprendre au milieu d'une réponse ; `to_dict()` et `Cursor.from_dict()`
+conservent son identifiant BIGINT exactement. Réutiliser un curseur avec le
+même corpus, les mêmes filtres et la même version d'extraction.
+
+`get_contribution(id)` restitue les métadonnées d'une contribution, y compris
+un titre sans réponse ouverte, sans créer de document autonome pour ce titre.
+
+Voir [le contrat et les règles d'extraction](extraction.md) pour les champs,
+l'identité, les empreintes, les anomalies JSON, la reprise et les limites.
+Le [compte rendu RAG-004](rapport-rag-004.md) détaille les validations effectuées.
 
 ## Tests et qualité
 
@@ -136,15 +190,30 @@ Depuis `rag/` :
 ```bash
 uv run --locked ruff check .
 uv run --locked ruff format --check .
-uv run --locked python -m pytest
+uv run --locked python -m pytest tests/unit
 ```
 
-Les tests utilisent une configuration synthétique et bloquent sockets,
+Les tests unitaires utilisent une configuration synthétique et bloquent sockets,
 résolution DNS et psycopg2. Ils vérifient les URL, les priorités de configuration,
 les erreurs sans secrets, les moteurs paresseux, les transactions sources,
 la fermeture sur erreur et les imports depuis un processus extérieur au dépôt.
 Aucun serveur, modèle ou base de données n'est nécessaire.
 La CI RAG est un workflow autonome sans service PostgreSQL, Docker ou GPU.
+
+Pour toute la suite, `uv run --locked python -m pytest` ignore les intégrations
+si `RAG_TEST_DATABASE_URL` est absent. Pour les exécuter sur une base dédiée,
+**déjà migrée** avec les migrations du backend :
+
+```bash
+RAG_TEST_DATABASE_URL=postgresql:///cahier_doleances_test uv run --locked python -m pytest
+```
+
+La base doit porter un nom terminé par `_test` et être à la révision
+`remove_runtime_caches`. Aucun repli sur les URL du backend. Les fixtures
+insèrent puis retirent leurs seules données synthétiques ; aucune migration
+ni création de table n'est effectuée. Ne jamais utiliser le corpus réel pour
+ces tests d'écriture. Les tests utilisent les index, compteurs et contraintes
+existants, sans `Base.metadata.create_all()`.
 
 ## Premiers fichiers et suite du projet
 
@@ -159,22 +228,25 @@ rag/
 │   ├── __init__.py           Package sans effets de bord
 │   ├── __main__.py           Diagnostic CLI sans connexion
 │   ├── config.py             Chargement et validation explicites
-│   └── db.py                 Moteurs et transaction source READ ONLY
+│   ├── db.py                 Moteurs et transaction source READ ONLY
+│   ├── contracts.py          Unités, identité, empreintes et JSON
+│   └── sources/gdn.py        Adaptateur PostgreSQL et curseurs
 └── tests/
-    ├── conftest.py            Environnement isolé et réseau interdit
-    └── unit/                 Configuration, CLI, connexions et isolation
+    ├── conftest.py            Environnement isolé
+    ├── unit/                 Tests sans réseau, y compris contrat et lecteur
+    └── integration/          PostgreSQL de test explicitement sélectionné
 ```
 
 Le moteur de recherche n'existe pas encore. Aucun modèle d'embedding n'est
 installé, aucun LLM n'est intégré, aucune base RAG n'a été créée par cette
-tâche et aucune indexation du corpus n'a été effectuée. Il n'y a ni lecteur
-documentaire, ni contrat documentaire définitif, ni table, migration, extension
+tâche et aucune indexation du corpus n'a été effectuée. Le contrat d'extraction
+et son lecteur existent ; il n'y a ni table RAG, migration RAG, extension
 vectorielle, serveur HTTP, échantillon ou jeu d'évaluation.
 
-RAG-004 précisera le contrat documentaire et le lecteur PostgreSQL source.
-Les modules `contracts`, `sources`, `indexing`, `search`, `reranking`,
-`generation` et `evaluation` seront introduits seulement lorsqu'ils auront un
-contenu utile. La recherche devra rester indépendante de la génération LLM.
+RAG-005 pourra introduire le stockage documentaire expérimental. Les modules
+`indexing`, `search`, `reranking`, `generation` et `evaluation` seront introduits
+seulement lorsqu'ils auront un contenu utile. La recherche devra rester
+indépendante de la génération LLM.
 
 L'audit RAG-001 est historique : sa recommandation pip/venv a été remplacée
 par la décision uv de RAG-002. Les paramètres, contrats et migrations futurs

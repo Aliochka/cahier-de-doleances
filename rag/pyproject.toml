@@ -33,4 +33,5 @@ select = ["E4", "E7", "E9", "F", "I"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers --import-mode=importlib"
+markers = ["integration: PostgreSQL isolé explicitement configuré par RAG_TEST_DATABASE_URL"]
 
