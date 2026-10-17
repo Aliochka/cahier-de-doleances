@@ -4,7 +4,7 @@ import json
 from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
 
-from sqlalchemy import Engine, text
+from sqlalchemy import Engine, bindparam, text
 
 from cahier_rag.contracts import ContributionMetadata, TextUnit, UnitType, validate_id
 from cahier_rag.db import source_connection
@@ -151,6 +151,7 @@ class GdnReader:
         questionnaire_id: int | None = None,
         contribution_id: int | None = None,
         unit_type: UnitType | None = None,
+        contribution_ids: tuple[int, ...] | None = None,
     ):
         if not isinstance(corpus_id, str) or not corpus_id.strip():
             raise ValueError("corpus_id est requis.")
@@ -164,6 +165,13 @@ class GdnReader:
                 validate_id(value, name)
         if unit_type is not None and not isinstance(unit_type, UnitType):
             raise ValueError("unit_type doit être un UnitType.")
+        if contribution_ids is not None:
+            from cahier_rag.extraction import ExtractionSpec
+
+            ExtractionSpec(
+                limit=1, contribution_id=contribution_id, contribution_ids=contribution_ids
+            )
+        self.contribution_ids = contribution_ids
         self.engine = engine
         self.corpus_id = corpus_id
         self.batch_size = batch_size
@@ -190,12 +198,17 @@ class GdnReader:
         if self.contribution_id is not None:
             clauses.append("a.contribution_id = :contribution_id")
             params["contribution_id"] = self.contribution_id
+        if self.contribution_ids is not None:
+            clauses.append("a.contribution_id IN :contribution_ids")
+            params["contribution_ids"] = self.contribution_ids
         query = text(
             ANSWER_SELECT
             + " WHERE "
             + " AND ".join(clauses)
             + " ORDER BY a.id ASC LIMIT :batch_size"
         )
+        if self.contribution_ids is not None:
+            query = query.bindparams(bindparam("contribution_ids", expanding=True))
         with source_connection(self.engine) as connection:
             with connection.execute(query, params) as result:
                 return result.mappings().all()

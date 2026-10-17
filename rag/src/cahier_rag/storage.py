@@ -231,6 +231,10 @@ class RagStore:
                         and document.contribution_id != state.spec.contribution_id
                     )
                     or (
+                        state.spec.contribution_ids is not None
+                        and document.contribution_id not in state.spec.contribution_ids
+                    )
+                    or (
                         state.spec.unit_type is not None
                         and document.unit_type != state.spec.unit_type
                     )

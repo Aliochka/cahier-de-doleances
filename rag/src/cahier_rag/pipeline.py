@@ -26,6 +26,7 @@ def run_extraction(
         batch_size=spec.batch_size,
         questionnaire_id=spec.questionnaire_id,
         contribution_id=spec.contribution_id,
+        contribution_ids=spec.contribution_ids,
         unit_type=spec.unit_type,
     )
     batches = 0

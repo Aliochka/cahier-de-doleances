@@ -231,6 +231,20 @@ Voir le [protocole, les formats et les commandes](evaluation.md) et le
 [compte rendu RAG-006](rapport-rag-006.md). Aucun modèle, index ou moteur de
 recherche n’est ajouté.
 
+## Corpus expérimental réel — RAG-007
+
+Un cadre de 42 318 unités a permis de constituer **20 000 unités distinctes**,
+stockées dans PostgreSQL local et identifiées par
+`evaluation/local/rag007/corpus.json`. Le tirage aléatoire contient 10 000 unités,
+le stratifié 13 103 ; leur recouvrement de 3 103 unités donne l’union finale.
+Tous les quotas sont atteints ; les partitions par contribution et texte exact
+sont conservées sans rééquilibrage artificiel.
+
+Le [rapport RAG-007](rapport-rag-007.md) contient les statistiques et limites.
+La [procédure de constitution](corpus-experimental.md) documente le plan réparti,
+les commandes et la reprise. Les manifestes locaux sont ignorés par Git ; ils
+ne sont pas intégrés à l’image publique. Aucun modèle n’est installé.
+
 ## Tests et qualité
 
 Depuis `rag/` :

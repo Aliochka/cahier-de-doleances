@@ -26,7 +26,11 @@ def describe(document):
     }
 
 
-def select_sample(
+def select_sample(documents, **parameters):
+    return select_described_sample((describe(document) for document in documents), **parameters)
+
+
+def select_described_sample(
     documents, *, size, seed, method, frame, max_candidates=100_000, quotas=None, split_seed=1729
 ):
     if type(size) is not int or not 1 <= size <= 20_000:
@@ -38,10 +42,10 @@ def select_sample(
     if type(max_candidates) is not int or not size <= max_candidates <= 100_000:
         raise ValueError("Cadre limité à 100 000 candidats.")
     rows = {}
-    for scanned, document in enumerate(documents, 1):
+    for scanned, description in enumerate(documents, 1):
         if scanned > 2 * max_candidates:
             raise ValueError("Trop de références candidates, y compris répétées.")
-        item = describe(document)
+        item = dict(description)
         previous = rows.get(item["document_id"])
         if previous and previous != item:
             raise ValueError("Contenu incompatible pour un même identifiant.")

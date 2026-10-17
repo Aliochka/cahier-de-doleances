@@ -75,6 +75,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         command.add_argument("--questionnaire-id", type=positive_integer)
         command.add_argument("--max-source-rows", type=positive_integer)
         command.add_argument("--contribution-id", type=positive_integer)
+        command.add_argument("--contribution-ids", type=positive_integer, action="append")
         command.add_argument("--unit-type", choices=[item.value for item in UnitType])
         command.add_argument(
             "--max-batches", type=positive_integer, help="Arrêt volontaire après N lots validés"
@@ -106,9 +107,12 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "questionnaire_id",
                     "max_source_rows",
                     "contribution_id",
+                    "contribution_ids",
                     "unit_type",
                 ):
                     value = getattr(args, name)
+                    if name == "contribution_ids" and value is not None:
+                        value = tuple(sorted(value))
                     if value is not None:
                         values[name] = UnitType(value) if name == "unit_type" else value
             spec = ExtractionSpec(**values) if args.command == "extract" else None

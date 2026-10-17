@@ -437,3 +437,22 @@ def test_sampling_reuses_persisted_units_without_source_modification(stored):
     assert a["selected_hash"] == b["selected_hash"]
     assert a["candidate_count"] == 5
     assert len({d["document_id"] for d in a["documents"]}) == 3
+
+
+def test_explicit_contribution_list_resumes_and_rejects_changed_scope(stored):
+    store, spec, fixture = stored
+    selected = replace(spec, contribution_id=None, contribution_ids=(fixture["contributions"][0],))
+    state = store.create_extraction(selected)
+    paused = run_extraction(store, state.extraction_id, max_batches=1)
+    assert paused.status == "running"
+    with pytest.raises(ExtractionError):
+        run_extraction(
+            store,
+            state.extraction_id,
+            expected_spec=replace(selected, contribution_ids=(fixture["contributions"][1],)),
+        )
+    complete = run_extraction(store, state.extraction_id, expected_spec=selected)
+    assert complete.document_count == 5
+    assert {d.contribution_id for d in store.iter_documents(state.extraction_id)} == set(
+        selected.contribution_ids
+    )
