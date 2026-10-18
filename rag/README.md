@@ -542,3 +542,10 @@ puis recherchés exactement via pgvector, sur le seul corpus RAG-007. Voir
 ML restent dans l'environnement optionnel ; l'annotation ne change pas.
 Le [compte rendu RAG-013](rapport-rag-013.md) décrit l'index réel de 20 000 unités,
 les mesures finales et les validations exécutées.
+
+### Recherche hybride — RAG-014
+
+La [fusion RRF locale](recherche-hybride.md) combine le lexical pondéré RAG-009
+et BGE-M3 RAG-013, avec diagnostics par moteur et un pool complémentaire non jugé.
+Elle conserve les index et la session d'annotation existants. Voir le
+[compte rendu des expériences](rapport-rag-014.md).
