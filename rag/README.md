@@ -362,3 +362,110 @@ Références : [cadrage](../docs/plan-rag.md), [audit](../docs/audit-rag.md),
 [migration uv](../docs/migration-uv.md),
 [transactions PostgreSQL SQLAlchemy](https://docs.sqlalchemy.org/en/20/dialects/postgresql.html#setting-read-only-deferrable),
 [construction de packages uv](https://docs.astral.sh/uv/concepts/build-backend/).
+
+## RAG-010 — Annotation humaine locale
+
+Installer l'option web, indépendante des dépendances du moteur (mêmes versions
+FastAPI/Uvicorn que le backend, sans importer `app`) :
+
+```bash
+cd rag
+uv sync --locked --extra annotation --dev
+export RAG_DATABASE_URL='postgresql:///cahier_rag'
+uv run --locked --extra annotation cahier-rag-annotate --evaluator ro
+```
+
+Ouvrir **http://127.0.0.1:8765**. Un fichier explicitement choisi est aussi
+possible : `--env-file .env`. Aucun `.env` n'est chargé automatiquement.
+Le serveur écoute exclusivement sur `127.0.0.1`, sans proxy, sans journal
+HTTP et sans connexion à la base source. `--port` permet de changer le port,
+mais pas l'adresse d'écoute. Arrêter avec Ctrl+C.
+
+Les 400 candidats sont validés contre le manifeste RAG-009, les requêtes et le
+corpus RAG-007. Les sources restent inchangées. Les requêtes sont regroupées
+par identifiant ; les documents sont ordonnés par SHA-256 de
+`[graine, query_id, document_id]`, graine **20261020** par défaut (`--seed`).
+Cette permutation déterministe est indépendante des méthodes et rangs.
+Un changement de graine, d'évaluateur ou de données refuse la reprise.
+
+L'écran présente une seule réponse intégrale, sa question, son questionnaire
+et son titre. Les textes longs défilent dans une zone dédiée ; aucune troncature.
+La contribution parente s'affiche à la demande : **uniquement ses unités déjà
+présentes dans la base RAG**, potentiellement incomplètes, avec un plafond de
+500 unités. Aucun accès complémentaire au corpus source. Aucun moteur, score,
+rang ou statut de contrôle aléatoire n'est transmis à la page.
+
+- Noter avec **0, 1, 2, 3** ou les boutons : sauvegarde, puis document suivant.
+- Revenir avec **Précédent** ou les flèches gauche/droite ; sélectionner une
+  requête dans la liste pour changer de groupe.
+- Les raccourcis sont désactivés dans les champs de saisie.
+- Une note existante se modifie en revenant au document puis en notant à nouveau.
+- Le commentaire est sauvegardé après 700 ms d'inactivité, et avant chaque
+  navigation. Sur un document déjà jugé, il modifie aussi la justification du
+  jugement. Sur un document non jugé, il reste un brouillon, jamais une note.
+- Le message **Enregistré sur disque** suit uniquement une sauvegarde réussie.
+  En cas d'erreur, rester sur la page et réessayer ; la navigation est suspendue.
+  La fermeture avec une saisie en cours provoque l'avertissement du navigateur.
+  Une fermeture forcée peut perdre les caractères saisis depuis la dernière
+  sauvegarde confirmée ; aucun navigateur ne garantit leur conservation.
+
+### Persistance et export
+
+`rag/evaluation/local/rag010/session.json` conserve ensemble jugements,
+brouillons, curseur exact, graine, versions, empreintes et révision. Il est
+**ignoré par Git**, créé en mode 0600, remplacé atomiquement après écriture et
+`fsync`, puis synchronisation du dossier. L'ancien état mémoire est conservé
+si une sauvegarde échoue. Un verrou de processus interdit deux serveurs CLI
+simultanés ; une révision interdit les écritures d'un onglet obsolète. Une
+seule session et un seul évaluateur sont pris en charge. Reprendre avec la
+même commande : le curseur et les brouillons sont restaurés.
+
+Le lien **Exporter les jugements JSON** télécharge une liste compatible avec
+RAG-006, contenant seulement les couples effectivement notés :
+
+```json
+[{"query_id":"exemple","document_id":"text-unit:v1:corpus:open_answer:123:0","grade":2,"justification":null,"evaluator":"ro","judged_at":"2026-10-18T10:00:00+02:00","version":"rag010-v1"}]
+```
+
+Cet exemple est synthétique. Les identifiants documentaires restent des chaînes
+et les identifiants BIGINT des documents sont sérialisés en chaînes décimales.
+Un couple ne possède qu'un jugement courant ; la modification remplace sa
+note et sa date. Aucun historique détaillé des modifications n'est conservé.
+Sauvegarder le téléchargement dans `evaluation/local/rag010/judgments.json`,
+puis utiliser ce fichier avec `cahier-rag-eval score --help` (options
+`--judgments`, `--results`, `--sample`, `--queries`, `--output`, `--k`).
+Par exemple, avec un classement de développement RAG-009 :
+
+```bash
+uv run --locked cahier-rag-eval score \
+  --sample evaluation/local/rag007/corpus.json \
+  --queries evaluation/queries.json \
+  --judgments evaluation/local/rag010/judgments.json \
+  --results evaluation/local/rag009/development/weighted-answer/results.json \
+  --output evaluation/local/rag010/metrics.json --k 10
+```
+
+Les brouillons et documents non jugés sont exclus, distincts de la note zéro.
+L'export relit l'état sauvegardé en mémoire, sans lancer d'évaluation automatique.
+Ne pas placer les annotations ou des textes réels dans un dossier versionné.
+
+### Contrôles
+
+```bash
+uv run --locked --extra annotation pytest
+uv run --locked --extra annotation ruff check .
+uv lock --check
+```
+
+Les tests HTTP utilisent des données synthétiques et `httpx` (groupe `dev`).
+Sans l'option `annotation`, ces tests sont ignorés ; le moteur reste utilisable
+sans FastAPI. Les intégrations PostgreSQL restent conditionnées aux bases de
+test dédiées décrites plus haut. Les contrôles du pool réel sont en lecture
+seule et ne créent aucun jugement dans la session réelle.
+
+Les protections locales combinent client loopback, hôte exact, origine,
+Fetch Metadata, jeton anti-CSRF, CSP, interdiction d'intégration dans une frame
+et absence de cache. Les textes sont injectés via `textContent`, jamais comme
+HTML. Il ne s'agit pas d'une application multiutilisateur : les processus de
+la même machine et les extensions du navigateur restent dans le périmètre de
+confiance. Voir aussi la [documentation FastAPI sur les middlewares](https://fastapi.tiangolo.com/advanced/middleware/).

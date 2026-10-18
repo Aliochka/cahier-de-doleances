@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Annotation de pertinence · Cahier</title><link rel="stylesheet" href="/ui.css"><script src="/ui.js" defer></script></head>
+<body><main><header><h1>Annotation de pertinence</h1><p>Évaluez la réponse au regard de la requête, en vous aidant de son contexte.</p>
+<p id="progress" aria-live="polite"></p><label>Requête <select id="queries"></select></label>
+<a id="export" href="/api/export" download>Exporter les jugements JSON</a></header>
+<p id="status" role="status">Chargement…</p><button id="retry" hidden>Réessayer le chargement</button>
+<section aria-labelledby="query"><h2 id="query"></h2><p id="localprogress"></p>
+<p id="form"></p><h3 id="title"></h3><h3>Question originale</h3><p id="question" class="text"></p>
+<h3>Réponse citoyenne intégrale</h3><article id="answer" class="text" tabindex="0"></article>
+<button id="parentbutton">Consulter la contribution parente (unités stockées)</button><div id="parent" hidden></div></section>
+<section aria-label="Notation"><p id="existing"></p><label for="comment">Commentaire facultatif</label>
+<textarea id="comment" rows="3" maxlength="10000"></textarea><p>Touches 0–3 pour noter ; flèches gauche/droite pour naviguer, hors des champs de saisie.</p>
+<div id="grades"><button data-grade="0">0 · Non pertinent</button><button data-grade="1">1 · Partiellement pertinent</button><button data-grade="2">2 · Pertinent</button><button data-grade="3">3 · Très pertinent</button></div>
+<nav><button id="previous">← Précédent</button><button id="next">Suivant →</button></nav></section>
+<p>Les documents sont non jugés tant que vous ne leur attribuez pas de note. La contribution parente peut être incomplète dans la base expérimentale.</p>
+</main></body></html>

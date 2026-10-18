@@ -11,7 +11,7 @@ import importlib.util
 import socket
 import sys
 
-for name in ("app", "fastapi", "torch", "transformers", "sentence_transformers", "pgvector"):
+for name in ("app", "torch", "transformers", "sentence_transformers", "pgvector"):
     assert importlib.util.find_spec(name) is None, name
 
 class BlockExternal(importlib.abc.MetaPathFinder):
@@ -54,6 +54,9 @@ import cahier_rag.search.preparation
 import cahier_rag.search.flexible
 import cahier_rag.search.experiments
 import cahier_rag.search.flexible_cli
+import cahier_rag.annotation.session
+import cahier_rag.annotation.documents
+import cahier_rag.annotation.cli
 from cahier_rag.__main__ import main
 assert main(["check-config", "--env-file", sys.argv[1]]) == 0
 assert not any(name == "app" or name.startswith("app.") for name in sys.modules)

@@ -61,7 +61,11 @@ def load_queries(path):
 
 
 def load_judgments(path, queries, sample):
-    rows = load_json(path)
+    return validate_judgments(load_json(path), queries, sample)
+
+
+def validate_judgments(rows, queries, sample):
+    """Valider aussi les jugements en mémoire, sans dupliquer le contrat."""
     if not isinstance(rows, list) or not all(isinstance(row, dict) for row in rows):
         raise ValueError("Liste de jugements requise.")
     query_index = {q["query_id"]: q for q in queries}
