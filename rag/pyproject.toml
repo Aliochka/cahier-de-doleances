@@ -12,6 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
+cahier-rag-embed = "cahier_rag.embeddings.cli:main"
 cahier-rag-prepare = "cahier_rag.representations.cli:main"
 cahier-rag-annotate = "cahier_rag.annotation.cli:main"
 cahier-rag = "cahier_rag.__main__:main"
@@ -20,6 +21,14 @@ cahier-rag-search = "cahier_rag.search.cli:main"
 cahier-rag-flex = "cahier_rag.search.flexible_cli:main"
 
 [project.optional-dependencies]
+embeddings = [
+    "torch==2.10.0",
+    "transformers==4.57.6",
+    "huggingface-hub==0.36.0",
+    "numpy==2.2.6",
+    "psutil==7.2.2",
+]
+
 annotation = [
     "fastapi==0.143.0",
     "uvicorn==0.35.0",
@@ -51,3 +60,11 @@ testpaths = ["tests"]
 addopts = "-ra --strict-markers --import-mode=importlib"
 markers = ["integration: PostgreSQL isolé explicitement configuré par RAG_TEST_DATABASE_URL"]
 
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu128", extra = "embeddings", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" }]

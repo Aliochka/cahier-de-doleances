@@ -11,7 +11,7 @@ import importlib.util
 import socket
 import sys
 
-for name in ("app", "torch", "transformers", "sentence_transformers", "pgvector"):
+for name in ("app", "sentence_transformers", "pgvector"):
     assert importlib.util.find_spec(name) is None, name
 
 class BlockExternal(importlib.abc.MetaPathFinder):

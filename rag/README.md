@@ -505,3 +505,31 @@ Voir les [règles et contrats détaillés](representations-documentaires.md) et 
 [rapport des essais réels RAG-011](rapport-rag-011.md). Les budgets actuels portent
 sur la réponse en caractères ; ils devront être adaptés au tokenizer du futur
 modèle avant toute vectorisation.
+
+## RAG-012 — Modèles d’embedding locaux optionnels
+
+Le moteur interchangeable propose **multilingual E5-small**, **BGE-M3 dense** et
+**Qwen3-Embedding-0.6B**, avec révisions fixées. Les modèles sont chargés
+explicitement ; l’inférence est hors ligne. Les fenêtres sont vérifiées avec les
+tokenizers réels, préfixes inclus, avec refus des entrées trop longues.
+
+Pour préserver l’annotation, installer les dépendances GPU dans un environnement
+**distinct** ; ne pas resynchroniser `rag/.venv/` :
+
+```bash
+cd rag
+UV_PROJECT_ENVIRONMENT=.cache/embeddings-venv \
+  uv sync --locked --extra embeddings --dev
+UV_PROJECT_ENVIRONMENT=.cache/embeddings-venv uv run --locked --no-sync \
+  python -m cahier_rag.embeddings.cli list
+```
+
+Les téléchargements explicites des poids, la préparation du plan commun et les
+commandes de benchmark sont détaillés dans [embeddings-locaux.md](embeddings-locaux.md).
+Les dépendances du backend public restent inchangées. Les fichiers de modèle,
+les matrices et les manifestes de mesure restent locaux et ignorés par Git.
+Aucun index vectoriel n’est créé et les 20 000 documents ne sont pas encodés.
+
+Les mesures réelles des trois modèles sur **RTX 5090 et CPU** sont présentées
+dans [le rapport RAG-012](rapport-rag-012.md). Elles décrivent fonctionnement,
+ressources et coût, sans établir de classement de pertinence sur le Grand Débat.
