@@ -15,6 +15,7 @@ dependencies = [
 cahier-rag = "cahier_rag.__main__:main"
 cahier-rag-eval = "cahier_rag.evaluation.cli:main"
 cahier-rag-search = "cahier_rag.search.cli:main"
+cahier-rag-flex = "cahier_rag.search.flexible_cli:main"
 
 [dependency-groups]
 dev = ["pytest==9.1.1", "ruff==0.17.0"]

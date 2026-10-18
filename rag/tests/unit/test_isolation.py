@@ -50,6 +50,10 @@ import cahier_rag.evaluation.cli
 import cahier_rag.search.lexical
 import cahier_rag.search.evaluation
 import cahier_rag.search.cli
+import cahier_rag.search.preparation
+import cahier_rag.search.flexible
+import cahier_rag.search.experiments
+import cahier_rag.search.flexible_cli
 from cahier_rag.__main__ import main
 assert main(["check-config", "--env-file", sys.argv[1]]) == 0
 assert not any(name == "app" or name.startswith("app.") for name in sys.modules)

@@ -264,6 +264,22 @@ avec candidats non jugés et latences. Aucun score de qualité n’est disponibl
 Voir [l’interface et les commandes](recherche-lexicale.md) et le
 [rapport d’exécution](rapport-rag-008.md).
 
+## Recherche lexicale souple — RAG-009
+
+`FlexibleEngine` ajoute les correspondances partielles et un classement combinant
+couverture, rareté des termes et fréquence/proximité. RAG-008 et ses exports restent
+inchangés. Les mêmes vecteurs et le GIN sont réutilisés, sans migration.
+
+```bash
+uv run --locked cahier-rag-flex --env-file .env.local search 'Quelles propositions pour réduire la fraude fiscale ?'
+uv run --locked cahier-rag-flex --env-file .env.local search '"services publics"' --method partial
+```
+
+Le CLI est limité au développement ; l’évaluation passe par un manifeste gelé et
+un marqueur empêchant une relance accidentelle. Un pool de 400 paires de développement
+reste à annoter humainement. Voir [les règles et commandes](recherche-souple.md) et
+[le compte rendu RAG-009](rapport-rag-009.md). Aucun score de pertinence n’est calculé.
+
 ## Tests et qualité
 
 Depuis `rag/` :
