@@ -14,6 +14,7 @@ async function api(url, payload) {
 function text(id,value) { $(id).textContent=value||''; }
 async function render() {
   loaded=false; controls(true); $('retry').hidden=true;
+  text('campaign',`${state.campaign_label || 'Campagne initiale'} (${state.campaign_id || 'rag010'})`);
   text('query',state.query); text('progress',`${state.done} / ${state.total} couples annotés`);
   $('queries').replaceChildren(...state.groups.map(g=>{const o=document.createElement('option');o.value=g.position;o.textContent=`${g.text} (${g.done}/${g.total})`;o.selected=g.query_id===state.query_id;return o;}));
   const group=state.groups.find(g=>g.query_id===state.query_id);

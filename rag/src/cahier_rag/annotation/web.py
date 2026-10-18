@@ -10,7 +10,9 @@ from sqlalchemy.exc import SQLAlchemyError
 ASSETS = Path(__file__).parent
 
 
-def create_app(session, documents, *, port=8765):
+def create_app(
+    session, documents, *, port=8765, campaign_id="rag010", campaign_label="Campagne initiale"
+):
     app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
     origin = f"http://127.0.0.1:{port}"
     token = secrets.token_urlsafe(32)
@@ -78,7 +80,12 @@ def create_app(session, documents, *, port=8765):
 
     @app.get("/api/state")
     def state():
-        return {**session.view(), "token": token}
+        return {
+            **session.view(),
+            "token": token,
+            "campaign_id": campaign_id,
+            "campaign_label": campaign_label,
+        }
 
     @app.get("/api/document")
     def document(position: int, parent: bool = False):
@@ -100,7 +107,11 @@ def create_app(session, documents, *, port=8765):
                 "destination",
             }:
                 raise ValueError()
-            return session.change(**payload)
+            return {
+                **session.change(**payload),
+                "campaign_id": campaign_id,
+                "campaign_label": campaign_label,
+            }
         except (TypeError, KeyError):
             raise ValueError("Paramètres invalides.") from None
 
@@ -108,7 +119,11 @@ def create_app(session, documents, *, port=8765):
     def export():
         return JSONResponse(
             session.export(),
-            headers={"Content-Disposition": 'attachment; filename="judgments.json"'},
+            headers={
+                "Content-Disposition": 'attachment; filename="'
+                + ("judgments.json" if campaign_id == "rag010" else f"{campaign_id}-judgments.json")
+                + '"'
+            },
         )
 
     return app

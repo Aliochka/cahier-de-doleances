@@ -549,3 +549,22 @@ La [fusion RRF locale](recherche-hybride.md) combine le lexical pondéré RAG-00
 et BGE-M3 RAG-013, avec diagnostics par moteur et un pool complémentaire non jugé.
 Elle conserve les index et la session d'annotation existants. Voir le
 [compte rendu des expériences](rapport-rag-014.md).
+
+## RAG-015 — Campagnes indépendantes et suivi des jugements
+
+La campagne RAG-010 conserve ses fichiers et sa commande historique. Une seconde
+campagne peut être créée puis ouverte explicitement, sans mélanger les sessions :
+
+```bash
+# Depuis rag/, environnement d'annotation existant :
+.venv/bin/python -m cahier_rag.annotation.campaign_cli list
+.venv/bin/python -m cahier_rag.annotation.campaign_cli create --campaign rag014 --evaluator ro
+export RAG_DATABASE_URL=postgresql:///cahier_rag
+.venv/bin/python -m cahier_rag.annotation.campaign_cli open --campaign rag014
+```
+
+La commande de création ne lance aucun serveur. Pour reprendre la première
+campagne, utiliser `open --campaign rag010`, ou la commande RAG-010 habituelle.
+Les [commandes de consolidation, rapports et règles méthodologiques](campagnes-annotation.md)
+préservent les sessions sources et distinguent non-jugés, conflits et notes zéro.
+Voir le [premier bilan réel RAG-015](rapport-rag-015.md).

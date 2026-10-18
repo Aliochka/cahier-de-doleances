@@ -33,7 +33,18 @@ def atomic_json(path, value):
 
 class Session:
     def __init__(
-        self, pool, queries, sample, path, *, evaluator, seed=20261020, expected_count=400
+        self,
+        pool,
+        queries,
+        sample,
+        path,
+        *,
+        evaluator,
+        seed=20261020,
+        expected_count=400,
+        campaign_id=None,
+        read_only=False,
+        allow_create=True,
     ):
         if not evaluator.strip() or len(evaluator) > 100:
             raise ValueError("Identifiant d’évaluateur requis (100 caractères maximum).")
@@ -62,6 +73,7 @@ class Session:
                 for k in ("query_id", "document_id", "content_hash", "corpus_id", "contribution_id")
             }
         self.order = sorted(pairs, key=lambda p: (p[0], digest([seed, *p])))
+        self.read_only = read_only
         self.path = Path(path)
         self.sample = sample
         self.lock = RLock()
@@ -74,6 +86,8 @@ class Session:
             "version": "rag010-v1",
             "order_hash": digest(self.order),
         }
+        if campaign_id is not None:
+            self.identity["campaign_id"] = campaign_id
         if self.path.exists():
             self.state = load_json(self.path)
             if self.state.get("identity") != self.identity:
@@ -82,6 +96,8 @@ class Session:
                 )
             self._validate_state()
         else:
+            if read_only or not allow_create:
+                raise ValueError("Session absente ; création explicite requise.")
             self.state = {
                 "identity": self.identity,
                 "position": 0,
@@ -152,6 +168,8 @@ class Session:
 
     def change(self, *, revision, position, comment, grade=None, destination=None):
         with self.lock:
+            if self.read_only:
+                raise ValueError("Session ouverte en lecture seule.")
             if type(revision) is not int or revision != self.state["revision"]:
                 raise ValueError("Session modifiée dans un autre onglet ; recharger.")
             if type(position) is not int or position != self.state["position"]:

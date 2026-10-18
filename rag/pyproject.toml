@@ -12,6 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
+cahier-rag-campaign = "cahier_rag.annotation.campaign_cli:main"
 cahier-rag-hybrid = "cahier_rag.search.hybrid.cli:main"
 cahier-rag-vector = "cahier_rag.vector.cli:main"
 cahier-rag-embed = "cahier_rag.embeddings.cli:main"
