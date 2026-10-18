@@ -8,7 +8,8 @@ from cahier_rag.judges.models import verify
 
 
 class TransformersJudge:
-    def __init__(self, spec, root, config):
+    def __init__(self, spec, root, config, *, prompt_version="relevance-fr-v1"):
+        self.prompt_version = prompt_version
         self.spec, self.root, self.config = spec, root, config
         self.model, self.tokenizer, self.torch = None, None, None
         self.load_seconds = 0
@@ -72,7 +73,10 @@ class TransformersJudge:
 
     def rendered(self, item):
         return self.tokenizer.apply_chat_template(
-            item.messages(), tokenize=False, add_generation_prompt=True, enable_thinking=False
+            item.messages(self.prompt_version),
+            tokenize=False,
+            add_generation_prompt=True,
+            enable_thinking=False,
         )
 
     def token_counts(self, inputs):

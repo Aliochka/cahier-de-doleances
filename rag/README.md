@@ -576,3 +576,15 @@ Elle ne modifie aucune annotation humaine. L'inférence reste hors ligne et
 les campagnes de 800 couples nécessitent une activation explicite après examen
 de la calibration. Voir [la procédure et les limites](juges-locaux.md) et
 [le bilan réel des deux juges](rapport-rag-016.md).
+
+## Évaluation automatique approfondie — RAG-017
+
+Le protocole `relevance-fr-v2` évalue l'adéquation à l'intention sans récompenser
+la longueur. Le pool de 2 500 couples conserve les top 50 gelés, avec un
+enrichissement déterministe aux rangs suivants. Les deux juges locaux restent
+indépendants, sans fusion avec les notes humaines. Les commandes de préparation,
+précontrôle, annotation reprenable et rapports sont dans
+[la procédure v2](evaluation-llm-v2.md). Le
+[bilan réel RAG-017](rapport-rag-017.md) présente les métriques et limites :
+4 997 jugements valides sur 5 000, avec trois sorties 14B invalides conservées
+comme telles, sans assimilation à une note zéro.

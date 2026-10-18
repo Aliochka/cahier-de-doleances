@@ -47,9 +47,12 @@ class JudgeInput:
     def input_hash(self):
         return digest(asdict(self))
 
-    def messages(self):
+    def messages(self, prompt_version=PROMPT_VERSION):
+        from cahier_rag.judges.protocols import resolve
+
+        system = resolve(prompt_version)
         return [
-            {"role": "system", "content": SYSTEM},
+            {"role": "system", "content": system},
             {
                 "role": "user",
                 "content": "DONNEES\n"

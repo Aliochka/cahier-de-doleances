@@ -7,7 +7,8 @@ from cahier_rag.annotation.session import atomic_json
 from cahier_rag.contracts import canonical_json
 from cahier_rag.embeddings.snapshots import sha256_file
 from cahier_rag.evaluation.sampling import digest
-from cahier_rag.judges.contracts import PROMPT_VERSION, SYSTEM, JudgeInput
+from cahier_rag.judges.contracts import PROMPT_VERSION, JudgeInput
+from cahier_rag.judges.protocols import plan_limit, resolve
 
 
 def grouped_split(pairs, scope, *, seed=20261023):
@@ -46,10 +47,20 @@ def grouped_split(pairs, scope, *, seed=20261023):
     return {pair: ("validation" if pair in holdout else "calibration") for pair in pairs}
 
 
-def prepare(directory, pairs, repository, queries, *, kind, source_hashes, seed=20261023):
+def prepare(
+    directory,
+    pairs,
+    repository,
+    queries,
+    *,
+    kind,
+    source_hashes,
+    seed=20261023,
+    prompt_version=PROMPT_VERSION,
+):
     pairs = sorted(set(pairs))
-    if not pairs or len(pairs) > 1500:
-        raise ValueError("Plan limité à 1500 couples distincts.")
+    if not pairs or len(pairs) > plan_limit(prompt_version):
+        raise ValueError("Plan dépassant la limite de son protocole.")
     query_index = {q["query_id"]: q for q in queries}
     for qid, did in pairs:
         if (
@@ -98,8 +109,8 @@ def prepare(directory, pairs, repository, queries, *, kind, source_hashes, seed=
         "kind": kind,
         "sample_hash": repository.scope.sample_hash,
         "query_hash": digest(queries),
-        "prompt_version": PROMPT_VERSION,
-        "prompt_hash": digest(SYSTEM),
+        "prompt_version": prompt_version,
+        "prompt_hash": digest(resolve(prompt_version)),
         "source_hashes": source_hashes,
         "seed": seed,
         "split_policy": "by contribution and identical text; validation is not held-out queries",
@@ -118,10 +129,9 @@ def load_plan(directory):
     claimed = body.pop("manifest_hash")
     if (
         digest(body) != claimed
-        or manifest["prompt_version"] != PROMPT_VERSION
-        or manifest["prompt_hash"] != digest(SYSTEM)
+        or manifest["prompt_hash"] != digest(resolve(manifest["prompt_version"]))
         or sha256_file(directory / "inputs.jsonl") != manifest["inputs_hash"]
-        or not 1 <= len(manifest["entries"]) <= 1500
+        or not 1 <= len(manifest["entries"]) <= plan_limit(manifest["prompt_version"])
     ):
         raise ValueError("Plan de jugement modifié ou incompatible.")
     return manifest

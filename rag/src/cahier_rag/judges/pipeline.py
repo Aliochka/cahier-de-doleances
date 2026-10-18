@@ -8,8 +8,9 @@ from pathlib import Path
 
 from cahier_rag.annotation.session import atomic_json
 from cahier_rag.evaluation.sampling import digest
-from cahier_rag.judges.contracts import PROMPT_VERSION, SYSTEM, parse_output
+from cahier_rag.judges.contracts import PROMPT_VERSION, parse_output
 from cahier_rag.judges.planning import iter_inputs, load_plan
+from cahier_rag.judges.protocols import plan_limit, resolve
 
 
 def recipe(backend, config):
@@ -18,8 +19,8 @@ def recipe(backend, config):
         "version": 1,
         "model": backend.spec.to_dict(),
         "snapshot_hash": backend.snapshot_hash,
-        "prompt_version": PROMPT_VERSION,
-        "prompt_hash": digest(SYSTEM),
+        "prompt_version": getattr(backend, "prompt_version", PROMPT_VERSION),
+        "prompt_hash": digest(resolve(getattr(backend, "prompt_version", PROMPT_VERSION))),
         "inference": config.to_dict(),
         "libraries": {
             name: version(name) for name in ("torch", "transformers", "accelerate", "bitsandbytes")
@@ -42,7 +43,13 @@ def run(
 ):
     manifest = load_plan(directory)
     entries = manifest["entries"]
-    if type(limit) is not int or not 1 <= limit <= 1500 or limit != len(entries):
+    if getattr(backend, "prompt_version", PROMPT_VERSION) != manifest["prompt_version"]:
+        raise ValueError("Protocole du juge différent du plan.")
+    if (
+        type(limit) is not int
+        or not 1 <= limit <= plan_limit(manifest["prompt_version"])
+        or limit != len(entries)
+    ):
         raise ValueError("Limite explicite égale au nombre de couples du plan requise.")
     if stop_after is not None and (type(stop_after) is not int or not 1 <= stop_after <= limit):
         raise ValueError("Point d'arrêt positif inférieur ou égal à la limite requis.")
@@ -123,6 +130,19 @@ def run(
             counts[record["status"]] += 1
             tokens += record["tokens"]
         counts["processed"] += len(batch)
+        if manifest["prompt_version"] != PROMPT_VERSION:
+            elapsed = time.perf_counter() - started
+            newly = counts["processed"] - counts["reused"]
+            progress = {
+                "recipe_hash": key,
+                "plan_hash": manifest["manifest_hash"],
+                "counts": dict(counts),
+                "seconds": elapsed,
+                "eta_seconds": (len(entries) - counts["processed"]) * elapsed / newly
+                if newly
+                else None,
+            }
+            atomic_json(Path(directory) / (backend.spec.key + "-progress.json"), progress)
 
     try:
         for item in iter_inputs(directory, manifest):
@@ -138,7 +158,8 @@ def run(
                 pending = []
                 if counts["processed"] % 10 == 0:
                     print(
-                        f"{backend.spec.key} : {counts['processed']}/{len(entries)} couples",
+                        f"{backend.spec.key} : {counts['processed']}/{len(entries)} couples ; ETA "
+                        f"{(len(entries) - counts['processed']) * (time.perf_counter() - started) / max(1, counts['processed'] - counts['reused']):.0f} s",
                         flush=True,
                     )
                 if stop_after and counts["processed"] >= stop_after:
@@ -180,6 +201,24 @@ def run(
                 "results": [cache.get(key, entry["input_hash"]) for entry in entries],
             },
         )
+        if manifest["prompt_version"] != PROMPT_VERSION:
+            # La fin de parcours peut ne lire que du cache après le dernier lot.
+            # Publier aussi l'état final, sans laisser un compteur intermédiaire.
+            atomic_json(
+                Path(directory) / (backend.spec.key + "-progress.json"),
+                {
+                    "recipe_hash": key,
+                    "plan_hash": manifest["manifest_hash"],
+                    "counts": dict(counts),
+                    "seconds": result["seconds"],
+                    "eta_seconds": 0.0 if result["complete"] else None,
+                    "complete": result["complete"],
+                },
+            )
+            atomic_json(
+                Path(directory) / "history" / (backend.spec.key + "-" + digest(result) + ".json"),
+                result,
+            )
         atomic_json(Path(directory) / (backend.spec.key + "-run.json"), result)
         return result
     finally:
