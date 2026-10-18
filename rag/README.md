@@ -243,7 +243,7 @@ sont conservées sans rééquilibrage artificiel.
 Le [rapport RAG-007](rapport-rag-007.md) contient les statistiques et limites.
 La [procédure de constitution](corpus-experimental.md) documente le plan réparti,
 les commandes et la reprise. Les manifestes locaux sont ignorés par Git ; ils
-ne sont pas intégrés à l’image publique. Aucun modèle n’est installé.
+ne sont pas intégrés à l’image publique. Cette étape n’installe aucun modèle.
 
 ## Recherche lexicale — RAG-008
 
@@ -347,12 +347,11 @@ rag/
     └── integration/          PostgreSQL de test explicitement sélectionné
 ```
 
-Le moteur lexical local existe. Aucun modèle d'embedding, LLM,
-stockage vectoriel ou index sémantique n’est installé. Le projet ne crée pas
-les bases : le schéma RAG est appliqué explicitement à une base préexistante.
-Le contrat, le lecteur et le stockage documentaire existent. Les futurs modules
-vectoriels, `reranking` et `generation` seront introduits
-lorsqu’ils auront un contenu utile. La recherche restera indépendante du LLM.
+Les moteurs lexical, vectoriel et hybride locaux existent ; les embeddings
+et les deux juges LLM utilisent des environnements optionnels séparés.
+Le projet ne crée pas les bases : le schéma RAG est appliqué explicitement
+à une base préexistante. Aucun reranker ni génération de réponses RAG n'est
+implémenté. La recherche reste indépendante des LLM et de l'annotation.
 
 L'audit RAG-001 est historique : sa recommandation pip/venv a été remplacée
 par la décision uv de RAG-002. Les paramètres, contrats et migrations futurs
@@ -568,3 +567,12 @@ campagne, utiliser `open --campaign rag010`, ou la commande RAG-010 habituelle.
 Les [commandes de consolidation, rapports et règles méthodologiques](campagnes-annotation.md)
 préservent les sessions sources et distinguent non-jugés, conflits et notes zéro.
 Voir le [premier bilan réel RAG-015](rapport-rag-015.md).
+
+## Deux juges LLM locaux — RAG-016
+
+L'annotation automatique dispose d'un environnement optionnel séparé, de deux
+checkpoints Qwen3 officiels (8B et 14B), de prompts figés et d'un cache reprenable.
+Elle ne modifie aucune annotation humaine. L'inférence reste hors ligne et
+les campagnes de 800 couples nécessitent une activation explicite après examen
+de la calibration. Voir [la procédure et les limites](juges-locaux.md) et
+[le bilan réel des deux juges](rapport-rag-016.md).
