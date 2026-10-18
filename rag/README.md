@@ -469,3 +469,39 @@ et absence de cache. Les textes sont injectés via `textContent`, jamais comme
 HTML. Il ne s'agit pas d'une application multiutilisateur : les processus de
 la même machine et les extensions du navigateur restent dans le périmètre de
 confiance. Voir aussi la [documentation FastAPI sur les middlewares](https://fastapi.tiangolo.com/advanced/middleware/).
+
+## RAG-011 — Préparations documentaires sans modèle
+
+Quatre stratégies versionnées sont disponibles : **A** réponse seule, **B**
+question + réponse, **C** même texte que B avec récupération du parent, **D**
+enrichissement expérimental des réponses courtes par leurs voisins. La segmentation
+conserve des positions et chevauchements en caractères dans le texte original.
+Les textes et contrats sources ne changent pas.
+
+La politique de contexte est limitée aux **20 000 unités RAG-007**, parents et
+voisins compris, dans la même contribution et partition. Les autres unités
+stockées ne sont pas utilisées. Aucun modèle ou schéma supplémentaire n’est créé.
+
+Depuis `rag/`, pour conserver l’environnement de l’annotation en cours :
+
+```bash
+export RAG_DATABASE_URL='postgresql:///cahier_rag'
+uv run --locked --no-sync python -m cahier_rag.representations.cli generate \
+  --strategy D --limit 512 --batch-size 25 \
+  --output evaluation/local/rag011/mon-essai-D
+uv run --locked --no-sync python -m cahier_rag.representations.cli inspect \
+  evaluation/local/rag011/mon-essai-D
+uv run --locked --no-sync python -m cahier_rag.representations.cli verify \
+  evaluation/local/rag011/mon-essai-D --batch-size 7
+```
+
+Une limite explicite et un nouveau dossier sont obligatoires. Les sorties JSONL
+contenant les textes restent locales et ignorées par Git. Aucun jugement ni
+fichier de session RAG-010 n’est lu ou modifié. Le point d’entrée
+`cahier-rag-prepare` sera disponible à la prochaine synchronisation du projet ;
+les commandes ci-dessus fonctionnent déjà sans synchronisation.
+
+Voir les [règles et contrats détaillés](representations-documentaires.md) et le
+[rapport des essais réels RAG-011](rapport-rag-011.md). Les budgets actuels portent
+sur la réponse en caractères ; ils devront être adaptés au tokenizer du futur
+modèle avant toute vectorisation.

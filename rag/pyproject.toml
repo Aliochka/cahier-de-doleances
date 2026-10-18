@@ -12,6 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
+cahier-rag-prepare = "cahier_rag.representations.cli:main"
 cahier-rag-annotate = "cahier_rag.annotation.cli:main"
 cahier-rag = "cahier_rag.__main__:main"
 cahier-rag-eval = "cahier_rag.evaluation.cli:main"
