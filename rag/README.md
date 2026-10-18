@@ -533,3 +533,12 @@ Aucun index vectoriel n’est créé et les 20 000 documents ne sont pas encodé
 Les mesures réelles des trois modèles sur **RTX 5090 et CPU** sont présentées
 dans [le rapport RAG-012](rapport-rag-012.md). Elles décrivent fonctionnement,
 ressources et coût, sans établir de classement de pertinence sur le Grand Débat.
+
+### Recherche vectorielle locale — RAG-013
+
+BGE-M3 dense et la représentation B peuvent être préparés, encodés avec reprise,
+puis recherchés exactement via pgvector, sur le seul corpus RAG-007. Voir
+[les commandes, garanties et migrations](recherche-vectorielle.md). Les dépendances
+ML restent dans l'environnement optionnel ; l'annotation ne change pas.
+Le [compte rendu RAG-013](rapport-rag-013.md) décrit l'index réel de 20 000 unités,
+les mesures finales et les validations exécutées.

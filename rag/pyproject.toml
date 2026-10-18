@@ -12,6 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
+cahier-rag-vector = "cahier_rag.vector.cli:main"
 cahier-rag-embed = "cahier_rag.embeddings.cli:main"
 cahier-rag-prepare = "cahier_rag.representations.cli:main"
 cahier-rag-annotate = "cahier_rag.annotation.cli:main"
