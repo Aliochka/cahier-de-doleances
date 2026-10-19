@@ -626,3 +626,7 @@ L'expérience `generation.constrained` utilise LM Format Enforcer avec le modèl
 ### RAG-024 — Audit ciblé de fidélité
 
 Le [rapport d’audit](rapport-rag-024.md) compare les dix-sept réponses communes v2/v3 et prépare les priorités RAG-025. Les observations détaillées restent locales sous `evaluation/local/rag024/`. Lecture assistée par Codex, sans inférence ni validation humaine indépendante ; aucun générateur modifié.
+
+### RAG-025 — RAG personnel local
+
+L’interface de questions libres combine H1, le reranker Qwen3-4B et Qwen3-14B sur les 20 000 unités. Voir [personnel.md](personnel.md) pour démarrer et arrêter le service local, et [rapport-rag-025.md](rapport-rag-025.md) pour les corrections, les essais et les limites de fidélité.
