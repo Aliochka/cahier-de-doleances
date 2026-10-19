@@ -622,3 +622,7 @@ Qwen3-14B local réutilise les contextes gelés H1+R2/S2/P1/8192 via une présen
 ### RAG-023 — Décodage contraint
 
 L'expérience `generation.constrained` utilise LM Format Enforcer avec le modèle, le prompt v2 et les entrées gelées RAG-022. Le validateur original reste obligatoire. Voir [decodage-contraint.md](decodage-contraint.md) pour les schémas versionnés, limites, commandes et reprises ; [rapport-rag-023.md](rapport-rag-023.md) pour la comparaison structurelle et les coûts, sans conclusion de fidélité sémantique.
+
+### RAG-024 — Audit ciblé de fidélité
+
+Le [rapport d’audit](rapport-rag-024.md) compare les dix-sept réponses communes v2/v3 et prépare les priorités RAG-025. Les observations détaillées restent locales sous `evaluation/local/rag024/`. Lecture assistée par Codex, sans inférence ni validation humaine indépendante ; aucun générateur modifié.
