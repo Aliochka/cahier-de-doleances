@@ -618,3 +618,7 @@ L'assembleur `cahier_rag.context` prépare des sources citées depuis les classe
 ### RAG-022 — Première génération sourcée
 
 Qwen3-14B local réutilise les contextes gelés H1+R2/S2/P1/8192 via une présentation compacte, avec références résolues, citations littérales contrôlées et cache indépendant. Voir [generation-locale.md](generation-locale.md) pour le pilote, la campagne, l'audit et les limites : validité structurelle ne signifie pas fidélité sémantique.
+
+### RAG-023 — Décodage contraint
+
+L'expérience `generation.constrained` utilise LM Format Enforcer avec le modèle, le prompt v2 et les entrées gelées RAG-022. Le validateur original reste obligatoire. Voir [decodage-contraint.md](decodage-contraint.md) pour les schémas versionnés, limites, commandes et reprises ; [rapport-rag-023.md](rapport-rag-023.md) pour la comparaison structurelle et les coûts, sans conclusion de fidélité sémantique.
