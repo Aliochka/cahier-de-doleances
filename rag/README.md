@@ -614,3 +614,7 @@ Deux rerankers optionnels reclassent les top 50 gelés H1/H5/V, sur le développ
 ### RAG-021 — Construction du contexte documentaire
 
 L'assembleur `cahier_rag.context` prépare des sources citées depuis les classements RAG-020, avec sélection S1/S2/S3, modes parentaux P0/P1/P2, extraits exacts et budgets vérifiés par tokenizer réel. Aucune génération ni inférence de modèle. Voir [contexte-documentaire.md](contexte-documentaire.md) pour les contrats, citations, commandes et limites, puis [rapport-rag-021.md](rapport-rag-021.md) pour les essais.
+
+### RAG-022 — Première génération sourcée
+
+Qwen3-14B local réutilise les contextes gelés H1+R2/S2/P1/8192 via une présentation compacte, avec références résolues, citations littérales contrôlées et cache indépendant. Voir [generation-locale.md](generation-locale.md) pour le pilote, la campagne, l'audit et les limites : validité structurelle ne signifie pas fidélité sémantique.
