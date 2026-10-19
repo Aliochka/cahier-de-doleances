@@ -610,3 +610,7 @@ nécessaire : les 2 673 couples cibles sont déjà référencés dans RAG-017/01
 ### RAG-020 — Reranking local
 
 Deux rerankers optionnels reclassent les top 50 gelés H1/H5/V, sur le développement uniquement. Installation, préparation, reprise, mesures CPU/GPU et conventions de comparaison : [reranking-local.md](reranking-local.md). Les poids et caches restent locaux ; les moteurs et l'annotation humaine restent indépendants.
+
+### RAG-021 — Construction du contexte documentaire
+
+L'assembleur `cahier_rag.context` prépare des sources citées depuis les classements RAG-020, avec sélection S1/S2/S3, modes parentaux P0/P1/P2, extraits exacts et budgets vérifiés par tokenizer réel. Aucune génération ni inférence de modèle. Voir [contexte-documentaire.md](contexte-documentaire.md) pour les contrats, citations, commandes et limites, puis [rapport-rag-021.md](rapport-rag-021.md) pour les essais.
