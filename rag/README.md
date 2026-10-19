@@ -606,3 +606,7 @@ les traces conservent chaque contribution et un rejeu CPU fonctionne sans modèl
 Voir [la procédure](recherche-multi-hybride.md) et
 [le bilan comparatif](rapport-rag-019.md). Aucun nouveau jugement n'était
 nécessaire : les 2 673 couples cibles sont déjà référencés dans RAG-017/018.
+
+### RAG-020 — Reranking local
+
+Deux rerankers optionnels reclassent les top 50 gelés H1/H5/V, sur le développement uniquement. Installation, préparation, reprise, mesures CPU/GPU et conventions de comparaison : [reranking-local.md](reranking-local.md). Les poids et caches restent locaux ; les moteurs et l'annotation humaine restent indépendants.

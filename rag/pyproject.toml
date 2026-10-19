@@ -25,6 +25,13 @@ cahier-rag-search = "cahier_rag.search.cli:main"
 cahier-rag-flex = "cahier_rag.search.flexible_cli:main"
 
 [project.optional-dependencies]
+reranking = [
+    "torch==2.10.0",
+    "transformers==4.57.6",
+    "huggingface-hub==0.36.0",
+    "numpy==2.2.6",
+    "psutil==7.2.2",
+]
 judges = [
     "torch==2.10.0",
     "transformers==4.57.6",
@@ -81,6 +88,7 @@ explicit = true
 
 [tool.uv.sources]
 torch = [
+    { index = "pytorch-cu128", extra = "reranking", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" },
     { index = "pytorch-cu128", extra = "embeddings", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" },
     { index = "pytorch-cu128", extra = "judges", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" },
 ]

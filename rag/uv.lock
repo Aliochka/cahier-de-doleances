@@ -122,6 +122,14 @@ judges = [
     { name = "torch", version = "2.10.0+cu128", source = { registry = "https://download.pytorch.org/whl/cu128" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "transformers" },
 ]
+reranking = [
+    { name = "huggingface-hub" },
+    { name = "numpy" },
+    { name = "psutil" },
+    { name = "torch", version = "2.10.0", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine != 'x86_64' or sys_platform != 'linux'" },
+    { name = "torch", version = "2.10.0+cu128", source = { registry = "https://download.pytorch.org/whl/cu128" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "transformers" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -138,22 +146,28 @@ requires-dist = [
     { name = "fastapi", marker = "extra == 'annotation'", specifier = "==0.143.0" },
     { name = "huggingface-hub", marker = "extra == 'embeddings'", specifier = "==0.36.0" },
     { name = "huggingface-hub", marker = "extra == 'judges'", specifier = "==0.36.0" },
+    { name = "huggingface-hub", marker = "extra == 'reranking'", specifier = "==0.36.0" },
     { name = "numpy", marker = "extra == 'embeddings'", specifier = "==2.2.6" },
     { name = "numpy", marker = "extra == 'judges'", specifier = "==2.2.6" },
+    { name = "numpy", marker = "extra == 'reranking'", specifier = "==2.2.6" },
     { name = "psutil", marker = "extra == 'embeddings'", specifier = "==7.2.2" },
     { name = "psutil", marker = "extra == 'judges'", specifier = "==7.2.2" },
+    { name = "psutil", marker = "extra == 'reranking'", specifier = "==7.2.2" },
     { name = "psycopg2-binary", specifier = "==2.9.10" },
     { name = "python-dotenv", specifier = "==1.2.4" },
     { name = "sqlalchemy", specifier = "==2.0.43" },
     { name = "torch", marker = "platform_machine == 'x86_64' and sys_platform == 'linux' and extra == 'embeddings'", specifier = "==2.10.0", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "cahier-rag", extra = "embeddings" } },
     { name = "torch", marker = "platform_machine == 'x86_64' and sys_platform == 'linux' and extra == 'judges'", specifier = "==2.10.0", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "cahier-rag", extra = "judges" } },
+    { name = "torch", marker = "platform_machine == 'x86_64' and sys_platform == 'linux' and extra == 'reranking'", specifier = "==2.10.0", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "cahier-rag", extra = "reranking" } },
     { name = "torch", marker = "(platform_machine != 'x86_64' and extra == 'embeddings') or (sys_platform != 'linux' and extra == 'embeddings')", specifier = "==2.10.0" },
     { name = "torch", marker = "(platform_machine != 'x86_64' and extra == 'judges') or (sys_platform != 'linux' and extra == 'judges')", specifier = "==2.10.0" },
+    { name = "torch", marker = "(platform_machine != 'x86_64' and extra == 'reranking') or (sys_platform != 'linux' and extra == 'reranking')", specifier = "==2.10.0" },
     { name = "transformers", marker = "extra == 'embeddings'", specifier = "==4.57.6" },
     { name = "transformers", marker = "extra == 'judges'", specifier = "==4.57.6" },
+    { name = "transformers", marker = "extra == 'reranking'", specifier = "==4.57.6" },
     { name = "uvicorn", marker = "extra == 'annotation'", specifier = "==0.35.0" },
 ]
-provides-extras = ["judges", "embeddings", "annotation"]
+provides-extras = ["reranking", "judges", "embeddings", "annotation"]
 
 [package.metadata.requires-dev]
 dev = [
