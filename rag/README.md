@@ -588,3 +588,21 @@ précontrôle, annotation reprenable et rapports sont dans
 [bilan réel RAG-017](rapport-rag-017.md) présente les métriques et limites :
 4 997 jugements valides sur 5 000, avec trois sorties 14B invalides conservées
 comme telles, sans assimilation à une note zéro.
+
+## Baseline BM25 — RAG-018
+
+Deux index inversés CPU sur disque comparent réponse seule et réponse + question,
+avec une formule BM25 explicite et des statistiques séparées par partition.
+Les moteurs historiques restent inchangés. Voir les
+[commandes et choix techniques](recherche-bm25.md) et le
+[rapport comparatif réel](rapport-rag-018.md), incluant les annotations
+complémentaires indépendantes et les limites des jugements LLM.
+
+## Comparaison des hybrides — RAG-019
+
+L'extension RRF multi-source compare H1 à H5, avec poids et profondeur figés,
+sans modifier les moteurs historiques. Les classements sources sont mutualisés,
+les traces conservent chaque contribution et un rejeu CPU fonctionne sans modèle.
+Voir [la procédure](recherche-multi-hybride.md) et
+[le bilan comparatif](rapport-rag-019.md). Aucun nouveau jugement n'était
+nécessaire : les 2 673 couples cibles sont déjà référencés dans RAG-017/018.
