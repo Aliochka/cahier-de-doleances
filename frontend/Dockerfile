@@ -26,7 +26,7 @@ RUN useradd --uid 10001 --create-home --shell /usr/sbin/nologin app
 WORKDIR /app
 COPY --from=production-deps --chown=app:app /app/node_modules ./node_modules
 COPY --chown=app:app package.json ./package.json
-COPY --from=build --chown=app:app build ./build
+COPY --from=build --chown=app:app /app/build ./build
 USER app
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
