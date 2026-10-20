@@ -19,6 +19,10 @@ it("préserve les identifiants chaînes, les valeurs nulles et les réponses imb
     id: "9007199254740993",
     name: "Exemple",
     questions_count: 0,
+    statistics_availability: {
+      status: "unavailable" as const,
+      reason: "absent" as const,
+    },
     url: "/forms/9007199254740993",
     questions: [],
   };

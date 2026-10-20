@@ -31,7 +31,6 @@ export type RequestOptions = {
   timeoutMs?: number;
   query?: URLSearchParams;
 };
-export type FormStatistics = components["schemas"]["FormStatistics"];
 export type Forms =
   operations["list_public_forms"]["responses"][200]["content"]["application/json"];
 export type FormDetail =
@@ -137,10 +136,43 @@ function formQuestion(
   );
 }
 function detail(value: unknown): value is FormDetail {
-  if (!record(value)) return false;
-  const questions = value.questions;
+  if (!record(value) || !record(value.statistics_availability)) return false;
+  const { questions, id } = value;
+  const availability = value.statistics_availability;
+  if (!["available", "unavailable"].includes(String(availability.status)))
+    return false;
+  const available = availability.status === "available";
+  if (
+    available &&
+    (typeof availability.generation_id !== "string" ||
+      typeof availability.calculated_at !== "string" ||
+      !date(availability.calculated_at) ||
+      typeof availability.method_version !== "string")
+  )
+    return false;
   return (
-    summary(value) && Array.isArray(questions) && questions.every(formQuestion)
+    summary(value) &&
+    Array.isArray(questions) &&
+    questions.every((entry: unknown) => {
+      if (!record(entry)) return false;
+      const { answers_count, statistics: choice } = entry;
+      if (!formQuestion(entry) || entry.form_id !== id) return false;
+      if (!available)
+        return (
+          (answers_count === undefined || answers_count === null) &&
+          (choice === undefined || choice === null)
+        );
+      return (
+        typeof answers_count === "number" &&
+        Number.isSafeInteger(answers_count) &&
+        answers_count >= 0 &&
+        (["single_choice", "multi_choice"].includes(entry.type)
+          ? statistics(choice) &&
+            choice.question_id === entry.id &&
+            choice.total_answers === answers_count
+          : choice === null)
+      );
+    })
   );
 }
 function question(value: unknown): value is QuestionDetail {
@@ -404,23 +436,6 @@ function hybridSearch(value: unknown): value is HybridSearchPage {
   );
 }
 
-function formStatistics(value: unknown): value is FormStatistics {
-  if (!record(value) || !formContext(value.form)) return false;
-  const formId = value.form.id;
-  return (
-    Array.isArray(value.questions) &&
-    value.questions.every(
-      (entry: unknown) =>
-        record(entry) &&
-        statistics(entry.stats) &&
-        formQuestion(entry.question) &&
-        entry.question.form_id === formId &&
-        entry.question.id === entry.stats.question_id &&
-        entry.question.type === entry.stats.type,
-    )
-  );
-}
-
 /** Read-only public transport. It never forwards account cookies or API error bodies. */
 export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
   async function read<T>(
@@ -505,19 +520,7 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
   const contributionPath =
     "/api/v1/forms/{form_id}/contributions/{contribution_id}" satisfies keyof paths;
   const searchPath = "/api/v1/search" satisfies keyof paths;
-  const formStatsPath = "/api/v1/forms/{form_id}/stats" satisfies keyof paths;
   return {
-    getFormStats: (id: string, options: RequestOptions = {}) =>
-      publicId(id)
-        ? read(
-            formStatsPath.replace("{form_id}", encodeURIComponent(id)),
-            formStatistics,
-            options,
-          )
-        : Promise.resolve<ApiResult<FormStatistics>>({
-            ok: false,
-            kind: "request",
-          }),
     search: (query: HybridSearchQuery = {}, options: RequestOptions = {}) => {
       const params = new URLSearchParams();
       if (query.q !== undefined) params.set("q", query.q);

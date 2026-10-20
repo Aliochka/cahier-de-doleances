@@ -7,7 +7,6 @@ import {
   type ContributionDetail,
   createPublicApi,
   type FormDetail,
-  type FormStatistics,
   type Forms,
   type HybridSearchPage,
   type HybridSearchQuery,
@@ -125,15 +124,5 @@ export function search(
   const origin = backendOrigin();
   return origin
     ? createPublicApi(origin).search(query, options)
-    : Promise.resolve({ ok: false, kind: "configuration" });
-}
-
-export function getFormStats(
-  id: string,
-  options: RequestOptions = {},
-): Promise<ApiResult<FormStatistics>> {
-  const origin = backendOrigin();
-  return origin
-    ? createPublicApi(origin).getFormStats(id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }

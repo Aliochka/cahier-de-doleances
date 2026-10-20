@@ -253,6 +253,7 @@ def test_multi_stats_other_text_empty_options_and_distinct_contributions(client,
         db.flush()
         db.add(AnswerOption(answer_id=duplicate.id, option_id=web_data["bike"]))
         db.commit()
+    publish(web_data)
     api = client.get(f"/api/v1/questions/{web_data['multi']}/stats").json()
     QuestionStatistics.model_validate(api)
     assert api["total_answers"] == 3
@@ -295,6 +296,7 @@ def test_single_choice_percentages_and_empty_statistics(client, web_data):
         ]
         db.add_all(options)
         db.commit()
+    publish(web_data)
     empty = client.get(f"/api/v1/questions/{question.id}/stats").json()
     assert (
         empty["total_answers"]
@@ -317,6 +319,7 @@ def test_single_choice_percentages_and_empty_statistics(client, web_data):
             db.flush()
             db.add(AnswerOption(answer_id=answer.id, option_id=options[i % 2].id))
         db.commit()
+    publish(web_data)
     stats = client.get(f"/api/v1/questions/{question.id}/stats").json()
     assert (
         stats["total_answers"]
@@ -426,6 +429,7 @@ def test_missing_resources_return_json(client, web_data):
 
 @pytest.mark.integration
 def test_query_budget_no_offset_or_page_count(client, web_data):
+    publish(web_data)
     statements = []
     with web_data["factory"]() as db:
         connection = db.get_bind()
@@ -439,7 +443,7 @@ def test_query_budget_no_offset_or_page_count(client, web_data):
             for path, expected in [
                 (f"/questions/{web_data['text_question']}", 1),
                 (f"/questions/{web_data['text_question']}/answers", 2),
-                (f"/questions/{web_data['multi']}/stats", 4),
+                (f"/questions/{web_data['multi']}/stats", 2),
                 (f"/answers/{web_data['text_ids'][0]}", 1),
             ]:
                 statements.clear()
@@ -535,3 +539,10 @@ def test_api_route_names_resolve_public_endpoints():
         str(app.url_path_for("api_answer_detail", answer_id="9007199254740993"))
         == "/api/v1/answers/9007199254740993"
     )
+
+
+def publish(web_data):
+    from app.services.statistics_generation import generate
+    with web_data["factory"]() as db:
+        generate(db)
+        db.commit()

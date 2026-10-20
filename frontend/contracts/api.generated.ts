@@ -135,7 +135,7 @@ export interface paths {
         };
         /**
          * Statistiques groupées des questions à choix du formulaire
-         * @description Cinq lectures SQL, zéro requête par question ; dénominateurs et arrondis historiques.
+         * @description Lectures en lot des instantanés publiés, sans agrégat des réponses.
          */
         get: operations["get_public_form_statistics"];
         put?: never;
@@ -413,6 +413,44 @@ export interface components {
             /** Submitted At */
             submitted_at: string | null;
         };
+        /** EnrichedFormQuestion */
+        EnrichedFormQuestion: {
+            /** Answers Count */
+            answers_count?: number | null;
+            /**
+             * Form Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            form_id: string;
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /**
+             * Position
+             * @description Ordre déclaré dans le questionnaire ; peut être absent.
+             */
+            position: number | null;
+            /** Prompt */
+            prompt: string;
+            /**
+             * Slug
+             * @description Slug construit avec le helper des routes HTML.
+             */
+            slug: string;
+            statistics?: components["schemas"]["QuestionStatistics"] | null;
+            /**
+             * Type
+             * @description Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.
+             */
+            type: string;
+            /**
+             * Url
+             * @description Chemin relatif vers la question historique.
+             */
+            url: string;
+        };
         /** FormDetail */
         FormDetail: {
             /**
@@ -429,12 +467,13 @@ export interface components {
              * Questions
              * @description Toutes les questions, selon COALESCE(position, 999999), puis id.
              */
-            questions: components["schemas"]["FormQuestion"][];
+            questions: components["schemas"]["EnrichedFormQuestion"][];
             /**
              * Questions Count
              * @description Nombre de questions, avec ou sans réponses.
              */
             questions_count: number;
+            statistics_availability: components["schemas"]["StatisticsAvailability"];
             /**
              * Url
              * @description Chemin relatif de la page HTML historique.
@@ -839,6 +878,22 @@ export interface components {
             label: string;
             /** Position */
             position: number | null;
+        };
+        /** StatisticsAvailability */
+        StatisticsAvailability: {
+            /** Calculated At */
+            calculated_at?: string | null;
+            /** Generation Id */
+            generation_id?: string | null;
+            /** Method Version */
+            method_version?: string | null;
+            /** Reason */
+            reason?: ("absent" | "incompatible" | "incomplete") | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "available" | "unavailable";
         };
         /** ValidationError */
         ValidationError: {

@@ -68,7 +68,17 @@ def test_list_detail_and_html_parity(client, web_data):
     ]
     assert detail["questions"][-1]["position"] is None
     for question in detail["questions"]:
-        assert set(question) == {"id", "form_id", "prompt", "type", "position", "slug", "url"}
+        assert set(question) == {
+            "id",
+            "form_id",
+            "prompt",
+            "type",
+            "position",
+            "slug",
+            "url",
+            "answers_count",
+            "statistics",
+        }
         assert question["form_id"] == str(web_data["form"])
         assert question["url"] == f"/questions/{question['id']}-{question['slug']}"
     assert client.get(f"/api/v1/forms/{empty.id}").json()["questions"] == []
@@ -105,8 +115,10 @@ def test_query_budget(client, web_data):
             assert len(statements) == 1
             statements.clear()
             assert client.get(f"/api/v1/forms/{web_data['form']}").status_code == 200
-            assert len(statements) == 2
-            assert all("contributions" not in sql and "answers" not in sql for sql in statements)
+            assert len(statements) == 3
+            assert all(
+                "FROM contributions" not in sql and "FROM answers" not in sql for sql in statements
+            )
         finally:
             event.remove(connection, "before_cursor_execute", record)
 

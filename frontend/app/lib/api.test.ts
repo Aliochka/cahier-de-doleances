@@ -8,6 +8,10 @@ const form = {
   name: "Exemple",
   url: "/forms/9007199254740993",
   questions_count: 0,
+  statistics_availability: {
+    status: "unavailable" as const,
+    reason: "absent" as const,
+  },
   questions: [],
 };
 afterEach(() => {
@@ -221,4 +225,47 @@ it("rejette des réponses incompatibles sans convertir les IDs numériques", asy
     await api.getQuestionStats(question.id),
   ])
     expect(result).toEqual({ ok: false, kind: "invalid_response" });
+});
+
+it("valide le nouveau contrat Formulaire et distingue indisponible de zéro", async () => {
+  const value = {
+    ...form,
+    statistics_availability: {
+      status: "available",
+      generation_id: "generation-test",
+      calculated_at: "2026-10-20T17:00:00Z",
+      method_version: "historical-answers-v1",
+    },
+    questions_count: 1,
+    questions: [
+      {
+        id: "9007199254740995",
+        form_id: form.id,
+        prompt: "Question ouverte",
+        type: "text",
+        position: 1,
+        slug: "question",
+        url: "/questions/9007199254740995-question",
+        answers_count: 0,
+        statistics: null,
+      },
+    ],
+  };
+  const transport = vi
+    .fn<typeof fetch>()
+    .mockResolvedValue(Response.json(value));
+  expect(await createPublicApi("", transport).getForm(form.id)).toEqual({
+    ok: true,
+    data: value,
+  });
+  transport.mockResolvedValueOnce(
+    Response.json({
+      ...value,
+      statistics_availability: { status: "unavailable" },
+    }),
+  );
+  expect(await createPublicApi("", transport).getForm(form.id)).toEqual({
+    ok: false,
+    kind: "invalid_response",
+  });
 });

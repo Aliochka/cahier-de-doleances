@@ -550,32 +550,61 @@ locaux utilisent des données synthétiques pour le vide, les erreurs et les sou
 retirées. La recette réelle séparée emploie le modèle et les deux bases locales.
 Une recette avec lecteurs d'écran réels reste à conduire avant production.
 
-## Tableaux de bord par formulaire (DASH-001)
+## Statistiques précalculées (FORMS-002)
 
-`/forms/:formId/dashboard` utilise un seul appel serveur
-`GET /api/v1/forms/{form_id}/stats` et les types OpenAPI générés. Depuis le
-formulaire, « Voir le tableau de bord » apparaît si ses questions déjà chargées
-contiennent un choix unique ou multiple, sans appel supplémentaire.
+Le contrat `GET /api/v1/forms/{id}` fournit désormais `statistics_availability`
+(génération/date/méthode et disponibilité), ainsi que `answers_count` et
+`statistics` par question. Les compteurs indisponibles sont null, distincts de zéro.
+Le client valide ces champs. La page Formulaire les affiche directement depuis
+FORMS-003. Les endpoints statistiques existants conservent leur
+contrat et lisent la même génération PostgreSQL publiée, sans calcul par visiteur.
+Voir le [guide de maintenance](../docs/statistiques-locales.md) et le
+[rapport FORMS-002](../docs/rapport-forms-002.md).
 
-Le loader attend les données essentielles avant le SSR et réutilise les erreurs,
-le timeout, l’annulation et le cache `private, no-store` existants. La page fournit
-une canonical fixe par formulaire, titre, description et liens vers formulaire,
-enquêtes et questions. Les erreurs gardent leurs statuts 404/500/503/504 et noindex.
-Une page sans statistiques est un état vide 200 ; sans réponse enregistrée elle
-est non indexable. Les dashboards avec données peuvent être indexés.
+## Formulaires et résultats intégrés (FORMS-003)
 
-Les composants `Statistics` et Recharts des pages Question sont réutilisés, sans
-calcul métier ni nouveau tri. Le tableau HTML complet est toujours rendu côté
-serveur, disponible sans JavaScript et accompagné des dénominateurs et totaux.
-Chaque graphique est ouvert par un `<details>` natif : Recharts n’est importé
-qu’après ouverture côté client. Plusieurs graphiques partagent le même module,
-les autres pages ne le chargent pas. Les IDs des titres sont uniques et les
-sections conservent une hiérarchie h1/h2/h3. Les textes longs restent complets.
+`/forms/:formId` effectue un seul appel serveur à `GET /api/v1/forms/{id}`.
+Le titre, toutes les questions ordonnées, les graphiques HTML/CSS
+et les tableaux des détails sont présents dans le HTML initial. Les ancres
+`#question-{id}` et les accordéons natifs fonctionnent sans JavaScript. Les titres
+du questionnaire et des questions sont noirs ; les titres des questions sont
+des liens vers leurs pages individuelles. Aucun sommaire ou lien de consultation
+séparé ne duplique cette navigation.
+Les réponses ouvertes conduisent aux pages Questions, dont l'interface reste inchangée.
 
-`pnpm test`, `pnpm test:e2e`, `pnpm build:offline`, `pnpm test:build`, `pnpm check`,
-`pnpm typecheck` et `pnpm contract:check` couvrent les données groupées, le SSR,
-les statuts HTTP, les tableaux sans JavaScript, la navigation au clavier,
-l’hydratation, les graphiques à la demande et le mobile/zoom 200 %. Les tests
-utilisent uniquement l’API synthétique locale. Une recette RGAA complète avec
-lecteurs d’écran et les mesures sur le corpus réel restent nécessaires.
-Voir [les définitions et le budget SQL](../docs/api-form-stats.md).
+Les barres Oui/Non proportionnelles sont réservées aux répartitions complètes
+à choix unique ; sinon, les barres sont indépendantes. Les choix multiples
+conservent leurs pourcentages, même au-delà de 100 % au total. Les textes et
+valeurs restent visibles hors des détails. Une indisponibilité statistique ne
+masque pas le questionnaire et n'est jamais remplacée par zéro.
+
+L'ancienne URL `/forms/:formId/dashboard` renvoie **308** vers le formulaire,
+sans appel API préalable ; les paramètres sont conservés et le navigateur
+préserve le fragment. Les liens internes ne proposent plus de Dashboard.
+Les composants Recharts restent disponibles uniquement pour les pages Questions.
+
+Les loaders conservent l'annulation, les erreurs HTTP et `private, no-store`.
+Aucun calcul statistique, nouvel endpoint, migration ou changement du corpus.
+OpenAPI et les types générés de FORMS-002 restent inchangés.
+
+Validation habituelle : `pnpm check`, `pnpm typecheck`, `pnpm test`,
+`pnpm test:e2e`, `pnpm build:offline`, `pnpm test:build` et
+`pnpm contract:types:check`. Les états indisponibles et les cas statistiques
+particuliers utilisent l'API synthétique des tests.
+
+Recette bornée du corpus réel, après démarrage de FastAPI sur `127.0.0.1:8000` :
+
+```bash
+pnpm --dir frontend build:offline
+pnpm --dir frontend exec node tests/smoke-forms-local.mjs
+```
+
+La recette ouvre son serveur SSR temporaire sur `127.0.0.1:4187`, contrôle les
+sept formulaires et 120 questions, puis le ferme. Elle ne génère aucune statistique
+et n'écrit pas en base. Résultats et captures dans `/tmp/forms-003-*`.
+Pour consulter l'application, utiliser le lancement habituel de
+[React et FastAPI en local](../docs/search-local.md) ; redémarrer le processus
+SSR après reconstruction d'un build déjà chargé.
+
+Voir le [rapport FORMS-003](../docs/rapport-forms-003.md) pour les mesures,
+les tests visuels et les limites de la vérification d'accessibilité.

@@ -6,7 +6,6 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi.exceptions import RequestValidationError
 from sqlalchemy import text
 
-from app.choice_stats import choice_statistics
 from app.db import SessionLocal
 from app.helpers import public_author, slugify
 from app.schemas.forms import ApiError, FormQuestion
@@ -23,6 +22,7 @@ from app.schemas.questions import (
 )
 from app.search_errors import handle_search_errors
 from app.services.answers import get_answer
+from app.services.published_statistics import consistent_read, require_published
 from app.services.questions import MAX_TEXT_LEN, _dec_cursor, get_question, read_question_answers
 
 router = APIRouter(
@@ -176,12 +176,15 @@ def question_statistics(question_id: PathId) -> QuestionStatistics:
     compte une fois dans la catégorie synthétique, pas une fois par texte.
     """
     with SessionLocal() as db, handle_search_errors(db):
+        consistent_read(db)
         limit_sql(db)
         row = existing_question(db, int(question_id))
         if row["type"] not in ("single_choice", "multi_choice"):
             raise HTTPException(400, "Cette question n'est pas à choix")
-        result = choice_statistics(db, row["id"], include_contributions=True)
-        return statistics_fields(row, result)
+        result = require_published(db, question_id=row["id"])
+        if row["id"] not in result or result[row["id"]][1] is None:
+            raise HTTPException(503, "Les statistiques sont incomplètes.")
+        return result[row["id"]][1]
 
 
 @router.get(

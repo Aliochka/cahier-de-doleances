@@ -119,9 +119,7 @@ test("parcours au clavier, retour arrière et hydratation des graphiques", async
     if (message.type() === "error") errors.push(message.text());
   });
   await page.goto(`${origin}/forms/9007199254740995`);
-  const link = page.getByRole("link", {
-    name: "Quels sujets souhaitez-vous aborder ?",
-  });
+  const link = page.locator("#question-9007199254741021 h2 a");
   await link.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(`${origin}${multiple}`);

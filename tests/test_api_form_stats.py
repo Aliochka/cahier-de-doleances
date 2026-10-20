@@ -58,6 +58,7 @@ def dashboard_data(web_data):
             if index < 2:
                 db.add(AnswerOption(answer_id=answer.id, option_id=selected.id))
         db.commit()
+    publish(web_data)
     return {**web_data, "single": single.id, "empty": empty.id}
 
 
@@ -118,6 +119,7 @@ def test_empty_form_bigint_and_nonchoice_questions(client, web_data):
             )
         )
         db.commit()
+    publish(web_data)
     payload = client.get(f"/api/v1/forms/{form.id}/stats").json()
     assert payload == {
         "form": {"id": str(form.id), "name": form.name, "url": f"/forms/{form.id}"},
@@ -126,6 +128,7 @@ def test_empty_form_bigint_and_nonchoice_questions(client, web_data):
     with web_data["factory"]() as db:
         db.execute(text("UPDATE questions SET type='single_choice' WHERE id=:id"), {"id": form.id})
         db.commit()
+    publish(web_data)
     payload = client.get(f"/api/v1/forms/{form.id}/stats").json()
     assert payload["questions"][0]["question"]["id"] == str(form.id)
     assert payload["questions"][0]["stats"]["total_answers"] == 0
@@ -154,16 +157,16 @@ def test_fixed_query_budget_and_no_answer_rows(client, dashboard_data):
     try:
         response = client.get(f"/api/v1/forms/{dashboard_data['form']}/stats")
         assert response.status_code == 200
-        assert len(statements) == 5
+        assert len(statements) == 3
         assert len(response.json()["questions"]) == 3
         assert not any("OFFSET" in sql.upper() or "SELECT *" in sql.upper() for sql in statements)
-        assert len([s for s in statements if "FROM answers WHERE" in s]) == 1
+        assert not any("FROM answers" in s or "JOIN answer_options" in s for s in statements)
         statements.clear()
         for entry in response.json()["questions"]:
             assert (
                 client.get(f"/api/v1/questions/{entry['question']['id']}/stats").status_code == 200
             )
-        assert len(statements) == 12
+        assert len(statements) == 6
     finally:
         event.remove(engine, "before_cursor_execute", capture)
 
@@ -177,7 +180,7 @@ def test_database_errors_rollback_without_details(client, web_data, monkeypatch,
             "private SQL", {}, SimpleNamespace(pgcode=pgcode)
         )
 
-    monkeypatch.setattr(api_forms, "choice_statistics_many", fail)
+    monkeypatch.setattr(api_forms, "require_published", fail)
     response = client.get(
         f"/api/v1/forms/{web_data['form']}/stats", headers={"Accept": "text/html"}
     )
@@ -194,8 +197,15 @@ def test_real_statement_timeout_rollback(client, web_data, monkeypatch):
         db.execute(text("SET LOCAL statement_timeout='1ms'"))
         db.execute(text("SELECT pg_sleep(0.05)"))
 
-    monkeypatch.setattr(api_forms, "choice_statistics_many", timeout)
+    monkeypatch.setattr(api_forms, "require_published", timeout)
     response = client.get(f"/api/v1/forms/{web_data['form']}/stats")
     assert response.status_code == 504
     with web_data["factory"]() as db:
         assert db.execute(text("SELECT 1")).scalar_one() == 1
+
+
+def publish(data):
+    from app.services.statistics_generation import generate
+    with data["factory"]() as db:
+        generate(db)
+        db.commit()

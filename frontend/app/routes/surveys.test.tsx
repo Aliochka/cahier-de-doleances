@@ -80,7 +80,14 @@ it.each([
 });
 
 it("transmet l'identifiant exact et le signal au loader formulaire", async () => {
-  const form = { ...forms[1], questions: [] };
+  const form = {
+    ...forms[1],
+    questions: [],
+    statistics_availability: {
+      status: "unavailable" as const,
+      reason: "absent" as const,
+    },
+  };
   vi.mocked(getForm).mockResolvedValue({ ok: true, data: form });
   const input = args("/forms/9007199254740993");
   expect((await formLoader(input)).data).toEqual({ mode: "form", form });

@@ -437,6 +437,86 @@
         "title": "ContributionReference",
         "type": "object"
       },
+      "EnrichedFormQuestion": {
+        "properties": {
+          "answers_count": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answers Count"
+          },
+          "form_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Form Id",
+            "type": "string"
+          },
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Ordre déclaré dans le questionnaire ; peut être absent.",
+            "title": "Position"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "slug": {
+            "description": "Slug construit avec le helper des routes HTML.",
+            "title": "Slug",
+            "type": "string"
+          },
+          "statistics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QuestionStatistics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": {
+            "description": "Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.",
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "description": "Chemin relatif vers la question historique.",
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "form_id",
+          "prompt",
+          "type",
+          "position",
+          "slug",
+          "url"
+        ],
+        "title": "EnrichedFormQuestion",
+        "type": "object"
+      },
       "FormDetail": {
         "properties": {
           "id": {
@@ -453,7 +533,7 @@
           "questions": {
             "description": "Toutes les questions, selon COALESCE(position, 999999), puis id.",
             "items": {
-              "$ref": "#/components/schemas/FormQuestion"
+              "$ref": "#/components/schemas/EnrichedFormQuestion"
             },
             "title": "Questions",
             "type": "array"
@@ -463,6 +543,9 @@
             "minimum": 0.0,
             "title": "Questions Count",
             "type": "integer"
+          },
+          "statistics_availability": {
+            "$ref": "#/components/schemas/StatisticsAvailability"
           },
           "url": {
             "description": "Chemin relatif de la page HTML historique.",
@@ -475,6 +558,7 @@
           "name",
           "questions_count",
           "url",
+          "statistics_availability",
           "questions"
         ],
         "title": "FormDetail",
@@ -1284,6 +1368,73 @@
         "title": "SelectedOption",
         "type": "object"
       },
+      "StatisticsAvailability": {
+        "properties": {
+          "calculated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Calculated At"
+          },
+          "generation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generation Id"
+          },
+          "method_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Method Version"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "enum": [
+                  "absent",
+                  "incompatible",
+                  "incomplete"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "status": {
+            "enum": [
+              "available",
+              "unavailable"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "StatisticsAvailability",
+        "type": "object"
+      },
       "ValidationError": {
         "properties": {
           "ctx": {
@@ -2020,7 +2171,7 @@
     },
     "/api/v1/forms/{form_id}/stats": {
       "get": {
-        "description": "Cinq lectures SQL, zéro requête par question ; dénominateurs et arrondis historiques.",
+        "description": "Lectures en lot des instantanés publiés, sans agrégat des réponses.",
         "operationId": "get_public_form_statistics",
         "parameters": [
           {

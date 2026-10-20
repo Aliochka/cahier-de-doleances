@@ -251,7 +251,7 @@ def test_preflight_checks_schema_and_reports_drift_without_writes(test_engine):
 
     with test_engine.connect() as connection, connection.begin():
         connection.execute(text("SET TRANSACTION READ ONLY"))
-        report = inspect_schema(connection, "remove_runtime_caches")
+        report = inspect_schema(connection, "forms_statistics_v1")
         assert not report["errors"]
         assert connection.execute(text("SHOW transaction_read_only")).scalar_one() == "on"
         drift = inspect_schema(connection, "unknown_revision")

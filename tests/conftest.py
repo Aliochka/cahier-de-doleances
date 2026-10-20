@@ -31,7 +31,7 @@ def test_engine():
     with engine.connect() as connection:
         assert (
             connection.execute(text("SELECT version_num FROM alembic_version")).scalar_one()
-            == "remove_runtime_caches"
+            == "forms_statistics_v1"
         )
     yield engine
     engine.dispose()
@@ -41,7 +41,7 @@ def test_engine():
 def web_data(test_engine, monkeypatch):
     from app.models import Answer, AnswerOption, Author, Contribution, Form, Option, Question
 
-    with test_engine.connect() as connection:
+    with test_engine.connect().execution_options(isolation_level="REPEATABLE READ") as connection:
         transaction = connection.begin()
         factory = sessionmaker(
             bind=connection, join_transaction_mode="create_savepoint", expire_on_commit=False

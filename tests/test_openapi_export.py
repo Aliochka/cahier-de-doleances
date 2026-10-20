@@ -71,6 +71,8 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
         "FormStatistics",
         "FormQuestionStatistics",
         "FormDetail",
+        "StatisticsAvailability",
+        "EnrichedFormQuestion",
         "FormQuestion",
         "ApiError",
         "HTTPValidationError",

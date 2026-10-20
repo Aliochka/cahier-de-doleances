@@ -372,3 +372,27 @@ def test_worker_caller_cancellation_and_queued_expiration(service, monkeypatch):
         assert worker._pending == 0
 
     asyncio.run(scenario())
+
+
+def test_source_identity_allows_only_audited_additive_migration():
+    from cahier_rag.search.service.reader import compatible_source_identity
+
+    indexed = {
+        "cluster_id": "cluster",
+        "database_oid": 42,
+        "database_name": "source",
+        "schema_revision": "remove_runtime_caches",
+    }
+    migrated = {**indexed, "schema_revision": "forms_statistics_v1"}
+    assert compatible_source_identity(indexed, indexed)
+    assert compatible_source_identity(indexed, migrated)
+    assert compatible_source_identity(migrated, migrated)
+    for key, value in [
+        ("cluster_id", "other"),
+        ("database_oid", 43),
+        ("database_name", "other"),
+        ("schema_revision", "unknown_future_migration"),
+    ]:
+        assert not compatible_source_identity(indexed, {**migrated, key: value})
+    assert not compatible_source_identity(migrated, indexed)
+    assert not compatible_source_identity(None, migrated)

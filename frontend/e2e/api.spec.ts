@@ -110,6 +110,7 @@ test("le navigateur utilise le chemin relatif et omet les cookies publics", asyn
         name: "Exemple",
         url: "/forms/9007199254740993",
         questions_count: 0,
+        statistics_availability: { status: "unavailable", reason: "absent" },
         questions: [],
       },
     });

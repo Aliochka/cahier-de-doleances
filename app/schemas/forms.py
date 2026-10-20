@@ -1,16 +1,12 @@
 """Explicit public responses. BIGINT identifiers are decimal strings in JSON."""
 
-from typing import Annotated
+from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
-PublicId = Annotated[
-    str,
-    Field(
-        pattern=r"^[0-9]+$",
-        description="Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
-    ),
-]
+from app.schemas.choice_statistics import QuestionStatistics
+from app.schemas.public_ids import PublicId
 
 
 class FormSummary(BaseModel):
@@ -34,8 +30,22 @@ class FormQuestion(BaseModel):
     url: str = Field(description="Chemin relatif vers la question historique.")
 
 
+class StatisticsAvailability(BaseModel):
+    status: Literal["available", "unavailable"]
+    reason: Literal["absent", "incompatible", "incomplete"] | None = None
+    generation_id: str | None = None
+    calculated_at: datetime | None = None
+    method_version: str | None = None
+
+
+class EnrichedFormQuestion(FormQuestion):
+    answers_count: int | None = Field(default=None, ge=0)
+    statistics: QuestionStatistics | None = None
+
+
 class FormDetail(FormSummary):
-    questions: list[FormQuestion] = Field(
+    statistics_availability: StatisticsAvailability
+    questions: list[EnrichedFormQuestion] = Field(
         description="Toutes les questions, selon COALESCE(position, 999999), puis id."
     )
 

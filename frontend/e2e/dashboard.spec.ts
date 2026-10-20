@@ -1,151 +1,199 @@
 import { expect, test } from "@playwright/test";
 
 const origin = "http://127.0.0.1:4175";
+const mock = "http://127.0.0.1:4176";
 const formId = "9007199254740995";
-const path = `/forms/${formId}/dashboard`;
+const path = `/forms/${formId}`;
 
-test("HTML SSR : plusieurs questions ordonnées, tableaux, dénominateurs et canonical", async ({
+test("HTML initial : toutes les questions, graphiques et tableaux ; un seul appel Formulaire", async ({
   request,
 }) => {
-  const response = await request.get(`${origin}${path}`, {
+  await request.get(`${mock}/forms-reset`);
+  const response = await request.get(`${origin}/forms/101`, {
     headers: { Cookie: "session_token=synthetic" },
   });
   expect(response.status()).toBe(200);
   const html = await response.text();
-  expect(html).toContain("Statistiques — Participation citoyenne");
   expect(html).toContain(
-    `rel="canonical" href="https://cahierdedoleances.fr${path}"`,
+    `rel="canonical" href="https://cahierdedoleances.fr/forms/101"`,
   );
+  expect(html).not.toContain("Sommaire des questions");
+  expect(html).not.toContain("Retour au sommaire");
+  expect(html.match(/data-chart-kind=/g)).toHaveLength(2);
   expect(html.match(/<table /g)).toHaveLength(2);
-  expect(html).toMatch(/80(?:<!-- -->)? %/);
-  expect(html).toMatch(/50(?:<!-- -->)? %/);
-  expect(html).toMatch(/0(?:<!-- -->)? %/);
+  expect(html).toContain("Plusieurs réponses possibles");
   expect(html).toContain("Autre texte");
-  expect(html).toContain("dépasser 100 %");
-  expect(html).toContain("réponses enregistrées");
-  expect(html.indexOf("Quel mode de consultation")).toBeLessThan(
-    html.indexOf("Quels sujets souhaitez"),
-  );
   expect(html).not.toMatch(
-    /127\.0\.0\.1:4176|recharts-surface|content="noindex/,
+    /recharts|<svg|Afficher le graphique|Voir le tableau de bord/,
   );
   expect(response.headers()["cache-control"]).toBe("private, no-store");
   expect(response.headers()["set-cookie"]).toBeUndefined();
+  const calls = await (await request.get(`${mock}/forms-calls`)).json();
+  expect(
+    calls.filter((value: string) => value === "/api/v1/forms/101"),
+  ).toEqual(["/api/v1/forms/101"]);
 });
 
-test("statuts HTTP réels, indisponibilité, état vide et absence de données sensibles", async ({
+test("ancien Dashboard : 308 serveur sans requête API, même en cas d'API indisponible", async ({
   request,
 }) => {
-  for (const status of [404, 500, 503, 504]) {
-    const response = await request.get(`${origin}/forms/${status}/dashboard`);
-    expect(response.status()).toBe(status);
-    const html = await response.text();
-    expect(html).toContain('content="noindex, nofollow"');
-    expect(html).not.toMatch(/private SQL|SECRET|private-host/);
-    expect(response.headers()["cache-control"]).toBe("private, no-store");
+  await request.get(`${mock}/forms-reset`);
+  for (const base of [origin, "http://127.0.0.1:4177"]) {
+    const response = await request.get(
+      `${base}/forms/999991/dashboard?contrib=2`,
+      {
+        maxRedirects: 0,
+      },
+    );
+    expect(response.status()).toBe(308);
+    expect(response.headers().location).toBe(`/forms/999991?contrib=2`);
   }
-  const unavailable = await request.get(`http://127.0.0.1:4177${path}`);
-  expect(unavailable.status()).toBe(503);
-  expect(await unavailable.text()).toContain("Service indisponible");
-  const empty = await request.get(`${origin}/forms/9007199254740993/dashboard`);
-  expect(empty.status()).toBe(200);
-  expect(await empty.text()).toContain(
-    "Ce formulaire ne contient aucune question statistique.",
-  );
-  expect((await request.get("http://127.0.0.1:4177/")).status()).toBe(200);
+  expect(
+    (await (await request.get(`${mock}/forms-calls`)).json()).filter(
+      (value: string) => value.includes("999991"),
+    ),
+  ).toEqual([]);
 });
 
-test("parcours Enquêtes → Formulaire → Dashboard → Question, focus et hydratation", async ({
-  page,
-}) => {
-  const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`formulaire continu, JS ${javaScriptEnabled}`, () => {
+    test.use({ javaScriptEnabled });
+    test("titres cliquables, détails au clavier, page Question, retour et ancienne ancre", async ({
+      page,
+    }) => {
+      const errors: string[] = [];
+      const charts: string[] = [];
+      page.on("pageerror", (e) => errors.push(e.message));
+      page.on("request", (r) => {
+        if (r.url().includes("stats-chart")) charts.push(r.url());
+      });
+      await page.goto(`${origin}/enquetes`);
+      await page
+        .getByRole("link", { name: "Participation citoyenne", exact: true })
+        .click();
+      await expect(page).toHaveURL(`${origin}${path}`);
+      await expect(page.locator("[data-chart-kind]")).toHaveCount(2);
+      await expect(page.locator("h1")).toHaveCSS("color", "rgb(0, 0, 0)");
+      await expect(page.locator("section h2 a").first()).toHaveCSS(
+        "color",
+        "rgb(0, 0, 0)",
+      );
+      await page.goto(`${origin}${path}#question-9007199254741021`);
+      const target = page.locator("#question-9007199254741021");
+      await expect(page).toHaveURL(/#question-9007199254741021$/);
+      await expect
+        .poll(async () => (await target.boundingBox())?.y)
+        .toBeLessThan(100);
+      const details = target.locator("details");
+      await expect(details).not.toHaveAttribute("open");
+      const summary = details.locator("summary");
+      await summary.focus();
+      await page.keyboard.press("Enter");
+      await expect(details).toHaveAttribute("open", "");
+      await expect(details.getByRole("table")).toBeVisible();
+      await target.locator("h2 a").click();
+      await expect(page).toHaveURL(
+        `${origin}/questions/9007199254741021-sujets`,
+      );
+      await expect(page.getByRole("table")).toBeVisible();
+      await page.goBack();
+      await expect(page).toHaveURL(/#question-9007199254741021$/);
+      // Reset the observation: Recharts is still intentionally used by individual Questions.
+      charts.length = 0;
+      await page.goto(`${origin}${path}/dashboard#question-9007199254741020`);
+      await expect(page).toHaveURL(
+        `${origin}${path}#question-9007199254741020`,
+      );
+      await expect
+        .poll(
+          async () =>
+            (await page.locator("#question-9007199254741020").boundingBox())?.y,
+        )
+        .toBeLessThan(100);
+      expect(charts).toEqual([]);
+      expect(errors).toEqual([]);
+    });
+    test("Oui/Non, répartition incomplète, zéro et statistiques indisponibles", async ({
+      page,
+    }) => {
+      await page.goto(`${origin}/forms/101`);
+      await expect(page.locator('[data-chart-kind="yes-no"]')).toHaveCount(1);
+      await expect(page.getByText("7 · 70 %", { exact: true })).toBeVisible();
+      await page.goto(`${origin}/forms/104`);
+      await expect(page.locator('[data-chart-kind="yes-no"]')).toHaveCount(0);
+      await expect(page.getByText("4 · 40 %", { exact: true })).toBeVisible();
+      await page.goto(`${origin}/forms/103`);
+      await expect(
+        page.getByText("Aucune réponse enregistrée pour cette question.", {
+          exact: true,
+        }),
+      ).toBeVisible();
+      await expect(page.getByText("0 · 0 %", { exact: true })).toHaveCount(3);
+      await page.goto(`${origin}/forms/102`);
+      await expect(
+        page.getByText(
+          /Les résultats statistiques sont momentanément indisponibles/,
+        ),
+      ).toBeVisible();
+      await expect(page.locator("[data-chart-kind]")).toHaveCount(0);
+      await expect(
+        page.getByText("0 réponses enregistrées", { exact: true }),
+      ).toHaveCount(0);
+      await expect(page.locator("section h2 a").first()).toBeVisible();
+    });
   });
-  let charts = 0;
-  page.on("request", (request) => {
-    if (request.url().includes("stats-chart")) charts++;
-  });
-  await page.goto(`${origin}/enquetes`);
-  await page.getByRole("link", { name: "Participation citoyenne" }).click();
-  await page.getByRole("link", { name: "Voir le tableau de bord" }).click();
-  await expect(page).toHaveURL(`${origin}${path}`);
-  await expect(page.getByRole("table")).toHaveCount(2);
-  expect(charts).toBe(0);
-  await expect(page.locator(".recharts-surface")).toHaveCount(0);
-  const summaries = page.locator("summary");
-  await summaries.first().focus();
-  await expect(summaries.first()).toBeFocused();
-  await page.keyboard.press("Enter");
-  await expect(page.locator(".recharts-surface")).toHaveCount(1);
-  expect(charts).toBe(1);
-  await summaries.nth(1).click();
-  await expect(page.locator(".recharts-surface")).toHaveCount(2);
-  expect(charts).toBe(1);
-  await expect(page.getByRole("table")).toHaveCount(2);
-  const ids = await page
-    .locator("[id]")
-    .evaluateAll((nodes) => nodes.map((node) => node.id));
-  expect(new Set(ids).size).toBe(ids.length);
-  await page
-    .getByRole("link", { name: "Quels sujets souhaitez-vous aborder ?" })
-    .click();
-  await expect(page).toHaveURL(`${origin}/questions/9007199254741021-sujets`);
-  await page.goBack();
-  await expect(page).toHaveURL(`${origin}${path}`);
-  await page.getByRole("link", { name: "← Retour au formulaire" }).click();
-  await expect(page).toHaveURL(`${origin}/forms/${formId}`);
-  await page.goto(`${origin}/forms/9007199254740993`);
-  await expect(
-    page.getByRole("link", { name: "Voir le tableau de bord" }),
-  ).toHaveCount(0);
-  expect(errors).toEqual([]);
-});
+}
 
-test("mobile, zoom 200 %, liens clavier et absence de débordement", async ({
+test("37 questions, largeur 320 px et zoom texte 200 % sans débordement", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 740 });
-  await page.goto(`${origin}${path}`);
-  await page.keyboard.press("Tab");
-  await page
-    .getByRole("link", { name: "Aller au contenu principal" })
-    .press("Enter");
-  await expect(page.getByRole("main")).toBeFocused();
+  await page.goto(`${origin}/forms/105`);
+  await expect(
+    page
+      .getByRole("list", { name: "Questions du formulaire" })
+      .getByRole("heading"),
+  ).toHaveCount(37);
+  await expect(
+    page.getByRole("navigation", { name: "Sommaire des questions" }),
+  ).toHaveCount(0);
+  const lastId = await page
+    .locator('section[id^="question-"]')
+    .last()
+    .getAttribute("id");
+  await page.goto(`${origin}/forms/105#${lastId}`);
+  await expect(
+    page.locator('section[id^="question-"]').last().getByRole("heading"),
+  ).toBeInViewport();
+  await page.goto(`${origin}/forms/101`);
   await page.locator("summary").first().click();
-  await expect(page.locator(".recharts-surface")).toHaveCount(1);
   await page.evaluate(() => {
-    document.documentElement.style.zoom = "2";
+    document.documentElement.style.fontSize = "200%";
   });
   expect(
     await page.evaluate(
-      () =>
-        document.documentElement.scrollWidth <=
-        document.documentElement.clientWidth,
+      () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
-  await expect(page.getByRole("table").first()).toBeVisible();
+  await page.screenshot({ path: "/tmp/forms-003-mobile.png", fullPage: false });
 });
 
-test("sans JavaScript : navigation et tableaux statistiques complets", async ({
-  browser,
+test("impression et couleurs forcées : libellés et détails restent lisibles", async ({
+  page,
 }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
-  const page = await context.newPage();
-  await page.goto(`${origin}/enquetes`);
-  await page.getByRole("link", { name: "Participation citoyenne" }).click();
-  await page.getByRole("link", { name: "Voir le tableau de bord" }).click();
-  await expect(page.getByRole("table")).toHaveCount(2);
+  await page.goto(`${origin}/forms/101`);
+  await page.emulateMedia({ forcedColors: "active" });
+  await expect(page.getByText("7 · 70 %", { exact: true })).toBeVisible();
+  await page.emulateMedia({ media: "print", forcedColors: "none" });
   await expect(
-    page.getByRole("cell", { name: "80 %", exact: true }),
-  ).toHaveCount(2);
-  await page
-    .getByRole("link", { name: "Quel mode de consultation privilégier ?" })
-    .click();
-  await expect(page).toHaveURL(
-    `${origin}/questions/9007199254741020-consultation`,
-  );
-  await expect(page.getByRole("table")).toBeVisible();
-  await context.close();
+    page
+      .locator("details")
+      .first()
+      .getByText("Contributions distinctes ayant répondu", { exact: true }),
+  ).toBeVisible();
+  await page.pdf({
+    path: "/tmp/forms-003-print.pdf",
+    format: "A4",
+    printBackground: true,
+  });
 });

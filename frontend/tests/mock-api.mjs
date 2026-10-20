@@ -168,6 +168,87 @@ const questionStatistics = (source) => ({
     },
   ],
 });
+const publication = {
+  status: "available",
+  generation_id: "synthetic-generation",
+  calculated_at: "2026-10-20T17:00:00Z",
+  method_version: "historical-answers-v1",
+};
+function enrichedForm(id) {
+  const source =
+    id === forms[0].id
+      ? forms[0]
+      : {
+          ...forms[0],
+          id,
+          url: `/forms/${id}`,
+          name: "Questionnaire de contrôle (questions rapides)",
+        };
+  let entries = questions.map((q) => ({
+    ...q,
+    form_id: id,
+    answers_count: 10,
+    statistics: q.type === "text" ? null : questionStatistics(q),
+  }));
+  if (["101", "103", "104"].includes(id)) {
+    const q = entries[1];
+    const yes = id === "103" ? 0 : id === "104" ? 4 : 7;
+    const no = id === "103" ? 0 : 3;
+    const total = id === "103" ? 0 : 10;
+    entries[1] = {
+      ...q,
+      answers_count: total,
+      statistics: {
+        ...q.statistics,
+        total_answers: total,
+        answered_contributions_count: total,
+        total_option_selections: yes + no,
+        total_selections: yes + no,
+        other_text_answers_count: 0,
+        categories: [
+          {
+            option_id: "9007199254744900",
+            kind: "option",
+            label: "Oui",
+            position: 1,
+            count: yes,
+            percentage: yes * 10,
+          },
+          {
+            option_id: "9007199254744901",
+            kind: "option",
+            label: "Non",
+            position: 2,
+            count: no,
+            percentage: no * 10,
+          },
+        ],
+      },
+    };
+  }
+  if (id === "105")
+    entries = Array.from({ length: 37 }, (_, i) => ({
+      ...entries[0],
+      id: String(9007199254741100n + BigInt(i)),
+      prompt:
+        `Question ${i + 1} : ` +
+        "Un intitulé complet sur la participation citoyenne. ".repeat(3),
+      url: `/questions/${9007199254741100n + BigInt(i)}-exemple`,
+      position: i + 1,
+    }));
+  const available = id !== "102";
+  return {
+    ...source,
+    questions_count: entries.length,
+    statistics_availability: available
+      ? publication
+      : { status: "unavailable", reason: "incompatible" },
+    questions: available
+      ? entries
+      : entries.map((q) => ({ ...q, answers_count: null, statistics: null })),
+  };
+}
+const formCalls = [];
 let searchRetry = 0;
 const searchCalls = [];
 const snapshots = new Map();
@@ -178,6 +259,16 @@ const server = createServer((request, response) => {
   const url = new URL(request.url, "http://127.0.0.1");
   response.setHeader("Content-Type", "application/json");
   response.setHeader("Cache-Control", "private, no-store");
+  if (url.pathname === "/forms-reset") {
+    formCalls.length = 0;
+    response.end("{}");
+    return;
+  }
+  if (url.pathname === "/forms-calls") {
+    response.end(JSON.stringify(formCalls));
+    return;
+  }
+  if (url.pathname.startsWith("/api/v1/forms")) formCalls.push(url.pathname);
   if (url.pathname === "/search-reset") {
     searchCalls.length = 0;
     searchRetry = 0;
@@ -581,8 +672,12 @@ const server = createServer((request, response) => {
     response.end(JSON.stringify(forms));
     return;
   }
-  if (url.pathname === `/api/v1/forms/${forms[0].id}`) {
-    response.end(JSON.stringify({ ...forms[0], questions }));
+  const enrichedMatch =
+    /^\/api\/v1\/forms\/(9007199254740995|101|102|103|104|105)$/.exec(
+      url.pathname,
+    );
+  if (enrichedMatch) {
+    response.end(JSON.stringify(enrichedForm(enrichedMatch[1])));
     return;
   }
   const id = url.pathname.split("/").at(-1);
@@ -606,6 +701,7 @@ const server = createServer((request, response) => {
         questions_count: 0,
         url: `/forms/${id}`,
         questions: [],
+        statistics_availability: { status: "unavailable", reason: "absent" },
       }),
     );
   if (id === "8") {

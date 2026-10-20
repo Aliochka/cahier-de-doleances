@@ -118,7 +118,7 @@ test("navigation interne, retour arrière, clavier et hydratation", async ({
     "Quel mode de consultation privilégier ?",
     "Quels sujets souhaitez-vous aborder ?",
   ]);
-  await expect(questions.getByRole("link")).toHaveCount(3);
+  await expect(questions.locator("h2 a")).toHaveCount(3);
   await page.goBack();
   await expect(
     page.getByRole("heading", { name: "Enquêtes", exact: true }),
@@ -213,7 +213,7 @@ test("le contenu essentiel des pages métier est lisible sans JavaScript", async
   await expect(
     page
       .getByRole("list", { name: "Questions du formulaire" })
-      .getByRole("listitem"),
+      .locator(":scope > li"),
   ).toHaveCount(3);
   await context.close();
 });

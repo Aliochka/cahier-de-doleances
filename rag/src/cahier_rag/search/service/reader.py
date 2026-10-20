@@ -17,6 +17,25 @@ from cahier_rag.search.service.control import (
 from cahier_rag.vector.preparation import TokenConfig
 
 
+def compatible_source_identity(indexed, current):
+    """Only audited additive migrations may follow the indexed schema revision.
+
+    FORMS-002 adds derived statistics and invalidation triggers, without changing
+    original answers, provenance, or the TextUnit extraction representation.
+    Maintenance/writer guards still require their original strict identities.
+    """
+    if indexed == current:
+        return True
+    if not isinstance(indexed, dict) or not isinstance(current, dict):
+        return False
+    if (indexed.get("schema_revision"), current.get("schema_revision")) != (
+        "remove_runtime_caches",
+        "forms_statistics_v1",
+    ):
+        return False
+    return {**indexed, "schema_revision": "forms_statistics_v1"} == current
+
+
 def create_search_engine(url):
     """URL dédiée validée par load_settings ; jamais de repli sur DATABASE_URL."""
     return create_engine(
@@ -171,7 +190,7 @@ class SearchReader:
                 or state["documents"] != state["expected_units"]
                 or state["documents"] != state["vector_cursor"]
                 or state["segments"] < state["documents"]
-                or manifest.get("audit_source") != source.to_dict()
+                or not compatible_source_identity(manifest.get("audit_source"), source.to_dict())
                 or manifest.get("space") != self.space
                 or manifest.get("corpus") != "gdn-2019"
                 or manifest.get("normalize") is not True

@@ -1,7 +1,9 @@
 import { data, Link } from "react-router";
 import { css } from "../../styled-system/css";
 import { PageContainer } from "../components/layout/page-container";
-import { QuestionList } from "../features/surveys/question-list";
+import { Alert } from "../components/ui/alert";
+import { FormQuestions } from "../features/forms/form-questions";
+import styles from "../features/forms/results.module.css";
 import { SurveyRouteError } from "../features/surveys/route-error";
 import { httpFailure } from "../lib/api";
 import { getForm } from "../lib/api.server";
@@ -36,22 +38,30 @@ export default function Form({ loaderData }: Route.ComponentProps) {
         rel="canonical"
         href={`https://cahierdedoleances.fr/forms/${loaderData.form.id}`}
       />
-      <h1 className={css({ mb: "6" })}>{loaderData.form.name}</h1>
-      <p className={css({ color: "muted", mb: "8" })}>
-        {loaderData.form.questions_count} question
-        {loaderData.form.questions_count !== 1 ? "s" : ""} · Grand Débat
-        National
-      </p>
-      {loaderData.form.questions.some((question) =>
-        ["single_choice", "multi_choice"].includes(question.type),
-      ) && (
-        <p className={css({ mb: "8" })}>
-          <Link to={`/forms/${loaderData.form.id}/dashboard`}>
-            Voir le tableau de bord
-          </Link>
+      <header className={styles.header}>
+        <h1 className={styles.title}>{loaderData.form.name}</h1>
+        <p className={styles.meta}>
+          {/\(questions rapides\)\s*$/iu.test(loaderData.form.name) && (
+            <>Questionnaire rapide · </>
+          )}
+          {loaderData.form.questions_count} question
+          {loaderData.form.questions_count !== 1 ? "s" : ""} · Grand Débat
+          national
         </p>
-      )}
-      <QuestionList questions={loaderData.form.questions} />
+        <p className={styles.introduction}>
+          Les réponses de participants volontaires, présentées question par
+          question. Ces contributions ne constituent pas un sondage
+          représentatif de la population.
+        </p>
+      </header>
+      {loaderData.form.statistics_availability.status !== "available" &&
+        loaderData.form.questions.length > 0 && (
+          <Alert variant="info">
+            Les résultats statistiques sont momentanément indisponibles. Le
+            questionnaire et les pages de ses questions restent consultables.
+          </Alert>
+        )}
+      <FormQuestions form={loaderData.form} />
     </PageContainer>
   );
 }

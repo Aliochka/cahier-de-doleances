@@ -40,7 +40,7 @@ def pg_source():
             )
             assert (
                 connection.execute(text("SELECT version_num FROM alembic_version")).scalar_one()
-                == "remove_runtime_caches"
+                == "forms_statistics_v1"
             )
             assert (
                 connection.execute(

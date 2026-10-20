@@ -5,14 +5,20 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException, Path
 from sqlalchemy.engine import RowMapping
 
-from app.choice_stats import choice_statistics_many
 from app.db import SessionLocal
 from app.helpers import slugify
-from app.routers.api_questions import limit_sql, question_fields, statistics_fields
-from app.schemas.forms import ApiError, FormDetail, FormQuestion, FormSummary
+from app.routers.api_questions import limit_sql, question_fields
+from app.schemas.forms import (
+    ApiError,
+    EnrichedFormQuestion,
+    FormDetail,
+    FormSummary,
+    StatisticsAvailability,
+)
 from app.schemas.questions import FormQuestionStatistics, FormStatistics, PathId, QuestionForm
 from app.search_errors import handle_search_errors
 from app.services.forms import form_questions, get_form, list_forms
+from app.services.published_statistics import consistent_read, read_published, require_published
 
 router = APIRouter(
     prefix="/api/v1/forms",
@@ -60,6 +66,7 @@ def forms_detail(
     ],
 ) -> FormDetail:
     with SessionLocal() as db:
+        consistent_read(db)
         form = get_form(db, form_id)
         if form is None:
             raise HTTPException(404, "Formulaire introuvable")
@@ -67,7 +74,7 @@ def forms_detail(
         for row in form_questions(db, form_id):
             slug = slugify(row["prompt"] or f"question-{row['id']}")
             questions.append(
-                FormQuestion(
+                EnrichedFormQuestion(
                     id=str(row["id"]),
                     form_id=str(row["form_id"]),
                     prompt=row["prompt"],
@@ -77,7 +84,24 @@ def forms_detail(
                     url=f"/questions/{row['id']}-{slug}",
                 )
             )
-        return FormDetail(**summary(form).model_dump(), questions=questions)
+        availability, snapshots = read_published(db, form_id=form_id)
+        if availability.status == "available" and set(snapshots) != {int(q.id) for q in questions}:
+            availability = StatisticsAvailability(status="unavailable", reason="incomplete")
+        if availability.status == "available":
+            for question in questions:
+                question.answers_count, question.statistics = snapshots[int(question.id)]
+                if (
+                    question.type in ("single_choice", "multi_choice")
+                    and question.statistics is None
+                ):
+                    availability = StatisticsAvailability(status="unavailable", reason="incomplete")
+                    break
+        if availability.status != "available":
+            for question in questions:
+                question.answers_count, question.statistics = None, None
+        return FormDetail(
+            **summary(form).model_dump(), questions=questions, statistics_availability=availability
+        )
 
 
 @router.get(
@@ -91,8 +115,9 @@ def forms_detail(
     },
 )
 def form_statistics(form_id: PathId) -> FormStatistics:
-    """Cinq lectures SQL, zéro requête par question ; dénominateurs et arrondis historiques."""
+    """Lectures en lot des instantanés publiés, sans agrégat des réponses."""
     with SessionLocal() as db, handle_search_errors(db):
+        consistent_read(db)
         limit_sql(db)
         form = get_form(db, int(form_id))
         if form is None:
@@ -102,15 +127,13 @@ def form_statistics(form_id: PathId) -> FormStatistics:
             for q in form_questions(db, int(form_id))
             if q["type"] in ("single_choice", "multi_choice")
         ]
-        statistics = choice_statistics_many(
-            db, [q["id"] for q in questions], include_contributions=True
-        )
+        statistics = require_published(db, form_id=int(form_id))
+        if any(q["id"] not in statistics or statistics[q["id"]][1] is None for q in questions):
+            raise HTTPException(503, "Les statistiques sont incomplètes.")
         return FormStatistics(
             form=QuestionForm(id=str(form["id"]), name=form["name"], url=f"/forms/{form['id']}"),
             questions=[
-                FormQuestionStatistics(
-                    question=question_fields(q), stats=statistics_fields(q, statistics[q["id"]])
-                )
+                FormQuestionStatistics(question=question_fields(q), stats=statistics[q["id"]][1])
                 for q in questions
             ],
         )
