@@ -20,9 +20,17 @@ renouvelables avant la bascule.
 FastAPI conserve son accès sortant pour Mailjet. Le frontend SSR appelle
 `http://app:8000` directement. Cette adresse HTTP est autorisée uniquement pour
 le nom de service `app` et le port 8000. Le frontend a l'IP privée fixe
-`172.30.80.4` ; FastAPI ne fait confiance à `X-Forwarded-Proto` que depuis
-Caddy (`172.30.80.2`) et le frontend. L'appel SSR transmet ce seul en-tête avec
-la valeur `https`. Le nom `app` doit figurer dans `ALLOWED_HOSTS`.
+`172.30.80.4`, également fournie au backend par `SSR_HTTP_CLIENT_IP` dans
+Compose. FastAPI autorise son HTTP uniquement pour GET/HEAD sous `/api/v1/`
+avec l'en-tête Host exact `app:8000`. Le nom `app` doit figurer dans
+`ALLOWED_HOSTS`. L'adresse de connexion est conservée avant le traitement des
+en-têtes de proxy ; `X-Forwarded-For` ne peut pas accorder cette exception.
+Les en-têtes de proxy du frontend sont ignorés, y compris celui qu'émet
+l'ancienne image SSR. Seul Caddy (`172.30.80.2`) doit figurer dans
+`TRUSTED_PROXY_IPS`. Une ancienne liste contenant aussi `172.30.80.4` reste
+compatible : le backend ne traite pas le frontend comme un proxy.
+`ENFORCE_HTTPS=true`, TrustedHost et l'exception locale `/healthz` sont conservés.
+Ne pas ajouter le sous-réseau Docker entier aux proxies de confiance.
 
 Le backend inclut le paquet Python `cahier-rag` sans extras d'embeddings, car
 les routes FastAPI importent ses contrats et types d'erreur. Le contexte et
@@ -66,7 +74,7 @@ de l'exemple et les paramètres suivants dans `.env.deploy` :
 | `FRONTEND_IMAGE_TAG` | Tag immuable de l'image SSR ; conserver le tag précédent. |
 | `LAN_BIND_IP` | Adresse IPv4 LAN déjà utilisée pour Caddy. |
 | `ALLOWED_HOSTS` | Inclure `cahierdedoleances.fr`, `app`, `localhost` et `127.0.0.1`. |
-| `TRUSTED_PROXY_IPS` | `172.30.80.2,172.30.80.4` après vérification du réseau privé. |
+| `TRUSTED_PROXY_IPS` | `172.30.80.2` (Caddy) après vérification du réseau privé. |
 | `EXPECTED_ALEMBIC_REVISION` | Révision cible `forms_statistics_v1` pour les contrôles post-migration. |
 | `MIGRATION_FROM_REVISION` | À régler à la révision constatée par le contrôle pré-migration. |
 | `MIGRATION_TARGET_REVISION` | `forms_statistics_v1`. |
@@ -273,6 +281,54 @@ administrative testée lors de l'essai de restauration. Ne pas restaurer directe
 sur la base active sans avoir arrêté les applications et validé l'identité de la
 cible. Après retour arrière, vérifier révision, santé, données, routes publiques,
 recherche, authentification et e-mails avant réouverture.
+
+## Correctif DEPLOY-002 sur une installation SSR déjà déployée
+
+Ce correctif modifie uniquement le transport HTTP du backend. Il ne nécessite
+aucune migration, restauration de données ou nouvelle publication des statistiques.
+
+Après récupération du correctif sur Wallace :
+
+1. Conserver l'image backend courante et noter son tag pour le retour arrière.
+   Régler uniquement `APP_IMAGE_TAG` dans le fichier privé `.env.deploy` sur un
+   nouveau tag, par exemple `ssr-002`. Conserver `FRONTEND_IMAGE_TAG=ssr-001`
+   si c'est l'image frontend actuellement déployée.
+2. Vérifier `ALLOWED_HOSTS` (dont `app`) et l'adresse fixe du frontend
+   `172.30.80.4` sur le réseau privé. Compose fournit automatiquement
+   `SSR_HTTP_CLIENT_IP=172.30.80.4` au backend et conserve
+   `FORWARDED_ALLOW_IPS=""` pour éviter qu'Uvicorn/Gunicorn ne réécrive
+   l'adresse de connexion avant le middleware applicatif. Conserver cette
+   valeur vide. La liste privée `TRUSTED_PROXY_IPS` n'a pas à être élargie ;
+   l'ancienne valeur incluant le frontend fonctionne aussi avec le correctif.
+3. Construire puis recréer uniquement FastAPI :
+
+   ```bash
+   docker compose --env-file .env.deploy -f compose.deploy.yml build app
+   docker compose --env-file .env.deploy -f compose.deploy.yml up -d --no-deps --no-build app
+   docker compose --env-file .env.deploy -f compose.deploy.yml ps app
+   ```
+
+4. Attendre l'état `healthy`, puis vérifier depuis le conteneur Node, sans
+   en-tête de proxy et sans suivre les redirections :
+
+   ```bash
+   docker compose --env-file .env.deploy -f compose.deploy.yml exec -T frontend node --input-type=module -e '
+   const r = await fetch("http://app:8000/api/v1/forms", {redirect: "manual"});
+   console.log("HTTP", r.status);
+   if (r.status !== 200) process.exit(1);
+   '
+   curl -fsS https://cahierdedoleances.fr/enquetes -o /dev/null
+   curl -fsS https://cahierdedoleances.fr/api/v1/forms -o /dev/null
+   ```
+
+5. Tester dans le navigateur les enquêtes, un formulaire et son tableau de bord
+   `/forms/ID/dashboard` avec des statistiques déjà publiées. Vérifier l'absence
+   de `ERR_SSL_WRONG_VERSION_NUMBER` dans les logs frontend.
+
+Si nécessaire, remettre `APP_IMAGE_TAG` au tag backend précédent et exécuter
+uniquement la commande `up -d --no-deps --no-build app` ci-dessus. Aucun retour
+arrière de schéma ou de statistiques n'est associé à ce correctif. Le retour
+à l'ancien backend peut rétablir le problème SSR initial.
 
 ## État non vérifié sur Wallace
 

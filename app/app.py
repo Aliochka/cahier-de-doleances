@@ -72,16 +72,47 @@ app.add_middleware(TimeoutMiddleware)
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 
 
+class TransportProxyHeadersMiddleware(ProxyHeadersMiddleware):
+    """Keep the socket peer before proxy processing; SSR is not a reverse proxy."""
+
+    def __init__(self, app, *, trusted_hosts, ssr_http_client_ip):
+        super().__init__(app, trusted_hosts=trusted_hosts)
+        self.ssr_http_client_ip = ssr_http_client_ip
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] in {"http", "websocket"}:
+            scope = dict(scope)
+            client = scope.get("client")
+            scope["cahier.transport_client"] = client
+            # Ignore SSR forwarding headers even if an older .env.deploy still
+            # lists its IP in TRUSTED_PROXY_IPS. Only its narrow HTTP API
+            # exception below applies; it cannot claim to be an HTTPS proxy.
+            if client and client[0] == self.ssr_http_client_ip:
+                return await self.app(scope, receive, send)
+        return await super().__call__(scope, receive, send)
+
+
 class LocalHealthHTTPSRedirectMiddleware(HTTPSRedirectMiddleware):
     async def __call__(self, scope, receive, send):
-        # Only the container's loopback readiness probe may use plain HTTP.
-        client = scope.get("client")
-        if (
+        # Never identify an internal client from X-Forwarded-For: the proxy
+        # middleware may already have rewritten scope["client"].
+        client = scope.get("cahier.transport_client")
+        local_health = (
             scope["type"] == "http"
             and scope.get("path") == "/healthz"
             and client
             and client[0] in {"127.0.0.1", "::1"}
-        ):
+        )
+        internal_api = (
+            scope["type"] == "http"
+            and settings.SSR_HTTP_CLIENT_IP
+            and client
+            and client[0] == settings.SSR_HTTP_CLIENT_IP
+            and scope.get("method") in {"GET", "HEAD"}
+            and scope.get("path", "").startswith("/api/v1/")
+            and [value for name, value in scope["headers"] if name == b"host"] == [b"app:8000"]
+        )
+        if local_health or internal_api:
             await self.app(scope, receive, send)
         else:
             await super().__call__(scope, receive, send)
@@ -92,8 +123,13 @@ if settings.ENFORCE_HTTPS:
     app.add_middleware(LocalHealthHTTPSRedirectMiddleware)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.ALLOWED_HOSTS or ["*"])
 app.add_middleware(AccountSecurityMiddleware)
-# Added last, executed first: scheme must be resolved before HTTPS redirection.
-app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.TRUSTED_PROXY_IPS)
+# Added last, executed first: retain the socket peer, then resolve proxy scheme
+# before account/host validation and HTTPS redirection.
+app.add_middleware(
+    TransportProxyHeadersMiddleware,
+    trusted_hosts=settings.TRUSTED_PROXY_IPS,
+    ssr_http_client_ip=settings.SSR_HTTP_CLIENT_IP,
+)
 
 
 # -----------------------------------------------------------------------------

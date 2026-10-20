@@ -71,6 +71,22 @@ def test_http_lan_requires_explicit_insecure_cookie_opt_in():
         Settings(lan_env() | {"BASE_URL": "https://192.168.1.56:8000"})
 
 
+@pytest.mark.parametrize(
+    "peer",
+    ["*", "172.30.80.0/24", "app", "198.51.100.7", "8.8.8.8", "127.0.0.1", "::1", "0.0.0.0"],
+)
+def test_internal_ssr_requires_one_private_ipv4(peer):
+    with pytest.raises(ValueError):
+        Settings(lan_env() | {"SSR_HTTP_CLIENT_IP": peer})
+
+
+def test_internal_ssr_http_is_opt_in_and_does_not_change_proxy_trust():
+    assert Settings(lan_env()).SSR_HTTP_CLIENT_IP == ""
+    configured = Settings(lan_env() | {"SSR_HTTP_CLIENT_IP": "172.30.80.4"})
+    assert configured.SSR_HTTP_CLIENT_IP == "172.30.80.4"
+    assert configured.TRUSTED_PROXY_IPS == []
+
+
 def test_access_logs_redact_magic_link_tokens():
     from app.logging_filters import RedactMagicLinkFilter
 
@@ -268,7 +284,10 @@ def test_deployment_compose_owns_no_postgres_or_data_volume():
     assert "ports" not in compose["services"]["app"]
     assert "ports" not in compose["services"]["frontend"]
     assert compose["services"]["frontend"]["environment"]["API_BASE_URL"] == "http://app:8000"
-    assert compose["services"]["frontend"]["networks"]["proxy-private"]["ipv4_address"] == "172.30.80.4"
+    assert (
+        compose["services"]["frontend"]["networks"]["proxy-private"]["ipv4_address"]
+        == "172.30.80.4"
+    )
     assert compose["services"]["app"]["networks"]["proxy-private"]["ipv4_address"] == "172.30.80.3"
     assert "postgres-existing" not in compose["services"]["caddy"]["networks"]
     assert compose["networks"]["proxy-private"]["internal"]
@@ -281,13 +300,20 @@ def test_deployment_compose_owns_no_postgres_or_data_volume():
     }
     assert "alembic" not in str(compose)
     assert compose["services"]["app"]["environment"]["FORWARDED_ALLOW_IPS"] == ""
+    assert (
+        compose["services"]["app"]["environment"]["SSR_HTTP_CLIENT_IP"]
+        == compose["services"]["frontend"]["networks"]["proxy-private"]["ipv4_address"]
+    )
 
 
 def test_caddy_routes_backend_paths_and_frontend_fallback():
     from pathlib import Path
 
     caddyfile = Path("Caddyfile").read_text()
-    assert "@backend path /api/* /auth /auth/* /bookmarks/* /healthz /robots.txt /sitemap.xml" in caddyfile
+    assert (
+        "@backend path /api/* /auth /auth/* /bookmarks/* /healthz /robots.txt /sitemap.xml"
+        in caddyfile
+    )
     assert "reverse_proxy app:8000" in caddyfile
     assert "reverse_proxy frontend:3000" in caddyfile
 
@@ -393,7 +419,9 @@ def test_health_success_on_test_database(test_engine, monkeypatch):
         assert client.get("/healthz").json() == {"status": "ok"}
 
 
-def test_https_proxy_order_trust_and_local_health_probe():
+@pytest.mark.parametrize("trusted_proxies", ["172.30.80.2", "172.30.80.2,172.30.80.4"])
+@pytest.mark.parametrize("ssr_enabled", [False, True])
+def test_https_proxy_order_trust_and_local_health_probe(trusted_proxies, ssr_enabled):
     env = (
         dict(os.environ)
         | lan_env()
@@ -402,7 +430,8 @@ def test_https_proxy_order_trust_and_local_health_probe():
             "ALLOWED_HOSTS": "cahierdedoleances.fr,app,localhost",
             "COOKIE_SECURE": "true",
             "ENFORCE_HTTPS": "true",
-            "TRUSTED_PROXY_IPS": "172.30.80.2,172.30.80.4",
+            "TRUSTED_PROXY_IPS": trusted_proxies,
+            "SSR_HTTP_CLIENT_IP": "172.30.80.4" if ssr_enabled else "",
             "DATABASE_URL": "postgresql:///unused",
         }
     )
@@ -410,32 +439,97 @@ def test_https_proxy_order_trust_and_local_health_probe():
         env.pop(name, None)
     code = """
 import asyncio
+from contextlib import nullcontext
+from fastapi import Request
 from app.app import app
+from app.config import settings
+from app.routers import api_forms
 
-async def request(peer, path, proto=None, host="cahierdedoleances.fr"):
+# Exercise the actual forms route and middleware stack, with no database access.
+api_forms.SessionLocal = lambda: nullcontext(None)
+api_forms.list_forms = lambda db: []
+
+@app.api_route("/api/v1/_transport_probe", methods=["GET", "HEAD", "POST"])
+async def transport_probe(request: Request):
+    return {"scheme": request.scope["scheme"], "client": request.scope["client"]}
+
+async def request(peer, path, proto=None, host="cahierdedoleances.fr", *,
+                  extra=(), method="GET", scheme="http"):
     messages = []
     headers = [(b"host", host.encode())]
     if proto:
         headers.append((b"x-forwarded-proto", proto.encode()))
+    headers.extend(extra)
     scope = {"type": "http", "asgi": {"version": "3.0"}, "http_version": "1.1",
-             "method": "GET", "scheme": "http", "path": path,
+             "method": method, "scheme": scheme, "path": path,
              "raw_path": path.encode(), "query_string": b"", "root_path": "",
-             "headers": headers, "client": (peer, 1234), "server": ("app", 8000)}
+             "headers": headers, "client": (peer, 1234) if peer else None,
+             "server": ("app", 8000)}
     async def receive():
         return {"type": "http.request", "body": b"", "more_body": False}
     async def send(message):
         messages.append(message)
     await app(scope, receive, send)
-    return next(m for m in messages if m["type"] == "http.response.start")
+    start = next(m for m in messages if m["type"] == "http.response.start")
+    start["body"] = b"".join(m.get("body", b"") for m in messages)
+    return start
 
 async def main():
     path = "/openapi.json"
     assert (await request("172.30.80.2", path, "https"))["status"] == 200
-    assert (await request("172.30.80.4", path, "https", "app:8000"))["status"] == 200
+    # Actual TLS and trusted Caddy preserve public access.
+    assert (await request("198.51.100.7", path, scheme="https"))["status"] == 200
+    assert (await request("172.30.80.4", path, "https", "app:8000"))["status"] == (
+        307 if settings.SSR_HTTP_CLIENT_IP or "172.30.80.4" not in settings.TRUSTED_PROXY_IPS
+        else 200
+    )
     assert (await request("172.30.80.5", path, "https", "app:8000"))["status"] == 307
     assert (await request("198.51.100.7", path, "https"))["status"] == 307
     assert (await request("172.30.80.2", path, "http"))["status"] == 307
     assert (await request("172.30.80.2", path, "https", "evil.example"))["status"] == 400
+    api = "/api/v1/forms"
+    probe = "/api/v1/_transport_probe"
+    if settings.SSR_HTTP_CLIENT_IP:
+        for proto in (None, "http", "https"):
+            response = await request("172.30.80.4", api, proto, "app:8000")
+            assert response["status"] == 200, response
+            assert response["body"] == b"[]"
+        # The SSR remains an HTTP client even with legacy forwarding headers.
+        import json
+        response = await request("172.30.80.4", probe, "https", "app:8000",
+                                 extra=[(b"x-forwarded-for", b"127.0.0.1")])
+        assert json.loads(response["body"]) == {"scheme": "http", "client": ["172.30.80.4", 1234]}
+        assert (await request("172.30.80.4", probe, host="app:8000", method="HEAD"))["status"] == 200
+        for method in ("POST", "PUT", "DELETE", "OPTIONS"):
+            assert (await request("172.30.80.4", probe, "https", "app:8000", method=method))["status"] == 307
+        assert (await request("172.30.80.4", api, "https"))["status"] == 307
+        assert (await request("172.30.80.4", "/auth", "https", "app:8000"))["status"] == 307
+        assert (await request("172.30.80.4", api, host="app:8001"))["status"] == 307
+        assert (await request("172.30.80.4", api, host="evil.example"))["status"] == 400
+        assert (await request("172.30.80.4", api, host="app:8000",
+                              extra=[(b"host", b"app:8000")]))["status"] == 307
+    else:
+        # The HTTP exception is disabled outside the configured Compose stack.
+        assert (await request("172.30.80.4", api, host="app:8000"))["status"] == 307
+
+    spoofed = [
+        (b"x-forwarded-for", b"172.30.80.4"),
+        (b"x-forwarded-proto", b"https"),
+        (b"x-forwarded-host", b"app:8000"),
+        (b"x-real-ip", b"172.30.80.4"),
+        (b"forwarded", b'for=172.30.80.4;proto=https;host="app:8000"'),
+    ]
+    for peer in (None, "172.30.80.5", "198.51.100.7"):
+        for headers in [[header] for header in spoofed] + [spoofed]:
+            response = await request(peer, api, host="app:8000", extra=headers)
+            assert response["status"] == 307, (peer, headers, response)
+            assert dict(response["headers"])[b"location"] == b"https://app:8000/api/v1/forms"
+    # A public request forwarded by Caddy cannot acquire the SSR exception via XFF.
+    for forwarded_peer in (b"172.30.80.4", b"198.51.100.7, 172.30.80.4"):
+        assert (await request("172.30.80.2", api, "http", "app:8000",
+                              extra=[(b"x-forwarded-for", forwarded_peer)]))["status"] == 307
+    assert (await request("172.30.80.2", api, "https",
+                          extra=[(b"x-forwarded-for", b"198.51.100.7")]))["status"] == 200
     # Prove the real readiness route is reached without connecting to any DB.
     from types import SimpleNamespace
     from app.routers import health
@@ -446,14 +540,21 @@ async def main():
         def execute(self, query): pass
     health.engine = SimpleNamespace(connect=Connection)
     assert (await request("127.0.0.1", "/healthz", host="localhost"))["status"] == 200
+    assert (await request("::1", "/healthz", host="localhost"))["status"] == 200
+    assert (await request("172.30.80.2", "/healthz", "https"))["status"] == 200
     assert (await request("198.51.100.7", "/healthz"))["status"] == 307
     assert (await request("127.0.0.1", path))["status"] == 307
+    for peer in ("172.30.80.2", "198.51.100.7"):
+        assert (await request(peer, "/healthz", "http", extra=[
+            (b"x-forwarded-for", b"127.0.0.1")]))["status"] == 307
+    if settings.SSR_HTTP_CLIENT_IP:
+        assert (await request("172.30.80.4", "/healthz", "https", "app:8000",
+                              extra=[(b"x-forwarded-for", b"127.0.0.1")]))["status"] == 307
 
 asyncio.run(main())
 """
-    subprocess.run(
-        [sys.executable, "-c", code], env=env, check=True, capture_output=True, text=True
-    )
+    result = subprocess.run([sys.executable, "-c", code], env=env, capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
 
 
 def test_disabled_email_login_does_not_issue_or_send_tokens(monkeypatch):

@@ -63,6 +63,15 @@ class Settings:
         self.TRUSTED_PROXY_IPS = [
             h.strip() for h in env.get("TRUSTED_PROXY_IPS", "").split(",") if h.strip()
         ]
+        # One transport peer, never a proxy range or a value supplied by a header.
+        self.SSR_HTTP_CLIENT_IP = env.get("SSR_HTTP_CLIENT_IP", "").strip()
+        if self.SSR_HTTP_CLIENT_IP:
+            peer = ipaddress.ip_address(self.SSR_HTTP_CLIENT_IP)
+            if peer.version != 4 or not any(
+                peer in ipaddress.ip_network(network)
+                for network in ("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16")
+            ):
+                raise ValueError("SSR_HTTP_CLIENT_IP must be one private Docker IPv4 address")
         self.SECRET_KEY = env.get("SECRET_KEY", "")
         if self.SECRET_KEY == "your-secret-key-change-in-production":
             raise ValueError("The placeholder SECRET_KEY is forbidden")
