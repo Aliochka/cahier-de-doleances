@@ -243,7 +243,7 @@ def test_vector_migration_roundtrip_only_on_empty_test_storage(request):
                 connection.execute(
                     text("SELECT version_num FROM public.rag_alembic_version")
                 ).scalar_one()
-                == "rag_0003"
+                == "rag_0006"
             )
     finally:
         target.dispose()

@@ -46,7 +46,7 @@ def live_context(query, ranked, scope, counter):
             config,
             config.document_budget,
             sample_hash=scope.sample_hash,
-            method="H1+R2-personal-all-rag007",
+            method=getattr(scope, "retrieval_method", "H1+R2-personal-all-rag007"),
             rank=rank,
             role="primary",
         )
@@ -73,9 +73,11 @@ def live_context(query, ranked, scope, counter):
     return compact(context), context
 
 
-def ask(root, query, *, env_file=None, progress=lambda stage: None):
+def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag007", ann=False):
     if not isinstance(query, str) or not query.strip() or len(query) > 1000:
         raise ValueError("Question de 1 à 1000 caractères requise.")
+    if corpus not in {"rag007", "rag026"}:
+        raise ValueError("Corpus inconnu.")
     from cahier_rag.__main__ import open_store
     from cahier_rag.config import load_settings
     from cahier_rag.context.experiments import tokenizer_location
@@ -98,35 +100,46 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None):
     local = root / "evaluation/local/rag025"
     selected = json.loads((local / "selected.json").read_text())
     scope = CorpusScope(json.loads((root / "evaluation/local/rag007/corpus.json").read_text()))
-    qid = "personal:" + digest(query)
+    corpus_size = len(scope.documents)
+    if corpus == "rag026":
+        local = root / "evaluation/local/rag026/personal"
+    qid = ("personal:" if corpus == "rag007" else "personal:rag026:") + digest(query)
     timings = {}
     started = time.perf_counter()
-    progress("Recherche H1 sur les 20 000 unités")
+    progress("Recherche H1 sur les 20 000 unités" if corpus == "rag007" else "Recherche H1 RAG-026")
     with open_store(load_settings(env_file=env_file)) as storage:
-        lexical = FlexibleEngine(storage.guard, scope)
-        lexical.validate()
-        prepared = load_prepared(root / "evaluation/local/rag013/bge-B", scope)
-        store = VectorStore(storage.guard, scope, recipe(prepared))
-        embedding = EmbeddingEngine(
-            TransformersBackend(
-                MODELS["bge-m3"], root / "models", device="cuda", precision="bfloat16"
+        if corpus == "rag026":
+            from cahier_rag.fullcorpus.personal import retrieve
+
+            progress("Recherche H1 sur le corpus complet RAG-026")
+            ranked, traces, vector_recipe, scope, corpus_size = retrieve(
+                storage.guard, root, query, ann=ann
             )
-        )
-        vector = VectorEngine(store, embedding)
-        try:
-            vector.load()
-            batch = next(embedding.encode_queries([EmbeddingInput(qid, query, digest(query))]))
-            parts = [
-                store.search(batch.vectors[0], limit=50, split=s)
-                for s in ("development", "evaluation")
-            ]
-            right = merge_vector_partitions(parts)
-            left = lexical.search(query, limit=50, split=None)
-            ranked, traces = fuse({"lexical": left, "vector": right}, k=60)
-            ranked = list(ranked[:50])
-            vector_recipe = store.configuration
-        finally:
-            vector.close()
+        else:
+            lexical = FlexibleEngine(storage.guard, scope)
+            lexical.validate()
+            prepared = load_prepared(root / "evaluation/local/rag013/bge-B", scope)
+            store = VectorStore(storage.guard, scope, recipe(prepared))
+            embedding = EmbeddingEngine(
+                TransformersBackend(
+                    MODELS["bge-m3"], root / "models", device="cuda", precision="bfloat16"
+                )
+            )
+            vector = VectorEngine(store, embedding)
+            try:
+                vector.load()
+                batch = next(embedding.encode_queries([EmbeddingInput(qid, query, digest(query))]))
+                parts = [
+                    store.search(batch.vectors[0], limit=50, split=s)
+                    for s in ("development", "evaluation")
+                ]
+                right = merge_vector_partitions(parts)
+                left = lexical.search(query, limit=50, split=None)
+                ranked, traces = fuse({"lexical": left, "vector": right}, k=60)
+                ranked = list(ranked[:50])
+                vector_recipe = store.configuration
+            finally:
+                vector.close()
     timings["retrieval_seconds"] = time.perf_counter() - started
     if sum(len(r.document.text) for r in ranked) > 20000000:
         raise ValueError("Lot de reclassement supérieur à 20 millions de caractères.")
@@ -191,7 +204,7 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None):
         "query": query,
         "query_id": qid,
         "corpus_hash": scope.sample_hash,
-        "corpus_size": len(scope.documents),
+        "corpus_size": corpus_size,
         "partition_filter": None,
         "vector_recipe": vector_recipe,
         "reranker_recipe": reranker_recipe,
@@ -213,5 +226,5 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None):
         "experimental": True,
         "record_id": record_id,
         "timings": timings,
-        "corpus_size": len(scope.documents),
+        "corpus_size": corpus_size,
     }

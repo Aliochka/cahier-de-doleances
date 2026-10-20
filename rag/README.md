@@ -630,3 +630,9 @@ Le [rapport d’audit](rapport-rag-024.md) compare les dix-sept réponses commun
 ### RAG-025 — RAG personnel local
 
 L’interface de questions libres combine H1, le reranker Qwen3-4B et Qwen3-14B sur les 20 000 unités. Voir [personnel.md](personnel.md) pour démarrer et arrêter le service local, et [rapport-rag-025.md](rapport-rag-025.md) pour les corrections, les essais et les limites de fidélité.
+
+## Corpus complet local
+
+RAG-026 : [résultats, performances et limites](rapport-rag-026.md),
+[commandes et reprise](corpus-complet.md). Le corpus expérimental reste le défaut
+de l’interface personnelle ; le corpus complet se sélectionne explicitement.

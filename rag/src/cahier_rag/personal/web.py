@@ -12,7 +12,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, Response
 ASSETS = Path(__file__).parent
 
 
-def create_app(service, *, port=8770):
+def create_app(service, *, port=8770, corpus="rag007"):
     token = secrets.token_urlsafe(32)
     origin = f"http://127.0.0.1:{port}"
     executor = ThreadPoolExecutor(max_workers=1)
@@ -74,7 +74,9 @@ def create_app(service, *, port=8770):
             ),
             "token": token,
             "experimental": True,
-            "scope": "20 000 unités RAG-007 ; questions libres",
+            "scope": "20 000 unités RAG-007 ; questions libres"
+            if corpus == "rag007"
+            else "Corpus complet RAG-026 ; questions libres",
         }
 
     def work(identifier, query):
@@ -131,17 +133,29 @@ def create_app(service, *, port=8770):
     return app
 
 
-def serve(root, *, port=8770, env_file=None):
+def serve(root, *, port=8770, env_file=None, corpus="rag007", ann=False):
     if not 1024 <= port <= 65535:
         raise ValueError("Port invalide.")
     if not (root / "evaluation/local/rag025/selected.json").exists():
         raise ValueError("Recette personnelle sélectionnée requise.")
+    if corpus == "rag026":
+        from cahier_rag.__main__ import open_store
+        from cahier_rag.config import load_settings
+        from cahier_rag.fullcorpus.store import FullStore
+
+        with open_store(load_settings(env_file=env_file)) as storage:
+            if not FullStore(storage.guard, "full").state()["verified"]:
+                raise ValueError("Corpus complet non vérifié ; conserver --corpus rag007.")
     import uvicorn
 
     from cahier_rag.personal.live import ask
 
     app = create_app(
-        lambda query, progress: ask(root, query, env_file=env_file, progress=progress), port=port
+        lambda query, progress: ask(
+            root, query, env_file=env_file, progress=progress, corpus=corpus, ann=ann
+        ),
+        port=port,
+        corpus=corpus,
     )
     print(
         f"RAG personnel expérimental : http://127.0.0.1:{port} — Ctrl+C pour arrêter.", flush=True

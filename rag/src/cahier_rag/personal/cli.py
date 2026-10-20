@@ -22,11 +22,15 @@ def main(argv=None):
     serve = sub.add_parser("serve")
     serve.add_argument("--port", type=int, default=8770)
     serve.add_argument("--env-file")
+    serve.add_argument("--corpus", choices=["rag007", "rag026"], default="rag007")
+    serve.add_argument("--ann", action="store_true")
     args = p.parse_args(argv)
     if args.command == "serve":
         from cahier_rag.personal.web import serve
 
-        return serve(args.root, port=args.port, env_file=args.env_file)
+        return serve(
+            args.root, port=args.port, env_file=args.env_file, corpus=args.corpus, ann=args.ann
+        )
     from cahier_rag.embeddings.snapshots import sha256_file
     from cahier_rag.personal.backend import Generator
 
