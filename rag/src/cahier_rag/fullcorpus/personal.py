@@ -1,5 +1,6 @@
 """Adaptateur facultatif de l'interface personnelle ; manifeste complet jamais chargé en RAM."""
 
+import time
 from types import SimpleNamespace
 
 from cahier_rag.embeddings.core import EmbeddingEngine, EmbeddingInput
@@ -10,7 +11,7 @@ from cahier_rag.fullcorpus.search import FullSearch
 from cahier_rag.fullcorpus.store import FullStore
 
 
-def retrieve(guard, root, query, *, ann=False):
+def retrieve(guard, root, query, *, ann=False, profile="rag026"):
     store = FullStore(guard, "full")
     state = store.state()
     if not state["verified"]:
@@ -19,11 +20,46 @@ def retrieve(guard, root, query, *, ann=False):
         TransformersBackend(MODELS["bge-m3"], root / "models", device="cuda", precision="bfloat16")
     )
     try:
+        started = time.perf_counter()
         engine.load()
+        loaded = time.perf_counter()
         vector = next(
             engine.encode_queries([EmbeddingInput("query", query, fingerprint(query))])
         ).vectors[0]
-        results, traces, measurements = FullSearch(store).hybrid(query, vector, ann=ann)
+        encoded = time.perf_counter()
+        if profile == "rag027":
+            from cahier_rag.search.hybrid.core import fuse
+            from cahier_rag.tuning.lexical import TunedSearch
+            from cahier_rag.tuning.selection import load_selection
+            from cahier_rag.tuning.vector import AnnConfig, ann_search
+
+            selection = load_selection(
+                root / "evaluation/local/rag027/selection.json", state["chain_hash"]
+            )
+            search = TunedSearch(store)
+            left = search.lexical(query, limit=50)
+            lexical_end = time.perf_counter()
+            if ann:
+                right, trace = ann_search(store, vector, AnnConfig(**selection["ann"]), limit=50)
+            else:
+                right = search.vector(vector, limit=50)
+            vector_end = time.perf_counter()
+            results, traces = fuse({"lexical": left, "vector": right}, k=60)
+            measurements = dict(
+                lexical_seconds=lexical_end - encoded,
+                vector_seconds=vector_end - lexical_end,
+                fusion_seconds=time.perf_counter() - vector_end,
+                search_total_seconds=time.perf_counter() - encoded,
+                selection_hash=fingerprint(selection),
+            )
+        elif profile == "rag026":
+            results, traces, measurements = FullSearch(store).hybrid(query, vector, ann=ann)
+            measurements["search_total_seconds"] = measurements.pop("total_seconds")
+        else:
+            raise ValueError("Profil de recherche inconnu.")
+        measurements.update(
+            embedding_load_seconds=loaded - started, query_encoding_seconds=encoded - loaded
+        )
     finally:
         engine.close()
     results = list(results[:50])
@@ -39,6 +75,7 @@ def retrieve(guard, root, query, *, ann=False):
     recipe = dict(
         state["manifest"],
         vector_search="HNSW" if ann else "exact",
+        search_profile=profile,
         aggregation="maximum segment cosine",
         measurements=measurements,
     )

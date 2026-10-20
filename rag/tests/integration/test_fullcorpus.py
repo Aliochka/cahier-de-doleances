@@ -35,6 +35,8 @@ def full_store(pg_source):
         yield store
     finally:
         with guard.transaction() as (c, _):
+            c.execute(text("DELETE FROM rag_tuning.term_statistics WHERE space_id='pilot100k'"))
+            c.execute(text("DELETE FROM rag_tuning.statistics WHERE space_id='pilot100k'"))
             c.execute(text("DELETE FROM rag_full.segments WHERE space_id='pilot100k'"))
             c.execute(text("DELETE FROM rag_full.documents WHERE space_id='pilot100k'"))
             c.execute(text("DELETE FROM rag_full.spaces WHERE space_id='pilot100k'"))

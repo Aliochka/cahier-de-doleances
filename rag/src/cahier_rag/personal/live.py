@@ -73,11 +73,24 @@ def live_context(query, ranked, scope, counter):
     return compact(context), context
 
 
-def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag007", ann=False):
+def ask(
+    root,
+    query,
+    *,
+    env_file=None,
+    progress=lambda stage: None,
+    corpus="rag007",
+    ann=False,
+    search_profile="rag026",
+):
     if not isinstance(query, str) or not query.strip() or len(query) > 1000:
         raise ValueError("Question de 1 à 1000 caractères requise.")
     if corpus not in {"rag007", "rag026"}:
         raise ValueError("Corpus inconnu.")
+    if search_profile not in {"rag026", "rag027"} or (
+        search_profile == "rag027" and corpus != "rag026"
+    ):
+        raise ValueError("Profil de recherche incompatible avec le corpus.")
     from cahier_rag.__main__ import open_store
     from cahier_rag.config import load_settings
     from cahier_rag.context.experiments import tokenizer_location
@@ -102,7 +115,8 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
     scope = CorpusScope(json.loads((root / "evaluation/local/rag007/corpus.json").read_text()))
     corpus_size = len(scope.documents)
     if corpus == "rag026":
-        local = root / "evaluation/local/rag026/personal"
+        # All new full-corpus personal runs stay outside frozen RAG-026 artefacts.
+        local = root / "evaluation/local/rag027/personal" / search_profile
     qid = ("personal:" if corpus == "rag007" else "personal:rag026:") + digest(query)
     timings = {}
     started = time.perf_counter()
@@ -113,7 +127,7 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
 
             progress("Recherche H1 sur le corpus complet RAG-026")
             ranked, traces, vector_recipe, scope, corpus_size = retrieve(
-                storage.guard, root, query, ann=ann
+                storage.guard, root, query, ann=ann, profile=search_profile
             )
         else:
             lexical = FlexibleEngine(storage.guard, scope)
@@ -141,6 +155,8 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
             finally:
                 vector.close()
     timings["retrieval_seconds"] = time.perf_counter() - started
+    if corpus == "rag026":
+        timings.update(vector_recipe["measurements"])
     if sum(len(r.document.text) for r in ranked) > 20000000:
         raise ValueError("Lot de reclassement supérieur à 20 millions de caractères.")
     progress("Reclassement Qwen3-Reranker-4B")
@@ -150,6 +166,9 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
     positions = {}
     try:
         reranker.load()
+        timings["reranker_load_seconds"] = time.perf_counter() - before
+        score_started = time.perf_counter()
+        timings["reranker_score_seconds"] = 0.0
         for result in ranked:
             pairs = []
             best = None
@@ -157,14 +176,18 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
             for pair in segments(qid, query, result.document, [reranker], PreparationConfig()):
                 pairs.append(pair)
                 if len(pairs) == 4:
+                    score_call = time.perf_counter()
                     values = reranker.score(pairs)
+                    timings["reranker_score_seconds"] += time.perf_counter() - score_call
                     spans.extend(
                         {"start": p.start, "end": p.end, "score": s}
                         for p, s in zip(pairs, values, strict=True)
                     )
                     pairs = []
             if pairs:
+                score_call = time.perf_counter()
                 values = reranker.score(pairs)
+                timings["reranker_score_seconds"] += time.perf_counter() - score_call
                 spans.extend(
                     {"start": p.start, "end": p.end, "score": s}
                     for p, s in zip(pairs, values, strict=True)
@@ -174,6 +197,7 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
             best = max(s["score"] for s in spans)
             scores[result.document.document_id] = best
             positions[result.document.document_id] = spans
+        timings["reranker_inference_and_preparation_seconds"] = time.perf_counter() - score_started
         reranker_recipe = reranker.recipe()
     finally:
         reranker.close()
@@ -183,11 +207,15 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
         key=lambda r: (-r.score, r.document.document_id),
     )
     progress("Construction S2/P1, budget 8 192 tokens")
+    assembly_started = time.perf_counter()
     path, settings = tokenizer_location(root)
     document, context = live_context(query, ranked, scope, LocalTokenizer(path, **settings))
+    timings["assembly_seconds"] = time.perf_counter() - assembly_started
     progress("Génération Qwen3-14B")
+    generation_started = time.perf_counter()
     backend = Generator(root / "models/judges", token_filter=selected["token_filter"])
-    cache = Cache(local / "personal-generation.sqlite3")
+    namespace = "rag025" if corpus == "rag007" else "rag027"
+    cache = Cache(local / "personal-generation.sqlite3", namespace=namespace)
     try:
         if backend.recipe() != selected["backend"]:
             raise ValueError("Recette personnelle différente du gel sélectionné.")
@@ -197,6 +225,14 @@ def ask(root, query, *, env_file=None, progress=lambda stage: None, corpus="rag0
     finally:
         backend.close()
         cache.close()
+    timings["generation_total_seconds"] = time.perf_counter() - generation_started
+    timings["generator_load_seconds"] = sum(
+        s["record"].get("load_seconds", 0) for s in result["stages"] if not s["reused"]
+    )
+    timings["generation_inference_seconds"] = sum(
+        s["record"].get("seconds", 0) for s in result["stages"] if not s["reused"]
+    )
+    timings["generation_cache_reused"] = all(s["reused"] for s in result["stages"])
     timings["total_seconds"] = time.perf_counter() - started
     record = {
         "version": 1,

@@ -12,10 +12,14 @@ PILOT = ("fiscalite-03", "fiscalite-05", "democratie-04", "democratie-05")
 
 
 class Cache:
-    def __init__(self, path):
+    def __init__(self, path, *, namespace="rag025"):
         path = Path(path).resolve()
-        if "rag025" not in path.parts or path.suffix != ".sqlite3":
-            raise ValueError("Cache indépendant rag025 requis.")
+        if (
+            namespace not in {"rag025", "rag026", "rag027"}
+            or namespace not in path.parts
+            or path.suffix != ".sqlite3"
+        ):
+            raise ValueError("Cache personnel indépendant et namespace explicite requis.")
         path.parent.mkdir(parents=True, exist_ok=True)
         self.connection = sqlite3.connect(path, timeout=10)
         path.chmod(0o600)

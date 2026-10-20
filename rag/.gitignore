@@ -16,3 +16,6 @@ artifacts/
 evaluation/local/
 # Le jeu de requêtes ne contient aucun texte du corpus.
 !evaluation/queries.json
+
+# Requêtes de performance sans texte citoyen ; protocole RAG-027 versionné.
+!evaluation/performance-rag027.json

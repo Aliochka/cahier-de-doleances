@@ -12,7 +12,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, Response
 ASSETS = Path(__file__).parent
 
 
-def create_app(service, *, port=8770, corpus="rag007"):
+def create_app(service, *, port=8770, corpus="rag007", search_profile="rag026", ann=False):
     token = secrets.token_urlsafe(32)
     origin = f"http://127.0.0.1:{port}"
     executor = ThreadPoolExecutor(max_workers=1)
@@ -76,7 +76,14 @@ def create_app(service, *, port=8770, corpus="rag007"):
             "experimental": True,
             "scope": "20 000 unités RAG-007 ; questions libres"
             if corpus == "rag007"
-            else "Corpus complet RAG-026 ; questions libres",
+            else "Corpus complet RAG-026 ; questions libres"
+            + (
+                f" — profil RAG-027, vectoriel {'approximatif' if ann else 'exact'}"
+                if search_profile == "rag027"
+                else ""
+            ),
+            "search_profile": search_profile,
+            "vector_search": "ANN" if ann else "exact",
         }
 
     def work(identifier, query):
@@ -88,9 +95,12 @@ def create_app(service, *, port=8770, corpus="rag007"):
             result = service(query, progress)
             with lock:
                 jobs[identifier].update(status="complete", result=result, phase="Terminé")
-        except Exception:
+        except Exception as exc:
             with lock:
+                failed_phase = jobs[identifier]["phase"]
                 jobs[identifier].update(
+                    failed_phase=failed_phase,
+                    error_type=type(exc).__name__,
                     status="error",
                     error="Calcul non terminé ou réponse non validée. Vérifier PostgreSQL, les modèles et les artefacts locaux ; aucune réponse réparée automatiquement.",
                     phase="Échec",
@@ -133,7 +143,7 @@ def create_app(service, *, port=8770, corpus="rag007"):
     return app
 
 
-def serve(root, *, port=8770, env_file=None, corpus="rag007", ann=False):
+def serve(root, *, port=8770, env_file=None, corpus="rag007", ann=False, search_profile="rag026"):
     if not 1024 <= port <= 65535:
         raise ValueError("Port invalide.")
     if not (root / "evaluation/local/rag025/selected.json").exists():
@@ -152,10 +162,18 @@ def serve(root, *, port=8770, env_file=None, corpus="rag007", ann=False):
 
     app = create_app(
         lambda query, progress: ask(
-            root, query, env_file=env_file, progress=progress, corpus=corpus, ann=ann
+            root,
+            query,
+            env_file=env_file,
+            progress=progress,
+            corpus=corpus,
+            ann=ann,
+            search_profile=search_profile,
         ),
         port=port,
         corpus=corpus,
+        search_profile=search_profile,
+        ann=ann,
     )
     print(
         f"RAG personnel expérimental : http://127.0.0.1:{port} — Ctrl+C pour arrêter.", flush=True

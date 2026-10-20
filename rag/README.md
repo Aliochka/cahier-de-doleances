@@ -636,3 +636,13 @@ L’interface de questions libres combine H1, le reranker Qwen3-4B et Qwen3-14B 
 RAG-026 : [résultats, performances et limites](rapport-rag-026.md),
 [commandes et reprise](corpus-complet.md). Le corpus expérimental reste le défaut
 de l’interface personnelle ; le corpus complet se sélectionne explicitement.
+
+### RAG-027 — Optimisation locale et validation du corpus complet
+
+Le lexical optimisé conserve la formule historique, avec statistiques de lexèmes
+matérialisées et suppression du sous-plan par document. La comparaison porte sur
+32 requêtes de développement/exploration ; l'ANN reste une approximation avec
+limites documentées. Le parcours personnel complet a été testé dans Chromium.
+Voir les [commandes et le choix du corpus](optimisation-recherche.md) et le
+[rapport de mesures RAG-027](rapport-rag-027.md). Aucun embedding documentaire
+ni index HNSW existant n'a été reconstruit.
