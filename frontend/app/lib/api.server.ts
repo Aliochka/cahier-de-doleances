@@ -126,3 +126,14 @@ export function search(
     ? createPublicApi(origin).search(query, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
+
+export function getFormContribution(
+  formId: string,
+  index = "1",
+  options: RequestOptions = {},
+): Promise<ApiResult<ContributionDetail>> {
+  const origin = backendOrigin();
+  return origin
+    ? createPublicApi(origin).getFormContribution(formId, index, options)
+    : Promise.resolve({ ok: false, kind: "configuration" });
+}

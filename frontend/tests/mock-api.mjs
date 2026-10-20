@@ -95,7 +95,7 @@ const fullContribution = (id) => ({
             id: "9007199254741994",
             position: 1,
             question: questions[2],
-            text: "Choix sélectionnés",
+            text: "Consultations citoyennes\nRéunions locales\nAutre proposition",
             selected_options: [
               {
                 id: "9007199254744993",
@@ -493,6 +493,28 @@ const server = createServer((request, response) => {
     );
     return;
   }
+  const browseMatch = /^\/api\/v1\/forms\/(\d+)\/contributions$/.exec(
+    url.pathname,
+  );
+  if (browseMatch) {
+    response.setHeader("Content-Type", "application/json");
+    if (browseMatch[1] !== forms[0].id) {
+      response.statusCode = 404;
+      response.end(JSON.stringify({ detail: "Introuvable" }));
+      return;
+    }
+    const rank = Math.min(
+      3,
+      Math.max(1, Number(url.searchParams.get("contrib") ?? "1")),
+    );
+    response.end(
+      JSON.stringify({
+        ...fullContribution(contributionIds[rank - 1]),
+        legacy_index: String(rank),
+      }),
+    );
+    return;
+  }
   const authorMatch = /^\/api\/v1\/authors\/(\d+)(\/forms)?$/.exec(
     url.pathname,
   );
@@ -638,9 +660,14 @@ const server = createServer((request, response) => {
               id: cursor ? "9007199254741992" : "9007199254741993",
               question_id: qid,
               contribution_id: "9007199254742993",
-              text: cursor
-                ? "Réponse du lot suivant."
-                : "Une réponse citoyenne.\n\nUn second paragraphe. <script>alert('non fiable')</script>",
+              text:
+                url.searchParams.get("other_only") === "true"
+                  ? cursor
+                    ? "Autre proposition suivante."
+                    : "Une autre proposition citoyenne."
+                  : cursor
+                    ? "Réponse du lot suivant."
+                    : "Une réponse citoyenne.\n\nUn second paragraphe. <script>alert('non fiable')</script>",
               submitted_at: cursor ? "2019-01-15T00:15:00" : null,
               is_truncated: !cursor,
               author: {

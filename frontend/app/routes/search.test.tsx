@@ -31,7 +31,7 @@ function renderPage(value = page) {
   return render(
     <RouterProvider
       router={createMemoryRouter([
-        { path: "*", element: <SearchResults page={value} state={state} /> },
+        { path: "*", element: <SearchResults results={value} state={state} /> },
       ])}
     />,
   );
@@ -128,9 +128,9 @@ it("conserve les curseurs suivant, précédent et premier sans imposer de profon
   };
   renderPage(current);
   for (const [label, cursor] of [
-    ["Page suivante", page.next_cursor],
-    ["Page précédente", current.previous_cursor],
-    ["Première page", current.first_cursor],
+    ["Afficher davantage de réponses", page.next_cursor],
+    ["← Précédent", current.previous_cursor],
+    ["Revenir au début", current.first_cursor],
   ] as const)
     expect(screen.getByRole("link", { name: label })).toHaveAttribute(
       "href",

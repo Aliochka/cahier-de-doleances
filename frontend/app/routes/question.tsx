@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
 import { data, Link, redirect, useRevalidator } from "react-router";
 import { css } from "../../styled-system/css";
 import { PageContainer } from "../components/layout/page-container";
 import { Alert } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
+import styles from "../features/forms/results.module.css";
+import { answerIds, mergeAnswers } from "../features/pagination/merge-pages";
+import { useProgressivePage } from "../features/pagination/use-progressive-page";
 import { Answers } from "../features/questions/answers";
 import { Statistics } from "../features/questions/statistics";
 import { SurveyRouteError } from "../features/surveys/route-error";
-import { type AnswerPage, httpFailure } from "../lib/api";
+import { httpFailure } from "../lib/api";
 import {
   getQuestion,
   getQuestionAnswers,
@@ -39,17 +41,21 @@ export async function loader({ request, params, url }: Route.LoaderArgs) {
       url.searchParams.getAll("cursor").length > 1)
   )
     requireApiData(httpFailure(422));
-  const answers =
-    question.display_mode === "text"
-      ? await getQuestionAnswers(
-          question.id,
-          cursor === null ? {} : { cursor },
-          { signal: request.signal },
-        )
-      : null;
   const stats =
     question.display_mode === "choice"
       ? await getQuestionStats(question.id, { signal: request.signal })
+      : null;
+  const loadOther = stats?.ok && stats.data.other_text_answers_count > 0;
+  const answers =
+    question.display_mode === "text" || loadOther
+      ? await getQuestionAnswers(
+          question.id,
+          {
+            ...(cursor === null ? {} : { cursor }),
+            ...(loadOther ? { other_only: true } : {}),
+          },
+          { signal: request.signal },
+        )
       : null;
   const failure =
     answers && !answers.ok ? answers : stats && !stats.ok ? stats : null;
@@ -79,19 +85,15 @@ export default function Question({
 }: Route.ComponentProps) {
   const { question, path, cursor, failure, stats } = current;
   const revalidator = useRevalidator();
-  // Retain the last successful lot only within this mounted question after a pagination error.
-  const [previous, setPrevious] = useState<{
-    id: string;
-    page: AnswerPage;
-    cursor: string | null;
-  } | null>(null);
-  useEffect(() => {
-    if (current.answers)
-      setPrevious({ id: question.id, page: current.answers, cursor });
-  }, [current.answers, question.id, cursor]);
-  const retained = failure && previous?.id === question.id ? previous : null;
-  const page = current.answers ?? retained?.page;
-  const pageCursor = current.answers ? cursor : (retained?.cursor ?? null);
+  const progressive = useProgressivePage({
+    page: current.answers,
+    identity: `question:${question.id}`,
+    merge: mergeAnswers,
+    ids: answerIds,
+  });
+  const page = progressive.page;
+  const retained = failure && page;
+  const pageCursor = cursor;
   return (
     <PageContainer>
       <title>{`${question.prompt} — Cahier de doléances`}</title>
@@ -114,7 +116,7 @@ export default function Question({
           ← Retour au formulaire : {question.form.name}
         </Link>
       </p>
-      <h1>{question.prompt}</h1>
+      <h1 className={styles.title}>{question.prompt}</h1>
       <p className={css({ color: "muted", mb: "8" })}>
         {question.type === "multi_choice"
           ? "Choix multiples"
@@ -153,15 +155,18 @@ export default function Question({
           )}
         </section>
       )}
+      {stats && <Statistics stats={stats} />}
       {page && (
         <Answers
           formId={question.form.id}
           page={page}
+          otherOnly={question.display_mode === "choice"}
           path={path}
           cursor={pageCursor}
+          pending={progressive.pending}
+          onMore={progressive.loadMore}
         />
       )}
-      {stats && <Statistics stats={stats} />}
     </PageContainer>
   );
 }

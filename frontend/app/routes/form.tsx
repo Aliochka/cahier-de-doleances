@@ -54,6 +54,7 @@ export default function Form({ loaderData }: Route.ComponentProps) {
           représentatif de la population.
         </p>
       </header>
+      <ContributionsLink formId={loaderData.form.id} />
       {loaderData.form.statistics_availability.status !== "available" &&
         loaderData.form.questions.length > 0 && (
           <Alert variant="info">
@@ -62,8 +63,22 @@ export default function Form({ loaderData }: Route.ComponentProps) {
           </Alert>
         )}
       <FormQuestions form={loaderData.form} />
+      <ContributionsLink formId={loaderData.form.id} />
     </PageContainer>
   );
 }
 export const ErrorBoundary = SurveyRouteError;
 export { apiPageHeaders as headers } from "../lib/api-errors";
+
+function ContributionsLink({ formId }: { formId: string }) {
+  return (
+    <p className={styles.contributionsAction}>
+      <Link
+        to={`/forms/${formId}/contributions`}
+        className={styles.contributionsButton}
+      >
+        Voir les contributions à ce questionnaire
+      </Link>
+    </p>
+  );
+}

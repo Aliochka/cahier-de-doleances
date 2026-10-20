@@ -95,3 +95,19 @@ les deux artefacts générés et exécuter `pnpm contract:check`. Le build front
 reste indépendant de Python et de l'API. Les tests sont dans
 `tests/test_api_questions.py` et les fixtures PostgreSQL existantes ; l'export
 OpenAPI reste hors ligne et interdit les connexions à PostgreSQL.
+
+
+## Présentation harmonisée et champs Autre
+
+`GET /api/v1/questions/{question_id}/answers` accepte désormais `other_only=true`.
+Ce mode est réservé aux questions à choix (HTTP 400 pour un autre type). Il
+retourne uniquement les chaînes non vides du tableau structuré `other_text`,
+regroupées par réponse avec deux sauts de ligne entre les textes. Les options
+sélectionnées et le texte importé qui peut les répéter ne sont pas affichés.
+Le contrat `AnswerPage`, les identifiants, l'anonymat, la troncature et l'ordre
+par date/identifiant restent identiques. La pagination doit conserver ce mode.
+Sans ce paramètre, le comportement historique est inchangé.
+
+La page React charge ce mode uniquement lorsque les statistiques publiées
+signalent des champs Autre. Les graphiques des choix utilisent les composants
+SSR HTML/CSS des Formulaires ; tableaux et méthode sont dans des détails natifs.

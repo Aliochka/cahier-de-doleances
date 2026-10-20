@@ -543,6 +543,55 @@ def test_api_route_names_resolve_public_endpoints():
 
 def publish(web_data):
     from app.services.statistics_generation import generate
+
     with web_data["factory"]() as db:
         generate(db)
         db.commit()
+
+
+@pytest.mark.integration
+def test_choice_other_text_only_keeps_keyset_and_original_provenance(client, web_data):
+    import json
+
+    with web_data["factory"]() as db:
+        choices = db.scalars(
+            select(Answer).where(Answer.question_id == web_data["multi"]).order_by(Answer.id)
+        ).all()
+        choices[0].value_json = json.dumps(
+            {"other_text": ["Premier texte", "Second texte"], "private": "hidden"}
+        )
+        choices[0].text = "Vélo\nBus\nPremier texte\nSecond texte"
+        choices[1].value_json = json.dumps({"other_text": ["Une autre idée"]})
+        choices[1].text = None  # Structured Other remains consultable without a copied text field.
+        ids = {str(a.id) for a in choices}
+        db.commit()
+    path = f"/api/v1/questions/{web_data['multi']}/answers"
+    page = client.get(path, params={"other_only": True, "page_size": 1})
+    assert page.status_code == 200
+    payload = page.json()
+    assert payload["has_next"]
+    next_page = client.get(
+        path, params={"other_only": True, "page_size": 1, "cursor": payload["next_cursor"]}
+    )
+    assert next_page.status_code == 200
+    last = next_page.json()
+    assert not last["has_next"]
+    items = payload["items"] + last["items"]
+    assert {item["id"] for item in items} == ids
+    assert {item["text"] for item in items} == {"Premier texte\n\nSecond texte", "Une autre idée"}
+    assert all(item["contribution_id"] and item["author"]["is_anonymous"] for item in items)
+    assert "hidden" not in page.text + next_page.text
+    assert (
+        client.get(
+            f"/api/v1/questions/{web_data['text_question']}/answers?other_only=true"
+        ).status_code
+        == 400
+    )
+
+
+@pytest.mark.integration
+def test_choice_without_other_text_has_empty_other_lot(client, web_data):
+    response = client.get(f"/api/v1/questions/{web_data['multi']}/answers?other_only=true")
+    assert response.status_code == 200
+    assert response.json()["items"] == []
+    assert response.json()["has_next"] is False

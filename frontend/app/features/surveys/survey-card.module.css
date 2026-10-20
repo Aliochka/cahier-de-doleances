@@ -1,0 +1,10 @@
+.card {
+  background: transparent;
+}
+.title {
+  color: #000;
+  margin-bottom: 0.75rem;
+}
+.title a {
+  color: inherit;
+}

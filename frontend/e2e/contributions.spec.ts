@@ -27,7 +27,7 @@ test("SSR auteur et contribution : contenu essentiel, métadonnées, anonymat et
     expect(html).not.toContain("?contrib=");
     if (path === authorPath) {
       expect(html).toContain(`${formPath}/contributions/9007199254742994`);
-      expect(html).toContain("Voir les contributions suivantes");
+      expect(html).toContain("Afficher davantage de contributions");
     } else {
       expect(html).toContain(`id="${targetId}"`);
       expect(html).toContain("&lt;script&gt;");
@@ -78,15 +78,13 @@ test("navigation auteur, lots successifs, contribution et formulaire", async ({
     page.getByRole("link", { name: /Consulter la contribution/ }),
   ).toHaveCount(2);
   await page
-    .getByRole("link", { name: "Voir les contributions suivantes" })
+    .getByRole("link", { name: "Afficher davantage de contributions" })
     .click();
   await expect(page).toHaveURL(
     `${origin}${authorPath}?after_id=9007199254742994`,
   );
   await expect(page.getByRole("heading", { level: 3 })).toHaveCount(2);
-  await page
-    .getByRole("link", { name: "Retour aux premières contributions" })
-    .click();
+  await page.getByRole("link", { name: "Revenir au début" }).click();
   const link = page.getByRole("link", {
     name: "Consulter la contribution 9007199254742993",
   });
@@ -135,7 +133,7 @@ test("ancre directe sans JavaScript, texte complet et pagination auteur", async 
   await expect(page.locator("main script")).toHaveCount(0);
   await page.goto(`${origin}${authorPath}`);
   await page
-    .getByRole("link", { name: "Voir les contributions suivantes" })
+    .getByRole("link", { name: "Afficher davantage de contributions" })
     .click();
   await expect(
     page.getByRole("heading", { name: "Formulaire synthétique" }),
@@ -195,3 +193,27 @@ test("mobile et zoom 200 % sans débordement", async ({ page }) => {
     ).toBe(true);
   }
 });
+
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`présentation contribution JS ${javaScriptEnabled}`, () => {
+    test.use({ javaScriptEnabled });
+    test("titres noirs et champs structurés sans copie textuelle", async ({
+      page,
+    }) => {
+      await page.goto(`${origin}${contributionPath}`);
+      await expect(page.locator("h1")).toHaveCSS("color", "rgb(0, 0, 0)");
+      await expect(page.locator("section h2 a").first()).toHaveCSS(
+        "color",
+        "rgb(0, 0, 0)",
+      );
+      const answer = page.locator("#answer-9007199254741994");
+      await expect(
+        answer.getByText("Consultations citoyennes", { exact: true }),
+      ).toHaveCount(1);
+      await expect(answer.locator(":scope > p")).toHaveCount(1);
+      await expect(
+        answer.getByText("Autre : Autre proposition", { exact: true }),
+      ).toBeVisible();
+    });
+  });
+}

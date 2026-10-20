@@ -22,6 +22,12 @@ for (const javaScriptEnabled of [true, false]) {
         "Rechercher dans les paroles citoyennes",
       );
       await expect(page.getByRole("tab")).toHaveCount(0);
+      await expect(page.locator("h1")).toHaveCSS("color", "rgb(0, 0, 0)");
+      await expect(
+        page
+          .getByRole("navigation", { name: "Navigation principale" })
+          .getByRole("link"),
+      ).toHaveText(["Enquêtes", "Recherche"]);
       await expect(
         page.getByText("Un point de départ pour écouter et comprendre"),
       ).toBeVisible();
@@ -75,13 +81,19 @@ for (const javaScriptEnabled of [true, false]) {
       await page.goBack();
       await expect(page).toHaveURL(firstUrl);
       await page
-        .getByRole("link", { name: "Page suivante", exact: true })
+        .getByRole("link", {
+          name: "Afficher davantage de réponses",
+          exact: true,
+        })
         .click();
       await expect(
         page.getByText("Réponse du lot suivant.", { exact: true }),
       ).toBeVisible();
       await expect(
-        page.getByRole("link", { name: "Page suivante", exact: true }),
+        page.getByRole("link", {
+          name: "Afficher davantage de réponses",
+          exact: true,
+        }),
       ).toHaveCount(0);
       await expect(
         page.getByText(/Vous êtes à la fin de cette sélection/),
@@ -91,14 +103,17 @@ for (const javaScriptEnabled of [true, false]) {
         page.getByText("Réponse du lot suivant.", { exact: true }),
       ).toBeVisible();
       await page
-        .getByRole("link", { name: "Page précédente", exact: true })
+        .getByRole("link", { name: "← Précédent", exact: true })
         .click();
       await expect(page).toHaveURL(firstUrl);
       await page
-        .getByRole("link", { name: "Page suivante", exact: true })
+        .getByRole("link", {
+          name: "Afficher davantage de réponses",
+          exact: true,
+        })
         .click();
       await page
-        .getByRole("link", { name: "Première page", exact: true })
+        .getByRole("link", { name: "Revenir au début", exact: true })
         .click();
       await expect(page).toHaveURL(firstUrl);
       const calls = await (await request.get(`${mock}/search-calls`)).json();
@@ -223,6 +238,22 @@ test("recherche obsolète annulée et nouvelle saisie sans attendre", async ({
   await expect(
     page.getByText("Chargement en cours…", { exact: true }),
   ).toBeVisible();
+  const loading = page.getByRole("region", { name: "Chargement de la page" });
+  await expect(loading).toHaveCount(1);
+  expect(
+    await page.getByRole("search").evaluate((form) => {
+      const progress = document.querySelector(
+        '[aria-label="Chargement de la page"]',
+      );
+      return (
+        !!progress &&
+        !!(
+          form.compareDocumentPosition(progress) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+        )
+      );
+    }),
+  ).toBe(true);
   await field.fill("école");
   await field.press("Enter");
   await expect(
@@ -230,4 +261,72 @@ test("recherche obsolète annulée et nouvelle saisie sans attendre", async ({
   ).toBeVisible();
   await expect(page).toHaveURL(/q=%C3%A9cole/);
   await expect(field).toHaveValue("école");
+});
+
+test("recherche : chargement cumulatif, retour et aucun nouveau classement", async ({
+  page,
+  request,
+}) => {
+  await page.goto(`${origin}/recherche?q=progression&page_size=2`);
+  const list = page.getByRole("list", {
+    name: "Réponses citoyennes",
+    exact: true,
+  });
+  await expect(list.locator(":scope > li")).toHaveCount(2);
+  await page
+    .getByRole("link", { name: "Afficher davantage de réponses", exact: true })
+    .click();
+  await expect(list.locator(":scope > li")).toHaveCount(3);
+  await list
+    .getByRole("link", { name: "Lire la contribution complète" })
+    .last()
+    .click();
+  await page.goBack();
+  await expect(list.locator(":scope > li")).toHaveCount(3);
+  const calls = await (
+    await request.get("http://127.0.0.1:4176/search-calls")
+  ).json();
+  expect(
+    calls.filter(
+      (call: { calculated: boolean; query: string }) =>
+        new URLSearchParams(call.query).get("q") === "progression" &&
+        call.calculated,
+    ),
+  ).toHaveLength(1);
+});
+
+test("une sélection expirée garde les réponses lues et exige une relance explicite", async ({
+  page,
+  request,
+}) => {
+  await page.goto(`${origin}/recherche?q=expiration-progressive&page_size=2`);
+  const list = page.getByRole("list", {
+    name: "Réponses citoyennes",
+    exact: true,
+  });
+  await expect(list.locator(":scope > li")).toHaveCount(2);
+  await request.get(`${mock}/search-reset`);
+  await page
+    .getByRole("link", { name: "Afficher davantage de réponses", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Cette sélection a expiré" }),
+  ).toBeVisible();
+  await expect(list.locator(":scope > li")).toHaveCount(2);
+  await expect(
+    page.getByText(/Vous êtes à la fin de cette sélection/),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("link", {
+      name: "Afficher davantage de réponses",
+      exact: true,
+    }),
+  ).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Relancer la recherche", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Cette sélection a expiré" }),
+  ).toHaveCount(0);
+  await expect(list.locator(":scope > li")).toHaveCount(2);
 });

@@ -4,6 +4,7 @@ import { css } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import { Card } from "../../components/ui/card";
 import type { Forms } from "../../lib/api";
+import styles from "./survey-card.module.css";
 
 export function SurveyCard({
   form,
@@ -11,8 +12,8 @@ export function SurveyCard({
   form: components["schemas"]["FormSummary"];
 }) {
   return (
-    <Card>
-      <h2 className={css({ mb: "3" })}>
+    <Card className={styles.card}>
+      <h2 className={styles.title}>
         <Link to={`/forms/${form.id}`}>{form.name}</Link>
       </h2>
       <p className={css({ color: "muted" })}>

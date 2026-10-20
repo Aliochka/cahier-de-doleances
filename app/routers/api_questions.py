@@ -117,6 +117,12 @@ def question_detail(question_id: PathId) -> QuestionDetail:
 def question_answers(
     question_id: PathId,
     page_size: Annotated[int, Query(ge=1, le=100, description="20 par défaut, maximum 100.")] = 20,
+    other_only: Annotated[
+        bool,
+        Query(
+            description="Questions à choix : uniquement les textes Autre, sans les libellés sélectionnés."
+        ),
+    ] = False,
     cursor: Annotated[
         str | None,
         Query(min_length=1, max_length=1024, description="Curseur opaque de la page précédente."),
@@ -143,6 +149,8 @@ def question_answers(
     with SessionLocal() as db, handle_search_errors(db):
         limit_sql(db)
         row = existing_question(db, int(question_id))
+        if other_only and row["type"] not in ("single_choice", "multi_choice"):
+            raise HTTPException(400, "Le filtre Autre est réservé aux questions à choix")
         rows, has_next, next_cursor, _ = read_question_answers(
             db,
             row["id"],
@@ -151,6 +159,7 @@ def question_answers(
             cursor,
             page_size=page_size,
             include_total=False,
+            other_only=other_only,
         )
         return AnswerPage(
             question_id=str(row["id"]),

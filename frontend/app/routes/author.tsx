@@ -4,6 +4,8 @@ import { PageContainer } from "../components/layout/page-container";
 import { Alert } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
 import { AuthorForms } from "../features/authors/author-forms";
+import { authorIds, mergeAuthors } from "../features/pagination/merge-pages";
+import { useProgressivePage } from "../features/pagination/use-progressive-page";
 import { SurveyRouteError } from "../features/surveys/route-error";
 import { httpFailure } from "../lib/api";
 import { getAuthor, getAuthorForms } from "../lib/api.server";
@@ -49,6 +51,13 @@ export async function loader({ request, params, url }: Route.LoaderArgs) {
 export default function Author({
   loaderData: { author, page, after, failure },
 }: Route.ComponentProps) {
+  const progressive = useProgressivePage({
+    page,
+    identity: `author:${author.id}`,
+    merge: mergeAuthors,
+    ids: authorIds,
+  });
+  const displayed = progressive.page;
   const path = `/authors/${author.id}`;
   const revalidator = useRevalidator();
   return (
@@ -94,7 +103,15 @@ export default function Author({
           </form>
         </section>
       )}
-      {page && <AuthorForms page={page} path={path} after={after} />}
+      {displayed && (
+        <AuthorForms
+          page={displayed}
+          path={path}
+          after={after}
+          onMore={progressive.loadMore}
+          pending={progressive.pending}
+        />
+      )}
     </PageContainer>
   );
 }

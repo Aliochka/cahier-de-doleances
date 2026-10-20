@@ -229,6 +229,7 @@ try {
       .toBeLessThan(100);
     // Pages Questions deliberately retain their existing Recharts enhancement.
     await page.locator(`#question-${qid}`).locator("h2 a").click();
+    await page.locator("summary").click();
     await expect(page.getByRole("table")).toBeVisible();
     await page.goBack();
     await expect(page).toHaveURL(`${origin}/forms/2#question-${qid}`);

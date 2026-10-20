@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
-import { data, Form, redirect, useNavigation } from "react-router";
+import {
+  data,
+  Form,
+  redirect,
+  useNavigation,
+  useRevalidator,
+} from "react-router";
 import { css } from "../../styled-system/css";
+import { LoadingState } from "../components/layout/data-states";
 import { PageContainer } from "../components/layout/page-container";
 import { Alert } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
+import styles from "../features/forms/results.module.css";
+import { mergeSearch, searchIds } from "../features/pagination/merge-pages";
+import { useProgressivePage } from "../features/pagination/use-progressive-page";
 import { SearchControls } from "../features/search/search-controls";
 import { SearchResults } from "../features/search/search-results";
 import { type SearchState, searchUrl } from "../features/search/search-url";
@@ -87,12 +97,26 @@ export async function loader({ request, url }: Route.LoaderArgs) {
 export default function Search({
   loaderData: { state, result, failure, fieldError },
 }: Route.ComponentProps) {
+  const progressive = useProgressivePage({
+    page: result,
+    identity: `search:${state.q}:${state.page_size}`,
+    merge: mergeSearch,
+    ids: searchIds,
+  });
+  const displayed = progressive.page;
+  const visible =
+    displayed && failure
+      ? { ...displayed, has_next: false, next_cursor: null }
+      : displayed;
   const [draft, setDraft] = useState(state.q);
   useEffect(() => setDraft(state.q), [state.q]);
   const navigation = useNavigation();
+  const revalidator = useRevalidator();
   const pending =
-    navigation.state !== "idle" &&
-    navigation.location?.pathname === "/recherche";
+    (navigation.state !== "idle" &&
+      navigation.location?.pathname === "/recherche" &&
+      !navigation.location.state?.progressiveFrom) ||
+    revalidator.state !== "idle";
   const restart =
     failure?.kind === "expired" ||
     (failure?.kind === "request" && state.cursor !== null);
@@ -106,8 +130,8 @@ export default function Search({
       <meta name="robots" content="noindex, follow" />
       <link rel="canonical" href="https://cahierdedoleances.fr/recherche" />
       <div className={css({ maxWidth: "reading" })}>
-        <h1>Rechercher dans les paroles citoyennes</h1>
-        <p className={css({ fontSize: "section", mb: "6" })}>
+        <h1 className={styles.title}>Rechercher dans les paroles citoyennes</h1>
+        <p className={css({ mb: "6" })}>
           Une question, un sujet, une préoccupation : découvrez les réponses des
           participants au Grand Débat national, dans leur contexte d’origine.
         </p>
@@ -118,12 +142,15 @@ export default function Search({
         error={fieldError}
         pending={pending}
       />
+      <div className={css({ maxWidth: "reading" })}>
+        <LoadingState active={pending} />
+      </div>
       {failure && (
         <section
           aria-label="Erreur de recherche"
           className={css({ maxWidth: "reading", mb: "8" })}
         >
-          <h2>
+          <h2 className={styles.questionTitle}>
             {failure.kind === "expired"
               ? "Cette sélection a expiré"
               : ["unavailable", "network", "configuration"].includes(
@@ -156,13 +183,12 @@ export default function Search({
           aria-labelledby="search-welcome"
           className={css({
             maxWidth: "reading",
-            p: { base: "4", md: "6" },
-            background: "surface",
-            border: "panel",
-            borderRadius: "panel",
+            borderTopWidth: "thin",
+            borderColor: "border",
+            py: "8",
           })}
         >
-          <h2 id="search-welcome">
+          <h2 id="search-welcome" className={styles.questionTitle}>
             Un point de départ pour écouter et comprendre
           </h2>
           <p>
@@ -175,7 +201,15 @@ export default function Search({
           </p>
         </section>
       )}
-      {!failure && result && <SearchResults page={result} state={state} />}
+      {visible && (
+        <SearchResults
+          results={visible}
+          state={state}
+          pending={progressive.pending}
+          continuationError={!!failure}
+          onMore={failure ? undefined : progressive.loadMore}
+        />
+      )}
     </PageContainer>
   );
 }

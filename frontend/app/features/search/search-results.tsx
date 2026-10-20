@@ -2,27 +2,36 @@ import { Link } from "react-router";
 import { css } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import { Alert } from "../../components/ui/alert";
-import { Card } from "../../components/ui/card";
 import type { HybridSearchPage } from "../../lib/api";
+import styles from "../forms/results.module.css";
+import { ListNavigation, type MoreAction } from "../pagination/list-navigation";
 import { type SearchState, searchUrl } from "./search-url";
 
 const secondary = css({ fontSize: "secondary", color: "muted" });
 export function SearchResults({
-  page,
+  results: page,
   state,
+  onMore,
+  pending,
+  continuationError = false,
 }: {
-  page: HybridSearchPage;
+  results: HybridSearchPage;
   state: SearchState;
+  onMore?: MoreAction;
+  pending?: boolean;
+  continuationError?: boolean;
 }) {
   return (
     <section
       aria-labelledby="search-results-title"
       className={css({ maxWidth: "reading" })}
     >
-      <h2 id="search-results-title">Les réponses citoyennes</h2>
+      <h2 id="search-results-title" className={styles.questionTitle}>
+        Les réponses citoyennes
+      </h2>
       <p role="status" aria-atomic="true" className={secondary}>
         {page.items.length
-          ? `${page.items.length} réponses affichées dans cette page.`
+          ? `${page.items.length} réponses affichées.`
           : page.state === "empty"
             ? "Aucun résultat pour cette recherche."
             : "Des sources ne sont plus accessibles."}
@@ -50,33 +59,21 @@ export function SearchResults({
             contributions du Grand Débat national. Ce n’est pas la totalité des
             réponses du corpus.
           </p>
-          <ol
-            aria-label="Réponses citoyennes"
-            className={css({
-              listStyle: "none",
-              p: 0,
-              display: "grid",
-              gap: "6",
-              mb: "8",
-            })}
-          >
+          <ol aria-label="Réponses citoyennes" className={styles.questions}>
             {page.items.map((item) => (
-              <li key={item.answer_id}>
-                <Card
-                  className={css({ p: { base: "4", md: "6" } })}
+              <li
+                key={item.answer_id}
+                data-progressive-id={item.answer_id}
+                tabIndex={-1}
+              >
+                <article
+                  className={styles.question}
                   aria-labelledby={`search-question-${item.answer_id}`}
                 >
                   <p className={secondary}>À la question</p>
                   <h3
                     id={`search-question-${item.answer_id}`}
-                    className={css({
-                      fontFamily: "body",
-                      fontSize: "body",
-                      fontWeight: "semibold",
-                      lineHeight: "body",
-                      mt: "1",
-                      mb: "5",
-                    })}
+                    className={styles.questionTitle}
                   >
                     <Link to={item.question.url}>{item.question.prompt}</Link>
                   </h3>
@@ -132,40 +129,33 @@ export function SearchResults({
                       <Link to={item.url}>Lire la contribution complète</Link>
                     </p>
                   </footer>
-                </Card>
+                </article>
               </li>
             ))}
           </ol>
         </>
       )}
-      {(page.previous_cursor || page.next_cursor) && (
-        <nav
-          aria-label="Pagination des résultats"
-          className={css({
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "5",
-            mb: "6",
-          })}
-        >
-          {page.previous_cursor && (
-            <Link to={searchUrl({ ...state, cursor: page.previous_cursor })}>
-              Page précédente
-            </Link>
-          )}
-          {page.previous_cursor && page.first_cursor && (
-            <Link to={searchUrl({ ...state, cursor: page.first_cursor })}>
-              Première page
-            </Link>
-          )}
-          {page.has_next && page.next_cursor && (
-            <Link to={searchUrl({ ...state, cursor: page.next_cursor })}>
-              Page suivante
-            </Link>
-          )}
-        </nav>
-      )}
-      {!page.has_next && page.state !== "empty" && (
+      <ListNavigation
+        label="Pagination des résultats"
+        previous={
+          page.previous_cursor
+            ? searchUrl({ ...state, cursor: page.previous_cursor })
+            : null
+        }
+        first={
+          page.previous_cursor && page.first_cursor
+            ? searchUrl({ ...state, cursor: page.first_cursor })
+            : null
+        }
+        next={
+          page.has_next && page.next_cursor
+            ? searchUrl({ ...state, cursor: page.next_cursor })
+            : null
+        }
+        pending={pending}
+        onMore={onMore}
+      />
+      {!continuationError && !page.has_next && page.state !== "empty" && (
         <p className={secondary}>
           Vous êtes à la fin de cette sélection. Précisez ou reformulez votre
           recherche pour découvrir d’autres réponses.

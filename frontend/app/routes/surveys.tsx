@@ -22,7 +22,7 @@ export default function Surveys({ loaderData: forms }: Route.ComponentProps) {
         content="Découvrez les questionnaires historiques du Grand Débat National et parcourez leurs questions."
       />
       <link rel="canonical" href="https://cahierdedoleances.fr/enquetes" />
-      <h1 className={css({ mb: "6" })}>Enquêtes</h1>
+      <h1 className={css({ mb: "6", color: "#000" })}>Enquêtes</h1>
       <p className={css({ maxWidth: "reading", mb: "8" })}>
         Les formulaires du Grand Débat National invitent à découvrir les thèmes
         et les questions proposés aux citoyens. Retrouvez ici ces questionnaires

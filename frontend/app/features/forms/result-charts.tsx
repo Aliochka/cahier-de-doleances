@@ -123,14 +123,16 @@ export function StatisticalDetails({
   questionNumber,
 }: {
   stats: QuestionStatistics;
-  publication: FormDetail["statistics_availability"];
-  questionNumber: number;
+  publication?: FormDetail["statistics_availability"];
+  questionNumber?: number;
 }) {
   return (
     <details className={styles.details}>
       <summary>
         Voir les détails statistiques
-        <span className={styles.srOnly}> — question {questionNumber}</span>
+        {questionNumber !== undefined && (
+          <span className={styles.srOnly}> — question {questionNumber}</span>
+        )}
       </summary>
       <div className={styles.detailsBody}>
         <table className={styles.table}>
@@ -189,24 +191,24 @@ export function StatisticalDetails({
           Une réponse comportant plusieurs textes « Autre » compte une seule
           fois dans cette catégorie. Elle peut aussi sélectionner une option.
         </p>
-        {publication.calculated_at && (
+        {publication?.calculated_at && (
           <p>
             Calcul du{" "}
-            <time dateTime={publication.calculated_at}>
+            <time dateTime={publication?.calculated_at}>
               {new Intl.DateTimeFormat("fr-FR", {
                 dateStyle: "long",
                 timeZone: "Europe/Paris",
-              }).format(new Date(publication.calculated_at))}
+              }).format(new Date(publication?.calculated_at))}
             </time>
             .
           </p>
         )}
-        {publication.method_version && (
-          <p className={styles.note}>Méthode : {publication.method_version}</p>
+        {publication?.method_version && (
+          <p className={styles.note}>Méthode : {publication?.method_version}</p>
         )}
-        {publication.generation_id && (
+        {publication?.generation_id && (
           <p className={styles.note}>
-            Génération : {publication.generation_id}
+            Génération : {publication?.generation_id}
           </p>
         )}
       </div>

@@ -62,7 +62,7 @@ it("charge l'auteur et un lot de contributions avec les identifiants exacts et l
     `/forms/${contribution.form.id}/contributions/${contribution.contribution.id}`,
   );
   expect(
-    screen.getByRole("link", { name: "Voir les contributions suivantes" }),
+    screen.getByRole("link", { name: "Afficher davantage de contributions" }),
   ).toHaveAttribute(
     "href",
     `/authors/${publicAuthor.id}?after_id=9007199254742994`,

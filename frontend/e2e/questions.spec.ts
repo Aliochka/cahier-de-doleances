@@ -46,11 +46,13 @@ test("liens à curseur sans JavaScript, ordre, fin et retour au premier lot", as
   await expect(
     page.getByText("Une réponse citoyenne.", { exact: false }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Voir les réponses suivantes" }).click();
+  await page
+    .getByRole("link", { name: "Afficher davantage de réponses" })
+    .click();
   await expect(page).toHaveURL(`${origin}${text}?cursor=page%2B2%2F%3Dopaque`);
   await expect(page.getByText("Réponse du lot suivant.")).toBeVisible();
   await expect(
-    page.getByRole("link", { name: "Voir les réponses suivantes" }),
+    page.getByRole("link", { name: "Afficher davantage de réponses" }),
   ).toHaveCount(0);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
@@ -60,16 +62,15 @@ test("liens à curseur sans JavaScript, ordre, fin et retour au premier lot", as
     "href",
     `https://cahierdedoleances.fr${text}?cursor=page%2B2%2F%3Dopaque`,
   );
-  await page
-    .getByRole("link", { name: "Retour aux premières réponses" })
-    .click();
+  await page.getByRole("link", { name: "Revenir au début" }).click();
   await expect(
     page.getByText("Une réponse citoyenne.", { exact: false }),
   ).toBeVisible();
   await page.goto(`${origin}${multiple}`);
+  await page.locator("summary").click();
   await expect(page.getByRole("table")).toBeVisible();
   await expect(
-    page.getByText(/somme des pourcentages peut donc dépasser 100/),
+    page.getByText(/Plusieurs sélections sont possibles/),
   ).toBeVisible();
   await context.close();
 });
@@ -123,22 +124,24 @@ test("parcours au clavier, retour arrière et hydratation des graphiques", async
   await link.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(`${origin}${multiple}`);
-  await expect(page.locator(".recharts-surface")).toBeVisible();
+  await expect(page.locator("[data-chart-kind]")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Réponses « Autre » à la question" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Une autre proposition citoyenne."),
+  ).toBeVisible();
+  await page.locator("summary").focus();
+  await page.keyboard.press("Enter");
   await expect(page.getByRole("table").getByRole("row")).toHaveCount(5);
-  const chart = page.getByRole("application");
-  await chart.focus();
-  await page.keyboard.press("ArrowRight");
-  await expect(page.locator(".recharts-tooltip-wrapper")).toBeVisible();
   await page.getByRole("link", { name: /Retour au formulaire/ }).click();
   await expect(page).toHaveURL(`${origin}/forms/9007199254740995`);
   await page.goBack();
   await expect(page).toHaveURL(`${origin}${multiple}`);
-  await expect(page.locator(".recharts-surface")).toBeVisible();
+  await expect(page.locator("[data-chart-kind]")).toBeVisible();
   await page.goto(`${origin}${text}?cursor=page%2B2%2F%3Dopaque`);
   await expect(page.locator("time")).toHaveText("15 janvier 2019");
-  await page
-    .getByRole("link", { name: "Retour aux premières réponses" })
-    .click();
+  await page.getByRole("link", { name: "Revenir au début" }).click();
   await expect(
     page.getByText("Une réponse citoyenne.", { exact: false }),
   ).toBeVisible();
@@ -157,7 +160,9 @@ test("une erreur de lot préserve les réponses consultées et la navigation res
   await expect(
     page.getByText("Une réponse citoyenne.", { exact: false }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Voir les réponses suivantes" }).click();
+  await page
+    .getByRole("link", { name: "Afficher davantage de réponses" })
+    .click();
   await expect(page.getByRole("alert")).toContainText(
     "momentanément indisponible",
   );
@@ -186,7 +191,7 @@ test("mobile et zoom 200 % : textes, tableau et graphique sans débordement", as
   for (const path of [text, single, multiple]) {
     await page.goto(`${origin}${path}`);
     if (path !== text)
-      await expect(page.locator(".recharts-surface")).toBeVisible();
+      await expect(page.locator("[data-chart-kind]")).toBeVisible();
     await page.evaluate(() => {
       document.documentElement.style.zoom = "2";
     });

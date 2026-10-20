@@ -403,7 +403,9 @@ pas `request.url` qui conserve le suffixe interne `.data` durant les navigations
 
 `getQuestion`, `getQuestionAnswers` et `getQuestionStats` réutilisent le transport
 public de FRONT-003, les types OpenAPI et `API_BASE_URL` côté serveur. Chaque
-chargement lit le détail, puis uniquement les réponses **ou** les statistiques.
+chargement lit le détail, puis les réponses des questions ouvertes ou les
+statistiques des choix. Si des champs « Autre » sont dénombrés, leurs textes
+sont chargés séparément avec `other_only=true` et affichés sous les résultats.
 Les appels omettent les cookies, propagent l’annulation et gardent la limite
 existante de 20 secondes par appel. Aucun accès API n’a lieu pendant le build.
 
@@ -420,21 +422,18 @@ jour calendaire fourni par l’API, sans décalage selon le fuseau du navigateur
 signalés ; les liens Auteur et Contribution sont maintenant actifs. Aucune page
 Réponse individuelle n’est créée.
 
-Les choix affichent toutes les métriques définies dans `docs/api-questions.md` et
-un **tableau HTML complet dès le SSR**, dans l’ordre API. Les pourcentages fournis
-ne sont pas recalculés ni renormalisés : dénominateur `total_answers`, et somme
-pouvant dépasser 100 % pour les choix multiples. Les contributions distinctes
-ne sont pas présentées comme des personnes.
+Les choix réutilisent les graphiques HTML/CSS et les détails natifs des
+Formulaires : titres noirs, libellés, effectifs et pourcentages directement
+visibles, tableau complet dans « Voir les détails statistiques ». Les données
+sont présentes dès le SSR et les graphiques fonctionnent sans JavaScript.
+Les pourcentages ne sont pas renormalisés ; les contributions distinctes ne
+sont pas présentées comme des personnes. Aucun module Recharts n'est chargé.
 
-**Recharts 3.10.1** fournit les barres horizontales, axes et infobulles. Il accepte
-React 19 selon ses peer dependencies. Le composant `stats-chart.tsx` est importé
-à la demande après hydratation, dans un chunk distinct (~108 Ko gzip au build
-initial de cette tâche) : il n’est pas nécessaire aux pages Accueil ou Enquêtes.
-Aucun accès aux dimensions du navigateur au SSR. Une hauteur est réservée pour
-limiter les déplacements ; les numéros des barres renvoient aux libellés complets
-du tableau et des infobulles. Animations désactivées, couleurs Panda, navigation
-clavier Recharts et alternative tabulaire permanente. Les fixtures de test sont
-exclues de l’extraction CSS Panda.
+La section « Réponses « Autre » à la question » contient uniquement les champs
+textuels Autre, sans répétition des options sélectionnées. Elle conserve les
+liens vers les contributions, les auteurs anonymisés et la pagination par curseur.
+Le chargement des statistiques à zéro Autre ne lit aucune réponse individuelle.
+Voir [la mise à jour des pages Questions](../docs/pages-questions.md).
 
 Les pages initiales fonctionnelles sont indexables et ont titre, description et
 canonical. Chaque lot à curseur a une canonical contenant **son propre curseur**
@@ -569,8 +568,12 @@ et les tableaux des détails sont présents dans le HTML initial. Les ancres
 `#question-{id}` et les accordéons natifs fonctionnent sans JavaScript. Les titres
 du questionnaire et des questions sont noirs ; les titres des questions sont
 des liens vers leurs pages individuelles. Aucun sommaire ou lien de consultation
-séparé ne duplique cette navigation.
-Les réponses ouvertes conduisent aux pages Questions, dont l'interface reste inchangée.
+séparé ne duplique cette navigation. Deux boutons « Voir les contributions à ce
+questionnaire », en haut et en bas, ouvrent `/forms/{id}/contributions`.
+La navigation précédente/suivante réutilise l'API de résolution historique par
+rang ; la page complète par identifiant conserve son URL canonique. Le détail
+Formulaire ne charge aucune contribution avant activation du bouton.
+Les réponses ouvertes conduisent aux pages Questions, harmonisées avec les Formulaires.
 
 Les barres Oui/Non proportionnelles sont réservées aux répartitions complètes
 à choix unique ; sinon, les barres sont indépendantes. Les choix multiples
@@ -581,7 +584,7 @@ masque pas le questionnaire et n'est jamais remplacée par zéro.
 L'ancienne URL `/forms/:formId/dashboard` renvoie **308** vers le formulaire,
 sans appel API préalable ; les paramètres sont conservés et le navigateur
 préserve le fragment. Les liens internes ne proposent plus de Dashboard.
-Les composants Recharts restent disponibles uniquement pour les pages Questions.
+Les pages Questions utilisent désormais elles aussi les graphiques HTML/CSS partagés.
 
 Les loaders conservent l'annulation, les erreurs HTTP et `private, no-store`.
 Aucun calcul statistique, nouvel endpoint, migration ou changement du corpus.
@@ -608,3 +611,36 @@ SSR après reconstruction d'un build déjà chargé.
 
 Voir le [rapport FORMS-003](../docs/rapport-forms-003.md) pour les mesures,
 les tests visuels et les limites de la vérification d'accessibilité.
+
+## Harmonisation de Recherche et navigation
+
+Le menu principal présente Enquêtes puis Recherche. La page Recherche réutilise
+les titres noirs et les sections continues des Formulaires ; les résultats et
+le texte d'accueil n'ont plus de fond de carte clair. Les questions des résultats
+restent cliquables, sans modification des extraits citoyens ou de la pagination.
+
+Le chargement d'une recherche et l'attente prolongée apparaissent sous le
+formulaire. Le shell masque alors son indicateur global pour éviter une seconde
+annonce au-dessus du titre. Les autres navigations conservent leur indicateur.
+Le formulaire GET reste utilisable pendant le chargement et sans JavaScript.
+L'annulation, les statuts HTTP, `private, no-store` et `noindex, follow` sont conservés.
+
+## Chargement progressif des listes
+
+Les résultats de recherche, réponses aux questions (y compris Autre) et
+contributions d'un auteur utilisent « Afficher davantage ». Avec JavaScript,
+le lot suivant est ajouté et dédupliqué par identifiant, sans effacer les
+éléments affichés. Les contributions d'un auteur sont regroupées par formulaire.
+Sans JavaScript, le même contrôle est un lien vers le lot suivant.
+
+L'URL suit le dernier curseur chargé : copie, accès direct et rechargement
+ouvrent ce lot. Une mémoire temporaire de l'onglet restaure les lots cumulés
+et le défilement lors d'un retour depuis une contribution, dans ses limites
+(10 minutes, 16 entrées, 4 Mio de charge utile). Aucun localStorage, sessionStorage
+ou cookie. Après rechargement complet, le dernier lot est affiché seul.
+
+La recherche parcourt exclusivement la sélection serveur conservée, sans nouveau
+classement. Une expiration est affichée explicitement ; les réponses déjà lues
+restent consultables et le visiteur choisit de relancer. Les contributions
+complètes gardent leur navigation précédente/suivante, avec le même style de
+boutons. Voir [le fonctionnement détaillé](../docs/navigation-progressive.md).

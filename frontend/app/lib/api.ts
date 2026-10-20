@@ -567,6 +567,21 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
             kind: "request",
           });
     },
+    getFormContribution: (
+      formId: string,
+      index = "1",
+      options: RequestOptions = {},
+    ) =>
+      publicId(formId) && publicId(index)
+        ? read(
+            `/api/v1/forms/${encodeURIComponent(formId)}/contributions`,
+            contribution,
+            { ...options, query: new URLSearchParams({ contrib: index }) },
+          )
+        : Promise.resolve<ApiResult<ContributionDetail>>({
+            ok: false,
+            kind: "request",
+          }),
     getContribution: (
       formId: string,
       id: string,
@@ -601,6 +616,8 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
         params.set("cursor", query.cursor);
       if (query.page_size !== undefined)
         params.set("page_size", String(query.page_size));
+      if (query.other_only !== undefined)
+        params.set("other_only", String(query.other_only));
       return publicId(id)
         ? read(`${pathFor(id)}/answers`, answerPage, {
             ...options,

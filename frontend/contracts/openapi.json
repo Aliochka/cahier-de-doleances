@@ -2398,6 +2398,18 @@
             }
           },
           {
+            "description": "Questions à choix : uniquement les textes Autre, sans les libellés sélectionnés.",
+            "in": "query",
+            "name": "other_only",
+            "required": false,
+            "schema": {
+              "default": false,
+              "description": "Questions à choix : uniquement les textes Autre, sans les libellés sélectionnés.",
+              "title": "Other Only",
+              "type": "boolean"
+            }
+          },
+          {
             "description": "Curseur opaque de la page précédente.",
             "in": "query",
             "name": "cursor",

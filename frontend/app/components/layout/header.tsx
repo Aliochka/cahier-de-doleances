@@ -50,19 +50,6 @@ export function Header() {
             })}
           >
             <li>
-              <NavLink
-                to="/recherche"
-                className={css({
-                  display: "inline-flex",
-                  alignItems: "center",
-                  minHeight: "control",
-                  "&[aria-current]": { fontWeight: "bold" },
-                })}
-              >
-                Recherche
-              </NavLink>
-            </li>
-            <li>
               <Link
                 to="/enquetes"
                 aria-current={
@@ -77,6 +64,19 @@ export function Header() {
               >
                 Enquêtes
               </Link>
+            </li>
+            <li>
+              <NavLink
+                to="/recherche"
+                className={css({
+                  display: "inline-flex",
+                  alignItems: "center",
+                  minHeight: "control",
+                  "&[aria-current]": { fontWeight: "bold" },
+                })}
+              >
+                Recherche
+              </NavLink>
             </li>
           </ul>
         </nav>

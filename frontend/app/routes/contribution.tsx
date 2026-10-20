@@ -3,8 +3,10 @@ import { data, Link, useLocation } from "react-router";
 import { css } from "../../styled-system/css";
 import { PageContainer } from "../components/layout/page-container";
 import { ContributionAnswers } from "../features/contributions/contribution-answers";
+import styles from "../features/forms/results.module.css";
+import { ListNavigation } from "../features/pagination/list-navigation";
 import { SurveyRouteError } from "../features/surveys/route-error";
-import { httpFailure } from "../lib/api";
+import { type ContributionDetail, httpFailure } from "../lib/api";
 import { getContribution } from "../lib/api.server";
 import { requireApiData } from "../lib/api-errors";
 import type { Route } from "./+types/contribution";
@@ -24,9 +26,17 @@ export async function loader({ request, params }: Route.LoaderArgs) {
     headers: { "Cache-Control": "private, no-store" },
   });
 }
-export default function Contribution({
-  loaderData: { form, contribution, author, answers },
-}: Route.ComponentProps) {
+export default function Contribution({ loaderData }: Route.ComponentProps) {
+  return <ContributionContent detail={loaderData} />;
+}
+export function ContributionContent({
+  detail,
+  navigation,
+}: {
+  detail: ContributionDetail;
+  navigation?: { previous: string | null; next: string | null };
+}) {
+  const { form, contribution, author, answers } = detail;
   const { hash } = useLocation();
   const [targetId, setTargetId] = useState("");
   useEffect(() => {
@@ -50,7 +60,9 @@ export default function Contribution({
           ← Retour au formulaire : {form.name}
         </Link>
       </p>
-      <h1>Contribution au questionnaire « {form.name} »</h1>
+      <h1 className={styles.title}>
+        Contribution au questionnaire « {form.name} »
+      </h1>
       <p className={css({ color: "muted", mb: "8" })}>
         {author ? (
           <Link to={`/authors/${author.id}`}>{author.name}</Link>
@@ -67,9 +79,31 @@ export default function Contribution({
           </>
         )}
       </p>
+      {navigation && <ContributionNavigation {...navigation} />}
       <ContributionAnswers answers={answers} targetId={targetId} />
+      {navigation && <ContributionNavigation {...navigation} bottom />}
     </PageContainer>
   );
 }
 export const ErrorBoundary = SurveyRouteError;
 export { apiPageHeaders as headers } from "../lib/api-errors";
+
+function ContributionNavigation({
+  previous,
+  next,
+  bottom = false,
+}: {
+  previous: string | null;
+  next: string | null;
+  bottom?: boolean;
+}) {
+  return (
+    <ListNavigation
+      label={`Contributions du questionnaire${bottom ? " en bas de page" : ""}`}
+      previous={previous}
+      next={next}
+      previousLabel="← Contribution précédente"
+      nextLabel="Contribution suivante →"
+    />
+  );
+}

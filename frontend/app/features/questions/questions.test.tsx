@@ -1,20 +1,10 @@
 import { render, screen, within } from "@testing-library/react";
 import { renderToString } from "react-dom/server";
 import { MemoryRouter } from "react-router";
-import { expect, it, vi } from "vitest";
+import { expect, it } from "vitest";
 import { Answers } from "./answers";
 import { answers, stats } from "./fixtures.test-support";
 import { Statistics } from "./statistics";
-
-vi.mock("./stats-chart", () => ({
-  default: ({ stats: value }: { stats: typeof stats }) => (
-    <div data-testid="chart">
-      {value.categories
-        .map((c) => `${c.label}: ${c.count} / ${c.percentage}`)
-        .join("; ")}
-    </div>
-  ),
-}));
 
 it("préserve textes, paragraphes et auteurs publics avec liens React sans HTML brut", () => {
   render(
@@ -47,7 +37,7 @@ it("préserve textes, paragraphes et auteurs publics avec liens React sans HTML 
     screen.getByRole("link", { name: answers.items[0]?.author?.name }),
   ).toHaveAttribute("href", `/authors/${answers.items[0]?.author?.id}`);
   expect(
-    screen.getByRole("link", { name: "Voir les réponses suivantes" }),
+    screen.getByRole("link", { name: "Afficher davantage de réponses" }),
   ).toHaveAttribute(
     "href",
     "/questions/9007199254741022-test?cursor=opaque%2B%2F%3D",
@@ -69,27 +59,25 @@ it("annonce une fin de pagination et un lot vide sans numéro de page", () => {
     screen.getByText("Aucune réponse consultable dans ce lot."),
   ).toBeVisible();
   expect(
-    screen.queryByRole("link", { name: "Voir les réponses suivantes" }),
+    screen.queryByRole("link", { name: "Afficher davantage de réponses" }),
   ).toBeNull();
   expect(
-    screen.getByRole("link", { name: "Retour aux premières réponses" }),
+    screen.getByRole("link", { name: "Revenir au début" }),
   ).toHaveAttribute("href", "/questions/1-test");
 });
 it("utilise les mêmes données non renormalisées dans le tableau et le graphique", async () => {
   render(<Statistics stats={stats} />);
-  const table = screen.getByRole("table");
-  const rows = within(table).getAllByRole("row").slice(1);
+  const table = screen.getByRole("table", { hidden: true });
+  const rows = within(table).getAllByRole("row", { hidden: true }).slice(1);
   expect(
-    rows.map((row) => within(row).getByRole("rowheader").textContent),
-  ).toEqual(stats.categories.map((c, i) => `${i + 1}. ${c.label}`));
+    rows.map(
+      (row) => within(row).getByRole("rowheader", { hidden: true }).textContent,
+    ),
+  ).toEqual(stats.categories.map((c) => c.label));
   expect(rows[0]).toHaveTextContent("80 %");
   expect(rows[1]).toHaveTextContent("50 %");
-  expect(
-    screen.getByText(/somme des pourcentages peut donc dépasser 100/),
-  ).toBeVisible();
-  expect(await screen.findByTestId("chart")).toHaveTextContent(
-    "Deuxième option: 5 / 50",
-  );
+  expect(screen.getByText("Plusieurs réponses possibles")).toBeVisible();
+  expect(screen.getByText("5 · 50 %")).toBeVisible();
 });
 it("produit le tableau complet au SSR sans charger Recharts ni accéder aux dimensions du navigateur", () => {
   const html = renderToString(<Statistics stats={stats} />);
@@ -113,8 +101,8 @@ it("distingue zéro réponse et absence de catégories", () => {
     screen.getByText("Aucune réponse enregistrée pour cette question."),
   ).toBeVisible();
   expect(
-    screen.getByText("Aucune option statistique disponible."),
-  ).toBeVisible();
+    screen.queryByText("Aucune modalité statistique disponible."),
+  ).toBeNull();
   expect(screen.queryByText(/somme des pourcentages/)).toBeNull();
 });
 

@@ -1584,6 +1584,8 @@ export interface operations {
             query?: {
                 /** @description 20 par défaut, maximum 100. */
                 page_size?: number;
+                /** @description Questions à choix : uniquement les textes Autre, sans les libellés sélectionnés. */
+                other_only?: boolean;
                 /** @description Curseur opaque de la page précédente. */
                 cursor?: string | null;
             };

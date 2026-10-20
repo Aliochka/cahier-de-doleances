@@ -10,8 +10,43 @@ mène à sa page individuelle ; le soulignement apparaît au survol ou au focus.
 Le sommaire, les retours au sommaire et les liens de consultation répétés en
 pied de section ont été supprimés. Les ancres stables `#question-{id}` restent
 utilisables pour les liens directs et les anciennes URL Dashboard.
+Deux grands liens présentés comme des boutons, en haut et en bas, permettent
+également de « Voir les contributions à ce questionnaire ». Ils ouvrent
+`/forms/{id}/contributions`, avec navigation précédente/suivante en HTML.
+Cette entrée réutilise l'API historique de résolution par rang et l'affichage
+public existant des contributions. Le rang de navigation reste distinct de
+l'identifiant historique. Une lecture du rang suivant permet de reconnaître
+la dernière contribution, l'API existante bornant les rangs hors plage.
+Cette page de lecture effectue donc au plus deux appels de contribution ; le
+chargement du détail Formulaire conserve son unique appel API. Aucun changement
+backend ni nouvelle agrégation statistique n'est ajouté. La résolution historique
+conserve son COUNT et son OFFSET : l'optimisation d'une navigation très profonde
+ne fait pas partie de cet ajustement.
+
+Validation après ces ajustements : **141 tests unitaires et 54 tests navigateur
+réussis**, TypeScript et Biome réussis. Le parcours réel Formulaire → contribution
+→ contribution suivante a également été vérifié avec JavaScript activé et
+désactivé, à 320 px.
+
 Les graphiques, détails et règles statistiques sont inchangés. Les descriptions
 du sommaire ci-dessous retracent la livraison initiale, avant cette revue.
+
+### Présentation des contributions après revue
+
+Les cadres blancs des réponses sont retirés : la liste et les sections
+réutilisent la présentation continue du Formulaire, avec séparations horizontales
+et espacements. Le repérage des réponses ciblées par ancre est conservé.
+
+Le titre de la contribution et les titres des questions réutilisent désormais
+les styles noirs et la typographie du Formulaire. Les intitulés restent des
+liens vers les pages Questions. Les doublons de présentation issus des imports
+sont supprimés uniquement lorsque le texte entier reproduit les options,
+les champs Autre, leur concaténation par lignes ou une valeur structurée.
+Les textes complémentaires sont conservés intégralement. Aucune réponse en base
+n'est modifiée et aucune ligne de réponse distincte n'est fusionnée.
+Validation : 152 tests unitaires et 56 tests navigateur réussis ; le double
+« Non » de la contribution du formulaire 4, rang 2, a été contrôlé sur les
+données réelles avec et sans JavaScript.
 
 ## 1. Résultat
 

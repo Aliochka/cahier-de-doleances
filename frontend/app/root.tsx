@@ -4,6 +4,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
   useNavigation,
   useRevalidator,
 } from "react-router";
@@ -61,15 +62,26 @@ export function Layout({ children }: { children: ReactNode }) {
 export default function App() {
   const navigation = useNavigation();
   const revalidator = useRevalidator();
+  const location = useLocation();
+  const progressiveNavigation =
+    typeof navigation.location?.state?.progressiveFrom === "string" &&
+    navigation.location.pathname === location.pathname;
+  const localSearchProgress =
+    location.pathname === "/recherche" &&
+    (!navigation.location || navigation.location.pathname === "/recherche");
   return (
     <>
-      {(navigation.state !== "idle" || revalidator.state !== "idle") && (
-        <PageContainer>
-          <LoadingState
-            active={navigation.state !== "idle" || revalidator.state !== "idle"}
-          />
-        </PageContainer>
-      )}
+      {!localSearchProgress &&
+        !progressiveNavigation &&
+        (navigation.state !== "idle" || revalidator.state !== "idle") && (
+          <PageContainer>
+            <LoadingState
+              active={
+                navigation.state !== "idle" || revalidator.state !== "idle"
+              }
+            />
+          </PageContainer>
+        )}
       <Outlet />
     </>
   );

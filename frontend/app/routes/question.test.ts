@@ -65,14 +65,18 @@ it.each([`${question.id}-ancien-slug`, question.id])(
     expect(getQuestionAnswers).not.toHaveBeenCalled();
   },
 );
-it("charge les choix sans lire les réponses textuelles", async () => {
+it("charge les choix et leurs seuls textes Autre", async () => {
   vi.mocked(getQuestion).mockResolvedValue({
     ok: true,
     data: { ...question, type: "multi_choice", display_mode: "choice" },
   });
   const result = await loader(args());
   expect(result.data.stats).toEqual(stats);
-  expect(getQuestionAnswers).not.toHaveBeenCalled();
+  expect(getQuestionAnswers).toHaveBeenCalledWith(
+    question.id,
+    { other_only: true },
+    { signal: expect.any(AbortSignal) },
+  );
 });
 it.each([
   ["missing", 404],
@@ -132,5 +136,18 @@ it("préserve le contexte lors d’une panne des statistiques sans lire les rép
   expect(result.data.question.form).toEqual(question.form);
   expect(result.data.stats).toBeNull();
   expect(result.init?.status).toBe(500);
+  expect(getQuestionAnswers).not.toHaveBeenCalled();
+});
+
+it("sans Autre, les choix ne déclenchent pas de lecture des réponses individuelles", async () => {
+  vi.mocked(getQuestion).mockResolvedValue({
+    ok: true,
+    data: { ...question, type: "single_choice", display_mode: "choice" },
+  });
+  vi.mocked(getQuestionStats).mockResolvedValue({
+    ok: true,
+    data: { ...stats, other_text_answers_count: 0 },
+  });
+  await loader(args());
   expect(getQuestionAnswers).not.toHaveBeenCalled();
 });

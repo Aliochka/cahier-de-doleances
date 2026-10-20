@@ -1,7 +1,8 @@
 import { Link } from "react-router";
-import { css } from "../../../styled-system/css";
+import { css, cx } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import type { ContributionDetail } from "../../lib/api";
+import styles from "../forms/results.module.css";
 
 export function ContributionAnswers({
   answers,
@@ -17,10 +18,7 @@ export function ContributionAnswers({
       </EmptyState>
     );
   return (
-    <ol
-      aria-label="Réponses de la contribution"
-      className={css({ listStyle: "none", p: 0, display: "grid", gap: "8" })}
-    >
+    <ol aria-label="Réponses de la contribution" className={styles.questions}>
       {answers.map((answer) => (
         <li key={answer.id}>
           <section
@@ -28,23 +26,23 @@ export function ContributionAnswers({
             data-targeted={targetId === `answer-${answer.id}` || undefined}
             tabIndex={-1}
             aria-labelledby={`answer-title-${answer.id}`}
-            className={css({
-              p: { base: "4", md: "6" },
-              borderWidth: "thin",
-              borderColor: "border",
-              bg: "surface",
-              minWidth: 0,
-              overflowWrap: "anywhere",
-              scrollMarginTop: "8",
-              "&:target, &[data-targeted]": {
-                borderColor: "primary",
-                outline: "2px solid",
-                outlineColor: "primary",
-                bg: "surfaceSecondary",
-              },
-            })}
+            className={cx(
+              styles.question,
+              css({
+                overflowWrap: "anywhere",
+                "&:target, &[data-targeted]": {
+                  borderTopColor: "primary",
+                  outline: "2px solid",
+                  outlineColor: "primary",
+                  outlineOffset: "2",
+                },
+              }),
+            )}
           >
-            <h2 id={`answer-title-${answer.id}`}>
+            <h2
+              id={`answer-title-${answer.id}`}
+              className={styles.questionTitle}
+            >
               <Link
                 to={`/questions/${answer.question.id}-${answer.question.slug}`}
               >
@@ -69,11 +67,13 @@ export function ContributionAnswers({
             {answer.value !== null && (
               <p className={css({ mt: "4" })}>{answer.value}</p>
             )}
-            {answer.text !== null && answer.text !== "" && (
-              <p className={css({ whiteSpace: "pre-wrap", mt: "4" })}>
-                {answer.text}
-              </p>
-            )}
+            {answer.text !== null &&
+              answer.text !== "" &&
+              !duplicatesStructuredContent(answer) && (
+                <p className={css({ whiteSpace: "pre-wrap", mt: "4" })}>
+                  {answer.text}
+                </p>
+              )}
             {!answer.text &&
               answer.value === null &&
               answer.selected_options.length === 0 &&
@@ -84,5 +84,29 @@ export function ContributionAnswers({
         </li>
       ))}
     </ol>
+  );
+}
+
+// Imports may store the same choice labels/other fields both in text and in
+// structured fields. Hide only a complete duplicate; never subtract fragments
+// from citizen text or merge different answer rows.
+export function duplicatesStructuredContent(
+  answer: ContributionDetail["answers"][number],
+): boolean {
+  if (answer.text === null) return false;
+  const normalize = (text: string) => text.replace(/\r\n?/g, "\n").trim();
+  const text = normalize(answer.text);
+  if (!text) return false;
+  if (["single_choice", "multi_choice"].includes(answer.question.type)) {
+    const options = answer.selected_options.map((option) => option.label);
+    const other = answer.other_text;
+    return [options, other, [...options, ...other]].some(
+      (parts) => parts.length > 0 && normalize(parts.join("\n")) === text,
+    );
+  }
+  return (
+    ["number", "scale", "date"].includes(answer.question.type) &&
+    answer.value !== null &&
+    normalize(answer.value) === text
   );
 }

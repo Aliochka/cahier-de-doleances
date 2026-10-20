@@ -55,6 +55,7 @@ def read_question_answers(
     *,
     page_size: int = PER_PAGE,
     include_total: bool = True,
+    other_only: bool = False,
 ):
     # --- Scroll infini + filtre
     q = (q or "").strip()
@@ -66,6 +67,23 @@ def read_question_answers(
     cur = _dec_cursor(cursor)
     min_length = 1 if question_type in ("single_choice", "multi_choice") else MIN_ANSWER_LEN
     params = {"qid": question_id, "minlen": min_length, "limit": limit}
+
+    # Explicit choice-text view: only actual free-text Other fields, never the
+    # imported text that also repeats selected labels. Keep the same keyset.
+    other_array = """CASE WHEN jsonb_typeof(NULLIF(a.value_json, '')::jsonb->'other_text') = 'array'
+        THEN NULLIF(a.value_json, '')::jsonb->'other_text' ELSE '[]'::jsonb END"""
+    other_entries = f"jsonb_array_elements({other_array}) WITH ORDINALITY AS item(entry, ord)"
+    other_condition = "jsonb_typeof(entry) = 'string' AND btrim(entry #>> '{}') <> ''"
+    text_projection = (
+        f"(SELECT string_agg(entry #>> '{{}}', E'\\n\\n' ORDER BY ord) FROM {other_entries} WHERE {other_condition})"
+        if other_only
+        else "a.text"
+    )
+    content_filter = (
+        f"EXISTS (SELECT 1 FROM {other_entries} WHERE {other_condition})"
+        if other_only
+        else "a.text IS NOT NULL AND char_length(btrim(a.text)) >= :minlen"
+    )
 
     # Curseur pour pagination keyset
     cursor_sql = ""
@@ -89,26 +107,24 @@ def read_question_answers(
     if include_total and not cursor:
         if q:
             total = db.execute(
-                text("""
+                text(f"""
                     SELECT COUNT(1)
                     FROM answers a
                     JOIN contributions c ON c.id = a.contribution_id
                     WHERE a.question_id = :qid
-                      AND a.text IS NOT NULL
-                      AND char_length(btrim(a.text)) >= :minlen
+                      AND {content_filter}
                       AND a.text ILIKE :like
                 """),
                 {**params, "like": f"%{q}%"},
             ).scalar_one()
         else:
             total = db.execute(
-                text("""
+                text(f"""
                     SELECT COUNT(1)
                     FROM answers a
                     JOIN contributions c ON c.id = a.contribution_id
                     WHERE a.question_id = :qid
-                      AND a.text IS NOT NULL
-                      AND char_length(btrim(a.text)) >= :minlen
+                      AND {content_filter}
                 """),
                 params,
             ).scalar_one()
@@ -118,7 +134,7 @@ def read_question_answers(
         rows = (
             db.execute(
                 text(f"""
-                SELECT a.id AS answer_id, a.text AS answer_text,
+                SELECT a.id AS answer_id, {text_projection} AS answer_text,
                        c.author_id AS author_id, c.submitted_at AS submitted_at,
                        c.id AS contribution_id, au.name AS author_name,
                        au.is_anonymous AS author_is_anonymous
@@ -126,8 +142,7 @@ def read_question_answers(
                 JOIN contributions c ON c.id = a.contribution_id
                 LEFT JOIN authors au ON au.id = c.author_id
                 WHERE a.question_id = :qid
-                  AND a.text IS NOT NULL
-                  AND char_length(btrim(a.text)) >= :minlen
+                  AND {content_filter}
                   AND a.text ILIKE :like
                   {cursor_sql}
                 ORDER BY c.submitted_at DESC NULLS FIRST, a.id DESC
@@ -142,7 +157,7 @@ def read_question_answers(
         rows = (
             db.execute(
                 text(f"""
-                SELECT a.id AS answer_id, a.text AS answer_text,
+                SELECT a.id AS answer_id, {text_projection} AS answer_text,
                        c.author_id AS author_id, c.submitted_at AS submitted_at,
                        c.id AS contribution_id, au.name AS author_name,
                        au.is_anonymous AS author_is_anonymous
@@ -150,8 +165,7 @@ def read_question_answers(
                 JOIN contributions c ON c.id = a.contribution_id
                 LEFT JOIN authors au ON au.id = c.author_id
                 WHERE a.question_id = :qid
-                  AND a.text IS NOT NULL
-                  AND char_length(btrim(a.text)) >= :minlen
+                  AND {content_filter}
                   {cursor_sql}
                 ORDER BY c.submitted_at DESC NULLS FIRST, a.id DESC
                 LIMIT :limit

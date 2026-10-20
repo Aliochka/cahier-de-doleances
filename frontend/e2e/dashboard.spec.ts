@@ -95,6 +95,7 @@ for (const javaScriptEnabled of [true, false]) {
       await expect(page).toHaveURL(
         `${origin}/questions/9007199254741021-sujets`,
       );
+      await page.locator("summary").click();
       await expect(page.getByRole("table")).toBeVisible();
       await page.goBack();
       await expect(page).toHaveURL(/#question-9007199254741021$/);
@@ -197,3 +198,53 @@ test("impression et couleurs forcées : libellés et détails restent lisibles",
     printBackground: true,
   });
 });
+
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`contributions du questionnaire, JS ${javaScriptEnabled}`, () => {
+    test.use({ javaScriptEnabled });
+    test("deux boutons, lecture et navigation précédente/suivante", async ({
+      page,
+    }) => {
+      await page.goto(`${origin}${path}`);
+      const buttons = page.getByRole("link", {
+        name: "Voir les contributions à ce questionnaire",
+        exact: true,
+      });
+      await expect(buttons).toHaveCount(2);
+      await expect(buttons.first()).toHaveAttribute(
+        "href",
+        `${path}/contributions`,
+      );
+      await buttons.first().click();
+      await expect(
+        page.getByRole("list", { name: "Réponses de la contribution" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", {
+          name: "← Contribution précédente",
+          exact: true,
+        }),
+      ).toHaveCount(0);
+      await page
+        .getByRole("link", { name: "Contribution suivante →", exact: true })
+        .first()
+        .click();
+      await expect(page).toHaveURL(`${origin}${path}/contributions?contrib=2`);
+      await page
+        .getByRole("link", { name: "Contribution suivante →", exact: true })
+        .first()
+        .click();
+      await expect(
+        page.getByRole("link", {
+          name: "Contribution suivante →",
+          exact: true,
+        }),
+      ).toHaveCount(0);
+      await page
+        .getByRole("link", { name: "← Contribution précédente", exact: true })
+        .first()
+        .click();
+      await expect(page).toHaveURL(`${origin}${path}/contributions?contrib=2`);
+    });
+  });
+}
