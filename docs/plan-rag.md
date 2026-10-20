@@ -1,5 +1,11 @@
 # Projet RAG — Cahier de doléances
 
+> **Note du 20 octobre 2026 :** ce cadrage du 17 octobre est conservé comme historique.
+> Pour la recherche publique locale, les décisions SEARCH-002 à SEARCH-005 prévalent :
+> moteur hybride unique, deux bases, aucune sélection de moteur ni fallback historique.
+> La bascule React SSR est décrite dans le [rapport SEARCH-005](rapport-search-005.md).
+> Les pistes de génération et d'exploration ci-dessous restent distinctes de cette API.
+
 > **Statut :** cadrage fonctionnel et architectural terminé — développement non commencé.  
 > **Dernière mise à jour :** 17 octobre 2026  
 > **Objectif :** développer un moteur de recherche sémantique et un système RAG permettant d'explorer les contributions citoyennes du Grand Débat National, avec une possibilité de réutilisation dans l'application publique.

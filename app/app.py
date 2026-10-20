@@ -4,6 +4,8 @@ from __future__ import annotations
 import logging
 
 from fastapi import FastAPI, Request
+from fastapi.exception_handlers import request_validation_exception_handler
+from fastapi.exceptions import RequestValidationError
 from sqlalchemy.exc import DBAPIError
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.gzip import GZipMiddleware
@@ -20,12 +22,13 @@ from fastapi.exception_handlers import http_exception_handler as fastapi_http_ex
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.config import settings
+from app.hybrid_runtime import lifespan
 from app.logging_filters import redact_access_logs
 from app.routers import (
     api_contributions,
     api_forms,
+    api_hybrid_search,
     api_questions,
-    api_search,
     auth,
     bookmarks,
     health,
@@ -62,7 +65,7 @@ class TimeoutMiddleware(BaseHTTPMiddleware):
 # App
 # -----------------------------------------------------------------------------
 redact_access_logs()
-app = FastAPI(debug=False)
+app = FastAPI(debug=False, lifespan=lifespan)
 
 # Application middlewares
 app.add_middleware(TimeoutMiddleware)
@@ -99,7 +102,7 @@ app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.TRUSTED_PROXY_
 app.include_router(health.router)
 app.include_router(api_forms.router)
 app.include_router(api_questions.router)
-app.include_router(api_search.router)
+app.include_router(api_hybrid_search.router)
 app.include_router(api_contributions.router)
 app.include_router(seo.router)
 app.include_router(auth.router)
@@ -109,6 +112,15 @@ app.include_router(bookmarks.router)
 # -----------------------------------------------------------------------------
 # Exception handlers
 # -----------------------------------------------------------------------------
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    if request.url.path == "/api/v1/search":
+        return api_hybrid_search.failure(
+            request, 422, "invalid_query", "Requête ou curseur invalide."
+        )
+    return await request_validation_exception_handler(request, exc)
+
+
 def search_error_response(request: Request, *, timeout: bool):
     from fastapi.responses import JSONResponse
 

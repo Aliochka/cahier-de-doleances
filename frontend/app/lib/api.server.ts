@@ -1,18 +1,16 @@
 import {
   type AnswerPage,
-  type AnswerSearchPage,
-  type AnswerSearchQuery,
   type AnswersQuery,
   type ApiResult,
   type AuthorFormsPage,
   type AuthorFormsQuery,
-  type CatalogSearchPage,
-  type CatalogSearchQuery,
   type ContributionDetail,
   createPublicApi,
   type FormDetail,
   type FormStatistics,
   type Forms,
+  type HybridSearchPage,
+  type HybridSearchQuery,
   type PublicAuthor,
   type QuestionDetail,
   type QuestionStatistics,
@@ -120,22 +118,13 @@ export function getContribution(
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 
-export function searchAnswers(
-  query: AnswerSearchQuery = {},
+export function search(
+  query: HybridSearchQuery = {},
   options: RequestOptions = {},
-): Promise<ApiResult<AnswerSearchPage>> {
+): Promise<ApiResult<HybridSearchPage>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).searchAnswers(query, options)
-    : Promise.resolve({ ok: false, kind: "configuration" });
-}
-export function searchCatalog(
-  query: CatalogSearchQuery = {},
-  options: RequestOptions = {},
-): Promise<ApiResult<CatalogSearchPage>> {
-  const origin = backendOrigin();
-  return origin
-    ? createPublicApi(origin).searchCatalog(query, options)
+    ? createPublicApi(origin).search(query, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 

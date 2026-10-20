@@ -1,80 +1,72 @@
 import { useEffect, useState } from "react";
-import { data, Form, useRevalidator } from "react-router";
+import { data, Form, redirect, useNavigation } from "react-router";
 import { css } from "../../styled-system/css";
-import { EmptyState } from "../components/layout/data-states";
 import { PageContainer } from "../components/layout/page-container";
 import { Alert } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
 import { SearchControls } from "../features/search/search-controls";
-import {
-  SearchResults,
-  type SearchResultsData,
-} from "../features/search/search-results";
-import type { SearchState } from "../features/search/search-url";
+import { SearchResults } from "../features/search/search-results";
+import { type SearchState, searchUrl } from "../features/search/search-url";
 import { SurveyRouteError } from "../features/surveys/route-error";
-import { type ApiFailure, httpFailure } from "../lib/api";
-import { searchAnswers, searchCatalog } from "../lib/api.server";
-import { ERROR_HEADERS, errorMessages, failureStatus } from "../lib/api-errors";
+import {
+  type ApiFailure,
+  type HybridSearchPage,
+  httpFailure,
+} from "../lib/api";
+import { search } from "../lib/api.server";
+import { errorMessages, failureStatus } from "../lib/api-errors";
 import type { Route } from "./+types/search";
 
+const headers = {
+  "Cache-Control": "private, no-store",
+  "X-Robots-Tag": "noindex, follow",
+};
 export async function loader({ request, url }: Route.LoaderArgs) {
-  const query = url.searchParams;
-  const raw = query.get("q") ?? "";
-  const tab = query.get("tab") ?? "answers";
+  const params = url.searchParams;
+  const raw = params.get("q") ?? "";
+  const size = params.get("page_size");
   const state: SearchState = {
-    q: raw.trim(),
-    tab: tab === "catalog" ? "catalog" : "answers",
-    cursor: query.get("cursor"),
-    cursor_forms: query.get("cursor_forms"),
-    cursor_questions: query.get("cursor_questions"),
+    q: raw.normalize("NFC").trim(),
+    cursor: params.get("cursor"),
+    page_size: size === null ? 20 : Number(size),
   };
-  const duplicates = [
-    "q",
-    "tab",
-    "cursor",
-    "cursor_forms",
-    "cursor_questions",
-  ].some((key) => query.getAll(key).length > 1);
-  const relevantCursors =
-    state.tab === "answers"
-      ? [state.cursor]
-      : [state.cursor_forms, state.cursor_questions];
   const invalid =
-    raw.length > 512 ||
-    duplicates ||
-    !["answers", "catalog"].includes(tab) ||
-    relevantCursors.some(
-      (cursor) => cursor !== null && (!cursor || cursor.length > 1024),
-    );
+    Array.from(raw).length > 512 ||
+    [...params.keys()].some(
+      (key) =>
+        !["q", "cursor", "page_size"].includes(key) ||
+        params.getAll(key).length !== 1,
+    ) ||
+    (size !== null && !/^(?:[1-9]|1[0-9]|20)$/.test(size)) ||
+    (state.cursor !== null &&
+      (!state.q || !state.cursor || state.cursor.length > 1024));
   let failure: ApiFailure | null = invalid ? httpFailure(422) : null;
-  let result: SearchResultsData | null = null;
+  let result: HybridSearchPage | null = null;
   if (!failure && state.q) {
-    if (state.tab === "answers") {
-      const response = await searchAnswers(
-        {
-          q: state.q,
-          ...(state.cursor !== null ? { cursor: state.cursor } : {}),
-        },
-        { signal: request.signal },
-      );
-      if (response.ok) result = { type: "answers", page: response.data };
-      else failure = response;
-    } else {
-      const response = await searchCatalog(
-        {
-          q: state.q,
-          ...(state.cursor_forms !== null
-            ? { cursor_forms: state.cursor_forms }
-            : {}),
-          ...(state.cursor_questions !== null
-            ? { cursor_questions: state.cursor_questions }
-            : {}),
-        },
-        { signal: request.signal },
-      );
-      if (response.ok) result = { type: "catalog", page: response.data };
-      else failure = response;
-    }
+    const response = await search(
+      {
+        q: state.q,
+        page_size: state.page_size,
+        ...(state.cursor !== null ? { cursor: state.cursor } : {}),
+      },
+      { signal: request.signal },
+    );
+    if (response.ok) {
+      if (
+        response.data.q !== state.q ||
+        response.data.page_size !== state.page_size
+      )
+        failure = { ok: false, kind: "invalid_response" };
+      else {
+        result = response.data;
+        // Une seule redirection. Toutes les navigations suivantes portent déjà un curseur.
+        if (state.cursor === null && result.first_cursor)
+          throw redirect(searchUrl({ ...state, cursor: result.first_cursor }), {
+            status: 303,
+            headers,
+          });
+      }
+    } else failure = response;
   }
   return data(
     {
@@ -82,136 +74,108 @@ export async function loader({ request, url }: Route.LoaderArgs) {
       result,
       failure,
       fieldError:
-        raw.length > 512
+        Array.from(raw).length > 512
           ? "La recherche est limitée à 512 caractères."
-          : undefined,
+          : failure?.kind === "request"
+            ? "Vérifiez votre question et les paramètres de recherche."
+            : undefined,
     },
-    {
-      status: failure ? failureStatus(failure) : 200,
-      headers: failure
-        ? ERROR_HEADERS
-        : {
-            "Cache-Control": "private, no-store",
-            "X-Robots-Tag": "noindex, follow",
-          },
-    },
+    { status: failure ? failureStatus(failure) : 200, headers },
   );
 }
 
-export default function Search({ loaderData: current }: Route.ComponentProps) {
-  const { state, failure, result, fieldError } = current;
+export default function Search({
+  loaderData: { state, result, failure, fieldError },
+}: Route.ComponentProps) {
   const [draft, setDraft] = useState(state.q);
   useEffect(() => setDraft(state.q), [state.q]);
-  const revalidator = useRevalidator();
-  const [previous, setPrevious] = useState<{
-    result: SearchResultsData;
-    state: SearchState;
-  } | null>(null);
-  useEffect(() => {
-    if (result) setPrevious({ result, state });
-  }, [result, state]);
-  // Keep only the last successful page in this mounted route, and label it after failure.
-  const retained = failure ? previous : null;
-  const visible = result ? { result, state } : retained;
+  const navigation = useNavigation();
+  const pending =
+    navigation.state !== "idle" &&
+    navigation.location?.pathname === "/recherche";
+  const restart =
+    failure?.kind === "expired" ||
+    (failure?.kind === "request" && state.cursor !== null);
   return (
     <PageContainer>
       <title>Recherche — Cahier de doléances</title>
       <meta
         name="description"
-        content="Recherchez les réponses citoyennes, les questions et les enquêtes historiques du Grand Débat National."
+        content="Retrouvez la parole citoyenne du Grand Débat national. Recherchez une question ou un sujet et découvrez les réponses dans leur contexte."
       />
-      <meta
-        name="robots"
-        content={failure ? "noindex, nofollow" : "noindex, follow"}
-      />
+      <meta name="robots" content="noindex, follow" />
       <link rel="canonical" href="https://cahierdedoleances.fr/recherche" />
-      <h1>Recherche</h1>
-      <p className={css({ maxWidth: "reading", mb: "6" })}>
-        Explorez les réponses citoyennes ou retrouvez les questions et enquêtes
-        du Grand Débat National.
-      </p>
+      <div className={css({ maxWidth: "reading" })}>
+        <h1>Rechercher dans les paroles citoyennes</h1>
+        <p className={css({ fontSize: "section", mb: "6" })}>
+          Une question, un sujet, une préoccupation : découvrez les réponses des
+          participants au Grand Débat national, dans leur contexte d’origine.
+        </p>
+      </div>
       <SearchControls
-        state={state}
         draft={draft}
         onDraftChange={setDraft}
         error={fieldError}
+        pending={pending}
       />
       {failure && (
-        <section aria-label="Erreur de recherche" className={css({ mb: "8" })}>
+        <section
+          aria-label="Erreur de recherche"
+          className={css({ maxWidth: "reading", mb: "8" })}
+        >
           <h2>
-            {["unavailable", "network", "configuration"].includes(failure.kind)
-              ? "Service indisponible"
-              : "La recherche n’a pas abouti"}
+            {failure.kind === "expired"
+              ? "Cette sélection a expiré"
+              : ["unavailable", "network", "configuration"].includes(
+                    failure.kind,
+                  )
+                ? "Recherche indisponible"
+                : "La recherche n’a pas abouti"}
           </h2>
           <Alert variant="error" announcement="assertive">
-            {errorMessages[failure.kind]}
+            {["server_timeout", "timeout"].includes(failure.kind)
+              ? "La recherche prend trop de temps. Réessayez ou précisez votre question."
+              : errorMessages[failure.kind]}
           </Alert>
-          <Form
-            method="get"
-            action="/recherche"
-            onSubmit={(event) => {
-              event.preventDefault();
-              void revalidator.revalidate();
-            }}
-          >
+          <Form method="get" action="/recherche" className={css({ mt: "4" })}>
             <input type="hidden" name="q" value={state.q} />
-            <input type="hidden" name="tab" value={state.tab} />
-            {state.tab === "answers" && state.cursor !== null && (
+            {state.page_size !== 20 && (
+              <input type="hidden" name="page_size" value={state.page_size} />
+            )}
+            {!restart && state.cursor && (
               <input type="hidden" name="cursor" value={state.cursor} />
             )}
-            {state.tab === "catalog" && (
-              <>
-                {state.cursor_forms !== null && (
-                  <input
-                    type="hidden"
-                    name="cursor_forms"
-                    value={state.cursor_forms}
-                  />
-                )}
-                {state.cursor_questions !== null && (
-                  <input
-                    type="hidden"
-                    name="cursor_questions"
-                    value={state.cursor_questions}
-                  />
-                )}
-              </>
-            )}
-            <Button type="submit" loading={revalidator.state !== "idle"}>
-              Réessayer
+            <Button type="submit" loading={pending}>
+              {restart ? "Relancer la recherche" : "Réessayer"}
             </Button>
           </Form>
-          {retained && (
-            <p>
-              Le lot précédent reste affiché : « {retained.state.q} »,{" "}
-              {retained.state.tab === "answers"
-                ? "Réponses"
-                : "Questions et enquêtes"}
-              .
-            </p>
-          )}
         </section>
       )}
-      <p
-        role="status"
-        aria-label="État des résultats"
-        aria-atomic="true"
-        className={css({ color: "muted", mb: "4" })}
-      >
-        {result
-          ? `${(result.type === "answers" ? result.page.items.length : result.page.forms.length + result.page.questions.length) === 0 ? "Aucun résultat" : "Résultats affichés"} pour « ${state.q} » — ${state.tab === "answers" ? "Réponses" : "Questions et enquêtes"}.`
-          : failure
-            ? "La recherche n’a pas abouti."
-            : "Saisissez des mots-clés pour commencer."}
-      </p>
       {!failure && !state.q && (
-        <EmptyState>
-          Saisissez des mots-clés pour commencer votre recherche.
-        </EmptyState>
+        <section
+          aria-labelledby="search-welcome"
+          className={css({
+            maxWidth: "reading",
+            p: { base: "4", md: "6" },
+            background: "surface",
+            border: "panel",
+            borderRadius: "panel",
+          })}
+        >
+          <h2 id="search-welcome">
+            Un point de départ pour écouter et comprendre
+          </h2>
+          <p>
+            Demandez par exemple « Quelles difficultés rencontrent les habitants
+            des zones rurales ? », ou saisissez simplement « Pouvoir d’achat ».
+          </p>
+          <p className={css({ mt: "4", color: "muted" })}>
+            Chaque réponse est accompagnée de sa question. Vous pouvez ensuite
+            lire la contribution complète pour retrouver le témoignage original.
+          </p>
+        </section>
       )}
-      {visible && (
-        <SearchResults result={visible.result} state={visible.state} />
-      )}
+      {!failure && result && <SearchResults page={result} state={state} />}
     </PageContainer>
   );
 }

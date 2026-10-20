@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "API et ingestion du Cahier de doléances"
 requires-python = ">=3.11,<3.12"
 dependencies = [
+    "cahier-rag",
     "fastapi==0.143.0",
     "uvicorn[standard]==0.35.0",
     "gunicorn==23.0.0",
@@ -21,6 +22,9 @@ dependencies = [
     "PyYAML==6.0.3",
 ]
 
+[project.optional-dependencies]
+search = ["cahier-rag[embeddings]", "torch==2.10.0"]
+
 [dependency-groups]
 dev = [
     "pytest==9.1.1",
@@ -32,4 +36,13 @@ dev = [
 # Application exécutée depuis le dépôt : conserver les imports app/ et ingest/.
 package = false
 required-version = "==0.13.1"
-# Aucun workspace : le futur projet rag/ aura son propre verrou et environnement.
+# Le RAG conserve son verrou expérimental ; l'application verrouille aussi son extra GPU.
+
+[tool.uv.sources]
+cahier-rag = { path = "rag", editable = true }
+torch = [{ index = "pytorch-cu128", extra = "search", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true

@@ -8,7 +8,16 @@ from uuid import uuid4
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, text
+from sqlalchemy.engine import make_url
 from sqlalchemy.orm import sessionmaker
+
+
+@pytest.fixture(autouse=True)
+def isolated_search_configuration(monkeypatch, tmp_path):
+    # Aucun test ne doit charger le modèle ou contacter les corpus de travail.
+    # Les tests du lifespan injectent explicitement leur propre backend.
+    monkeypatch.setenv("SEARCH_CONFIG_FILE", str(tmp_path / "missing-search.env"))
+    monkeypatch.delenv("SEARCH_CURSOR_KEY", raising=False)
 
 
 @pytest.fixture(scope="session")
@@ -16,6 +25,8 @@ def test_engine():
     url = os.getenv("TEST_DATABASE_URL")
     if not url:
         pytest.skip("Define TEST_DATABASE_URL pointing to a migrated PostgreSQL test database")
+    if not (make_url(url).database or "").endswith("_test"):
+        pytest.fail("TEST_DATABASE_URL doit désigner une base isolée terminée par _test")
     engine = create_engine(url)
     with engine.connect() as connection:
         assert (
@@ -39,7 +50,6 @@ def web_data(test_engine, monkeypatch):
             "app.db",
             "app.routers.api_forms",
             "app.routers.api_questions",
-            "app.routers.api_search",
             "app.routers.api_contributions",
             "app.routers.seo",
             "app.routers.bookmarks",

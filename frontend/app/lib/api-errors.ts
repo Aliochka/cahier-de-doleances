@@ -4,6 +4,8 @@ import type { ApiErrorKind, ApiFailure, ApiResult } from "./api";
 export const errorMessages: Record<ApiErrorKind, string> = {
   request: "La demande est invalide. Vérifiez les informations saisies.",
   denied: "Vous n’avez pas accès à cette ressource.",
+  expired:
+    "Cette sélection a expiré. Relancez la recherche pour obtenir une nouvelle sélection.",
   missing: "Cette ressource n’existe pas.",
   application: "Une erreur est survenue. Veuillez réessayer.",
   unavailable: "Le service est momentanément indisponible.",

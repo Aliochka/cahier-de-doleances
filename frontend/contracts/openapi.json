@@ -121,50 +121,6 @@
         "title": "AnswerPage",
         "type": "object"
       },
-      "AnswerSearchPage": {
-        "properties": {
-          "has_next": {
-            "title": "Has Next",
-            "type": "boolean"
-          },
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/SearchAnswer"
-            },
-            "title": "Items",
-            "type": "array"
-          },
-          "next_cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Curseur opaque ID décroissant, à réutiliser uniquement avec le même terme.",
-            "title": "Next Cursor"
-          },
-          "page_size": {
-            "title": "Page Size",
-            "type": "integer"
-          },
-          "q": {
-            "title": "Q",
-            "type": "string"
-          }
-        },
-        "required": [
-          "q",
-          "items",
-          "page_size",
-          "has_next",
-          "next_cursor"
-        ],
-        "title": "AnswerSearchPage",
-        "type": "object"
-      },
       "ApiError": {
         "properties": {
           "detail": {
@@ -258,192 +214,6 @@
           "next_after_id"
         ],
         "title": "AuthorFormsPage",
-        "type": "object"
-      },
-      "CatalogForm": {
-        "properties": {
-          "id": {
-            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
-            "pattern": "^[0-9]+$",
-            "title": "Id",
-            "type": "string"
-          },
-          "kind": {
-            "const": "form",
-            "default": "form",
-            "title": "Kind",
-            "type": "string"
-          },
-          "name": {
-            "description": "Nom public du formulaire historique.",
-            "title": "Name",
-            "type": "string"
-          },
-          "questions_count": {
-            "description": "Nombre de questions, avec ou sans réponses.",
-            "minimum": 0.0,
-            "title": "Questions Count",
-            "type": "integer"
-          },
-          "url": {
-            "description": "Chemin relatif de la page HTML historique.",
-            "title": "Url",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "questions_count",
-          "url"
-        ],
-        "title": "CatalogForm",
-        "type": "object"
-      },
-      "CatalogQuestion": {
-        "properties": {
-          "answers_count": {
-            "description": "Compteur historique de question, sans comptage des résultats.",
-            "minimum": 0.0,
-            "title": "Answers Count",
-            "type": "integer"
-          },
-          "form": {
-            "$ref": "#/components/schemas/QuestionForm"
-          },
-          "form_id": {
-            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
-            "pattern": "^[0-9]+$",
-            "title": "Form Id",
-            "type": "string"
-          },
-          "id": {
-            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
-            "pattern": "^[0-9]+$",
-            "title": "Id",
-            "type": "string"
-          },
-          "kind": {
-            "const": "question",
-            "default": "question",
-            "title": "Kind",
-            "type": "string"
-          },
-          "position": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Ordre déclaré dans le questionnaire ; peut être absent.",
-            "title": "Position"
-          },
-          "prompt": {
-            "title": "Prompt",
-            "type": "string"
-          },
-          "slug": {
-            "description": "Slug construit avec le helper des routes HTML.",
-            "title": "Slug",
-            "type": "string"
-          },
-          "type": {
-            "description": "Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.",
-            "title": "Type",
-            "type": "string"
-          },
-          "url": {
-            "description": "Chemin relatif vers la question historique.",
-            "title": "Url",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "form_id",
-          "prompt",
-          "type",
-          "position",
-          "slug",
-          "url",
-          "form",
-          "answers_count"
-        ],
-        "title": "CatalogQuestion",
-        "type": "object"
-      },
-      "CatalogSearchPage": {
-        "properties": {
-          "forms": {
-            "items": {
-              "$ref": "#/components/schemas/CatalogForm"
-            },
-            "title": "Forms",
-            "type": "array"
-          },
-          "has_next_forms": {
-            "title": "Has Next Forms",
-            "type": "boolean"
-          },
-          "has_next_questions": {
-            "title": "Has Next Questions",
-            "type": "boolean"
-          },
-          "next_cursor_forms": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Curseur opaque score/ID de la section formulaires.",
-            "title": "Next Cursor Forms"
-          },
-          "next_cursor_questions": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Curseur opaque score/ID de la section questions.",
-            "title": "Next Cursor Questions"
-          },
-          "page_size": {
-            "description": "Limite par section, pas un total combiné.",
-            "title": "Page Size",
-            "type": "integer"
-          },
-          "q": {
-            "title": "Q",
-            "type": "string"
-          },
-          "questions": {
-            "items": {
-              "$ref": "#/components/schemas/CatalogQuestion"
-            },
-            "title": "Questions",
-            "type": "array"
-          }
-        },
-        "required": [
-          "q",
-          "forms",
-          "questions",
-          "page_size",
-          "has_next_forms",
-          "has_next_questions",
-          "next_cursor_forms",
-          "next_cursor_questions"
-        ],
-        "title": "CatalogSearchPage",
         "type": "object"
       },
       "ChoiceCategory": {
@@ -852,6 +622,319 @@
         "title": "HTTPValidationError",
         "type": "object"
       },
+      "HybridAnswer": {
+        "properties": {
+          "answer_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Answer Id",
+            "type": "string"
+          },
+          "contribution_id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Contribution Id",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/components/schemas/HybridForm"
+          },
+          "is_truncated": {
+            "title": "Is Truncated",
+            "type": "boolean"
+          },
+          "question": {
+            "$ref": "#/components/schemas/HybridQuestion"
+          },
+          "rank": {
+            "description": "Position stable de carte dans cette sélection.",
+            "minimum": 1.0,
+            "title": "Rank",
+            "type": "integer"
+          },
+          "texts": {
+            "items": {
+              "$ref": "#/components/schemas/HybridText"
+            },
+            "title": "Texts",
+            "type": "array"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "answer_id",
+          "contribution_id",
+          "rank",
+          "texts",
+          "is_truncated",
+          "question",
+          "form",
+          "url"
+        ],
+        "title": "HybridAnswer",
+        "type": "object"
+      },
+      "HybridErrorDetail": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "retryable": {
+            "title": "Retryable",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "retryable"
+        ],
+        "title": "HybridErrorDetail",
+        "type": "object"
+      },
+      "HybridErrorEnvelope": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/HybridErrorDetail"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "error",
+          "request_id"
+        ],
+        "title": "HybridErrorEnvelope",
+        "type": "object"
+      },
+      "HybridForm": {
+        "properties": {
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url"
+        ],
+        "title": "HybridForm",
+        "type": "object"
+      },
+      "HybridQuestion": {
+        "properties": {
+          "id": {
+            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+            "pattern": "^[0-9]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "prompt",
+          "url"
+        ],
+        "title": "HybridQuestion",
+        "type": "object"
+      },
+      "HybridSearchPage": {
+        "properties": {
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "first_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Cursor"
+          },
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/HybridAnswer"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "mode": {
+            "const": "hybrid",
+            "default": "hybrid",
+            "title": "Mode",
+            "type": "string"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "page_size": {
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "previous_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Cursor"
+          },
+          "q": {
+            "title": "Q",
+            "type": "string"
+          },
+          "recipe_version": {
+            "title": "Recipe Version",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "idle",
+              "results",
+              "empty",
+              "sources_unavailable"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/HybridWarning"
+            },
+            "title": "Warnings",
+            "type": "array"
+          },
+          "window": {
+            "$ref": "#/components/schemas/SearchWindow"
+          }
+        },
+        "required": [
+          "q",
+          "state",
+          "recipe_version",
+          "items",
+          "page_size",
+          "has_next",
+          "next_cursor",
+          "previous_cursor",
+          "first_cursor",
+          "expires_at",
+          "window",
+          "warnings"
+        ],
+        "title": "HybridSearchPage",
+        "type": "object"
+      },
+      "HybridText": {
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "unit_index": {
+            "minimum": 0.0,
+            "title": "Unit Index",
+            "type": "integer"
+          },
+          "unit_type": {
+            "enum": [
+              "open_answer",
+              "other_text"
+            ],
+            "title": "Unit Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "unit_type",
+          "unit_index",
+          "text"
+        ],
+        "title": "HybridText",
+        "type": "object"
+      },
+      "HybridWarning": {
+        "properties": {
+          "code": {
+            "const": "source_unavailable",
+            "default": "source_unavailable",
+            "title": "Code",
+            "type": "string"
+          },
+          "count": {
+            "minimum": 1.0,
+            "title": "Count",
+            "type": "integer"
+          },
+          "message": {
+            "default": "Certaines réponses ne sont plus accessibles et ont été retirées de cette sélection.",
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "count"
+        ],
+        "title": "HybridWarning",
+        "type": "object"
+      },
       "PublicAnswer": {
         "properties": {
           "author": {
@@ -1134,75 +1217,39 @@
         "title": "QuestionStatistics",
         "type": "object"
       },
-      "SearchAnswer": {
+      "SearchWindow": {
         "properties": {
-          "author": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/PublicAuthor"
-              },
-              {
-                "type": "null"
-              }
-            ]
+          "answer_count": {
+            "description": "Cartes de l'instantané, jamais un total du corpus.",
+            "minimum": 0.0,
+            "title": "Answer Count",
+            "type": "integer"
           },
-          "contribution_id": {
-            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
-            "pattern": "^[0-9]+$",
-            "title": "Contribution Id",
-            "type": "string"
+          "document_limit": {
+            "description": "Sortie documentaire de la recette, provisoirement 50.",
+            "minimum": 1.0,
+            "title": "Document Limit",
+            "type": "integer"
           },
-          "form": {
-            "$ref": "#/components/schemas/QuestionForm"
-          },
-          "id": {
-            "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
-            "pattern": "^[0-9]+$",
-            "title": "Id",
-            "type": "string"
-          },
-          "is_truncated": {
-            "title": "Is Truncated",
+          "exhaustive": {
+            "const": false,
+            "default": false,
+            "title": "Exhaustive",
             "type": "boolean"
           },
-          "question": {
-            "$ref": "#/components/schemas/FormQuestion"
-          },
-          "submitted_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Submitted At"
-          },
-          "text": {
-            "description": "Préfixe brut fidèle, 1 000 caractères maximum, sans HTML ajouté.",
-            "title": "Text",
-            "type": "string"
-          },
-          "url": {
-            "description": "Page React de contribution par ID, avec ancre answer-{id}.",
-            "title": "Url",
-            "type": "string"
+          "retrieval_depth": {
+            "description": "Profondeur par branche, distincte de page_size.",
+            "minimum": 1.0,
+            "title": "Retrieval Depth",
+            "type": "integer"
           }
         },
         "required": [
-          "id",
-          "contribution_id",
-          "text",
-          "is_truncated",
-          "submitted_at",
-          "author",
-          "question",
-          "form",
-          "url"
+          "document_limit",
+          "retrieval_depth",
+          "answer_count"
         ],
-        "title": "SearchAnswer",
+        "title": "SearchWindow",
         "type": "object"
       },
       "SelectedOption": {
@@ -2406,18 +2453,17 @@
         ]
       }
     },
-    "/api/v1/search/answers": {
+    "/api/v1/search": {
       "get": {
-        "operationId": "search_public_answers",
+        "description": "Recherche naturelle, sans syntaxe booléenne globale promise. La fenêtre est bornée par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.",
+        "operationId": "search_public_hybrid",
         "parameters": [
           {
-            "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
             "in": "query",
             "name": "q",
             "required": false,
             "schema": {
               "default": "",
-              "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
               "maxLength": 512,
               "title": "Q",
               "type": "string"
@@ -2429,14 +2475,13 @@
             "required": false,
             "schema": {
               "default": 20,
-              "maximum": 100,
+              "maximum": 20,
               "minimum": 1,
               "title": "Page Size",
               "type": "integer"
             }
           },
           {
-            "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
             "in": "query",
             "name": "cursor",
             "required": false,
@@ -2451,7 +2496,6 @@
                   "type": "null"
                 }
               ],
-              "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
               "title": "Cursor"
             }
           }
@@ -2461,226 +2505,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnswerSearchPage"
+                  "$ref": "#/components/schemas/HybridSearchPage"
                 }
               }
             },
             "description": "Successful Response"
           },
-          "408": {
+          "410": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiError"
+                  "$ref": "#/components/schemas/HybridErrorEnvelope"
                 }
               }
             },
-            "description": "Délai HTTP dépassé."
+            "description": "Gone"
           },
           "422": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/HybridErrorEnvelope"
                 }
               }
             },
-            "description": "Validation Error"
+            "description": "Unprocessable Entity"
           },
           "500": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiError"
+                  "$ref": "#/components/schemas/HybridErrorEnvelope"
                 }
               }
             },
-            "description": "Erreur inattendue, sans détails internes."
+            "description": "Internal Server Error"
           },
           "503": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiError"
+                  "$ref": "#/components/schemas/HybridErrorEnvelope"
                 }
               }
             },
-            "description": "Base indisponible."
+            "description": "Service Unavailable"
           },
           "504": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiError"
+                  "$ref": "#/components/schemas/HybridErrorEnvelope"
                 }
               }
             },
-            "description": "Délai SQL dépassé ; transaction annulée."
+            "description": "Gateway Timeout"
           }
         },
-        "summary": "Recherche plein texte des réponses, ordre historique ID décroissant",
+        "summary": "Recherche hybride de réponses citoyennes classées par pertinence",
         "tags": [
-          "Public search"
-        ]
-      }
-    },
-    "/api/v1/search/catalog": {
-      "get": {
-        "operationId": "search_public_catalog",
-        "parameters": [
-          {
-            "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
-            "in": "query",
-            "name": "q",
-            "required": false,
-            "schema": {
-              "default": "",
-              "description": "Terme recherché, espaces extérieurs retirés. Maximum 512 caractères.",
-              "maxLength": 512,
-              "title": "Q",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "default": 20,
-              "maximum": 100,
-              "minimum": 1,
-              "title": "Page Size",
-              "type": "integer"
-            }
-          },
-          {
-            "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
-            "in": "query",
-            "name": "cursor_forms",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "maxLength": 1024,
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
-              "title": "Cursor Forms"
-            }
-          },
-          {
-            "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
-            "in": "query",
-            "name": "cursor_questions",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "maxLength": 1024,
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend.",
-              "title": "Cursor Questions"
-            }
-          },
-          {
-            "description": "Omettre pour les deux sections ; une section limite la recherche et le SQL à celle-ci.",
-            "in": "query",
-            "name": "section",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "enum": [
-                    "forms",
-                    "questions"
-                  ],
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Omettre pour les deux sections ; une section limite la recherche et le SQL à celle-ci.",
-              "title": "Section"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogSearchPage"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "408": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            },
-            "description": "Délai HTTP dépassé."
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          },
-          "500": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            },
-            "description": "Erreur inattendue, sans détails internes."
-          },
-          "503": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            },
-            "description": "Base indisponible."
-          },
-          "504": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            },
-            "description": "Délai SQL dépassé ; transaction annulée."
-          }
-        },
-        "summary": "Questions et formulaires, sections indépendantes classées par ts_rank puis ID",
-        "tags": [
-          "Public search"
+          "Hybrid search"
         ]
       }
     }

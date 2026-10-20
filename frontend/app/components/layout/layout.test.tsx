@@ -59,7 +59,7 @@ it("situe un formulaire dans la section Enquêtes sans le déclarer comme la pag
 
 it("indique la recherche active même avec des paramètres", () => {
   render(
-    <MemoryRouter initialEntries={["/recherche?q=école&tab=catalog"]}>
+    <MemoryRouter initialEntries={["/recherche?q=école&cursor=opaque"]}>
       <Header />
     </MemoryRouter>,
   );

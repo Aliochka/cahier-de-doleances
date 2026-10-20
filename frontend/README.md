@@ -502,55 +502,53 @@ hydratation, les parcours au clavier, l’arrière et les écrans à 320 px/zoom
 L’API simulée reste locale, sans Wallace. Ces tests ne constituent pas une recette
 RGAA complète. Aucun nouveau sitemap, compte ou marque-page n’est ajouté.
 
-## Recherche unifiée (FRONT-004)
+## Recherche hybride unique (SEARCH-005)
 
-`/recherche?q=…&tab=answers|catalog` utilise un formulaire GET : la saisie reste un
-brouillon jusqu’au bouton **Rechercher** ou à Entrée (512 caractères maximum).
-L’URL définit la recherche active. Les catégories sont des liens de navigation,
-accessibles sans JavaScript, avec `aria-current` ; elles gardent le terme soumis,
-préservent le brouillon côté client et effacent les curseurs. Aucun préchargement,
-appel par frappe, polling ou retry automatique n’est ajouté.
+`/recherche` présente un formulaire GET en langage naturel (512 caractères maximum),
+sans onglets ni syntaxe technique imposée. Entrée ou **Rechercher** soumet la saisie ;
+aucun appel à chaque frappe. L'accueil explique la recherche dans les paroles du
+Grand Débat et donne deux exemples, sans nouveau service de suggestions.
 
-Le loader serveur appelle uniquement `/api/v1/search/answers` ou
-`/api/v1/search/catalog` via le client existant et `API_BASE_URL`. Les méthodes et
-modèles utilisent le contrat généré, sans conversion des BIGINT. Les appels publics
-omettent les cookies et propagent le signal d’annulation ; aucun appel ne part
-pendant le build. Les navigations React Router utilisent ce même loader serveur.
+Le loader serveur utilise uniquement `GET /api/v1/search` via `API_BASE_URL`, les
+types OpenAPI et une validation du JSON. Les BIGINT restent des chaînes. Les
+cookies sont omis et le signal d'annulation propagé (timeout SSR 20 s). Aucun appel
+pendant le build ; les navigations hydratées utilisent le même loader serveur.
 
-- Réponses : ordre API par ID décroissant, extraits échappés avec sauts de ligne,
-  liens `/forms/{form_id}/contributions/{contribution_id}#answer-{answer_id}`.
-  Seuls les auteurs non anonymes ont un lien dans ces résultats.
-- Catalogue : deux listes **Enquêtes** et **Questions**, dans l’ordre de pertinence
-  fourni par l’API pour chaque catégorie. Les liens de question utilisent l’URL
-  déjà construite par le backend ; aucun nouveau slug n’est calculé.
-- Pagination : 20 résultats par défaut, curseurs opaques `cursor` pour les réponses,
-  `cursor_forms` et `cursor_questions` pour le catalogue. Les deux listes du catalogue
-  sont paginées séparément ; avancer une liste conserve le curseur courant de l’autre.
-  Le retour arrière du navigateur retrouve les lots précédents. Une nouvelle
-  soumission remet tous les curseurs à zéro. Aucun total exact ni numéro de page.
+Chaque carte garde la question visible, met la réponse en avant dans une citation,
+sépare les champs « Autre », indique les extraits abrégés et présente le formulaire
+en contexte secondaire. Les textes sont échappés, avec leurs sauts de ligne ; aucun
+résumé généré. **Lire la contribution complète** reprend exactement l'ancre API.
+Les réponses courtes ne sont pas filtrées. Aucun auteur n'est exposé par ce contrat.
 
-Le HTML initial contient les résultats, les liens et le formulaire. Une recherche
-vide ne contacte pas l’API. Les pages réussies, y compris sans résultat, répondent
-200 avec `noindex, follow`, une canonical fixe `https://cahierdedoleances.fr/recherche`
-et `Cache-Control: private, no-store`. Les erreurs conservent leur statut réel
-(422/500/502/503/504), un formulaire utilisable et un réessai manuel ; elles ne sont
-ni indexées ni mises en cache. Pendant la navigation, les anciens résultats restent
-visibles avec le chargement global et le message après huit secondes. Après un échec,
-le dernier lot réussi reste affiché côté client, explicitement identifié par son
-terme et sa catégorie. Le secours SSR est autonome, sans dépendance à Wallace.
+La première recherche redirige une seule fois en 303 vers son `first_cursor`.
+Cette URL permet de revenir à la même sélection, sans recalcul H1. Les liens HTML
+suivant, précédent et premier préservent `q`, `page_size` et le curseur, sans état
+React persistant ni stockage local. Une soumission du formulaire démarre une
+nouvelle sélection. La taille de page (20 par défaut) reste distincte de la
+profondeur configurée dans SEARCH-003. L'interface parle de sélection pertinente,
+jamais de total exhaustif ni de limite définitive à 50. En fin de sélection, elle
+invite à préciser ou reformuler la recherche.
 
-La recherche Réponses est limitée aux **1 789 derniers candidats FTS** et n’est
-pas exhaustive ; ce n’est pas un classement par pertinence. La limite ne concerne
-pas le catalogue. Les syntaxes des deux moteurs diffèrent : voir
-[la documentation backend](../docs/api-search.md). Une révision de cette limite et
-les mesures de coût sur le corpus complet restent des travaux backend ultérieurs.
+SSR et fonctionnement sans JavaScript couvrent recherche, résultats, pagination,
+ancres et erreurs. L'expiration 410 propose une relance manuelle sans curseur.
+Indisponibilité 503, délai 504, requête invalide 422 et erreur 500 restent distincts
+de l'état vide 200 ; les avertissements de sources retirées restent visibles.
+Les erreurs techniques brutes ne sont jamais affichées. Les en-têtes restent
+`private, no-store` et `noindex, follow`, avec canonical fixe `/recherche`.
+Les anciens résultats restent seulement pendant la navigation en cours, puis
+s'effacent en cas d'échec pour ne pas masquer l'erreur. Le chargement global,
+l'attente prolongée et l'annulation des navigations obsolètes sont réutilisés.
+
+Les anciens types, méthodes, onglets et endpoints généraux sont retirés. Les
+lectures documentaires et statistiques sont conservées. Aucune structure SQL
+n'est supprimée avant SEARCH-006. Voir le [contrat API](../docs/api-search.md),
+le [lancement local](../docs/search-local.md) et le [rapport](../docs/rapport-search-005.md).
 
 Validation : `pnpm check`, `pnpm typecheck`, `pnpm test`, `pnpm build:offline`,
-`pnpm test:build`, `pnpm contract:check`, `pnpm test:e2e`. Les tests utilisent l’API
-synthétique locale, couvrent SSR/statuts/noindex, Entrée/bouton, requêtes indépendantes,
-pagination sans JavaScript, annulation, réessai, ancres, clavier et écrans 320 px/zoom
-200 %. Une recette RGAA avec lecteurs d’écran réels reste nécessaire avant production.
-Le frontend React et le backend API se déploient séparément.
+`pnpm test:build`, `pnpm contract:types:check`, `pnpm test:e2e`. Les tests navigateur
+locaux utilisent des données synthétiques pour le vide, les erreurs et les sources
+retirées. La recette réelle séparée emploie le modèle et les deux bases locales.
+Une recette avec lecteurs d'écran réels reste à conduire avant production.
 
 ## Tableaux de bord par formulaire (DASH-001)
 

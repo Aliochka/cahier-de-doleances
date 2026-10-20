@@ -10,6 +10,7 @@ export type ApiErrorKind =
   | "request"
   | "denied"
   | "missing"
+  | "expired"
   | "application"
   | "unavailable"
   | "server_timeout"
@@ -18,7 +19,12 @@ export type ApiErrorKind =
   | "cancelled"
   | "invalid_response"
   | "configuration";
-export type ApiFailure = { ok: false; kind: ApiErrorKind; status?: number };
+export type ApiFailure = {
+  ok: false;
+  kind: ApiErrorKind;
+  status?: number;
+  code?: HybridErrorCode;
+};
 export type ApiResult<T> = { ok: true; data: T } | ApiFailure;
 export type RequestOptions = {
   signal?: AbortSignal;
@@ -42,29 +48,56 @@ export type ContributionDetail = components["schemas"]["ContributionDetail"];
 export type AuthorFormsQuery = NonNullable<
   operations["list_public_author_forms"]["parameters"]["query"]
 >;
-export type AnswerSearchPage = components["schemas"]["AnswerSearchPage"];
-export type CatalogSearchPage = components["schemas"]["CatalogSearchPage"];
-export type AnswerSearchQuery = NonNullable<
-  operations["search_public_answers"]["parameters"]["query"]
+export type HybridSearchPage = components["schemas"]["HybridSearchPage"];
+export type HybridSearchQuery = NonNullable<
+  operations["search_public_hybrid"]["parameters"]["query"]
 >;
-export type CatalogSearchQuery = NonNullable<
-  operations["search_public_catalog"]["parameters"]["query"]
->;
+export type HybridErrorCode =
+  | "invalid_query"
+  | "invalid_cursor"
+  | "search_expired"
+  | "search_not_ready"
+  | "search_unavailable"
+  | "search_metadata_unavailable"
+  | "search_busy"
+  | "search_timeout"
+  | "search_encoding_timeout"
+  | "search_sql_timeout"
+  | "search_metadata_timeout"
+  | "search_cancelled"
+  | "search_internal_error";
+const searchErrorCodes = new Set<string>([
+  "invalid_query",
+  "invalid_cursor",
+  "search_expired",
+  "search_not_ready",
+  "search_unavailable",
+  "search_metadata_unavailable",
+  "search_busy",
+  "search_timeout",
+  "search_encoding_timeout",
+  "search_sql_timeout",
+  "search_metadata_timeout",
+  "search_cancelled",
+  "search_internal_error",
+]);
 type FormSummary = components["schemas"]["FormSummary"];
 
 export function httpFailure(status: number): ApiFailure {
   const kind =
-    status === 400 || status === 422
-      ? "request"
-      : status === 401 || status === 403
-        ? "denied"
-        : status === 404
-          ? "missing"
-          : status === 502 || status === 503
-            ? "unavailable"
-            : status === 504 || status === 408
-              ? "server_timeout"
-              : "application";
+    status === 410
+      ? "expired"
+      : status === 400 || status === 422
+        ? "request"
+        : status === 401 || status === 403
+          ? "denied"
+          : status === 404
+            ? "missing"
+            : status === 502 || status === 503
+              ? "unavailable"
+              : status === 504 || status === 408
+                ? "server_timeout"
+                : "application";
   return { ok: false, kind, status };
 }
 function record(value: unknown): value is Record<string, unknown> {
@@ -283,14 +316,6 @@ function statistics(value: unknown): value is QuestionStatistics {
   );
 }
 
-function pageSize(value: unknown): boolean {
-  return (
-    typeof value === "number" &&
-    Number.isInteger(value) &&
-    value >= 1 &&
-    value <= 100
-  );
-}
 function continuation(hasNext: unknown, cursor: unknown): boolean {
   return (
     typeof hasNext === "boolean" &&
@@ -301,52 +326,80 @@ function continuation(hasNext: unknown, cursor: unknown): boolean {
         cursor.length <= 1024))
   );
 }
-function answerSearch(value: unknown): value is AnswerSearchPage {
+function positive(value: unknown): value is number {
+  return typeof value === "number" && Number.isSafeInteger(value) && value > 0;
+}
+function opaque(value: unknown): boolean {
   return (
-    record(value) &&
+    value === null ||
+    (typeof value === "string" && value.length > 0 && value.length <= 1024)
+  );
+}
+function hybridSearch(value: unknown): value is HybridSearchPage {
+  if (!record(value) || !Array.isArray(value.items) || !record(value.window))
+    return false;
+  return (
     typeof value.q === "string" &&
-    pageSize(value.page_size) &&
+    value.mode === "hybrid" &&
+    ["idle", "results", "empty", "sources_unavailable"].includes(
+      String(value.state),
+    ) &&
+    typeof value.recipe_version === "string" &&
+    positive(value.page_size) &&
+    value.page_size <= 20 &&
+    value.items.length <= value.page_size &&
     continuation(value.has_next, value.next_cursor) &&
-    Array.isArray(value.items) &&
+    opaque(value.previous_cursor) &&
+    opaque(value.first_cursor) &&
+    date(value.expires_at) &&
+    positive(value.window.document_limit) &&
+    positive(value.window.retrieval_depth) &&
+    typeof value.window.answer_count === "number" &&
+    Number.isSafeInteger(value.window.answer_count) &&
+    value.window.answer_count >= value.items.length &&
+    value.window.exhaustive === false &&
+    new Set(
+      value.items.map((item: unknown) =>
+        record(item) ? item.answer_id : undefined,
+      ),
+    ).size === value.items.length &&
     value.items.every(
       (item: unknown) =>
         record(item) &&
-        publicId(item.id) &&
+        publicId(item.answer_id) &&
         publicId(item.contribution_id) &&
-        typeof item.text === "string" &&
+        positive(item.rank) &&
         typeof item.is_truncated === "boolean" &&
-        date(item.submitted_at) &&
-        (item.author === null || author(item.author)) &&
-        formQuestion(item.question) &&
-        formContext(item.form) &&
-        item.question.form_id === item.form.id &&
+        record(item.question) &&
+        publicId(item.question.id) &&
+        typeof item.question.prompt === "string" &&
+        typeof item.question.url === "string" &&
+        item.question.url.startsWith(`/questions/${item.question.id}-`) &&
+        record(item.form) &&
+        publicId(item.form.id) &&
+        typeof item.form.name === "string" &&
+        item.form.url === `/forms/${item.form.id}` &&
         item.url ===
-          `/forms/${item.form.id}/contributions/${item.contribution_id}#answer-${item.id}`,
-    )
-  );
-}
-function catalogSearch(value: unknown): value is CatalogSearchPage {
-  return (
-    record(value) &&
-    typeof value.q === "string" &&
-    pageSize(value.page_size) &&
-    continuation(value.has_next_forms, value.next_cursor_forms) &&
-    continuation(value.has_next_questions, value.next_cursor_questions) &&
-    Array.isArray(value.forms) &&
-    value.forms.every(
-      (f: unknown) => record(f) && f.kind === "form" && summary(f),
+          `/forms/${item.form.id}/contributions/${item.contribution_id}#answer-${item.answer_id}` &&
+        Array.isArray(item.texts) &&
+        item.texts.length > 0 &&
+        item.texts.every(
+          (unit: unknown) =>
+            record(unit) &&
+            ["open_answer", "other_text"].includes(String(unit.unit_type)) &&
+            typeof unit.unit_index === "number" &&
+            Number.isSafeInteger(unit.unit_index) &&
+            unit.unit_index >= 0 &&
+            typeof unit.text === "string",
+        ),
     ) &&
-    Array.isArray(value.questions) &&
-    value.questions.every(
-      (q: unknown) =>
-        record(q) &&
-        q.kind === "question" &&
-        formContext(q.form) &&
-        q.form_id === q.form.id &&
-        typeof q.answers_count === "number" &&
-        Number.isInteger(q.answers_count) &&
-        q.answers_count >= 0 &&
-        formQuestion(q),
+    Array.isArray(value.warnings) &&
+    value.warnings.every(
+      (warning: unknown) =>
+        record(warning) &&
+        warning.code === "source_unavailable" &&
+        positive(warning.count) &&
+        typeof warning.message === "string",
     )
   );
 }
@@ -374,6 +427,7 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
     path: string,
     validate: (value: unknown) => value is T,
     options: RequestOptions,
+    structuredErrors = false,
   ): Promise<ApiResult<T>> {
     const controller = new AbortController();
     let timedOut = false;
@@ -399,7 +453,24 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
         redirect: "error",
         signal: controller.signal,
       });
-      if (!response.ok) return httpFailure(response.status);
+      if (!response.ok) {
+        const failure = httpFailure(response.status);
+        if (structuredErrors) {
+          try {
+            const body: unknown = await response.json();
+            if (
+              record(body) &&
+              record(body.error) &&
+              typeof body.error.code === "string" &&
+              searchErrorCodes.has(body.error.code)
+            )
+              return { ...failure, code: body.error.code as HybridErrorCode };
+          } catch (error) {
+            if (controller.signal.aborted) throw error;
+          }
+        }
+        return failure;
+      }
       let value: unknown;
       try {
         value = await response.json();
@@ -433,8 +504,7 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
   const authorPath = "/api/v1/authors/{author_id}" satisfies keyof paths;
   const contributionPath =
     "/api/v1/forms/{form_id}/contributions/{contribution_id}" satisfies keyof paths;
-  const answerSearchPath = "/api/v1/search/answers" satisfies keyof paths;
-  const catalogSearchPath = "/api/v1/search/catalog" satisfies keyof paths;
+  const searchPath = "/api/v1/search" satisfies keyof paths;
   const formStatsPath = "/api/v1/forms/{form_id}/stats" satisfies keyof paths;
   return {
     getFormStats: (id: string, options: RequestOptions = {}) =>
@@ -448,42 +518,19 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
             ok: false,
             kind: "request",
           }),
-    searchAnswers: (
-      query: AnswerSearchQuery = {},
-      options: RequestOptions = {},
-    ) => {
+    search: (query: HybridSearchQuery = {}, options: RequestOptions = {}) => {
       const params = new URLSearchParams();
       if (query.q !== undefined) params.set("q", query.q);
       if (query.cursor !== undefined && query.cursor !== null)
         params.set("cursor", query.cursor);
       if (query.page_size !== undefined)
         params.set("page_size", String(query.page_size));
-      return read(answerSearchPath, answerSearch, {
-        ...options,
-        query: params,
-      });
-    },
-    searchCatalog: (
-      query: CatalogSearchQuery = {},
-      options: RequestOptions = {},
-    ) => {
-      const params = new URLSearchParams();
-      if (query.q !== undefined) params.set("q", query.q);
-      if (query.cursor_forms !== undefined && query.cursor_forms !== null)
-        params.set("cursor_forms", query.cursor_forms);
-      if (
-        query.cursor_questions !== undefined &&
-        query.cursor_questions !== null
-      )
-        params.set("cursor_questions", query.cursor_questions);
-      if (query.page_size !== undefined)
-        params.set("page_size", String(query.page_size));
-      if (query.section !== undefined && query.section !== null)
-        params.set("section", query.section);
-      return read(catalogSearchPath, catalogSearch, {
-        ...options,
-        query: params,
-      });
+      return read(
+        searchPath,
+        hybridSearch,
+        { ...options, query: params },
+        true,
+      );
     },
     getAuthor: (id: string, options: RequestOptions = {}) =>
       publicId(id)

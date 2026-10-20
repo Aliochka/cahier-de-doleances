@@ -209,32 +209,18 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/search/answers": {
+    "/api/v1/search": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Recherche plein texte des réponses, ordre historique ID décroissant */
-        get: operations["search_public_answers"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/search/catalog": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Questions et formulaires, sections indépendantes classées par ts_rank puis ID */
-        get: operations["search_public_catalog"];
+        /**
+         * Recherche hybride de réponses citoyennes classées par pertinence
+         * @description Recherche naturelle, sans syntaxe booléenne globale promise. La fenêtre est bornée par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.
+         */
+        get: operations["search_public_hybrid"];
         put?: never;
         post?: never;
         delete?: never;
@@ -300,22 +286,6 @@ export interface components {
              */
             question_id: string;
         };
-        /** AnswerSearchPage */
-        AnswerSearchPage: {
-            /** Has Next */
-            has_next: boolean;
-            /** Items */
-            items: components["schemas"]["SearchAnswer"][];
-            /**
-             * Next Cursor
-             * @description Curseur opaque ID décroissant, à réutiliser uniquement avec le même terme.
-             */
-            next_cursor: string | null;
-            /** Page Size */
-            page_size: number;
-            /** Q */
-            q: string;
-        };
         /** ApiError */
         ApiError: {
             /** Detail */
@@ -356,110 +326,6 @@ export interface components {
             next_after_id: string | null;
             /** Page Size */
             page_size: number;
-        };
-        /** CatalogForm */
-        CatalogForm: {
-            /**
-             * Id
-             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
-             */
-            id: string;
-            /**
-             * Kind
-             * @default form
-             * @constant
-             */
-            kind: "form";
-            /**
-             * Name
-             * @description Nom public du formulaire historique.
-             */
-            name: string;
-            /**
-             * Questions Count
-             * @description Nombre de questions, avec ou sans réponses.
-             */
-            questions_count: number;
-            /**
-             * Url
-             * @description Chemin relatif de la page HTML historique.
-             */
-            url: string;
-        };
-        /** CatalogQuestion */
-        CatalogQuestion: {
-            /**
-             * Answers Count
-             * @description Compteur historique de question, sans comptage des résultats.
-             */
-            answers_count: number;
-            form: components["schemas"]["QuestionForm"];
-            /**
-             * Form Id
-             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
-             */
-            form_id: string;
-            /**
-             * Id
-             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
-             */
-            id: string;
-            /**
-             * Kind
-             * @default question
-             * @constant
-             */
-            kind: "question";
-            /**
-             * Position
-             * @description Ordre déclaré dans le questionnaire ; peut être absent.
-             */
-            position: number | null;
-            /** Prompt */
-            prompt: string;
-            /**
-             * Slug
-             * @description Slug construit avec le helper des routes HTML.
-             */
-            slug: string;
-            /**
-             * Type
-             * @description Type stocké, notamment text, single_choice ou multi_choice. Aucun recodage.
-             */
-            type: string;
-            /**
-             * Url
-             * @description Chemin relatif vers la question historique.
-             */
-            url: string;
-        };
-        /** CatalogSearchPage */
-        CatalogSearchPage: {
-            /** Forms */
-            forms: components["schemas"]["CatalogForm"][];
-            /** Has Next Forms */
-            has_next_forms: boolean;
-            /** Has Next Questions */
-            has_next_questions: boolean;
-            /**
-             * Next Cursor Forms
-             * @description Curseur opaque score/ID de la section formulaires.
-             */
-            next_cursor_forms: string | null;
-            /**
-             * Next Cursor Questions
-             * @description Curseur opaque score/ID de la section questions.
-             */
-            next_cursor_questions: string | null;
-            /**
-             * Page Size
-             * @description Limite par section, pas un total combiné.
-             */
-            page_size: number;
-            /** Q */
-            q: string;
-            /** Questions */
-            questions: components["schemas"]["CatalogQuestion"][];
         };
         /** ChoiceCategory */
         ChoiceCategory: {
@@ -652,6 +518,134 @@ export interface components {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
+        /** HybridAnswer */
+        HybridAnswer: {
+            /**
+             * Answer Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            answer_id: string;
+            /**
+             * Contribution Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            contribution_id: string;
+            form: components["schemas"]["HybridForm"];
+            /** Is Truncated */
+            is_truncated: boolean;
+            question: components["schemas"]["HybridQuestion"];
+            /**
+             * Rank
+             * @description Position stable de carte dans cette sélection.
+             */
+            rank: number;
+            /** Texts */
+            texts: components["schemas"]["HybridText"][];
+            /** Url */
+            url: string;
+        };
+        /** HybridErrorDetail */
+        HybridErrorDetail: {
+            /** Code */
+            code: string;
+            /** Message */
+            message: string;
+            /** Retryable */
+            retryable: boolean;
+        };
+        /** HybridErrorEnvelope */
+        HybridErrorEnvelope: {
+            error: components["schemas"]["HybridErrorDetail"];
+            /** Request Id */
+            request_id: string;
+        };
+        /** HybridForm */
+        HybridForm: {
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Url */
+            url: string;
+        };
+        /** HybridQuestion */
+        HybridQuestion: {
+            /**
+             * Id
+             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             */
+            id: string;
+            /** Prompt */
+            prompt: string;
+            /** Url */
+            url: string;
+        };
+        /** HybridSearchPage */
+        HybridSearchPage: {
+            /** Expires At */
+            expires_at: string | null;
+            /** First Cursor */
+            first_cursor: string | null;
+            /** Has Next */
+            has_next: boolean;
+            /** Items */
+            items: components["schemas"]["HybridAnswer"][];
+            /**
+             * Mode
+             * @default hybrid
+             * @constant
+             */
+            mode: "hybrid";
+            /** Next Cursor */
+            next_cursor: string | null;
+            /** Page Size */
+            page_size: number;
+            /** Previous Cursor */
+            previous_cursor: string | null;
+            /** Q */
+            q: string;
+            /** Recipe Version */
+            recipe_version: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "idle" | "results" | "empty" | "sources_unavailable";
+            /** Warnings */
+            warnings: components["schemas"]["HybridWarning"][];
+            window: components["schemas"]["SearchWindow"];
+        };
+        /** HybridText */
+        HybridText: {
+            /** Text */
+            text: string;
+            /** Unit Index */
+            unit_index: number;
+            /**
+             * Unit Type
+             * @enum {string}
+             */
+            unit_type: "open_answer" | "other_text";
+        };
+        /** HybridWarning */
+        HybridWarning: {
+            /**
+             * Code
+             * @default source_unavailable
+             * @constant
+             */
+            code: "source_unavailable";
+            /** Count */
+            count: number;
+            /**
+             * Message
+             * @default Certaines réponses ne sont plus accessibles et ont été retirées de cette sélection.
+             */
+            message: string;
+        };
         /** PublicAnswer */
         PublicAnswer: {
             author: components["schemas"]["PublicAuthor"] | null;
@@ -810,35 +804,29 @@ export interface components {
              */
             type: "single_choice" | "multi_choice";
         };
-        /** SearchAnswer */
-        SearchAnswer: {
-            author: components["schemas"]["PublicAuthor"] | null;
+        /** SearchWindow */
+        SearchWindow: {
             /**
-             * Contribution Id
-             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             * Answer Count
+             * @description Cartes de l'instantané, jamais un total du corpus.
              */
-            contribution_id: string;
-            form: components["schemas"]["QuestionForm"];
+            answer_count: number;
             /**
-             * Id
-             * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
+             * Document Limit
+             * @description Sortie documentaire de la recette, provisoirement 50.
              */
-            id: string;
-            /** Is Truncated */
-            is_truncated: boolean;
-            question: components["schemas"]["FormQuestion"];
-            /** Submitted At */
-            submitted_at: string | null;
+            document_limit: number;
             /**
-             * Text
-             * @description Préfixe brut fidèle, 1 000 caractères maximum, sans HTML ajouté.
+             * Exhaustive
+             * @default false
+             * @constant
              */
-            text: string;
+            exhaustive: false;
             /**
-             * Url
-             * @description Page React de contribution par ID, avec ancre answer-{id}.
+             * Retrieval Depth
+             * @description Profondeur par branche, distincte de page_size.
              */
-            url: string;
+            retrieval_depth: number;
         };
         /** SelectedOption */
         SelectedOption: {
@@ -1704,13 +1692,11 @@ export interface operations {
             };
         };
     };
-    search_public_answers: {
+    search_public_hybrid: {
         parameters: {
             query?: {
-                /** @description Terme recherché, espaces extérieurs retirés. Maximum 512 caractères. */
                 q?: string;
                 page_size?: number;
-                /** @description Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend. */
                 cursor?: string | null;
             };
             header?: never;
@@ -1725,127 +1711,52 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["AnswerSearchPage"];
+                    "application/json": components["schemas"]["HybridSearchPage"];
                 };
             };
-            /** @description Délai HTTP dépassé. */
-            408: {
+            /** @description Gone */
+            410: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ApiError"];
+                    "application/json": components["schemas"]["HybridErrorEnvelope"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Entity */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
+                    "application/json": components["schemas"]["HybridErrorEnvelope"];
                 };
             };
-            /** @description Erreur inattendue, sans détails internes. */
+            /** @description Internal Server Error */
             500: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ApiError"];
+                    "application/json": components["schemas"]["HybridErrorEnvelope"];
                 };
             };
-            /** @description Base indisponible. */
+            /** @description Service Unavailable */
             503: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ApiError"];
+                    "application/json": components["schemas"]["HybridErrorEnvelope"];
                 };
             };
-            /** @description Délai SQL dépassé ; transaction annulée. */
+            /** @description Gateway Timeout */
             504: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ApiError"];
-                };
-            };
-        };
-    };
-    search_public_catalog: {
-        parameters: {
-            query?: {
-                /** @description Terme recherché, espaces extérieurs retirés. Maximum 512 caractères. */
-                q?: string;
-                page_size?: number;
-                /** @description Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend. */
-                cursor_forms?: string | null;
-                /** @description Curseur opaque renvoyé pour cette section et ce terme ; ne pas décoder côté frontend. */
-                cursor_questions?: string | null;
-                /** @description Omettre pour les deux sections ; une section limite la recherche et le SQL à celle-ci. */
-                section?: ("forms" | "questions") | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CatalogSearchPage"];
-                };
-            };
-            /** @description Délai HTTP dépassé. */
-            408: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiError"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Erreur inattendue, sans détails internes. */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiError"];
-                };
-            };
-            /** @description Base indisponible. */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiError"];
-                };
-            };
-            /** @description Délai SQL dépassé ; transaction annulée. */
-            504: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiError"];
+                    "application/json": components["schemas"]["HybridErrorEnvelope"];
                 };
             };
         };

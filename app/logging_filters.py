@@ -4,13 +4,16 @@ import logging
 import re
 
 _MAGIC_PATH = re.compile(r"/auth/verify/[^\s?\"']+")
+_SEARCH_QUERY = re.compile(r"(/api/v1/search)\?[^\s\"']*")
 
 
 class RedactMagicLinkFilter(logging.Filter):
     def filter(self, record):
         def redact(value):
             return (
-                _MAGIC_PATH.sub("/auth/verify/[REDACTED]", value)
+                _SEARCH_QUERY.sub(
+                    r"\1?[REDACTED]", _MAGIC_PATH.sub("/auth/verify/[REDACTED]", value)
+                )
                 if isinstance(value, str)
                 else value
             )

@@ -1,95 +1,159 @@
-# Recherche publique JSON
+# Recherche publique JSON — contrat SEARCH-004 / bascule SEARCH-005
 
-Deux lectures indépendantes :
+## Endpoint unique
 
-- `GET /api/v1/search/answers?q=…&page_size=20&cursor=…`
-- `GET /api/v1/search/catalog?q=…&page_size=20&cursor_forms=…&cursor_questions=…`
+`GET /api/v1/search?q=…&page_size=20&cursor=…`
 
-`q` : maximum 512 caractères avant suppression des espaces extérieurs. Taille
-par défaut 20, maximum 100 ; curseurs opaques de 1 à 1 024 caractères, validés.
-Une absence de résultats retourne 200 avec des listes vides. Paramètres invalides :
-422 JSON ; erreurs SQL : 500, base inaccessible : 503, timeout SQL : 504 avec
-rollback. Le format JSON ne dépend pas d’Accept ni de HX-Request.
+Une recherche générale hybride, portant sur les réponses textuelles indexées.
+FastAPI réutilise SEARCH-003 (lexical RAG-027, BGE-M3/HNSW, RRF) ; la base
+applicative vérifie les sources et fournit tous les textes affichés. Aucun
+choix de moteur, fallback historique, génération ou reranker.
 
-## Réponses
+### Paramètres et validation
 
-Le moteur existant utilise `answers.text_tsv @@
-websearch_to_tsquery('fr_unaccent', :q)` : normalisation française avec unaccent,
-casse ignorée, mots vides et racinisation du dictionnaire. Les termes ordinaires
-sont combinés, les guillemets servent aux expressions, `OR` aux alternatives et
-`-` à l’exclusion. Il ne s’agit pas d’un moteur BM25, sémantique ou approximatif.
-Les tests vérifient ces comportements sur des données synthétiques ; ils ne
-constituent pas une évaluation de pertinence sur tout le corpus.
+| Paramètre | Règle |
+|---|---|
+| `q` | 512 caractères maximum avant normalisation NFC et retrait des espaces extérieurs ; langage naturel |
+| `page_size` | Entier entre 1 et 20, défaut 20 ; conservé pendant toute la navigation |
+| `cursor` | Opaque, authentifié HMAC, versionné, 1 à 1024 caractères ; reprendre exactement la valeur renvoyée |
 
-**Classement historique conservé : answer.id DESC**, sans score de pertinence
-ni tri par date. L’ID décroissant définit le curseur. Les réponses à choix sont
-exclues et le texte doit compter au moins 60 caractères après btrim. Le moteur
-présélectionne les **1 789 derniers candidats FTS** avant les jointures, le filtre
-de type et le curseur. Cette limite historique reste en place : les résultats
-situés hors de ce jeu de candidats ne sont pas parcourables, même si le terme
-correspond à davantage de réponses. Aucun total exact n’est calculé.
+Les paramètres inconnus et répétés sont refusés en 422, notamment `question_id`,
+`engine`, `tab`, `section` et les anciens curseurs multiples. Le filtre question
+sera une extension future, pas un filtrage des premiers résultats globaux.
+Une saisie vide donne `state="idle"` sans appeler le moteur, même s'il est indisponible.
+La ponctuation seule, les guillemets déséquilibrés, plus de 32 lexèmes significatifs
+ou les autres entrées refusées par la préparation H1 donnent 422.
 
-Les recherches de moins de deux caractères retournent une liste vide, sans
-ouvrir de session SQL.
+Aucune syntaxe booléenne globale n'est promise. La préparation lexicale existante
+reste utilisée par cette branche ; ses guillemets/exclusions ne constituent pas
+une contrainte globale appliquée à la branche vectorielle.
 
-Chaque résultat fournit `id`, `contribution_id`, `question`, `form`, `author`
-public éventuellement absent, `submitted_at`, `text`, `is_truncated` et `url` :
-`/forms/{form_id}/contributions/{contribution_id}#answer-{answer_id}`. Tous les IDs
-BIGINT restent des chaînes décimales. Le texte JSON est un préfixe fidèle de
-1 000 caractères, chargé avec cette borne depuis SQL ; paragraphes conservés,
-aucun résumé ni balise de surlignage ajoutée. Il peut contenir du texte ressemblant
-à du HTML : le frontend doit l’échapper. Les textes complets sont accessibles
-par l’API de contribution. Les associations incohérentes question/formulaire de
-contribution sont exclues uniquement en JSON pour éviter une ancre introuvable.
+### Réponse
 
-## Questions et enquêtes
+```json
+{
+  "q": "Comment améliorer les transports publics ?",
+  "state": "results",
+  "mode": "hybrid",
+  "recipe_version": "h1-public-v1",
+  "items": [{
+    "answer_id": "9007199254741993",
+    "contribution_id": "9007199254742993",
+    "rank": 1,
+    "texts": [{"unit_type": "open_answer", "unit_index": 0, "text": "Exemple de réponse."}],
+    "is_truncated": false,
+    "question": {"id": "47", "prompt": "Pourquoi ?", "url": "/questions/47-pourquoi"},
+    "form": {"id": "4", "name": "Exemple d’enquête", "url": "/forms/4"},
+    "url": "/forms/4/contributions/9007199254742993#answer-9007199254741993"
+  }],
+  "page_size": 20,
+  "has_next": true,
+  "next_cursor": "opaque",
+  "previous_cursor": null,
+  "first_cursor": "opaque-premiere-page",
+  "expires_at": "2026-10-20T15:10:00+00:00",
+  "window": {"document_limit": 50, "retrieval_depth": 50, "answer_count": 48, "exhaustive": false},
+  "warnings": []
+}
+```
 
-Deux sections : noms de formulaires et libellés de
-questions seulement, sans recherche de descriptions (champ absent), d’auteurs
-ou de réponses. `plainto_tsquery('french', unaccent(:q))` combine les lexèmes
-français ; les opérateurs web des réponses ne sont pas interprétés ici.
+Les identifiants historiques sont tous des chaînes JSON ; `rank` et `unit_index`
+sont des entiers ordinaires. La question est toujours fournie, y compris pour
+« oui » ou « non ». Les textes restent fidèles aux sources applicatives, avec
+1000 caractères au total par carte et `is_truncated`. Les champs « Autre » gardent
+leur type/indice et leur ordre source. Une carte représente une réponse, au rang
+de son premier document retenu ; les scores ne sont pas additionnés. Plusieurs
+segments ne créent pas de cartes supplémentaires. Des réponses distinctes avec
+le même texte restent distinctes.
 
-Chaque section est classée par **ts_rank DESC, id DESC**. Le curseur contient le
-score PostgreSQL réel et l’ID ; les comparaisons restent converties en `real`
-à la précision PostgreSQL. Les tests couvrent scores différents et ex æquo, sans doublons
-ni omissions dans des données inchangées. Les curseurs doivent être réutilisés
-avec le même terme et la même section ; changer le terme exige leur remise à zéro.
-Aucun snapshot n’est garanti en cas de modification du corpus entre deux pages.
+Ni auteur ni identité personnelle ne sont nécessaires à ce contrat : ils ne sont
+pas exposés. Aucun JSONB interne, titre/métadonnée d'import, hash, segment, vecteur,
+distance ou score ne parvient au navigateur. Les liens sont construits depuis
+les relations applicatives vérifiées. Le contenu HTML éventuel de la source est
+une chaîne brute, à rendre comme texte par React.
 
-La réponse distingue `forms` (`kind: form`, nombre de questions, lien `/forms/{id}`)
-et `questions` (`kind: question`, contexte formulaire, compteur historique,
-lien `/questions/{id}-{slug}`). Slugs construits par le helper existant.
-`has_next_forms`, `has_next_questions` et leurs curseurs permettent de paginer
-les sections séparément. `section=forms` ou `section=questions` limite le SQL à
-une seule section ; sans ce paramètre, deux lectures de catalogue sont faites.
-`page_size` s’applique à chaque section. Aucun classement commun entre catégories
-n’est inventé. Une recherche vide retourne deux listes vides sans SQL.
+### Fenêtre, curseurs et sources retirées
 
-## Mutualisation, confidentialité et coût
+La recette initiale conserve une profondeur de 50 par branche et le top 50
+documentaire fusionné. Ce sont des paramètres de SEARCH-003, pas une limite
+structurelle du contrat API. `page_size` ne change jamais la profondeur.
+`window.answer_count` compte les cartes initialement validées de cette fenêtre,
+sans prétendre dénombrer toutes les correspondances du corpus.
 
-`app/services/search.py` contient les lectures et les curseurs historiques.
-Les modèles Pydantic JSON sélectionnent explicitement les champs publics. La
-projection `public_author()` protège les noms anonymes ; aucun champ de compte,
-hash, donnée brute ou métadonnée d’importation n’est exposé. Les textes libres
-peuvent néanmoins contenir des informations personnelles à la source.
+La sélection est conservée dans un cache mémoire LRU : TTL absolu 600 s,
+256 instantanés au plus, 16 Mio de charge utile JSON au plus (hors overhead Python).
+Le cache contient uniquement des références/empreintes, les paramètres de
+navigation et les versions ; aucun texte complet, requête brute, nom ou vecteur.
+Un seul processus backend possède ce cache et son modèle.
 
-Budget : réponses **1 SELECT**, catalogue **2 SELECT** ou **1 SELECT** si une
-section est demandée, indépendamment du nombre de résultats. LIMIT page_size+1,
-pas d’OFFSET ni de comptage exact du corpus. Le compte des questions par formulaire
-et le compteur `question_stats` conservent leur définition historique. Timeout JSON 5 secondes ;
-réponses FTS conservent aussi les SET LOCAL work_mem=64MB et enable_seqscan=false.
-Ces réglages historiques peuvent consommer des ressources sous concurrence ;
-aucun nouveau réglage global, index, cache ou moteur n’est ajouté.
+La page suivante, la précédente, la première et le rechargement d'un curseur
+relisent seulement un lot applicatif ; aucun encodage, lexical, ANN ou RRF.
+Les curseurs sont liés à la requête normalisée et à la taille de page ; ne pas les
+décoder ni les construire côté React. Le champ `first_cursor` permet d'établir
+une URL de première page figée, y compris sans JavaScript.
 
-Index définis par les migrations : GIN `idx_answers_text_tsv` et partiel
-`idx_answers_fts_length_id_critical`, index ID décroissant/long texte, GIN
-`ix_forms_tsv_name` et `ix_questions_tsv_prompt`, clés primaires pour les jointures.
-Les index trigram existants ne sont pas utilisés par ces lectures. Le choix réel
-est celui du planificateur ; l’existence des index en production n’a pas été
-vérifiée. Un test EXPLAIN ANALYZE/BUFFERS sur une petite fixture isolée confirme
-un plan utilisant des index et la borne de page, sans prétendre mesurer les
-1,6 million de contributions. Les termes très fréquents peuvent rester coûteux.
+Une source devenue absente ou incohérente est omise avec
+`warnings=[{"code":"source_unavailable","count":1,"message":"…"}]`.
+Les cartes suivantes ne sont pas déplacées pour remplir les places manquantes :
+le rang reste stable et une page peut être plus courte, voire vide avec un lien
+suivant. `has_next` parle des positions restantes de l'instantané, pas du corpus.
+Le compteur d'avertissement cumule les omissions initiales et celles de la page
+courante, pas toutes les suppressions découvertes dans d'autres pages.
 
-Les modèles et opérations sont documentés dans OpenAPI ; `pnpm contract:generate`
-régénère les deux artefacts versionnés, `pnpm contract:check` vérifie leur dérive.
-Aucune page React de recherche n’est créée ici.
+`state="empty"` signifie un vrai classement vide. `state="sources_unavailable"`
+signifie que des sources classées ont été retirées. Une incohérence importante
+(au moins cinq cartes contrôlées et au moins la moitié incohérentes) bloque la
+recherche en 503 et invalide les instantanés ; c'est un seuil opérationnel prudent,
+pas une preuve statistique d'intégrité du corpus. Un changement de génération ou
+de recette invalide également la navigation ; les corpus sont supposés immuables
+pendant l'exécution. Aucun snapshot transactionnel distribué n'est promis.
+
+### Erreurs
+
+```json
+{"error":{"code":"search_expired","message":"Cette sélection a expiré. Relancez la recherche.","retryable":false},"request_id":"identifiant-technique"}
+```
+
+| HTTP | Codes et comportement |
+|---|---|
+| 200 | `idle`, `results`, `empty` ou `sources_unavailable`, distincts des pannes |
+| 422 | `invalid_query`, `invalid_cursor` ; corriger les paramètres |
+| 410 | `search_expired` ; expiration, éviction, redémarrage ou génération invalidée ; relancer sans curseur |
+| 503 | `search_not_ready`, `search_unavailable`, `search_metadata_unavailable`, `search_busy` ; pas de fallback |
+| 504 | `search_timeout`, `search_encoding_timeout`, `search_sql_timeout`, `search_metadata_timeout`, `search_cancelled` |
+| 500 | `search_internal_error` ; aucune trace interne exposée |
+
+`search_busy` inclut `Retry-After: 1`. Les réponses portent `private, no-store`,
+un identifiant de requête et `noindex`. L'échéance totale de 18 s est partagée entre
+admission, encodage, SQL, fusion, hydratation et sérialisation ; le client SSR reste
+borné à 20 s. Le timeout n'accorde pas un nouveau budget à l'hydratation.
+Une branche défaillante ne peut pas être présentée comme une recherche hybride
+complète ; une branche exécutée avec succès mais vide reste valide.
+
+Voir [configuration et exécution locale](search-local.md) et
+[rapport SEARCH-005](rapport-search-005.md). OpenAPI et
+`frontend/contracts/api.generated.ts` décrivent le contrat utilisé par React SSR.
+
+## Consommation React SSR
+
+`/recherche` possède un seul formulaire GET et une liste de réponses. Sans `q`,
+aucun appel API. La première recherche réussie avec `first_cursor` entraîne une
+unique redirection **303** vers `/recherche?q=…&cursor=…` (et `page_size` si différent
+de 20). La relecture du curseur hydrate la première page sans relancer H1. Cette
+URL conserve le classement au rechargement et au retour de contribution. Une URL
+portant déjà un curseur ne provoque jamais de nouvelle redirection.
+
+Les liens suivant/précédent/premier conservent la requête, la taille de page et
+le curseur API. Le formulaire principal lance une nouvelle recherche sans curseur.
+Un classement expiré affiche 410, avec relance **manuelle** sans curseur. Les
+autres erreurs gardent leur statut HTTP, des messages publics maîtrisés et un
+réessai explicite. Les avertissements de sources ne sont pas assimilés à un état
+vide. Toutes ces actions fonctionnent sans JavaScript, sans stockage navigateur.
+La page garde `private, no-store`, `noindex, follow` et sa canonical fixe, y compris
+pour les erreurs rendues et la redirection de stabilisation.
+
+Les anciens endpoints `/api/v1/search/answers` et `/api/v1/search/catalog` sont
+supprimés et répondent 404. Aucun adaptateur de compatibilité ne les remplace.
+Les lectures documentaires par question, formulaire, contribution et auteur,
+ainsi que les statistiques, sont conservées. Les structures SQL historiques
+attendent l'audit de dépendances SEARCH-006 : aucune migration dans SEARCH-005.

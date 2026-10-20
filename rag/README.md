@@ -646,3 +646,12 @@ limites documentées. Le parcours personnel complet a été testé dans Chromium
 Voir les [commandes et le choix du corpus](optimisation-recherche.md) et le
 [rapport de mesures RAG-027](rapport-rag-027.md). Aucun embedding documentaire
 ni index HNSW existant n'a été reconstruit.
+
+### SEARCH-003 — Service hybride persistant pour l'application
+
+Le service `cahier_rag.search.service` réutilise le lexical optimisé, BGE-M3/HNSW
+et RRF, avec un modèle persistant, deux accès PostgreSQL en lecture seule et un
+exécuteur borné. La profondeur 50 reste la référence initiale d'une recette
+configurable. Voir [service-recherche.md](service-recherche.md) pour le contrat,
+les rôles locaux, les tests et le smoke test. Le raccordement FastAPI/React
+appartient aux tickets suivants ; aucune génération ni fallback historique.

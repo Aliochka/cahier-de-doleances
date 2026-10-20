@@ -170,6 +170,8 @@ const questionStatistics = (source) => ({
 });
 let searchRetry = 0;
 const searchCalls = [];
+const snapshots = new Map();
+let snapshotId = 0;
 let retry = 0;
 let formRetry = 0;
 const server = createServer((request, response) => {
@@ -179,6 +181,7 @@ const server = createServer((request, response) => {
   if (url.pathname === "/search-reset") {
     searchCalls.length = 0;
     searchRetry = 0;
+    snapshots.clear();
     response.end("{}");
     return;
   }
@@ -186,23 +189,51 @@ const server = createServer((request, response) => {
     response.end(JSON.stringify(searchCalls));
     return;
   }
-  if (
-    ["/api/v1/search/answers", "/api/v1/search/catalog"].includes(url.pathname)
-  ) {
+  if (url.pathname === "/search-expire") {
+    snapshots.clear();
+    response.end("{}");
+    return;
+  }
+  if (url.pathname === "/api/v1/search") {
+    const q = url.searchParams.get("q") ?? "";
+    const cursor = url.searchParams.get("cursor");
+    const pageSize = Number(url.searchParams.get("page_size") ?? 20);
+    searchCalls.push({
+      path: url.pathname,
+      query: url.search,
+      calculated: !cursor,
+    });
+    const fail = (status, code) => {
+      response.statusCode = status;
+      response.end(
+        JSON.stringify({
+          error: {
+            code,
+            message: "private SQL SECRET http://private-host",
+            retryable: true,
+          },
+          request_id: "private",
+        }),
+      );
+    };
     if (request.headers.cookie) {
-      response.statusCode = 403;
-      response.end("{}");
+      fail(403, "internal_error");
       return;
     }
-    const q = url.searchParams.get("q") ?? "";
-    searchCalls.push({ path: url.pathname, query: url.search });
     if (
-      ["422", "500", "503", "504"].includes(q) ||
+      ["410", "422", "500", "503", "504"].includes(q) ||
       (q === "retry" && searchRetry++ === 0)
     ) {
-      response.statusCode = q === "retry" ? 503 : Number(q);
-      response.end(
-        JSON.stringify({ detail: "private SQL SECRET http://private-host" }),
+      const status = q === "retry" ? 503 : Number(q);
+      fail(
+        status,
+        {
+          410: "search_expired",
+          422: "invalid_query",
+          500: "internal_error",
+          503: "search_unavailable",
+          504: "search_timeout",
+        }[status],
       );
       return;
     }
@@ -210,92 +241,123 @@ const server = createServer((request, response) => {
       response.end("{invalid");
       return;
     }
-    const cursor = url.searchParams.get("cursor");
-    if (cursor === "fail") {
-      response.statusCode = 503;
-      response.end("{}");
+    let snapshot = cursor ? snapshots.get(cursor) : null;
+    if (
+      cursor &&
+      (!snapshot || snapshot.q !== q || snapshot.pageSize !== pageSize)
+    ) {
+      fail(410, "search_expired");
       return;
     }
-    const empty = q === "absent" || q.length < 2;
-    const send = () => {
-      if (url.pathname.endsWith("/answers")) {
-        const items = empty
-          ? []
-          : (cursor
-              ? ["9007199254741992"]
-              : ["9007199254741993", "9007199254741994"]
-            ).map((id, index) => ({
-              id,
-              contribution_id: contributionIds[0],
-              text: cursor
-                ? "Réponse du lot suivant."
-                : index === 0
-                  ? `Première réponse pour ${q}.\n\n<script>alert('non fiable')</script>\n` +
-                    "Texte long. ".repeat(60)
-                  : "Seconde réponse.",
-              is_truncated: index === 0 && !cursor,
-              submitted_at: null,
-              author:
-                index === 0
-                  ? {
-                      ...author,
-                      id: "9007199254743994",
-                      name: "Pseudonyme public",
-                      is_anonymous: false,
-                    }
-                  : author,
-              question: questions[0],
-              form: { id: forms[0].id, name: forms[0].name, url: forms[0].url },
-              url: `/forms/${forms[0].id}/contributions/${contributionIds[0]}#answer-${id}`,
-            }));
-        response.end(
-          JSON.stringify({
-            q,
-            items,
-            page_size: 20,
-            has_next: !cursor && !empty,
-            next_cursor:
-              cursor || empty
-                ? null
-                : q === "pagination-error"
-                  ? "fail"
-                  : "answer+2/=opaque",
-          }),
-        );
-      } else {
-        const formCursor = url.searchParams.get("cursor_forms");
-        const questionCursor = url.searchParams.get("cursor_questions");
-        response.end(
-          JSON.stringify({
-            q,
-            page_size: 20,
-            forms: empty
-              ? []
-              : (formCursor ? [forms[1]] : forms).map((f) => ({
-                  ...f,
-                  kind: "form",
-                })),
-            questions: empty
-              ? []
-              : (questionCursor ? [questions[2]] : questions).map((item) => ({
-                  ...item,
-                  kind: "question",
-                  form: {
-                    id: forms[0].id,
-                    name: forms[0].name,
-                    url: forms[0].url,
-                  },
-                  answers_count: 100,
-                })),
-            has_next_forms: !empty && !formCursor,
-            has_next_questions: !empty && !questionCursor,
-            next_cursor_forms: empty || formCursor ? null : "forms+2/=opaque",
-            next_cursor_questions:
-              empty || questionCursor ? null : "questions+2/=opaque",
-          }),
-        );
-      }
-    };
+    if (!cursor) {
+      const id = ++snapshotId;
+      snapshot = {
+        q,
+        pageSize,
+        first: `first+${id}/=opaque`,
+        next: `next+${id}/=opaque`,
+      };
+      snapshots.set(snapshot.first, snapshot);
+      snapshots.set(snapshot.next, snapshot);
+    }
+    const next = cursor === snapshot.next;
+    if (next && q === "pagination-error") {
+      fail(503, "search_unavailable");
+      return;
+    }
+    const empty = q === "absent" || q === "withdrawn";
+    const items = empty
+      ? []
+      : Array.from({ length: next ? 1 : pageSize }, (_, index) => {
+          const id = next
+            ? "9007199254741995"
+            : index === 0
+              ? "9007199254741993"
+              : index === 1
+                ? "9007199254741992"
+                : index === 2
+                  ? "9007199254741994"
+                  : String(9007199254742000n + BigInt(index));
+          return {
+            answer_id: id,
+            contribution_id: contributionIds[0],
+            rank: next ? pageSize + 1 : index + 1,
+            texts:
+              index === 2 && !next
+                ? [
+                    {
+                      unit_type: "other_text",
+                      unit_index: 0,
+                      text: "Autre proposition A",
+                    },
+                    {
+                      unit_type: "other_text",
+                      unit_index: 2,
+                      text: "Autre proposition B",
+                    },
+                  ]
+                : [
+                    {
+                      unit_type: "open_answer",
+                      unit_index: 0,
+                      text: next
+                        ? "Réponse du lot suivant."
+                        : index === 0
+                          ? `Une réponse pour ${q}.\n\n<script>alert('non fiable')</script>\n` +
+                            "Texte long. ".repeat(60)
+                          : index === 1
+                            ? "Non"
+                            : "Une parole citoyenne.",
+                    },
+                  ],
+            is_truncated: !next && index === 0,
+            question: {
+              id: questions[0].id,
+              prompt: questions[0].prompt,
+              url: questions[0].url,
+            },
+            form: { id: forms[0].id, name: forms[0].name, url: forms[0].url },
+            url: `/forms/${forms[0].id}/contributions/${contributionIds[0]}#answer-${id}`,
+          };
+        });
+    const send = () =>
+      response.end(
+        JSON.stringify({
+          q,
+          state:
+            q === "withdrawn"
+              ? "sources_unavailable"
+              : empty
+                ? "empty"
+                : "results",
+          mode: "hybrid",
+          recipe_version: "h1-test-v1",
+          items,
+          page_size: pageSize,
+          has_next: !next && !empty,
+          next_cursor: next || empty ? null : snapshot.next,
+          previous_cursor: next ? snapshot.first : null,
+          first_cursor: empty ? null : snapshot.first,
+          expires_at: empty
+            ? null
+            : new Date(Date.now() + 600000).toISOString(),
+          window: {
+            document_limit: 50,
+            retrieval_depth: 50,
+            answer_count: empty ? 0 : pageSize + 1,
+            exhaustive: false,
+          },
+          warnings: ["withdrawn", "warning"].includes(q)
+            ? [
+                {
+                  code: "source_unavailable",
+                  count: 1,
+                  message: "Une source est indisponible.",
+                },
+              ]
+            : [],
+        }),
+      );
     if (q === "slow") {
       const timer = setTimeout(send, 8500);
       response.on("close", () => clearTimeout(timer));
