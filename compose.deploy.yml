@@ -11,9 +11,10 @@ services:
       # FastAPI handles only the proxies explicitly listed in TRUSTED_PROXY_IPS.
       FORWARDED_ALLOW_IPS: ""
     networks:
-      - postgres-existing
-      - app-egress
-      - proxy-private
+        postgres-existing:
+        app-egress:
+        proxy-private:
+          ipv4_address: 172.30.80.3
     restart: unless-stopped
     read_only: true
     tmpfs:
