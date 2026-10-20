@@ -90,11 +90,30 @@ def build_backend():
         raise
 
 
+def hybrid_search_enabled():
+    value = os.environ.get("HYBRID_SEARCH_ENABLED", "true").lower()
+    if value not in {"true", "false", "1", "0"}:
+        raise ConfigurationError("HYBRID_SEARCH_ENABLED must be true or false")
+    return value in {"true", "1"}
+
+
 @asynccontextmanager
 async def lifespan(app):
     backend = None
     startup = None
     app.state.hybrid_search = None
+    try:
+        enabled = hybrid_search_enabled()
+    except ConfigurationError:
+        logger.error("Invalid HYBRID_SEARCH_ENABLED; use true or false")
+        enabled = False
+    if not enabled:
+        logger.info("Hybrid search disabled by HYBRID_SEARCH_ENABLED=false")
+        try:
+            yield
+        finally:
+            app.state.hybrid_search = None
+        return
     try:
         backend = build_backend()
         app.state.hybrid_search = backend

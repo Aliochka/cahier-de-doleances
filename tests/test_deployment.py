@@ -262,10 +262,14 @@ def test_deployment_compose_owns_no_postgres_or_data_volume():
     from pathlib import Path
 
     compose = yaml.safe_load(Path("compose.deploy.yml").read_text())
-    assert set(compose["services"]) == {"app", "caddy"}
+    assert set(compose["services"]) == {"app", "frontend", "caddy"}
     assert set(compose["volumes"]) == {"caddy-data", "caddy-config"}
     assert "volumes" not in compose["services"]["app"]
     assert "ports" not in compose["services"]["app"]
+    assert "ports" not in compose["services"]["frontend"]
+    assert compose["services"]["frontend"]["environment"]["API_BASE_URL"] == "http://app:8000"
+    assert compose["services"]["frontend"]["networks"]["proxy-private"]["ipv4_address"] == "172.30.80.4"
+    assert compose["services"]["app"]["networks"]["proxy-private"]["ipv4_address"] == "172.30.80.3"
     assert "postgres-existing" not in compose["services"]["caddy"]["networks"]
     assert compose["networks"]["proxy-private"]["internal"]
     assert (
@@ -276,6 +280,85 @@ def test_deployment_compose_owns_no_postgres_or_data_volume():
         "name": "cahier-de-doleances_cahier-internal",
     }
     assert "alembic" not in str(compose)
+    assert compose["services"]["app"]["environment"]["FORWARDED_ALLOW_IPS"] == ""
+
+
+def test_caddy_routes_backend_paths_and_frontend_fallback():
+    from pathlib import Path
+
+    caddyfile = Path("Caddyfile").read_text()
+    assert "@backend path /api/* /auth /auth/* /bookmarks/* /healthz /robots.txt /sitemap.xml" in caddyfile
+    assert "reverse_proxy app:8000" in caddyfile
+    assert "reverse_proxy frontend:3000" in caddyfile
+
+
+def test_backend_image_carries_only_the_rag_python_runtime_source():
+    from pathlib import Path
+
+    ignore = Path(".dockerignore").read_text()
+    dockerfile = Path("Dockerfile").read_text()
+    assert "rag/*" in ignore
+    assert "!rag/src/**" in ignore
+    assert "!rag/models" not in ignore
+    assert "COPY rag/src/ ./rag/src/" in dockerfile
+    assert "COPY --from=dependencies --chown=app:app /build/rag /build/rag" in dockerfile
+
+
+def test_migration_plan_is_one_guarded_direct_step():
+    from app.deployment_migrate import migration_plan
+
+    plan = {
+        "MIGRATION_FROM_REVISION": "remove_runtime_caches",
+        "MIGRATION_TARGET_REVISION": "forms_statistics_v1",
+    }
+    assert migration_plan(plan) == ("remove_runtime_caches", "forms_statistics_v1")
+    with pytest.raises(ValueError, match="direct child"):
+        migration_plan(plan | {"MIGRATION_FROM_REVISION": "wrong_revision"})
+
+
+def test_migration_gate_requires_privileges_on_all_trigger_source_tables():
+    from app.deployment_migrate import MIGRATION_SOURCE_TABLES
+
+    assert MIGRATION_SOURCE_TABLES == (
+        "forms",
+        "questions",
+        "options",
+        "answers",
+        "answer_options",
+        "contributions",
+        "question_stats",
+    )
+
+
+def test_statistics_deployment_command_requires_expected_database_identity():
+    from app.deployment_statistics import database_url
+
+    env = {
+        "DATABASE_URL": "postgresql://reader:secret@db.internal/cahier",
+        "EXPECTED_DB_HOST": "db.internal",
+        "EXPECTED_DB_NAME": "cahier",
+        "EXPECTED_DB_USER": "reader",
+    }
+    url = database_url(env)
+    assert url.drivername == "postgresql+psycopg2"
+    with pytest.raises(ValueError, match="differs"):
+        database_url(env | {"EXPECTED_DB_HOST": "another-db"})
+
+
+def test_hybrid_search_can_be_disabled_without_loading_rag(monkeypatch):
+    from app import hybrid_runtime
+    from app.app import app
+
+    monkeypatch.setenv("HYBRID_SEARCH_ENABLED", "false")
+    monkeypatch.setattr(
+        hybrid_runtime,
+        "build_backend",
+        lambda: (_ for _ in ()).throw(AssertionError("RAG backend must not load")),
+    )
+    with TestClient(app) as client:
+        response = client.get("/api/v1/search?q=école")
+    assert response.status_code == 503
+    assert response.json()["error"]["code"] == "search_not_ready"
 
 
 def test_preflight_dns_failure_returns_nonzero_without_credentials(monkeypatch, capsys):
@@ -316,10 +399,10 @@ def test_https_proxy_order_trust_and_local_health_probe():
         | lan_env()
         | {
             "BASE_URL": "https://cahierdedoleances.fr",
-            "ALLOWED_HOSTS": "cahierdedoleances.fr,localhost",
+            "ALLOWED_HOSTS": "cahierdedoleances.fr,app,localhost",
             "COOKIE_SECURE": "true",
             "ENFORCE_HTTPS": "true",
-            "TRUSTED_PROXY_IPS": "172.30.80.2",
+            "TRUSTED_PROXY_IPS": "172.30.80.2,172.30.80.4",
             "DATABASE_URL": "postgresql:///unused",
         }
     )
@@ -348,6 +431,8 @@ async def request(peer, path, proto=None, host="cahierdedoleances.fr"):
 async def main():
     path = "/openapi.json"
     assert (await request("172.30.80.2", path, "https"))["status"] == 200
+    assert (await request("172.30.80.4", path, "https", "app:8000"))["status"] == 200
+    assert (await request("172.30.80.5", path, "https", "app:8000"))["status"] == 307
     assert (await request("198.51.100.7", path, "https"))["status"] == 307
     assert (await request("172.30.80.2", path, "http"))["status"] == 307
     assert (await request("172.30.80.2", path, "https", "evil.example"))["status"] == 400

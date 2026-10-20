@@ -7,6 +7,8 @@ ENV UV_PYTHON_DOWNLOADS=never \
     UV_LINK_MODE=copy
 WORKDIR /build
 COPY pyproject.toml uv.lock .python-version ./
+COPY rag/pyproject.toml rag/README.md ./rag/
+COPY rag/src/ ./rag/src/
 RUN uv sync --locked --no-dev --no-install-project --no-cache
 
 FROM python-base AS runtime
@@ -20,6 +22,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN useradd --create-home --shell /bin/bash app
 WORKDIR /home/app
 COPY --from=dependencies /opt/venv /opt/venv
+COPY --from=dependencies --chown=app:app /build/rag /build/rag
 COPY --chown=app:app app ./app
 COPY --chown=app:app migrations ./migrations
 COPY --chown=app:app alembic.ini .

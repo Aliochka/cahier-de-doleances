@@ -24,6 +24,9 @@ REQUIRED_TABLES = (
     "bookmarks",
     "question_stats",
     "answer_valid_stats",
+    "statistics_source",
+    "statistics_generations",
+    "question_statistics_snapshots",
 )
 # Names, target tables and access methods from the existing migrations.
 CRITICAL_INDEXES = {
@@ -60,10 +63,19 @@ INDEX_COLUMNS = {
 }
 
 
-def inspect_schema(connection, expected_revision):
+def inspect_schema(connection, expected_revision, *, pending_target=False):
     errors = []
-    heads = ScriptDirectory(str(Path(__file__).resolve().parents[1] / "migrations")).get_heads()
-    if heads != [expected_revision]:
+    scripts = ScriptDirectory(str(Path(__file__).resolve().parents[1] / "migrations"))
+    heads = scripts.get_heads()
+    if pending_target:
+        target = scripts.get_revision(os.environ.get("MIGRATION_TARGET_REVISION", ""))
+        if (
+            heads != [os.environ.get("MIGRATION_TARGET_REVISION", "")]
+            or target is None
+            or target.down_revision != expected_revision
+        ):
+            errors.append(f"Repository migration path differs from planned source: {heads}")
+    elif heads != [expected_revision]:
         errors.append(f"Repository Alembic heads differ: {heads}")
     if connection.execute(text("SELECT to_regclass('public.alembic_version')")).scalar() is None:
         revisions = []
@@ -82,8 +94,20 @@ def inspect_schema(connection, expected_revision):
     """)
     ):
         columns.setdefault(table, set()).add(column)
-    for table in REQUIRED_TABLES:
-        required = {column.name for column in Base.metadata.tables[table].columns}
+    required_tables = REQUIRED_TABLES
+    if expected_revision != "forms_statistics_v1":
+        required_tables = tuple(
+            table
+            for table in REQUIRED_TABLES
+            if table
+            not in {"statistics_source", "statistics_generations", "question_statistics_snapshots"}
+        )
+    for table in required_tables:
+        required = (
+            {column.name for column in Base.metadata.tables[table].columns}
+            if table in Base.metadata.tables
+            else set()
+        )
         if table == "questions":
             required |= {"prompt_tsv", "prompt_unaccent", "tsv_prompt"}
         if table == "answers":
@@ -182,7 +206,9 @@ def inspect_schema(connection, expected_revision):
     }
 
 
-def check_deployment(env, *, connection_only=False, count_contributions=False):
+def check_deployment(
+    env, *, connection_only=False, count_contributions=False, pre_migration=False
+):
     raw = env.get("DATABASE_URL", "")
     if not raw or "REPLACE_WITH" in raw:
         raise ValueError("Configure DATABASE_URL with the existing database password")
@@ -244,8 +270,13 @@ def check_deployment(env, *, connection_only=False, count_contributions=False):
                 "errors": errors,
             }
             if not connection_only:
+                expected_revision = (
+                    env.get("MIGRATION_FROM_REVISION", "")
+                    if pre_migration
+                    else env.get("EXPECTED_ALEMBIC_REVISION", "forms_statistics_v1")
+                )
                 schema = inspect_schema(
-                    connection, env.get("EXPECTED_ALEMBIC_REVISION", "remove_runtime_caches")
+                    connection, expected_revision, pending_target=pre_migration
                 )
                 report["errors"].extend(schema.pop("errors"))
                 report.update(schema)
@@ -269,6 +300,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--connection-only", action="store_true")
     parser.add_argument(
+        "--pre-migration",
+        action="store_true",
+        help="Validate the planned migration source and existing schema without writes",
+    )
+    parser.add_argument(
         "--count-contributions",
         action="store_true",
         help="Optional bounded full count; not a healthcheck",
@@ -279,6 +315,7 @@ def main():
             os.environ,
             connection_only=args.connection_only,
             count_contributions=args.count_contributions,
+            pre_migration=args.pre_migration,
         )
     except Exception as exc:
         # Never print SQLAlchemy exceptions: they can contain credentials or URLs.

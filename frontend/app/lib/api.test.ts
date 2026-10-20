@@ -150,6 +150,7 @@ describe("configuration serveur", () => {
   it.each([
     undefined,
     "http://internal.invalid",
+    "http://app:8001",
     "https://user:secret@example.com",
     "https://example.com/api",
     "https://example.com?secret=x",
@@ -172,6 +173,23 @@ describe("configuration serveur", () => {
       expect.objectContaining({
         headers: { Accept: "application/json" },
         credentials: "omit",
+      }),
+    );
+  });
+  it("autorise uniquement le backend Docker prévu et annonce HTTPS au backend", async () => {
+    vi.stubEnv("API_BASE_URL", "http://app:8000");
+    const transport = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(Response.json(form));
+    vi.stubGlobal("fetch", transport);
+    expect((await getForm(form.id)).ok).toBe(true);
+    expect(transport).toHaveBeenCalledWith(
+      `http://app:8000/api/v1/forms/${form.id}`,
+      expect.objectContaining({
+        headers: {
+          accept: "application/json",
+          "x-forwarded-proto": "https",
+        },
       }),
     );
   });

@@ -39,6 +39,46 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  frontend:
+    image: cahier-de-doleances-frontend:${FRONTEND_IMAGE_TAG:?Set FRONTEND_IMAGE_TAG in .env.deploy}
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "3000"
+      API_BASE_URL: http://app:8000
+    networks:
+      proxy-private:
+        ipv4_address: 172.30.80.4
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   caddy:
     image: caddy:2.11.2-alpine
     ports:
@@ -53,6 +93,11 @@ services:
       proxy-private:
         ipv4_address: 172.30.80.2
       caddy-egress: {}
+    depends_on:
+      app:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true

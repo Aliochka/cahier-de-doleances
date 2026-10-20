@@ -22,8 +22,12 @@ function backendOrigin(): string | null {
     if (!value) return null;
     const url = new URL(value);
     const local = ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
+    const dockerBackend =
+      url.protocol === "http:" && url.hostname === "app" && url.port === "8000";
     if (
-      (url.protocol !== "https:" && !(local && url.protocol === "http:")) ||
+      (url.protocol !== "https:" &&
+        !(local && url.protocol === "http:") &&
+        !dockerBackend) ||
       url.username ||
       url.password ||
       url.pathname !== "/" ||
@@ -36,13 +40,25 @@ function backendOrigin(): string | null {
     return null;
   }
 }
+function publicApi(origin: string) {
+  if (origin !== "http://app:8000") return createPublicApi(origin);
+  const transport: typeof fetch = (input, init) =>
+    fetch(input, {
+      ...init,
+      headers: {
+        ...Object.fromEntries(new Headers(init?.headers).entries()),
+        "x-forwarded-proto": "https",
+      },
+    });
+  return createPublicApi(origin, transport);
+}
 // Read configuration only when a loader calls the API, never during build.
 export function listForms(
   options: RequestOptions = {},
 ): Promise<ApiResult<Forms>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).listForms(options)
+    ? publicApi(origin).listForms(options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 export function getForm(
@@ -51,7 +67,7 @@ export function getForm(
 ): Promise<ApiResult<FormDetail>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getForm(id, options)
+    ? publicApi(origin).getForm(id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 
@@ -61,7 +77,7 @@ export function getQuestion(
 ): Promise<ApiResult<QuestionDetail>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getQuestion(id, options)
+    ? publicApi(origin).getQuestion(id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 export function getQuestionAnswers(
@@ -71,7 +87,7 @@ export function getQuestionAnswers(
 ): Promise<ApiResult<AnswerPage>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getQuestionAnswers(id, query, options)
+    ? publicApi(origin).getQuestionAnswers(id, query, options)
     : Promise.resolve({
         ok: false,
         kind: "configuration",
@@ -83,7 +99,7 @@ export function getQuestionStats(
 ): Promise<ApiResult<QuestionStatistics>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getQuestionStats(id, options)
+    ? publicApi(origin).getQuestionStats(id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 
@@ -93,7 +109,7 @@ export function getAuthor(
 ): Promise<ApiResult<PublicAuthor>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getAuthor(id, options)
+    ? publicApi(origin).getAuthor(id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 export function getAuthorForms(
@@ -103,7 +119,7 @@ export function getAuthorForms(
 ): Promise<ApiResult<AuthorFormsPage>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getAuthorForms(id, query, options)
+    ? publicApi(origin).getAuthorForms(id, query, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 export function getContribution(
@@ -113,7 +129,7 @@ export function getContribution(
 ): Promise<ApiResult<ContributionDetail>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getContribution(formId, id, options)
+    ? publicApi(origin).getContribution(formId, id, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 
@@ -123,7 +139,7 @@ export function search(
 ): Promise<ApiResult<HybridSearchPage>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).search(query, options)
+    ? publicApi(origin).search(query, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 
@@ -134,6 +150,6 @@ export function getFormContribution(
 ): Promise<ApiResult<ContributionDetail>> {
   const origin = backendOrigin();
   return origin
-    ? createPublicApi(origin).getFormContribution(formId, index, options)
+    ? publicApi(origin).getFormContribution(formId, index, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }

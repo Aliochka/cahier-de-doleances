@@ -22,9 +22,13 @@ htmlcov
 notebooks
 node_modules
 frontend
-# Le RAG est un projet local indépendant, jamais construit avec le backend.
-# Cela exclut aussi ses modèles, embeddings, index et données expérimentales.
-rag
+# Le backend importe le cœur Python cahier-rag ; garder uniquement son paquet.
+# Les bases, modèles, index, environnements et données de recherche restent exclus.
+rag/*
+!rag/pyproject.toml
+!rag/README.md
+!rag/src/
+!rag/src/**
 models
 embeddings
 vector_indexes

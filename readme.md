@@ -263,7 +263,10 @@ uv run --locked alembic upgrade head
 uv run --locked alembic current
 ```
 
-La révision attendue est `remove_runtime_caches (head)`. Les migrations rétablissent
+La révision historique attendue par l'installation précédente est
+`remove_runtime_caches`. La tête actuelle du dépôt est `forms_statistics_v1` ;
+pour déployer le frontend, consulter [la procédure de déploiement](docs/deploiement.md)
+et vérifier la révision réelle avant d'appliquer la migration. Les migrations rétablissent
 la recherche, créent le suivi des imports, maintiennent les compteurs par
 lot et retirent les anciennes tables de cache. Il faut les appliquer avant
 de démarrer le site.

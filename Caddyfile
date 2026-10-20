@@ -12,10 +12,15 @@ cahierdedoleances.fr {
 		X-Content-Type-Options "nosniff"
 		Referrer-Policy "strict-origin-when-cross-origin"
 	}
-	# Caddy replaces client-supplied forwarding headers by default.
-	# Do not configure trusted_proxies: Caddy is the Internet edge.
-	reverse_proxy app:8000 {
-		header_up -Forwarded
+	# Backend-only paths are deliberately disjoint from the React Router pages.
+	@backend path /api/* /auth /auth/* /bookmarks/* /healthz /robots.txt /sitemap.xml
+	handle @backend {
+		reverse_proxy app:8000 {
+			header_up -Forwarded
+		}
+	}
+	handle {
+		reverse_proxy frontend:3000
 	}
 	# No access log: /auth/verify/* contains bearer tokens.
 }
