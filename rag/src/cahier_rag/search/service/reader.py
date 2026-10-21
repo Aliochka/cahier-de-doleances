@@ -9,6 +9,7 @@ from cahier_rag.embeddings.registry import MODELS
 from cahier_rag.fullcorpus.audit import fingerprint
 from cahier_rag.fullcorpus.store import FullStore
 from cahier_rag.safety import DatabaseSafetyError, assert_distinct, inspect_database
+from cahier_rag.search.publication import PublicationError, compatible_identity
 from cahier_rag.search.service.control import (
     SearchNotReady,
     SearchTimeout,
@@ -24,16 +25,7 @@ def compatible_source_identity(indexed, current):
     original answers, provenance, or the TextUnit extraction representation.
     Maintenance/writer guards still require their original strict identities.
     """
-    if indexed == current:
-        return True
-    if not isinstance(indexed, dict) or not isinstance(current, dict):
-        return False
-    if (indexed.get("schema_revision"), current.get("schema_revision")) != (
-        "remove_runtime_caches",
-        "forms_statistics_v1",
-    ):
-        return False
-    return {**indexed, "schema_revision": "forms_statistics_v1"} == current
+    return compatible_identity(indexed, current)
 
 
 def create_search_engine(url):
@@ -141,7 +133,7 @@ def check_reader_role(connection):
                    (SELECT oid FROM pg_roles WHERE rolname=current_user))
         OR EXISTS (
           SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
-          WHERE n.nspname IN ('rag','rag_full','rag_tuning') AND c.relkind IN ('r','p')
+          WHERE n.nspname IN ('public','rag','rag_full','rag_tuning') AND c.relkind IN ('r','p')
           AND (has_table_privilege(c.oid,'INSERT,UPDATE,DELETE,TRUNCATE,TRIGGER')
                OR pg_has_role(c.relowner,'MEMBER')))
         OR EXISTS (SELECT 1 FROM pg_namespace WHERE nspname IN ('public','rag','rag_full','rag_tuning')
@@ -171,8 +163,9 @@ class SearchReader:
 
     space = "full"
 
-    def __init__(self, source, target):
+    def __init__(self, source, target, *, publication=None):
         self.source, self.target = source, target
+        self.publication = publication
         self.generation = None
 
     def store(self, budget):
@@ -184,13 +177,26 @@ class SearchReader:
             check_reader_role(connection)
             state = store.state(connection)
             manifest = state["manifest"]
+            publication_hash = None
+            if self.publication is not None:
+                try:
+                    publication_hash = self.publication.validate(
+                        state, source.to_dict(), inspect_database(connection).to_dict()
+                    )
+                except PublicationError:
+                    raise SearchNotReady("Publication du corpus incompatible.") from None
             expected = dict(model=MODELS["bge-m3"].to_dict(), tokens=TokenConfig().to_dict())
             if (
                 not all(state[k] for k in ("verified", "extraction_complete", "vectors_complete"))
                 or state["documents"] != state["expected_units"]
                 or state["documents"] != state["vector_cursor"]
                 or state["segments"] < state["documents"]
-                or not compatible_source_identity(manifest.get("audit_source"), source.to_dict())
+                or (
+                    self.publication is None
+                    and not compatible_source_identity(
+                        manifest.get("audit_source"), source.to_dict()
+                    )
+                )
                 or manifest.get("space") != self.space
                 or manifest.get("corpus") != "gdn-2019"
                 or manifest.get("normalize") is not True
@@ -237,9 +243,10 @@ class SearchReader:
                 )
             ):
                 raise SearchNotReady("Statistiques, révision ou index incompatibles.")
-        generation = fingerprint(
-            {key: state[key] for key in ("recipe_hash", "chain_hash", "documents")}
-        )
+        generation_data = {key: state[key] for key in ("recipe_hash", "chain_hash", "documents")}
+        if publication_hash is not None:
+            generation_data["publication"] = publication_hash
+        generation = fingerprint(generation_data)
         if self.generation is not None and generation != self.generation:
             raise SearchNotReady("La génération du corpus a changé ; redémarrer le service.")
         self.generation = generation

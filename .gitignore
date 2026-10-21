@@ -79,3 +79,8 @@ Thumbs.db
 
 # Private deployment rollback snapshot
 .env.deploy.*backup
+
+# Search administration secrets, archives and benchmark outputs.
+/private/search/
+/search-transfer/
+/benchmark-results/

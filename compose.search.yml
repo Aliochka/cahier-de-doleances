@@ -1,0 +1,36 @@
+# Opt-in preparation overlay; never enables public search by itself.
+# Base compose.deploy.yml alone requires none of these mounts.
+services:
+  app:
+    build:
+      args:
+        SEARCH_RUNTIME: cpu
+    environment:
+      HYBRID_SEARCH_ENABLED: ${HYBRID_SEARCH_ENABLED:-false}
+      SEARCH_DEVICE: cpu
+      SEARCH_PRECISION: float32
+      SEARCH_CPU_THREADS: ${SEARCH_CPU_THREADS:-2}
+      SEARCH_MODELS_DIR: /models
+      SEARCH_READER_ENV: /run/search/reader.env
+      SEARCH_PUBLICATION_FILE: /run/search/publication.json
+      SEARCH_CURSOR_KEY: ${SEARCH_CURSOR_KEY:-}
+      SEARCH_PUBLICATION_KEY: ${SEARCH_PUBLICATION_KEY:-}
+    volumes:
+      - type: bind
+        source: ${SEARCH_MODELS_HOST_DIR:?Set the existing BGE snapshot parent}
+        target: /models
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${SEARCH_READER_HOST_FILE:?Set the private reader file}
+        target: /run/search/reader.env
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${SEARCH_PUBLICATION_HOST_FILE:?Set the approved publication file}
+        target: /run/search/publication.json
+        read_only: true
+        bind:
+          create_host_path: false

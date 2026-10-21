@@ -1,5 +1,9 @@
 # Déployer le frontend React SSR et FastAPI sur Wallace
 
+Pour la préparation du moteur H1 CPU, consulter la procédure distincte
+[SEARCH-DEPLOY-002](search-deploiement.md). Elle conserve la recherche désactivée
+jusqu’à validation et ne remplace pas la procédure de sauvegarde applicative.
+
 Cette procédure prépare un déploiement avec interruption. Elle ne démarre ni
 n'arrête de service et n'applique aucune migration automatiquement au lancement.
 PostgreSQL 17, son conteneur, son volume et son réseau externe restent gérés par

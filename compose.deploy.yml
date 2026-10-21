@@ -3,7 +3,10 @@ name: cahier-de-doleances-app
 services:
   app:
     image: cahier-de-doleances-app:${APP_IMAGE_TAG:?Set APP_IMAGE_TAG in .env.deploy}
-    build: .
+    build:
+      context: .
+      args:
+        SEARCH_RUNTIME: ${SEARCH_RUNTIME:-disabled}
     env_file:
       - .env.deploy
     environment:
@@ -13,6 +16,7 @@ services:
       # Exact frontend socket peer for read-only HTTP API calls, not a proxy.
       # Keep aligned with frontend.networks.proxy-private.ipv4_address.
       SSR_HTTP_CLIENT_IP: "172.30.80.4"
+      HYBRID_SEARCH_ENABLED: ${HYBRID_SEARCH_ENABLED:-false}
     networks:
         postgres-existing:
         app-egress:

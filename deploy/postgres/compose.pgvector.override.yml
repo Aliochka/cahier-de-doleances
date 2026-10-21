@@ -1,0 +1,23 @@
+# MANUAL TEMPLATE: merge with the EXISTING PostgreSQL compose, not the app compose.
+# Confirm its service key is postgres; retain ALL other original options/backups.
+services:
+  postgres:
+    image: ${SEARCH_POSTGRES_IMAGE:?Set a newly built immutable image tag}
+    platform: linux/amd64
+    entrypoint: [bash, /usr/local/bin/existing-cluster.sh]
+    environment:
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - type: bind
+        source: /data/postgresql/pg17/data
+        target: /var/lib/postgresql/data
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /data/postgresql/.ssd-mounted
+        target: /run/ssd-mounted
+        read_only: true
+        bind:
+          create_host_path: false
+    # Build indexes serially (max_parallel_maintenance_workers=0), not in DSM.
+    # No global memory, credentials, networks or published ports are changed here.

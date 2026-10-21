@@ -11,7 +11,14 @@ from cahier_rag.search.service.worker import SearchWorker
 
 
 def create_service(
-    settings, models, *, device="cpu", precision="float32", threads=4, recipe=SearchRecipe()
+    settings,
+    models,
+    *,
+    device="cpu",
+    precision="float32",
+    threads=4,
+    recipe=SearchRecipe(),
+    publication=None,
 ):
     """L'appelant possède start/close ; aucune connexion avant start()."""
     source_url, target_url = settings.require_source_url(), settings.require_rag_url()
@@ -26,7 +33,9 @@ def create_service(
             threads=threads,
         )
     )
-    return HybridSearch(SearchReader(source, target), encoder, recipe=recipe)
+    return HybridSearch(
+        SearchReader(source, target, publication=publication), encoder, recipe=recipe
+    )
 
 
 __all__ = ["HybridSearch", "SearchRecipe", "SearchWorker", "create_service"]

@@ -1,0 +1,54 @@
+# Temporary backend-only laboratory; never attach to Caddy/proxy-private.
+# Uses the production CPU image and READ ONLY search connections.
+name: cahier-search-validation
+services:
+  validation:
+    image: cahier-de-doleances-app:${APP_IMAGE_TAG:?Set the CPU image tag}
+    env_file: .env.deploy
+    environment:
+      HYBRID_SEARCH_ENABLED: "true"
+      # Only this loopback-published laboratory, never the public backend.
+      ENFORCE_HTTPS: "false"
+      FORWARDED_ALLOW_IPS: ""
+      SEARCH_DEVICE: cpu
+      SEARCH_PRECISION: float32
+      SEARCH_CPU_THREADS: ${SEARCH_CPU_THREADS:-2}
+      SEARCH_MODELS_DIR: /models
+      SEARCH_READER_ENV: /run/search/reader.env
+      SEARCH_PUBLICATION_FILE: /run/search/publication.json
+    ports:
+      - "127.0.0.1:8015:8000"
+    networks:
+      - postgres-existing
+    volumes:
+      - type: bind
+        source: ${SEARCH_MODELS_HOST_DIR:?Set the BGE parent}
+        target: /models
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${SEARCH_READER_HOST_FILE:?Set reader file}
+        target: /run/search/reader.env
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${SEARCH_PUBLICATION_HOST_FILE:?Set publication file}
+        target: /run/search/publication.json
+        read_only: true
+        bind: {create_host_path: false}
+    read_only: true
+    tmpfs: ["/tmp:size=64m,mode=1777"]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz').close()"]
+      interval: 30s
+      timeout: 12s
+      start_period: 30s
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+networks:
+  postgres-existing:
+    external: true
+    name: cahier-de-doleances_cahier-internal
