@@ -51,11 +51,35 @@ de 17, un propriétaire différent du compte `postgres` de l’image, ou l’abs
 marqueur SSD. Il lance directement PostgreSQL via `gosu`, **sans initdb, chown,
 scripts d’initialisation ou réinitialisation de mot de passe**.
 
+Le rôle SQL existant est `cahier` (`POSTGRES_USER=cahier`), tandis que le compte
+système de l’image est `postgres`, UID/GID **999:999** sur l’installation vérifiée
+par l’opérateur. Le garde ne dépend pas de `POSTGRES_USER` et accepte son absence :
+il ne crée ni ne modifie aucun rôle SQL. Il compare les UID/GID du répertoire,
+de `PG_VERSION` et de `global/pg_control` à ceux du compte système de l’image,
+et vérifie PostgreSQL 17.11 dans l’environnement et le binaire.
+
+**Correctif SEARCH-DEPLOY-003 :** l’override fournit explicitement
+`command: [postgres]`. Lorsque Compose redéfinit `entrypoint`, il ignore le `CMD`
+par défaut de l’image ([documentation Docker](https://docs.docker.com/reference/compose-file/services/#entrypoint)).
+Le garde choisit aussi `postgres` si aucun argument n’est fourni ; toute autre
+commande explicite est refusée. Lors de la fusion, reporter les éventuelles
+options PostgreSQL existantes après `postgres` dans `command` : ne pas les perdre.
+La répétition doit utiliser le **même Compose fusionné** que la production,
+avec seulement les montages remplacés par ceux d’une copie isolée et un réseau
+isolé. Un essai via `docker run IMAGE` conserve normalement le `CMD` de l’image
+et ne reproduit donc pas le défaut d’arguments de l’ancien override.
+
 **Docker n’étant pas disponible pendant la préparation, ni la construction ni la
 réutilisation d’un cluster dans cette image n’ont été testées.** Une répétition sur
 une sauvegarde isolée est obligatoire avant remplacement. Un écart d’UID ne doit
 pas être corrigé par un `chown -R` improvisé : conserver l’image existante et revoir
 la préparation.
+
+Cette limite concerne les validations locales de SEARCH-DEPLOY-002/003.
+L’opérateur a depuis confirmé la construction de l’image et le fonctionnement
+de pgvector 0.8.7 sur une copie physique ; cela ne valide pas à lui seul la
+commande effective du Compose de production. Voir le
+[rapport du correctif du garde](rapport-search-deploy-003.md).
 
 ### Backend CPU
 

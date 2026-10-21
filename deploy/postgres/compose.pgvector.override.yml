@@ -5,6 +5,9 @@ services:
     image: ${SEARCH_POSTGRES_IMAGE:?Set a newly built immutable image tag}
     platform: linux/amd64
     entrypoint: [bash, /usr/local/bin/existing-cluster.sh]
+    # A Compose entrypoint override discards the image CMD. Keep the server
+    # explicit; append any reviewed server options from the existing service.
+    command: [postgres]
     environment:
       PGDATA: /var/lib/postgresql/data
     volumes:
