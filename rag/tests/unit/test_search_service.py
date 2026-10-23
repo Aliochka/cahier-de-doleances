@@ -24,6 +24,46 @@ from cahier_rag.search.service.control import (
     SearchTimeout,
 )
 from cahier_rag.search.service.reader import ReadConnection, ReadStore, create_search_engine
+from cahier_rag.tuning.lexical import TunedSearch
+
+
+@pytest.mark.parametrize("count", [1, 2, 32])
+def test_public_rank_changes_only_function_and_keeps_all_binds(count):
+    from sqlalchemy import text
+    from sqlalchemy.dialects.postgresql import psycopg2
+
+    terms = [dict(query=f"'term{i}'", idf=1.25 + i, total=1000.0) for i in range(count)]
+    old_params = dict(query="'term0'", limit=50, form=None, kind=None, split=None)
+    new_params = dict(old_params)
+    original = TunedSearch.score_expression(terms, old_params)
+    actual = core.H1LexicalSearch.score_expression(terms, new_params)
+    assert actual == original.replace("ts_rank_cd(", "ts_rank(")
+    assert actual.count("ts_rank(") == 1 and "ts_rank_cd(" not in actual
+    assert "CAST(:query AS tsquery),32)::float8" in actual
+    assert new_params == old_params
+    assert [new_params[k] for k in ("idf_coverage", "term_coverage", "frequency_proximity")] == [
+        0.5,
+        0.3,
+        0.2,
+    ]
+    dialect = psycopg2.dialect()
+    assert text(actual).compile(dialect=dialect).construct_params(new_params) == text(
+        original
+    ).compile(dialect=dialect).construct_params(old_params)
+    assert core.H1LexicalSearch.lexical is TunedSearch.lexical
+    assert core.H1LexicalSearch._terms is TunedSearch._terms
+
+
+def test_new_recipe_invalidates_old_fingerprint_without_changing_parameters():
+    from dataclasses import asdict
+
+    current = SearchRecipe()
+    old = replace(current, version="h1-public-v1")
+    assert current.version == "h1-public-v2-ts-rank"
+    assert current.fingerprint != old.fingerprint
+    assert {k: v for k, v in asdict(current).items() if k != "version"} == {
+        k: v for k, v in asdict(old).items() if k != "version"
+    }
 
 
 def document(index):
@@ -91,7 +131,7 @@ def service(monkeypatch):
             ]
         }
 
-    monkeypatch.setattr(core, "TunedSearch", Lexical)
+    monkeypatch.setattr(core, "H1LexicalSearch", Lexical)
     monkeypatch.setattr(core, "ann_search", ann)
     service.calls = calls
     yield service
@@ -110,6 +150,7 @@ def test_persistent_load_recipe_bigint_and_provenance(service):
     assert service.encoder.queries[1:] == ["Non", "Non"]
     assert len(first.hits) == 50
     assert first.recipe_hash == SearchRecipe().fingerprint
+    assert first.recipe_version == "h1-public-v2-ts-rank"
     assert service.calls[1][2].ef_search == 1000
     assert service.calls[1][2].candidates == 400
     assert len({hit.document.answer_id for hit in first.hits}) == 50
@@ -159,7 +200,7 @@ def test_no_silent_filtered_or_single_branch_search(service, monkeypatch):
 def test_empty_lexical_is_successful_not_a_failure(service, monkeypatch):
     service.start()
     monkeypatch.setattr(
-        core, "TunedSearch", lambda *a, **kw: SimpleNamespace(lexical=lambda *a, **kw: [])
+        core, "H1LexicalSearch", lambda *a, **kw: SimpleNamespace(lexical=lambda *a, **kw: [])
     )
     result = service.retrieve("Comment")
     assert result.hits and all(hit.lexical_rank is None for hit in result.hits)

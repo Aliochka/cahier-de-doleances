@@ -21,7 +21,19 @@ from cahier_rag.search.service.control import (
 from cahier_rag.tuning.lexical import TunedSearch
 from cahier_rag.tuning.vector import AnnConfig, ann_search
 
-RECIPE_VERSION = "h1-public-v1"
+RECIPE_VERSION = "h1-public-v2-ts-rank"
+
+
+class H1LexicalSearch(TunedSearch):
+    """P6 : seul le rang change ; TunedSearch reste la référence gelée P1–P5."""
+
+    @staticmethod
+    def score_expression(terms, params):
+        original = TunedSearch.score_expression(terms, params)
+        rank = "ts_rank_cd(d.search_vector,CAST(:query AS tsquery),32)::float8"
+        if original.count(rank) != 1:
+            raise ValueError("Formule lexicale H1 incompatible.")
+        return original.replace(rank, rank.replace("ts_rank_cd(", "ts_rank("), 1)
 
 
 @dataclass(frozen=True)
@@ -178,7 +190,7 @@ class HybridSearch:
                 encoded = time.monotonic()
                 store = self.reader.store(budget)
                 # Un nouvel objet par appel : pas de diagnostics mutables partagés.
-                lexical = TunedSearch(store, statistics=True, prefilter=None)
+                lexical = H1LexicalSearch(store, statistics=True, prefilter=None)
                 with budget.phase("sql", 10):
                     try:
                         left = lexical.lexical(query, limit=recipe.depth)

@@ -22,7 +22,7 @@ from cahier_rag.search.service import HybridSearch
 from cahier_rag.search.service.reader import SearchReader, create_search_engine
 from cahier_rag.storage import document_record
 from cahier_rag.vector.preparation import TokenConfig
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, event, text
 
 from app import search_admin
 
@@ -245,12 +245,25 @@ INSERT INTO answers VALUES(1,2,3,'Texte original',NULL,1);
             yield SimpleNamespace(vectors=[[1.0] + [0.0] * 1023])
 
     service = HybridSearch(reader, Encoder())
+    ranking_sql = []
+
+    def capture_sql(connection, cursor, statement, parameters, context, executemany):
+        if (
+            statement.startswith("SELECT d.document_id,")
+            and " AS score FROM rag_full.documents d" in statement
+        ):
+            ranking_sql.append(statement)
+
+    event.listen(reader.target, "before_cursor_execute", capture_sql)
     try:
         service.start()
         ranking = service.retrieve("Texte original")
-        assert ranking.recipe_version == "h1-public-v1"
+        assert ranking.recipe_version == "h1-public-v2-ts-rank"
         assert ranking.hits[0].document == document
+        assert len(ranking_sql) == 1
+        assert "ts_rank(" in ranking_sql[0] and "ts_rank_cd(" not in ranking_sql[0]
     finally:
+        event.remove(reader.target, "before_cursor_execute", capture_sql)
         service.close()
     # Small real logical roundtrip: new fixture database, same precreated extension.
     # Never dump a working local corpus or rebuild any existing index.
