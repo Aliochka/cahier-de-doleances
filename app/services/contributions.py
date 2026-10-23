@@ -46,6 +46,48 @@ def get_contribution(db: Session, form_id: int, contribution_id: int):
     )
 
 
+def contribution_neighbors(db: Session, form_id: int, contribution_id: int, submitted_at):
+    """Same order as the ordinal selector, using bounded composite-index seeks.
+
+    Split the dated and undated ranges so each lookup can use
+    ix_contributions_form_submit_id. No COUNT, OFFSET or whole-form window.
+    """
+    if submitted_at is None:
+        query = """
+            SELECT COALESCE(
+                (SELECT id FROM contributions
+                 WHERE form_id = :fid AND submitted_at IS NULL AND id < :cid
+                 ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM contributions
+                 WHERE form_id = :fid AND submitted_at IS NOT NULL
+                 ORDER BY submitted_at DESC, id DESC LIMIT 1)
+            ) AS previous_id,
+            (SELECT id FROM contributions
+             WHERE form_id = :fid AND submitted_at IS NULL AND id > :cid
+             ORDER BY id ASC LIMIT 1) AS next_id
+        """
+    else:
+        query = """
+            SELECT
+                (SELECT id FROM contributions
+                 WHERE form_id = :fid AND (submitted_at, id) < (:submitted, :cid)
+                 ORDER BY submitted_at DESC, id DESC LIMIT 1) AS previous_id,
+                COALESCE(
+                    (SELECT id FROM contributions
+                     WHERE form_id = :fid AND (submitted_at, id) > (:submitted, :cid)
+                     ORDER BY submitted_at ASC, id ASC LIMIT 1),
+                    (SELECT id FROM contributions
+                     WHERE form_id = :fid AND submitted_at IS NULL
+                     ORDER BY id ASC LIMIT 1)
+                ) AS next_id
+        """
+    return (
+        db.execute(text(query), {"fid": form_id, "cid": contribution_id, "submitted": submitted_at})
+        .mappings()
+        .one()
+    )
+
+
 def contribution_answers(db: Session, contribution_id: int, form_id: int | None = None):
     # HTML keeps its historical text filter and ordering; JSON includes all actual rows.
     condition = (

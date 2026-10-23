@@ -397,6 +397,16 @@ export interface components {
              * @description Rang historique 1..M, uniquement lors d'une résolution par contrib. Ce n'est pas l'ID en base.
              */
             legacy_index?: string | null;
+            /**
+             * Next Id
+             * @description Contribution suivante du même formulaire, selon date ASC NULLS LAST puis ID ASC ; null à la fin.
+             */
+            next_id?: string | null;
+            /**
+             * Previous Id
+             * @description Contribution précédente du même formulaire, selon date ASC NULLS LAST puis ID ASC ; null au début.
+             */
+            previous_id?: string | null;
         };
         /** ContributionReference */
         ContributionReference: {

@@ -334,8 +334,8 @@ def test_query_budgets_and_public_cache(client, contribution_data, web_data):
         for path, count in [
             (f"/authors/{d['public']}", 1),
             (f"/authors/{d['public']}/forms", 2),
-            (f"/forms/{d['form']}/contributions/{d['first']}", 3),
-            (f"/forms/{d['form']}/contributions?contrib=2", 6),
+            (f"/forms/{d['form']}/contributions/{d['first']}", 4),
+            (f"/forms/{d['form']}/contributions?contrib=2", 7),
         ]:
             statements.clear()
             url = f"/api/v1{path}"
@@ -481,3 +481,30 @@ def test_openapi_contract_ids_and_names(tmp_path):
         ("SelectedOption", "id"),
     ]:
         assert schema["components"]["schemas"][model]["properties"][field]["type"] == "string"
+
+
+@pytest.mark.integration
+def test_neighbors_match_ordinal_order_with_ties_nulls_and_other_forms(client, contribution_data):
+    d = contribution_data
+    ordered = [
+        d["contributions"][4],
+        *d["contributions"][:2],
+        d["contributions"][3],
+        d["contributions"][5],
+    ]
+    for index, cid in enumerate(ordered):
+        direct = client.get(f"/api/v1/forms/{d['form']}/contributions/{cid}")
+        ordinal = client.get(
+            f"/api/v1/forms/{d['form']}/contributions", params={"contrib": index + 1}
+        )
+        assert direct.status_code == ordinal.status_code == 200
+        for response in (direct, ordinal):
+            payload = response.json()
+            assert payload["previous_id"] == (ordered[index - 1] if index else None)
+            assert payload["next_id"] == (ordered[index + 1] if index + 1 < len(ordered) else None)
+            assert payload["contribution"]["id"] == cid
+    # A singleton in another questionnaire has neither neighbor, including null dates.
+    single = client.get(
+        f"/api/v1/forms/{d['other_form']}/contributions/{d['contributions'][2]}"
+    ).json()
+    assert single["previous_id"] is None and single["next_id"] is None

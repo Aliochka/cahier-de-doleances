@@ -68,8 +68,8 @@ publics et indépendants de la session ; les protections de cache privé existan
 restent actives lorsqu'un cookie de session est présent.
 
 Budget fixe testé, hors `SET LOCAL statement_timeout` (5 secondes) : auteur
-1 SELECT ; formulaires d'auteur 2 SELECT ; contribution par ID 3 SELECT
-(en-tête, choix en lot, réponses) ; sélecteur historique 6 SELECT. Aucun N+1 ni
+1 SELECT ; formulaires d'auteur 2 SELECT ; contribution par ID 4 SELECT
+(en-tête, choix en lot, réponses, voisins) ; sélecteur historique 7 SELECT. Aucun N+1 ni
 chargement des réponses pour la liste des formulaires. Le résolveur historique
 conserve COUNT et OFFSET, potentiellement coûteux sur les rangs profonds ; les
 nouveaux liens doivent privilégier la lecture par ID. Aucun cache/index/migration
@@ -79,3 +79,30 @@ Limite préexistante hors périmètre : `question_stats.question_id` est INTEGER
 alors que les questions utilisent BIGINT ; les triggers de statistiques empêchent
 actuellement des réponses à des questions dont l'ID dépasse la plage INTEGER.
 Les autres identifiants BIGINT sont testés au-delà de la précision JavaScript.
+
+## Navigation entre contributions
+
+`ContributionDetail` expose `previous_id` et `next_id` (chaînes BIGINT ou null),
+y compris lors d’une lecture directe par identifiant. Les deux champs sont
+optionnels dans le contrat pour permettre une transition avec des clients et
+serveurs précédents ; le serveur courant les renvoie toujours. Ils suivent
+exactement l’ordre du questionnaire : `submitted_at ASC NULLS LAST, id ASC`.
+Ils ne représentent ni les voisins dans un classement de recherche, ni une
+sélection de réponses à une question. Une contribution isolée a deux voisins
+nulls ; les autres questionnaires sont exclus.
+
+Le calcul utilise une requête supplémentaire avec des recherches bornées
+`LIMIT 1`, comparaisons de tuples pour les dates et l’ID, et traitement séparé
+des dates nulles. L’index existant `ix_contributions_form_submit_id` couvre ces
+recherches, sans nouveau COUNT, OFFSET ou classement global. Aucune migration.
+Un contrôle `EXPLAIN (ANALYZE, BUFFERS)` sur 50 000 contributions synthétiques
+dans la base de test (transaction annulée) n’a montré aucun parcours séquentiel,
+aux positions initiale, médiane, première date nulle et finale. Les temps SQL
+mesurés étaient de 0,011 à 0,019 ms dans cette base locale ; ce résultat exclut
+le transport HTTP et ne constitue pas une mesure du corpus de production.
+
+Les liens React Router pointent vers les routes par ID existantes et sont
+rendus au SSR. Un accès depuis la recherche, une question ou un auteur conserve
+sa cible et son ancre initiales ; la navigation suivante parcourt le questionnaire
+et ouvre la contribution complète suivante. Le rendu n’ajoute aucun appel API.
+Les destinations par rang déjà fournies par la route historique restent prioritaires.

@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { checkCitizenReading } from "./reading-checks";
 
 const origin = "http://127.0.0.1:4175";
 const mock = "http://127.0.0.1:4176";
@@ -22,7 +23,7 @@ for (const javaScriptEnabled of [true, false]) {
         "Rechercher dans les paroles citoyennes",
       );
       await expect(page.getByRole("tab")).toHaveCount(0);
-      await expect(page.locator("h1")).toHaveCSS("color", "rgb(0, 0, 0)");
+      await expect(page.locator("h1")).toHaveCSS("color", "rgb(43, 42, 38)");
       await expect(
         page
           .getByRole("navigation", { name: "Navigation principale" })
@@ -73,6 +74,16 @@ for (const javaScriptEnabled of [true, false]) {
       );
       await contribution.click();
       await expect(page).toHaveURL(/#answer-9007199254741993$/);
+      for (const nav of await page
+        .getByRole("navigation", { name: /^Contributions du questionnaire/ })
+        .all()) {
+        await expect(
+          nav.getByRole("link", { name: "Contribution suivante →" }),
+        ).toHaveAttribute(
+          "href",
+          `${"/forms/9007199254740995"}/contributions/9007199254742994`,
+        );
+      }
       const anchor = page.locator("#answer-9007199254741993");
       await expect(anchor).toBeVisible();
       await expect
@@ -281,6 +292,7 @@ test("recherche : chargement cumulatif, retour et aucun nouveau classement", asy
     .getByRole("link", { name: "Lire la contribution complète" })
     .last()
     .click();
+  await expect(page).toHaveURL(/\/contributions\/\d+#answer-/);
   await page.goBack();
   await expect(list.locator(":scope > li")).toHaveCount(3);
   const calls = await (
@@ -330,3 +342,60 @@ test("une sélection expirée garde les réponses lues et exige une relance expl
   ).toHaveCount(0);
   await expect(list.locator(":scope > li")).toHaveCount(2);
 });
+
+test("lecture des extraits Literata, mots longs et texte agrandi", async ({
+  page,
+}) => {
+  await page.goto(`${origin}/recherche?q=lecture`);
+  const paragraph = page.locator("blockquote p").first();
+  await checkCitizenReading(page, paragraph);
+  await expect(page.getByText(/Extrait abrégé/).first()).toBeVisible();
+  const link = page
+    .getByRole("link", { name: "Lire la contribution complète" })
+    .first();
+  await link.focus();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/#answer-/);
+});
+
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`voisins après recherche, JS ${javaScriptEnabled}`, () => {
+    test.use({ javaScriptEnabled });
+    test("parcourt le questionnaire depuis un résultat, sans changer le classement", async ({
+      page,
+    }) => {
+      await page.goto(`${origin}/recherche?q=voisins`);
+      await page
+        .getByRole("link", { name: "Lire la contribution complète" })
+        .first()
+        .click();
+      await expect(page).toHaveURL(/contributions\/9007199254742993#answer-/);
+      await expect(
+        page.getByRole("link", { name: "← Contribution précédente" }),
+      ).toHaveCount(0);
+      const next = page.getByRole("link", { name: "Contribution suivante →" });
+      await expect(next).toHaveCount(2);
+      await next.last().click();
+      await expect(page).toHaveURL(
+        `${origin}/forms/9007199254740995/contributions/9007199254742994`,
+      );
+      await page
+        .getByRole("link", { name: "Contribution suivante →" })
+        .first()
+        .click();
+      await expect(page).toHaveURL(
+        `${origin}/forms/9007199254740995/contributions/9007199254742995`,
+      );
+      await expect(
+        page.getByRole("link", { name: "Contribution suivante →" }),
+      ).toHaveCount(0);
+      await page
+        .getByRole("link", { name: "← Contribution précédente" })
+        .first()
+        .click();
+      await expect(page).toHaveURL(
+        `${origin}/forms/9007199254740995/contributions/9007199254742994`,
+      );
+    });
+  });
+}

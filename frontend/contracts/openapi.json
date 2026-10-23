@@ -392,6 +392,34 @@
             ],
             "description": "Rang historique 1..M, uniquement lors d'une résolution par contrib. Ce n'est pas l'ID en base.",
             "title": "Legacy Index"
+          },
+          "next_id": {
+            "anyOf": [
+              {
+                "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+                "pattern": "^[0-9]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Contribution suivante du même formulaire, selon date ASC NULLS LAST puis ID ASC ; null à la fin.",
+            "title": "Next Id"
+          },
+          "previous_id": {
+            "anyOf": [
+              {
+                "description": "Identifiant historique BIGINT, chaîne décimale sans perte de précision.",
+                "pattern": "^[0-9]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Contribution précédente du même formulaire, selon date ASC NULLS LAST puis ID ASC ; null au début.",
+            "title": "Previous Id"
           }
         },
         "required": [

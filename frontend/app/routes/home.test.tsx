@@ -1,18 +1,27 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 import { expect, test } from "vitest";
 import Home from "./home";
 
 test("presents the project and provides page metadata", () => {
-  render(<Home />);
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>,
+  );
   expect(
     screen.getByRole("heading", { level: 1, name: "Cahier de doléances" }),
   ).toBeVisible();
+  expect(screen.getByText(/Des paroles citoyennes à découvrir/)).toBeVisible();
   expect(
-    screen.getByText(/contributions citoyennes du Grand Débat National et/),
-  ).toBeVisible();
-  expect(document.title).toBe("Cahier de doléances — Les voix du Grand Débat");
+    screen.getByRole("link", { name: "Explorer les enquêtes" }),
+  ).toHaveAttribute("href", "/enquetes");
+  expect(
+    screen.getByRole("link", { name: "Rechercher dans les contributions" }),
+  ).toHaveAttribute("href", "/recherche");
+  expect(document.title).toBe("Cahier de doléances — Les paroles citoyennes");
   expect(document.querySelector('meta[name="description"]')).toHaveAttribute(
     "content",
-    "Explorez les contributions citoyennes du Grand Débat National avec Cahier de doléances.",
+    "Explorez les enquêtes et recherchez dans les contributions citoyennes avec Cahier de doléances.",
   );
 });

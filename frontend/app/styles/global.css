@@ -1,1 +1,17 @@
 @layer reset, base, tokens, recipes, utilities;
+
+/* Local French-compatible subsets; optional prevents late font swaps. */
+@font-face {
+  font-family: "Special Elite";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/special-elite-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/literata-latin-400.woff2") format("woff2");
+}

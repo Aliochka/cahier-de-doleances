@@ -1,7 +1,11 @@
 import { Link } from "react-router";
-import { css } from "../../../styled-system/css";
+import { css, cx } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import type { AnswerPage } from "../../lib/api";
+import {
+  CitizenText,
+  contributionStyles,
+} from "../contributions/contribution-presentation";
 import { ListNavigation, type MoreAction } from "../pagination/list-navigation";
 
 export function Answers({
@@ -36,60 +40,50 @@ export function Answers({
       ) : (
         <ol
           aria-label="Réponses à la question"
-          className={css({
-            listStyle: "none",
-            p: 0,
-            display: "grid",
-            gap: "8",
-          })}
+          className={contributionStyles.list}
         >
           {page.items.map((answer) => (
             <li
               key={answer.id}
               data-progressive-id={answer.id}
               tabIndex={-1}
-              className={css({
-                borderTopWidth: "thin",
-                borderColor: "border",
-                pt: "6",
-                minWidth: 0,
-              })}
+              className={contributionStyles.entry}
             >
-              <p className={css({ color: "muted", mb: "3" })}>
-                {answer.author ? (
-                  <Link to={`/authors/${answer.author.id}`}>
-                    {answer.author.name}
-                  </Link>
-                ) : (
-                  "Auteur non renseigné"
-                )}
-                {answer.submitted_at && (
-                  <>
-                    {" "}
-                    ·{" "}
-                    <time dateTime={answer.submitted_at}>
-                      {new Intl.DateTimeFormat("fr-FR", {
-                        dateStyle: "long",
-                        timeZone: "UTC",
-                      }).format(
-                        new Date(
-                          `${answer.submitted_at.slice(0, 10)}T00:00:00Z`,
-                        ),
-                      )}
-                    </time>
-                  </>
-                )}
-              </p>
-              <p
-                className={css({
-                  whiteSpace: "pre-wrap",
-                  overflowWrap: "anywhere",
-                })}
-              >
-                {answer.text}
-              </p>
+              <header className={css({ mb: "4" })}>
+                <p className={contributionStyles.metadata}>
+                  Réponse {answer.id}
+                </p>
+                <p className={contributionStyles.metadata}>
+                  {answer.author ? (
+                    <Link to={`/authors/${answer.author.id}`}>
+                      {answer.author.name}
+                    </Link>
+                  ) : (
+                    "Auteur non renseigné"
+                  )}
+                  {answer.submitted_at && (
+                    <>
+                      {" "}
+                      ·{" "}
+                      <time dateTime={answer.submitted_at}>
+                        {new Intl.DateTimeFormat("fr-FR", {
+                          dateStyle: "long",
+                          timeZone: "UTC",
+                        }).format(
+                          new Date(
+                            `${answer.submitted_at.slice(0, 10)}T00:00:00Z`,
+                          ),
+                        )}
+                      </time>
+                    </>
+                  )}
+                </p>
+              </header>
+              <CitizenText>{answer.text}</CitizenText>
               {answer.is_truncated && (
-                <p className={css({ color: "muted", mt: "3" })}>
+                <p
+                  className={cx(contributionStyles.metadata, css({ mt: "4" }))}
+                >
                   Texte abrégé dans cette liste. Le texte intégral est
                   disponible dans la contribution.
                 </p>

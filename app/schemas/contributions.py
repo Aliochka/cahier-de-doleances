@@ -60,6 +60,14 @@ class ContributionDetail(BaseModel):
         default=None,
         description="Rang historique 1..M, uniquement lors d'une résolution par contrib. Ce n'est pas l'ID en base.",
     )
+    previous_id: PublicId | None = Field(
+        default=None,
+        description="Contribution précédente du même formulaire, selon date ASC NULLS LAST puis ID ASC ; null au début.",
+    )
+    next_id: PublicId | None = Field(
+        default=None,
+        description="Contribution suivante du même formulaire, selon date ASC NULLS LAST puis ID ASC ; null à la fin.",
+    )
     answers: list[ContributionAnswer] = Field(
         description="Lignes réelles uniquement, par COALESCE(question.position,999999), question.id, answer.position NULLS LAST, answer.id."
     )

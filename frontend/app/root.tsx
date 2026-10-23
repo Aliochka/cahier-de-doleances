@@ -23,7 +23,21 @@ export function Layout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="data:," />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link
+          rel="preload"
+          href="/fonts/special-elite-latin-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/literata-latin-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <Links />
       </head>
       <body>

@@ -78,7 +78,7 @@ export default function Author({
         />
       )}
       <h1>{author.name}</h1>
-      <p className={css({ color: "muted", mb: "8" })}>
+      <p className={css({ textStyle: "documentMetadata", mb: "8" })}>
         Contributions publiques au Grand Débat National
       </p>
       {failure && (

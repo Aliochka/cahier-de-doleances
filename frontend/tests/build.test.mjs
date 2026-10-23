@@ -8,10 +8,10 @@ test("prerender includes essential content, metadata and Panda styles", async ()
   const html = await readFile("build/client/index.html", "utf8");
   assert.match(html, /<html lang="fr"/);
   assert.match(html, /<h1[^>]*>Cahier de doléances<\/h1>/);
-  assert.match(html, /contributions citoyennes du Grand Débat National/);
+  assert.match(html, /Des paroles citoyennes à découvrir/);
   assert.match(
     html,
-    /<title>Cahier de doléances — Les voix du Grand Débat<\/title>/,
+    /<title>Cahier de doléances — Les paroles citoyennes<\/title>/,
   );
   assert.match(html, /<meta name="description"/);
   assert.match(html, /rel="stylesheet"[^>]*\/assets\//);

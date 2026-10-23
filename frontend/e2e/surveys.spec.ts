@@ -7,7 +7,7 @@ test("les deux pages fournissent leur contenu et leurs métadonnées dans le HTM
   request,
 }) => {
   for (const [path, title] of [
-    ["/enquetes", "Enquêtes du Grand Débat"],
+    ["/enquetes", "Enquêtes — Cahier de doléances"],
     [formPath, "Participation citoyenne"],
   ]) {
     const response = await request.get(`${origin}${path}`, {
@@ -82,6 +82,9 @@ test("une URL contrib reste explicite et non indexable, sans substitution ni dé
   await page.getByRole("link", { name: "Retour aux enquêtes" }).click();
   await page.getByRole("link", { name: "Participation citoyenne" }).click();
   await expect(page).toHaveURL(`${origin}${formPath}`);
+  for (const heading of await page.locator("h1, h2").all()) {
+    await expect(heading).toHaveCSS("font-family", /Special Elite/);
+  }
   await expect(
     page.getByRole("list", { name: "Questions du formulaire" }),
   ).toBeVisible();
@@ -99,7 +102,9 @@ test("navigation interne, retour arrière, clavier et hydratation", async ({
   await expect(
     page.getByRole("navigation").getByRole("link", { name: "Enquêtes" }),
   ).toHaveAttribute("aria-current", "page");
-  const cards = page.getByRole("list", { name: "Formulaires du Grand Débat" });
+  const cards = page.getByRole("list", {
+    name: "Questionnaires — Consultation non renseignée",
+  });
   await expect(cards.getByRole("heading")).toHaveText([
     "Participation citoyenne",
     "Formulaire synthétique",
@@ -126,6 +131,7 @@ test("navigation interne, retour arrière, clavier et hydratation", async ({
   await link.click();
   await page.getByRole("link", { name: "← Retour aux enquêtes" }).click();
   await expect(page).toHaveURL(`${origin}/enquetes`);
+  await expect(page.locator("h1")).toHaveCSS("font-family", /Special Elite/);
   expect(errors).toEqual([]);
 });
 
@@ -203,7 +209,10 @@ test("le réessai du formulaire récupère la route sans boucle ni maintenance g
 test("le contenu essentiel des pages métier est lisible sans JavaScript", async ({
   browser,
 }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 320, height: 900 },
+  });
   const page = await context.newPage();
   await page.goto(`${origin}/enquetes`);
   await page.getByRole("link", { name: "Participation citoyenne" }).click();
@@ -217,3 +226,56 @@ test("le contenu essentiel des pages métier est lisible sans JavaScript", async
   ).toHaveCount(3);
   await context.close();
 });
+
+for (const width of [320, 375, 768, 1280]) {
+  test(`catalogue documentaire à ${width}px, texte et zoom à 200 %`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(`${origin}/enquetes`);
+    const section = page.getByRole("region", {
+      name: "Consultation non renseignée",
+    });
+    await expect(section).toBeVisible();
+    await expect(section.getByRole("heading", { level: 3 })).toHaveCount(2);
+    await expect(page.locator("details, [aria-expanded]")).toHaveCount(0);
+    const cards = section.locator("article");
+    await expect(cards.first()).toContainText("3 questions");
+    for (const scale of [1, 2]) {
+      await page.evaluate((scale) => {
+        document.documentElement.style.fontSize = `${100 * scale}%`;
+      }, scale);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth,
+        ),
+      ).toBe(true);
+    }
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = "100%";
+      document.documentElement.style.zoom = "2";
+    });
+    expect(
+      await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth <=
+          document.documentElement.clientWidth,
+      ),
+    ).toBe(true);
+    await page.evaluate(() => {
+      document.documentElement.style.zoom = "1";
+    });
+    const link = section.getByRole("link", { name: "Participation citoyenne" });
+    await link.focus();
+    await expect(link).toBeFocused();
+    await expect(cards.first()).toHaveCSS("outline-style", "solid");
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(`${origin}${formPath}`);
+    await page.goBack();
+    // The metadata area belongs to the same native, stretched link.
+    const card = await cards.first().boundingBox();
+    if (!card) throw new Error("Missing questionnaire card");
+    await cards.first().click({ position: { x: 12, y: card.height - 12 } });
+    await expect(page).toHaveURL(`${origin}${formPath}`);
+  });
+}

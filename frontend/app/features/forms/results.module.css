@@ -3,11 +3,7 @@
   margin-bottom: 2.5rem;
 }
 .title {
-  color: #000;
-  font-family: var(--fonts-body);
-  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
-  font-weight: 700;
-  line-height: 1.3;
+  color: var(--colors-text);
   text-wrap: pretty;
   overflow-wrap: anywhere;
   margin-bottom: 1rem;
@@ -15,6 +11,15 @@
 .introduction {
   max-width: 46rem;
   margin-top: 1rem;
+  font-family: var(--fonts-editorial);
+  font-size: var(--font-sizes-citizen);
+  line-height: var(--line-heights-reading);
+}
+.meta,
+.note,
+.eyebrow,
+.count {
+  font-family: var(--fonts-document);
 }
 .meta,
 .note,
@@ -47,18 +52,17 @@
   margin-bottom: 0.75rem;
 }
 .questionTitle {
-  color: #000;
-  font-family: var(--fonts-body);
-  font-weight: 650;
-  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-  line-height: 1.5;
+  color: var(--colors-text);
+  font-size: var(--font-sizes-question-heading);
+  line-height: var(--line-heights-body);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   margin-bottom: 1rem;
 }
 .questionTitle a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 .questionTitle a:hover,
 .questionTitle a:focus-visible {

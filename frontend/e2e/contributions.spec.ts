@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { checkCitizenReading } from "./reading-checks";
 
 const origin = "http://127.0.0.1:4175";
 const authorPath = "/authors/9007199254743993";
@@ -201,10 +202,10 @@ for (const javaScriptEnabled of [true, false]) {
       page,
     }) => {
       await page.goto(`${origin}${contributionPath}`);
-      await expect(page.locator("h1")).toHaveCSS("color", "rgb(0, 0, 0)");
+      await expect(page.locator("h1")).toHaveCSS("color", "rgb(43, 42, 38)");
       await expect(page.locator("section h2 a").first()).toHaveCSS(
         "color",
-        "rgb(0, 0, 0)",
+        "rgb(43, 42, 38)",
       );
       const answer = page.locator("#answer-9007199254741994");
       await expect(
@@ -214,6 +215,109 @@ for (const javaScriptEnabled of [true, false]) {
       await expect(
         answer.getByText("Autre : Autre proposition", { exact: true }),
       ).toBeVisible();
+    });
+  });
+}
+
+for (const path of [questionPath, contributionPath]) {
+  test(`lecture Literata, retours à la ligne et largeur sur ${path}`, async ({
+    page,
+  }) => {
+    await page.goto(`${origin}${path}`);
+    const paragraph = page
+      .locator("p")
+      .filter({ hasText: /^Une réponse citoyenne\./ })
+      .first();
+    await checkCitizenReading(page, paragraph);
+  });
+}
+
+for (const width of [320, 375, 768, 1280]) {
+  test(`navigation documentaire à ${width}px, texte agrandi et zoom 200 %`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(`${origin}${formPath}/contributions?contrib=2`);
+    const navs = page.getByRole("navigation", {
+      name: /^Contributions du questionnaire/,
+    });
+    await expect(navs).toHaveCount(2);
+    for (const scale of [1, 2]) {
+      await page.evaluate((scale) => {
+        document.documentElement.style.fontSize = `${100 * scale}%`;
+      }, scale);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth,
+        ),
+      ).toBe(true);
+      for (const link of await navs.getByRole("link").all()) {
+        expect((await link.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+      }
+    }
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = "100%";
+      document.documentElement.style.zoom = "2";
+    });
+    expect(
+      await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth <=
+          document.documentElement.clientWidth,
+      ),
+    ).toBe(true);
+    const previous = navs
+      .last()
+      .getByRole("link", { name: "← Contribution précédente" });
+    await previous.focus();
+    await expect(previous).toBeFocused();
+    await expect(previous).toHaveCSS("outline-style", "solid");
+    await expect(previous).toHaveCSS("color", "rgb(32, 58, 143)");
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(
+      `${origin}${formPath}/contributions?contrib=1`,
+    );
+    await expect(
+      page.getByRole("link", { name: "← Contribution précédente" }),
+    ).toHaveCount(0);
+  });
+}
+
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`voisins après question, JS ${javaScriptEnabled}`, () => {
+    test.use({ javaScriptEnabled });
+    test("affiche les mêmes voisins aux deux extrémités après ouverture d’une réponse", async ({
+      page,
+    }) => {
+      await page.goto(`${origin}${questionPath}`);
+      await page
+        .getByRole("link", { name: "Voir la contribution complète" })
+        .first()
+        .click();
+      await expect(page).toHaveURL(
+        `${origin}${contributionPath}#answer-9007199254741993`,
+      );
+      for (const nav of await page
+        .getByRole("navigation", { name: /^Contributions du questionnaire/ })
+        .all()) {
+        await expect(
+          nav.getByRole("link", { name: "Contribution suivante →" }),
+        ).toHaveAttribute("href", `${formPath}/contributions/9007199254742994`);
+      }
+      const next = page
+        .getByRole("link", { name: "Contribution suivante →" })
+        .first();
+      await next.focus();
+      await next.press("Enter");
+      await expect(page).toHaveURL(
+        `${origin}${formPath}/contributions/9007199254742994`,
+      );
+      const previous = page.getByRole("link", {
+        name: "← Contribution précédente",
+      });
+      await expect(previous).toHaveCount(2);
+      await previous.last().click();
+      await expect(page).toHaveURL(`${origin}${contributionPath}`);
     });
   });
 }

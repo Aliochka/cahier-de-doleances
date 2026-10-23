@@ -1,9 +1,12 @@
 import { Link } from "react-router";
-import { css } from "../../../styled-system/css";
+import { css, cx } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import { Alert } from "../../components/ui/alert";
 import type { HybridSearchPage } from "../../lib/api";
-import styles from "../forms/results.module.css";
+import {
+  CitizenText,
+  contributionStyles,
+} from "../contributions/contribution-presentation";
 import { ListNavigation, type MoreAction } from "../pagination/list-navigation";
 import { type SearchState, searchUrl } from "./search-url";
 
@@ -26,7 +29,10 @@ export function SearchResults({
       aria-labelledby="search-results-title"
       className={css({ maxWidth: "reading" })}
     >
-      <h2 id="search-results-title" className={styles.questionTitle}>
+      <h2
+        id="search-results-title"
+        className={css({ fontSize: "subtitle", lineHeight: "body", mb: "4" })}
+      >
         Les réponses citoyennes
       </h2>
       <p role="status" aria-atomic="true" className={secondary}>
@@ -54,12 +60,21 @@ export function SearchResults({
         </EmptyState>
       ) : (
         <>
-          <p className={css({ color: "muted", mb: "6" })}>
+          <p
+            className={css({
+              textStyle: "editorialBody",
+              color: "muted",
+              mb: "6",
+            })}
+          >
             Une sélection de réponses classées par pertinence, parmi les
             contributions du Grand Débat national. Ce n’est pas la totalité des
             réponses du corpus.
           </p>
-          <ol aria-label="Réponses citoyennes" className={styles.questions}>
+          <ol
+            aria-label="Réponses citoyennes"
+            className={contributionStyles.list}
+          >
             {page.items.map((item) => (
               <li
                 key={item.answer_id}
@@ -67,53 +82,43 @@ export function SearchResults({
                 tabIndex={-1}
               >
                 <article
-                  className={styles.question}
+                  className={contributionStyles.entry}
                   aria-labelledby={`search-question-${item.answer_id}`}
                 >
-                  <p className={secondary}>À la question</p>
+                  <p className={contributionStyles.metadata}>
+                    Réponse {item.answer_id} · À la question
+                  </p>
                   <h3
                     id={`search-question-${item.answer_id}`}
-                    className={styles.questionTitle}
+                    className={contributionStyles.question}
                   >
                     <Link to={item.question.url}>{item.question.prompt}</Link>
                   </h3>
-                  <blockquote
-                    className={css({
-                      m: 0,
-                      pl: { base: "3", md: "4" },
-                      borderLeftWidth: "emphasis",
-                      borderLeftColor: "primary",
-                      fontFamily: "body",
-                      fontSize: "section",
-                      lineHeight: "1.8",
-                      overflowWrap: "anywhere",
-                    })}
-                  >
+                  <blockquote className={css({ m: "0" })}>
                     {item.texts.map((unit, index) => (
                       <div
                         key={`${unit.unit_type}-${unit.unit_index}`}
                         className={css({ "& + &": { mt: "5" } })}
                       >
                         {unit.unit_type === "other_text" && (
-                          <p className={secondary}>
+                          <p className={contributionStyles.metadata}>
                             Autre précision
                             {item.texts.length > 1 ? ` ${index + 1}` : ""}
                           </p>
                         )}
-                        <p className={css({ whiteSpace: "pre-wrap" })}>
+                        <CitizenText>
                           {unit.text ||
                             "Texte à lire dans la contribution complète."}
-                        </p>
+                        </CitizenText>
                       </div>
                     ))}
                   </blockquote>
                   {item.is_truncated && (
                     <p
-                      className={css({
-                        fontSize: "secondary",
-                        color: "muted",
-                        mt: "4",
-                      })}
+                      className={cx(
+                        contributionStyles.metadata,
+                        css({ mt: "4" }),
+                      )}
                     >
                       Extrait abrégé. Retrouvez le texte intégral dans la
                       contribution d’origine.
@@ -122,7 +127,7 @@ export function SearchResults({
                   <footer
                     className={css({ mt: "6", display: "grid", gap: "3" })}
                   >
-                    <p className={secondary}>
+                    <p className={contributionStyles.metadata}>
                       Enquête : <Link to={item.form.url}>{item.form.name}</Link>
                     </p>
                     <p>

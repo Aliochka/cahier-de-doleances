@@ -131,7 +131,7 @@ export default function Search({
       <link rel="canonical" href="https://cahierdedoleances.fr/recherche" />
       <div className={css({ maxWidth: "reading" })}>
         <h1 className={styles.title}>Rechercher dans les paroles citoyennes</h1>
-        <p className={css({ mb: "6" })}>
+        <p className={css({ textStyle: "editorialBody", mb: "6" })}>
           Une question, un sujet, une préoccupation : découvrez les réponses des
           participants au Grand Débat national, dans leur contexte d’origine.
         </p>
@@ -191,11 +191,17 @@ export default function Search({
           <h2 id="search-welcome" className={styles.questionTitle}>
             Un point de départ pour écouter et comprendre
           </h2>
-          <p>
+          <p className={css({ textStyle: "editorialBody" })}>
             Demandez par exemple « Quelles difficultés rencontrent les habitants
             des zones rurales ? », ou saisissez simplement « Pouvoir d’achat ».
           </p>
-          <p className={css({ mt: "4", color: "muted" })}>
+          <p
+            className={css({
+              textStyle: "editorialBody",
+              mt: "4",
+              color: "muted",
+            })}
+          >
             Chaque réponse est accompagnée de sa question. Vous pouvez ensuite
             lire la contribution complète pour retrouver le témoignage original.
           </p>

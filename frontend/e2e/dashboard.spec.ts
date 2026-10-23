@@ -73,10 +73,10 @@ for (const javaScriptEnabled of [true, false]) {
         .click();
       await expect(page).toHaveURL(`${origin}${path}`);
       await expect(page.locator("[data-chart-kind]")).toHaveCount(2);
-      await expect(page.locator("h1")).toHaveCSS("color", "rgb(0, 0, 0)");
+      await expect(page.locator("h1")).toHaveCSS("color", "rgb(43, 42, 38)");
       await expect(page.locator("section h2 a").first()).toHaveCSS(
         "color",
-        "rgb(0, 0, 0)",
+        "rgb(43, 42, 38)",
       );
       await page.goto(`${origin}${path}#question-9007199254741021`);
       const target = page.locator("#question-9007199254741021");
@@ -202,7 +202,7 @@ test("impression et couleurs forcées : libellés et détails restent lisibles",
 for (const javaScriptEnabled of [true, false]) {
   test.describe(`contributions du questionnaire, JS ${javaScriptEnabled}`, () => {
     test.use({ javaScriptEnabled });
-    test("deux boutons, lecture et navigation précédente/suivante", async ({
+    test("accès, métadonnées et navigation documentaire précédente/suivante", async ({
       page,
     }) => {
       await page.goto(`${origin}${path}`);
@@ -216,6 +216,32 @@ for (const javaScriptEnabled of [true, false]) {
         `${path}/contributions`,
       );
       await buttons.first().click();
+      await expect(page.locator("h1")).toHaveText(
+        "Contribution n° 9007199254742993",
+      );
+      const metadata = page.getByLabel("Métadonnées de la contribution");
+      await expect(
+        metadata.getByRole("link", { name: "Participation citoyenne" }),
+      ).toHaveAttribute("href", path);
+      await expect(metadata.locator("time")).toHaveText("15 janvier 2019");
+      for (const label of [
+        "Contributions du questionnaire",
+        "Contributions du questionnaire en bas de page",
+      ]) {
+        const nav = page.getByRole("navigation", { name: label, exact: true });
+        await expect(nav.getByRole("link")).toHaveAttribute(
+          "href",
+          `${path}/contributions?contrib=2`,
+        );
+        await expect(nav.getByRole("link")).toHaveCSS(
+          "background-color",
+          /^(?:rgba\(0, 0, 0, 0\)|oklch\(0 0 0 \/ 0\))$/,
+        );
+        await expect(nav.getByRole("link")).toHaveCSS(
+          "font-family",
+          /Special Elite/,
+        );
+      }
       await expect(
         page.getByRole("list", { name: "Réponses de la contribution" }),
       ).toBeVisible();
@@ -230,6 +256,18 @@ for (const javaScriptEnabled of [true, false]) {
         .first()
         .click();
       await expect(page).toHaveURL(`${origin}${path}/contributions?contrib=2`);
+      for (const label of [
+        "Contributions du questionnaire",
+        "Contributions du questionnaire en bas de page",
+      ]) {
+        const nav = page.getByRole("navigation", { name: label, exact: true });
+        await expect(
+          nav.getByRole("link", { name: "← Contribution précédente" }),
+        ).toHaveAttribute("href", `${path}/contributions?contrib=1`);
+        await expect(
+          nav.getByRole("link", { name: "Contribution suivante →" }),
+        ).toHaveAttribute("href", `${path}/contributions?contrib=3`);
+      }
       await page
         .getByRole("link", { name: "Contribution suivante →", exact: true })
         .first()

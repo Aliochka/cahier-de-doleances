@@ -58,6 +58,7 @@ export function AuthorForms({
                     key={contribution.id}
                     data-progressive-id={contribution.id}
                     tabIndex={-1}
+                    className={css({ textStyle: "documentMetadata" })}
                   >
                     <Link
                       to={`/forms/${form.id}/contributions/${contribution.id}`}

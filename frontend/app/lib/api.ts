@@ -281,8 +281,18 @@ function authorForms(value: unknown): value is AuthorFormsPage {
 function contribution(value: unknown): value is ContributionDetail {
   if (!record(value) || !formContext(value.form)) return false;
   const formId = value.form.id;
+  if (!reference(value.contribution)) return false;
+  const contributionId = value.contribution.id;
   return (
-    reference(value.contribution) &&
+    [value.previous_id, value.next_id].every(
+      (id) =>
+        id === undefined ||
+        id === null ||
+        (publicId(id) && id !== contributionId),
+    ) &&
+    (value.previous_id == null ||
+      value.next_id == null ||
+      value.previous_id !== value.next_id) &&
     (value.author === null || author(value.author)) &&
     (value.legacy_index === null ||
       value.legacy_index === undefined ||

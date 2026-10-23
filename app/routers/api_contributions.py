@@ -21,6 +21,7 @@ from app.search_errors import handle_search_errors
 from app.services.authors import author_contributions, get_author
 from app.services.contributions import (
     contribution_answers,
+    contribution_neighbors,
     contribution_options,
     get_contribution,
     public_values,
@@ -154,11 +155,14 @@ def read_complete(
                 value=value,
             )
         )
+    neighbors = contribution_neighbors(db, form_id, contribution_id, row["submitted_at"])
     return ContributionDetail(
         form=QuestionForm(id=str(form_id), name=row["form_name"], url=f"/forms/{form_id}"),
         contribution=reference(row),
         author=author,
         legacy_index=str(legacy_index) if legacy_index is not None else None,
+        previous_id=str(neighbors["previous_id"]) if neighbors["previous_id"] is not None else None,
+        next_id=str(neighbors["next_id"]) if neighbors["next_id"] is not None else None,
         answers=answers,
     )
 

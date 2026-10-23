@@ -117,7 +117,7 @@ export default function Question({
         </Link>
       </p>
       <h1 className={styles.title}>{question.prompt}</h1>
-      <p className={css({ color: "muted", mb: "8" })}>
+      <p className={css({ textStyle: "documentMetadata", mb: "8" })}>
         {question.type === "multi_choice"
           ? "Choix multiples"
           : question.type === "single_choice"

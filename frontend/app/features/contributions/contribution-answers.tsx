@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { css, cx } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import type { ContributionDetail } from "../../lib/api";
-import styles from "../forms/results.module.css";
+import { CitizenText, contributionStyles } from "./contribution-presentation";
 
 export function ContributionAnswers({
   answers,
@@ -18,7 +18,10 @@ export function ContributionAnswers({
       </EmptyState>
     );
   return (
-    <ol aria-label="Réponses de la contribution" className={styles.questions}>
+    <ol
+      aria-label="Réponses de la contribution"
+      className={contributionStyles.list}
+    >
       {answers.map((answer) => (
         <li key={answer.id}>
           <section
@@ -27,7 +30,7 @@ export function ContributionAnswers({
             tabIndex={-1}
             aria-labelledby={`answer-title-${answer.id}`}
             className={cx(
-              styles.question,
+              contributionStyles.entry,
               css({
                 overflowWrap: "anywhere",
                 "&:target, &[data-targeted]": {
@@ -39,9 +42,12 @@ export function ContributionAnswers({
               }),
             )}
           >
+            <header className={css({ mb: "3" })}>
+              <p className={contributionStyles.metadata}>Réponse {answer.id}</p>
+            </header>
             <h2
               id={`answer-title-${answer.id}`}
-              className={styles.questionTitle}
+              className={contributionStyles.question}
             >
               <Link
                 to={`/questions/${answer.question.id}-${answer.question.slug}`}
@@ -52,7 +58,10 @@ export function ContributionAnswers({
             {answer.selected_options.length > 0 && (
               <ul
                 aria-label="Choix sélectionnés"
-                className={css({ pl: "6", mt: "4" })}
+                className={cx(
+                  contributionStyles.reading,
+                  css({ pl: "5", mt: "4", listStyle: "disc" }),
+                )}
               >
                 {answer.selected_options.map((option) => (
                   <li key={option.id}>{option.label}</li>
@@ -60,25 +69,29 @@ export function ContributionAnswers({
               </ul>
             )}
             {answer.other_text.length > 0 && (
-              <p className={css({ whiteSpace: "pre-wrap", mt: "4" })}>
+              <CitizenText className={css({ mt: "4" })}>
                 Autre : {answer.other_text.join("\n\n")}
-              </p>
+              </CitizenText>
             )}
             {answer.value !== null && (
-              <p className={css({ mt: "4" })}>{answer.value}</p>
+              <CitizenText className={css({ mt: "4" })}>
+                {answer.value}
+              </CitizenText>
             )}
             {answer.text !== null &&
               answer.text !== "" &&
               !duplicatesStructuredContent(answer) && (
-                <p className={css({ whiteSpace: "pre-wrap", mt: "4" })}>
+                <CitizenText className={css({ mt: "4" })}>
                   {answer.text}
-                </p>
+                </CitizenText>
               )}
             {!answer.text &&
               answer.value === null &&
               answer.selected_options.length === 0 &&
               answer.other_text.length === 0 && (
-                <p>Aucun contenu renseigné pour cette réponse.</p>
+                <p className={contributionStyles.metadata}>
+                  Aucun contenu renseigné pour cette réponse.
+                </p>
               )}
           </section>
         </li>

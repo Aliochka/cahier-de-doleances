@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import { cva, cx } from "../../../styled-system/css";
 
-const styles = cva({
+export const buttonStyles = cva({
   base: {
     display: "inline-flex",
     alignItems: "center",
@@ -15,6 +15,9 @@ const styles = cva({
     whiteSpace: "normal",
     overflowWrap: "anywhere",
     cursor: "pointer",
+    textDecoration: "none",
+    textAlign: "center",
+    py: "2",
     _disabled: {
       color: "disabledText",
       background: "disabledSurface",
@@ -28,7 +31,8 @@ const styles = cva({
         background: "primary",
         color: "onPrimary",
         borderColor: "primary",
-        _hover: { textDecoration: "underline" },
+        _hover: { textDecoration: "underline", background: "primaryHover" },
+        _active: { background: "primaryActive" },
       },
       secondary: {
         background: "surface",
@@ -58,11 +62,12 @@ const styles = cva({
   defaultVariants: { variant: "primary", size: "medium" },
 });
 
-type Props = ComponentProps<"button"> & {
+export type ButtonVariants = {
   variant?: "primary" | "secondary" | "quiet" | "destructive";
   size?: "small" | "medium" | "large";
-  loading?: boolean;
 };
+
+type Props = ComponentProps<"button"> & ButtonVariants & { loading?: boolean };
 
 export function Button({
   variant,
@@ -80,7 +85,7 @@ export function Button({
       type={type}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
-      className={cx(styles({ variant, size }), className)}
+      className={cx(buttonStyles({ variant, size }), className)}
     >
       {loading && <span aria-hidden="true">…</span>}
       {children}

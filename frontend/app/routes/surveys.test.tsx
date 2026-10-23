@@ -45,7 +45,7 @@ it("charge les formulaires sans les réordonner et propage l'annulation", async 
     </MemoryRouter>,
   );
   expect(
-    screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent),
+    screen.getAllByRole("heading", { level: 3 }).map((h) => h.textContent),
   ).toEqual(forms.map((f) => f.name));
 });
 

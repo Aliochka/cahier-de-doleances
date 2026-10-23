@@ -67,6 +67,14 @@ const fullContribution = (id) => ({
   contribution: reference(id),
   author: id === "9007199254742995" ? null : author,
   legacy_index: null,
+  previous_id:
+    contributionIds.indexOf(id) > 0
+      ? contributionIds[contributionIds.indexOf(id) - 1]
+      : null,
+  next_id:
+    contributionIds.indexOf(id) >= 0
+      ? (contributionIds[contributionIds.indexOf(id) + 1] ?? null)
+      : null,
   answers:
     id === "9007199254742995"
       ? []

@@ -11,6 +11,7 @@ export function Header() {
         borderBottomWidth: "thin",
         borderColor: "border",
         background: "surfaceSecondary",
+        "& > div": { py: { base: "3", md: "4" } },
       })}
     >
       <PageContainer
@@ -19,7 +20,7 @@ export function Header() {
           flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: "6",
+          gap: { base: "2", md: "6" },
         })}
       >
         <NavLink
@@ -27,26 +28,38 @@ export function Header() {
           end
           aria-label="Accueil — Cahier de doléances"
           className={css({
-            fontFamily: "archive",
-            fontWeight: "bold",
-            fontSize: "section",
+            textStyle: "projectIdentity",
+            color: "text",
             textDecoration: "none",
             minHeight: "control",
             display: "flex",
             alignItems: "center",
             overflowWrap: "anywhere",
             minWidth: 0,
+            maxWidth: "100%",
+            gap: "2",
           })}
         >
-          Cahier de doléances
+          <img
+            src="/favicon.svg"
+            alt=""
+            width="512"
+            height="512"
+            className={css({
+              width: "controlSmall",
+              height: "auto",
+              flexShrink: 0,
+            })}
+          />
+          <span className={css({ minWidth: 0 })}>Cahier de doléances</span>
         </NavLink>
         <nav aria-label="Navigation principale">
           <ul
             className={css({
               display: "flex",
               flexWrap: "wrap",
-              gap: "6",
-              fontSize: "navigation",
+              gap: { base: "4", md: "6" },
+              textStyle: "documentNavigation",
             })}
           >
             <li>
@@ -56,10 +69,12 @@ export function Header() {
                   surveysMatch ? "page" : formMatch ? "location" : undefined
                 }
                 className={css({
+                  color: "text",
+                  textUnderlineOffset: "0.3em",
                   display: "inline-flex",
                   alignItems: "center",
                   minHeight: "control",
-                  "&[aria-current]": { fontWeight: "bold" },
+                  "&[aria-current]": { textDecorationThickness: "3px" },
                 })}
               >
                 Enquêtes
@@ -69,10 +84,12 @@ export function Header() {
               <NavLink
                 to="/recherche"
                 className={css({
+                  color: "text",
+                  textUnderlineOffset: "0.3em",
                   display: "inline-flex",
                   alignItems: "center",
                   minHeight: "control",
-                  "&[aria-current]": { fontWeight: "bold" },
+                  "&[aria-current]": { textDecorationThickness: "3px" },
                 })}
               >
                 Recherche

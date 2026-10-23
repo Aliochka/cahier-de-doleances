@@ -234,3 +234,25 @@ it.each([
     ).toEqual({ ok: false, kind: "invalid_response" });
   },
 );
+
+it.each([
+  { previous_id: 9007199254742992 },
+  { next_id: contribution.contribution.id },
+  { previous_id: "9007199254742994", next_id: "9007199254742994" },
+])(
+  "rejette des voisins numériques, identiques ou pointant sur la contribution courante",
+  async (neighbors) => {
+    const api = createPublicApi(
+      "",
+      vi
+        .fn<typeof fetch>()
+        .mockResolvedValue(Response.json({ ...contribution, ...neighbors })),
+    );
+    expect(
+      await api.getContribution(
+        contribution.form.id,
+        contribution.contribution.id,
+      ),
+    ).toEqual({ ok: false, kind: "invalid_response" });
+  },
+);

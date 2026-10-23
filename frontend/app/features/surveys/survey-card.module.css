@@ -1,10 +1,33 @@
 .card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
   background: transparent;
+  border-radius: var(--radii-control);
 }
 .title {
-  color: #000;
-  margin-bottom: 0.75rem;
+  color: var(--colors-text);
+  margin-bottom: 0;
 }
 .title a {
   color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.metadata {
+  margin-top: auto;
+}
+.card:hover {
+  border-color: var(--colors-primary);
+}
+.card:focus-within {
+  outline: var(--border-widths-emphasis) solid var(--colors-focus);
+  outline-offset: var(--spacing-1);
 }

@@ -11,6 +11,7 @@ export default defineConfig({
     extend: {
       tokens: {
         colors: {
+          white: { value: "#ffffff" },
           paper: { value: "#F4F1E5" },
           ink: { value: "#2B2A26" },
           blue: { value: "#203A8F" },
@@ -31,6 +32,7 @@ export default defineConfig({
           skeletonPaper: { value: "#ddd8cc" },
         },
         fonts: {
+          reading: { value: '"Literata", Georgia, serif' },
           body: { value: 'system-ui, -apple-system, "Segoe UI", sans-serif' },
           archive: {
             value: '"Special Elite", "Courier Prime", "Courier New", monospace',
@@ -45,9 +47,18 @@ export default defineConfig({
           6: { value: "1.5rem" },
           8: { value: "2rem" },
           10: { value: "2.5rem" },
+          12: { value: "3rem" },
+          16: { value: "4rem" },
+          20: { value: "5rem" },
+          24: { value: "6rem" },
         },
         fontSizes: {
+          hero: { value: "clamp(2.75rem, 7.5vw, 6rem)" },
+          citizen: { value: "1.125rem" },
+          editorial: { value: "clamp(1.125rem, 2vw, 1.375rem)" },
           body: { value: "1rem" },
+          pageHeading: { value: "clamp(1.75rem, 3.5vw, 2.5rem)" },
+          questionHeading: { value: "clamp(1.125rem, 2vw, 1.375rem)" },
           title: { value: "clamp(2rem, 5vw, 3rem)" },
           subtitle: { value: "1.5rem" },
           section: { value: "1.125rem" },
@@ -55,12 +66,20 @@ export default defineConfig({
           caption: { value: "0.8125rem" },
           navigation: { value: "0.9375rem" },
         },
-        lineHeights: { body: { value: "1.6" }, title: { value: "1.2" } },
+        lineHeights: {
+          body: { value: "1.6" },
+          title: { value: "1.2" },
+          heading: { value: "1.4" },
+          reading: { value: "1.8" },
+        },
+        letterSpacings: { annotation: { value: "0.08em" } },
         radii: { panel: { value: "0.75rem" }, control: { value: "0.25rem" } },
         borderWidths: { thin: { value: "1px" }, emphasis: { value: "3px" } },
         borders: { panel: { value: "1px solid {colors.metal}" } },
         sizes: {
           page: { value: "68.75rem" },
+          logo: { value: "30rem" },
+          logoCompact: { value: "7rem" },
           reading: { value: "42rem" },
           dialog: { value: "36rem" },
           control: { value: "2.75rem" },
@@ -70,6 +89,11 @@ export default defineConfig({
         zIndex: { overlay: { value: 50 }, modal: { value: 51 } },
       },
       semanticTokens: {
+        fonts: {
+          document: { value: "{fonts.archive}" },
+          editorial: { value: "{fonts.reading}" },
+          interface: { value: "{fonts.body}" },
+        },
         colors: {
           background: { value: "{colors.archiveBackground}" },
           surface: { value: "{colors.archiveSurface}" },
@@ -79,7 +103,10 @@ export default defineConfig({
           primary: { value: "{colors.blue}" },
           danger: { value: "{colors.stamp}" },
           accent: { value: "{colors.stamp}" },
-          onPrimary: { value: "#ffffff" },
+          onPrimary: { value: "{colors.white}" },
+          focus: { value: "{colors.blue}" },
+          primaryHover: { value: "{colors.ink}" },
+          primaryActive: { value: "{colors.ink}" },
           controlBorder: { value: "{colors.archiveControlBorder}" },
           disabledText: { value: "{colors.archiveMuted}" },
           disabledSurface: { value: "{colors.archiveDisabledSurface}" },
@@ -94,6 +121,110 @@ export default defineConfig({
           border: { value: "{colors.metal}" },
         },
       },
+      textStyles: {
+        documentTitle: {
+          value: {
+            fontFamily: "document",
+            fontSize: "pageHeading",
+            fontWeight: "normal",
+            lineHeight: "heading",
+            color: "text",
+          },
+        },
+        documentSection: {
+          value: {
+            fontFamily: "document",
+            fontSize: "subtitle",
+            fontWeight: "normal",
+            lineHeight: "heading",
+            color: "text",
+          },
+        },
+        documentLink: {
+          value: {
+            fontFamily: "document",
+            fontWeight: "normal",
+            lineHeight: "body",
+          },
+        },
+        documentNavigation: {
+          value: {
+            fontFamily: "document",
+            fontSize: "navigation",
+            fontWeight: "normal",
+            lineHeight: "body",
+          },
+        },
+        projectIdentity: {
+          value: {
+            fontFamily: "document",
+            fontSize: "section",
+            fontWeight: "normal",
+            lineHeight: "title",
+          },
+        },
+        projectHero: {
+          value: {
+            fontFamily: "document",
+            fontSize: "hero",
+            fontWeight: "normal",
+            lineHeight: "title",
+            color: "text",
+          },
+        },
+        editorialBody: {
+          value: {
+            fontFamily: "editorial",
+            fontSize: "citizen",
+            fontWeight: "normal",
+            lineHeight: "reading",
+          },
+        },
+        citizenReading: {
+          value: {
+            fontFamily: "editorial",
+            fontSize: "citizen",
+            fontWeight: "normal",
+            lineHeight: "reading",
+            color: "text",
+          },
+        },
+        documentMetadata: {
+          value: {
+            fontFamily: "document",
+            fontSize: "secondary",
+            fontWeight: "normal",
+            lineHeight: "body",
+            color: "muted",
+          },
+        },
+        documentQuestion: {
+          value: {
+            fontFamily: "document",
+            fontSize: "questionHeading",
+            fontWeight: "normal",
+            lineHeight: "body",
+            color: "text",
+          },
+        },
+        editorial: {
+          value: {
+            fontFamily: "editorial",
+            fontSize: "editorial",
+            lineHeight: "reading",
+            fontWeight: "400",
+          },
+        },
+        annotation: {
+          value: {
+            fontFamily: "document",
+            fontSize: "caption",
+            letterSpacing: "annotation",
+            lineHeight: "body",
+            fontWeight: "400",
+          },
+        },
+      },
       breakpoints: { sm: "40rem", md: "48rem", lg: "64rem" },
       keyframes: {
         "skeleton-pulse": {
@@ -104,7 +235,7 @@ export default defineConfig({
     },
   },
   globalCss: {
-    html: { color: "text", background: "background", fontFamily: "body" },
+    html: { color: "text", background: "background", fontFamily: "interface" },
     body: {
       margin: 0,
       fontSize: "body",
@@ -113,21 +244,25 @@ export default defineConfig({
       display: "flex",
       flexDirection: "column",
     },
-    "h1, h2, h3": {
-      fontWeight: "bold",
-      lineHeight: "title",
-      overflowWrap: "anywhere",
-    },
-    h1: { fontFamily: "archive", fontSize: "title", color: "primary", mb: "6" },
-    h2: { fontSize: "subtitle", mb: "4" },
-    h3: { fontSize: "section", mb: "3" },
+    "h1, h2, h3, h4, h5, h6": { overflowWrap: "anywhere" },
+    h1: { textStyle: "documentTitle", mb: "6" },
+    h2: { textStyle: "documentSection", mb: "4" },
+    "h3, h4, h5, h6": { textStyle: "documentQuestion", mb: "3" },
     p: { overflowWrap: "anywhere" },
-    a: { color: "primary", textDecoration: "underline" },
-    "button, input, textarea, select": { font: "inherit" },
+    a: {
+      textStyle: "documentLink",
+      color: "primary",
+      textDecoration: "underline",
+      textUnderlineOffset: "0.2em",
+    },
+    "button, input, textarea, select": {
+      font: "inherit",
+      fontFamily: "interface",
+    },
     "button:disabled, input:disabled": { cursor: "not-allowed" },
     "::selection": { color: "onPrimary", background: "primary" },
     ":focus-visible": {
-      outline: "2px solid {colors.primary}",
+      outline: "2px solid {colors.focus}",
       outlineOffset: "3px",
     },
     "@media (prefers-reduced-motion: reduce)": {
