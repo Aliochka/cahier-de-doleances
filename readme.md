@@ -13,9 +13,10 @@
 
 ## Déploiement sur une base PostgreSQL existante
 
-Pour Wallace (`http://192.168.1.56:8000`), suivre le
+Pour Wallace (`https://cahierdedoleances.fr`), suivre le
 [guide de déploiement](docs/deploiement.md). Il utilise `compose.deploy.yml`,
-avec FastAPI uniquement, et préserve le PostgreSQL 17 existant. Les instructions
+avec le frontend React SSR, FastAPI et Caddy, et préserve le PostgreSQL 17 existant.
+Les commandes courantes figurent dans [Mise en prod](#mise-en-prod). Les instructions
 d'installation depuis zéro ci-dessous concernent une **base locale neuve** et
 ne doivent pas être appliquées à la base restaurée du serveur.
 
@@ -35,64 +36,10 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 
 ## 🗺️ Roadmap v0
 
-- [x] Mise en place du backend (FastAPI + SQLite pour démarrage local)  
-- [x] Ingestion massive des contributions (CSV compressés)  
-- [x] Indexation plein texte (FTS5) pour recherche rapide  
-- [x] Front-end minimaliste mobile-first
-  - [x] ui
-  - [ ] page accueil
-    - [x] back
-    - [ ] ux
-    - [ ] ui
-    - [ ] contenu
-  - [x] page question
-    - [x] back
-    - [x] ux
-    - [x] ui
-  - [x] page auteur
-    - [x] back
-    - [x] ux
-    - [x] ui
-  - [x] recherche par question
-    - [x] back
-    - [x] ux
-    - [x] ui
-    - [x] optimisation
-  - [x] recherche par réponses
-    - [x] back
-    - [x] ux
-    - [x] ui
-    - [x] optimisation
-- [x] migration postgresql
-- [x] MEP !
-
-## V0+
-
-- [x] page formulaire
-- [ ] bugs
-  - [x]  page answer contenu responsive
-- [x] SEO technique
-- [x] perf page question
-- [x] rework page question
-- [x] check bdd (questions sans réponses ?)
-
  
-## v1
-- [ ] optimisations SEO
-- [ ] ux/ui 
-  - [x] refaire le _card answer
-  - [ ] navigation
-  - [ ] pagination (loader)
-- [ ] page thème
-- [ ] mentions légales
-- [ ] footer
-- [ ] menu joli
-- [ ] quelques tests bien pensés
-- [ ] logo
+### v1
+- [ ] SEO
 - [ ] accueil
-
-## v2
-- [ ] secret secret
 
 
 
@@ -100,6 +47,67 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 ---
 
 ## 🛠️ Guide pour les développeurs
+
+### Lancer le backend et le frontend en local
+
+**La recherche hybride a besoin de PyTorch et Transformers.** Ils sont déjà
+verrouillés dans `deploy/search-cpu/uv.lock` en version CPU : utiliser cet
+environnement pour H1, plutôt qu’ajouter des paquets avec `pip` dans `.venv`.
+PostgreSQL doit être démarré et `.env` doit désigner la **base applicative locale**
+via `DATABASE_URL`, avec `ENV=dev`, `COOKIE_SECURE=false` et `ENFORCE_HTTPS=false`.
+
+**Terminal 1 — backend avec recherche hybride CPU**, depuis la racine :
+
+```bash
+UV_PROJECT_ENVIRONMENT="$PWD/.cache/search-cpu-venv" \
+  uv sync --project deploy/search-cpu --locked
+HYBRID_SEARCH_ENABLED=true SEARCH_DEVICE=cpu SEARCH_PRECISION=float32 \
+SEARCH_CPU_THREADS=2 SEARCH_MODELS_DIR="$PWD/rag/models" \
+SEARCH_READER_ENV="$PWD/rag/search-reader.env" \
+  .cache/search-cpu-venv/bin/python -m uvicorn app.app:app \
+  --host 127.0.0.1 --port 8000
+```
+
+Cela installe les dépendances CPU, sans télécharger de modèle. H1 nécessite
+aussi le snapshot BGE-M3 **déjà présent**, la base de recherche **déjà indexée**,
+les connexions en lecture seule dans le fichier privé `rag/search-reader.env`
+et une `SEARCH_CURSOR_KEY` d’au moins 32 octets dans `search-api.env` ou
+l’environnement. La base source de ce lecteur doit correspondre à `DATABASE_URL`.
+Conserver les fichiers privés existants ; ne pas y mettre les URL des bases de
+test. L’initialisation peut prendre un moment ; `/healthz` seul ne valide pas H1.
+Éviter `--reload` avec le modèle chargé pour ne pas le recharger à chaque édition.
+
+Pour développer **sans recherche hybride**, utiliser à la place :
+
+```bash
+uv sync --locked
+HYBRID_SEARCH_ENABLED=false \
+  uv run --locked uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
+```
+
+**Terminal 2 — frontend**, depuis la racine : Node24 et pnpm sont requis.
+
+```bash
+cd frontend
+nvm use
+corepack enable
+pnpm install --frozen-lockfile
+API_BASE_URL=http://127.0.0.1:8000 pnpm dev
+```
+
+`nvm use` suppose nvm installé et la version de `.nvmrc` déjà disponible
+(`nvm install` au premier lancement). Ouvrir **http://127.0.0.1:5173** pour
+le site ; l’API est sur **http://127.0.0.1:8000/docs**. `Ctrl+C` dans chaque
+terminal arrête le service correspondant.
+
+Pour inclure les tests de packaging PyTorch dans ce même environnement CPU :
+
+```bash
+.cache/search-cpu-venv/bin/python -m pytest
+```
+
+Les tests PostgreSQL nécessitent toujours `.env.test` et les bases de test
+préparées : voir [TESTING.md](TESTING.md). PyTorch seul ne supprime pas ces skips.
 
 ### Scripts utiles
 
@@ -281,7 +289,8 @@ contributions.
 uv run --locked uvicorn app.app:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-Ouvrir **http://127.0.0.1:8000**. Garder ce terminal ouvert ; `Ctrl+C`
+Ce terminal sert l’API sur **http://127.0.0.1:8000/docs**. Pour l’interface,
+lancer aussi le frontend comme indiqué plus haut. Garder ce terminal ouvert ; `Ctrl+C`
 arrête le serveur. L'option `--reload` recharge le code modifié pendant
 le développement.
 
@@ -344,9 +353,9 @@ démarrage n'applique aucune migration automatiquement.
 - **`No database URL found`** : vérifier que `.env` se trouve à la racine,
   contient `DATABASE_URL` et que le serveur est lancé depuis cette racine.
 - **Une autre base est utilisée** : les variables déjà exportées dans le
-  terminal priment sur `.env`. `TEST_DATABASE_URL` prime aussi sur
-  `DATABASE_URL` pour l'application ; `ALEMBIC_DATABASE_URL` peut remplacer
-  l'URL des migrations. Retirer ces substitutions pour le lancement local.
+  terminal priment sur `.env`. L'application utilise `DATABASE_URL` ;
+  `TEST_DATABASE_URL` et `.env.test` sont réservés à pytest.
+  `ALEMBIC_DATABASE_URL` peut remplacer l'URL des migrations.
 - **Erreur de colonne de recherche absente** : exécuter
   `uv run --locked alembic upgrade head`, puis vérifier `uv run --locked alembic current`.
 - **`Address already in use`** : arrêter le serveur déjà lancé avec `Ctrl+C`,
@@ -393,7 +402,9 @@ uv run --locked python -m pytest
 ```
 
 Le [guide des tests](TESTING.md) explique comment exécuter toute la suite sur
-une base PostgreSQL de test séparée. Sans cette base, les tests d’intégration
+une base PostgreSQL de test séparée. Copier une fois `.env.test.example` vers
+`.env.test` et y configurer les URL permet ensuite de lancer simplement pytest.
+Sans cette base, les tests d’intégration
 sont signalés comme ignorés. Le [mini audit](docs/nettoyage-repo.md) détaille
 les suppressions et les tests conservés.
 
@@ -405,65 +416,149 @@ le futur projet RAG les gérera indépendamment selon ses besoins.
 
 ### Mise en prod
 
-1. Vérifier le montage du SSD
-```
-findmnt /data/postgresql
-ls -l /data/postgresql/.ssd-mounted
-```
+Ces commandes s’exécutent **sur Wallace**, pour redémarrer l’installation
+existante. Utiliser le projet **`cahier-de-doleances-app`** et les deux fichiers
+**`compose.deploy.yml` et `compose.search.yml`**. Les tags des images et le flag
+`HYBRID_SEARCH_ENABLED` restent ceux de la configuration privée approuvée dans
+`.env.deploy` ; ces commandes ne les remplacent pas. Ne pas écraser ce fichier.
 
-2. Démarrer PostgreSQL
-```
-cd /srv/cahier-de-doleances
-sudo docker compose up -d
-```
+#### Démarrer le site actuel
 
-3. Démarrer FastAPI
-```
+1. Vérifier le SSD avant tout démarrage de PostgreSQL :
+
+   ```bash
+   findmnt --mountpoint /data/postgresql
+   ls -l /data/postgresql/.ssd-mounted
+   sudo test -f /data/postgresql/pg17/data/PG_VERSION
+   ```
+
+   Arrêter la procédure si le SSD n’est pas monté ou si un fichier manque.
+   Ne pas créer de marqueur ou de répertoire pour contourner ce contrôle.
+
+2. Redémarrer le **conteneur PostgreSQL existant**, avec son image et ses montages
+   déjà validés, puis vérifier qu’il accepte les connexions :
+
+   ```bash
+   sudo docker start cahier-postgres
+   sudo docker exec cahier-postgres pg_isready -U cahier -d cahier_doleances
+   ```
+
+   Attendre que `pg_isready` indique `accepting connections` avant de continuer.
+   Si `cahier-postgres` n’existe plus, utiliser la définition PostgreSQL réellement
+   installée et son override pgvector approuvé ; ne pas recréer le conteneur
+   depuis un ancien Compose. Les deux montages à conserver sont
+   `/data/postgresql/pg17/data:/var/lib/postgresql/data` et
+   `/data/postgresql/.ssd-mounted:/run/ssd-mounted` (marqueur en lecture seule).
+
+3. Démarrer FastAPI, le frontend SSR et Caddy, avec les images déjà construites :
+
+   ```bash
+   cd /srv/cahier-de-doleances-app
+   sudo docker compose \
+     --project-name cahier-de-doleances-app \
+     --env-file .env.deploy \
+     -f compose.deploy.yml \
+     -f compose.search.yml \
+     up -d --no-build
+   ```
+
+   L’overlay fournit les trois montages de recherche en lecture seule. Les chemins
+   et fichiers privés requis doivent déjà exister. `--no-build` utilise les images
+   préparées ; le démarrage conserve le flag d’activation configuré.
+
+4. Vérifier l’état, le site et le trajet HTTP interne SSR → FastAPI :
+
+   ```bash
+   sudo docker compose --project-name cahier-de-doleances-app \
+     --env-file .env.deploy -f compose.deploy.yml -f compose.search.yml ps
+   curl --fail --max-time 15 -I https://cahierdedoleances.fr/
+   sudo docker compose --project-name cahier-de-doleances-app \
+     --env-file .env.deploy -f compose.deploy.yml -f compose.search.yml \
+     exec -T frontend node -e \
+     'fetch("http://app:8000/api/v1/forms", {redirect:"manual"}).then(r=>{console.log(r.status);process.exit(r.status===200?0:1)}).catch(()=>process.exit(1))'
+   ```
+
+   Attendre les healthchecks ; le test interne doit afficher **200**, sans
+   redirection vers `https://app:8000`. Vérifier aussi `/enquetes` et les pages
+   statistiques dans le navigateur.
+
+5. Consulter les logs (quitter le suivi avec `Ctrl+C`) :
+
+   ```bash
+   sudo docker compose --project-name cahier-de-doleances-app \
+     --env-file .env.deploy -f compose.deploy.yml -f compose.search.yml \
+     logs --tail 100 -f app frontend caddy
+   ```
+
+#### Construire et préparer une nouvelle version P6
+
+La préparation P6 doit construire **le code actuel avec le verrou CPU** :
+
+```bash
 cd /srv/cahier-de-doleances-app
-
-sudo docker compose \
-  --env-file .env.deploy \
-  -f compose.deploy.yml \
-  up -d
+# Choisir un nouveau tag ; ne pas remplacer ssr-002.
+sudo docker build -f Dockerfile --build-arg SEARCH_RUNTIME=cpu \
+  -t cahier-de-doleances-app:search-cpu-p6-candidat .
+sudo docker run --rm --network none --read-only --tmpfs /tmp \
+  cahier-de-doleances-app:search-cpu-p6-candidat python -m app.search_packaging
 ```
 
-
-4. Vérifier les conteneurs
-```
-sudo docker ps
-```
-
-
-5. Consulter les logs de l'application
-```
-sudo docker compose \
-  --env-file .env.deploy \
-  -f compose.deploy.yml \
-  logs -f
-```
+Cette construction n’installe aucun service et n’active pas la recherche.
+Pour la prévalidation avec les trois montages, les recherches réelles,
+l’installation et le rollback vers l’**ID exact de `ssr-002`**, suivre la
+[procédure P6](docs/rag027-p6-deploiement-ts-rank.md).
+Le [diagnostic du timeout](docs/p6-diagnostic-timeout.md) reste à résoudre avant
+l’activation publique. Ne pas dériver l’image de `ssr-002` ni réutiliser
+`search-cpu-001` comme preuve de compatibilité du backend actuel.
 
 #### Arrêt propre du serveur
-1. Arrêter l'application :
 
-```
-cd /srv/cahier-de-doleances-app
+1. Arrêter Caddy, le frontend et FastAPI avant PostgreSQL :
 
-sudo docker compose \
-  --env-file .env.deploy \
-  -f compose.deploy.yml \
-  down
-```
+   ```bash
+   cd /srv/cahier-de-doleances-app
+   sudo docker compose --project-name cahier-de-doleances-app \
+     --env-file .env.deploy -f compose.deploy.yml -f compose.search.yml \
+     stop --timeout 120 caddy frontend app
+   ```
 
-2. Arrêter PostgreSQL :
-```
-cd /srv/cahier-de-doleances
-sudo docker compose down
-```
+2. Si le laboratoire de recherche tourne, l’arrêter aussi. Dans Bash, ce bloc
+   n’agit que si son conteneur est démarré :
 
-3. Éteindre le serveur :
-```
-sudo shutdown -h now
-```
+   ```bash
+   p6_lab=$(sudo docker ps -q \
+     --filter label=com.docker.compose.project=cahier-search-validation \
+     --filter label=com.docker.compose.service=validation)
+   if [ -n "$p6_lab" ]; then
+     sudo docker stop --timeout 120 "$p6_lab"
+   fi
+   ```
+
+   Vérifier qu’aucun autre import, diagnostic ou client PostgreSQL n’est en cours.
+
+3. Arrêter PostgreSQL et vérifier qu’il est bien arrêté :
+
+   ```bash
+   sudo docker stop --timeout 120 cahier-postgres
+   sudo docker inspect --format '{{.State.Status}} {{.State.ExitCode}}' cahier-postgres
+   sudo docker logs --tail 20 cahier-postgres
+   ```
+
+   Attendu : état `exited`, code `0` et message d’arrêt PostgreSQL propre
+   (`database system is shut down`). Si le code est `137` ou si l’arrêt est
+   anormal, examiner les logs avant de poursuivre ; ne pas considérer l’arrêt
+   forcé comme validé.
+
+4. Éteindre Wallace :
+
+   ```bash
+   sudo shutdown -h now
+   ```
+
+Utiliser `stop` pour conserver conteneurs et réseaux. Ne jamais utiliser
+`docker compose down -v` ni supprimer des volumes/répertoires PostgreSQL.
+Après rallumage, reprendre les vérifications SSD et santé ci-dessus ; les
+politiques de redémarrage Docker peuvent avoir déjà relancé certains services.
 
 
 ---

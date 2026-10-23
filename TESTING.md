@@ -35,13 +35,22 @@ ne crée pas les index et triggers nécessaires à la recherche et aux compteurs
 ```bash
 createdb cahier_doleances_test
 ALEMBIC_DATABASE_URL=postgresql:///cahier_doleances_test uv run --locked alembic upgrade head
-TEST_DATABASE_URL=postgresql:///cahier_doleances_test GDN_IMPORT_TEST_DATABASE_URL=postgresql:///cahier_doleances_test uv run --locked python -m pytest
+# Une seule fois, si .env.test n'existe pas encore :
+cp -n .env.test.example .env.test
+uv run --locked python -m pytest
 ```
 
-`ALEMBIC_DATABASE_URL` et les variables de test sont définies uniquement pour
-la commande qui suit : elles ne modifient pas la base utilisée ensuite par
-le serveur. Ne pas exporter `TEST_DATABASE_URL` dans le terminal du serveur,
-car l'application donne priorité à cette variable pour ses connexions.
+Pytest lit automatiquement `.env.test` (ignoré par Git), uniquement pour
+`TEST_DATABASE_URL` et `GDN_IMPORT_TEST_DATABASE_URL`. Adapter ces URL si
+PostgreSQL nécessite un hôte ou des identifiants. Les variables exportées
+explicitement priment sur ce fichier. Les noms des bases doivent finir par `_test`.
+
+L'application ne lit pas `.env.test` et ignore `TEST_DATABASE_URL` pour ses
+connexions : elle utilise `DATABASE_URL`. C'est pytest qui sélectionne la base
+de test avant d'importer les modules applicatifs. Sans base de test configurée,
+les tests concernés sont ignorés et aucun repli vers la base locale réelle
+n'est effectué. `ALEMBIC_DATABASE_URL` reste réservé à la commande de migration
+explicite ci-dessus ; aucune migration n'est lancée au démarrage des tests.
 
 La suite conserve les 21 cas d'ingestion et de consultation et ajoute des
 régressions de configuration, de sécurité et d'authentification.

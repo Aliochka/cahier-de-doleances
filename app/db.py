@@ -29,22 +29,18 @@ def _normalize_psycopg2(url: Optional[str]) -> str:
 
 
 def _pick_db_url() -> str:
-    # Priorité : TEST_DATABASE_URL > DATABASE_URL > SCALINGO_POSTGRESQL_URL
+    # Test configuration belongs to pytest, never to the running application.
     raw = (
         os.getenv("DATABASE_URL")
         if settings.ENV == "prod"
-        else (
-            os.getenv("TEST_DATABASE_URL")
-            or os.getenv("DATABASE_URL")
-            or os.getenv("SCALINGO_POSTGRESQL_URL")
-        )
+        else (os.getenv("DATABASE_URL") or os.getenv("SCALINGO_POSTGRESQL_URL"))
     )
     normalized = _normalize_psycopg2(raw)
     if not normalized:
         raise RuntimeError(
             "No database URL found. Please set one of:\n"
             "- DATABASE_URL for production\n"
-            "- TEST_DATABASE_URL for testing\n"
+            "- DATABASE_URL for development\n"
             "- SCALINGO_POSTGRESQL_URL for Scalingo deployment"
         )
     return normalized

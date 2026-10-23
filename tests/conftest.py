@@ -3,13 +3,34 @@
 import os
 from datetime import datetime
 from importlib import import_module
+from pathlib import Path
 from uuid import uuid4
 
 import pytest
+from dotenv import dotenv_values
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 from sqlalchemy.orm import sessionmaker
+
+
+def pytest_configure(config):
+    # Only pytest reads this file. Never load it from app/db.py or the server.
+    values = dotenv_values(Path(__file__).resolve().parents[1] / ".env.test", interpolate=False)
+    for key in ("TEST_DATABASE_URL", "GDN_IMPORT_TEST_DATABASE_URL"):
+        if values.get(key) and key not in os.environ:
+            os.environ[key] = values[key]
+        # Prevent a later application load_dotenv() from importing test URLs
+        # out of the developer's ordinary .env.
+        os.environ.setdefault(key, "")
+        url = os.environ.get(key)
+        if url and not (make_url(url).database or "").endswith("_test"):
+            raise pytest.UsageError(f"{key} doit désigner une base isolée terminée par _test")
+    # Set this before test-module imports. Without a test DB, never fall back
+    # to the developer's real DATABASE_URL or .env database.
+    os.environ["DATABASE_URL"] = os.environ.get("TEST_DATABASE_URL") or (
+        "postgresql://localhost:1/cahier_doleances_test"
+    )
 
 
 @pytest.fixture(autouse=True)

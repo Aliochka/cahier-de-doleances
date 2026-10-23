@@ -18,6 +18,7 @@ env/
 *.env
 *.local
 .env.deploy
+.env.test
 
 # --- Data & DB ---
 data/

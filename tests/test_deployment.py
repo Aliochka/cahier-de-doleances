@@ -222,7 +222,7 @@ def test_health_failure_is_generic_and_read_only(monkeypatch):
 def test_production_lan_host_validation_and_no_https_redirect():
     env = dict(os.environ) | lan_env()
     for name in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL"):
-        env.pop(name, None)
+        env[name] = ""  # Also mask alternate URLs in a developer .env file.
     env["DATABASE_URL"] = "postgresql:///unused"
     code = """
 from fastapi.testclient import TestClient
@@ -436,7 +436,7 @@ def test_https_proxy_order_trust_and_local_health_probe(trusted_proxies, ssr_ena
         }
     )
     for name in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL"):
-        env.pop(name, None)
+        env[name] = ""  # Also mask alternate URLs in a developer .env file.
     code = """
 import asyncio
 from contextlib import nullcontext
