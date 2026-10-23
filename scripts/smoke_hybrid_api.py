@@ -1,6 +1,6 @@
 """Vérification locale bornée de SEARCH-004, sans fixture ni écriture SQL.
 
-Utiliser l'environnement backend avec l'extra search. Ne pas définir
+Utiliser l'environnement backend racine préparé par uv sync --locked. Ne pas définir
 TEST_DATABASE_URL. La sortie contient uniquement statuts, effectifs et durées.
 """
 

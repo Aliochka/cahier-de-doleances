@@ -48,6 +48,8 @@ jobs:
         run: uv run --locked alembic upgrade head
       - name: Test
         run: uv run --locked python -m pytest
+      - name: Check CPU search runtime
+        run: uv run --locked python -m app.search_packaging
       - name: Build production image from the lock
         run: docker build --tag cahier-backend:ci .
       - name: Check production dependencies

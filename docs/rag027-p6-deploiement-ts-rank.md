@@ -5,7 +5,7 @@
 Construire le **code courant approuvé** avec le Dockerfile racine et
 `SEARCH_RUNTIME=cpu`. L’image résultante contient le backend FastAPI actuel,
 le paquet H1 actuel et les dépendances verrouillées par
-`deploy/search-cpu/uv.lock`. Le frontend Node SSR reste son service séparé.
+`uv.lock` (groupe `search` CPU). Le frontend Node SSR reste son service séparé.
 Ne dériver P6 ni de `ssr-002` (sans dépendances BGE), ni de `search-cpu-001`
 (dont le code applicatif peut être ancien). L’ancien
 `deploy/search-p6.Dockerfile` a été supprimé pour éviter cette voie incorrecte.

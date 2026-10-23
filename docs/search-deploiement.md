@@ -83,16 +83,14 @@ commande effective du Compose de production. Voir le
 
 ### Backend CPU
 
-Le build normal du [Dockerfile](../Dockerfile) conserve le runtime léger. Le build
-`--build-arg SEARCH_RUNTIME=cpu` utilise le verrou autonome
-[`deploy/search-cpu/uv.lock`](../deploy/search-cpu/uv.lock).
-
-Les versions directes sont alignées sur le backend et `cahier-rag[embeddings]`.
-Les versions transitives communes ont été conservées ; les tests en vérifient
-l’alignement. Les verrous racine et RAG restent inchangés. Un verrou séparé évite
-de faire entrer les sources CUDA de l’environnement expérimental dans le build CPU.
-Le runtime CPU installé localement est `torch==2.10.0+cpu`, sans paquet `nvidia-*`
-ni Triton. Le build vérifie `torch.version.cuda is None`.
+Le build normal du [Dockerfile](../Dockerfile) conserve le runtime léger avec
+`uv sync --no-default-groups`. Le build `--build-arg SEARCH_RUNTIME=cpu` active
+le groupe `search` du [verrou racine](../uv.lock), sans le groupe de test `dev`.
+En local, `uv sync --locked` active `dev` et `search` dans le seul `.venv` racine.
+Le manifeste et le verrou autonomes `deploy/search-cpu/` ont été remplacés par
+ce groupe ; les versions sont conservées et aucun paquet CUDA n'est verrouillé.
+Le RAG expérimental conserve son verrou et son environnement séparés.
+Le build CPU vérifie `torch.version.cuda is None` puis le runtime final.
 
 La base Python est fixée à 3.11.17 Bookworm et au digest
 `sha256:f06d01d4ba3f8ad5af45a3ec87df19c1d317d8e8961edc0fabda61811af6f7cf`,
@@ -195,9 +193,9 @@ compatibilité additive préexistante reste `remove_runtime_caches` →
 2. Vérifier les dépendances CPU et les tests sans toucher aux environnements RAG :
 
    ```bash
-   UV_PROJECT_ENVIRONMENT="$PWD/.cache/search-cpu-venv" uv sync --project deploy/search-cpu --locked
-   .cache/search-cpu-venv/bin/python -m pytest tests/test_search_preparation.py -q
-   .cache/search-cpu-venv/bin/python -m app.search_admin model-check --models rag/models --threads 2
+   uv sync --locked
+   uv run --locked python -m pytest tests/test_search_preparation.py -q
+   uv run --locked python -m app.search_admin model-check --models rag/models --threads 2
    ```
 
    Le `model-check` est un test fonctionnel unique, sans SQL ni écriture de vecteurs.
@@ -205,7 +203,7 @@ compatibilité additive préexistante reste `remove_runtime_caches` →
 3. Relever l’identité logique, avec les fichiers privés locaux existants :
 
    ```bash
-   .cache/search-cpu-venv/bin/python -m app.search_admin inspect \
+   uv run --locked python -m app.search_admin inspect \
      --reader-env rag/search-reader.env \
      --source-name cahier_doleances_local --search-name cahier_rag --check-reader
    ```
@@ -363,7 +361,7 @@ Créer l’archive suivante (aucun fichier d’archive ne doit être déjà pré
 pg_dump --format=custom --no-owner --no-acl --dbname=cahier_rag \
   > search-transfer/cahier-search.dump
 pg_restore --list search-transfer/cahier-search.dump > search-transfer/cahier-search.toc
-.cache/search-cpu-venv/bin/python scripts/search_archive_catalog.py \
+uv run --locked python scripts/search_archive_catalog.py \
   --archive search-transfer/cahier-search.dump --output search-transfer/cahier-search.restore.toc
 (cd search-transfer && sha256sum cahier-search.dump > cahier-search.dump.sha256)
 ```
@@ -603,7 +601,7 @@ vecteurs ni des paramètres d’approximation.
 Pour l’API, installer le venv CPU avec le groupe dev sur la machine pilote, puis :
 
 ```bash
-.cache/search-cpu-venv/bin/python scripts/benchmark_public_search.py \
+uv run --locked python scripts/benchmark_public_search.py \
   --execute --mode http --base-url http://127.0.0.1:8015 \
   --users 1 --repeats 10 --cache-state warm --output benchmark-results/http-1.json
 ```

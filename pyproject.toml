@@ -22,10 +22,14 @@ dependencies = [
     "PyYAML==6.0.3",
 ]
 
-[project.optional-dependencies]
-search = ["cahier-rag[embeddings]", "torch==2.10.0"]
-
 [dependency-groups]
+search = [
+    "torch==2.10.0",
+    "transformers==4.57.6",
+    "huggingface-hub==0.36.0",
+    "numpy==2.2.6",
+    "psutil==7.2.2",
+]
 dev = [
     "pytest==9.1.1",
     "httpx==0.28.1",
@@ -36,13 +40,18 @@ dev = [
 # Application exécutée depuis le dépôt : conserver les imports app/ et ingest/.
 package = false
 required-version = "==0.13.1"
-# Le RAG conserve son verrou expérimental ; l'application verrouille aussi son extra GPU.
+# One root environment for the application, CPU search and development tools.
+default-groups = ["dev", "search"]
+constraint-dependencies = [
+    "certifi==2026.7.22", "dnspython==2.8.0", "greenlet==3.0.1",
+    "pluggy==1.6.0", "websockets==16.1.1",
+]
 
 [tool.uv.sources]
 cahier-rag = { path = "rag", editable = true }
-torch = [{ index = "pytorch-cu128", extra = "search", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" }]
+torch = { index = "pytorch-cpu" }
 
 [[tool.uv.index]]
-name = "pytorch-cu128"
-url = "https://download.pytorch.org/whl/cu128"
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
 explicit = true

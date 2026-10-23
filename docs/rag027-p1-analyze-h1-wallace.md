@@ -238,7 +238,7 @@ Le chronométrage détaillé d’EXPLAIN ANALYZE introduit un surcoût, particul
 Tests locaux uniquement, avec sockets et connexions psycopg2 interdits et transports PostgreSQL simulés :
 
 ```bash
-.cache/search-cpu-venv/bin/python -m pytest \
+uv run --locked python -m pytest \
   tests/test_analyze_h1_lexical.py tests/test_explain_h1_lexical.py -q
 ```
 

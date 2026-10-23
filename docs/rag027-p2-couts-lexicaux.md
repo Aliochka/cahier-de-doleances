@@ -352,7 +352,7 @@ Une égalité de plans n’est pas une preuve d’égalité des résultats et EX
 Tests exécutés uniquement localement, avec connexions psycopg2 et sockets interdits, bases simulées et aucun modèle :
 
 ```bash
-.cache/search-cpu-venv/bin/python -m pytest \
+uv run --locked python -m pytest \
   tests/test_decompose_h1_lexical.py \
   tests/test_analyze_h1_lexical.py tests/test_explain_h1_lexical.py -q
 ```

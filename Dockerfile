@@ -9,11 +9,10 @@ WORKDIR /build
 COPY pyproject.toml uv.lock .python-version ./
 COPY rag/pyproject.toml rag/README.md ./rag/
 COPY rag/src/ ./rag/src/
-COPY deploy/search-cpu/pyproject.toml deploy/search-cpu/uv.lock ./deploy/search-cpu/
 ARG SEARCH_RUNTIME=disabled
 RUN case "$SEARCH_RUNTIME" in \
-      disabled) uv sync --locked --no-dev --no-install-project --no-cache ;; \
-      cpu) uv sync --project deploy/search-cpu --locked --no-dev --no-install-project --no-cache \
+      disabled) uv sync --locked --no-default-groups --no-install-project --no-cache ;; \
+      cpu) uv sync --locked --no-default-groups --group search --no-install-project --no-cache \
         && /opt/venv/bin/python -c "import torch; assert torch.version.cuda is None" ;; \
       *) exit 1 ;; \
     esac

@@ -271,20 +271,16 @@ def test_admin_failure_does_not_disclose_url_or_secret(monkeypatch, capsys):
 def test_cpu_lock_aligns_runtime_versions_without_cuda():
     root = tomllib.loads(Path("pyproject.toml").read_text())
     rag = tomllib.loads(Path("rag/pyproject.toml").read_text())
-    cpu = tomllib.loads(Path("deploy/search-cpu/pyproject.toml").read_text())
-    assert set(cpu["project"]["dependencies"]) == (
-        set(root["project"]["dependencies"])
-        | set(rag["project"]["optional-dependencies"]["embeddings"])
+    assert set(root["dependency-groups"]["search"]) == set(
+        rag["project"]["optional-dependencies"]["embeddings"]
     )
-    lock = tomllib.loads(Path("deploy/search-cpu/uv.lock").read_text())
-    old = {p["name"]: p["version"] for p in tomllib.loads(Path("uv.lock").read_text())["package"]}
+    assert set(root["tool"]["uv"]["default-groups"]) == {"dev", "search"}
+    lock = tomllib.loads(Path("uv.lock").read_text())
     for package in lock["package"]:
         assert not package["name"].startswith("nvidia-") and package["name"] != "triton"
         if package["name"] == "torch":
             assert package["version"] in {"2.10.0", "2.10.0+cpu"}
             assert package["source"]["registry"] == "https://download.pytorch.org/whl/cpu"
-        elif package["name"] in old:
-            assert package["version"] == old[package["name"]]
 
 
 def test_opt_in_mounts_and_single_worker_preserve_disabled_deployment():

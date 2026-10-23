@@ -192,11 +192,11 @@ Les tests [test_compare_h1_rank.py](../tests/test_compare_h1_rank.py) bloquent e
 Reproduire localement, sans réseau ni base réels :
 
 ```bash
-.cache/search-cpu-venv/bin/python -m pytest \
+uv run --locked python -m pytest \
   tests/test_compare_h1_rank.py tests/test_components_h1_lexical.py \
   tests/test_decompose_h1_lexical.py tests/test_analyze_h1_lexical.py \
   tests/test_explain_h1_lexical.py -q
-.cache/search-cpu-venv/bin/python -m ruff check \
+uv run --locked python -m ruff check \
   scripts/compare_h1_rank.py tests/test_compare_h1_rank.py
 ```
 

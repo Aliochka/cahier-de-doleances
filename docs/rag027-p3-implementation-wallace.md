@@ -60,9 +60,9 @@ La classification utilise `TABLESAMPLE SYSTEM (0.1) REPEATABLE (2703)` sur la pa
 Commandes locales utilisées, sans installation de dépendances :
 
 ```bash
-.cache/search-cpu-venv/bin/python -m pytest -q tests/test_components_h1_lexical.py tests/test_explain_h1_lexical.py tests/test_analyze_h1_lexical.py tests/test_decompose_h1_lexical.py
-.cache/search-cpu-venv/bin/python -m ruff check scripts/components_h1_lexical.py tests/test_components_h1_lexical.py
-.cache/search-cpu-venv/bin/python -m ruff format --check scripts/components_h1_lexical.py tests/test_components_h1_lexical.py
+uv run --locked python -m pytest -q tests/test_components_h1_lexical.py tests/test_explain_h1_lexical.py tests/test_analyze_h1_lexical.py tests/test_decompose_h1_lexical.py
+uv run --locked python -m ruff check scripts/components_h1_lexical.py tests/test_components_h1_lexical.py
+uv run --locked python -m ruff format --check scripts/components_h1_lexical.py tests/test_components_h1_lexical.py
 ```
 
 Un avertissement de dépréciation Starlette/httpx préexistant est émis par l’environnement de test. Aucun test réel de planificateur PostgreSQL n’est revendiqué : la validation locale vérifie le contrat d’émission et l’interprétation de fixtures, pas les plans futurs de Wallace.

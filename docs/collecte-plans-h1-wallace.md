@@ -38,7 +38,7 @@ L’outil n’initialise pas le backend applicatif, BGE-M3 ou HNSW ; il importe 
 Commande exécutée sur HAL9000, sans réseau ni connexion PostgreSQL :
 
 ```bash
-.cache/search-cpu-venv/bin/python -m pytest tests/test_explain_h1_lexical.py -q
+uv run --locked python -m pytest tests/test_explain_h1_lexical.py -q
 ```
 
 Résultat : **33 tests réussis**. Un avertissement de dépréciation déjà présent provient de l’import de `fastapi.testclient` par la configuration générale des tests ; il est sans rapport avec la collecte.

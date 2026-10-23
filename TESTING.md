@@ -11,11 +11,15 @@ dans [ruff.toml](ruff.toml), suivant la
 Après l'installation décrite dans le README :
 
 ```bash
-uv sync --locked --dev
+uv sync --locked
 uv run --locked ruff check .
 uv run --locked ruff format --check app ingest scripts tests migrations/env.py
 uv run --locked python -m pytest
 ```
+
+Le seul `.venv` racine inclut aussi les dépendances CPU de H1 (PyTorch et
+Transformers) : les tests de packaging ne nécessitent pas un autre environnement.
+Le RAG expérimental conserve `rag/.venv`.
 
 Sans base de test configurée, les tests PostgreSQL sont signalés comme
 ignorés. Les tests des lecteurs JSON/CSV, de reprise HTTP et de transformation

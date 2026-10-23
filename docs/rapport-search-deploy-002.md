@@ -16,7 +16,7 @@ futures sur la machine locale et sur Wallace, ainsi que leurs critères de passa
 |---|---|
 | [Dockerfile PostgreSQL](../deploy/postgres/Dockerfile), [guard de cluster](../deploy/postgres/existing-cluster.sh), [override manuel](../deploy/postgres/compose.pgvector.override.yml) | Image pgvector épinglée, locale française, refus d’initialisation ou de changement de propriétaire, conservation des deux bind mounts |
 | [Création](../deploy/postgres/create-search.sql), [droits](../deploy/postgres/grant-search-reader.sql), [contrôles](../deploy/postgres/verify-search.sql), [surveillance](../deploy/postgres/monitor-search-restore.sql) | Préparation administrative explicite ; propriétaire de maintenance distinct, lecteur limité, vérification des comptes et suivi de restauration |
-| [CPU pyproject](../deploy/search-cpu/pyproject.toml), [CPU uv.lock](../deploy/search-cpu/uv.lock), [Dockerfile backend](../Dockerfile) | Verrou CPU autonome, mêmes versions applicatives, PyTorch sans CUDA, un worker Gunicorn, base Python épinglée |
+| [pyproject racine actuel](../pyproject.toml), [uv.lock actuel](../uv.lock), [Dockerfile backend](../Dockerfile) | Verrou CPU autonome, mêmes versions applicatives, PyTorch sans CUDA, un worker Gunicorn, base Python épinglée |
 | [Publication signée](../rag/src/cahier_rag/search/publication.py), [commande administrative](../app/search_admin.py) | Identité logique distincte, preuve de contenus/provenance échantillonnée, empreintes vectorielles, signature et création exclusive d’un fichier 0600 |
 | [Lecteur](../rag/src/cahier_rag/search/service/reader.py), [fabrique](../rag/src/cahier_rag/search/service/__init__.py), [lifespan](../app/hybrid_runtime.py) | Vérification de l’association et des générations, refus des droits d’écriture publics, threads 1/2/4 configurables, publication CPU requise en production |
 | [Compose principal](../compose.deploy.yml), [overlay CPU](../compose.search.yml), [laboratoire temporaire](../compose.search.validation.yml) | Base autonome lorsque désactivée, montages opt-in en lecture seule, validation uniquement sur la boucle locale |
@@ -193,3 +193,8 @@ compatibilité du PGDATA et aux contrôles de ressources sur Wallace.
 
 **Pas d’autorisation d’ouverture publique implicite.** Aucune intervention sur
 Wallace ne doit commencer avant validation de ce rapport et du guide.
+
+Note de maintenance : le verrou CPU autonome décrit dans ce rapport historique
+a depuis été regroupé dans le groupe `search` du verrou racine. Utiliser
+`uv sync --locked` et `uv run --locked …` ; les mesures historiques ci-dessus
+restent celles de leurs environnements et dates d’origine.

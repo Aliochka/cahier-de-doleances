@@ -7,30 +7,19 @@ recherche générale. Voir le [contrat HTTP](api-search.md), le
 
 ## Dépendances reproductibles
 
-Le manifeste racine référence `cahier-rag` par chemin local éditable et le verrou
-racine fixe ses dépendances avec celles du backend. L'extra `search` ajoute les
-seules dépendances d'encodage nécessaires, dont torch 2.10.0 et Transformers
-4.57.6. Le torch Linux x86_64 est la distribution CUDA 12.8, comme SEARCH-003.
-Pas de Qwen, reranker, quantification générative ou assemblage de contexte.
-
-Depuis la racine, avec Python 3.11 disponible :
+Le backend et H1 utilisent le même **`.venv` racine**. PyTorch2.10.0 CPU,
+Transformers4.57.6 et les outils de test sont installés par défaut :
 
 ```bash
-UV_PROJECT_ENVIRONMENT=.cache/search-api-venv uv sync --locked --extra search --python 3.11
+uv sync --locked
 ```
 
-L'environnement dédié évite de modifier les environnements expérimentaux RAG.
-Le modèle BGE-M3 déjà présent dans `rag/models` est réutilisé, sans téléchargement
-ou reconstruction d'embeddings. Le backend ne télécharge jamais un modèle au
-démarrage ou pendant une requête. Le venv léger sans extra suffit aux tests et
-aux fonctions documentaires ; une absence de torch laisse la recherche en 503,
-sans lui substituer un autre moteur. L'extra est un choix de dépendances, pas un
-sélecteur fonctionnel de moteur.
-
-Les verrous applicatif et expérimental restent indépendants. Pour une cible CPU
-future, le backend d'encodage accepte déjà CPU/float32 ; une distribution torch
-CPU et ses performances devront être vérifiées séparément. Aucune modification
-de Wallace n'est effectuée ici.
+Lancer les commandes applicatives avec `uv run --locked …` depuis la racine.
+Le RAG/GPU conserve `rag/.venv` et son verrou ; aucun environnement supplémentaire
+`search-api-venv` ou `search-cpu-venv` n'est nécessaire.
+Le snapshot BGE-M3 existant dans `rag/models` est réutilisé sans téléchargement
+ni reconstruction d'embeddings. Le profil Docker léger exclut explicitement le
+groupe `search` ; le profil CPU utilise le même verrou racine.
 
 ## Configuration
 
@@ -49,15 +38,15 @@ RAG_DATABASE_URL=postgresql://cahier_search_reader:MotDePasseFictif123@127.0.0.1
 ```
 
 Encoder les caractères réservés du mot de passe dans l'URL. Le login reste non
-propriétaire et en lecture seule. Le [provisionnement SEARCH-003](../rag/service-recherche.md)
+propriétaire et en lecture seule. Le [provisionnement SEARCH-003](../rag/docs/service-recherche.md)
 reste inchangé. Aucun droit d'écriture supplémentaire n'est demandé par SEARCH-004.
 
 La nouvelle configuration est `search-api.env`, à la racine, ignorée par Git :
 
 ```dotenv
 SEARCH_CURSOR_KEY=REMPLACER_PAR_UN_SECRET_ALEATOIRE_D_AU_MOINS_32_OCTETS
-SEARCH_DEVICE=cuda
-SEARCH_PRECISION=bfloat16
+SEARCH_DEVICE=cpu
+SEARCH_PRECISION=float32
 ```
 
 Une vraie clé aléatoire a été créée localement pendant SEARCH-004, sans être
@@ -69,7 +58,7 @@ import secrets
 
 with os.fdopen(os.open("search-api.env", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w") as f:
     f.write("SEARCH_CURSOR_KEY=" + secrets.token_urlsafe(48) + "\n")
-    f.write("SEARCH_DEVICE=cuda\nSEARCH_PRECISION=bfloat16\n")
+    f.write("SEARCH_DEVICE=cpu\nSEARCH_PRECISION=float32\n")
 ```
 
 Conserver les deux fichiers de secrets en 0600. Ne jamais publier leur contenu.
@@ -88,7 +77,7 @@ des chemins absolus. Aucune option d'activation, ancien moteur ou fallback.
 ## Démarrage et arrêt
 
 ```bash
-.cache/search-api-venv/bin/python -m uvicorn app.app:app --host 127.0.0.1 --port 8000 --workers 1
+uv run --locked python -m uvicorn app.app:app --host 127.0.0.1 --port 8000 --workers 1
 ```
 
 Le lifespan crée les pools, le cache et le travailleur ; l'initialisation de
@@ -150,7 +139,7 @@ Tests backend, sur les bases isolées déjà migrées uniquement :
 TEST_DATABASE_URL=postgresql:///cahier_doleances_test \
 RAG_TEST_DATABASE_URL=postgresql:///cahier_doleances_test \
 RAG_STORAGE_TEST_DATABASE_URL=postgresql:///cahier_rag_test \
-  .venv/bin/pytest tests -q
+  uv run --locked python -m pytest tests -q
 ```
 
 Les fixtures d'écriture refusent les bases dont le nom ne se termine pas par
@@ -160,7 +149,7 @@ injectent leur backend. Les corpus de travail ne servent jamais de fixtures.
 Export et contrôle du contrat, hors réseau et sans lifespan :
 
 ```bash
-.venv/bin/python scripts/export_openapi.py --check
+uv run --locked python scripts/export_openapi.py --check
 pnpm --dir frontend contract:types:check
 pnpm --dir frontend typecheck
 ```
@@ -168,7 +157,7 @@ pnpm --dir frontend typecheck
 Smoke test réel borné, avec la configuration locale et sans `TEST_DATABASE_URL` :
 
 ```bash
-.cache/search-api-venv/bin/python scripts/smoke_hybrid_api.py
+uv run --locked python scripts/smoke_hybrid_api.py
 ```
 
 Il utilise les routes HTTP via TestClient/ASGI avec le véritable lifespan,
@@ -205,7 +194,7 @@ Recette automatisée réelle, après le build normal et avec Chromium Playwright
 installé dans le frontend :
 
 ```bash
-.cache/search-api-venv/bin/python scripts/smoke_search_browser.py
+uv run --locked python scripts/smoke_search_browser.py
 ```
 
 Ce script démarre ses propres instances temporaires FastAPI `127.0.0.1:8015` et SSR

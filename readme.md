@@ -51,20 +51,17 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 ### Lancer le backend et le frontend en local
 
 **La recherche hybride a besoin de PyTorch et Transformers.** Ils sont déjà
-verrouillés dans `deploy/search-cpu/uv.lock` en version CPU : utiliser cet
-environnement pour H1, plutôt qu’ajouter des paquets avec `pip` dans `.venv`.
+installés par défaut dans **`.venv` à la racine**, avec le verrou `uv.lock`
+en version CPU. Un seul `uv sync --locked` prépare le backend, H1 et les tests.
+Le RAG expérimental conserve son environnement indépendant **`rag/.venv`**.
 PostgreSQL doit être démarré et `.env` doit désigner la **base applicative locale**
 via `DATABASE_URL`, avec `ENV=dev`, `COOKIE_SECURE=false` et `ENFORCE_HTTPS=false`.
 
 **Terminal 1 — backend avec recherche hybride CPU**, depuis la racine :
 
 ```bash
-UV_PROJECT_ENVIRONMENT="$PWD/.cache/search-cpu-venv" \
-  uv sync --project deploy/search-cpu --locked
-HYBRID_SEARCH_ENABLED=true SEARCH_DEVICE=cpu SEARCH_PRECISION=float32 \
-SEARCH_CPU_THREADS=2 SEARCH_MODELS_DIR="$PWD/rag/models" \
-SEARCH_READER_ENV="$PWD/rag/search-reader.env" \
-  .cache/search-cpu-venv/bin/python -m uvicorn app.app:app \
+uv sync --locked
+uv run --locked uvicorn app.app:app \
   --host 127.0.0.1 --port 8000
 ```
 
@@ -100,10 +97,10 @@ API_BASE_URL=http://127.0.0.1:8000 pnpm dev
 le site ; l’API est sur **http://127.0.0.1:8000/docs**. `Ctrl+C` dans chaque
 terminal arrête le service correspondant.
 
-Pour inclure les tests de packaging PyTorch dans ce même environnement CPU :
+Pour lancer les tests dans le même environnement racine, PyTorch compris :
 
 ```bash
-.cache/search-cpu-venv/bin/python -m pytest
+uv run --locked python -m pytest
 ```
 
 Les tests PostgreSQL nécessitent toujours `.env.test` et les bases de test
@@ -203,17 +200,25 @@ uv sync --locked
 
 `pyproject.toml` déclare les dépendances ; `uv.lock` verrouille également les
 dépendances transitives. `uv sync --locked` installe le backend et le groupe
-`dev` (pytest, httpx, Ruff) dans `.venv/`. Pour les seules dépendances de
-production : `uv sync --locked --no-dev`. Utiliser ensuite
+`dev` (pytest, httpx, Ruff) dans `.venv/`. Pour les dépendances de
+production avec recherche CPU : `uv sync --locked --no-dev`. Utiliser ensuite
 `uv run --locked --no-dev …` pour conserver ce profil ; `uv run --locked …`
-inclut le groupe de développement par défaut.
+inclut les groupes `dev` et `search` par défaut. Le groupe `search` fournit
+PyTorch CPU et Transformers. `--no-dev` conserve la recherche ;
+`--no-default-groups` produit le profil léger sans recherche ni outils de test.
 
 Il n'est pas nécessaire d'activer l'environnement. Si l'ancien `venv/` est
 actif, le quitter avec `deactivate` ; uv utilise désormais `.venv/`.
 Le backend reste exécuté depuis la racine, sans installation du code comme
-package. Aucun workspace uv n'est déclaré : le futur `rag/` aura son propre
-`pyproject.toml`, verrou et environnement, sans dépendance au backend.
+package. Aucun workspace uv n'est déclaré : `rag/` conserve son propre
+`pyproject.toml`, verrou et environnement pour le RAG/GPU. Le backend importe
+son paquet Python par chemin éditable sans utiliser ses extras GPU.
 Le frontend conserve pnpm.
+
+Les anciens `.cache/search-cpu-venv` et `.cache/search-api-venv` ne sont plus
+utilisés par ces commandes. Ils ne sont pas supprimés automatiquement.
+Si `UV_PROJECT_ENVIRONMENT` est exporté dans votre terminal, le retirer avec
+`unset UV_PROJECT_ENVIRONMENT` pour retrouver le `.venv` racine par défaut.
 
 Les scripts de maintenance s'exécutent depuis la racine avec
 `uv run --locked python scripts/nom_du_script.py`. Cela place aussi Alembic
