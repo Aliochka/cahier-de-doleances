@@ -38,5 +38,9 @@ COPY --chown=app:app migrations ./migrations
 COPY --chown=app:app alembic.ini .
 COPY --chown=app:app scripts/benchmark_public_search.py ./scripts/benchmark_public_search.py
 USER app
+ARG SEARCH_RUNTIME=disabled
+# Validate the final image, including current application and H1 sources.
+# This check is offline and never loads the BGE snapshot or connects to a DB.
+RUN if [ "$SEARCH_RUNTIME" = cpu ]; then python -m app.search_packaging; fi
 EXPOSE 8000
 CMD ["gunicorn", "app.app:app", "-w", "1", "-k", "uvicorn_worker.UvicornWorker", "--bind", "0.0.0.0:8000", "--access-logfile", "-", "--error-logfile", "-", "--worker-tmp-dir", "/tmp"]
