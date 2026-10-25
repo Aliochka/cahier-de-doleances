@@ -239,7 +239,7 @@ def test_question_filter_before_branch_limits(service_corpus, monkeypatch, exact
             assert all(r.document.question_id == qid for r in left)
             all_results, trace = ann_search(store, [1.0] + [0.0] * 1023, question_id=qid)
             assert len(all_results) == sum(d.question_id == qid for d in documents)
-            assert trace["mode"] == "exact-question"
+            assert trace["mode"] == ("exact-question" if exact_limit else "ann")
             ranking = service.retrieve("Non", question_id=qid)
             assert ranking.hits and all(h.document.question_id == qid for h in ranking.hits)
         assert not service.retrieve("Non", question_id=1).hits

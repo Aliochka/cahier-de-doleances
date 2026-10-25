@@ -217,3 +217,9 @@ locale `/tmp/search-005-desktop.png` reste hors Git.
 Les tests synthétiques complets restent `pnpm --dir frontend test:e2e`, avec états
 vide, sources retirées, erreurs, mobile, clavier et zoom 200 %. Les vérifications
 OpenAPI précédentes restent applicables après la suppression des anciennes routes.
+
+Les dépassements de délai sont également consignés dans `hybrid_search_metrics`,
+avec l’étape (`stage`), le code d’erreur, la durée, l’identifiant de requête,
+la question éventuelle et l’utilisation de l’instantané (`cache_hit`). Ces
+métriques ne contiennent ni la saisie ni le curseur. Un échec de relecture ne
+supprime pas l’instantané : une nouvelle tentative peut réutiliser le même curseur.

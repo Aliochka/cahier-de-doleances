@@ -111,9 +111,10 @@ async def calculate(backend, query, size, cursor, budget, metrics, question_id=N
             backend.cache.clear()
             raise SnapshotExpired()
         cards = snapshot.cards[position : position + size]
+        metrics["cache_hit"] = True
         items, seconds = await backend.hydrator.read(cards, budget)
         missing = check_sources(backend, items)
-        metrics.update(cache_hit=True, hydration=seconds)
+        metrics["hydration"] = seconds
         return page(
             query,
             size,
@@ -275,6 +276,14 @@ async def search_hybrid(
             "encoding": "search_encoding_timeout",
             "sql": "search_sql_timeout",
         }.get(exc.stage, "search_timeout")
+        metrics.update(
+            total=time.monotonic() - started,
+            error=code,
+            stage=exc.stage,
+            request_id=request.state.search_request_id,
+            question_id=question_id,
+        )
+        observe(metrics)
         return failure(
             request,
             504,

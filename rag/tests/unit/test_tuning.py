@@ -142,3 +142,52 @@ def test_report_refuses_modified_measurements(tmp_path):
     (tmp_path / "vector.json").write_text('{"modified":true}')
     with pytest.raises(ValueError, match="Mesures modifiées"):
         summarize(tmp_path)
+
+
+@pytest.mark.parametrize("candidate_count", [0, 3, 50])
+def test_large_question_does_not_restart_as_massive_exact_scan(candidate_count, monkeypatch):
+    from contextlib import contextmanager
+    from types import SimpleNamespace
+    from unittest.mock import MagicMock
+
+    from cahier_rag.fullcorpus.search import FullSearch
+    from cahier_rag.tuning.vector import ann_search
+
+    statements = []
+    rows = [
+        dict(document_id=str(i), score=1.0, scanned=candidate_count) for i in range(candidate_count)
+    ]
+    connection = MagicMock()
+
+    def execute(statement, parameters=None):
+        sql = str(statement)
+        statements.append(sql)
+        result = MagicMock()
+        if "scope_probe_limit" in sql:
+            result.scalar_one.return_value = 5001
+        elif "to_regclass" in sql:
+            result.scalar_one.return_value = "segments_full_hnsw"
+        elif "WITH nearest AS MATERIALIZED" in sql:
+            assert parameters["question"] == 293
+            assert ":question" in sql.split("LIMIT :candidates")[0]
+            result.mappings.return_value.all.return_value = rows
+        elif "WITH eligible AS MATERIALIZED" in sql:
+            pytest.fail("A large scope must not restart an exhaustive vector scan")
+        return result
+
+    connection.execute.side_effect = execute
+
+    @contextmanager
+    def transaction():
+        yield connection, None
+
+    store = SimpleNamespace(
+        space="full",
+        state=lambda: {"verified": True, "documents": 1_000_000},
+        guard=SimpleNamespace(transaction=transaction),
+    )
+    monkeypatch.setattr(FullSearch, "_results", lambda self, connection, ids: ids)
+    results, trace = ann_search(store, [1.0] + [0.0] * 1023, AnnConfig(1000), question_id=293)
+    assert len(results) == candidate_count
+    assert trace["mode"] == "ann"
+    assert sum("WITH nearest AS MATERIALIZED" in sql for sql in statements) == 1

@@ -121,10 +121,8 @@ def ann_search(
                     SELECT *,1-distance AS score,(SELECT count(*) FROM nearest) AS scanned
                     FROM units ORDER BY distance,document_id COLLATE "C" LIMIT :limit"""
             rows = c.execute(text(sql), params).mappings().all()
-            if question_id is not None and not exact_question and len(rows) < limit:
-                # If the bounded ANN scan is exhausted, rank the scoped population exactly.
-                exact_question = True
-                continue
+            # A bounded ANN selection may contain fewer units than requested.
+            # Never turn a sparse large scope into an unbounded exact distance scan.
             if (
                 not rows
                 or len(rows) >= limit

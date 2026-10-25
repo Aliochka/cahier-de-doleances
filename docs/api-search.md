@@ -23,8 +23,11 @@ Les paramètres inconnus et répétés sont refusés en 422, notamment `engine`,
 avant classement, sans filtrer une sélection générale déjà calculée. La branche
 vectorielle calcule les distances exactes pour les questions contenant au plus
 5 000 unités textuelles. Au-delà, elle utilise HNSW avec le filtre SQL appliqué
-avant la limite de candidats ; si le parcours borné ne fournit pas assez de
-résultats, elle reprend le calcul exact dans le budget partagé. Les statistiques
+avant la limite de candidats. Si ce parcours borné fournit moins de candidats
+que la profondeur demandée, elle conserve cette sélection approximative sans
+relancer un calcul exact sur toute la question. Cela évite un parcours massif
+imprévisible sur les grandes questions ; la sélection n’est pas exhaustive et
+peut contenir moins de réponses que la limite. Les statistiques
 lexicales globales et la fusion RRF restent identiques. Un identifiant absent du
 corpus produit une sélection vide. Les choix ne fournissent que leurs textes « Autre ».
 

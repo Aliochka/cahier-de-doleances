@@ -404,3 +404,37 @@ def test_query_identity_cannot_alias_a_scope_as_query_text():
     assert query_hash("Non", 42) != query_hash('["Non", 42]')
     assert query_hash("Non", 42) != query_hash('{"q": "Non", "question_id": 42}')
     assert query_hash("Non", 42) != query_hash("Non")
+
+
+def test_timeout_metrics_identify_phase_without_logging_query(hybrid, monkeypatch):
+    client, backend = hybrid
+    events = []
+    monkeypatch.setattr("app.routers.api_hybrid_search.observe", events.append)
+    backend.worker.error = SearchTimeout("sql")
+    response = client.get("/api/v1/search", params={"q": "SECRET_QUERY", "question_id": "293"})
+    assert response.status_code == 504
+    assert len(events) == 1
+    assert events[0]["error"] == "search_sql_timeout"
+    assert events[0]["stage"] == "sql"
+    assert events[0]["question_id"] == 293
+    assert not events[0]["cache_hit"]
+    assert events[0]["request_id"] == response.headers["X-Request-ID"]
+    assert events[0]["total"] >= 0
+    assert "SECRET_QUERY" not in str(events)
+
+
+def test_cursor_timeout_keeps_selection_and_logs_cache_hit(hybrid, monkeypatch):
+    client, backend = hybrid
+    first = client.get("/api/v1/search", params={"q": "Non"}).json()
+    events = []
+    monkeypatch.setattr("app.routers.api_hybrid_search.observe", events.append)
+    backend.hydrator.error = SearchTimeout("metadata")
+    params = {"q": "Non", "cursor": first["first_cursor"]}
+    response = client.get("/api/v1/search", params=params)
+    assert response.status_code == 504
+    assert events[0]["cache_hit"]
+    assert events[0]["error"] == "search_metadata_timeout"
+    assert params["cursor"] not in str(events)
+    backend.hydrator.error = None
+    assert client.get("/api/v1/search", params=params).json() == first
+    assert backend.worker.calls == 1
