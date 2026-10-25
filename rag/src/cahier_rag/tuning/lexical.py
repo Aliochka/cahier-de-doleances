@@ -21,6 +21,7 @@ class TunedSearch(FullSearch):
         self.last_lexical_timings = {}
 
     def _terms(self, c, params):
+        # Question filtering keeps the published global IDF statistics used by H1.
         if self.statistics and all(params[k] is None for k in ("form", "kind", "split")):
             state = self.store.state()
             manifest = (
@@ -72,9 +73,18 @@ class TunedSearch(FullSearch):
             + :term_coverage*CAST(({" + ".join(counts)}) AS float8)/:term_count
             + :frequency_proximity*ts_rank_cd(d.search_vector,CAST(:query AS tsquery),32)::float8"""
 
-    def lexical(self, query, *, limit=50, questionnaire_id=None, unit_type=None, split=None):
+    def lexical(
+        self,
+        query,
+        *,
+        limit=50,
+        questionnaire_id=None,
+        unit_type=None,
+        split=None,
+        question_id=None,
+    ):
         started = time.perf_counter()
-        params = self.parameters(limit, questionnaire_id, unit_type, split)
+        params = self.parameters(limit, questionnaire_id, unit_type, split, question_id)
         tokens = tokenize(query)
         with self.store.guard.transaction() as (c, _):
             c.execute(text("SET LOCAL statement_timeout='30s'"))
@@ -92,7 +102,7 @@ class TunedSearch(FullSearch):
             if self.prefilter is not None:
                 # Explicitly approximate: ts_rank is NOT an upper bound on weighted score.
                 params["prefilter"] = self.prefilter
-                candidate = f"""WITH candidates AS MATERIALIZED(SELECT d.document_id,d.search_vector,d.space_id,d.questionnaire_id,d.unit_type,d.historical_split FROM rag_full.documents d
+                candidate = f"""WITH candidates AS MATERIALIZED(SELECT d.document_id,d.search_vector,d.space_id,d.record,d.questionnaire_id,d.unit_type,d.historical_split FROM rag_full.documents d
                    WHERE {FILTERS} AND d.search_vector @@ CAST(:query AS tsquery)
                    ORDER BY ts_rank_cd(d.search_vector,CAST(:query AS tsquery),32) DESC,
                    d.document_id COLLATE "C" LIMIT :prefilter) """

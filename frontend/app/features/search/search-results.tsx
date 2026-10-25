@@ -24,6 +24,8 @@ export function SearchResults({
   pending?: boolean;
   continuationError?: boolean;
 }) {
+  const questionScoped = !!state.path;
+  const TextContainer = questionScoped ? "div" : "blockquote";
   return (
     <section
       aria-labelledby="search-results-title"
@@ -83,18 +85,33 @@ export function SearchResults({
               >
                 <article
                   className={contributionStyles.entry}
-                  aria-labelledby={`search-question-${item.answer_id}`}
+                  aria-labelledby={`search-${questionScoped ? "answer" : "question"}-${item.answer_id}`}
                 >
-                  <p className={contributionStyles.metadata}>
-                    Réponse {item.answer_id} · À la question
-                  </p>
-                  <h3
-                    id={`search-question-${item.answer_id}`}
-                    className={contributionStyles.question}
-                  >
-                    <Link to={item.question.url}>{item.question.prompt}</Link>
-                  </h3>
-                  <blockquote className={css({ m: "0" })}>
+                  {questionScoped ? (
+                    <header className={css({ mb: "4" })}>
+                      <p
+                        id={`search-answer-${item.answer_id}`}
+                        className={contributionStyles.metadata}
+                      >
+                        Réponse {item.answer_id}
+                      </p>
+                    </header>
+                  ) : (
+                    <>
+                      <p className={contributionStyles.metadata}>
+                        Réponse {item.answer_id} · À la question
+                      </p>
+                      <h3
+                        id={`search-question-${item.answer_id}`}
+                        className={contributionStyles.question}
+                      >
+                        <Link to={item.question.url}>
+                          {item.question.prompt}
+                        </Link>
+                      </h3>
+                    </>
+                  )}
+                  <TextContainer className={css({ m: "0" })}>
                     {item.texts.map((unit, index) => (
                       <div
                         key={`${unit.unit_type}-${unit.unit_index}`}
@@ -112,7 +129,7 @@ export function SearchResults({
                         </CitizenText>
                       </div>
                     ))}
-                  </blockquote>
+                  </TextContainer>
                   {item.is_truncated && (
                     <p
                       className={cx(
@@ -125,11 +142,18 @@ export function SearchResults({
                     </p>
                   )}
                   <footer
-                    className={css({ mt: "6", display: "grid", gap: "3" })}
+                    className={css({
+                      mt: questionScoped ? "4" : "6",
+                      display: "grid",
+                      gap: "3",
+                    })}
                   >
-                    <p className={contributionStyles.metadata}>
-                      Enquête : <Link to={item.form.url}>{item.form.name}</Link>
-                    </p>
+                    {!questionScoped && (
+                      <p className={contributionStyles.metadata}>
+                        Enquête :{" "}
+                        <Link to={item.form.url}>{item.form.name}</Link>
+                      </p>
+                    )}
                     <p>
                       <Link to={item.url}>Lire la contribution complète</Link>
                     </p>

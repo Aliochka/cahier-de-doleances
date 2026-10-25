@@ -124,7 +124,11 @@ test("parcours au clavier, retour arrière et hydratation des graphiques", async
   await link.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(`${origin}${multiple}`);
-  await expect(page.locator("[data-chart-kind]")).toBeVisible();
+  await expect(
+    page
+      .getByRole("region", { name: "Résultats de la question", exact: true })
+      .locator("[data-chart-kind]"),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Réponses « Autre » à la question" }),
   ).toBeVisible();
@@ -138,7 +142,11 @@ test("parcours au clavier, retour arrière et hydratation des graphiques", async
   await expect(page).toHaveURL(`${origin}/forms/9007199254740995`);
   await page.goBack();
   await expect(page).toHaveURL(`${origin}${multiple}`);
-  await expect(page.locator("[data-chart-kind]")).toBeVisible();
+  await expect(
+    page
+      .getByRole("region", { name: "Résultats de la question", exact: true })
+      .locator("[data-chart-kind]"),
+  ).toBeVisible();
   await page.goto(`${origin}${text}?cursor=page%2B2%2F%3Dopaque`);
   await expect(page.locator("time")).toHaveText("15 janvier 2019");
   await page.getByRole("link", { name: "Revenir au début" }).click();

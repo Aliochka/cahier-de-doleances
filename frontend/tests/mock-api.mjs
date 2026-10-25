@@ -280,7 +280,9 @@ const server = createServer((request, response) => {
   if (url.pathname === "/search-reset") {
     searchCalls.length = 0;
     searchRetry = 0;
-    snapshots.clear();
+    for (const [key, snapshot] of snapshots) {
+      if (!snapshot.questionId) snapshots.delete(key);
+    }
     response.end("{}");
     return;
   }
@@ -289,7 +291,10 @@ const server = createServer((request, response) => {
     return;
   }
   if (url.pathname === "/search-expire") {
-    snapshots.clear();
+    const questionId = url.searchParams.get("question_id");
+    for (const [key, snapshot] of snapshots) {
+      if ((snapshot.questionId ?? null) === questionId) snapshots.delete(key);
+    }
     response.end("{}");
     return;
   }
@@ -297,11 +302,15 @@ const server = createServer((request, response) => {
     const q = url.searchParams.get("q") ?? "";
     const cursor = url.searchParams.get("cursor");
     const pageSize = Number(url.searchParams.get("page_size") ?? 20);
-    searchCalls.push({
-      path: url.pathname,
-      query: url.search,
-      calculated: !cursor,
-    });
+    const questionId = url.searchParams.get("question_id");
+    const searchQuestion =
+      questions.find((q) => q.id === questionId) ?? questions[0];
+    if (!questionId)
+      searchCalls.push({
+        path: url.pathname,
+        query: url.search,
+        calculated: !cursor,
+      });
     const fail = (status, code) => {
       response.statusCode = status;
       response.end(
@@ -343,7 +352,10 @@ const server = createServer((request, response) => {
     let snapshot = cursor ? snapshots.get(cursor) : null;
     if (
       cursor &&
-      (!snapshot || snapshot.q !== q || snapshot.pageSize !== pageSize)
+      (!snapshot ||
+        snapshot.q !== q ||
+        snapshot.pageSize !== pageSize ||
+        snapshot.questionId !== questionId)
     ) {
       fail(410, "search_expired");
       return;
@@ -351,6 +363,7 @@ const server = createServer((request, response) => {
     if (!cursor) {
       const id = ++snapshotId;
       snapshot = {
+        questionId,
         q,
         pageSize,
         first: `first+${id}/=opaque`,
@@ -397,7 +410,10 @@ const server = createServer((request, response) => {
                   ]
                 : [
                     {
-                      unit_type: "open_answer",
+                      unit_type:
+                        questionId && searchQuestion.type !== "text"
+                          ? "other_text"
+                          : "open_answer",
                       unit_index: 0,
                       text: next
                         ? "Réponse du lot suivant."
@@ -411,9 +427,9 @@ const server = createServer((request, response) => {
                   ],
             is_truncated: !next && index === 0,
             question: {
-              id: questions[0].id,
-              prompt: questions[0].prompt,
-              url: questions[0].url,
+              id: searchQuestion.id,
+              prompt: searchQuestion.prompt,
+              url: searchQuestion.url,
             },
             form: { id: forms[0].id, name: forms[0].name, url: forms[0].url },
             url: `/forms/${forms[0].id}/contributions/${contributionIds[0]}#answer-${id}`,

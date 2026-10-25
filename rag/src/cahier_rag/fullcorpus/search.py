@@ -13,18 +13,21 @@ from cahier_rag.storage import restore_document
 
 FILTERS = """d.space_id=:space AND (:form IS NULL OR d.questionnaire_id=:form)
  AND (:kind IS NULL OR d.unit_type=:kind)
- AND (:split IS NULL OR d.historical_split=:split)"""
+ AND (:split IS NULL OR d.historical_split=:split)
+ AND (:question IS NULL OR CAST(d.record->>'question_id' AS bigint)=:question)"""
 
 
 class FullSearch:
     def __init__(self, store):
         self.store = store
 
-    def parameters(self, limit, questionnaire_id, unit_type, split):
+    def parameters(self, limit, questionnaire_id, unit_type, split, question_id=None):
         if type(limit) is not int or not 1 <= limit <= 100:
             raise ValueError("Limite entre 1 et 100.")
         if questionnaire_id is not None:
             validate_id(questionnaire_id, "questionnaire_id")
+        if question_id is not None:
+            validate_id(question_id, "question_id")
         if split not in (None, "development", "evaluation"):
             raise ValueError("Partition inconnue.")
         state = self.store.state()
@@ -33,6 +36,7 @@ class FullSearch:
         return dict(
             space=self.store.space,
             form=questionnaire_id,
+            question=question_id,
             kind=UnitType(unit_type).value if unit_type else None,
             split=split,
             limit=limit,

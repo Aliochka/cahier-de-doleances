@@ -1765,6 +1765,7 @@ export interface operations {
                 q?: string;
                 page_size?: number;
                 cursor?: string | null;
+                question_id?: string | null;
             };
             header?: never;
             path?: never;

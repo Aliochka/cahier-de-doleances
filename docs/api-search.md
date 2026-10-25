@@ -15,11 +15,24 @@ choix de moteur, fallback historique, génération ou reranker.
 |---|---|
 | `q` | 512 caractères maximum avant normalisation NFC et retrait des espaces extérieurs ; langage naturel |
 | `page_size` | Entier entre 1 et 20, défaut 20 ; conservé pendant toute la navigation |
+| `question_id` | Optionnel : BIGINT positif transmis comme chaîne décimale ; limite les deux branches aux réponses de cette question |
 | `cursor` | Opaque, authentifié HMAC, versionné, 1 à 1024 caractères ; reprendre exactement la valeur renvoyée |
 
-Les paramètres inconnus et répétés sont refusés en 422, notamment `question_id`,
-`engine`, `tab`, `section` et les anciens curseurs multiples. Le filtre question
-sera une extension future, pas un filtrage des premiers résultats globaux.
+Les paramètres inconnus et répétés sont refusés en 422, notamment `engine`, `tab`,
+`section` et les anciens curseurs multiples. `question_id` filtre les candidats
+avant classement, sans filtrer une sélection générale déjà calculée. La branche
+vectorielle calcule les distances exactes pour les questions contenant au plus
+5 000 unités textuelles. Au-delà, elle utilise HNSW avec le filtre SQL appliqué
+avant la limite de candidats ; si le parcours borné ne fournit pas assez de
+résultats, elle reprend le calcul exact dans le budget partagé. Les statistiques
+lexicales globales et la fusion RRF restent identiques. Un identifiant absent du
+corpus produit une sélection vide. Les choix ne fournissent que leurs textes « Autre ».
+
+Avant d’activer cette interface sur un corpus complet, installer l’index additif
+avec `psql -X -d <base_recherche> -f deploy/postgres/index-question-search.sql`
+sous le rôle de maintenance. Le script vérifie la destination spécialisée et ne
+modifie ni les documents, ni les embeddings, ni la révision `rag_0007`. Le rôle
+public reste en lecture seule. L’index n’est jamais créé au démarrage de l’application.
 Une saisie vide donne `state="idle"` sans appeler le moteur, même s'il est indisponible.
 La ponctuation seule, les guillemets déséquilibrés, plus de 32 lexèmes significatifs
 ou les autres entrées refusées par la préparation H1 donnent 422.
@@ -84,7 +97,9 @@ La sélection est conservée dans un cache mémoire LRU : TTL absolu 600 s,
 256 instantanés au plus, 16 Mio de charge utile JSON au plus (hors overhead Python).
 Le cache contient uniquement des références/empreintes, les paramètres de
 navigation et les versions ; aucun texte complet, requête brute, nom ou vecteur.
-Un seul processus backend possède ce cache et son modèle.
+Un seul processus backend possède ce cache et son modèle. L’identité d’une
+sélection inclut `question_id` : les curseurs ne sont pas interchangeables entre
+questions ni avec la recherche générale.
 
 La page suivante, la précédente, la première et le rechargement d'un curseur
 relisent seulement un lot applicatif ; aucun encodage, lexical, ANN ou RRF.

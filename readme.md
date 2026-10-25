@@ -516,6 +516,34 @@ Le [diagnostic du timeout](docs/p6-diagnostic-timeout.md) reste à résoudre ava
 l’activation publique. Ne pas dériver l’image de `ssr-002` ni réutiliser
 `search-cpu-001` comme preuve de compatibilité du backend actuel.
 
+##### Mise en prod d'un nouvelle version
+
+
+1. Créer un commit de version avec tous les changements — ils ne sont pas encore enregistrés dans Git.
+2. Récupérer ce commit sur Wallace, dans /srv/cahier-de-doleances-app.
+3. Sauvegarder les anciens tags d’images, puis donner de nouveaux tags à APP_IMAGE_TAG et FRONTEND_IMAGE_TAG dans .env.deploy. Conserver les autres paramètres, notamment ceux de la recherche.
+4. Construire puis remplacer les deux services :
+
+cd /srv/cahier-de-doleances-app
+
+sudo docker compose --project-name cahier-de-doleances-app \
+  --env-file .env.deploy \
+  -f compose.deploy.yml -f compose.search.yml \
+  build app frontend
+
+sudo docker compose --project-name cahier-de-doleances-app \
+  --env-file .env.deploy \
+  -f compose.deploy.yml -f compose.search.yml \
+  up -d --no-build --wait app frontend
+
+5. Vérifier le site : accueil, enquêtes, recherche, dates françaises et navigation entre contributions. Une courte interruption est possible pendant le remplacement du backend.
+
+
+
+
+
+
+
 #### Arrêt propre du serveur
 
 1. Arrêter Caddy, le frontend et FastAPI avant PostgreSQL :

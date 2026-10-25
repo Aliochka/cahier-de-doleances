@@ -98,3 +98,20 @@ it("distingue annulation, timeout et réseau", async () => {
   transport.mockRejectedValueOnce(new TypeError("SECRET"));
   expect(await api.search()).toEqual({ ok: false, kind: "network" });
 });
+
+it("transmet le filtre question sans convertir les BIGINT en nombres", async () => {
+  const transport = vi
+    .fn<typeof fetch>()
+    .mockResolvedValue(Response.json(page));
+  const questionId = "9223372036854775807";
+  await createPublicApi("", transport).search({
+    q: page.q,
+    question_id: questionId,
+  });
+  expect(transport.mock.calls[0]?.[0]).toBe(
+    `/api/v1/search?${new URLSearchParams({
+      q: page.q,
+      question_id: questionId,
+    })}`,
+  );
+});

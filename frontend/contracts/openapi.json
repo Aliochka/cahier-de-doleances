@@ -2689,6 +2689,26 @@
               ],
               "title": "Cursor"
             }
+          },
+          {
+            "in": "query",
+            "name": "question_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "description": "BIGINT positif, chaîne décimale.",
+                  "maxLength": 19,
+                  "minLength": 1,
+                  "pattern": "^[0-9]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Question Id"
+            }
           }
         ],
         "responses": {

@@ -5,10 +5,12 @@ import {
   question,
   stats,
 } from "../features/questions/fixtures.test-support";
+import { page as searchPage } from "../features/search/fixtures.test-support";
 import {
   getQuestion,
   getQuestionAnswers,
   getQuestionStats,
+  search,
 } from "../lib/api.server";
 import { loader } from "./question";
 
@@ -16,6 +18,7 @@ vi.mock("../lib/api.server", () => ({
   getQuestion: vi.fn(),
   getQuestionAnswers: vi.fn(),
   getQuestionStats: vi.fn(),
+  search: vi.fn(),
 }));
 beforeEach(() => {
   vi.resetAllMocks();
@@ -149,5 +152,97 @@ it("sans Autre, les choix ne déclenchent pas de lecture des réponses individue
     data: { ...stats, other_text_answers_count: 0 },
   });
   await loader(args());
+  expect(getQuestionAnswers).not.toHaveBeenCalled();
+});
+
+it("ouvre la recherche sans charger les réponses ni appeler le moteur", async () => {
+  const result = await loader(args(undefined, "?tab=search"));
+  expect(result.data.tab).toBe("search");
+  expect(result.data.search?.result).toBeNull();
+  expect(getQuestionAnswers).not.toHaveBeenCalled();
+  expect(search).not.toHaveBeenCalled();
+});
+
+it("recherche dans la question et garde les liens de pagination sur sa page", async () => {
+  const page = {
+    ...searchPage,
+    items: searchPage.items.map((item) => ({
+      ...item,
+      question: { id: question.id, prompt: question.prompt, url: question.url },
+    })),
+  };
+  vi.mocked(search).mockResolvedValue({ ok: true, data: page });
+  const input = args(undefined, `?tab=search&q=${encodeURIComponent(page.q)}`);
+  await expect(loader(input)).rejects.toMatchObject({ status: 303 });
+  expect(search).toHaveBeenCalledWith(
+    {
+      q: page.q,
+      question_id: question.id,
+      page_size: 20,
+    },
+    { signal: input.request.signal },
+  );
+  const stable = await loader(
+    args(
+      undefined,
+      `?${new URLSearchParams({
+        tab: "search",
+        q: page.q,
+        cursor: page.first_cursor ?? "",
+      })}`,
+    ),
+  );
+  expect(stable.data.search?.result).toEqual(page);
+  expect(stable.data.search?.state.path).toBe(question.url);
+  expect(getQuestionAnswers).not.toHaveBeenCalled();
+});
+
+it("refuse les résultats d’une autre question", async () => {
+  vi.mocked(search).mockResolvedValue({
+    ok: true,
+    data: {
+      ...searchPage,
+      items: searchPage.items.map((item) => ({
+        ...item,
+        question: { ...item.question, id: "1" },
+      })),
+    },
+  });
+  const result = await loader(
+    args(undefined, `?tab=search&q=${encodeURIComponent(searchPage.q)}`),
+  );
+  expect(result.data.search?.failure?.kind).toBe("invalid_response");
+  expect(result.init?.status).toBe(502);
+});
+
+it.each([
+  "?tab=search&q=a&q=b",
+  "?tab=search&q=x&cursor=",
+  "?tab=search&q=x&page_size=21",
+])("valide les paramètres de recherche %s", async (query) => {
+  const result = await loader(args(undefined, query));
+  expect(result.init?.status).toBe(422);
+  expect(search).not.toHaveBeenCalled();
+});
+
+it("sans texte Autre, explique l’absence de recherche sans appeler le moteur", async () => {
+  vi.mocked(getQuestion).mockResolvedValue({
+    ok: true,
+    data: {
+      ...question,
+      type: "single_choice",
+      display_mode: "choice",
+    },
+  });
+  vi.mocked(getQuestionStats).mockResolvedValue({
+    ok: true,
+    data: {
+      ...stats,
+      other_text_answers_count: 0,
+    },
+  });
+  const result = await loader(args(undefined, "?tab=search&q=non"));
+  expect(result.data.noSearchableText).toBe(true);
+  expect(search).not.toHaveBeenCalled();
   expect(getQuestionAnswers).not.toHaveBeenCalled();
 });

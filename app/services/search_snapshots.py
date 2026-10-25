@@ -66,9 +66,9 @@ def group_hits(hits):
     return tuple(CardReference(i, tuple(units)) for i, units in enumerate(grouped.values(), 1))
 
 
-def query_hash(query):
-    # Un futur filtre question_id devra faire partie de cette identité.
-    return hashlib.sha256(query.encode()).hexdigest()
+def query_hash(query, question_id=None):
+    identity = json.dumps({"q": query, "question_id": question_id}, sort_keys=True)
+    return hashlib.sha256(identity.encode()).hexdigest()
 
 
 @dataclass(frozen=True)
@@ -137,7 +137,7 @@ class SnapshotCache:
         signature = hmac.digest(self.key, payload, "sha256")
         return base64.urlsafe_b64encode(payload + signature).decode().rstrip("=")
 
-    def get(self, cursor, query, page_size):
+    def get(self, cursor, query, page_size, question_id=None):
         try:
             if not isinstance(cursor, str) or not 1 <= len(cursor) <= 1024:
                 raise ValueError()
@@ -163,7 +163,7 @@ class SnapshotCache:
             raise SnapshotExpired()
         snapshot, _, expires, _ = self.entries[sid]
         if (
-            snapshot.query_hash != query_hash(query)
+            snapshot.query_hash != query_hash(query, question_id)
             or snapshot.page_size != page_size
             or position >= len(snapshot.cards)
             or position % page_size

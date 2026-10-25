@@ -6,7 +6,7 @@ import time
 import unicodedata
 from dataclasses import asdict, dataclass
 
-from cahier_rag.contracts import TextUnit
+from cahier_rag.contracts import TextUnit, validate_id
 from cahier_rag.embeddings.core import EmbeddingError, EmbeddingInput, InputTooLong
 from cahier_rag.fullcorpus.audit import fingerprint
 from cahier_rag.search.hybrid.core import HybridConfig, fuse
@@ -162,9 +162,12 @@ class HybridSearch:
         return next(self.encoder.encode_queries([item])).vectors[0]
 
     def retrieve(self, query, *, budget=None, question_id=None):
-        # Préparé pour le chantier Questions ; aucun filtre ignoré silencieusement.
         if question_id is not None:
-            raise InvalidQuery("La recherche filtrée par question n'est pas encore disponible.")
+            try:
+                validate_id(question_id, "question_id")
+            except ValueError as exc:
+                raise InvalidQuery(str(exc)) from None
+        filters = {"question_id": question_id} if question_id is not None else {}
         query = validate_query(query)
         if not self._lock.acquire(blocking=False):
             raise SearchBusy("Un calcul de recherche est déjà en cours.")
@@ -193,13 +196,15 @@ class HybridSearch:
                 lexical = H1LexicalSearch(store, statistics=True, prefilter=None)
                 with budget.phase("sql", 10):
                     try:
-                        left = lexical.lexical(query, limit=recipe.depth)
+                        left = lexical.lexical(query, limit=recipe.depth, **filters)
                     except ValueError as exc:
                         if str(exc) == "Au plus 32 lexèmes significatifs.":
                             raise InvalidQuery(str(exc)) from None
                         raise
                     lexical_end = time.monotonic()
-                    right, trace = ann_search(store, vector, recipe.ann, limit=recipe.depth)
+                    right, trace = ann_search(
+                        store, vector, recipe.ann, limit=recipe.depth, **filters
+                    )
                 vector_end = time.monotonic()
                 with budget.phase("fusion"):
                     results, traces = fuse({"lexical": left, "vector": right}, k=recipe.rrf_k)

@@ -8,6 +8,8 @@ from sqlalchemy import text
 from cahier_rag.embeddings.core import validate_vectors
 from cahier_rag.fullcorpus.search import FILTERS, FullSearch
 
+EXACT_QUESTION_LIMIT = 5000
+
 
 @dataclass(frozen=True)
 class AnnConfig:
@@ -58,11 +60,12 @@ def ann_search(
     questionnaire_id=None,
     unit_type=None,
     split=None,
+    question_id=None,
 ):
     start = time.perf_counter()
     engine = FullSearch(store)
     values = validate_vectors([vector], expected_rows=1, dimension=1024, normalize=False)[0]
-    params = engine.parameters(limit, questionnaire_id, unit_type, split)
+    params = engine.parameters(limit, questionnaire_id, unit_type, split, question_id)
     params["vector"] = "[" + ",".join(str(v) for v in values) + "]"
     params["candidates"] = config.candidates
     with store.guard.transaction() as (c, _):
@@ -81,6 +84,17 @@ def ann_search(
                 {"key": "hnsw." + key, "value": str(value)},
             )
         c.execute(text("SET LOCAL enable_seqscan=off"))
+        exact_question = False
+        if question_id is not None:
+            # Small scopes need exact distances: an ANN scan can miss them entirely.
+            params["scope_probe_limit"] = EXACT_QUESTION_LIMIT + 1
+            eligible_count = c.execute(
+                text(f"""SELECT count(*) FROM (
+                SELECT 1 FROM rag_full.documents d WHERE {FILTERS} LIMIT :scope_probe_limit
+            ) eligible"""),
+                params,
+            ).scalar_one()
+            exact_question = eligible_count <= EXACT_QUESTION_LIMIT
         while True:
             sql = f"""WITH nearest AS MATERIALIZED (
                 SELECT s.document_id,s.segment_index,s.representation_id,s.start_offset,s.end_offset,
@@ -92,7 +106,25 @@ def ann_search(
                 ORDER BY document_id,distance,segment_index,representation_id COLLATE "C")
                 SELECT *,1-distance AS score,(SELECT count(*) FROM nearest) AS scanned
                 FROM units ORDER BY distance,document_id COLLATE "C" LIMIT :limit"""
+            if exact_question:
+                sql = f"""WITH eligible AS MATERIALIZED (
+                    SELECT d.space_id,d.document_id FROM rag_full.documents d WHERE {FILTERS}
+                ), nearest AS MATERIALIZED (
+                    SELECT s.document_id,s.segment_index,s.representation_id,s.start_offset,s.end_offset,
+                        s.embedding <=> CAST(:vector AS public.vector) AS distance
+                    FROM eligible d JOIN rag_full.segments s USING(space_id,document_id)
+                    ORDER BY (s.embedding <=> CAST(:vector AS public.vector))+0.0,
+                        s.document_id COLLATE "C",s.segment_index,s.representation_id COLLATE "C"
+                    LIMIT :candidates), units AS (
+                    SELECT DISTINCT ON(document_id) * FROM nearest
+                    ORDER BY document_id,distance,segment_index,representation_id COLLATE "C")
+                    SELECT *,1-distance AS score,(SELECT count(*) FROM nearest) AS scanned
+                    FROM units ORDER BY distance,document_id COLLATE "C" LIMIT :limit"""
             rows = c.execute(text(sql), params).mappings().all()
+            if question_id is not None and not exact_question and len(rows) < limit:
+                # If the bounded ANN scan is exhausted, rank the scoped population exactly.
+                exact_question = True
+                continue
             if (
                 not rows
                 or len(rows) >= limit
@@ -104,6 +136,7 @@ def ann_search(
         results = engine._results(c, [(r["document_id"], r["score"], store.space) for r in rows])
     return results, dict(
         configuration=config.to_dict(),
+        mode="exact-question" if exact_question else "ann",
         candidates_requested=params["candidates"],
         retrieved_segments=rows[0]["scanned"] if rows else 0,
         seconds=time.perf_counter() - start,

@@ -534,6 +534,8 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
     search: (query: HybridSearchQuery = {}, options: RequestOptions = {}) => {
       const params = new URLSearchParams();
       if (query.q !== undefined) params.set("q", query.q);
+      if (query.question_id !== undefined && query.question_id !== null)
+        params.set("question_id", query.question_id);
       if (query.cursor !== undefined && query.cursor !== null)
         params.set("cursor", query.cursor);
       if (query.page_size !== undefined)

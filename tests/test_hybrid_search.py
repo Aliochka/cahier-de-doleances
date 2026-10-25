@@ -73,12 +73,19 @@ class Worker:
             self.service.recipe.fingerprint,
         )
 
-    async def retrieve(self, q, *, budget):
+    async def retrieve(self, q, *, budget, question_id=None):
         budget.check()
         self.calls += 1
         if self.error:
             raise self.error
-        return self.ranking
+        return replace(
+            self.ranking,
+            hits=tuple(
+                h
+                for h in self.ranking.hits
+                if question_id is None or h.document.question_id == question_id
+            ),
+        )
 
 
 class Hydration:
@@ -144,7 +151,10 @@ def test_http_order_pagination_return_first_and_no_recomputation(hybrid):
         dict(q="..."),
         dict(q='"non'),
         dict(q="Non", page_size=21),
-        dict(q="Non", question_id="42"),
+        dict(q="Non", question_id="0"),
+        dict(q="Non", question_id=str(MAX_BIGINT + 1)),
+        dict(q="Non", question_id="abc"),
+        [("q", "Non"), ("question_id", "1"), ("question_id", "2")],
         dict(q="Non", engine="old"),
         dict(q="Non", cursor="bad"),
         [("q", "Non"), ("q", "Oui")],
@@ -364,3 +374,33 @@ def test_model_initialization_does_not_delay_documentary_startup(monkeypatch):
         assert entered.wait(1)
         assert client.get("/openapi.json").status_code == 200
         assert client.get("/api/v1/search", params={"q": "Non"}).status_code == 503
+
+
+def test_question_filter_and_cursor_scope(hybrid):
+    client, backend = hybrid
+    qid = str(MAX_BIGINT - 1000)
+    first = client.get("/api/v1/search", params={"q": "Non", "question_id": qid})
+    assert first.status_code == 200
+    page = first.json()
+    assert len(page["items"]) == 1
+    assert page["items"][0]["question"]["id"] == qid
+    for scope in ({}, {"question_id": str(MAX_BIGINT - 1001)}):
+        response = client.get(
+            "/api/v1/search", params={"q": "Non", "cursor": page["first_cursor"], **scope}
+        )
+        assert response.status_code == 422
+    same = client.get(
+        "/api/v1/search", params={"q": "Non", "question_id": qid, "cursor": page["first_cursor"]}
+    )
+    assert same.json() == page
+    assert backend.worker.calls == 1
+    assert (
+        client.get("/api/v1/search", params={"q": "Non", "question_id": "42"}).json()["state"]
+        == "empty"
+    )
+
+
+def test_query_identity_cannot_alias_a_scope_as_query_text():
+    assert query_hash("Non", 42) != query_hash('["Non", 42]')
+    assert query_hash("Non", 42) != query_hash('{"q": "Non", "question_id": 42}')
+    assert query_hash("Non", 42) != query_hash("Non")

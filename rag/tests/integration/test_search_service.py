@@ -20,6 +20,7 @@ from cahier_rag.search.service.control import (
     SearchTimeout,
     SearchUnavailable,
 )
+from cahier_rag.search.service.core import H1LexicalSearch
 from cahier_rag.search.service.reader import ReadGuard, SearchReader, create_search_engine
 from cahier_rag.sources.gdn import GdnReader
 from cahier_rag.tuning.lexical import TunedSearch
@@ -221,3 +222,26 @@ def test_generation_change_requires_restart(service_corpus, monkeypatch):
         )
     with pytest.raises(SearchNotReady, match="génération"):
         reader.validate(Budget())
+
+
+@pytest.mark.parametrize("exact_limit", [0, 5000])
+def test_question_filter_before_branch_limits(service_corpus, monkeypatch, exact_limit):
+    monkeypatch.setattr("cahier_rag.tuning.vector.EXACT_QUESTION_LIMIT", exact_limit)
+    store, reader, documents = service_corpus
+    monkeypatch.setattr("cahier_rag.search.service.reader.check_reader_role", lambda c: None)
+    service = HybridSearch(reader, Encoder(), recipe=SearchRecipe(depth=1, result_limit=2))
+    try:
+        service.start()
+        for qid in {d.question_id for d in documents}:
+            left = H1LexicalSearch(store).lexical("Non", limit=1, question_id=qid)
+            right, _ = ann_search(store, [1.0] + [0.0] * 1023, limit=1, question_id=qid)
+            assert right and all(r.document.question_id == qid for r in right)
+            assert all(r.document.question_id == qid for r in left)
+            all_results, trace = ann_search(store, [1.0] + [0.0] * 1023, question_id=qid)
+            assert len(all_results) == sum(d.question_id == qid for d in documents)
+            assert trace["mode"] == "exact-question"
+            ranking = service.retrieve("Non", question_id=qid)
+            assert ranking.hits and all(h.document.question_id == qid for h in ranking.hits)
+        assert not service.retrieve("Non", question_id=1).hits
+    finally:
+        service.close()

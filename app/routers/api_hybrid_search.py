@@ -28,6 +28,7 @@ from app.schemas.hybrid_search import (
     HybridWarning,
     SearchWindow,
 )
+from app.schemas.questions import QueryId
 from app.services.search_hydration import MetadataUnavailable
 from app.services.search_snapshots import (
     CursorError,
@@ -99,9 +100,9 @@ def page(
     )
 
 
-async def calculate(backend, query, size, cursor, budget, metrics):
+async def calculate(backend, query, size, cursor, budget, metrics, question_id=None):
     if cursor is not None:
-        sid, snapshot, position, expires = backend.cache.get(cursor, query, size)
+        sid, snapshot, position, expires = backend.cache.get(cursor, query, size, question_id)
         current = backend.worker.service
         if (
             snapshot.generation != current.reader.generation
@@ -125,7 +126,8 @@ async def calculate(backend, query, size, cursor, budget, metrics):
             warnings=snapshot.omitted + missing,
         )
 
-    ranking = await backend.worker.retrieve(query, budget=budget)
+    filters = {"question_id": question_id} if question_id is not None else {}
+    ranking = await backend.worker.retrieve(query, budget=budget, **filters)
     metrics.update(
         cache_hit=False,
         validation=ranking.timings.validation,
@@ -146,7 +148,7 @@ async def calculate(backend, query, size, cursor, budget, metrics):
             valid_items.append(item.model_copy(update={"rank": rank}))
     recipe = backend.worker.service.recipe
     snapshot = Snapshot(
-        query_hash(query),
+        query_hash(query, question_id),
         size,
         ranking.generation,
         ranking.recipe_hash,
@@ -194,6 +196,7 @@ async def search_hybrid(
     q: str = Query(default="", max_length=512),
     page_size: int = Query(default=20, ge=1, le=20),
     cursor: str | None = Query(default=None, min_length=1, max_length=1024),
+    question_id: QueryId | None = None,
 ):
     started = time.monotonic()
     request.state.search_request_id = uuid4().hex
@@ -202,14 +205,13 @@ async def search_hybrid(
     watcher = None
     backend = getattr(request.app.state, "hybrid_search", None)
     try:
-        allowed = {"q", "page_size", "cursor"}
+        allowed = {"q", "page_size", "cursor", "question_id"}
         if any(
             k not in allowed or len(request.query_params.getlist(k)) != 1
             for k in request.query_params
         ):
-            raise InvalidQuery(
-                "Paramètre inconnu ou répété ; les filtres ne sont pas encore disponibles."
-            )
+            raise InvalidQuery("Paramètre inconnu ou répété.")
+        question_id = int(question_id) if question_id is not None else None
         query = unicodedata.normalize("NFC", q).strip()
         if not query:
             if cursor is not None:
@@ -219,7 +221,7 @@ async def search_hybrid(
                 query,
                 page_size,
                 Snapshot(
-                    query_hash(query),
+                    query_hash(query, question_id),
                     page_size,
                     "",
                     "",
@@ -244,7 +246,9 @@ async def search_hybrid(
                     await asyncio.sleep(0.05)
 
             watcher = asyncio.create_task(watch_disconnect())
-            result = await calculate(backend, query, page_size, cursor, budget, metrics)
+            result = await calculate(
+                backend, query, page_size, cursor, budget, metrics, question_id
+            )
         with budget.phase("serialization"):
             content = result.model_dump_json()
         metrics["total"] = time.monotonic() - started

@@ -16,8 +16,8 @@ sont pas inventées : l'endpoint statistique Question ne les fournit pas.
 Sous les résultats, les questions comportant des champs Autre présentent
 « Réponses « Autre » à la question », avec les textes citoyens, auteurs publics,
 liens ancrés vers les contributions et pagination. Aucun champ Autre n'est lu
-lorsque son compteur publié vaut zéro. Les réponses ouvertes conservent leur
-lecture et leur filtre historique ; aucune recherche hybride filtrée n'est ajoutée.
+lorsque son compteur publié vaut zéro. Les réponses ouvertes conservent leur lecture et leur filtre historique dans
+l’onglet « Réponse à la question ».
 
 ## Adaptation minimale de l'API
 
@@ -54,3 +54,27 @@ informations documentaires disponibles.
 FastAPI et le serveur SSR local ont été relancés avec leur environnement existant.
 Aucun déploiement sur Wallace. La vérification avec lecteur d'écran complet
 reste à conduire ; la validation automatisée ne constitue pas une certification.
+
+## Recherche dans les réponses
+
+L’onglet « Rechercher dans les réponses », placé à droite du premier, utilise
+la recherche hybride existante avec `question_id`. L’URL de la question porte
+`tab=search`, puis `q` et le curseur ; les liens et le formulaire GET fonctionnent
+aussi sans JavaScript. Les onglets, champs, boutons, alertes et textes citoyens
+réutilisent le design system. Les statistiques restent dans le premier panneau.
+
+Pour les questions à choix, seuls les textes libres « Autre » sont recherchables.
+Si leur compteur publié est nul, un message l’explique sans appeler le moteur.
+Une panne des statistiques est affichée comme une erreur réessayable. Une saisie
+vide n’appelle pas le moteur. Les résultats restent une sélection par pertinence,
+sans total exhaustif ; changer la saisie réinitialise la pagination. Les pages
+de recherche sont `noindex, follow` et ont la page question comme canonique.
+
+Le contrat et l’index SQL requis sur la base de recherche sont décrits dans
+[api-search.md](api-search.md). Cet index est additif : aucune reconstruction du
+corpus ni des embeddings n’est nécessaire.
+
+Validation locale : recherche réelle sur les questions 159 et 158 (50 résultats
+chacune en environ 3,5 s et 4,1 s après installation de l’index), et recherche
+générale en environ 0,7 s sur la même machine. Ces mesures ne sont pas une
+garantie de latence sur une autre installation.

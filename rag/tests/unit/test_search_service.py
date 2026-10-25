@@ -110,11 +110,15 @@ def service(monkeypatch):
         def __init__(self, store, **options):
             assert options == {"statistics": True, "prefilter": None}
 
-        def lexical(self, query, *, limit):
+        def lexical(self, query, *, limit, question_id=None):
+            if question_id is not None:
+                calls.append(("lexical-question", question_id))
             calls.append(("lexical", limit))
             return [SearchResult(document(i), 1 / (i + 1)) for i in range(limit)]
 
-    def ann(store, vector, config, *, limit):
+    def ann(store, vector, config, *, limit, question_id=None):
+        if question_id is not None:
+            calls.append(("vector-question", question_id))
         calls.append(("ann", limit, config))
         assert len(vector) == 1024
         results = [SearchResult(document(i), 1 / (i + 1)) for i in reversed(range(limit))]
@@ -187,7 +191,7 @@ def test_query_validation_before_model(service, value):
 def test_no_silent_filtered_or_single_branch_search(service, monkeypatch):
     service.start()
     with pytest.raises(InvalidQuery):
-        service.retrieve("Non", question_id=42)
+        service.retrieve("Non", question_id=0)
 
     def broken(*args, **kwargs):
         raise SearchTimeout("sql")
@@ -437,3 +441,10 @@ def test_source_identity_allows_only_audited_additive_migration():
         assert not compatible_source_identity(indexed, {**migrated, key: value})
     assert not compatible_source_identity(migrated, indexed)
     assert not compatible_source_identity(None, migrated)
+
+
+def test_question_filter_reaches_both_branches(service):
+    service.start()
+    service.retrieve("Non", question_id=42)
+    assert ("lexical-question", 42) in service.calls
+    assert ("vector-question", 42) in service.calls

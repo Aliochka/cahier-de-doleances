@@ -8,16 +8,18 @@ export function SearchControls({
   onDraftChange,
   error,
   pending = false,
+  path,
 }: {
   draft: string;
   onDraftChange: (value: string) => void;
   error?: string;
   pending?: boolean;
+  path?: string;
 }) {
   return (
     <Form
       method="get"
-      action="/recherche"
+      action={path ?? "/recherche"}
       role="search"
       className={css({
         display: "grid",
@@ -26,11 +28,16 @@ export function SearchControls({
         maxWidth: "reading",
       })}
     >
+      {path && <input type="hidden" name="tab" value="search" />}
       <Input
         id="search-query"
         name="q"
         type="search"
-        label="Votre question ou votre sujet"
+        label={
+          path
+            ? "Rechercher dans les réponses"
+            : "Votre question ou votre sujet"
+        }
         description="Une question naturelle ou quelques mots suffisent. 512 caractères maximum."
         placeholder="Par exemple : Pouvoir d’achat"
         maxLength={512}
