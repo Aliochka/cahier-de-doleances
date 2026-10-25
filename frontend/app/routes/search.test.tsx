@@ -181,3 +181,13 @@ it("la saisie reste un formulaire GET sans recherche à la frappe et accessible"
   expect(input).toHaveAccessibleDescription(/512 caractères/);
   expect(screen.getByRole("search")).toHaveAttribute("method", "get");
 });
+
+it("préserve le mode hybride obligatoire de la recherche globale", async () => {
+  vi.mocked(search).mockResolvedValue({
+    ok: true,
+    data: { ...page, mode: "lexical" },
+  });
+  const result = await loader(args(`?q=${encodeURIComponent(page.q)}`));
+  expect(result.data.failure?.kind).toBe("invalid_response");
+  expect(result.init?.status).toBe(502);
+});

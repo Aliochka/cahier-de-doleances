@@ -38,9 +38,15 @@ Gros merci a chat gpt qui a codé l'ultra majorité de ce que vous voyez !
 
  
 ### v1
-- [ ] SEO
 - [ ] accueil
-
+- [ ] à propos
+- [ ] péréniser serveur
+- [ ] trucs d'admin sys 
+- [ ] recherche dans les réponses de question
+- [ ] page exeploration
+- [ ] intégrer d'autres enquêtes (en intégrer une première autre)
+- [ ] SEO
+- [ ] contacter des vraies personnes
 
 
 
@@ -537,12 +543,6 @@ sudo docker compose --project-name cahier-de-doleances-app \
   up -d --no-build --wait app frontend
 
 5. Vérifier le site : accueil, enquêtes, recherche, dates françaises et navigation entre contributions. Une courte interruption est possible pendant le remplacement du backend.
-
-
-
-
-
-
 
 #### Arrêt propre du serveur
 

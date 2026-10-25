@@ -13,7 +13,13 @@ from cahier_rag.search.service.control import (
     SearchTimeout,
     SearchUnavailable,
 )
-from cahier_rag.search.service.core import Hit, Ranking, SearchRecipe, Timings
+from cahier_rag.search.service.core import (
+    QUESTION_LEXICAL_RECIPE,
+    Hit,
+    Ranking,
+    SearchRecipe,
+    Timings,
+)
 from cahier_rag.sources.gdn import row_to_documents
 from fastapi.testclient import TestClient
 
@@ -64,7 +70,10 @@ class Worker:
         self.calls = 0
         self.error = None
         self.service = SimpleNamespace(
-            recipe=SearchRecipe(), reader=SimpleNamespace(generation="g"), ready=True
+            recipe=SearchRecipe(),
+            question_recipe=QUESTION_LEXICAL_RECIPE,
+            reader=SimpleNamespace(generation="g"),
+            ready=True,
         )
         self.ranking = Ranking(
             "g",
@@ -80,6 +89,12 @@ class Worker:
             raise self.error
         return replace(
             self.ranking,
+            recipe_hash=self.service.question_recipe.fingerprint
+            if question_id is not None
+            else self.ranking.recipe_hash,
+            recipe_version=self.service.question_recipe.version
+            if question_id is not None
+            else self.ranking.recipe_version,
             hits=tuple(
                 h
                 for h in self.ranking.hits
@@ -438,3 +453,60 @@ def test_cursor_timeout_keeps_selection_and_logs_cache_hit(hybrid, monkeypatch):
     backend.hydrator.error = None
     assert client.get("/api/v1/search", params=params).json() == first
     assert backend.worker.calls == 1
+
+
+def test_question_lexical_pagination_preserves_order_and_groups_other_fields(hybrid):
+    client, backend = hybrid
+    rows = [dict(source_row(i, other=i == 0), question_id=293) for i in range(45)]
+    documents = [doc for row in rows for doc in row_to_documents(row, "gdn-2019")]
+    backend.worker = Worker(documents)
+    backend.hydrator = Hydration(rows)
+    params = {"q": "Non", "question_id": "293"}
+    first = client.get("/api/v1/search", params=params).json()
+    assert first["mode"] == "lexical"
+    assert first["recipe_version"] == QUESTION_LEXICAL_RECIPE.version
+    assert first["window"]["document_limit"] == first["window"]["retrieval_depth"] == 50
+    assert not first["window"]["exhaustive"]
+    assert len(first["items"]) == 20
+    assert len(first["items"][0]["texts"]) == 2
+    pages = [first]
+    while pages[-1]["has_next"]:
+        pages.append(
+            client.get(
+                "/api/v1/search", params={**params, "cursor": pages[-1]["next_cursor"]}
+            ).json()
+        )
+    assert [len(p["items"]) for p in pages] == [20, 20, 5]
+    ids = [i["answer_id"] for p in pages for i in p["items"]]
+    assert ids == [str(row["answer_id"]) for row in rows]
+    assert len(set(ids)) == 45
+    assert backend.worker.calls == 1
+    assert backend.hydrator.calls == [45, 20, 5]
+
+
+def test_question_lexical_rejects_an_old_hybrid_snapshot(hybrid):
+    client, backend = hybrid
+    global_page = client.get("/api/v1/search", params={"q": "Non"}).json()
+    params = {"q": "Non", "question_id": str(MAX_BIGINT - 1000)}
+    page = client.get("/api/v1/search", params=params).json()
+    sid = list(backend.cache.entries)[-1]
+    snapshot, deadline, expires, size = backend.cache.entries[sid]
+    backend.cache.entries[sid] = (replace(snapshot, mode="hybrid"), deadline, expires, size)
+    response = client.get("/api/v1/search", params={**params, "cursor": page["first_cursor"]})
+    assert response.status_code == 410
+    assert (
+        client.get(
+            "/api/v1/search", params={"q": "Non", "cursor": global_page["first_cursor"]}
+        ).json()
+        == global_page
+    )
+    assert backend.worker.calls == 2
+
+
+def test_empty_question_search_reports_lexical_without_retrieval(hybrid):
+    client, backend = hybrid
+    response = client.get("/api/v1/search", params={"q": "  ", "question_id": "293"})
+    assert response.status_code == 200
+    assert response.json()["mode"] == "lexical"
+    assert response.json()["state"] == "idle"
+    assert backend.worker.calls == 0

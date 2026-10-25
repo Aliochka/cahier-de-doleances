@@ -38,7 +38,11 @@ export function SearchControls({
             ? "Rechercher dans les réponses"
             : "Votre question ou votre sujet"
         }
-        description="Une question naturelle ou quelques mots suffisent. 512 caractères maximum."
+        description={
+          path
+            ? "Saisissez des mots-clés. Recherche plein texte en français, limitée à 512 caractères."
+            : "Une question naturelle ou quelques mots suffisent. 512 caractères maximum."
+        }
         placeholder="Par exemple : Pouvoir d’achat"
         maxLength={512}
         value={draft}

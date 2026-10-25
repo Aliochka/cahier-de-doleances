@@ -31,6 +31,9 @@ test("onglets au clavier, recherche limitée à la question et retour arrière",
       exact: true,
     }),
   ).toBeVisible();
+  await expect(page.getByRole("searchbox")).toHaveAccessibleDescription(
+    /Recherche plein texte en français/,
+  );
   await page
     .getByRole("searchbox", {
       name: "Rechercher dans les réponses",
@@ -39,6 +42,9 @@ test("onglets au clavier, recherche limitée à la question et retour arrière",
     .fill("transport");
   await page.getByRole("button", { name: "Rechercher", exact: true }).click();
   await expect(page).toHaveURL(/tab=search&q=transport&cursor=/);
+  await expect(
+    page.getByText(/Elle ne représente pas toutes les correspondances/),
+  ).toBeVisible();
   await expect(
     page
       .getByRole("list", { name: "Réponses citoyennes" })
@@ -240,6 +246,9 @@ test("le panneau suit immédiatement l’onglet pendant une navigation lente", a
       await expect(
         panel.getByRole("region", { name: "Chargement de la page" }),
       ).toBeVisible();
+      await expect(
+        page.getByRole("region", { name: "Chargement de la page" }),
+      ).toHaveCount(1);
       await expect(previousPanel).toBeHidden();
       await expect(page.getByRole("searchbox")).toHaveCount(0);
       const height = await panel

@@ -4,7 +4,8 @@
 
 `GET /api/v1/search?q=…&page_size=20&cursor=…`
 
-Une recherche générale hybride, portant sur les réponses textuelles indexées.
+Sans `question_id`, une recherche générale hybride porte sur les réponses textuelles indexées.
+Avec `question_id`, le même endpoint exécute exclusivement le plein texte lexical H1 en français, sans encodage BGE-M3, recherche vectorielle ni fusion RRF.
 FastAPI réutilise SEARCH-003 (lexical RAG-027, BGE-M3/HNSW, RRF) ; la base
 applicative vérifie les sources et fournit tous les textes affichés. Aucun
 choix de moteur, fallback historique, génération ou reranker.
@@ -15,21 +16,23 @@ choix de moteur, fallback historique, génération ou reranker.
 |---|---|
 | `q` | 512 caractères maximum avant normalisation NFC et retrait des espaces extérieurs ; langage naturel |
 | `page_size` | Entier entre 1 et 20, défaut 20 ; conservé pendant toute la navigation |
-| `question_id` | Optionnel : BIGINT positif transmis comme chaîne décimale ; limite les deux branches aux réponses de cette question |
+| `question_id` | Optionnel : BIGINT positif transmis comme chaîne décimale ; active le lexical H1 uniquement, limité aux réponses de cette question |
 | `cursor` | Opaque, authentifié HMAC, versionné, 1 à 1024 caractères ; reprendre exactement la valeur renvoyée |
 
 Les paramètres inconnus et répétés sont refusés en 422, notamment `engine`, `tab`,
-`section` et les anciens curseurs multiples. `question_id` filtre les candidats
-avant classement, sans filtrer une sélection générale déjà calculée. La branche
-vectorielle calcule les distances exactes pour les questions contenant au plus
-5 000 unités textuelles. Au-delà, elle utilise HNSW avec le filtre SQL appliqué
-avant la limite de candidats. Si ce parcours borné fournit moins de candidats
-que la profondeur demandée, elle conserve cette sélection approximative sans
-relancer un calcul exact sur toute la question. Cela évite un parcours massif
-imprévisible sur les grandes questions ; la sélection n’est pas exhaustive et
-peut contenir moins de réponses que la limite. Les statistiques
-lexicales globales et la fusion RRF restent identiques. Un identifiant absent du
-corpus produit une sélection vide. Les choix ne fournissent que leurs textes « Autre ».
+`section` et les anciens curseurs multiples. `question_id` filtre les textes des
+réponses directement dans le SQL avant leur classement lexical et leur limite.
+Les statistiques IDF globales, la configuration française et le score H1 sont
+réutilisés sans changement. La recette par question reste limitée à 50 unités,
+puis regroupée par réponse et paginée par lots de 20 au maximum. Un identifiant
+absent du corpus produit une sélection vide. Pour les choix, seuls les textes
+« Autre » sont recherchables.
+
+Le champ de réponse `mode` vaut `hybrid` sans question et `lexical` avec question.
+Les sélections lexicales utilisent la recette `h1-question-lexical-v1-ts-rank` ;
+les anciens instantanés hybrides filtrés sont refusés en 410 sans invalider les
+sélections globales indépendantes. Aucune sélection de moteur n’est proposée au
+client : le périmètre détermine le parcours.
 
 Avant d’activer cette interface sur un corpus complet, installer l’index additif
 avec `psql -X -d <base_recherche> -f deploy/postgres/index-question-search.sql`
@@ -40,9 +43,10 @@ Une saisie vide donne `state="idle"` sans appeler le moteur, même s'il est indi
 La ponctuation seule, les guillemets déséquilibrés, plus de 32 lexèmes significatifs
 ou les autres entrées refusées par la préparation H1 donnent 422.
 
-Aucune syntaxe booléenne globale n'est promise. La préparation lexicale existante
-reste utilisée par cette branche ; ses guillemets/exclusions ne constituent pas
-une contrainte globale appliquée à la branche vectorielle.
+Pour la recherche globale hybride, aucune syntaxe booléenne globale n’est promise :
+les guillemets/exclusions du lexical ne contraignent pas la branche vectorielle.
+Pour une question, seule la préparation plein texte H1 s’applique. Il ne s’agit
+pas d’une recherche littérale de sous-chaîne ou d’un Ctrl+F.
 
 ### Réponse
 

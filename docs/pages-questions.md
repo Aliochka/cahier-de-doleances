@@ -58,7 +58,8 @@ reste à conduire ; la validation automatisée ne constitue pas une certificatio
 ## Recherche dans les réponses
 
 L’onglet « Rechercher dans les réponses », placé à droite du premier, utilise
-la recherche hybride existante avec `question_id`. L’URL de la question porte
+le moteur lexical H1 existant avec `question_id`, sans BGE-M3, recherche vectorielle
+ni fusion RRF. L’URL de la question porte
 `tab=search`, puis `q` et le curseur ; les liens et le formulaire GET fonctionnent
 aussi sans JavaScript. Les onglets, champs, boutons, alertes et textes citoyens
 réutilisent le design system. Les statistiques restent dans le premier panneau.
@@ -74,7 +75,10 @@ Le contrat et l’index SQL requis sur la base de recherche sont décrits dans
 [api-search.md](api-search.md). Cet index est additif : aucune reconstruction du
 corpus ni des embeddings n’est nécessaire.
 
-Validation locale : recherche réelle sur les questions 159 et 158 (50 résultats
+Mesures historiques avant la bascule lexicale : recherche réelle sur les questions 159 et 158 (50 résultats
 chacune en environ 3,5 s et 4,1 s après installation de l’index), et recherche
 générale en environ 0,7 s sur la même machine. Ces mesures ne sont pas une
 garantie de latence sur une autre installation.
+
+Le compte rendu actuel de la bascule, ses tests et les mesures SQL bornées sont
+dans [recherche-lexicale-par-question.md](recherche-lexicale-par-question.md).

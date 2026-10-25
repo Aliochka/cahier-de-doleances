@@ -217,8 +217,8 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Recherche hybride de réponses citoyennes classées par pertinence
-         * @description Recherche naturelle, sans syntaxe booléenne globale promise. La fenêtre est bornée par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.
+         * Recherche de réponses : hybride globale, lexicale H1 par question
+         * @description Sans question_id : recherche hybride existante. Avec question_id : plein texte H1 français, sans encodage, recherche vectorielle ni fusion RRF. La fenêtre est bornée par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.
          */
         get: operations["search_public_hybrid"];
         put?: never;
@@ -645,9 +645,9 @@ export interface components {
             /**
              * Mode
              * @default hybrid
-             * @constant
+             * @enum {string}
              */
-            mode: "hybrid";
+            mode: "hybrid" | "lexical";
             /** Next Cursor */
             next_cursor: string | null;
             /** Page Size */

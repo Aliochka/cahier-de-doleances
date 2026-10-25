@@ -166,6 +166,7 @@ it("ouvre la recherche sans charger les réponses ni appeler le moteur", async (
 it("recherche dans la question et garde les liens de pagination sur sa page", async () => {
   const page = {
     ...searchPage,
+    mode: "lexical" as const,
     items: searchPage.items.map((item) => ({
       ...item,
       question: { id: question.id, prompt: question.prompt, url: question.url },
@@ -202,6 +203,7 @@ it("refuse les résultats d’une autre question", async () => {
     ok: true,
     data: {
       ...searchPage,
+      mode: "lexical",
       items: searchPage.items.map((item) => ({
         ...item,
         question: { ...item.question, id: "1" },
@@ -245,4 +247,13 @@ it("sans texte Autre, explique l’absence de recherche sans appeler le moteur",
   expect(result.data.noSearchableText).toBe(true);
   expect(search).not.toHaveBeenCalled();
   expect(getQuestionAnswers).not.toHaveBeenCalled();
+});
+
+it("refuse un ancien backend hybride pour la recherche locale", async () => {
+  vi.mocked(search).mockResolvedValue({ ok: true, data: searchPage });
+  const result = await loader(
+    args(undefined, `?tab=search&q=${encodeURIComponent(searchPage.q)}`),
+  );
+  expect(result.data.search?.failure?.kind).toBe("invalid_response");
+  expect(result.init?.status).toBe(502);
 });

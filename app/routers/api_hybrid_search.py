@@ -16,7 +16,7 @@ from cahier_rag.search.service.control import (
     SearchTimeout,
     SearchUnavailable,
 )
-from cahier_rag.search.service.core import SearchRecipe, validate_query
+from cahier_rag.search.service.core import QUESTION_LEXICAL_RECIPE, SearchRecipe, validate_query
 from fastapi import APIRouter, Query, Request
 from fastapi.responses import JSONResponse, Response
 
@@ -82,6 +82,7 @@ def page(
     has_next = next_position < count
     return HybridSearchPage(
         q=query,
+        mode=snapshot.mode,
         state=state or ("results" if items else "sources_unavailable"),
         recipe_version=snapshot.recipe_version,
         items=items,
@@ -101,14 +102,22 @@ def page(
 
 
 async def calculate(backend, query, size, cursor, budget, metrics, question_id=None):
+    mode = "lexical" if question_id is not None else "hybrid"
+    recipe = (
+        backend.worker.service.question_recipe
+        if question_id is not None
+        else backend.worker.service.recipe
+    )
     if cursor is not None:
         sid, snapshot, position, expires = backend.cache.get(cursor, query, size, question_id)
         current = backend.worker.service
-        if (
-            snapshot.generation != current.reader.generation
-            or snapshot.recipe_hash != current.recipe.fingerprint
-        ):
+        if snapshot.generation != current.reader.generation:
             backend.cache.clear()
+            raise SnapshotExpired()
+        if snapshot.recipe_hash != recipe.fingerprint or snapshot.mode != mode:
+            # An old question selection must not evict unrelated global searches.
+            if question_id is None:
+                backend.cache.clear()
             raise SnapshotExpired()
         cards = snapshot.cards[position : position + size]
         metrics["cache_hit"] = True
@@ -147,7 +156,6 @@ async def calculate(backend, query, size, cursor, budget, metrics, question_id=N
             rank = len(valid_cards) + 1
             valid_cards.append(replace(card, rank=rank))
             valid_items.append(item.model_copy(update={"rank": rank}))
-    recipe = backend.worker.service.recipe
     snapshot = Snapshot(
         query_hash(query, question_id),
         size,
@@ -158,6 +166,7 @@ async def calculate(backend, query, size, cursor, budget, metrics, question_id=N
         recipe.depth,
         tuple(valid_cards),
         missing,
+        mode=mode,
     )
     if not valid_cards:
         return page(
@@ -186,8 +195,9 @@ async def calculate(backend, query, size, cursor, budget, metrics, question_id=N
     "/search",
     response_model=HybridSearchPage,
     operation_id="search_public_hybrid",
-    summary="Recherche hybride de réponses citoyennes classées par pertinence",
-    description="Recherche naturelle, sans syntaxe booléenne globale promise. La fenêtre est bornée "
+    summary="Recherche de réponses : hybride globale, lexicale H1 par question",
+    description="Sans question_id : recherche hybride existante. Avec question_id : plein texte H1 français, "
+    "sans encodage, recherche vectorielle ni fusion RRF. La fenêtre est bornée "
     "par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. "
     "Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.",
     responses={status: {"model": HybridErrorEnvelope} for status in (410, 422, 500, 503, 504)},
@@ -217,7 +227,11 @@ async def search_hybrid(
         if not query:
             if cursor is not None:
                 raise CursorError()
-            recipe = backend.worker.service.recipe if backend else SearchRecipe()
+            recipe = (
+                (backend.worker.service.question_recipe if backend else QUESTION_LEXICAL_RECIPE)
+                if question_id is not None
+                else (backend.worker.service.recipe if backend else SearchRecipe())
+            )
             result = page(
                 query,
                 page_size,
@@ -230,6 +244,7 @@ async def search_hybrid(
                     recipe.result_limit,
                     recipe.depth,
                     (),
+                    mode="lexical" if question_id is not None else "hybrid",
                 ),
                 [],
                 state="idle",

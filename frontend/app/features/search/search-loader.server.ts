@@ -52,6 +52,7 @@ export async function loadSearch(
     );
     if (response.ok) {
       if (
+        response.data.mode !== (scope ? "lexical" : "hybrid") ||
         response.data.q !== state.q ||
         response.data.page_size !== state.page_size ||
         (scope !== undefined &&
@@ -80,7 +81,9 @@ export async function loadSearch(
         Array.from(raw).length > 512
           ? "La recherche est limitée à 512 caractères."
           : failure?.kind === "request"
-            ? "Vérifiez votre question et les paramètres de recherche."
+            ? scope
+              ? "Vérifiez vos mots-clés et les paramètres de recherche."
+              : "Vérifiez votre question et les paramètres de recherche."
             : undefined,
     },
     { status: failure ? failureStatus(failure) : 200, headers },

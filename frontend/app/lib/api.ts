@@ -382,7 +382,7 @@ function hybridSearch(value: unknown): value is HybridSearchPage {
     return false;
   return (
     typeof value.q === "string" &&
-    value.mode === "hybrid" &&
+    (value.mode === "hybrid" || value.mode === "lexical") &&
     ["idle", "results", "empty", "sources_unavailable"].includes(
       String(value.state),
     ) &&

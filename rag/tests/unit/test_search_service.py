@@ -443,8 +443,36 @@ def test_source_identity_allows_only_audited_additive_migration():
     assert not compatible_source_identity(None, migrated)
 
 
-def test_question_filter_reaches_both_branches(service):
-    service.start()
-    service.retrieve("Non", question_id=42)
+def test_question_uses_h1_order_without_model_vector_or_fusion(service, monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Question search must not encode, search vectors or fuse ranks")
+
+    monkeypatch.setattr(core, "ann_search", forbidden)
+    monkeypatch.setattr(core, "fuse", forbidden)
+    monkeypatch.setattr(service.encoder, "load", forbidden)
+    monkeypatch.setattr(service.encoder, "encode_queries", forbidden)
+    result = service.retrieve("Non", question_id=42)
     assert ("lexical-question", 42) in service.calls
-    assert ("vector-question", 42) in service.calls
+    assert not any(call[0] in ("ann", "vector-question") for call in service.calls)
+    assert [hit.document for hit in result.hits] == [document(i) for i in range(50)]
+    assert [hit.lexical_rank for hit in result.hits] == list(range(1, 51))
+    assert all(
+        hit.rrf_score is None and hit.vector_rank is None and hit.segment is None
+        for hit in result.hits
+    )
+    assert result.recipe_hash == core.QUESTION_LEXICAL_RECIPE.fingerprint
+    assert result.recipe_hash != SearchRecipe().fingerprint
+    assert result.timings.encoding == result.timings.vector == result.timings.fusion == 0
+
+
+def test_worker_can_run_question_lexical_without_loading_model(service):
+    async def run():
+        worker = SearchWorker(service)
+        try:
+            result = await worker.retrieve("Non", question_id=42)
+            assert len(result.hits) == 50
+            assert service.encoder.loads == 0 and service.encoder.queries == []
+        finally:
+            await worker.close()
+
+    asyncio.run(run())

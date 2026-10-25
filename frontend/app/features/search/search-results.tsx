@@ -52,8 +52,9 @@ export function SearchResults({
       )}
       {page.state === "empty" ? (
         <EmptyState>
-          Aucun résultat pour cette recherche. Essayez de préciser votre sujet
-          ou de reformuler votre question.
+          {questionScoped
+            ? "Aucun résultat pour cette recherche. Essayez d’autres mots-clés."
+            : "Aucun résultat pour cette recherche. Essayez de préciser votre sujet ou de reformuler votre question."}
         </EmptyState>
       ) : page.state === "sources_unavailable" ? (
         <EmptyState>
@@ -69,9 +70,15 @@ export function SearchResults({
               mb: "6",
             })}
           >
-            Une sélection de réponses classées par pertinence, parmi les
-            contributions du Grand Débat national. Ce n’est pas la totalité des
-            réponses du corpus.
+            {questionScoped ? (
+              "Une sélection limitée de réponses classées selon les mots recherchés. Elle ne représente pas toutes les correspondances dans les réponses à cette question."
+            ) : (
+              <>
+                Une sélection de réponses classées par pertinence, parmi les
+                contributions du Grand Débat national. Ce n’est pas la totalité
+                des réponses du corpus.
+              </>
+            )}
           </p>
           <ol
             aria-label="Réponses citoyennes"
@@ -186,8 +193,14 @@ export function SearchResults({
       />
       {!continuationError && !page.has_next && page.state !== "empty" && (
         <p className={secondary}>
-          Vous êtes à la fin de cette sélection. Précisez ou reformulez votre
-          recherche pour découvrir d’autres réponses.
+          {questionScoped ? (
+            "Vous êtes à la fin de cette sélection. Précisez ou modifiez vos mots-clés pour découvrir d’autres réponses."
+          ) : (
+            <>
+              Vous êtes à la fin de cette sélection. Précisez ou reformulez
+              votre recherche pour découvrir d’autres réponses.
+            </>
+          )}
         </p>
       )}
     </section>

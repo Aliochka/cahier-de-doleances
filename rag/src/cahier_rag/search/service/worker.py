@@ -35,7 +35,7 @@ class SearchWorker:
         # Le délai d'admission est inclus dans l'échéance absolue.
         budget.admission()
         with self._lock:
-            if self._closed or not self.service.ready:
+            if self._closed or (question_id is None and not self.service.ready):
                 raise SearchNotReady("Le moteur de recherche n'est pas prêt.")
             if self._pending >= 3:
                 raise SearchBusy("La file de recherche est pleine.")

@@ -172,3 +172,35 @@ def test_cancelled_api_keeps_worker_busy_and_other_endpoints_responsive(real_bac
             asyncio.run(scenario())
         finally:
             release.set()
+
+
+def test_question_h1_keeps_lexical_order_and_pages_without_encoding(
+    real_backend, request, monkeypatch
+):
+    from cahier_rag.search.service import core
+    from cahier_rag.search.service.core import H1LexicalSearch
+
+    store, _, documents = request.getfixturevalue("service_corpus")
+    qid = next(d.question_id for d in documents if d.unit_type.value == "open_answer")
+    reference = H1LexicalSearch(store).lexical("Non", question_id=qid)
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("Question search must not use BGE-M3, ANN or RRF")
+
+    with TestClient(app) as client:
+        wait_ready(real_backend)
+        monkeypatch.setattr(real_backend.worker.service, "_encode", forbidden)
+        monkeypatch.setattr(core, "ann_search", forbidden)
+        monkeypatch.setattr(core, "fuse", forbidden)
+        params = {"q": "Non", "question_id": str(qid), "page_size": 1}
+        response = client.get("/api/v1/search", params=params)
+        assert response.status_code == 200, response.text
+        first = response.json()
+        assert first["mode"] == "lexical"
+        assert first["items"][0]["answer_id"] == str(reference[0].document.answer_id)
+        assert first["has_next"]
+        monkeypatch.setattr(real_backend.worker, "retrieve", forbidden_retrieval)
+        second = client.get("/api/v1/search", params={**params, "cursor": first["next_cursor"]})
+        assert second.status_code == 200
+        assert second.json()["items"][0]["answer_id"] == str(reference[1].document.answer_id)
+        assert second.json()["items"][0]["question"]["id"] == str(qid)

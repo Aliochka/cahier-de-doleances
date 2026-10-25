@@ -83,9 +83,16 @@ export default function App() {
   const localSearchProgress =
     location.pathname === "/recherche" &&
     (!navigation.location || navigation.location.pathname === "/recherche");
+  const questionSearchProgress =
+    location.pathname.startsWith("/questions/") &&
+    (!navigation.location ||
+      navigation.location.pathname === location.pathname) &&
+    (new URLSearchParams(location.search).get("tab") === "search" ||
+      new URLSearchParams(navigation.location?.search).get("tab") === "search");
   return (
     <>
       {!localSearchProgress &&
+        !questionSearchProgress &&
         !progressiveNavigation &&
         (navigation.state !== "idle" || revalidator.state !== "idle") && (
           <PageContainer>

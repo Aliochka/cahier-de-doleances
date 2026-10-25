@@ -9,6 +9,7 @@ import time
 from collections import OrderedDict
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
+from typing import Literal
 
 
 class CursorError(ValueError):
@@ -82,6 +83,7 @@ class Snapshot:
     retrieval_depth: int
     cards: tuple[CardReference, ...]
     omitted: int = 0
+    mode: Literal["hybrid", "lexical"] = "hybrid"
 
 
 class SnapshotCache:

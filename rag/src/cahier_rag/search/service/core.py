@@ -67,6 +67,31 @@ class SearchRecipe:
 
 
 @dataclass(frozen=True)
+class QuestionLexicalRecipe:
+    depth: int = 50
+    result_limit: int = 50
+    version: str = "h1-question-lexical-v1-ts-rank"
+
+    def __post_init__(self):
+        if (
+            type(self.depth) is not int
+            or not 1 <= self.depth <= 100
+            or type(self.result_limit) is not int
+            or not 1 <= self.result_limit <= self.depth
+        ):
+            raise ValueError(
+                "Profondeur lexicale entre 1 et 100, sortie au plus égale à la profondeur."
+            )
+
+    @property
+    def fingerprint(self):
+        return fingerprint(asdict(self))
+
+
+QUESTION_LEXICAL_RECIPE = QuestionLexicalRecipe()
+
+
+@dataclass(frozen=True)
 class Segment:
     index: int
     representation_id: str
@@ -79,7 +104,7 @@ class Hit:
     # TextUnit est immuable et distingue les IDs historiques de document_id.
     # Ce contrat interne n'est pas une réponse JSON publique.
     document: TextUnit
-    rrf_score: float
+    rrf_score: float | None
     lexical_rank: int | None
     vector_rank: int | None
     segment: Segment | None
@@ -130,6 +155,7 @@ class HybridSearch:
             raise ValueError("Une SearchRecipe immuable est requise.")
         self.reader, self.encoder = reader, encoder
         self.recipe = recipe
+        self.question_recipe = QUESTION_LEXICAL_RECIPE
         self._lock = threading.Lock()
         self.ready = False
         self.closed = False
@@ -161,13 +187,60 @@ class HybridSearch:
         item = EmbeddingInput("query", query, hashlib.sha256(query.encode()).hexdigest())
         return next(self.encoder.encode_queries([item])).vectors[0]
 
+    def retrieve_question(self, query, *, question_id, budget=None):
+        """Same H1 lexical ranking, with no encoding, vector lookup or RRF."""
+        try:
+            validate_id(question_id, "question_id")
+        except ValueError as exc:
+            raise InvalidQuery(str(exc)) from None
+        query = validate_query(query)
+        if not self._lock.acquire(blocking=False):
+            raise SearchBusy("Un calcul de recherche est déjà en cours.")
+        try:
+            if self.closed:
+                raise SearchNotReady("Le moteur de recherche est arrêté.")
+            recipe = self.question_recipe
+            budget = budget or Budget()
+            started = time.monotonic()
+            with budget.monitor():
+                with budget.phase("corpus"):
+                    generation = self.reader.validate(budget)
+                validated = time.monotonic()
+                lexical = H1LexicalSearch(
+                    self.reader.store(budget), statistics=True, prefilter=None
+                )
+                with budget.phase("sql", 10):
+                    try:
+                        results = lexical.lexical(
+                            query, limit=recipe.depth, question_id=question_id
+                        )
+                    except ValueError as exc:
+                        if str(exc) == "Au plus 32 lexèmes significatifs.":
+                            raise InvalidQuery(str(exc)) from None
+                        raise
+                ended = time.monotonic()
+            return Ranking(
+                generation,
+                tuple(
+                    Hit(result.document, None, rank, None, None)
+                    for rank, result in enumerate(results[: recipe.result_limit], 1)
+                ),
+                Timings(validated - started, 0.0, ended - validated, 0.0, 0.0, ended - started),
+                recipe.fingerprint,
+                recipe.version,
+            )
+        except SearchNotReady:
+            self.ready = False
+            raise
+        except ValueError:
+            raise SearchNotReady("Corpus ou résultats de recherche incompatibles.") from None
+        finally:
+            self._lock.release()
+
     def retrieve(self, query, *, budget=None, question_id=None):
         if question_id is not None:
-            try:
-                validate_id(question_id, "question_id")
-            except ValueError as exc:
-                raise InvalidQuery(str(exc)) from None
-        filters = {"question_id": question_id} if question_id is not None else {}
+            return self.retrieve_question(query, question_id=question_id, budget=budget)
+        filters = {}
         query = validate_query(query)
         if not self._lock.acquire(blocking=False):
             raise SearchBusy("Un calcul de recherche est déjà en cours.")

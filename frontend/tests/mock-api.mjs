@@ -445,8 +445,10 @@ const server = createServer((request, response) => {
               : empty
                 ? "empty"
                 : "results",
-          mode: "hybrid",
-          recipe_version: "h1-test-v1",
+          mode: questionId ? "lexical" : "hybrid",
+          recipe_version: questionId
+            ? "h1-question-lexical-test-v1"
+            : "h1-test-v1",
           items,
           page_size: pageSize,
           has_next: !next && !empty,

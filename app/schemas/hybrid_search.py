@@ -60,7 +60,7 @@ class HybridWarning(BaseModel):
 class HybridSearchPage(BaseModel):
     q: str
     state: Literal["idle", "results", "empty", "sources_unavailable"]
-    mode: Literal["hybrid"] = "hybrid"
+    mode: Literal["hybrid", "lexical"] = "hybrid"
     recipe_version: str
     items: list[HybridAnswer]
     page_size: int = Field(ge=1, le=20)

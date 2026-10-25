@@ -77,7 +77,9 @@ export function SearchPanel({
           </h2>
           <Alert variant="error" announcement="assertive">
             {["server_timeout", "timeout"].includes(failure.kind)
-              ? "La recherche prend trop de temps. Réessayez ou précisez votre question."
+              ? state.path
+                ? "La recherche prend trop de temps. Réessayez ou précisez vos mots-clés."
+                : "La recherche prend trop de temps. Réessayez ou précisez votre question."
               : errorMessages[failure.kind]}
           </Alert>
           <Form
@@ -119,8 +121,15 @@ export function SearchPanel({
               (otherOnly
                 ? "La recherche porte uniquement sur les précisions libres « Autre » de cette question. "
                 : "La recherche porte uniquement sur les réponses à cette question. ")}
-            Demandez par exemple « Quelles difficultés rencontrent les habitants
-            des zones rurales ? », ou saisissez simplement « Pouvoir d’achat ».
+            {state.path ? (
+              "Saisissez des mots-clés, par exemple « transports publics » ou « pouvoir d’achat ». La recherche plein texte tient compte des formes des mots en français."
+            ) : (
+              <>
+                Demandez par exemple « Quelles difficultés rencontrent les
+                habitants des zones rurales ? », ou saisissez simplement «
+                Pouvoir d’achat ».
+              </>
+            )}
           </p>
           <p
             className={css({

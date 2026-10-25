@@ -115,3 +115,16 @@ it("transmet le filtre question sans convertir les BIGINT en nombres", async () 
     })}`,
   );
 });
+
+it("accepte le mode lexical pour la réponse d’une recherche par question", async () => {
+  const lexical = { ...page, mode: "lexical" as const };
+  const transport = vi
+    .fn<typeof fetch>()
+    .mockResolvedValue(Response.json(lexical));
+  expect(
+    await createPublicApi("", transport).search({
+      q: page.q,
+      question_id: "293",
+    }),
+  ).toEqual({ ok: true, data: lexical });
+});
