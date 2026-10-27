@@ -1,0 +1,58 @@
+{
+  "10": [
+    2,
+    "/TEI.2/text/body/div1/div2[15]/div3[1]/p[83]"
+  ],
+  "18": [
+    2,
+    "/TEI.2/text/body/div1/div2[38]/div3[6]/p[1]"
+  ],
+  "21": [
+    2,
+    "/TEI.2/text/body/div1/div2[43]/div3[3]/p[23]"
+  ],
+  "25": [
+    2,
+    "/TEI.2/text/body/div1/div2[50]/div3[2]/p[6]"
+  ],
+  "26": [
+    2,
+    "/TEI.2/text/body/div1/div2[51]/div3[1]/p[2]"
+  ],
+  "41": [
+    3,
+    "/TEI.2/text/body/div1/div2[27]/div3[9]/p[241]"
+  ],
+  "46": [
+    3,
+    "/TEI.2/text/body/div1/div2[45]/div3[1]/p[59]"
+  ],
+  "49": [
+    4,
+    "/TEI.2/text/body/div1/div2[16]/div3[3]/p[129]"
+  ],
+  "54": [
+    4,
+    "/TEI.2/text/body/div1/div2[18]/div3[159]/p[117]"
+  ],
+  "56": [
+    4,
+    "/TEI.2/text/body/div1/div2[18]/div3[169]/p[61]"
+  ],
+  "60": [
+    4,
+    "/TEI.2/text/body/div1/div2[18]/div3[230]"
+  ],
+  "73": [
+    5,
+    "/TEI.2/text/body/div1/div2[7]/div3/p[128]"
+  ],
+  "76": [
+    5,
+    "/TEI.2/text/body/div1/div2[17]/div3[4]"
+  ],
+  "89": [
+    6,
+    "/TEI.2/text/body/div1/div2[17]/div3[35]/p[76]"
+  ]
+}

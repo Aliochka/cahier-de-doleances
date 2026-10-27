@@ -1,0 +1,216 @@
+{
+  "method": "Head starts CAHIER singular; absence notices: body length<1100 plus keywords. Not a document census. Duplicates: whitespace-folded division text.",
+  "volumes": [
+    {
+      "volume": "1",
+      "starts_cahier": 18,
+      "short_absence_notice_candidates": 1,
+      "article_start_paragraphs_in_starts_cahier": 554,
+      "absence_notices": [
+        {
+          "volume": "1",
+          "xpath": "/TEI.2/text/body/div1/div2[8]/div3[1]",
+          "head": "CAHIER DE L'ORDRE DU CLERGÉ.",
+          "body": "(Il notls a été impossible jusqu'à ce jour de trouver ce cahier.\" — M. Tartière, archiviste des Landes, nous assure qu'il n'existe ni dans les archives de Mont-de-Marsan, ni dans les archives des villes du département. M. le baron de Cauna, auteur de l'Armoriai des Landes, n'a pas été plus heureux que nous dans ses investigations sur le même sujet. — Nos recherches continuent et nous publierons plus tard ce cahier si nous parvenons à le découvrir, j m, e. l.)"
+        }
+      ]
+    },
+    {
+      "volume": "2",
+      "starts_cahier": 168,
+      "short_absence_notice_candidates": 10,
+      "article_start_paragraphs_in_starts_cahier": 5209,
+      "absence_notices": [
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[6]/div3[3]",
+          "head": "CAHIER Des plaintes et doléances du tiers-état de la province d'Artois.",
+          "body": "nota. Il nous a été impossible jusqu'à ce jour de nous procurer le cahier du tiers-état d'Artois qui ne se trouve ni aux Archives de l'empire, ni aux archiv es départementales à Arras Nos recherches continuent, et plus tard nous donnerons cette pièce si nous parvenons à la découvrir."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[18]/div3[2]",
+          "head": "CAHIER DE LA NOBLESSE ET DU TIERS-ÉTAT DU BÉARN.",
+          "body": "Nota. C s deux cahiers nous manquent encore : nous les insérerons en supplément lorsqu'ils nous seront parvenus."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[23]/div3[2]",
+          "head": "CAHIER De la noblesse du bailliage de Besançon.",
+          "body": "Nota. Il nous a été impossible jusqu'à ce jour de trouver ce cahier: nous le donnerons plus tard si nous parvenons à nous le procurer."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[24]/div3[3]",
+          "head": "CAHIER",
+          "body": "Du tiers-état de la sénéchaussée de Béziers. nota. Ce cahier manque aux Archives de l'Empire -nous 1 avons demandé à Montpellier et à Béziers. Nous t insérerons plus tard, si nous parvenons à le découvrir."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[25]/div3[2]",
+          "head": "CAHIER",
+          "body": "De la noblesse de la sénéchaussée de Bigorre. Nota. Ce cahier manque aux Archives de l'Empire : nous le donnerons plus tard, si nous parvenons à nous le procurer."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[32]/div3[3]",
+          "head": "CAHIER",
+          "body": "Du tiers-état de la province du Bugey et Val-romey. Nota. Ce cahier nous manque jusqu'à ce jour. Nous l'insérerons aussitôt qu'il nous sera parvenu."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[35]/div3[1]",
+          "head": "CAHIER Du clergé de Cambrai et du Cambrésis.",
+          "body": "Nota. Ce cahier ne se Irouve pas aux Archives de l'Empire. Nous le faisons demander à Cambrai et à Lille; mais afin de ne pas interrompre notre publicaiion, nous prévenons nos souscripteurs que cette pièce sera insérée dans le Supplément qui terminera le recueil des cahiers."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[36]/div3[1]",
+          "head": "CAHIER",
+          "body": "Des plaintes et doléances du clergé de la sénéchaussée de CarcasSônne. Nota. Ce cahier manque aux Archives de l'Empire. Nous ië faisons rechercher à Carcassonne, et, afin de ne pâs iritëfrompre notre' publication, nous le donnerons plus tard dans lé Supplément qui tërmirlerà le rectieil des cahiers."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[47]/div3[1]",
+          "head": "CAHIER De l'ordre du clergé du bailliage du Château-Thierry.",
+          "body": "Nota. Ce cahier manque aux Archives de l'Empire. Nous l'avons fait demander sans succès à Château-Thierry et à Laon. Nos recherches continuent et nous l'insérerons dans le Supplément qui terminera le recueil des cahiers, si nous parvenons à le découvrir."
+        },
+        {
+          "volume": "2",
+          "xpath": "/TEI.2/text/body/div1/div2[48]/div3[2]",
+          "head": "CAHIER Des plaintes et doléances de la noblesse de la sénéchaussée de Châtellerault.",
+          "body": "Nota. Ce cahier mangue aux Archives de l'Empire. On doit nous l'envoyer de Poitiers; mais afin de ne pas arrêter l'impression des Archives parlementaires, nous l'insérerons dans le Supplément qui terminera le recueil des cahiers."
+        }
+      ]
+    },
+    {
+      "volume": "3",
+      "starts_cahier": 161,
+      "short_absence_notice_candidates": 3,
+      "article_start_paragraphs_in_starts_cahier": 4174,
+      "absence_notices": [
+        {
+          "volume": "3",
+          "xpath": "/TEI.2/text/body/div1/div2[25]/div3[3]",
+          "head": "CAHIER Des plaintes et doléances de la noblesse PEtampes.",
+          "body": "Nota. Ce cahier mangue aux Archives de l'Empires nous le demandons à Etampes et à Versailles et nous l'insérerons dans le Supplément qui terminera notre re- cueil."
+        },
+        {
+          "volume": "3",
+          "xpath": "/TEI.2/text/body/div1/div2[33]/div3[4]",
+          "head": "CAHIER De l'ordre du tiers-état du bailliage de Labourt.",
+          "body": "NOTA- ce cahier manque aux archives de l'Empire. Nous lé demanderons à ustafiiz ét à Pau. Si nous par- venons à nous le procurer, nous l'insérerons dans le Supplément qui terminera le Recueil des cahiers."
+        },
+        {
+          "volume": "3",
+          "xpath": "/TEI.2/text/body/div1/div2[41]/div3[2]",
+          "head": "CAHIER Des plaintes et doléances du clergé de la sénéchaus- sée de Limoux.",
+          "body": "Nota. Ce cahier manque aux Archives de l'Empire : Nous le demandons à Limoux, et, afin de ne pas inter- rompre le cours de notre publication, nous ne l'insér- erons que dans le Supplément qui terminera le Recueil des cahiers."
+        }
+      ]
+    },
+    {
+      "volume": "4",
+      "starts_cahier": 333,
+      "short_absence_notice_candidates": 3,
+      "article_start_paragraphs_in_starts_cahier": 7090,
+      "absence_notices": [
+        {
+          "volume": "4",
+          "xpath": "/TEI.2/text/body/div1/div2[3]/div3[2]",
+          "head": "CAHIER Des plaintes et doléances de la noblesse de la sene-chaussée de Mont-de-Marsan.",
+          "body": "Nota. Ce cahier ne se trouve ni anx Archives de l'Empire, ni aux Archives de Mont-de-Marsan. M. Tar-tière, l'érudit archiviste des Landes, n'a pu le retrouver jusqu'à ce jour. Si nous parvenons à le découvrir, nous l'insérerons dans le Supplément qui terminera notre Recueil."
+        },
+        {
+          "volume": "4",
+          "xpath": "/TEI.2/text/body/div1/div2[8]/div3[1]",
+          "head": "CAHIER Des plaintes et doléances de Vordre du clergé du bailliage de Nancy.",
+          "body": "Nota. Ce cahier manque aux Archives de l'Empire. Nous le faisons rechercher en Lorraine, et, si nous parvenons à le découvrir, nous l'insérerons dans le Supplément qui terminera le Recueil des cahiers."
+        },
+        {
+          "volume": "4",
+          "xpath": "/TEI.2/text/body/div1/div2[8]/div3[3]",
+          "head": "CAHIER Des plaintes et doléances de Vordre du tiers-état du bailliage de Nancy.",
+          "body": "nota. Ce cahier manque aux Archives de l'Empire. Nous le faisons rechercher en Lorraine et) si nous par-vénons à le découvrir, nous l'insérerons dans le Supplément qui terminera lé Recueil des cahiers."
+        }
+      ]
+    },
+    {
+      "volume": "5",
+      "starts_cahier": 282,
+      "short_absence_notice_candidates": 5,
+      "article_start_paragraphs_in_starts_cahier": 7053,
+      "absence_notices": [
+        {
+          "volume": "5",
+          "xpath": "/TEI.2/text/body/div1/div2[1]/div3[123]",
+          "head": "CAHIER",
+          "body": "Des remontrances de la paroisse de Vicq (1), Les habitants de cette paroisse, étant de la justice de Neauphle-Pontchartrain, déclarent qu’ils s’en rapportent au cahier fait et dirigé audit Neauphle, dont la coihmunication a été prise ; et qu’il soit exigé une justice royale audit Neauphle, à l’exception du dernier article, où il a été omis que le manque de récolte n’avait pas permis aux habitants de cette paroisse de participer à la faveur des autres paroisses grêlées, puisqu’ils n’en ont pas pour eux et leur familles, et qu’on est obligé d’en acheter à haut prix, et jusqu’à la récolte qui ne se présente pas avantageusement. Signé Ledieu; Nicolas Requin; Etienne Roc- (1) Nous publions ce cahier d’après un manuscrit des Archives de l’Empire. quet ; J.-B. Mailler, Martin Pauver ; Claude Rousseau ; Jean-Baptiste Vian ; Nicolas Dijon ; Martin Mamare; Prévost; P. Pelar; François-Thomas Hérard ; Gui ; Anceaume. Certifié véritable ; signé et paraphé ne varietur par nous, avocat soussigné , au désir de procès-verbal de nomination de cejourd’hui 15 avril 1789. Signé Lhormeaü."
+        },
+        {
+          "volume": "5",
+          "xpath": "/TEI.2/text/body/div1/div2[4]/div3[1]",
+          "head": "CAHIER",
+          "body": "Des platines et doléances de Vordre du clergé delà sénéchaussée du Périgord. Nota. Nous n’avons pu, jusqu’f, çe jour, pops procurer ce natner qui manque aux Archives de l’Einpire. Lps archives de la préfecture de la Djoi'dogne possèdent le rocès-v.erbal des séances de l’ordre du clergé ; mais ce ocumerit, qui constate un désaccord marqué entre l’é-vêque de Périgueux et son clergé, n’est point suivi du cahier."
+        },
+        {
+          "volume": "5",
+          "xpath": "/TEI.2/text/body/div1/div2[11]/div3[2]",
+          "head": "CAHIER",
+          "body": "De l’ordre de la noblesse de la sénéchaussée de Puy en Velay. Nota. Ce cahier manque aux Archives de l’Empire. Nous l’insérerons dans le Supplément qui terminera notre Recueil, s’il nous est possible de nous le procurer."
+        },
+        {
+          "volume": "5",
+          "xpath": "/TEI.2/text/body/div1/div2[25]/div3[4]",
+          "head": "CAHIER",
+          "body": "Des plaintes et doléances de l’ordre du tiers-état du bailliage de Sarreguemines. Nota. Ce cahier ne se trouve pas aux Archives de l’Empire. Nous le faisons rechercher dans le département de la Moselle et nous l’insérerons dans le Supplément qui terminera le Recueil des cahiers, si nous parvenons à le retrouver."
+        },
+        {
+          "volume": "5",
+          "xpath": "/TEI.2/text/body/div1/div2[29]/div3[5]",
+          "head": "CAHIER",
+          "body": "Des plaintes et doléances de Vordre du tiers-état des bailliages de Sézanne et Châtillon. Nota. Ce cahier manque aux Archives de l’Empire. Nous l’insérerons dans le Supplément qui terminera le recueil des cahiers, si nous parvenons à le retrouver dans les archives du département de la Marne."
+        }
+      ]
+    },
+    {
+      "volume": "6",
+      "starts_cahier": 178,
+      "short_absence_notice_candidates": 5,
+      "article_start_paragraphs_in_starts_cahier": 3788,
+      "absence_notices": [
+        {
+          "volume": "6",
+          "xpath": "/TEI.2/text/body/div1/div2[4]/div3[2]",
+          "head": "CAHIER Des plaintes et doléances du clergé de la sénéchaussée de Dombes.",
+          "body": "Nota. Ce document n'existe pas aux Archives de VEmpire. Nous le demandons à Trévoux et nous l'insérerons ultérieurement si nous parvenons à nous le procurer."
+        },
+        {
+          "volume": "6",
+          "xpath": "/TEI.2/text/body/div1/div2[9]/div3[2]",
+          "head": "CAHIER",
+          "body": "De l'ordre du tiers-état du bailliage de Verdun. Nota. Ce cahier ne se trouve pas aux Archives de l'Empire. Nous le demandons à Verdun, et nous l'insérerons ultérieurement si nous parvenons à nous le procurer."
+        },
+        {
+          "volume": "6",
+          "xpath": "/TEI.2/text/body/div1/div2[11]/div3[2]",
+          "head": "CAHIER Des plaintes et doléances de l'ordre du clergé de la sénéchaussée de Villefranche de Rouergue.",
+          "body": "Nota. Ce document ne se trouve pas aux Archives de VEmpire. Nous le demandons à Vdlefranche et nous l'insérerons ultérieurement si nous parvenons à le découvrir."
+        },
+        {
+          "volume": "6",
+          "xpath": "/TEI.2/text/body/div1/div2[14]/div3[3]",
+          "head": "CAHIER Des plaintes et doléances de l'ordre de la noblesse du bailliage de Vitry-le-François.",
+          "body": "Nota. Ce cahier manque aux Archives de l'Empire. Nôiis le demandons à Vitry-le-Frànçoi's'et nous l'insérerons ultérieurement si nous parvenons à* ié'découvrir."
+        },
+        {
+          "volume": "6",
+          "xpath": "/TEI.2/text/body/div1/div2[17]/div3[94]",
+          "head": "CAHIER Des doléances de la généralité des laboureurs et ménagers de Saint-Marcel, pour servir à la rédaction du cahier du tiers-état de la sénéchaussée d'Aix (1).",
+          "body": "Nous déclarons nous conformer pour l'intérêt général du royaume, soit pour l'intérêt particulier, a ce qui a été déterminé parles habitants composant le tiers-état du terroir de Marseille. Signé François Jouvin; Dache; Bourget; Pierre Fabre; Joseph Fabre; François Cosan; Conte; Joseph L'Haumery; Louis Camois ; J. Cauaier; M.-L. Carbonnel; L. Guende;Roch Lieutaud; François Parai; Jean-PierreCouliet; Hyacinthe Camon; Lazare Pignatel ; Pierre Durbec ; Louis Rey ; Etienne Aztufel; Cissos-Genunger ; Dominique Ollivier; J. Jouvin; E.-J.-F. Carbonnel; Toussaint Olive; Michel Darby; Jean-Louis Durbec; Victor Camoiry; Jean Saint-Marcel; Hamoin; Antoine Reimey; B. Baille; Guillaume Paul; Jean Sortufel; Xean-Pierre Portai; Pierre Lieutaud; Jean-Baptiste Car-vin; L. Long; Hourler; Jean-Baptiste Bremond ;' Chnstol Ollive; Jean Long; Jean Ghabron : Thomas Baron ; Antoine Sardon ; P. Mal Jet: Jèan-Jo-seph Dusbre ; Antoine Ghaberg ; Joseph Paul ; Jean Chabert; Etienne Long ; Jean Ghaizeau ; Joseph Caillot, viguier ; Jean-Baptiste Long ; J.-B. Long. Paraphé ne varietur, Signé REy, notaire."
+        }
+      ]
+    }
+  ],
+  "identical_division_groups": []
+}

@@ -1,0 +1,4408 @@
+{
+  "reviewer": "Codex ; revue documentaire assistée, aucune validation humaine historienne",
+  "sample": "sélection raisonnée de structures ; non probabiliste",
+  "documents": [
+    {
+      "key": "agen-clerge",
+      "volume": 1,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[6]/div3[1]"
+      ],
+      "title_display": "Clergé d’Agenois",
+      "estate": "clergé",
+      "locality": null,
+      "date": "1789-03-23",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Titre en head et p[1] ; territoire repris du sous-titre, sans géocodage.",
+      "date_provenance": "p157 Fait et arrêté ; p180 approbation le même jour",
+      "selection_reason": "articles multi-paragraphes ; sept initiaux",
+      "previous_audit": true,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 3,
+          "last": 4,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 70,
+          "last": 71,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 126,
+          "last": 127,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 155,
+          "last": 156,
+          "role": "mandate"
+        },
+        {
+          "division": 0,
+          "first": 157,
+          "last": 157,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 158,
+          "last": 179,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 180,
+          "last": 181,
+          "role": "approval_signatures"
+        },
+        {
+          "division": 0,
+          "first": 182,
+          "last": 182,
+          "role": "protest_appendix"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 5,
+          "last": 23,
+          "units": [
+            {
+              "division": 0,
+              "first": 5,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 15,
+              "last": 17,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 18,
+              "last": 19,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 20,
+              "last": 21,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 22,
+              "last": 23,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article",
+              "label_length": 7
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "arf. 9 conservé ; frontière reconnue par inspection, pas correction du texte."
+        }
+      ],
+      "territory": "Sénéchaussée d’Agenois"
+    },
+    {
+      "key": "agen-noblesse",
+      "volume": 1,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[6]/div3[2]"
+      ],
+      "title_display": "Noblesse d’Agenois",
+      "estate": "noblesse",
+      "locality": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "long ; signatures étendues",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 2,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 3,
+          "last": 17,
+          "role": "preamble_with_quotation"
+        },
+        {
+          "division": 0,
+          "first": 39,
+          "last": 45,
+          "role": "mandate"
+        },
+        {
+          "division": 0,
+          "first": 120,
+          "last": 120,
+          "role": "mandate"
+        },
+        {
+          "division": 0,
+          "first": 121,
+          "last": 123,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 134,
+          "last": 135,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 155,
+          "last": 156,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 162,
+          "last": 165,
+          "role": "mandate"
+        },
+        {
+          "division": 0,
+          "first": 166,
+          "last": 166,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 167,
+          "last": 175,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 46,
+          "last": 49,
+          "units": [
+            {
+              "division": 0,
+              "first": 46,
+              "last": 47,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 48,
+              "last": 48,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 49,
+              "last": 49,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Fin du 3° avant le 4° p50 ; longue sous-liste du 4° hors fenêtre."
+        }
+      ],
+      "territory": "Sénéchaussée d’Agenois"
+    },
+    {
+      "key": "agen-tiers",
+      "volume": 1,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[6]/div3[3]"
+      ],
+      "title_display": "Tiers état d’Agenois",
+      "estate": "tiers état",
+      "locality": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "long ; en-tête courant OCR dans un paragraphe",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 2,
+          "last": 7,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 8,
+          "last": 8,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 52,
+          "last": 52,
+          "role": "editorial_running_header"
+        },
+        {
+          "division": 0,
+          "first": 77,
+          "last": 78,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 79,
+          "last": 81,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 80,
+          "last": 80,
+          "role": "editorial_running_header"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 9,
+          "last": 18,
+          "units": [],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Prose non numérotée ; aucune frontière d’article certifiée dans cette fenêtre."
+        }
+      ],
+      "territory": "Sénéchaussée d’Agenois"
+    },
+    {
+      "key": "alencon-clerge",
+      "volume": 1,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[9]/div3[1]"
+      ],
+      "title_display": "Clergé d’Alençon",
+      "estate": "clergé",
+      "locality": null,
+      "date": "1789-03-27",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p2 Du27 mars 1789",
+      "selection_reason": "long ; clôture et collation",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 2,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 3,
+          "last": 3,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 4,
+          "last": 4,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 10,
+          "last": 10,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 22,
+          "last": 22,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 38,
+          "last": 38,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 44,
+          "last": 44,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 65,
+          "last": 65,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 76,
+          "last": 76,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 80,
+          "last": 80,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 90,
+          "last": 90,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 101,
+          "last": 101,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 109,
+          "last": 109,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 114,
+          "last": 114,
+          "role": "mandate"
+        },
+        {
+          "division": 0,
+          "first": 115,
+          "last": 115,
+          "role": "certification"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 5,
+          "last": 9,
+          "units": [
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": "Bailliage principal d’Alençon"
+    },
+    {
+      "key": "alencon-noblesse",
+      "volume": 1,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[9]/div3[2]"
+      ],
+      "title_display": "Noblesse d’Alençon",
+      "estate": "noblesse",
+      "locality": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "long ; listes de députés",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 62,
+          "last": 62,
+          "role": "editorial_running_header"
+        },
+        {
+          "division": 0,
+          "first": 102,
+          "last": 102,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 103,
+          "last": 106,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 107,
+          "last": 108,
+          "role": "deputies"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 10,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": "Art. 3.",
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Article 3 et suite sans numéro non certifiés : fenêtre arrêtée exactement avant Art. 3. dans p10.",
+          "end_quote": "Art. 3."
+        }
+      ],
+      "territory": "Bailliage d’Alençon"
+    },
+    {
+      "key": "angoumois-noblesse",
+      "volume": 2,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[2]"
+      ],
+      "title_display": "Noblesse d’Angoumois",
+      "estate": "noblesse",
+      "locality": "Angoulême",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Sous-titre en head[2] ; localité = lieu de réunion mentionné, pas une juridiction moderne.",
+      "date_provenance": "Titre : les 16, 17, 18, 19 et jours suivants de mars 1789 ; ne pas transformer en date unique.",
+      "selection_reason": "article-charte et sous-listes ; sept initiaux",
+      "previous_audit": true,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 20,
+          "last": 20,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 99,
+          "last": 99,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 100,
+          "last": 100,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 101,
+          "last": 101,
+          "role": "certification"
+        },
+        {
+          "division": 0,
+          "first": 29,
+          "last": 29,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 50,
+          "last": 50,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 69,
+          "last": 69,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 6,
+          "last": 6,
+          "role": "internal_subheading"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 20,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 19,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "p20 Administration est un intitulé du groupe suivant, pas le texte de l’article 4. Rectifie le périmètre expérimental précédent."
+        },
+        {
+          "division": 0,
+          "first": 41,
+          "last": 43,
+          "units": [
+            {
+              "division": 0,
+              "first": 41,
+              "last": 43,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "Réexamen XML complet des p40–44 ; reprise du quatrième passage de l’audit précédent.",
+          "comment": "Article17 sur trois paragraphes, entre les débuts explicites16 et18."
+        }
+      ],
+      "territory": "Province d’Angoumois"
+    },
+    {
+      "key": "anjou-clerge",
+      "volume": 2,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[2]/div3[1]",
+        "/TEI.2/text/body/div1/div2[2]/div3[2]",
+        "/TEI.2/text/body/div1/div2[2]/div3[3]"
+      ],
+      "title_display": "Clergé d’Anjou",
+      "estate": "clergé",
+      "locality": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "trois divisions ; chapitres et reprises de numérotation",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "preamble"
+        },
+        {
+          "division": 1,
+          "first": 1,
+          "last": 1,
+          "role": "section_heading"
+        },
+        {
+          "division": 2,
+          "first": 1,
+          "last": 1,
+          "role": "section_heading"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 8,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        },
+        {
+          "division": 1,
+          "first": 2,
+          "last": 5,
+          "units": [
+            {
+              "division": 1,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        },
+        {
+          "division": 2,
+          "first": 2,
+          "last": 5,
+          "units": [
+            {
+              "division": 2,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        },
+        {
+          "division": 0,
+          "first": 17,
+          "last": 18,
+          "units": [
+            {
+              "division": 0,
+              "first": 17,
+              "last": 18,
+              "start_quote": null,
+              "end_quote": "16°",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 18,
+              "last": 18,
+              "start_quote": "16°",
+              "end_quote": "17°",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 18,
+              "last": 18,
+              "start_quote": "17°",
+              "end_quote": "18°",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 18,
+              "last": 18,
+              "start_quote": "18°",
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "Lecture complète des p17–18 et image téléchargée : changement de colonne, puis quatre articles dans deux paragraphes.",
+          "comment": "15° continue au haut de la colonne droite ; 16°–18° sont des articles distincts réunis dans p18."
+        }
+      ],
+      "territory": "Province d’Anjou"
+    },
+    {
+      "key": "annonay-clerge",
+      "volume": 2,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[3]/div3[1]"
+      ],
+      "title_display": "Clergé d’Annonay",
+      "estate": "clergé",
+      "locality": null,
+      "date": "1789-03-26",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p31 Ainsi arrêté",
+      "selection_reason": "articles ; signatures coupées entre paragraphes",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 31,
+          "last": 31,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 32,
+          "last": 34,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 12,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": "Art. 10.",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": "Art. 10.",
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": "Sénéchaussée d’Annonay"
+    },
+    {
+      "key": "beaujolais-noblesse",
+      "volume": 2,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[19]/div3[2]"
+      ],
+      "title_display": "Noblesse du Beaujolais",
+      "estate": "noblesse",
+      "locality": null,
+      "date": "1789-03-19",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "head séance du 19 mars",
+      "selection_reason": "articles puis demandes particulières numérotées",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 27,
+          "last": 27,
+          "role": "section_introduction"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 16,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": "Art. 14.",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 14,
+              "start_quote": "Art. 14.",
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 15,
+              "last": 16,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": "Sénéchaussée du Beaujolais"
+    },
+    {
+      "key": "lawastine-tiers",
+      "volume": 2,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[14]/div3[9]"
+      ],
+      "title_display": "Tiers état de Lawastine",
+      "estate": "tiers état",
+      "locality": "Lawastine",
+      "date": "1789-03-29",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p1 assemblée du 29 mars ; p8 renvoie à cette date",
+      "selection_reason": "court ; numérotation ordinale",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title_preamble"
+        },
+        {
+          "division": 0,
+          "first": 7,
+          "last": 7,
+          "role": "mandate"
+        },
+        {
+          "division": 0,
+          "first": 8,
+          "last": 8,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 9,
+          "last": 9,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 6,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": "3°",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 4,
+              "start_quote": "3°",
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "colmar-ville",
+      "volume": 3,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[3]"
+      ],
+      "title_display": "Ville de Colmar",
+      "estate": null,
+      "locality": "Colmar",
+      "date": "1789-03-24",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Localité dans head[2] ; territoire = contexte div2. Aucun ordre explicite dans le titre de ce cahier : laissé nul.",
+      "date_provenance": "p[57] : fait, lu et interprété ... le 24 mars 1789. La date balisée 27 avril en p[61] est une collation, pas la rédaction. Le div3 inclut aussi un supplément traduit de l’allemand en mai.",
+      "selection_reason": "article sans numéro ; sous-listes ; supplément ; sept initiaux",
+      "previous_audit": true,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 54,
+          "last": 54,
+          "role": "reservation"
+        },
+        {
+          "division": 0,
+          "first": 57,
+          "last": 58,
+          "role": "closure_signatures"
+        },
+        {
+          "division": 0,
+          "first": 59,
+          "last": 63,
+          "role": "certification"
+        },
+        {
+          "division": 0,
+          "first": 64,
+          "last": 65,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 66,
+          "last": 70,
+          "role": "supplement_body"
+        },
+        {
+          "division": 0,
+          "first": 71,
+          "last": 72,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 73,
+          "last": 73,
+          "role": "translation_certification"
+        },
+        {
+          "division": 0,
+          "first": 74,
+          "last": 83,
+          "role": "notarial_certification"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [
+        "Supplément rédigé en allemand puis traduction française certifiée : source de mai distincte du corps de mars ; pas modernisation. Subdivisions du supplément non validées."
+      ],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 15,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 15,
+              "last": 15,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Sous-listes 1°…4° à l’intérieur des articles, jamais articles indépendants. Art. sans numéro p3 conservé."
+        }
+      ],
+      "territory": "Districts de Colmar et Schlestadt"
+    },
+    {
+      "key": "ribaucourt",
+      "volume": 3,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[22]/div3[9]"
+      ],
+      "title_display": "Communauté de Ribaucourt",
+      "estate": null,
+      "locality": "Ribaucourt",
+      "date": "1789-03-18",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p15 Ainsi fait et arrêté",
+      "selection_reason": "numérotation ordinale ; communauté",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 14,
+          "last": 14,
+          "role": "mandate"
+        },
+        {
+          "division": 0,
+          "first": 15,
+          "last": 15,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 16,
+          "last": 17,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 13,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article",
+              "label_length": 5
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Dernier marqueur i lfl illisible ; pas de numéro historique reconstruit."
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "flines",
+      "volume": 3,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[22]/div3[14]"
+      ],
+      "title_display": "Habitants de Flines",
+      "estate": null,
+      "locality": "Flines",
+      "date": "1789-03-23",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p1 assemblée du 23 mars ; p17 jour mois an que dessus",
+      "selection_reason": "articles sur plusieurs paragraphes",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 17,
+          "last": 17,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 18,
+          "last": 19,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 16,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 15,
+              "last": 15,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 16,
+              "last": 16,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "carces-mineurs",
+      "volume": 3,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[24]/div3[9]"
+      ],
+      "title_display": "Frères mineurs de Carces",
+      "estate": "clergé",
+      "locality": "Carces",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "très court ; articles et signature",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 9,
+          "last": 9,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 8,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "montigny-ostrevent",
+      "volume": 3,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[22]/div3[23]"
+      ],
+      "title_display": "Montigny en Ostrevent",
+      "estate": null,
+      "locality": "Montigny en Ostrevent",
+      "date": "1789-03-02",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p21 lecture certifiée ; date de lecture, pas nécessairement rédaction",
+      "selection_reason": "numérotation et titres fortement dégradés",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 20,
+          "last": 20,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 21,
+          "last": 21,
+          "role": "certification"
+        },
+        {
+          "division": 0,
+          "first": 22,
+          "last": 23,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [
+        "Numérotation OCR très dégradée : conserver z8,36,B®,Il®, sans restaurer les chiffres ; frontières hors fenêtre non certifiées."
+      ],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 10,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article",
+              "label_length": 2
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": "4®",
+              "kind": "article",
+              "label_length": 2
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": "4®",
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": "9°",
+              "kind": "article",
+              "label_length": 2
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": "9°",
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article",
+              "label_length": 3
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Frontières lisibles par répétition typographique et contexte ; z8, 36, B®, Il® restent inchangés. Numéros normalisés absents."
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "mirecourt-noblesse",
+      "volume": 4,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[2]",
+        "/TEI.2/text/body/div1/div2[1]/div3[3]",
+        "/TEI.2/text/body/div1/div2[1]/div3[4]"
+      ],
+      "title_display": "Noblesse de Mirecourt",
+      "estate": "noblesse",
+      "locality": "Mirecourt",
+      "date": "1789-03-16",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact.",
+      "date_provenance": "date[@value='1789-03-16'] dans head[2].",
+      "selection_reason": "deux articles dans un paragraphe ; demandes et travail annexes ; sept initiaux",
+      "previous_audit": true,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 15,
+          "last": 15,
+          "role": "signatures"
+        },
+        {
+          "division": 1,
+          "first": 10,
+          "last": 10,
+          "role": "signatures"
+        },
+        {
+          "division": 2,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 2,
+          "first": 2,
+          "last": 43,
+          "role": "supporting_memorandum"
+        },
+        {
+          "division": 2,
+          "first": 44,
+          "last": 44,
+          "role": "closure"
+        },
+        {
+          "division": 2,
+          "first": 45,
+          "last": 45,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [
+        "Demandes provinciales et mémoire justificatif joints au dossier ; l’ancien parent ne couvrait que le premier div3. Annexe p2 sans marqueur non certifiée."
+      ],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 14,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": "2°",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": "2°",
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        },
+        {
+          "division": 1,
+          "first": 1,
+          "last": 9,
+          "units": [
+            {
+              "division": 1,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "p2 n’a pas de marqueur ; subdivision documentaire retenue dans le référentiel par parallélisme de la série, contrôle image à compléter.",
+          "certainty": "B"
+        }
+      ],
+      "territory": "Bailliage de Mirecourt"
+    },
+    {
+      "key": "guerande-tiers",
+      "volume": 4,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[9]/div3[3]"
+      ],
+      "title_display": "Tiers état de la sénéchaussée de Guérande",
+      "estate": "tiers état",
+      "locality": null,
+      "date": "1789-04-03",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. head[2] ; le cahier concerne la sénéchaussée, pas seulement la ville.",
+      "date_provenance": "p[45] : Clos et arrêté ... cedit jour 3 avril 1789 ; extraction manuelle sourcée.",
+      "selection_reason": "articles longs ; votes en liste ; sept initiaux",
+      "previous_audit": true,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 39,
+          "last": 39,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 40,
+          "last": 44,
+          "role": "electoral_minutes"
+        },
+        {
+          "division": 0,
+          "first": 45,
+          "last": 45,
+          "role": "closure_signatures"
+        },
+        {
+          "division": 0,
+          "first": 46,
+          "last": 46,
+          "role": "certification"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "inline_roles": [
+        {
+          "division": 0,
+          "paragraph": 38,
+          "start_quote": "Signé Le Peley",
+          "role": "signatures"
+        }
+      ],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 10,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": "Sénéchaussée de Guérande"
+    },
+    {
+      "key": "ferrieres",
+      "volume": 4,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[18]/div3[145]",
+        "/TEI.2/text/body/div1/div2[18]/div3[146]",
+        "/TEI.2/text/body/div1/div2[18]/div3[147]",
+        "/TEI.2/text/body/div1/div2[18]/div3[148]",
+        "/TEI.2/text/body/div1/div2[18]/div3[149]"
+      ],
+      "title_display": "Tiers état de Ferrières en Brie",
+      "estate": "tiers état",
+      "locality": "Ferrières en Brie",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "cinq divisions ; quatre sections ; reprise des numéros",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "preamble"
+        },
+        {
+          "division": 4,
+          "first": 3,
+          "last": 3,
+          "role": "closure_signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [
+        "Constitution art15 annonce les articles thématiques suivants ; statut hiérarchique à vérifier, pas de segmentation sémantique."
+      ],
+      "reference_windows": [
+        {
+          "division": 1,
+          "first": 1,
+          "last": 17,
+          "units": [
+            {
+              "division": 1,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 4,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 7,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 14,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 15,
+              "last": 15,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 16,
+              "last": 16,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 1,
+              "first": 17,
+              "last": 17,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Article 15 introductif exclu du référentiel : portée sur les sections suivantes à clarifier."
+        },
+        {
+          "division": 2,
+          "first": 1,
+          "last": 6,
+          "units": [
+            {
+              "division": 2,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 2,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        },
+        {
+          "division": 3,
+          "first": 1,
+          "last": 2,
+          "units": [
+            {
+              "division": 3,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 3,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        },
+        {
+          "division": 4,
+          "first": 1,
+          "last": 2,
+          "units": [
+            {
+              "division": 4,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 4,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "annet-marne",
+      "volume": 4,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[18]/div3[8]"
+      ],
+      "title_display": "Annet-sur-Marne",
+      "estate": null,
+      "locality": "Annet-sur-Marne",
+      "date": "1789-04-13",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p18 Fait et arrêté",
+      "selection_reason": "articles ; clôture et signatures",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 17,
+          "last": 17,
+          "role": "closing_statement"
+        },
+        {
+          "division": 0,
+          "first": 18,
+          "last": 18,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 19,
+          "last": 19,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 16,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 15,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 16,
+              "last": 16,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "ermenonville",
+      "volume": 4,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[18]/div3[12]"
+      ],
+      "title_display": "Ermenonville / Arnouville",
+      "estate": null,
+      "locality": "Ermenonville, dite Arnouville (titre)",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "lieu ambigu dans la source ; Art. ler. OCR",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 13,
+          "last": 13,
+          "role": "closing_statement"
+        },
+        {
+          "division": 0,
+          "first": 14,
+          "last": 14,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [
+        "Deux dénominations dans le titre ; aucune résolution géographique moderne."
+      ],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 12,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "mirecourt-clerge",
+      "volume": 4,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[1]"
+      ],
+      "title_display": "Clergé de Mirecourt",
+      "estate": "clergé",
+      "locality": "Mirecourt",
+      "date": "1789-03-27",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p1 Du 27 mars 1789",
+      "selection_reason": "numérotation ordinale ; certification",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "date"
+        },
+        {
+          "division": 0,
+          "first": 2,
+          "last": 2,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 9,
+          "last": 9,
+          "role": "certification"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 3,
+          "last": 8,
+          "units": [
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "pierrelez-habitants",
+      "volume": 5,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[9]"
+      ],
+      "title_display": "Habitants de Pierrelez",
+      "estate": null,
+      "locality": "Pierrelez (Pierre Laye)",
+      "date": "1789-04-14",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Localité dans p[1] ; territoire = section div2. Habitants : ne pas attribuer automatiquement un ordre non indiqué.",
+      "date_provenance": "p[11] : fait le mardi 14 avril 1789 ; extraction manuelle sourcée, pas un attribut date.",
+      "selection_reason": "neuf articles courts ; sept initiaux",
+      "previous_audit": true,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 11,
+          "last": 11,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 12,
+          "last": 12,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 10,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": "Paris hors les murs"
+    },
+    {
+      "key": "perigny-brie",
+      "volume": 5,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[5]"
+      ],
+      "title_display": "Tiers état de Périgny-en-Brie",
+      "estate": "tiers état",
+      "locality": "Périgny-en-Brie",
+      "date": "1789-04-14",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p18 Fait et arrêté",
+      "selection_reason": "articles ; préambule dans le premier article",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 17,
+          "last": 17,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 18,
+          "last": 18,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 19,
+          "last": 19,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 16,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 15,
+              "last": 15,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 16,
+              "last": 16,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "La note en ligne de p16 est un vrai élément note, exclu du texte de l’article et conservé séparément."
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "plessis-secqueville",
+      "volume": 5,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[18]"
+      ],
+      "title_display": "Tiers état du Plessis-Secqueville",
+      "estate": "tiers état",
+      "locality": "Plessis-Secqueville",
+      "date": "1789-04-16",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p11 Fait délibéré et arrêté",
+      "selection_reason": "court ; clôture et signatures",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 11,
+          "last": 11,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 12,
+          "last": 12,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 10,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "puteaux",
+      "volume": 5,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[29]"
+      ],
+      "title_display": "Habitants de Puteaux",
+      "estate": null,
+      "locality": "Puteaux",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "onze articles ; demandes particulières ; observation additionnelle après signatures",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 2,
+          "last": 2,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 6,
+          "last": 6,
+          "role": "section_heading"
+        },
+        {
+          "division": 0,
+          "first": 15,
+          "last": 15,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 16,
+          "last": 16,
+          "role": "additional_observation"
+        },
+        {
+          "division": 0,
+          "first": 17,
+          "last": 18,
+          "role": "certification_signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 3,
+          "last": 14,
+          "units": [
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 10,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 11,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 12,
+              "last": 12,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 14,
+              "last": 14,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Intitulé de section p6 exclu de la fin de l’article 3."
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "vic-clerge",
+      "volume": 6,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[4]"
+      ],
+      "title_display": "Clergé du bailliage de Vie [graphie TEI]",
+      "estate": "clergé",
+      "locality": null,
+      "date": "1789-03-28",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. head[2] ; la graphie Vie ne doit pas être résolue automatiquement en lieu moderne ou en Vic.",
+      "date_provenance": "date[@value='1789-03-28'] dans head[2] ; graphie du lieu conservée comme Vie.",
+      "selection_reason": "articles ; collation ; sept initiaux",
+      "previous_audit": true,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 49,
+          "last": 49,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 50,
+          "last": 56,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 57,
+          "last": 58,
+          "role": "certification"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 10,
+          "units": [
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 10,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": "Bailliage de Vie [graphie TEI]"
+    },
+    {
+      "key": "toul-noblesse",
+      "volume": 6,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[2]"
+      ],
+      "title_display": "Noblesse de Toul et pays toulois",
+      "estate": "noblesse",
+      "locality": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "très long ; préambule ; signatures nombreuses",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 6,
+          "role": "preamble"
+        },
+        {
+          "division": 0,
+          "first": 108,
+          "last": 108,
+          "role": "additional_request"
+        },
+        {
+          "division": 0,
+          "first": 109,
+          "last": 131,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 7,
+          "last": 7,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 9,
+          "last": 9,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 12,
+          "last": 12,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 14,
+          "last": 14,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 16,
+          "last": 16,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 20,
+          "last": 20,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 22,
+          "last": 22,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 24,
+          "last": 24,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 28,
+          "last": 28,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 30,
+          "last": 30,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 32,
+          "last": 32,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 34,
+          "last": 34,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 36,
+          "last": 36,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 38,
+          "last": 38,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 40,
+          "last": 40,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 42,
+          "last": 42,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 44,
+          "last": 44,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 46,
+          "last": 46,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 49,
+          "last": 49,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 51,
+          "last": 51,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 52,
+          "last": 52,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 54,
+          "last": 54,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 56,
+          "last": 56,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 58,
+          "last": 58,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 60,
+          "last": 60,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 61,
+          "last": 61,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 64,
+          "last": 64,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 66,
+          "last": 66,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 68,
+          "last": 68,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 70,
+          "last": 70,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 72,
+          "last": 72,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 74,
+          "last": 74,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 76,
+          "last": 76,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 78,
+          "last": 78,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 81,
+          "last": 81,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 83,
+          "last": 83,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 85,
+          "last": 85,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 87,
+          "last": 87,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 89,
+          "last": 89,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 90,
+          "last": 90,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 92,
+          "last": 92,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 94,
+          "last": 94,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 96,
+          "last": 96,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 98,
+          "last": 98,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 100,
+          "last": 100,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 102,
+          "last": 102,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 104,
+          "last": 104,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 106,
+          "last": 106,
+          "role": "article_caption"
+        },
+        {
+          "division": 0,
+          "first": 26,
+          "last": 26,
+          "role": "editorial_running_header"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [
+        "Demandes sans numéro et intitulés fréquents ; rattachement des rubriques hors fenêtres non certifié."
+      ],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 9,
+          "last": 14,
+          "units": [
+            {
+              "division": 0,
+              "first": 10,
+              "last": 11,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 13,
+              "last": 13,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Intitulés p9,p12,p14 séparés. Article 3 non certifié : rattachement de la rubrique Réduction des rentes et des paragraphes suivants à contrôler."
+        }
+      ],
+      "territory": "Toul et pays toulois"
+    },
+    {
+      "key": "albertas",
+      "volume": 6,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[17]/div3[1]"
+      ],
+      "title_display": "Habitants d’Albertas",
+      "estate": null,
+      "locality": "Albertas",
+      "date": "1789-03-22",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "head assemblée générale",
+      "selection_reason": "articles courts ; clôture et signatures",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 10,
+          "last": 10,
+          "role": "closure"
+        },
+        {
+          "division": 0,
+          "first": 11,
+          "last": 11,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 9,
+          "units": [
+            {
+              "division": 0,
+              "first": 1,
+              "last": 1,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 2,
+              "last": 2,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 3,
+              "last": 3,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 4,
+              "last": 4,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 6,
+              "last": 6,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 7,
+              "last": 7,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 8,
+              "last": 8,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 9,
+              "last": 9,
+              "start_quote": null,
+              "end_quote": null,
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": ""
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "beaurecueil",
+      "volume": 6,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[17]/div3[14]"
+      ],
+      "title_display": "Habitants de Beaurecueil",
+      "estate": null,
+      "locality": "Beaurecueil",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée.",
+      "selection_reason": "prose puis trois demandes dans un même p ; deux cahiers dans un div3 ; note en p",
+      "previous_audit": false,
+      "boundary_review": "verified_xml_and_scan",
+      "regions": [
+        {
+          "division": 0,
+          "first": 3,
+          "last": 3,
+          "role": "editorial_note_unmarked"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [
+        "La même division XML contient ensuite Belcodène (p9–15), exclu du parent ; clôture de Beaurecueil et signature dans p8."
+      ],
+      "end_at": {
+        "division": 0,
+        "paragraph": 8
+      },
+      "inline_roles": [
+        {
+          "division": 0,
+          "paragraph": 8,
+          "start_quote": "Signé Roché",
+          "role": "signatures"
+        }
+      ],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 8,
+          "units": [
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": "1°",
+              "end_quote": "2°",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 5,
+              "start_quote": "2°",
+              "end_quote": "3°",
+              "kind": "article"
+            },
+            {
+              "division": 0,
+              "first": 5,
+              "last": 8,
+              "start_quote": "3°",
+              "end_quote": "Signé Roché",
+              "kind": "article"
+            }
+          ],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Revue approfondie XML + image p262 : prose initiale puis trois demandes numérotées dans p5 ; 3° prolongé par p6–8 avant Signé. Belcodène p9 suivant hors parent."
+        }
+      ],
+      "territory": null
+    },
+    {
+      "key": "lourmarin",
+      "volume": 6,
+      "divisions": [
+        "/TEI.2/text/body/div1/div2[17]/div3[43]"
+      ],
+      "title_display": "Habitants de Lourmarin",
+      "estate": null,
+      "locality": "Lourmarin",
+      "date": "1789-03-29",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p11 certification ; ne pas confondre avec rédaction",
+      "selection_reason": "prose ; certification ; titre coupé",
+      "previous_audit": false,
+      "boundary_review": "verified_xml",
+      "regions": [
+        {
+          "division": 0,
+          "first": 1,
+          "last": 1,
+          "role": "title"
+        },
+        {
+          "division": 0,
+          "first": 9,
+          "last": 10,
+          "role": "signatures"
+        },
+        {
+          "division": 0,
+          "first": 11,
+          "last": 11,
+          "role": "certification"
+        },
+        {
+          "division": 0,
+          "first": 12,
+          "last": 12,
+          "role": "signatures"
+        }
+      ],
+      "boundary_review_scope": "Début, fin, titres voisins et enchaînement des divisions ; aucune garantie de complétude du manuscrit historique.",
+      "uncertainties": [],
+      "reference_windows": [
+        {
+          "division": 0,
+          "first": 2,
+          "last": 8,
+          "units": [],
+          "review_basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+          "comment": "Prose non numérotée : maintien dans le parent, pas une revendication artificielle par paragraphe."
+        }
+      ],
+      "territory": null
+    }
+  ]
+}

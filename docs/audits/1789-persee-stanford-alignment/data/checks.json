@@ -1,0 +1,25 @@
+{
+  "completed_at": "2026-10-27T13:26:15.934975+00:00",
+  "prior_audits_unchanged": 448,
+  "pinned_stanford_sources_verified": 6,
+  "sample_unique": 72,
+  "per_volume": 12,
+  "pagination_tokens_followed": 2,
+  "network_requests_journaled": 80,
+  "metadata_only_no_tei_download": true,
+  "source_bounds_valid": true,
+  "model_and_annotation_freezes_intact": true,
+  "outputs_exactly_reproduced": [
+    "alignment-predictions.jsonl",
+    "page-index.json",
+    "complementary-predictions.jsonl",
+    "comparisons.jsonl",
+    "correspondences.jsonl",
+    "metrics.json"
+  ],
+  "python_syntax_valid": true,
+  "local_markdown_links_valid": true,
+  "independent_human_validation": false,
+  "human_validation_seconds": null,
+  "application_or_database_access": false
+}

@@ -1,0 +1,53 @@
+{
+  "prior_audits_unchanged": 370,
+  "rules_plan_and_reference_freezes_intact": true,
+  "pinned_sources_verified": 6,
+  "global_hypotheses_valid_traces_no_automatic_certification": 1954,
+  "validation_predictions_exact_replay": true,
+  "six_volume_predictions_exact_replay": true,
+  "parent_texts_A_C_reconstruction_and_article_traces": {
+    "parents": 15,
+    "A": 78,
+    "C": 93,
+    "all_proposals_text_exact": true,
+    "segmentation_exact_replay": true
+  },
+  "uncertain_reference_withheld_from_A": 1,
+  "novel_candidates_and_zones_exclude_prior_selection_and_negative_controls": true,
+  "validation_scope": {
+    "new_candidates": 24,
+    "retained_legacy_control": 1,
+    "continuous_zones": 12,
+    "initial_article_reference": 79,
+    "unambiguous_retained": 78
+  },
+  "development": {
+    "gold": 269,
+    "v1_exact": 250,
+    "v2_exact": 260,
+    "lost_previously_correct": 0
+  },
+  "python_syntax_valid": [
+    "adjudicate_19.py",
+    "amend_novelty.py",
+    "analyze_global.py",
+    "annotate_reference.py",
+    "check_development_extra.py",
+    "checks.py",
+    "common.py",
+    "development.py",
+    "diagnose_19.py",
+    "discover_v2.py",
+    "evaluate.py",
+    "export_verified.py",
+    "freeze_rules.py",
+    "prepare_validation.py",
+    "restore_sources.py",
+    "review_notes.py",
+    "rules_v2.py",
+    "validation_packs.py",
+    "write_reports.py"
+  ],
+  "completed_at": "2026-10-27T12:09:40.258747+00:00",
+  "no_application_or_database_imports": true
+}

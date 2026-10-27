@@ -1,0 +1,737 @@
+{
+  "costs": [
+    {
+      "population": "historical",
+      "method": "lexical",
+      "mean_search_ms": 0.16275653327587256,
+      "median_search_ms": 0.16075449957497767,
+      "max_search_ms": 0.2861840002879035,
+      "mean_including_query_ms": 0.16275653327587256
+    },
+    {
+      "population": "historical",
+      "method": "vector_A",
+      "mean_search_ms": 0.1399160333069934,
+      "median_search_ms": 0.13565850031227455,
+      "max_search_ms": 0.24373399992327904,
+      "mean_including_query_ms": 61.14891759989405
+    },
+    {
+      "population": "historical",
+      "method": "vector_B",
+      "mean_search_ms": 0.14202780002960935,
+      "median_search_ms": 0.14257100065151462,
+      "max_search_ms": 0.17085800027416553,
+      "mean_including_query_ms": 61.15102936661666
+    },
+    {
+      "population": "historical",
+      "method": "hybrid_A",
+      "mean_search_ms": 0.7054288332862294,
+      "median_search_ms": 0.7529734994022874,
+      "max_search_ms": 1.086577999558358,
+      "mean_including_query_ms": 61.71443039987329
+    },
+    {
+      "population": "historical",
+      "method": "hybrid_B",
+      "mean_search_ms": 0.6958796999848952,
+      "median_search_ms": 0.750364500163414,
+      "max_search_ms": 0.8930039994083927,
+      "mean_including_query_ms": 61.70488126657195
+    },
+    {
+      "population": "mixed",
+      "method": "lexical",
+      "mean_search_ms": 0.27855650002190185,
+      "median_search_ms": 0.2798169998641242,
+      "max_search_ms": 0.4926589999740827,
+      "mean_including_query_ms": 0.27855650002190185
+    },
+    {
+      "population": "mixed",
+      "method": "vector_A",
+      "mean_search_ms": 0.2172602666178136,
+      "median_search_ms": 0.20944049992976943,
+      "max_search_ms": 0.3176930003974121,
+      "mean_including_query_ms": 61.226261833204866
+    },
+    {
+      "population": "mixed",
+      "method": "vector_B",
+      "mean_search_ms": 0.22885096668687765,
+      "median_search_ms": 0.21725600026911707,
+      "max_search_ms": 0.40255000021716114,
+      "mean_including_query_ms": 61.23785253327393
+    },
+    {
+      "population": "mixed",
+      "method": "hybrid_A",
+      "mean_search_ms": 1.297876566695777,
+      "median_search_ms": 0.9774329996616871,
+      "max_search_ms": 12.1294439995836,
+      "mean_including_query_ms": 62.30687813328283
+    },
+    {
+      "population": "mixed",
+      "method": "hybrid_B",
+      "mean_search_ms": 0.937150000178614,
+      "median_search_ms": 0.9721035003167344,
+      "max_search_ms": 1.3709559998460463,
+      "mean_including_query_ms": 61.94615156676567
+    }
+  ],
+  "precision_sensitivity_16_only": [
+    {
+      "variant": "A",
+      "query_id": "q01",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q02",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q03",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q04",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q05",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q06",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q07",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q08",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q09",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q10",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q11",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q12",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q13",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q14",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q15",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q16",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q17",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q18",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q19",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q20",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q21",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q22",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q23",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q24",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q25",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q26",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q27",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q28",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q29",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "A",
+      "query_id": "q30",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q01",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q02",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q03",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q04",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q05",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q06",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q07",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q08",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q09",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q10",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q11",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q12",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q13",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q14",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q15",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q16",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q17",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q18",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q19",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q20",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q21",
+      "top10_set_changes": 1,
+      "order_changed": true
+    },
+    {
+      "variant": "B",
+      "query_id": "q22",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q23",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q24",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q25",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q26",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q27",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q28",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q29",
+      "top10_set_changes": 0,
+      "order_changed": false
+    },
+    {
+      "variant": "B",
+      "query_id": "q30",
+      "top10_set_changes": 0,
+      "order_changed": false
+    }
+  ],
+  "mixed_vector_A_both_corpora_useful": [
+    {
+      "query_id": "q07",
+      "historical": [
+        "h133",
+        "h023"
+      ],
+      "contemporary": [
+        "m026",
+        "m050",
+        "m085",
+        "m042",
+        "m045",
+        "m089",
+        "m114"
+      ]
+    },
+    {
+      "query_id": "q08",
+      "historical": [
+        "h159",
+        "h008",
+        "h132"
+      ],
+      "contemporary": [
+        "m215",
+        "m085",
+        "m044",
+        "m042",
+        "m064"
+      ]
+    },
+    {
+      "query_id": "q11",
+      "historical": [
+        "h073"
+      ],
+      "contemporary": [
+        "m025",
+        "m024",
+        "m014",
+        "m234"
+      ]
+    },
+    {
+      "query_id": "q15",
+      "historical": [
+        "h157",
+        "h024",
+        "h229"
+      ],
+      "contemporary": [
+        "m111",
+        "m113"
+      ]
+    },
+    {
+      "query_id": "q20",
+      "historical": [
+        "h027",
+        "h026",
+        "h043"
+      ],
+      "contemporary": [
+        "m090",
+        "m036",
+        "m092",
+        "m044",
+        "m043",
+        "m060"
+      ]
+    },
+    {
+      "query_id": "q21",
+      "historical": [
+        "h150",
+        "h023",
+        "h013"
+      ],
+      "contemporary": [
+        "m033",
+        "m037",
+        "m035",
+        "m088",
+        "m086"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "query_id": "q01",
+      "historical_useful_known": 23,
+      "contemporary_useful_known": 13,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q02",
+      "historical_useful_known": 17,
+      "contemporary_useful_known": 14,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q03",
+      "historical_useful_known": 14,
+      "contemporary_useful_known": 9,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q04",
+      "historical_useful_known": 18,
+      "contemporary_useful_known": 4,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q05",
+      "historical_useful_known": 11,
+      "contemporary_useful_known": 2,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q06",
+      "historical_useful_known": 11,
+      "contemporary_useful_known": 0,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q07",
+      "historical_useful_known": 9,
+      "contemporary_useful_known": 12,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q08",
+      "historical_useful_known": 21,
+      "contemporary_useful_known": 10,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q09",
+      "historical_useful_known": 4,
+      "contemporary_useful_known": 5,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q10",
+      "historical_useful_known": 5,
+      "contemporary_useful_known": 2,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q11",
+      "historical_useful_known": 9,
+      "contemporary_useful_known": 11,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q12",
+      "historical_useful_known": 18,
+      "contemporary_useful_known": 0,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q13",
+      "historical_useful_known": 7,
+      "contemporary_useful_known": 0,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q14",
+      "historical_useful_known": 17,
+      "contemporary_useful_known": 1,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q15",
+      "historical_useful_known": 12,
+      "contemporary_useful_known": 6,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q16",
+      "historical_useful_known": 11,
+      "contemporary_useful_known": 0,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q17",
+      "historical_useful_known": 5,
+      "contemporary_useful_known": 0,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q18",
+      "historical_useful_known": 14,
+      "contemporary_useful_known": 0,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q19",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 1,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q20",
+      "historical_useful_known": 10,
+      "contemporary_useful_known": 9,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q21",
+      "historical_useful_known": 12,
+      "contemporary_useful_known": 10,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q22",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 2,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q23",
+      "historical_useful_known": 22,
+      "contemporary_useful_known": 15,
+      "historical_absence": null
+    },
+    {
+      "query_id": "q24",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 0,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q25",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 0,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q26",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 1,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q27",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 6,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q28",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 0,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q29",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 0,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    },
+    {
+      "query_id": "q30",
+      "historical_useful_known": 0,
+      "contemporary_useful_known": 0,
+      "historical_absence": "No useful historical passage identified after reading all269; not evidence of absence in1789 overall"
+    }
+  ],
+  "contemporary_theme_literal_counts": {
+    "fiscalite": 24,
+    "justice": 4,
+    "representation": 17,
+    "inegalites": 5,
+    "ecologie": 14
+  },
+  "lengths_by_corpus": {
+    "1789": {
+      "units": 269,
+      "min_chars": 33,
+      "median_chars": 235,
+      "max_chars": 6198
+    },
+    "2019": {
+      "units": 240,
+      "min_chars": 1,
+      "median_chars": 94.0,
+      "max_chars": 3806
+    }
+  }
+}

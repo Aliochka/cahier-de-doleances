@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-10-26T17:02:01.403077+00:00",
+  "new_predictions_exist": false,
+  "files": {
+    "annotate_reference.py": "1ed194e5df30128b615d05a6d8ff44214280a9e8d55adbf52331bcf2dfd6b08d",
+    "data/reference-documents.jsonl": "70263bb36ec4cdab9e6e5ae63dc4ed5ec77df77c5424893edddfaf1fece650d3",
+    "data/reference-negative.json": "b595759f3dbcc9bab82ce80d45078557bb0339ea7a583900eda704e6cd66531c"
+  },
+  "scope": "12 new candidates, source-only windows; 12 negative windows; not independent human"
+}

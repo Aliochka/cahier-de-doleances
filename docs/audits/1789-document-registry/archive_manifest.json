@@ -1,0 +1,59 @@
+{
+  "format": "gzip JSONL UTF-8",
+  "entries": [
+    {
+      "archive": "data/catalogue.jsonl.gz",
+      "materialized": "data/catalogue.jsonl",
+      "sha256": "4b8be452446877363fb3f13f72a8269bce094c03ead723bfa2f406b50de3f7c9",
+      "decoded_sha256": "097f05b68194667d9f72394f414a56019a95c7fd5a33a77247e8af5f483342a9",
+      "decoded_bytes": 949541,
+      "archive_bytes": 36343,
+      "records": 1305
+    },
+    {
+      "archive": "data/metadata.jsonl.gz",
+      "materialized": "data/metadata.jsonl",
+      "sha256": "3feac18a013dd7b006aa345fee0c4a126291d80b5e80e5785fb4a04e82b4c2d6",
+      "decoded_sha256": "ee65912edbaf2d65ab136bdf9f3985f4e825cfd64d6f2314da473af0aeece522",
+      "decoded_bytes": 4029954,
+      "archive_bytes": 181147,
+      "records": 1305
+    },
+    {
+      "archive": "data/registry-automatic.jsonl.gz",
+      "materialized": "data/registry-automatic.jsonl",
+      "sha256": "496f153876c9ee448317f3686a5058ed6d3eab1c8373935fc81b8dbcbb16e556",
+      "decoded_sha256": "6de3194c36aade1913d1a03d7ef2b5c31d5c7c30506c66aed12eedfaf2590e98",
+      "decoded_bytes": 9277842,
+      "archive_bytes": 647849,
+      "records": 1305
+    },
+    {
+      "archive": "data/registry.jsonl.gz",
+      "materialized": "data/registry.jsonl",
+      "sha256": "e038897d111e889461d5669e01b63e2e0027e7f0bf373b7920bfd2cbd1e7642f",
+      "decoded_sha256": "84ca2ade9f68f0cd5f31985a68eb00b9487ce51164a0a7266c4ed307ef212274",
+      "decoded_bytes": 11357927,
+      "archive_bytes": 961594,
+      "records": 1305
+    },
+    {
+      "archive": "data/review-queue.jsonl.gz",
+      "materialized": "data/review-queue.jsonl",
+      "sha256": "db52e2556b477394c2f806bf3c7021326f6173f99e48d74ece1710f04d79ebc3",
+      "decoded_sha256": "51c57c28209074ed024db78b85c3cef737a28ada957e6c53fcd8f2467d68e8c8",
+      "decoded_bytes": 501254,
+      "archive_bytes": 23627,
+      "records": 1305
+    },
+    {
+      "archive": "data/stanford-comparison.jsonl.gz",
+      "materialized": "data/stanford-comparison.jsonl",
+      "sha256": "1c2bc8894609f5420c22d0f891f106e8b89a5a56457cf4c35520336566998a9f",
+      "decoded_sha256": "ac92b0b93d542ef4fdc5765f7128ae610013c711125757b9c9891f430856601f",
+      "decoded_bytes": 1907079,
+      "archive_bytes": 142238,
+      "records": 1954
+    }
+  ]
+}

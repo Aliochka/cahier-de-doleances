@@ -1,0 +1,1292 @@
+{
+  "sha": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "tree": [
+    {
+      "path": ".DS_Store",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d653aa2d14b9ed2d57899617ca06d37be98e266",
+      "size": 6148,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/0d653aa2d14b9ed2d57899617ca06d37be98e266"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e43b0f988953ae3a84b00331d0ccf5f7d51cb3cf",
+      "size": 10,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/e43b0f988953ae3a84b00331d0ccf5f7d51cb3cf"
+    },
+    {
+      "path": "README.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "594c8d896664430c3a3f7b17241ccc13cfbea2cb",
+      "size": 507,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/594c8d896664430c3a3f7b17241ccc13cfbea2cb"
+    },
+    {
+      "path": "bg262qk2288",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cbcfcf5ea0c4f4d6b15a4aa2df701c59f5eca54e",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/cbcfcf5ea0c4f4d6b15a4aa2df701c59f5eca54e"
+    },
+    {
+      "path": "bg262qk2288/bg262qk2288.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44002463d06defb1a4dfd79d2d780562cf278be2",
+      "size": 6885684,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/44002463d06defb1a4dfd79d2d780562cf278be2"
+    },
+    {
+      "path": "bk786xb5412",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "710e22415b2f5ad67da49e9881d42bb9a651a22b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/710e22415b2f5ad67da49e9881d42bb9a651a22b"
+    },
+    {
+      "path": "bk786xb5412/bk786xb5412.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19a9ed909cb5bd4c652be600e6a352b951093f78",
+      "size": 5478030,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/19a9ed909cb5bd4c652be600e6a352b951093f78"
+    },
+    {
+      "path": "bm916nx5550",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a82dc0cbf3d439d23f2a45fd51d61facd017715f",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/a82dc0cbf3d439d23f2a45fd51d61facd017715f"
+    },
+    {
+      "path": "bm916nx5550/bm916nx5550.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4463317f51598c14b55a8be66a1ceea92dbfccd7",
+      "size": 5899565,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/4463317f51598c14b55a8be66a1ceea92dbfccd7"
+    },
+    {
+      "path": "by423fb7614",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1a856f76fd7e46aefc5bcb3db085ebf170e56431",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/1a856f76fd7e46aefc5bcb3db085ebf170e56431"
+    },
+    {
+      "path": "by423fb7614/by423fb7614.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "868b550fa537a8305dd58d174cbf3a574dd9f466",
+      "size": 6286349,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/868b550fa537a8305dd58d174cbf3a574dd9f466"
+    },
+    {
+      "path": "bz762hb8755",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1926b4a0dcce1a56c06f5b2970ce0e6e1a49c9b8",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/1926b4a0dcce1a56c06f5b2970ce0e6e1a49c9b8"
+    },
+    {
+      "path": "bz762hb8755/bz762hb8755.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d9aaa3688fbd819c5774405139ee31f92e1c6cd",
+      "size": 5113127,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/0d9aaa3688fbd819c5774405139ee31f92e1c6cd"
+    },
+    {
+      "path": "cg346zm5141",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "134e9dd8ab1c787f9012b0ea667727f1add0645e",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/134e9dd8ab1c787f9012b0ea667727f1add0645e"
+    },
+    {
+      "path": "cg346zm5141/cg346zm5141.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "860b0e0294050339d15446ed95cc40c2d1d3ff37",
+      "size": 5615000,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/860b0e0294050339d15446ed95cc40c2d1d3ff37"
+    },
+    {
+      "path": "cz619pv6608",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0218829d5066131b059aedc223d987a1c8cf1219",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/0218829d5066131b059aedc223d987a1c8cf1219"
+    },
+    {
+      "path": "cz619pv6608/cz619pv6608.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ef0b3d97a15fadd4f92f3bbe73b3d4a302c699c",
+      "size": 5337638,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/4ef0b3d97a15fadd4f92f3bbe73b3d4a302c699c"
+    },
+    {
+      "path": "dh941mm7815",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f245bbd693edc1a2fd8b8979e65c83d7d872c67e",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/f245bbd693edc1a2fd8b8979e65c83d7d872c67e"
+    },
+    {
+      "path": "dh941mm7815/dh941mm7815.xml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "458421269deec9d80ae4b0433d4412fad74162d0",
+      "size": 7422273,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/458421269deec9d80ae4b0433d4412fad74162d0"
+    },
+    {
+      "path": "druid-to-vol.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fef7107550e2d3842931db272c536ca3e33f696",
+      "size": 1246,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/0fef7107550e2d3842931db272c536ca3e33f696"
+    },
+    {
+      "path": "ds105fc0461",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e2e71fd059af6b510ae1f6a24b5eb3b0440f62b4",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/e2e71fd059af6b510ae1f6a24b5eb3b0440f62b4"
+    },
+    {
+      "path": "ds105fc0461/ds105fc0461.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee5e90e594a432b68203475e44e271b9c74ee759",
+      "size": 5797945,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/ee5e90e594a432b68203475e44e271b9c74ee759"
+    },
+    {
+      "path": "dx068ky1531",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ce4f4f2fda7f4341136433d2853398e5644ce03c",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/ce4f4f2fda7f4341136433d2853398e5644ce03c"
+    },
+    {
+      "path": "dx068ky1531/dx068ky1531.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99366868604f95094850702db8e26224d09921a8",
+      "size": 5076803,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/99366868604f95094850702db8e26224d09921a8"
+    },
+    {
+      "path": "fj903ng3828",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8379a4bd4d6f1453c468c1cb44c9dab99b1ae63b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/8379a4bd4d6f1453c468c1cb44c9dab99b1ae63b"
+    },
+    {
+      "path": "fj903ng3828/fj903ng3828.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "375cef9ef049e19ba46c922e57e71f8986b8e604",
+      "size": 5613893,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/375cef9ef049e19ba46c922e57e71f8986b8e604"
+    },
+    {
+      "path": "fy968nm6633",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "99dd5fe720dd95ab3015cf63a8b49eb20d4ca652",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/99dd5fe720dd95ab3015cf63a8b49eb20d4ca652"
+    },
+    {
+      "path": "fy968nm6633/fy968nm6633.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a19416a1a4928208e74477cca73349dd68fc7504",
+      "size": 6093036,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/a19416a1a4928208e74477cca73349dd68fc7504"
+    },
+    {
+      "path": "fz023dp4399",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e119fd58d3f33626c746fbc8db2c835d11711603",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/e119fd58d3f33626c746fbc8db2c835d11711603"
+    },
+    {
+      "path": "fz023dp4399/fz023dp4399.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef24142e7f91e81deb379193df3f4396fdc2c483",
+      "size": 5748780,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/ef24142e7f91e81deb379193df3f4396fdc2c483"
+    },
+    {
+      "path": "gb869zk5570",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "79f25235c805b2e292c73470ade45fa7dc49f7eb",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/79f25235c805b2e292c73470ade45fa7dc49f7eb"
+    },
+    {
+      "path": "gb869zk5570/gb869zk5570.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fde1c508c4c64c413fb82c92aba48a410e5294c7",
+      "size": 6854892,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/fde1c508c4c64c413fb82c92aba48a410e5294c7"
+    },
+    {
+      "path": "gc161fd9389",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7e48c550fa66d3aeb94e91fd5e6d96aea7b99b00",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/7e48c550fa66d3aeb94e91fd5e6d96aea7b99b00"
+    },
+    {
+      "path": "gc161fd9389/gc161fd9389.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18a4a75f0eef2761fe3c28551260d799adf736b4",
+      "size": 6472094,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/18a4a75f0eef2761fe3c28551260d799adf736b4"
+    },
+    {
+      "path": "gs562ck7014",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "72a8236e1575a5ccba25632e3c3990aa9bf2b4b5",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/72a8236e1575a5ccba25632e3c3990aa9bf2b4b5"
+    },
+    {
+      "path": "gs562ck7014/gs562ck7014.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "398f67e7c45e512ca7b74b58cbbbf4f284e4f245",
+      "size": 4995146,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/398f67e7c45e512ca7b74b58cbbbf4f284e4f245"
+    },
+    {
+      "path": "gz196wq7673",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "79e781746d48bfbfc5a0e69acaafd06f5aaa7175",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/79e781746d48bfbfc5a0e69acaafd06f5aaa7175"
+    },
+    {
+      "path": "gz196wq7673/gz196wq7673.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67635bf7c98bc41c07f590751cbd35731edb052a",
+      "size": 5919792,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/67635bf7c98bc41c07f590751cbd35731edb052a"
+    },
+    {
+      "path": "hb925zj6996",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3f4d1a350bcdc983ff067040117d56fe94b120fa",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/3f4d1a350bcdc983ff067040117d56fe94b120fa"
+    },
+    {
+      "path": "hb925zj6996/hb925zj6996.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13d0aadc0b054532844fcc830ba3f1f3a323b294",
+      "size": 7607094,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/13d0aadc0b054532844fcc830ba3f1f3a323b294"
+    },
+    {
+      "path": "hp160sk3414",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "38609b799f46ed3ed1aec80dd2edb70f2b614dd6",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/38609b799f46ed3ed1aec80dd2edb70f2b614dd6"
+    },
+    {
+      "path": "hp160sk3414/hp160sk3414.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1474b2ad5d23d3555655393a0754506976881360",
+      "size": 6868649,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/1474b2ad5d23d3555655393a0754506976881360"
+    },
+    {
+      "path": "hs296pv9638",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "482645cc0064109d7e1c2743dfa744b598dadcc9",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/482645cc0064109d7e1c2743dfa744b598dadcc9"
+    },
+    {
+      "path": "hs296pv9638/hs296pv9638.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00ce9eef229395fc02ad893b9af175943621170f",
+      "size": 7552923,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/00ce9eef229395fc02ad893b9af175943621170f"
+    },
+    {
+      "path": "jb918kd0305",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bf48742d82005a390877781a9ebe112e675bbb19",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/bf48742d82005a390877781a9ebe112e675bbb19"
+    },
+    {
+      "path": "jb918kd0305/jb918kd0305.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c3200b9554084f74a5fd8932ef6cf6634b19479",
+      "size": 5580617,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/6c3200b9554084f74a5fd8932ef6cf6634b19479"
+    },
+    {
+      "path": "jr712gv3760",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "572175041b9e65b72d19a2e92a281fc5126af879",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/572175041b9e65b72d19a2e92a281fc5126af879"
+    },
+    {
+      "path": "jr712gv3760/jr712gv3760.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fec44cd9226716573429f495248bc06c885dd06d",
+      "size": 3419086,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/fec44cd9226716573429f495248bc06c885dd06d"
+    },
+    {
+      "path": "jt959wc5586",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c035ea99ed974cae10bb4878e8bc9ef88782c602",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/c035ea99ed974cae10bb4878e8bc9ef88782c602"
+    },
+    {
+      "path": "jt959wc5586/jt959wc5586.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54600057b802e2cc63c3ae8d6655d278cd0c8cc1",
+      "size": 6573592,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/54600057b802e2cc63c3ae8d6655d278cd0c8cc1"
+    },
+    {
+      "path": "kr063km0672",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7403b972b9d6ea9bb6aa961234d1ee3cd07fc50b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/7403b972b9d6ea9bb6aa961234d1ee3cd07fc50b"
+    },
+    {
+      "path": "kr063km0672/kr063km0672.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bd5744bfd66d22d253272afaac5b432651bbe20",
+      "size": 7351407,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/9bd5744bfd66d22d253272afaac5b432651bbe20"
+    },
+    {
+      "path": "mc666yy3026",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1d2d5e6eab0e407bd367dbc137f08bc5b12ae2f3",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/1d2d5e6eab0e407bd367dbc137f08bc5b12ae2f3"
+    },
+    {
+      "path": "mc666yy3026/mc666yy3026.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9da4b18b02a7bf6c8f1088c58127eb42b0261275",
+      "size": 7598746,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/9da4b18b02a7bf6c8f1088c58127eb42b0261275"
+    },
+    {
+      "path": "mh165hf4512",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e98be4e4cae43b1c03cdde46d6c305762f6242f6",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/e98be4e4cae43b1c03cdde46d6c305762f6242f6"
+    },
+    {
+      "path": "mh165hf4512/mh165hf4512.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2d989ad64fa5ff0aebe78bf4c51b68d26931973",
+      "size": 6650686,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/d2d989ad64fa5ff0aebe78bf4c51b68d26931973"
+    },
+    {
+      "path": "mh338cj3700",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "030616c200ead526959f073175c6713b871be091",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/030616c200ead526959f073175c6713b871be091"
+    },
+    {
+      "path": "mh338cj3700/mh338cj3700.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4db4a30ab94279395e912fac66a5fbbeb522fa8",
+      "size": 5171908,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/a4db4a30ab94279395e912fac66a5fbbeb522fa8"
+    },
+    {
+      "path": "mv564yx2059",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5d201e558f4e9ed90c01518d84a0843e494d2484",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/5d201e558f4e9ed90c01518d84a0843e494d2484"
+    },
+    {
+      "path": "mv564yx2059/mv564yx2059.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b1242068f78ebcc5dc011f9b328ce5cb9323afe",
+      "size": 5591508,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/8b1242068f78ebcc5dc011f9b328ce5cb9323afe"
+    },
+    {
+      "path": "nk069wn5406",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5561c61aa8a888307bdf2c1f4f12ec17c4a74eaf",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/5561c61aa8a888307bdf2c1f4f12ec17c4a74eaf"
+    },
+    {
+      "path": "nk069wn5406/nk069wn5406.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c71307cfb6180bcca1b4cb642ba886ca4d550ddb",
+      "size": 5306294,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/c71307cfb6180bcca1b4cb642ba886ca4d550ddb"
+    },
+    {
+      "path": "ns351vc7243",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "508a3c8ea44e5fe59d992c632829955f5e2fae1c",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/508a3c8ea44e5fe59d992c632829955f5e2fae1c"
+    },
+    {
+      "path": "ns351vc7243/ns351vc7243.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17d68a9a7ebd359680a85bc29bd966d14a316820",
+      "size": 6513754,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/17d68a9a7ebd359680a85bc29bd966d14a316820"
+    },
+    {
+      "path": "nx651mw8445",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4250569a2980ce8de93c354010fa9ac8f09a691d",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/4250569a2980ce8de93c354010fa9ac8f09a691d"
+    },
+    {
+      "path": "nx651mw8445/nx651mw8445.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73a179082b75dacbfb0c68cb87c34c7e71af9e35",
+      "size": 5769561,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/73a179082b75dacbfb0c68cb87c34c7e71af9e35"
+    },
+    {
+      "path": "ny285pr6598",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8ac58972f21ccb921df98b5b708186d0c8e49b98",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/8ac58972f21ccb921df98b5b708186d0c8e49b98"
+    },
+    {
+      "path": "ny285pr6598/ny285pr6598.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd282a4c86d942f8500b3ab087ae370fd967917e",
+      "size": 7400339,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/dd282a4c86d942f8500b3ab087ae370fd967917e"
+    },
+    {
+      "path": "nz125bh9048",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b8778845d9b7e04727ea9ec3595b1e41cd18c403",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/b8778845d9b7e04727ea9ec3595b1e41cd18c403"
+    },
+    {
+      "path": "nz125bh9048/nz125bh9048.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cdf571d5997cd4425c2b096c5d72df81c248dd5",
+      "size": 6402729,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/2cdf571d5997cd4425c2b096c5d72df81c248dd5"
+    },
+    {
+      "path": "pd817cv1860",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8dc62db41ba135dc71d2b9afc0f41bfd79d6f0f2",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/8dc62db41ba135dc71d2b9afc0f41bfd79d6f0f2"
+    },
+    {
+      "path": "pd817cv1860/pd817cv1860.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5623a246bcfe5c53f12ac1deae25956c5b40e00",
+      "size": 7532327,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/b5623a246bcfe5c53f12ac1deae25956c5b40e00"
+    },
+    {
+      "path": "pf437st2633",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d806ef197ad08b7ce3f2798c3997af3f663c3bef",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/d806ef197ad08b7ce3f2798c3997af3f663c3bef"
+    },
+    {
+      "path": "pf437st2633/pf437st2633.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdac4cbeff703a6ef13fefe0bd5c3809dd0ad67b",
+      "size": 3803453,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/cdac4cbeff703a6ef13fefe0bd5c3809dd0ad67b"
+    },
+    {
+      "path": "pg440vr7239",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "100a4cd5e87ecccae6394bf6bf0601cc98f454a9",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/100a4cd5e87ecccae6394bf6bf0601cc98f454a9"
+    },
+    {
+      "path": "pg440vr7239/pg440vr7239.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65de80385824740a753979b3c93e7035526edf08",
+      "size": 5786444,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/65de80385824740a753979b3c93e7035526edf08"
+    },
+    {
+      "path": "ph525xc1642",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e451f442a88d331f2b2648b1dc70058dd555c1e8",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/e451f442a88d331f2b2648b1dc70058dd555c1e8"
+    },
+    {
+      "path": "ph525xc1642/ph525xc1642.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32a357237c8bcee92f84dbc0d902399f7b1a9f68",
+      "size": 5587073,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/32a357237c8bcee92f84dbc0d902399f7b1a9f68"
+    },
+    {
+      "path": "pk200tz2188",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "08463677c2a8ab1b50e1851123e709611b2e8fa3",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/08463677c2a8ab1b50e1851123e709611b2e8fa3"
+    },
+    {
+      "path": "pk200tz2188/pk200tz2188.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4049813e0e98f75594479775db9b45f5f8fae43f",
+      "size": 5714694,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/4049813e0e98f75594479775db9b45f5f8fae43f"
+    },
+    {
+      "path": "pq318qp0128",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6e951719b8cacbd9e11664d5250cda948bbe459d",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/6e951719b8cacbd9e11664d5250cda948bbe459d"
+    },
+    {
+      "path": "pq318qp0128/pq318qp0128.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf9f9ff4e47dd8ddb2032737d7ff447fdf2c3d17",
+      "size": 5886983,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/bf9f9ff4e47dd8ddb2032737d7ff447fdf2c3d17"
+    },
+    {
+      "path": "pr511dk5097",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a385ff4702bbcceb1eddeec442ced286d3723798",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/a385ff4702bbcceb1eddeec442ced286d3723798"
+    },
+    {
+      "path": "pr511dk5097/pr511dk5097.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8362ffe6ff94c5a58c1f6bc6cf1f6a02e415bce7",
+      "size": 5874049,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/8362ffe6ff94c5a58c1f6bc6cf1f6a02e415bce7"
+    },
+    {
+      "path": "ps521jd7440",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "074f6cd81b7594b7e86853c6544d2d14e2e1fa58",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/074f6cd81b7594b7e86853c6544d2d14e2e1fa58"
+    },
+    {
+      "path": "ps521jd7440/ps521jd7440.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45afc0ae540bdc8285893e811d55d0a0613b2536",
+      "size": 5701674,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/45afc0ae540bdc8285893e811d55d0a0613b2536"
+    },
+    {
+      "path": "pt317xm6245",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a692c881474ba1d067521b77a2b4fdb39b826993",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/a692c881474ba1d067521b77a2b4fdb39b826993"
+    },
+    {
+      "path": "pt317xm6245/pt317xm6245.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6b4cefc6a41235bec5c141084929578d34db101",
+      "size": 7187216,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/f6b4cefc6a41235bec5c141084929578d34db101"
+    },
+    {
+      "path": "py756rc8437",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cd1c10f6d2288a38eb20803fb4447bebc58e9ce0",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/cd1c10f6d2288a38eb20803fb4447bebc58e9ce0"
+    },
+    {
+      "path": "py756rc8437/py756rc8437.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21a2bda846a79df9ffb50f394c625334e32fb736",
+      "size": 7351826,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/21a2bda846a79df9ffb50f394c625334e32fb736"
+    },
+    {
+      "path": "pz516hw4711",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ab7bf4b552d7c136eae78e7f50e0bdabc2c8bfa6",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/ab7bf4b552d7c136eae78e7f50e0bdabc2c8bfa6"
+    },
+    {
+      "path": "pz516hw4711/pz516hw4711.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a97014723da0fba81342f657a20190b410ca7d14",
+      "size": 5685957,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/a97014723da0fba81342f657a20190b410ca7d14"
+    },
+    {
+      "path": "qd491dc7852",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7c95f8fb01940ddbc5cdc30629e66da09b46c117",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/7c95f8fb01940ddbc5cdc30629e66da09b46c117"
+    },
+    {
+      "path": "qd491dc7852/qd491dc7852.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fa81b4cd4f2c8df135ff2949593344a6f872808",
+      "size": 7363845,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/0fa81b4cd4f2c8df135ff2949593344a6f872808"
+    },
+    {
+      "path": "qj170gb3259",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "17305dbf85f46f451f45fea0f12671b202196960",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/17305dbf85f46f451f45fea0f12671b202196960"
+    },
+    {
+      "path": "qj170gb3259/qj170gb3259.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "833fc5e56ffd3dd2414d749da34df2be29289d79",
+      "size": 7485656,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/833fc5e56ffd3dd2414d749da34df2be29289d79"
+    },
+    {
+      "path": "qr254wd8880",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4aadcee001e1f038887ba0586334c5ce96dee290",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/4aadcee001e1f038887ba0586334c5ce96dee290"
+    },
+    {
+      "path": "qr254wd8880/qr254wd8880.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7eb5b5e9931d36c96872fa7bf53b65d4d48c1082",
+      "size": 7843382,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/7eb5b5e9931d36c96872fa7bf53b65d4d48c1082"
+    },
+    {
+      "path": "rh872zc0184",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "78bfe0899ff80ecc741134bc5bbf0f40edfff220",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/78bfe0899ff80ecc741134bc5bbf0f40edfff220"
+    },
+    {
+      "path": "rh872zc0184/rh872zc0184.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fdd934948013ef8df2d60400748f2b816c6ff945",
+      "size": 7219434,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/fdd934948013ef8df2d60400748f2b816c6ff945"
+    },
+    {
+      "path": "rw445gb4940",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "633ac5a1ecefc1a77b2eb6b04408a533e78a5136",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/633ac5a1ecefc1a77b2eb6b04408a533e78a5136"
+    },
+    {
+      "path": "rw445gb4940/rw445gb4940.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae7dccecd4dbf8d8ea43de197ffb229fade1790a",
+      "size": 7016669,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/ae7dccecd4dbf8d8ea43de197ffb229fade1790a"
+    },
+    {
+      "path": "sd686kk4303",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "230770ffbf745ec170f95d1e6a57428b96d4edf3",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/230770ffbf745ec170f95d1e6a57428b96d4edf3"
+    },
+    {
+      "path": "sd686kk4303/sd686kk4303.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adabd22d7229fa24f8f5d4aec62f5b06c4035084",
+      "size": 6762271,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/adabd22d7229fa24f8f5d4aec62f5b06c4035084"
+    },
+    {
+      "path": "sg325qs6321",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "171999ff5526dd636d90a8c928310bb04d65427b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/171999ff5526dd636d90a8c928310bb04d65427b"
+    },
+    {
+      "path": "sg325qs6321/sg325qs6321.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7f561a60f0de632315f8235260290ba236120e7",
+      "size": 6828680,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/d7f561a60f0de632315f8235260290ba236120e7"
+    },
+    {
+      "path": "sh669sk9602",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ea799e20ed0a0ed089b84d3dd1cc6e607fd7232b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/ea799e20ed0a0ed089b84d3dd1cc6e607fd7232b"
+    },
+    {
+      "path": "sh669sk9602/sh669sk9602.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b67e26ec2ade7b78fea208c2be68ce7fbaafc935",
+      "size": 5646207,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/b67e26ec2ade7b78fea208c2be68ce7fbaafc935"
+    },
+    {
+      "path": "sq070wm0013",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "037ca8a8430c59adc142bd78112d79f77e44dd2f",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/037ca8a8430c59adc142bd78112d79f77e44dd2f"
+    },
+    {
+      "path": "sq070wm0013/sq070wm0013.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4467cae3717353c4a483b96dbe61a8bda55ec4e",
+      "size": 5404130,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/d4467cae3717353c4a483b96dbe61a8bda55ec4e"
+    },
+    {
+      "path": "sy666bw3655",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6809ad1a38e55027123af3f421ada81e9d921c51",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/6809ad1a38e55027123af3f421ada81e9d921c51"
+    },
+    {
+      "path": "sy666bw3655/sy666bw3655.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35f061b8b67a81b5701d5bb5cac4b3af93ddd905",
+      "size": 6842872,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/35f061b8b67a81b5701d5bb5cac4b3af93ddd905"
+    },
+    {
+      "path": "tp933cm2920",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d4c871a738a9a1a093a99ba063a569617cc95bff",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/d4c871a738a9a1a093a99ba063a569617cc95bff"
+    },
+    {
+      "path": "tp933cm2920/tp933cm2920.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05f1cd2727d312749d4271094ebdf9ddc320a6a0",
+      "size": 5670504,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/05f1cd2727d312749d4271094ebdf9ddc320a6a0"
+    },
+    {
+      "path": "tq270ry8164",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dc24759d61551650fe3fad7fd2784179c4ebdcd0",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/dc24759d61551650fe3fad7fd2784179c4ebdcd0"
+    },
+    {
+      "path": "tq270ry8164/tq270ry8164.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "914dc50b75e093e174b845491d4c9731c13434f3",
+      "size": 5957487,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/914dc50b75e093e174b845491d4c9731c13434f3"
+    },
+    {
+      "path": "tq360bc6948",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "38af3654f2edc88e315778dd7ce80421ae78ae83",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/38af3654f2edc88e315778dd7ce80421ae78ae83"
+    },
+    {
+      "path": "tq360bc6948/tq360bc6948.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7564ecadf65f2cae94cbd556241167f455a09993",
+      "size": 3852746,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/7564ecadf65f2cae94cbd556241167f455a09993"
+    },
+    {
+      "path": "vj818xc6811",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d208d62f309960c4af171cf0946ce958a5058e26",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/d208d62f309960c4af171cf0946ce958a5058e26"
+    },
+    {
+      "path": "vj818xc6811/vj818xc6811.xml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "26ae584bbb01a9962dbc98993ec74ba1cf497714",
+      "size": 6159179,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/26ae584bbb01a9962dbc98993ec74ba1cf497714"
+    },
+    {
+      "path": "vol-to-druid.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0c23a6199977f73827843a885ed14b59ee3e7c6",
+      "size": 1250,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/e0c23a6199977f73827843a885ed14b59ee3e7c6"
+    },
+    {
+      "path": "vr741ts8017",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8478467518ec0aa28a6770c4f1b583d10a10d858",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/8478467518ec0aa28a6770c4f1b583d10a10d858"
+    },
+    {
+      "path": "vr741ts8017/vr741ts8017.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7105107abd41de0e4b4c6a9c6f006dc2e0195fc",
+      "size": 5102057,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/e7105107abd41de0e4b4c6a9c6f006dc2e0195fc"
+    },
+    {
+      "path": "vw244sq0989",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2582e30b6f1f3f2d834a7cc682cb9e1019b6f327",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/2582e30b6f1f3f2d834a7cc682cb9e1019b6f327"
+    },
+    {
+      "path": "vw244sq0989/vw244sq0989.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c8b90e12a19d47c4ab00daf7b364e9a426aee35",
+      "size": 4311246,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/2c8b90e12a19d47c4ab00daf7b364e9a426aee35"
+    },
+    {
+      "path": "vx924bt2426",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a2733c2727cfff5785f11915aee6e02315235d5a",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/a2733c2727cfff5785f11915aee6e02315235d5a"
+    },
+    {
+      "path": "vx924bt2426/vx924bt2426.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e2ba804a57a87d49b5e62234facffe83680139c",
+      "size": 7457343,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/4e2ba804a57a87d49b5e62234facffe83680139c"
+    },
+    {
+      "path": "vz936rn0417",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9e41418d0e734cc7756a3171e4c09fbe503f2f45",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/9e41418d0e734cc7756a3171e4c09fbe503f2f45"
+    },
+    {
+      "path": "vz936rn0417/vz936rn0417.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a52f6948e8634eb65444d5f43f2d7e253c59a21",
+      "size": 5649458,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/9a52f6948e8634eb65444d5f43f2d7e253c59a21"
+    },
+    {
+      "path": "wb029sv4796",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6a59de85c5dc7b0ee75c947dd9b41cd046c5691c",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/6a59de85c5dc7b0ee75c947dd9b41cd046c5691c"
+    },
+    {
+      "path": "wb029sv4796/wb029sv4796.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1adc85076ae7b75eb4b0db7abb4510aafd9d7564",
+      "size": 5351518,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/1adc85076ae7b75eb4b0db7abb4510aafd9d7564"
+    },
+    {
+      "path": "wf225mv3295",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ecbecd115dee15728840e7d0afa21c42bad521f1",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/ecbecd115dee15728840e7d0afa21c42bad521f1"
+    },
+    {
+      "path": "wf225mv3295/wf225mv3295.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c5d35faab407abaad572e026ec72652fd6612fa",
+      "size": 5332669,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/3c5d35faab407abaad572e026ec72652fd6612fa"
+    },
+    {
+      "path": "wg983ft3682",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "55c550d5727c5fcafbcd5e72940172a2f85b0b35",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/55c550d5727c5fcafbcd5e72940172a2f85b0b35"
+    },
+    {
+      "path": "wg983ft3682/wg983ft3682.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dbd337924a035675e61101725a99856ee4af8a3",
+      "size": 7051273,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/0dbd337924a035675e61101725a99856ee4af8a3"
+    },
+    {
+      "path": "wj575zc5470",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1d1676a2e983a3c0f7d170a10192dfea3bc052c0",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/1d1676a2e983a3c0f7d170a10192dfea3bc052c0"
+    },
+    {
+      "path": "wj575zc5470/wj575zc5470.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43a890e949a7eb7ffdefd2779448e1d6b3c850d2",
+      "size": 7360734,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/43a890e949a7eb7ffdefd2779448e1d6b3c850d2"
+    },
+    {
+      "path": "wn600cz2133",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3ad113cd4e3cd331eded9b1a07ad6a1238514bf2",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/3ad113cd4e3cd331eded9b1a07ad6a1238514bf2"
+    },
+    {
+      "path": "wn600cz2133/wn600cz2133.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9ec8450055bec6dc5900e0b3a5f1bee1b338cac",
+      "size": 7356984,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/a9ec8450055bec6dc5900e0b3a5f1bee1b338cac"
+    },
+    {
+      "path": "wq726ny9731",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "06f764fe72af76745d01edfe8266794582c9b953",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/06f764fe72af76745d01edfe8266794582c9b953"
+    },
+    {
+      "path": "wq726ny9731/wq726ny9731.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1d7680dc93b4f388c46c4e7063c23352f70eb6a",
+      "size": 5341905,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/b1d7680dc93b4f388c46c4e7063c23352f70eb6a"
+    },
+    {
+      "path": "wx067jz0783",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fe6f337e8281d671e06250b5617108a90c2546f2",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/fe6f337e8281d671e06250b5617108a90c2546f2"
+    },
+    {
+      "path": "wx067jz0783/wx067jz0783.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63e3a88295656389487ae953845ef73306f5a0db",
+      "size": 7168107,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/63e3a88295656389487ae953845ef73306f5a0db"
+    },
+    {
+      "path": "wz883qs5666",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6a6b77630b1b4b95a3bb5a30504faeb9a8f80f2b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/6a6b77630b1b4b95a3bb5a30504faeb9a8f80f2b"
+    },
+    {
+      "path": "wz883qs5666/wz883qs5666.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a09aeb363d1d50a32ebc352d8a39654c05fa5670",
+      "size": 7558019,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/a09aeb363d1d50a32ebc352d8a39654c05fa5670"
+    },
+    {
+      "path": "xc063dy2030",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "42dd49e72574b4af5b55423b389ac3b9dfe1265d",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/42dd49e72574b4af5b55423b389ac3b9dfe1265d"
+    },
+    {
+      "path": "xc063dy2030/xc063dy2030.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ddadd423ca366efb017c41c4ca7c32e9fa68722",
+      "size": 7216260,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/9ddadd423ca366efb017c41c4ca7c32e9fa68722"
+    },
+    {
+      "path": "xg914wh0253",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bf6bcf9c9082e0bbe9a6b8a533eb2141c9bf64e9",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/bf6bcf9c9082e0bbe9a6b8a533eb2141c9bf64e9"
+    },
+    {
+      "path": "xg914wh0253/xg914wh0253.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ab6e663796b8278df77da4e2308a5248362694b",
+      "size": 7658379,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/1ab6e663796b8278df77da4e2308a5248362694b"
+    },
+    {
+      "path": "xh191sq2603",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3922a67b6f95f97639df12981e695ef3a161fb79",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/3922a67b6f95f97639df12981e695ef3a161fb79"
+    },
+    {
+      "path": "xh191sq2603/xh191sq2603.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4526ad144f3db9c00b8289ed5b6f637d1b73c900",
+      "size": 5259038,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/4526ad144f3db9c00b8289ed5b6f637d1b73c900"
+    },
+    {
+      "path": "xm282fx2304",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "63bace281eb7339c2cfcc960b3cebd289581a9ee",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/63bace281eb7339c2cfcc960b3cebd289581a9ee"
+    },
+    {
+      "path": "xm282fx2304/xm282fx2304.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45888f54aa4a803345cff12e651ba35cc9260ffa",
+      "size": 5560513,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/45888f54aa4a803345cff12e651ba35cc9260ffa"
+    },
+    {
+      "path": "xx016qf9135",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7e9e03642a807e3faf1ea9e9541a9d50485cc0c3",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/7e9e03642a807e3faf1ea9e9541a9d50485cc0c3"
+    },
+    {
+      "path": "xx016qf9135/xx016qf9135.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1724c23d72848ec29e4bf08512b0753ad4f11100",
+      "size": 7859956,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/1724c23d72848ec29e4bf08512b0753ad4f11100"
+    },
+    {
+      "path": "xx284sn7328",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cbb1da8f7d1016283fdb4eba50cb7030625bf46b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/cbb1da8f7d1016283fdb4eba50cb7030625bf46b"
+    },
+    {
+      "path": "xx284sn7328/xx284sn7328.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a19dadd14ba3343bd3e423d56c3f78a728c0022",
+      "size": 7542475,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/8a19dadd14ba3343bd3e423d56c3f78a728c0022"
+    },
+    {
+      "path": "xz144dc9157",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0b182d64149eb8b5e2d17abde4f9d3b8d787163a",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/0b182d64149eb8b5e2d17abde4f9d3b8d787163a"
+    },
+    {
+      "path": "xz144dc9157/xz144dc9157.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c032ac9548d1813ca3c53bf4baf04a02b7a0566a",
+      "size": 6639869,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/c032ac9548d1813ca3c53bf4baf04a02b7a0566a"
+    },
+    {
+      "path": "yb570xw0261",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7957e0bc8f575c500dc45049df7273a211b629d2",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/7957e0bc8f575c500dc45049df7273a211b629d2"
+    },
+    {
+      "path": "yb570xw0261/yb570xw0261.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e017e73f2c558c308ae7310227f8792d8a34faf",
+      "size": 6856764,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/8e017e73f2c558c308ae7310227f8792d8a34faf"
+    },
+    {
+      "path": "yc460db1075",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a169c856748a2f197df029557b8467ae2b08f926",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/a169c856748a2f197df029557b8467ae2b08f926"
+    },
+    {
+      "path": "yc460db1075/yc460db1075.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c832c121aaed23d66a91eea1dbebff069666a297",
+      "size": 5626625,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/c832c121aaed23d66a91eea1dbebff069666a297"
+    },
+    {
+      "path": "yk966sx2246",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e4f04c07ddfb1c812f9da0461193c8844c9b707d",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/e4f04c07ddfb1c812f9da0461193c8844c9b707d"
+    },
+    {
+      "path": "yk966sx2246/yk966sx2246.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a9ef2fba9087ef91160be2ad44d3814b5ee1417",
+      "size": 3777074,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/2a9ef2fba9087ef91160be2ad44d3814b5ee1417"
+    },
+    {
+      "path": "zg649xx5697",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "89334f8be9fe079d8ea413b01d38ea77cc05185b",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/89334f8be9fe079d8ea413b01d38ea77cc05185b"
+    },
+    {
+      "path": "zg649xx5697/zg649xx5697.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42972d3e302b019d80adc124473a1f495b348a3b",
+      "size": 3876151,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/42972d3e302b019d80adc124473a1f495b348a3b"
+    },
+    {
+      "path": "zk023fy2787",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "308184d912a66491f5746d5953f255d0f5f0f1da",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/308184d912a66491f5746d5953f255d0f5f0f1da"
+    },
+    {
+      "path": "zk023fy2787/zk023fy2787.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f239944be00373e61b27df8927ff56fbe1694c15",
+      "size": 4960709,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/f239944be00373e61b27df8927ff56fbe1694c15"
+    },
+    {
+      "path": "zm624rx7420",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d4a3136c76ded4ca91fe29f8444051a01042900d",
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/trees/d4a3136c76ded4ca91fe29f8444051a01042900d"
+    },
+    {
+      "path": "zm624rx7420/zm624rx7420.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e1e8415f716472e7f93757cd6932e6e9340fb98",
+      "size": 7217428,
+      "url": "https://api.github.com/repos/StanfordUniversityLibraries/ap_tei/git/blobs/6e1e8415f716472e7f93757cd6932e6e9340fb98"
+    }
+  ],
+  "truncated": false
+}

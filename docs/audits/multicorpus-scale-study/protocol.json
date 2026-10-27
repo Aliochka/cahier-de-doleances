@@ -1,0 +1,21 @@
+{
+  "version":"scale-1.0",
+  "stages":[240,1000,5000,20000,100000,1000000],
+  "historical_units":269,
+  "historical_representation":"A text alone, frozen prior vectors; B only diagnostic",
+  "queries":"exact byte copy of prior30 queries",
+  "selection":{"base":"prior240 immutable unit IDs and vectors","extra_frame":"local verified rag_full full space, all ordinals","method":"NumPy PCG64(seed17892019) permutation of1..N; skip protected240; deterministic query-independent prefix","seed":17892019,"parent_deduplication":false,"reason":"Different answers of a parent are distinct units; one-per-parent would cap below1M and change the target population. Count repeated parents explicitly."},
+  "lexical":{"method":"same BM25 French Snowball as prior audit","k1":1.2,"b":0.75,"idf":"global within each stage","answer_only":true},
+  "vector":{"model":"BAAI/bge-m3","revision":"5617a9f61b028005a4858fdac845db406aefb181","dimension":1024,"normalization":"L2","pooling":"CLS","aggregation":"max cosine per unit","exact":true,"new_embeddings":false},
+  "rrf_k":60,
+  "depths":[50,100,200,500,1000],
+  "strategies":["global","distributed_global_ranks"],
+  "global":"take topL per method on global population; RRF contribution only for branch retrieval",
+  "distributed_global_ranks":"take topL per corpus per branch, union; same global IDF/scores; RRF uses ORIGINAL GLOBAL branch ranks, never per-corpus ranks or compressed pool ranks; no final quotas",
+  "distributed_caveat":"exact global ranks available as experimental oracle; not assumed cheaply obtainable by independent remote indexes",
+  "witnesses":"all existing historical query-passage judgments grade>=2, unmodified; annotated0/1 kept as contrasts",
+  "qualitative_queries":["q01","q02","q03","q06","q07","q10","q19","q22","q25","q28"],
+  "qualitative_pool":"union top10 lexical,vector,globalRRF50,globalRRF1000,distributedRRF50 at240 and1M; add stratified overtaking contemporary witnesses for case analysis if needed; prior grades immutable",
+  "resource_policy":{"max_units":1000000,"batch_documents":1000,"sql_timeout_seconds":15,"max_export_wall_seconds":900,"min_available_ram_gib":16,"min_free_disk_gib":40,"db":"only unix local, read-only, no schema/index writes","new_ANN":false},
+  "no_parameter_tuning_on_queries":true
+}

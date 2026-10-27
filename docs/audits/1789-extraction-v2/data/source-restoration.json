@@ -1,0 +1,44 @@
+{
+  "reason": "Previous temporary cache gone; user explicitly authorized restoring these six pinned files",
+  "revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "files": [
+    {
+      "volume": "1",
+      "file": "/tmp/cahier-1789-extraction-v2/sources/jt959wc5586.xml",
+      "sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+      "status": "restored_verified"
+    },
+    {
+      "volume": "2",
+      "file": "/tmp/cahier-1789-extraction-v2/sources/fz023dp4399.xml",
+      "sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "status": "restored_verified"
+    },
+    {
+      "volume": "3",
+      "file": "/tmp/cahier-1789-extraction-v2/sources/mc666yy3026.xml",
+      "sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "status": "restored_verified"
+    },
+    {
+      "volume": "4",
+      "file": "/tmp/cahier-1789-extraction-v2/sources/xg914wh0253.xml",
+      "sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "status": "restored_verified"
+    },
+    {
+      "volume": "5",
+      "file": "/tmp/cahier-1789-extraction-v2/sources/xx284sn7328.xml",
+      "sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "status": "restored_verified"
+    },
+    {
+      "volume": "6",
+      "file": "/tmp/cahier-1789-extraction-v2/sources/wg983ft3682.xml",
+      "sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "status": "restored_verified"
+    }
+  ],
+  "durable_cache": "/home/ro/cahier-de-doleances/docs/audits/1789-extraction-v2/.cache/sources",
+  "cache_ignored_in_git": true
+}

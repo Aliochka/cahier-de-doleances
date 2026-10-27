@@ -1,0 +1,19 @@
+{
+  "records": 72,
+  "access_status": {
+    "obtained": 72
+  },
+  "type_distribution": {
+    "griev": 58,
+    "edito": 1,
+    "liminaire": 1,
+    "article": 7,
+    "table": 4,
+    "index": 1
+  },
+  "missing_pagination": 0,
+  "missing_titles": 0,
+  "edition_years": {
+    "1879": 72
+  }
+}

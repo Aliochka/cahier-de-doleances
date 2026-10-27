@@ -1,0 +1,27 @@
+{
+  "mode": "two cached-vector runs; no model inference repeated",
+  "identical_artifacts": 12,
+  "sha256": {
+    "data/corpus.jsonl": "db057289213e13eab9226322360948f362459031645fdf933dd1aa48b4f8c69e",
+    "data/contemporary-segments.jsonl": "5708251cafa39f1bb007b6ee7e8160f5032ea3807d55af39151d680766dd23e5",
+    "data/preparation.json": "cd7a82df3388dd55a4c93a26e93c88b00089bb17d4d08633a4ecbea7cadafa18",
+    "data/historical-segments.jsonl": "8281524e3935d41460621e51f97803529bb7d14480616d4331d997acf5d77f70",
+    "data/rankings.jsonl": "39c3b9b318a5a13acbb0727a37a624920bafe1806cda392189572debf532ad39",
+    "data/review-pool.jsonl": "3e2b1e773b5c16b8954d48669bfde58cc3fb07743eb0a16cf870e460105f45b3",
+    "annotations.json": "af8c06a188700826b234c16e3147c3d09092a11378a7c98ac100398ee4f06bd0",
+    "data/metrics.json": "942df98be4bfde7adb57c716058e2a175d71949fa78af066b32fab72b1529f85",
+    "data/results.jsonl": "33ce75cf2dabd783396cd605cb28b82c5db3007627716a7bfbbe664227672380",
+    "data/novelty.json": "9d361991d1d558dc39d0f52f6d714f581ec85847ec23c00aad05c194c0f6e625",
+    "COMPARISON.md": "a26260dd48bd44eac9c94f05710f9987ec88a23e14ac0c73607def413e1c0a8b",
+    "GALLERY.md": "07c2c5bc58ce6c611db7ea669acc5ad313a1b0f7186a242481713caa246c59b0"
+  },
+  "excluded": [
+    "search-timings.json",
+    "diagnostics.costs",
+    "runtime timestamps"
+  ],
+  "queries_unchanged": true,
+  "raw_rankings_identical": true,
+  "judgments_identical": true,
+  "metrics_identical": true
+}

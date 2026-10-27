@@ -1,0 +1,4412 @@
+[
+  {
+    "document_id": "ap1789-pilot-d1:jt959wc5586:64bb7420785d8cb8ea4b",
+    "document_key": "agen-clerge",
+    "window": 0,
+    "start": 5121618,
+    "end": 5123945,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "arf. 9 conservé ; frontière reconnue par inspection, pas correction du texte.",
+    "units": [
+      {
+        "start": 5121618,
+        "end": 5121728,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[5]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5121756,
+        "end": 5122043,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[7]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5122071,
+        "end": 5122324,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[9]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5122352,
+        "end": 5122558,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[11]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5122586,
+        "end": 5122877,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[13]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5122905,
+        "end": 5123258,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[15]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[16]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[17]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5123286,
+        "end": 5123439,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[18]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[19]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5123467,
+        "end": 5123550,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[20]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[21]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5123578,
+        "end": 5123945,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[22]",
+          "/TEI.2/text/body/div1/div2[6]/div3[1]/p[23]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": 7
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:jt959wc5586:e3853dbbb35a07b290ab",
+    "document_key": "agen-noblesse",
+    "window": 0,
+    "start": 5168609,
+    "end": 5171799,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Fin du 3° avant le 4° p50 ; longue sous-liste du 4° hors fenêtre.",
+    "units": [
+      {
+        "start": 5168609,
+        "end": 5169698,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[2]/p[46]",
+          "/TEI.2/text/body/div1/div2[6]/div3[2]/p[47]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5169724,
+        "end": 5171530,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[2]/p[48]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5171556,
+        "end": 5171799,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[6]/div3[2]/p[49]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:jt959wc5586:b111f61f6392ebab8939",
+    "document_key": "agen-tiers",
+    "window": 0,
+    "start": 5229305,
+    "end": 5234058,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Prose non numérotée ; aucune frontière d’article certifiée dans cette fenêtre.",
+    "units": []
+  },
+  {
+    "document_id": "ap1789-pilot-d1:jt959wc5586:c8caba17ed36b64403f1",
+    "document_key": "alencon-clerge",
+    "window": 0,
+    "start": 5412650,
+    "end": 5413889,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 5412650,
+        "end": 5412824,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[1]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5412850,
+        "end": 5413084,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[1]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5413110,
+        "end": 5413318,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[1]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5413344,
+        "end": 5413704,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[1]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5413730,
+        "end": 5413889,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[1]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:jt959wc5586:bcdc69723b9153e44463",
+    "document_key": "alencon-noblesse",
+    "window": 0,
+    "start": 5435667,
+    "end": 5444261,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Article 3 et suite sans numéro non certifiés : fenêtre arrêtée exactement avant Art. 3. dans p10.",
+    "units": [
+      {
+        "start": 5435667,
+        "end": 5438037,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[2]",
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5438063,
+        "end": 5444261,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[4]",
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[5]",
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[6]",
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[7]",
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[8]",
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[9]",
+          "/TEI.2/text/body/div1/div2[9]/div3[2]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "document_key": "angoumois-noblesse",
+    "window": 0,
+    "start": 17612,
+    "end": 21925,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "p20 Administration est un intitulé du groupe suivant, pas le texte de l’article 4. Rectifie le périmètre expérimental précédent.",
+    "units": [
+      {
+        "start": 17612,
+        "end": 17987,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[1]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 17995,
+        "end": 18376,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 18384,
+        "end": 19188,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 19196,
+        "end": 21901,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[6]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[7]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[8]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[9]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[15]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[16]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[17]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[18]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[19]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "document_key": "angoumois-noblesse",
+    "window": 1,
+    "start": 29530,
+    "end": 30577,
+    "certainty": "A",
+    "basis": "Réexamen XML complet des p40–44 ; reprise du quatrième passage de l’audit précédent.",
+    "comment": "Article17 sur trois paragraphes, entre les débuts explicites16 et18.",
+    "units": [
+      {
+        "start": 29530,
+        "end": 30577,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[41]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[42]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[43]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:b1c515d7e3ec55e7f988",
+    "document_key": "anjou-clerge",
+    "window": 0,
+    "start": 212147,
+    "end": 213427,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 212147,
+        "end": 212430,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 212438,
+        "end": 212657,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 212665,
+        "end": 212997,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[4]",
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 213005,
+        "end": 213119,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 213127,
+        "end": 213277,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 213285,
+        "end": 213427,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:b1c515d7e3ec55e7f988",
+    "document_key": "anjou-clerge",
+    "window": 1,
+    "start": 218828,
+    "end": 219417,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 218828,
+        "end": 218978,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[2]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 218986,
+        "end": 219101,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[2]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 219109,
+        "end": 219262,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[2]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 219270,
+        "end": 219417,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[2]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:b1c515d7e3ec55e7f988",
+    "document_key": "anjou-clerge",
+    "window": 2,
+    "start": 223285,
+    "end": 223708,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 223285,
+        "end": 223395,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[3]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 2,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 223403,
+        "end": 223462,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[3]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 2,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 223470,
+        "end": 223569,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[3]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 2,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 223577,
+        "end": 223708,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[3]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 2,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:b1c515d7e3ec55e7f988",
+    "document_key": "anjou-clerge",
+    "window": 3,
+    "start": 214641,
+    "end": 215235,
+    "certainty": "A",
+    "basis": "Lecture complète des p17–18 et image téléchargée : changement de colonne, puis quatre articles dans deux paragraphes.",
+    "comment": "15° continue au haut de la colonne droite ; 16°–18° sont des articles distincts réunis dans p18.",
+    "units": [
+      {
+        "start": 214641,
+        "end": 214903,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[17]",
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[18]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 3,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 214904,
+        "end": 214954,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[18]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 3,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 214955,
+        "end": 215046,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[18]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 3,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 215047,
+        "end": 215235,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]/p[18]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 3,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:b7bcc2acbfad93e812c1",
+    "document_key": "annonay-clerge",
+    "window": 0,
+    "start": 317130,
+    "end": 319322,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 317130,
+        "end": 317431,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 317439,
+        "end": 317767,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 317775,
+        "end": 317933,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 317941,
+        "end": 318062,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 318070,
+        "end": 318146,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 318154,
+        "end": 318276,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 318284,
+        "end": 318348,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 318356,
+        "end": 318512,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 318520,
+        "end": 318597,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 318598,
+        "end": 318824,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 318832,
+        "end": 319018,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 319026,
+        "end": 319199,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 319207,
+        "end": 319322,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:3e6a4db201abec55cb3e",
+    "document_key": "beaujolais-noblesse",
+    "window": 0,
+    "start": 1938472,
+    "end": 1942407,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 1938472,
+        "end": 1938696,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1938704,
+        "end": 1939205,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1939213,
+        "end": 1939315,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1939323,
+        "end": 1939469,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1939477,
+        "end": 1939674,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1939682,
+        "end": 1940023,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1940031,
+        "end": 1940204,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1940212,
+        "end": 1940295,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1940303,
+        "end": 1940587,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[9]",
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1940595,
+        "end": 1941143,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1941151,
+        "end": 1941295,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1941303,
+        "end": 1941456,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1941464,
+        "end": 1941539,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1941539,
+        "end": 1941721,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1941729,
+        "end": 1942407,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[15]",
+          "/TEI.2/text/body/div1/div2[19]/div3[2]/p[16]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:fz023dp4399:10c1f778fd324706de33",
+    "document_key": "lawastine-tiers",
+    "window": 0,
+    "start": 1301684,
+    "end": 1303878,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 1301684,
+        "end": 1302099,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[14]/div3[9]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1302107,
+        "end": 1302839,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[14]/div3[9]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1302840,
+        "end": 1303369,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[14]/div3[9]/p[3]",
+          "/TEI.2/text/body/div1/div2[14]/div3[9]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1303377,
+        "end": 1303691,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[14]/div3[9]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1303699,
+        "end": 1303878,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[14]/div3[9]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:mc666yy3026:7252b87cf6dd0d663706",
+    "document_key": "colmar-ville",
+    "window": 0,
+    "start": 110771,
+    "end": 116168,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Sous-listes 1°…4° à l’intérieur des articles, jamais articles indépendants. Art. sans numéro p3 conservé.",
+    "units": [
+      {
+        "start": 110771,
+        "end": 111408,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 111434,
+        "end": 111707,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 111733,
+        "end": 112541,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[3]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[4]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[5]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[6]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 112567,
+        "end": 113564,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[8]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[9]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[10]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 113590,
+        "end": 113837,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 113863,
+        "end": 115049,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 115075,
+        "end": 115815,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 115841,
+        "end": 116168,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[15]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:mc666yy3026:f330cd449d20585043c2",
+    "document_key": "ribaucourt",
+    "window": 0,
+    "start": 1757591,
+    "end": 1763588,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Dernier marqueur i lfl illisible ; pas de numéro historique reconstruit.",
+    "units": [
+      {
+        "start": 1757591,
+        "end": 1758334,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1758359,
+        "end": 1758569,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1758594,
+        "end": 1759201,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1759226,
+        "end": 1759943,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1759968,
+        "end": 1760888,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1760913,
+        "end": 1761587,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1761612,
+        "end": 1762037,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[8]",
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1762062,
+        "end": 1762361,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1762386,
+        "end": 1762718,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1762743,
+        "end": 1763046,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1763071,
+        "end": 1763588,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": 5
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:mc666yy3026:97af66caeb2eea3e1442",
+    "document_key": "flines",
+    "window": 0,
+    "start": 1854041,
+    "end": 1858839,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 1854041,
+        "end": 1854546,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[2]",
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1854572,
+        "end": 1854928,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1854954,
+        "end": 1855407,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1855433,
+        "end": 1855776,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1855802,
+        "end": 1856250,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1856276,
+        "end": 1856710,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1856736,
+        "end": 1857177,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1857203,
+        "end": 1857589,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[10]",
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1857615,
+        "end": 1857963,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1857989,
+        "end": 1858238,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1858264,
+        "end": 1858328,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1858354,
+        "end": 1858660,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[15]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 1858686,
+        "end": 1858839,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]/p[16]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:mc666yy3026:f9e19530b4e33ccf95c7",
+    "document_key": "carces-mineurs",
+    "window": 0,
+    "start": 2496745,
+    "end": 2501997,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 2496745,
+        "end": 2497103,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2497154,
+        "end": 2497507,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2497533,
+        "end": 2497839,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2497865,
+        "end": 2498394,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2498420,
+        "end": 2498765,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2498791,
+        "end": 2500018,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2500044,
+        "end": 2500551,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2500577,
+        "end": 2501997,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:mc666yy3026:5ef43e6dd0afce138d76",
+    "document_key": "montigny-ostrevent",
+    "window": 0,
+    "start": 2030891,
+    "end": 2036084,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Frontières lisibles par répétition typographique et contexte ; z8, 36, B®, Il® restent inchangés. Numéros normalisés absents.",
+    "units": [
+      {
+        "start": 2030891,
+        "end": 2032644,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2032670,
+        "end": 2033062,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": 2
+      },
+      {
+        "start": 2033088,
+        "end": 2033536,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[3]",
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": 2
+      },
+      {
+        "start": 2033537,
+        "end": 2034106,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2034132,
+        "end": 2034386,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2034412,
+        "end": 2034613,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2034639,
+        "end": 2034931,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2034957,
+        "end": 2035218,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": 2
+      },
+      {
+        "start": 2035218,
+        "end": 2035456,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2035482,
+        "end": 2035819,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2035845,
+        "end": 2036084,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": 3
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "document_key": "mirecourt-noblesse",
+    "window": 0,
+    "start": 8443,
+    "end": 11261,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 8443,
+        "end": 8493,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 8494,
+        "end": 8861,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 8888,
+        "end": 8952,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 8979,
+        "end": 9414,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 9440,
+        "end": 9612,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 9638,
+        "end": 9778,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 9804,
+        "end": 9912,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 9938,
+        "end": 10076,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 10102,
+        "end": 10237,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 10263,
+        "end": 10372,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 10398,
+        "end": 10841,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 10867,
+        "end": 11115,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 11141,
+        "end": 11261,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "document_key": "mirecourt-noblesse",
+    "window": 1,
+    "start": 11608,
+    "end": 14199,
+    "certainty": "B",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "p2 n’a pas de marqueur ; subdivision documentaire retenue dans le référentiel par parallélisme de la série, contrôle image à compléter.",
+    "units": [
+      {
+        "start": 11608,
+        "end": 11665,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[1]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 11691,
+        "end": 11830,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[2]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 11856,
+        "end": 12119,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[3]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 12145,
+        "end": 12437,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[4]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 12463,
+        "end": 13095,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[5]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 13121,
+        "end": 13332,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[6]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 13358,
+        "end": 13494,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[7]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 13520,
+        "end": 13835,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[8]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 13861,
+        "end": 14199,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]/p[9]"
+        ],
+        "status": "B",
+        "validation": "boundary_uncertain",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:af71dbb9f75db8ce99b2",
+    "document_key": "guerande-tiers",
+    "window": 0,
+    "start": 904970,
+    "end": 909935,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 904970,
+        "end": 905359,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 905384,
+        "end": 905879,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 905904,
+        "end": 906403,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 906428,
+        "end": 906661,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 906686,
+        "end": 907310,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 907335,
+        "end": 907782,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 907807,
+        "end": 908142,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 908167,
+        "end": 909935,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[8]",
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[9]",
+          "/TEI.2/text/body/div1/div2[9]/div3[3]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:4133d7972888544d97cb",
+    "document_key": "ferrieres",
+    "window": 0,
+    "start": 5028468,
+    "end": 5031335,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Article 15 introductif exclu du référentiel : portée sur les sections suivantes à clarifier.",
+    "units": [
+      {
+        "start": 5028468,
+        "end": 5028590,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5028616,
+        "end": 5028723,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5028749,
+        "end": 5028816,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5028842,
+        "end": 5029209,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[4]",
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5029235,
+        "end": 5029534,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5029560,
+        "end": 5029954,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[7]",
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[8]",
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5029980,
+        "end": 5030103,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5030129,
+        "end": 5030283,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5030309,
+        "end": 5030382,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5030408,
+        "end": 5030562,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5030588,
+        "end": 5030698,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5030724,
+        "end": 5030834,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[15]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5030860,
+        "end": 5030997,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[16]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5031023,
+        "end": 5031335,
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[17]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:4133d7972888544d97cb",
+    "document_key": "ferrieres",
+    "window": 1,
+    "start": 5031622,
+    "end": 5032821,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 5031622,
+        "end": 5031753,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[147]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5031779,
+        "end": 5031909,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[147]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5031935,
+        "end": 5032085,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[147]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5032111,
+        "end": 5032460,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[147]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5032486,
+        "end": 5032728,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[147]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5032754,
+        "end": 5032821,
+        "division": 2,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[147]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 1,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:4133d7972888544d97cb",
+    "document_key": "ferrieres",
+    "window": 2,
+    "start": 5032924,
+    "end": 5033123,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 5032924,
+        "end": 5033052,
+        "division": 3,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[148]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 2,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5033078,
+        "end": 5033123,
+        "division": 3,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[148]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 2,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:4133d7972888544d97cb",
+    "document_key": "ferrieres",
+    "window": 3,
+    "start": 5033241,
+    "end": 5033611,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 5033241,
+        "end": 5033419,
+        "division": 4,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[149]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 3,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5033445,
+        "end": 5033611,
+        "division": 4,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[149]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 3,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:eef09d567c9a82f751c0",
+    "document_key": "annet-marne",
+    "window": 0,
+    "start": 2705734,
+    "end": 2708817,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 2705734,
+        "end": 2705769,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2705795,
+        "end": 2706066,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2706092,
+        "end": 2706333,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2706359,
+        "end": 2706710,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2706736,
+        "end": 2706950,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2706976,
+        "end": 2707098,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2707124,
+        "end": 2707265,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2707291,
+        "end": 2707393,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2707419,
+        "end": 2707553,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2707579,
+        "end": 2707806,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2707832,
+        "end": 2707901,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2707927,
+        "end": 2708240,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2708266,
+        "end": 2708334,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2708360,
+        "end": 2708646,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[14]",
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[15]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2708672,
+        "end": 2708817,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]/p[16]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:2d9eb8a19442dcf619d3",
+    "document_key": "ermenonville",
+    "window": 0,
+    "start": 2880442,
+    "end": 2881624,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 2880442,
+        "end": 2880482,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2880508,
+        "end": 2880613,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2880639,
+        "end": 2880680,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2880706,
+        "end": 2880835,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2880861,
+        "end": 2880920,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2880946,
+        "end": 2880989,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2881015,
+        "end": 2881119,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2881145,
+        "end": 2881197,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2881223,
+        "end": 2881267,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2881293,
+        "end": 2881326,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2881352,
+        "end": 2881391,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2881417,
+        "end": 2881624,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xg914wh0253:fbbba92b6bb96154d07a",
+    "document_key": "mirecourt-clerge",
+    "window": 0,
+    "start": 3881,
+    "end": 7442,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 3881,
+        "end": 5277,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[1]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 5303,
+        "end": 6235,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[1]/p[4]",
+          "/TEI.2/text/body/div1/div2[1]/div3[1]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 6261,
+        "end": 6622,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[1]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 6648,
+        "end": 7154,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[1]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 7180,
+        "end": 7442,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[1]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xx284sn7328:12cdaced3d457962e532",
+    "document_key": "pierrelez-habitants",
+    "window": 0,
+    "start": 194554,
+    "end": 196100,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 194554,
+        "end": 194833,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 194858,
+        "end": 195049,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 195074,
+        "end": 195416,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 195441,
+        "end": 195553,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 195578,
+        "end": 195726,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 195751,
+        "end": 195793,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 195818,
+        "end": 195859,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 195884,
+        "end": 195947,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 195972,
+        "end": 196100,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xx284sn7328:0e4e17a10525b854d367",
+    "document_key": "perigny-brie",
+    "window": 0,
+    "start": 124559,
+    "end": 128999,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "La note en ligne de p16 est un vrai élément note, exclu du texte de l’article et conservé séparément.",
+    "units": [
+      {
+        "start": 124559,
+        "end": 124681,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 124706,
+        "end": 124953,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 124978,
+        "end": 125319,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 125344,
+        "end": 125553,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 125578,
+        "end": 125787,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 125812,
+        "end": 126008,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 126033,
+        "end": 126181,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 126206,
+        "end": 126609,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 126634,
+        "end": 127041,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 127066,
+        "end": 127272,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 127297,
+        "end": 127547,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 127572,
+        "end": 127871,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 127896,
+        "end": 128157,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 128182,
+        "end": 128496,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[15]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 128521,
+        "end": 128999,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]/p[16]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xx284sn7328:83dfa5bae7397bf30538",
+    "document_key": "plessis-secqueville",
+    "window": 0,
+    "start": 280082,
+    "end": 282942,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 280082,
+        "end": 280469,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 280494,
+        "end": 280559,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 280584,
+        "end": 280778,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 280803,
+        "end": 281023,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 281048,
+        "end": 281267,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 281292,
+        "end": 281431,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 281456,
+        "end": 281518,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 281543,
+        "end": 282402,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 282427,
+        "end": 282942,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:xx284sn7328:9a570b0100acb2734ded",
+    "document_key": "puteaux",
+    "window": 0,
+    "start": 441091,
+    "end": 445539,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Intitulé de section p6 exclu de la fin de l’article 3.",
+    "units": [
+      {
+        "start": 441091,
+        "end": 441368,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 441393,
+        "end": 441704,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 441729,
+        "end": 442806,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 442879,
+        "end": 443243,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 443268,
+        "end": 443606,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 443631,
+        "end": 444328,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 444353,
+        "end": 444800,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 444825,
+        "end": 444959,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 444984,
+        "end": 445100,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[12]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 445125,
+        "end": 445383,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 445408,
+        "end": 445539,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]/p[14]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:wg983ft3682:72447fb17ff8b4b6f261",
+    "document_key": "vic-clerge",
+    "window": 0,
+    "start": 141397,
+    "end": 145516,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 141397,
+        "end": 141723,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 141749,
+        "end": 141984,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 142010,
+        "end": 142177,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 142203,
+        "end": 142998,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 143024,
+        "end": 143556,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 143582,
+        "end": 144390,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 144416,
+        "end": 144771,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 144797,
+        "end": 145516,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[9]",
+          "/TEI.2/text/body/div1/div2[1]/div3[4]/p[10]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:wg983ft3682:8dab1fac50b6320bcb33",
+    "document_key": "toul-noblesse",
+    "window": 0,
+    "start": 44119,
+    "end": 44712,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Intitulés p9,p12,p14 séparés. Article 3 non certifié : rattachement de la rubrique Réduction des rentes et des paragraphes suivants à contrôler.",
+    "units": [
+      {
+        "start": 44192,
+        "end": 44423,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 44503,
+        "end": 44643,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:wg983ft3682:c33d108ba660e47d2e75",
+    "document_key": "albertas",
+    "window": 0,
+    "start": 2107564,
+    "end": 2110382,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "",
+    "units": [
+      {
+        "start": 2107564,
+        "end": 2107796,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[1]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2107822,
+        "end": 2108057,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[2]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2108083,
+        "end": 2108153,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[3]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2108179,
+        "end": 2108391,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[4]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2108417,
+        "end": 2108486,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2108512,
+        "end": 2108660,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[6]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2108686,
+        "end": 2109397,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[7]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2109423,
+        "end": 2109843,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2109869,
+        "end": 2110382,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]/p[9]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:wg983ft3682:f7df571f2f7d6b380e1b",
+    "document_key": "beaurecueil",
+    "window": 0,
+    "start": 2345666,
+    "end": 2349560,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Revue approfondie XML + image p262 : prose initiale puis trois demandes numérotées dans p5 ; 3° prolongé par p6–8 avant Signé. Belcodène p9 suivant hors parent.",
+    "units": [
+      {
+        "start": 2347682,
+        "end": 2347957,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[14]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2347958,
+        "end": 2348003,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[14]/p[5]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      },
+      {
+        "start": 2348004,
+        "end": 2349413,
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[17]/div3[14]/p[5]",
+          "/TEI.2/text/body/div1/div2[17]/div3[14]/p[6]",
+          "/TEI.2/text/body/div1/div2[17]/div3[14]/p[7]",
+          "/TEI.2/text/body/div1/div2[17]/div3[14]/p[8]"
+        ],
+        "status": "A",
+        "validation": "xml_boundaries_reviewed",
+        "reference_window": 0,
+        "rule": "reviewed_reference",
+        "label_exact": null,
+        "label_length": null
+      }
+    ]
+  },
+  {
+    "document_id": "ap1789-pilot-d1:wg983ft3682:7b9e79cfa79fff18df92",
+    "document_key": "lourmarin",
+    "window": 0,
+    "start": 2881398,
+    "end": 2888459,
+    "certainty": "A",
+    "basis": "lecture du XML : marqueurs, continuités et paragraphes adjacents ; pas vérité paléographique",
+    "comment": "Prose non numérotée : maintien dans le parent, pas une revendication artificielle par paragraphe.",
+    "units": []
+  }
+]

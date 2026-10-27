@@ -1,0 +1,249 @@
+{
+  "all": {
+    "notices": 72,
+    "target_documents": 56,
+    "target_kinds": {
+      "cahier": 55,
+      "associated_minutes": 1
+    },
+    "non_cahiers": 16,
+    "type_griev_false_cahiers": 2,
+    "A_admitted": 53,
+    "A_autonomous": 51,
+    "B_proposals": 53,
+    "B_status": {
+      "ambiguous_proposal": 10,
+      "strong_proposal": 43,
+      "not_found": 3
+    },
+    "B_proposed_judgments": {
+      "correct_compatible_identity": 50,
+      "incorrect_identity": 1,
+      "uncertain_identity_or_scope": 2
+    },
+    "B_all_top_judgments_including_abstentions": {
+      "correct_compatible_identity": 53,
+      "incorrect_identity": 1,
+      "uncertain_identity_or_scope": 2
+    },
+    "B_strong_judgments": {
+      "correct_compatible_identity": 43
+    },
+    "C_status": {
+      "V2_supported_single_requires_review": 11,
+      "metadata_strong_proposal_not_verified": 43,
+      "ambiguous_V2_supported_queue": 2
+    },
+    "C_judgments": {
+      "correct_unique_proposal": 52,
+      "correct_target_in_ambiguous_queue": 2,
+      "uncertain_identity_or_scope": 2
+    },
+    "C_target_in_candidate_queue": 56,
+    "boundary_reviewed": 26,
+    "boundaries": {
+      "A": {
+        "proposed": 24,
+        "start_correct": 23,
+        "end_correct": 21,
+        "both_correct": 21
+      },
+      "B": {
+        "proposed": 25,
+        "start_correct": 24,
+        "end_correct": 22,
+        "both_correct": 22
+      },
+      "C": {
+        "proposed": 26,
+        "start_correct": 26,
+        "end_correct": 23,
+        "both_correct": 23
+      }
+    }
+  },
+  "development": {
+    "notices": 13,
+    "target_documents": 13,
+    "target_kinds": {
+      "cahier": 13
+    },
+    "non_cahiers": 0,
+    "type_griev_false_cahiers": 0,
+    "A_admitted": 12,
+    "A_autonomous": 10,
+    "B_proposals": 12,
+    "B_status": {
+      "ambiguous_proposal": 2,
+      "strong_proposal": 10,
+      "not_found": 1
+    },
+    "B_proposed_judgments": {
+      "correct_compatible_identity": 12
+    },
+    "B_all_top_judgments_including_abstentions": {
+      "correct_compatible_identity": 13
+    },
+    "B_strong_judgments": {
+      "correct_compatible_identity": 10
+    },
+    "C_status": {
+      "V2_supported_single_requires_review": 3,
+      "metadata_strong_proposal_not_verified": 10
+    },
+    "C_judgments": {
+      "correct_unique_proposal": 13
+    },
+    "C_target_in_candidate_queue": 13,
+    "boundary_reviewed": 13,
+    "boundaries": {
+      "A": {
+        "proposed": 12,
+        "start_correct": 12,
+        "end_correct": 11,
+        "both_correct": 11
+      },
+      "B": {
+        "proposed": 12,
+        "start_correct": 12,
+        "end_correct": 12,
+        "both_correct": 12
+      },
+      "C": {
+        "proposed": 13,
+        "start_correct": 13,
+        "end_correct": 13,
+        "both_correct": 13
+      }
+    }
+  },
+  "new_hash": {
+    "notices": 53,
+    "target_documents": 43,
+    "target_kinds": {
+      "cahier": 42,
+      "associated_minutes": 1
+    },
+    "non_cahiers": 10,
+    "type_griev_false_cahiers": 2,
+    "A_admitted": 41,
+    "A_autonomous": 41,
+    "B_proposals": 41,
+    "B_status": {
+      "strong_proposal": 33,
+      "not_found": 2,
+      "ambiguous_proposal": 8
+    },
+    "B_proposed_judgments": {
+      "correct_compatible_identity": 38,
+      "incorrect_identity": 1,
+      "uncertain_identity_or_scope": 2
+    },
+    "B_all_top_judgments_including_abstentions": {
+      "correct_compatible_identity": 40,
+      "incorrect_identity": 1,
+      "uncertain_identity_or_scope": 2
+    },
+    "B_strong_judgments": {
+      "correct_compatible_identity": 33
+    },
+    "C_status": {
+      "metadata_strong_proposal_not_verified": 33,
+      "V2_supported_single_requires_review": 8,
+      "ambiguous_V2_supported_queue": 2
+    },
+    "C_judgments": {
+      "correct_unique_proposal": 39,
+      "correct_target_in_ambiguous_queue": 2,
+      "uncertain_identity_or_scope": 2
+    },
+    "C_target_in_candidate_queue": 43,
+    "boundary_reviewed": 13,
+    "boundaries": {
+      "A": {
+        "proposed": 12,
+        "start_correct": 11,
+        "end_correct": 10,
+        "both_correct": 10
+      },
+      "B": {
+        "proposed": 13,
+        "start_correct": 12,
+        "end_correct": 10,
+        "both_correct": 10
+      },
+      "C": {
+        "proposed": 13,
+        "start_correct": 13,
+        "end_correct": 10,
+        "both_correct": 10
+      }
+    }
+  },
+  "complementary_unexamined_subset": {
+    "notices": 26,
+    "target_documents": 24,
+    "target_kinds": {
+      "cahier": 24
+    },
+    "non_cahiers": 2,
+    "type_griev_false_cahiers": 2,
+    "A_admitted": 24,
+    "A_autonomous": 24,
+    "B_proposals": 24,
+    "B_status": {
+      "strong_proposal": 20,
+      "ambiguous_proposal": 4
+    },
+    "B_proposed_judgments": {
+      "correct_compatible_identity": 22,
+      "uncertain_identity_or_scope": 2
+    },
+    "B_all_top_judgments_including_abstentions": {
+      "correct_compatible_identity": 22,
+      "uncertain_identity_or_scope": 2
+    },
+    "B_strong_judgments": {
+      "correct_compatible_identity": 20
+    },
+    "C_status": {
+      "metadata_strong_proposal_not_verified": 20,
+      "ambiguous_V2_supported_queue": 2,
+      "V2_supported_single_requires_review": 2
+    },
+    "C_judgments": {
+      "correct_unique_proposal": 20,
+      "correct_target_in_ambiguous_queue": 2,
+      "uncertain_identity_or_scope": 2
+    },
+    "C_target_in_candidate_queue": 24,
+    "boundary_reviewed": 10,
+    "boundaries": {
+      "A": {
+        "proposed": 10,
+        "start_correct": 10,
+        "end_correct": 10,
+        "both_correct": 10
+      },
+      "B": {
+        "proposed": 10,
+        "start_correct": 10,
+        "end_correct": 10,
+        "both_correct": 10
+      },
+      "C": {
+        "proposed": 10,
+        "start_correct": 10,
+        "end_correct": 10,
+        "both_correct": 10
+      }
+    }
+  },
+  "limitations": [
+    "Codex exploratory non-independent judgments, predictions visible",
+    "Identity judgments do not certify exact XML boundaries or historical text accuracy",
+    "Boundary reference is a declared Stanford documentary policy, not exact Persée text-zone equivalence",
+    "METS selection covers six issue catalogues; not a statistically representative sample or exhaustive recall test",
+    "C formalized after source packs volumes1–3; untouched comparison limited to recorded volumes4–6 hash subset"
+  ]
+}

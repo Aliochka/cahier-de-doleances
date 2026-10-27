@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-10-27T12:49:09.858526+00:00",
+  "metadata_only": true,
+  "stanford_alignment_examined": false,
+  "seed": "alignment-1789-v1",
+  "total": 72,
+  "per_volume": 12,
+  "development": 13,
+  "new_hash": 53,
+  "negative_type": 6,
+  "representative": false,
+  "design": "Known controls, one non-griev record/volume where available, remainder SHA-256 order in non-theme METS documentary catalogue. No source alignment or replacement of difficult records."
+}

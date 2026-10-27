@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-27T12:56:21.135097+00:00",
+  "new_source_packs_reviewed": false,
+  "scope": "13 development controls used for prototyping; 53 hash notices and 6 type-negative controls not used for rule adjustment",
+  "development_changes": [
+    "Ignore parenthetical territorial qualifiers for local title overlap; keep them as context evidence",
+    "Give exact printed start page more weight to avoid Grasse internal-title confusion",
+    "Allow limited morphological suffix match only for recognition; OCR/text unchanged"
+  ],
+  "source_helper_version": "1789-extraction-v2 common.py (read-only)",
+  "files": {
+    "alignment.py": "56416338c6a0b5958b49604776602f174d385691a02e68de64f7f9640dec111a",
+    "auditlib.py": "5edc37d70422f78fd9ae4393169e115803772fd02e1a96618ee17eed6cb68ba0",
+    "fetch_metadata.py": "1b3553dbaa34a1c37f6ac7bd7e5a3f694dce51fd616e3d3b72dd2ab558a87c5a",
+    "configuration.json": "8292005d3b85a7b52122c02be1767ea99835712a15736607ef19111aa0d87349",
+    "data/sample.json": "587c10cfc0ddd64156119cfd9c75ef66c1c209431b69f713e07d44e9b6f2781c",
+    "sample-plan.json": "6adeb2f16affec568c3360b56127d261d8b4164031702854938a55e78d515882",
+    "data/metadata.jsonl": "f32c73274fab9a27a0707ae86ce1ce673d807fae03aa006b2e6ed0f9a33e1e1b"
+  }
+}

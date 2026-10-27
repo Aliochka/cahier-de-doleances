@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-26T16:55:53.565905+00:00",
+  "source_only": true,
+  "new_article_predictions_exist": false,
+  "cache": "/tmp/cahier-1789-extraction-200",
+  "files": {
+    "negative-v6.txt": "d7e54aad1e14f1ce3d27ea72b4c7c19986bd67b777b7b2cebec220d971bd4878",
+    "negative-v5.txt": "debcf520e7c992a871a5edbafc33f6c41344c4f25aa9f541809fe6caa1e172c5",
+    "validation-v4.txt": "049485482c1aa9dc65c7655e79ae5e2c26e9d55deb0f02ef4f2061d3e119febb",
+    "validation-v1.txt": "1bf389ee2d87f4d998c44cc76fa9d6571edca3b022fd39be90dbb4e1c57b6828",
+    "validation-v6.txt": "1be2caf53bd278e8997c00411bf0a4db025a4a47395c1fd1ff3f4400d178f77e",
+    "negative-v1.txt": "8c383b47c01f13a9a134d4f75e934638ee658968134c8cbff6f1057f7a4051ee",
+    "negative-v3.txt": "7e1414ce152b11f2a69094c10b96d752845c447177ad93cc1a231b7325171713",
+    "validation-v5.txt": "70fc821e3b93a9eed04dddf2a04cec525a68d6808d2061f369da9fb153305806",
+    "validation-v2.txt": "2e5445564465ccb0742b1715efb9a0ab43d19da69055e8f506f909a258c4d2ec",
+    "validation-v3.txt": "08167e10fee208321241454a5dd1ff952cf3b437b81ab48914766951e1a9af89",
+    "negative-v4.txt": "90ae18d7aa6c4f01b9a52e2cdfb841e65b6be5f48247f8c81dfcd2dcffea2474",
+    "all-bookends.txt": "1155a0a8208e4823ee655d856657559579d4b6216b78a01e5aad3451401e02c6",
+    "negative-v2.txt": "25e1240214077fb43a2a3fdcbd04b02ded091d64253af51f4a3249c683542f8a"
+  },
+  "human_time_seconds": null
+}

@@ -1,0 +1,568 @@
+[
+  {
+    "key": "agen",
+    "stanford_document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "stanford_xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]",
+    "stanford_source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "stanford_volume": "1",
+    "paragraphs_stanford": 182,
+    "paragraphs_artfl": 182,
+    "identical_paragraphs": 182,
+    "artfl_philo_id": "2 2 6 2",
+    "artfl_navigation_url": "https://artflsrv04.uchicago.edu/philologic5/archparl/navigate/2/2/6/2",
+    "artfl_metadata": {
+      "filename": "APvol01.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "Additional markup added by Digital Divide Data, 20120701",
+      "year": 1789,
+      "head": "CAHIER",
+      "type": "cahier",
+      "n": "01",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "2",
+      "philo_div1_id": "2 2",
+      "philo_div2_id": "2 2 6",
+      "philo_div3_id": "2 2 6 2"
+    },
+    "artfl_response_sha256": "9fb524bbd1aaf5760f5707f76e8c927dac3a3d3d72898c18bd119ac348cc4e80",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1529",
+    "persee_url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_1_1_1529",
+    "persee_title": "Cahier du clergé de la sénéchaussée d'Agen ",
+    "persee_page_start": [
+      "675"
+    ],
+    "persee_page_end": [
+      "679"
+    ],
+    "persee_date": [
+      "1879"
+    ],
+    "persee_rights": [
+      "Downloading and printing allowed only for personal use. For general information see \"Copyright and Other Restrictions\""
+    ],
+    "persee_metadata_sha256": "eb016511e0ce905cfe29933f203bbb0339f79053ba51dfc8c46c5e8a9e7e83bb",
+    "pages": [
+      {
+        "page_id": "arcpa_0000-0000_1879_num_1_1_T2_0675_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0675_0000",
+        "cache_file": "persee-agen-0675.html",
+        "paragraphs": 37,
+        "characters": 3956,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0675_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_1_1_T2_0676_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0676_0000",
+        "cache_file": "persee-agen-0676.html",
+        "paragraphs": 50,
+        "characters": 4497,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0676_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_1_1_T2_0677_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0677_0000",
+        "cache_file": "persee-agen-0677.html",
+        "paragraphs": 49,
+        "characters": 4607,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0677_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_1_1_T2_0678_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0678_0000",
+        "cache_file": "persee-agen-0678.html",
+        "paragraphs": 44,
+        "characters": 6315,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0678_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_1_1_T2_0679_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0679_0000",
+        "cache_file": "persee-agen-0679.html",
+        "paragraphs": 2,
+        "characters": 2601,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0679_0000_710.jpg"
+      }
+    ]
+  },
+  {
+    "key": "angoumois",
+    "stanford_document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "stanford_xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+    "stanford_source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "stanford_volume": "2",
+    "paragraphs_stanford": 101,
+    "paragraphs_artfl": 101,
+    "identical_paragraphs": 101,
+    "artfl_philo_id": "4 2 2 3",
+    "artfl_navigation_url": "https://artflsrv04.uchicago.edu/philologic5/archparl/navigate/4/2/2/3",
+    "artfl_metadata": {
+      "filename": "APvol02.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES & BAILLIAGES",
+      "create_date": "1789",
+      "notes": "Additional markup added by Digital Divide Data, 20120701",
+      "year": 1789,
+      "head": "CAHIERsommaire des très-humbles remontrances faites et dressées par l'ordre de la noblesse de la province d'Angoumois, en rassemblée tenue en la ville d'Angoulême les 16, 17, 18, 19, et jours suivants du mois de mars 1789, par ordre du roi, suivant la lettre de Sa Majesté à M. le Sénéchal d'Angoumois, en date du 24 janvier dernier, et de l'ordonnance dudit sieur sénéchal du 14 février, sur le sujet de la convocation des Etats généraux en la ville de Versailles, assignés au 27 avril dudit an, et mises entre les mains de MM. le marquis de Saint-Simon et le comte de Culent, députés par ladite noblesse pour assister auxdits Etats généraux, et représenter les articles desdites remontrances qui s'ensuivent ( 1).",
+      "type": "cahier",
+      "n": "2",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "4",
+      "philo_div1_id": "4 2",
+      "philo_div2_id": "4 2 2",
+      "philo_div3_id": "4 2 2 3"
+    },
+    "artfl_response_sha256": "577141040c3a4bf05fde1981414e79eb8af3ea4da6405b0dbed11621e40c79b2",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1559",
+    "persee_url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_2_1_1559",
+    "persee_title": "Cahier de la noblesse de la sénéchaussée d'Angoumois",
+    "persee_page_start": [
+      "3"
+    ],
+    "persee_page_end": [
+      "7"
+    ],
+    "persee_date": [
+      "1879"
+    ],
+    "persee_rights": [
+      "Downloading and printing allowed only for personal use. For general information see \"Copyright and Other Restrictions\""
+    ],
+    "persee_metadata_sha256": "ae3012327a79eb3236581d3383e509abe4e7c59f95ac10aa51f761bba91b7942",
+    "pages": [
+      {
+        "page_id": "arcpa_0000-0000_1879_num_2_1_T1_0003_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0003_0000",
+        "cache_file": "persee-angoumois-0003.html",
+        "paragraphs": 1,
+        "characters": 728,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0003_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_2_1_T1_0004_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0004_0000",
+        "cache_file": "persee-angoumois-0004.html",
+        "paragraphs": 21,
+        "characters": 6689,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0004_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_2_1_T1_0005_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0005_0000",
+        "cache_file": "persee-angoumois-0005.html",
+        "paragraphs": 22,
+        "characters": 6881,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0005_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_2_1_T1_0006_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0006_0000",
+        "cache_file": "persee-angoumois-0006.html",
+        "paragraphs": 27,
+        "characters": 6841,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0006_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_2_1_T1_0007_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0007_0000",
+        "cache_file": "persee-angoumois-0007.html",
+        "paragraphs": 17,
+        "characters": 6342,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0007_0000_710.jpg"
+      }
+    ]
+  },
+  {
+    "key": "colmar",
+    "stanford_document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "stanford_xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+    "stanford_source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "stanford_volume": "3",
+    "paragraphs_stanford": 83,
+    "paragraphs_artfl": 83,
+    "identical_paragraphs": 83,
+    "artfl_philo_id": "5 2 2 4",
+    "artfl_navigation_url": "https://artflsrv04.uchicago.edu/philologic5/archparl/navigate/5/2/2/4",
+    "artfl_metadata": {
+      "filename": "APvol03.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES & BAILLIAGES",
+      "create_date": "1789",
+      "notes": "additional markup added by Digital Divide Data,20120701",
+      "year": 1789,
+      "head": "CAHIERDes doléances et remontrances que la ville de Col- mar entend faire à Sa Majeste sur les moyens de pourvoir et subvenir aux besoins de l'Etat, ainsi qu'à tout ce qui peut intéresser la prospérité du royaume et celle de tous et chacun des sujets de Sa Majesté (1).",
+      "type": "cahier",
+      "n": "3",
+      "id": "",
+      "div_date": "1789-04-27",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "5",
+      "philo_div1_id": "5 2",
+      "philo_div2_id": "5 2 2",
+      "philo_div3_id": "5 2 2 4"
+    },
+    "artfl_response_sha256": "732f5fe94e65f25df6eadfd4297bbccbc72c384e9934127ce3d2e68ed4f668fd",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1795",
+    "persee_url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_3_1_1795",
+    "persee_title": "Cahier de la ville de Colmar (District de Colmar et Schlesladt)",
+    "persee_page_start": [
+      "12"
+    ],
+    "persee_page_end": [
+      "15"
+    ],
+    "persee_date": [
+      "1879"
+    ],
+    "persee_rights": [
+      "Downloading and printing allowed only for personal use. For general information see \"Copyright and Other Restrictions\""
+    ],
+    "persee_metadata_sha256": "5ebeeb72784dbef137681ade6db7525bad73e7ec821a09f6106f653dc5d47d58",
+    "pages": [
+      {
+        "page_id": "arcpa_0000-0000_1879_num_3_1_T1_0012_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0012_0000",
+        "cache_file": "persee-colmar-0012.html",
+        "paragraphs": 18,
+        "characters": 4486,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0012_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_3_1_T1_0013_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0013_0000",
+        "cache_file": "persee-colmar-0013.html",
+        "paragraphs": 17,
+        "characters": 7007,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0013_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_3_1_T1_0014_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0014_0000",
+        "cache_file": "persee-colmar-0014.html",
+        "paragraphs": 29,
+        "characters": 6785,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0014_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_3_1_T1_0015_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0015_0000",
+        "cache_file": "persee-colmar-0015.html",
+        "paragraphs": 30,
+        "characters": 6512,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0015_0000_710.jpg"
+      }
+    ]
+  },
+  {
+    "key": "mirecourt",
+    "stanford_document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "stanford_xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+    "stanford_source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "stanford_volume": "4",
+    "paragraphs_stanford": 15,
+    "paragraphs_artfl": 15,
+    "identical_paragraphs": 15,
+    "artfl_philo_id": "6 2 2 3",
+    "artfl_navigation_url": "https://artflsrv04.uchicago.edu/philologic5/archparl/navigate/6/2/2/3",
+    "artfl_metadata": {
+      "filename": "APvol04.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME QUATRIÈME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "additional markup added by Digital Divide Data,20120701",
+      "year": 1789,
+      "head": "CAHIER Des remontrances, plaintes et doléances, moyens et avis du corps de la noblesse de Mirecourt (1). 16 mars 1789",
+      "type": "cahier",
+      "n": "4",
+      "id": "",
+      "div_date": "1789-03-16",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "6",
+      "philo_div1_id": "6 2",
+      "philo_div2_id": "6 2 2",
+      "philo_div3_id": "6 2 2 3"
+    },
+    "artfl_response_sha256": "1bdeb9add1ff949615b7666b6b3c1183a448edb4e1e357895f580eb43cffbacf",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1745",
+    "persee_url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_4_1_1745",
+    "persee_title": "Cahier de la noblesse du bailliage de Mirecourt",
+    "persee_page_start": [
+      "1"
+    ],
+    "persee_page_end": [
+      "6"
+    ],
+    "persee_date": [
+      "1879"
+    ],
+    "persee_rights": [
+      "Downloading and printing allowed only for personal use. For general information see \"Copyright and Other Restrictions\""
+    ],
+    "persee_metadata_sha256": "014bc8a7749d0a59841a2d9b6dfc2082262759f69771c8fee84c13ea33f822cd",
+    "pages": [
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0001_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0001_0000",
+        "cache_file": "persee-mirecourt-0001.html",
+        "paragraphs": 9,
+        "characters": 966,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0001_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0002_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0002_0000",
+        "cache_file": "persee-mirecourt-0002.html",
+        "paragraphs": 31,
+        "characters": 6114,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0002_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0003_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0003_0000",
+        "cache_file": "persee-mirecourt-0003.html",
+        "paragraphs": 16,
+        "characters": 7148,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0003_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0004_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0004_0000",
+        "cache_file": "persee-mirecourt-0004.html",
+        "paragraphs": 12,
+        "characters": 7033,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0004_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0005_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0005_0000",
+        "cache_file": "persee-mirecourt-0005.html",
+        "paragraphs": 12,
+        "characters": 7089,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0005_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0006_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0006_0000",
+        "cache_file": "persee-mirecourt-0006.html",
+        "paragraphs": 3,
+        "characters": 772,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0006_0000_710.jpg"
+      }
+    ]
+  },
+  {
+    "key": "pierrelez",
+    "stanford_document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "stanford_xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]",
+    "stanford_source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "stanford_volume": "5",
+    "paragraphs_stanford": 12,
+    "paragraphs_artfl": 12,
+    "identical_paragraphs": 12,
+    "artfl_philo_id": "1 2 2 10",
+    "artfl_navigation_url": "https://artflsrv04.uchicago.edu/philologic5/archparl/navigate/1/2/2/10",
+    "artfl_metadata": {
+      "filename": "APvol05.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME CINQUIÉME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "Additional markup added by Digital Divide Data, 20120701",
+      "year": 1789,
+      "head": "CAHIER",
+      "type": "cahier",
+      "n": "05",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "1",
+      "philo_div1_id": "1 2",
+      "philo_div2_id": "1 2 2",
+      "philo_div3_id": "1 2 2 10"
+    },
+    "artfl_response_sha256": "2608db18f874c8c68090b2b2220d0746c6f2ed0bc6e543bd8ff1fb67abb24c41",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2339",
+    "persee_url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_5_1_2339",
+    "persee_title": "Cahier de Pierrelez (Paris)",
+    "persee_page_start": [
+      "21"
+    ],
+    "persee_page_end": [
+      "21"
+    ],
+    "persee_date": [
+      "1879"
+    ],
+    "persee_rights": [
+      "Downloading and printing allowed only for personal use. For general information see \"Copyright and Other Restrictions\""
+    ],
+    "persee_metadata_sha256": "9c3dfb3468d262d28e9da4cba74e6909ffa9bb2b33f687b3bc2f03a53e5d4027",
+    "pages": [
+      {
+        "page_id": "arcpa_0000-0000_1879_num_5_1_T1_0021_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_5_1_2339/arcpa_0000-0000_1879_num_5_1_T1_0021_0000",
+        "cache_file": "persee-pierrelez-0021.html",
+        "paragraphs": 11,
+        "characters": 1714,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_5_1_2339/arcpa_0000-0000_1879_num_5_1_T1_0021_0000_710.jpg"
+      }
+    ]
+  },
+  {
+    "key": "vic",
+    "stanford_document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "stanford_xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]",
+    "stanford_source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "stanford_volume": "6",
+    "paragraphs_stanford": 58,
+    "paragraphs_artfl": 58,
+    "identical_paragraphs": 58,
+    "artfl_philo_id": "3 2 2 5",
+    "artfl_navigation_url": "https://artflsrv04.uchicago.edu/philologic5/archparl/navigate/3/2/2/5",
+    "artfl_metadata": {
+      "filename": "APvol06.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "Additional markup added by Digital Divide Data, 20120701",
+      "year": 1789,
+      "head": "CAHIER Des doléances et remontrances, dressé dans l'assemblée du clergé' du bailliage de Vie, le 28 mars 1789.",
+      "type": "cahier",
+      "n": "6",
+      "id": "",
+      "div_date": "1789-03-28",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "3",
+      "philo_div1_id": "3 2",
+      "philo_div2_id": "3 2 2",
+      "philo_div3_id": "3 2 2 5"
+    },
+    "artfl_response_sha256": "aca96535f332bfbeac0a1a7fe4bd27329cf4cffbd497ba6b89d2f167a41cd025",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2497",
+    "persee_url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_6_1_2497",
+    "persee_title": "Cahier du clergé de Vic (Bailliage de Toul)",
+    "persee_page_start": [
+      "16"
+    ],
+    "persee_page_end": [
+      "18"
+    ],
+    "persee_date": [
+      "1879"
+    ],
+    "persee_rights": [
+      "Downloading and printing allowed only for personal use. For general information see \"Copyright and Other Restrictions\""
+    ],
+    "persee_metadata_sha256": "b66742a57502aca2c4d6072b5c7a351980b32c17472a8ecd40699447fc0544ef",
+    "pages": [
+      {
+        "page_id": "arcpa_0000-0000_1879_num_6_1_T1_0016_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_6_1_2497/arcpa_0000-0000_1879_num_6_1_T1_0016_0000",
+        "cache_file": "persee-vic-0016.html",
+        "paragraphs": 20,
+        "characters": 6443,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_6_1_2497/arcpa_0000-0000_1879_num_6_1_T1_0016_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_6_1_T1_0017_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_6_1_2497/arcpa_0000-0000_1879_num_6_1_T1_0017_0000",
+        "cache_file": "persee-vic-0017.html",
+        "paragraphs": 25,
+        "characters": 6786,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_6_1_2497/arcpa_0000-0000_1879_num_6_1_T1_0017_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_6_1_T1_0018_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_6_1_2497/arcpa_0000-0000_1879_num_6_1_T1_0018_0000",
+        "cache_file": "persee-vic-0018.html",
+        "paragraphs": 18,
+        "characters": 2158,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_6_1_2497/arcpa_0000-0000_1879_num_6_1_T1_0018_0000_710.jpg"
+      }
+    ]
+  },
+  {
+    "key": "guerande",
+    "stanford_document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "stanford_xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]",
+    "stanford_source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "stanford_volume": "4",
+    "paragraphs_stanford": 46,
+    "paragraphs_artfl": 46,
+    "identical_paragraphs": 46,
+    "artfl_philo_id": "6 2 10 4",
+    "artfl_navigation_url": "https://artflsrv04.uchicago.edu/philologic5/archparl/navigate/6/2/10/4",
+    "artfl_metadata": {
+      "filename": "APvol04.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME QUATRIÈME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "additional markup added by Digital Divide Data,20120701",
+      "year": 1789,
+      "head": "CAHIERDes charges et doléances des députés du tiers-état de la sénéchaussée de Guérandepour être remis à ses électeurs, qui seront nommés pour procéder à Vélection, en rassemblée de Nantes, des députés aux Etats généraux (1).MM.",
+      "type": "cahier",
+      "n": "4",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "6",
+      "philo_div1_id": "6 2",
+      "philo_div2_id": "6 2 10",
+      "philo_div3_id": "6 2 10 4"
+    },
+    "artfl_response_sha256": "01474692dcf0d090c73a068f2a7db88e42c3706a52d7cd0e23f7dc9b46c4f189",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1780",
+    "persee_url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_4_1_1780",
+    "persee_title": "Cahier de la sénéchaussée de Guérande (Sénéchaussée de Nantes)",
+    "persee_page_start": [
+      "103"
+    ],
+    "persee_page_end": [
+      "105"
+    ],
+    "persee_date": [
+      "1879"
+    ],
+    "persee_rights": [
+      "Downloading and printing allowed only for personal use. For general information see \"Copyright and Other Restrictions\""
+    ],
+    "persee_metadata_sha256": "4a017ec071789ccd99c150f522c149ad2a1513e170ab2b82c0eeb79663c3db6f",
+    "pages": [
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0103_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1780/arcpa_0000-0000_1879_num_4_1_T1_0103_0000",
+        "cache_file": "persee-guerande-0103.html",
+        "paragraphs": 22,
+        "characters": 6383,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1780/arcpa_0000-0000_1879_num_4_1_T1_0103_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0104_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1780/arcpa_0000-0000_1879_num_4_1_T1_0104_0000",
+        "cache_file": "persee-guerande-0104.html",
+        "paragraphs": 21,
+        "characters": 6833,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1780/arcpa_0000-0000_1879_num_4_1_T1_0104_0000_710.jpg"
+      },
+      {
+        "page_id": "arcpa_0000-0000_1879_num_4_1_T1_0105_0000",
+        "url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1780/arcpa_0000-0000_1879_num_4_1_T1_0105_0000",
+        "cache_file": "persee-guerande-0105.html",
+        "paragraphs": 15,
+        "characters": 2374,
+        "image_url": "https://www.persee.fr/renderPage/arcpa_0000-0000_1879_num_4_1_1780/arcpa_0000-0000_1879_num_4_1_T1_0105_0000_710.jpg"
+      }
+    ]
+  }
+]

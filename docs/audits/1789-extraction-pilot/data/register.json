@@ -1,0 +1,4075 @@
+[
+  {
+    "id": "ap1789-pilot-d1:jt959wc5586:64bb7420785d8cb8ea4b",
+    "key": "agen-clerge",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Clergé d’Agenois",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/head",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[1]",
+        "text": "des demandes et doléances de l'ordre du clergé dela sénéchaus8ée\n                            d'agenols (1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "f535cbfc25abe8efa6e346b310847270cba8d210455b3600f566671e315526f8",
+    "source_text_start": 5119872,
+    "source_text_end": 5153454,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "jt959wc5586/jt959wc5586.xml",
+    "source_sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_text_sha256": "2a1ae3c339448c00e6f6733e7abeb59bcb14e5a0b33e15af5f911a1d7a2a4a14",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "volume": 1,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[6]/div3[1]"
+    ],
+    "pages": [
+      {
+        "n": "",
+        "id": "jt959wc5586_00_0674",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0674"
+      },
+      {
+        "n": "",
+        "id": "jt959wc5586_00_0675",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+      },
+      {
+        "n": "676",
+        "id": "jt959wc5586_00_0676",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0676"
+      },
+      {
+        "n": "677",
+        "id": "jt959wc5586_00_0677",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0677"
+      },
+      {
+        "n": "678",
+        "id": "jt959wc5586_00_0678",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0678"
+      },
+      {
+        "n": "679",
+        "id": "jt959wc5586_00_0679",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0679"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-a32476aadadff656",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]",
+        "division": 0,
+        "start": 5119872,
+        "end": 5153454,
+        "title_exact": [
+          "CAHIER"
+        ]
+      },
+      {
+        "id": "section-124d0fde2d217081",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[3]",
+        "division": 0,
+        "start": 5121499,
+        "end": 5121531,
+        "title_exact": [
+          "§ 1er, "
+        ]
+      },
+      {
+        "id": "section-748f2078480ace50",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[4]",
+        "division": 0,
+        "start": 5121531,
+        "end": 5130892,
+        "title_exact": [
+          "demandes et doléançes qui intéressent la nation en général. "
+        ]
+      },
+      {
+        "id": "section-5cdf5ae4737f5e80",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[70]",
+        "division": 0,
+        "start": 5130892,
+        "end": 5130922,
+        "title_exact": [
+          "§ H- "
+        ]
+      },
+      {
+        "id": "section-99cb02135f0a4eb1",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[71]",
+        "division": 0,
+        "start": 5130922,
+        "end": 5138560,
+        "title_exact": [
+          "demandes et doléances qui intéressent l'ordre du clergé en général. "
+        ]
+      },
+      {
+        "id": "section-338697c1e50b7ebd",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[126]",
+        "division": 0,
+        "start": 5138560,
+        "end": 5138626,
+        "title_exact": [
+          "demandes et doléances qui intéressent le "
+        ]
+      },
+      {
+        "id": "section-c53bf3cc907dd19c",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[127]",
+        "division": 0,
+        "start": 5138626,
+        "end": 5140865,
+        "title_exact": [
+          "clergé de la sénéchaussée d'agenois en par- ticulier. "
+        ]
+      },
+      {
+        "id": "section-03c3aca179230cd1",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[139]",
+        "division": 0,
+        "start": 5140865,
+        "end": 5153454,
+        "title_exact": [
+          "ART. 6. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3cdbc82bba8aad5e",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:86e8c14e342a6031",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:8209736b4f38334b",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3afe8afefa7f104a",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:afc371ef1020507f",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:470b2ad38cca2686",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ea953d36940780c4",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:393cfbad41b496da",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:7ee6cc23f697bee4",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:fc72d563d887bed8",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ea4591324e26f4e5",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:5ad3345d75665277",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ad34aa1c91157c39",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:dfe4b38c59bc1d96",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6eb3682d121a9f49",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1e7a630a44312918",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:4f30485c2807a1e0",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:cf1a6b8dc4a60a4a",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3c55ba9a2d37cb1f",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:db868da2b04ec55f",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:d28aa13c4d48af24",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:9482500867ebc23e",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b607fc2b63749c89",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:34e5cd2282de60ad",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ebe68a5e60ad1bd5",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:c429d98c0c399aef",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:d8776b4fa8bec920",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:e98c226cdad43634",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:0c1f387ba5c2328e",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:5141810dc2106b59",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b9be9ad9d2bab836",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:be59fb25a0f58c1c",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:731d56cd8a88c97d",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:42e3d173d1d205cd",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:fe5c37703f47b875",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:e90c4b281357b046",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b4fa8da11ceebfa5",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:26e675a9f9e1e197",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6b0a5f802e0c0448",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:10aee3fff0e3017a",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6b73928fa7353a75",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1c58ac70b905c59a",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:796308ff46501a33",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:008829ee76a76072",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a7afa82b799e0755",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:453bf1a4e552440b",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6b15f6b7fa7bad7c",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:8e76ea69f866bcca",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6ba29512485095db",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:c12c3aa2fca54311",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6d61776510eb9967",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:799401b79e238fe4",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a7dd6869ecda8602",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:e3906d0bb10e28d5",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b217f5c12bd155e5",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1d217c477676019a",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:8fd68cb80e6e5997",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:f30add3d1ac50f02",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:34dacc390ad06655",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:92907c7d7cee3ae6",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ff8dd3cfa22350ce",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:dc2da5a582a97e86",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1b531f01248f379a",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:7810817d641af6ce",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:5041d5f94cf262b7",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:81be5763559f836b",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a148fe8e2d31ed1f",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b53fb98e6dd08425",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b2eefbcd30d682e3",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a45e563d0e81cfea"
+    ],
+    "metadata": {
+      "estate": "clergé",
+      "locality": null,
+      "territory": "Sénéchaussée d’Agenois",
+      "date": "1789-03-23",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Titre en head et p[1] ; territoire repris du sous-titre, sans géocodage.",
+      "date_provenance": "p157 Fait et arrêté ; p180 approbation le même jour"
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE D'AGEN"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "legacy_extent_changed": false,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_1_1_1529",
+        "id": "arcpa_0000-0000_1879_num_1_1_1529",
+        "provenance": "Correspondance déjà vérifiée dans 1789-sources-comparison/data/documents.json ; aucune nouvelle collecte.",
+        "use": "Contrôle bibliographique secondaire, pas source du texte ni garantie de licence."
+      }
+    ],
+    "selection_reason": "articles multi-paragraphes ; sept initiaux",
+    "previous_audit": true,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:jt959wc5586:e3853dbbb35a07b290ab",
+    "key": "agen-noblesse",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Noblesse d’Agenois",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/head",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[1]",
+        "text": "DES POUVOIRS ET INSTRUCTIONS DES DÉPUTÉS DE LA NODLËSSE D'AGENOIS, "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[2]",
+        "text": "Remis à Messieurs le duc d'Aiguillon, marquis de Bouran, et marquis de\n                            Fumel-Monsegur, élus députés aux prochains Etats généraux par l'or- dre\n                            de la noblesse d'Agenois, assemblée à Agen au mois de mars 1789 (1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "cf489c7d94bc95dc63510627da8c90c06a208fa1e95f7eedcbf787ecbabd91ac",
+    "source_text_start": 5153475,
+    "source_text_end": 5223632,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "jt959wc5586/jt959wc5586.xml",
+    "source_sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_text_sha256": "2a1ae3c339448c00e6f6733e7abeb59bcb14e5a0b33e15af5f911a1d7a2a4a14",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "volume": 1,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[6]/div3[2]"
+    ],
+    "pages": [
+      {
+        "n": "679",
+        "id": "jt959wc5586_00_0679",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0679"
+      },
+      {
+        "n": "680",
+        "id": "jt959wc5586_00_0680",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0680"
+      },
+      {
+        "n": "681",
+        "id": "jt959wc5586_00_0681",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0681"
+      },
+      {
+        "n": "682",
+        "id": "jt959wc5586_00_0682",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0682"
+      },
+      {
+        "n": "683",
+        "id": "jt959wc5586_00_0683",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0683"
+      },
+      {
+        "n": "684",
+        "id": "jt959wc5586_00_0684",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0684"
+      },
+      {
+        "n": "685",
+        "id": "jt959wc5586_00_0685",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0685"
+      },
+      {
+        "n": "686",
+        "id": "jt959wc5586_00_0686",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0686"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-3e9dd85f6cf116fb",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]",
+        "division": 0,
+        "start": 5153475,
+        "end": 5223632,
+        "title_exact": [
+          "CAHIER "
+        ]
+      },
+      {
+        "id": "section-330f7c393245fa71",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[121]",
+        "division": 0,
+        "start": 5191200,
+        "end": 5191261,
+        "title_exact": [
+          "demandes particulières a l'agenois. "
+        ]
+      },
+      {
+        "id": "section-9f9720a9eeacb3f0",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[122]",
+        "division": 0,
+        "start": 5191261,
+        "end": 5191316,
+        "title_exact": [
+          "§ 1er\n                        "
+        ]
+      },
+      {
+        "id": "section-b794fed7b1674432",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[123]",
+        "division": 0,
+        "start": 5191316,
+        "end": 5198200,
+        "title_exact": [
+          "Abus particuliers dont se plaint VA génois. "
+        ]
+      },
+      {
+        "id": "section-acd9f7ee7f2d3f3b",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[134]",
+        "division": 0,
+        "start": 5198200,
+        "end": 5198228,
+        "title_exact": [
+          "§H "
+        ]
+      },
+      {
+        "id": "section-dc1424e6f36c1543",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[135]",
+        "division": 0,
+        "start": 5198228,
+        "end": 5208184,
+        "title_exact": [
+          "Améliorations particulières h VA génois. "
+        ]
+      },
+      {
+        "id": "section-06470f0e8ae5b7cd",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[155]",
+        "division": 0,
+        "start": 5208184,
+        "end": 5208216,
+        "title_exact": [
+          "§ III. "
+        ]
+      },
+      {
+        "id": "section-3c270826ee240f54",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[156]",
+        "division": 0,
+        "start": 5208216,
+        "end": 5223632,
+        "title_exact": [
+          "Privilèges favorables ou nuisibles à VAgenois. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:5f4c0e60017f055b",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4036832f2abe77b9",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d5ec70a19df839df",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d31c2d19f6f3aaa7",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:f315311fc7f81228",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8e44f9ab2ca7a473",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:7325005396c6d8de",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:e1f016ee8e96d97c",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:31641957ebc00359",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:b86ab446e763ce66",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:9691539c24d733e5",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4c50128e40501947",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:cf868c4ad42d5dbc",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4ffa38c6dff90eac",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4efa4d707241e9d2",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d42a6aaa4c9994ee",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:740f0b648b5692cf",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:e558513f1cc84726",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:648300645d05624b",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:7149bd20b5332fa9",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:04c490bd68a80633",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:b5fa1b8eb19f77ea",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:1cbef5a5c28597d4",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:dc19d8e068b27732",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:98a9ee47a17b2000",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:3a4ca6c946d7bd12",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:0fb20f5c2e4be101",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8667ece962dbef5a",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a7b1e0632ac301a0",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:cfc4aab4587fadba",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8ae93bbff4e1d4d9",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:6524cd805b8ac663",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d02e968e4ebb5511",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4f04a72b37e60410",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:c4f4652c45a8f47a",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a2452f8194982e37",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:65e4168d110df145",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a20f715f82f0f786",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:63c5f95fe2e2313c",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:dbc046f90036dab4",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8d70d0fd6fd81695",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:f40c6129b24052fd",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:98b1826b923ad249",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:ae4ad23f23250659",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:bd7bfcc00c03e0a1",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:2155a3138699aebb",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:958f48439292ef04",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:81466390f2340c08",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:5821f2652a793e5e",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:7955e39dfcd669cc",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d7abdc7f245dd7bf",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:9f8d5482f0a32c88",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:537a21b3230a993c",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:b47a027a75d4c52a",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:2e32badea7eb3e13",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a24bad80bca0cac0",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:81aa8bf93c2fbb28",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d0e51f2ba9e4b608",
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:e92cb6eb47bd61d1"
+    ],
+    "metadata": {
+      "estate": "noblesse",
+      "locality": null,
+      "territory": "Sénéchaussée d’Agenois",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE D'AGEN"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "long ; signatures étendues",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:jt959wc5586:b111f61f6392ebab8939",
+    "key": "agen-tiers",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Tiers état d’Agenois",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[3]/head",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[3]/p[1]",
+        "text": "des demandes, plaintes et doleances, mandats Et pouvoirs du tiers-etat de\n                            la séné- chaussée d'agenois (i). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "9b5c28d1d3b3bfc9d66de5fb6c8530e9d68bc82442ff30957a0ddca5c31d76f9",
+    "source_text_start": 5223653,
+    "source_text_end": 5272904,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "jt959wc5586/jt959wc5586.xml",
+    "source_sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_text_sha256": "2a1ae3c339448c00e6f6733e7abeb59bcb14e5a0b33e15af5f911a1d7a2a4a14",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "volume": 1,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[6]/div3[3]"
+    ],
+    "pages": [
+      {
+        "n": "686",
+        "id": "jt959wc5586_00_0686",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0686"
+      },
+      {
+        "n": "687",
+        "id": "jt959wc5586_00_0687",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0687"
+      },
+      {
+        "n": "688",
+        "id": "jt959wc5586_00_0688",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0688"
+      },
+      {
+        "n": "689",
+        "id": "jt959wc5586_00_0689",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0689"
+      },
+      {
+        "n": "690",
+        "id": "jt959wc5586_00_0690",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0690"
+      },
+      {
+        "n": "691",
+        "id": "jt959wc5586_00_0691",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0691"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-202e43308c779efc",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[3]",
+        "division": 0,
+        "start": 5223653,
+        "end": 5272904,
+        "title_exact": [
+          "CAHIER "
+        ]
+      },
+      {
+        "id": "section-ca2e96e9052e05f1",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[3]/p[8]",
+        "division": 0,
+        "start": 5229266,
+        "end": 5272904,
+        "title_exact": [
+          "CONSTITUTION. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [],
+    "metadata": {
+      "estate": "tiers état",
+      "locality": null,
+      "territory": "Sénéchaussée d’Agenois",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE D'AGEN"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "long ; en-tête courant OCR dans un paragraphe",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:jt959wc5586:c8caba17ed36b64403f1",
+    "key": "alencon-clerge",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Clergé d’Alençon",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/head",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[1]",
+        "text": "des vœux, remontrances et doléances du clergé du bailliage principal\n                            d'alençon, réuni en la ville d'alençon en vertu *des ordres de sa\n                            majesté, portés dans la lettrede convocation du 24 janvier dernier et\n                            pour se conformer au règlement ci-annexé (1). "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[2]",
+        "text": "Du27 mars 1789"
+      }
+    ],
+    "date_elements_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[2]/date",
+        "attributes": {
+          "value": "1789-03-27"
+        },
+        "text": "27 mars 1789",
+        "start": 5412005,
+        "end": 5412017
+      }
+    ],
+    "full_text_sha256": "649367bfa251fb7b820face4df98a7a258d294dec6182e3d65d92acafe35aff1",
+    "source_text_start": 5411586,
+    "source_text_end": 5435510,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "jt959wc5586/jt959wc5586.xml",
+    "source_sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_text_sha256": "2a1ae3c339448c00e6f6733e7abeb59bcb14e5a0b33e15af5f911a1d7a2a4a14",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "volume": 1,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[9]/div3[1]"
+    ],
+    "pages": [
+      {
+        "n": "",
+        "id": "jt959wc5586_00_0708",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0708"
+      },
+      {
+        "n": "709",
+        "id": "jt959wc5586_00_0709",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0709"
+      },
+      {
+        "n": "710",
+        "id": "jt959wc5586_00_0710",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0710"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-2b13d7bf92c58f9f",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]",
+        "division": 0,
+        "start": 5411586,
+        "end": 5435510,
+        "title_exact": [
+          "CAHIER "
+        ]
+      },
+      {
+        "id": "section-0ec7b52bf5c077a8",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[4]",
+        "division": 0,
+        "start": 5412596,
+        "end": 5413917,
+        "title_exact": [
+          "OBSERVATIONS PRÉLIMINAIRES.- "
+        ]
+      },
+      {
+        "id": "section-3cd93fb6a7324bce",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[10]",
+        "division": 0,
+        "start": 5413917,
+        "end": 5416166,
+        "title_exact": [
+          "Religion. "
+        ]
+      },
+      {
+        "id": "section-7e4fedb6565c9178",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[22]",
+        "division": 0,
+        "start": 5416166,
+        "end": 5419987,
+        "title_exact": [
+          "Cierge'. "
+        ]
+      },
+      {
+        "id": "section-2bee0c2436544b3b",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[38]",
+        "division": 0,
+        "start": 5419987,
+        "end": 5421138,
+        "title_exact": [
+          "Cures. "
+        ]
+      },
+      {
+        "id": "section-47dfc804bcc143f0",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[44]",
+        "division": 0,
+        "start": 5421138,
+        "end": 5425118,
+        "title_exact": [
+          "Constitution. "
+        ]
+      },
+      {
+        "id": "section-48521cd8db9f3e7c",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[65]",
+        "division": 0,
+        "start": 5425118,
+        "end": 5427333,
+        "title_exact": [
+          "Impôts. "
+        ]
+      },
+      {
+        "id": "section-507724521b738895",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[76]",
+        "division": 0,
+        "start": 5427333,
+        "end": 5427882,
+        "title_exact": [
+          "Trésor royal. "
+        ]
+      },
+      {
+        "id": "section-3db9926909a8786d",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[80]",
+        "division": 0,
+        "start": 5427882,
+        "end": 5429706,
+        "title_exact": [
+          "Justice, "
+        ]
+      },
+      {
+        "id": "section-5aa4e9f916351b31",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[90]",
+        "division": 0,
+        "start": 5429706,
+        "end": 5431540,
+        "title_exact": [
+          "Administration. "
+        ]
+      },
+      {
+        "id": "section-2b2407a1c6fdb175",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[101]",
+        "division": 0,
+        "start": 5431540,
+        "end": 5433065,
+        "title_exact": [
+          "Etats provinciaux. "
+        ]
+      },
+      {
+        "id": "section-c5f2ea38e37ae886",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[109]",
+        "division": 0,
+        "start": 5433065,
+        "end": 5435510,
+        "title_exact": [
+          "Troupes. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7f073d44862c46d0",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:96abe03adfd9e2e5",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:4fb06ffa0f3f6033",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c0d4ceea1194c236",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e3ad2997652eff3a",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:67fd84be00cbf103",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e4fd162d27296bb6",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:234d95bce89fa02e",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:b37cf89befd102d2",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c6ad6c816a16836a",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:049367c89e8aa73b",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7c19c739d64f7ffa",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3bfeddccd039662d",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:b35f1d5b24704f00",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:88e5326e95fecc68",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:545fa9bfae622035",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:d0643bb3508f4e09",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:75f49deec4f91a7f",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8cd7b2e55395b91a",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3f9de9bef8db6479",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e1f1c23d855a58aa",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:ab4583ee1b44f1fb",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:f3a7304f52150236",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:849a6ac94bb172b1",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:dcd7bf10c44e72fa",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:51f72aa29ad215a4",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:30ad5bad35a9bb1a",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:94006fec5ce58efa",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:9ed85e19b3b53187",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:19d3559d39f35088",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1354747cf6c55a28",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:4259c3c123c01a57",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:a13851306d74a6b1",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c5c7dcb650ceede7",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:ddd253ca8383c65f",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7ceadfc374280676",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:ac8b8d3fdcb1b9b7",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7e5d110d33e79b98",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:efb23b17bed89ad5",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:56d17fe69dc294b9",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e846543830f66d69",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:46f5665357a051fa",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:0307d324af5e2931",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:a31c9a0a3ba7f831",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1dca215e027c13af",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:74fa23846cbb191d",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:066158da1ed120ad",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:799e2d4b72a464da",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:91e01519c86a7ea8",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:fddade51daff1eb8",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:d4e971bd9e22d367",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:6b5a3ed1c206ea50",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:2490f57caf78f3b7",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:5da54ee7b0c34b89",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3b49a947882d3808",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:729b263d32cb64e1",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:586b297e9aee3e13",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:97bb855aa73fcc01",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:4c93f4a8001e5cdc",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:f68fa415ac199697",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:2cc43dc27fcef3da",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:6171a0149b2f7ed7",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1ebf6199e0c01dd8",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c55008de105f5860",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:073c955086a350ef",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:b9e623c023b9d9d8",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8d48cbd5e20789e8",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7a2c9b519a3d5bae",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:eeaa1301837b5985",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:0c7cef31cbba3eed",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:5fafe7b8305e561e",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:89a91f515618db19",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8c949cb67d9e0173",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:f58a1366df10d626",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8abdddaddb23c9ab",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3660f6fd675c319e",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:18a963c568dad0ac",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c533d66604ce6bad",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:843c79059e84dcae",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1e77c59452736577",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:619c45bc836783df",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:52d754b920fd1a8a",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:5620104887e82362",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:d95e05df7f2d8367",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:59844ba7dd648198",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:283e18344fffedb7"
+    ],
+    "metadata": {
+      "estate": "clergé",
+      "locality": null,
+      "territory": "Bailliage principal d’Alençon",
+      "date": "1789-03-27",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p2 Du27 mars 1789"
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE D'ALENÇON "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "long ; clôture et collation",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:jt959wc5586:bcdc69723b9153e44463",
+    "key": "alencon-noblesse",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Noblesse d’Alençon",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[2]/head",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[2]/p[1]",
+        "text": "de l'obdre de la nôblesse pu bailliage D'ALENÇON (1), "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "809fa5b78f84d12e1e3722246983fa4b242b94a91dd7c426ef67e6bcc6c86ab3",
+    "source_text_start": 5435531,
+    "source_text_end": 5492248,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "jt959wc5586/jt959wc5586.xml",
+    "source_sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_text_sha256": "2a1ae3c339448c00e6f6733e7abeb59bcb14e5a0b33e15af5f911a1d7a2a4a14",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "volume": 1,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[9]/div3[2]"
+    ],
+    "pages": [
+      {
+        "n": "710",
+        "id": "jt959wc5586_00_0710",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0710"
+      },
+      {
+        "n": "711",
+        "id": "jt959wc5586_00_0711",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0711"
+      },
+      {
+        "n": "712",
+        "id": "jt959wc5586_00_0712",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0712"
+      },
+      {
+        "n": "713",
+        "id": "jt959wc5586_00_0713",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0713"
+      },
+      {
+        "n": "714",
+        "id": "jt959wc5586_00_0714",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0714"
+      },
+      {
+        "n": "715",
+        "id": "jt959wc5586_00_0715",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0715"
+      },
+      {
+        "n": "716",
+        "id": "jt959wc5586_00_0716",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0716"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-72578470d119dab9",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[2]",
+        "division": 0,
+        "start": 5435531,
+        "end": 5492248,
+        "title_exact": [
+          "CAHIER "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:b97c1594ae1727c8",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:7a7b7e2ebbe01eff",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:c7bae7d0c85ce46d",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:dce9be948e4e4ea7",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:8d8cc17b7b737cd4",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:9fd3052382edc905",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:c406f564236acade",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:5174a6e8aee98bd0",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:903ab05db0482943",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:fa11374a6dce9f5a",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:6d444a7d6bfe694a",
+      "ap1789-pilot-u1:bcdc69723b9153e44463:338059f4b5d0e1b9"
+    ],
+    "metadata": {
+      "estate": "noblesse",
+      "locality": null,
+      "territory": "Bailliage d’Alençon",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE D'ALENÇON "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "long ; listes de députés",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "key": "angoumois-noblesse",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Noblesse d’Angoumois",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[2]",
+        "text": "sommaire des très-humbles remontrances faites et dressées par l'ordre de la noblesse de\n       la province d'Angoumois, en rassemblée tenue en la ville d'Angoulême les 16, 17, 18, 19, et\n       jours suivants du mois de mars 1789, par ordre du roi, suivant la lettre de Sa Majesté à M.\n       le Sénéchal d'Angoumois, en date du 24 janvier dernier, et de l'ordonnance dudit sieur\n       sénéchal du 14 février, sur le sujet de la convocation des Etats généraux en la ville de\n       Versailles, assignés au 27 avril dudit an, et mises entre les mains de MM. le marquis de\n       Saint-Simon et le comte de Culent, députés par ladite noblesse pour assister auxdits Etats\n       généraux, et représenter les articles desdites remontrances qui s'ensuivent ( 1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "8ca7590088068842bc70d2794e6544c477b379f5485f0429835ede6679053c48",
+    "source_text_start": 16826,
+    "source_text_end": 49888,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "fz023dp4399/fz023dp4399.xml",
+    "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+    "source_text_sha256": "5ba4946c43311c1bc0f7431859858da03ae65e6742e19e9c0cb94b6c220a4032",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "volume": 2,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[2]"
+    ],
+    "pages": [
+      {
+        "n": "3",
+        "id": "fz023dp4399_00_0007",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+      },
+      {
+        "n": "4",
+        "id": "fz023dp4399_00_0008",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0008"
+      },
+      {
+        "n": "5",
+        "id": "fz023dp4399_00_0009",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0009"
+      },
+      {
+        "n": "6",
+        "id": "fz023dp4399_00_0010",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0010"
+      },
+      {
+        "n": "7",
+        "id": "fz023dp4399_00_0011",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0011"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-16653feebdea014a",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+        "division": 0,
+        "start": 16826,
+        "end": 49888,
+        "title_exact": [
+          "CAHIER",
+          "sommaire des très-humbles remontrances faites et dressées par l'ordre de la noblesse de\n       la province d'Angoumois, en rassemblée tenue en la ville d'Angoulême les 16, 17, 18, 19, et\n       jours suivants du mois de mars 1789, par ordre du roi, suivant la lettre de Sa Majesté à M.\n       le Sénéchal d'Angoumois, en date du 24 janvier dernier, et de l'ordonnance dudit sieur\n       sénéchal du 14 février, sur le sujet de la convocation des Etats généraux en la ville de\n       Versailles, assignés au 27 avril dudit an, et mises entre les mains de MM. le marquis de\n       Saint-Simon et le comte de Culent, députés par ladite noblesse pour assister auxdits Etats\n       généraux, et représenter les articles desdites remontrances qui s'ensuivent ( 1). "
+        ]
+      },
+      {
+        "id": "section-b0e885f1a23ddff0",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[20]",
+        "division": 0,
+        "start": 21910,
+        "end": 24928,
+        "title_exact": [
+          "Administration. "
+        ]
+      },
+      {
+        "id": "section-4847948dc3ba1258",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[29]",
+        "division": 0,
+        "start": 24928,
+        "end": 32587,
+        "title_exact": [
+          "Impôts. "
+        ]
+      },
+      {
+        "id": "section-06249c49e67328c0",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[50]",
+        "division": 0,
+        "start": 32587,
+        "end": 38522,
+        "title_exact": [
+          "Administration de la justice. "
+        ]
+      },
+      {
+        "id": "section-20f378b882dfe12e",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[69]",
+        "division": 0,
+        "start": 38522,
+        "end": 49888,
+        "title_exact": [
+          "Objets divers. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n    Compiled from ARCHIVES PARLEMENTAIRES documents.\n   ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:7c91a20cc8f74ae3",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:407d372cb193c655",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e7405b32f433e444",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:b3ccf078480ba739",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:ba129a119a6d3490",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:884315791d174e26",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:517e2abf2497b04d",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:b380604d6f363804",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a474b19b5cf847ed",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:3c37f6d45623c333",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c444c0150c271c7b",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:59ac096a4afd7a53",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:dbcf3b323059695c",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:4ae79e34b6db4ff9",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:8e58b8c22df2b5b7",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:db170791c247b79c",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c8709abd5b51d8d1",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:6c8edd9b5dd1a43e",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a6f9bda2b8dfd074",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:bb060629ff05f1e5",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:362d088f67cc9573",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:45976dd3ae032e30",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:35172a30e105aa20",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:5b46f439c97efd64",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:408fc6e79b67db9f",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:7feef68931627c05",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:9106ac76acf49e61",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:f4db5b79bc0b7275",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:286e1a1e7f8c48bd",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a6aa318a373051b3",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:791a368a80d9c234",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a995575b76fb4712",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:34c2e39ac624f51b",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:0d7b52c26de8a3eb",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:2177f61ab65bb7ad",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:cb9d27ee891ab53d",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:4638e42d074f1d81",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c7c3f07eacd645b5",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e9ad00ac3c968e5b",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:bb3d911d2d0e8865",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:ae108ea261238751",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:780a337e00ef0f77",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e71c48d023eed295",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:cd8ac7f98ec162f4",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:2dd5f1238f5eb445",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:99bcf0edeac158bd",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:725c141bdd0e78b4",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:7fa6cce4d472cac8",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c73c9255370295f1",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:168b1b0b7ede429d",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:ed3ccda6d86c361e",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:088774d099a45b60",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e9872ec38d201f80",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:5ed0fa0ea2943608",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:3670164f3e71c93d",
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:099144e82eec7833"
+    ],
+    "metadata": {
+      "estate": "noblesse",
+      "locality": "Angoulême",
+      "territory": "Province d’Angoumois",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Sous-titre en head[2] ; localité = lieu de réunion mentionné, pas une juridiction moderne.",
+      "date_provenance": "Titre : les 16, 17, 18, 19 et jours suivants de mars 1789 ; ne pas transformer en date unique."
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE D'ANGOUMOIS "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "legacy_extent_changed": false,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_2_1_1559",
+        "id": "arcpa_0000-0000_1879_num_2_1_1559",
+        "provenance": "Correspondance déjà vérifiée dans 1789-sources-comparison/data/documents.json ; aucune nouvelle collecte.",
+        "use": "Contrôle bibliographique secondaire, pas source du texte ni garantie de licence."
+      }
+    ],
+    "selection_reason": "article-charte et sous-listes ; sept initiaux",
+    "previous_audit": true,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:fz023dp4399:b1c515d7e3ec55e7f988",
+    "key": "anjou-clerge",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Clergé d’Anjou",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[1]/head[1]",
+        "text": "Demandes et doléances du clergé d'anjou (1). "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[1]/head[2]",
+        "text": "CHAPITRE Ier. "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[1]/head[3]",
+        "text": "du royaume en général. "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "66141161042606398a825ec23c9f67a34ee72f67f71d43377269b4ea9fba36aa",
+    "source_text_start": 212002,
+    "source_text_end": 227226,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "fz023dp4399/fz023dp4399.xml",
+    "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+    "source_text_sha256": "5ba4946c43311c1bc0f7431859858da03ae65e6742e19e9c0cb94b6c220a4032",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "volume": 2,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[2]/div3[1]",
+      "/TEI.2/text/body/div1/div2[2]/div3[2]",
+      "/TEI.2/text/body/div1/div2[2]/div3[3]"
+    ],
+    "pages": [
+      {
+        "n": "30",
+        "id": "fz023dp4399_00_0034",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0034"
+      },
+      {
+        "n": "31",
+        "id": "fz023dp4399_00_0035",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0035"
+      },
+      {
+        "n": "32",
+        "id": "fz023dp4399_00_0036",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0036"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-fc8cdaf6abbb552b",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[1]",
+        "division": 0,
+        "start": 212002,
+        "end": 218756,
+        "title_exact": [
+          "Demandes et doléances du clergé d'anjou (1). ",
+          "CHAPITRE Ier. ",
+          "du royaume en général. "
+        ]
+      },
+      {
+        "id": "section-07d12d05d367c7f4",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[2]",
+        "division": 1,
+        "start": 218763,
+        "end": 223222,
+        "title_exact": [
+          "CHAPITRE II "
+        ]
+      },
+      {
+        "id": "section-ee6d3d891fba9f63",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[2]/p[1]",
+        "division": 1,
+        "start": 218789,
+        "end": 223222,
+        "title_exact": [
+          "concernant la province d'anjou. "
+        ]
+      },
+      {
+        "id": "section-6f4f2a46baba58d0",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[3]",
+        "division": 2,
+        "start": 223229,
+        "end": 227226,
+        "title_exact": [
+          "CHAPITRE III "
+        ]
+      },
+      {
+        "id": "section-09efecf1a3232a7d",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[2]/div3[3]/p[1]",
+        "division": 2,
+        "start": 223256,
+        "end": 227226,
+        "title_exact": [
+          "concernant le clergé. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n    Compiled from ARCHIVES PARLEMENTAIRES documents.\n   ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:3612dbd62e0f6c28",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:1ba7c4990e0e3fca",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a0412929ae279376",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:308f3ecffbfcd76c",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:8df51e1a3b345333",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:c2512cff812b6766",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:e26c6283ee1cc486",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:418d4ecb3b028e2e",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:37d3e69814fc3f2f",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:804c289949e72f68",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:773038fbbc7a8b12",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4bde762c7bbcd310",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:c5758471cc261ecf",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:2ab50be216b8830b",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:34d78201e1effc40",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:6d36c71cb69f8ec2",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:fe526f12523c039a",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a0b8f12e2bd4cc6b",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:749ada11ef7b530c",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7f101033788be9da",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:762e54bbe41468e3",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b222dce8a406add2",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:d3096ea1f43c59c6",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:04d2aac17f732836",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b6e8ee223c6d5d7b",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:9b8a015bcb1a3b49",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:561fe54cade2383f",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:653862340be73564",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:80cd318f0f303073",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:aefb85270a427920",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:3dc1d50b29dd2842",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:461ff9444f1f11f1",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:5673d70effa6f070",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:0572ba564a5ec801",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:d00d76793b6ef776",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:3f38c6511d88c039",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:ff52609412740f26",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b2764acee0ccea48",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:0a4da882bc519aeb",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:2070eec67fe6ba7a",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:6fb07d5489c53059",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7afe81b3afbecde6",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:eae9b135917973c9",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:44d3553602122370",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7bdee5931251239d",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:21387409bf6bdd6f",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:52b0ed44f33d0ca2",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:af1c03c94f46e9c2",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:ec4c5e3b1eba577c",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a9722417855e9e2b",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:afe4772314b344b7",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:be7ce5f8c1ace230",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:17f9bea069739060",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:449644a9f4f5ef68",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:89e0719f1af71fac",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:542ac304c77149bc",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:91d2c103de4b4c4a",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:febed8a27a7bec89",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4317604aea8c21c6",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:039b323dd5ad39f6",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:518ee513ac234f18",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4c5396a6904e64d6",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:d4d0cc46832f6b65",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:eee1c0a8c5bba57b",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:c387970f17c599b9",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:fa59a3b5b42e5811",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:94e1616ab39df4cc",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a5a4296c7a423a0b",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4b21bcf7d2840bcc",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:eca023ea257fdc27",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:5f47823ba634e887",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b1f6c179944027f3",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7ffd7bd6ebbc10f3",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:f39f6ee0631500da",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:04113846bc6b0769",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:44042f9f349da9c1",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:f9b07900972e1c44",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:02b90f8480d1b0c2",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:378631ecd99e6ee3",
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:84778b619a0f3817"
+    ],
+    "metadata": {
+      "estate": "clergé",
+      "locality": null,
+      "territory": "Province d’Anjou",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE D'ANJOU. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "trois divisions ; chapitres et reprises de numérotation",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:fz023dp4399:b7bcc2acbfad93e812c1",
+    "key": "annonay-clerge",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Clergé d’Annonay",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[3]/div3[1]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[3]/div3[1]/head[2]",
+        "text": "des doléances de l'ordre du clergé de la sénéchaussée d'annonay (1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "debb4d8218d7becabf00d3e608c24b65a2fd09c7589e36417faf4e6b2f7a1863",
+    "source_text_start": 317034,
+    "source_text_end": 322650,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "fz023dp4399/fz023dp4399.xml",
+    "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+    "source_text_sha256": "5ba4946c43311c1bc0f7431859858da03ae65e6742e19e9c0cb94b6c220a4032",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "volume": 2,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[3]/div3[1]"
+    ],
+    "pages": [
+      {
+        "n": "46",
+        "id": "fz023dp4399_00_0050",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0050"
+      },
+      {
+        "n": "47",
+        "id": "fz023dp4399_00_0051",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0051"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-6b43ea8cacbd1029",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[3]/div3[1]",
+        "division": 0,
+        "start": 317034,
+        "end": 322650,
+        "title_exact": [
+          "CAHIER",
+          "des doléances de l'ordre du clergé de la sénéchaussée d'annonay (1). "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n    Compiled from ARCHIVES PARLEMENTAIRES documents.\n   ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:cd521dfbac057b78",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:c54db98982106b29",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:65a396219b8e83de",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:7ab68eabd571030f",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:25491c6794d01bd1",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:57fe43e6b9afbfec",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:96ab2272b9e75f7e",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:b4e4ca867685cdf9",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:6e747b54a915c42f",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:cdbe059170e5b8dc",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:04df069de9fbfea1",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:54ae79ab21280c0e",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f01b39ca0a338ea7",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:e5ed428e7f671923",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:37d75f2865858c8b",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:b17621c4a8ca342b",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:cf7856f5cb63f3af",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f36b3f237f93e1c4",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:d6ff9853fefa8f97",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:59cc94e554f0a86c",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:2d870144fe26ae01",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:c0020dfa1d80766f",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:c3f044faf3e1f453",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:5efbb5b64e82b709",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f3e10a3c7013f198",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:84277533972e3b9d",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f9baa84045f50f40",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:d63c5236cd82b0f0",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:6479566606089ef3",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:e5a5bda8134f4689",
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:ebf039284e1cb341"
+    ],
+    "metadata": {
+      "estate": "clergé",
+      "locality": null,
+      "territory": "Sénéchaussée d’Annonay",
+      "date": "1789-03-26",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p31 Ainsi arrêté"
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE D'ANNONAY. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "articles ; signatures coupées entre paragraphes",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:fz023dp4399:3e6a4db201abec55cb3e",
+    "key": "beaujolais-noblesse",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Noblesse du Beaujolais",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[19]/div3[2]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[19]/div3[2]/head[2]",
+        "text": "De l ordre de la noblesse de Beaujolqis, arrêté datis la séance du 19 mars 1789 (I). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "f5d2ef4c3152482aca2cf6e2f5ddd51dc11e3e7293e7728bc69545b04dbb8d4e",
+    "source_text_start": 1938359,
+    "source_text_end": 1946016,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "fz023dp4399/fz023dp4399.xml",
+    "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+    "source_text_sha256": "5ba4946c43311c1bc0f7431859858da03ae65e6742e19e9c0cb94b6c220a4032",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "volume": 2,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[19]/div3[2]"
+    ],
+    "pages": [
+      {
+        "n": "281",
+        "id": "fz023dp4399_00_0285",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0285"
+      },
+      {
+        "n": "282",
+        "id": "fz023dp4399_00_0286",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0286"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-adfadbc528eac872",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[19]/div3[2]",
+        "division": 0,
+        "start": 1938359,
+        "end": 1946016,
+        "title_exact": [
+          "CAHIER ",
+          "De l ordre de la noblesse de Beaujolqis, arrêté datis la séance du 19 mars 1789 (I). "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n    Compiled from ARCHIVES PARLEMENTAIRES documents.\n   ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:515f4d600746e859",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:aee37cd0d599a2b6",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:4279452d9a5da93c",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:8d36baa870747b5a",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:4bc61bb986cc1240",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:3c016c547916ff50",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:69baa32797dc3d8c",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:0b6636f1c683ed17",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:5b1bcf263ad9c50b",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:cf3fbd78e18aac8b",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:dd7e224360ec473c",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:41549c2dbaf7c439",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:668a98fb4831bbc9",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:d940dafd992412f5",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:5e1570eb3a264aad",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:7318a08821ee8afb",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:33ee83d6ff6ddf15",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:fd83159e9ea37224",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:9218cfc975f514ee",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:debb61892594550f",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:4f679204d87afae9",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:654f0c2d638451f7",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:90721a22ef4991a9",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:bfaaa34a7214452a",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:11339ea49ec8c446",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:0544ea60693c2aa6",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:6e15b3dd50f56d2e",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:8bce71c0547c18b9",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:603f434b078b00b7",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:20854ecffbd24ab4",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:fb33704dffebd1db",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:d9a32b167af08ea1"
+    ],
+    "metadata": {
+      "estate": "noblesse",
+      "locality": null,
+      "territory": "Sénéchaussée du Beaujolais",
+      "date": "1789-03-19",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "head séance du 19 mars"
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE DU BEAUJOLAIS "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "articles puis demandes particulières numérotées",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:fz023dp4399:10c1f778fd324706de33",
+    "key": "lawastine-tiers",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Tiers état de Lawastine",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[14]/div3[9]/head",
+        "text": "CAHIER "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "3d8a6b35cc2278fc8300afc5acc6c1a82f7ac79e82ac26bb6f17bfef51ba7440",
+    "source_text_start": 1301246,
+    "source_text_end": 1304778,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "fz023dp4399/fz023dp4399.xml",
+    "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+    "source_text_sha256": "5ba4946c43311c1bc0f7431859858da03ae65e6742e19e9c0cb94b6c220a4032",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "volume": 2,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[14]/div3[9]"
+    ],
+    "pages": [
+      {
+        "n": "192",
+        "id": "fz023dp4399_00_0196",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0196"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-612b558df5cc0f03",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[14]/div3[9]",
+        "division": 0,
+        "start": 1301246,
+        "end": 1304778,
+        "title_exact": [
+          "CAHIER "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n    Compiled from ARCHIVES PARLEMENTAIRES documents.\n   ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:10c1f778fd324706de33:d95a637381cb3345",
+      "ap1789-pilot-u1:10c1f778fd324706de33:164f4c12e9e2edf6",
+      "ap1789-pilot-u1:10c1f778fd324706de33:94e0e5ef7a8c8b62",
+      "ap1789-pilot-u1:10c1f778fd324706de33:a82ae4993a62ab99",
+      "ap1789-pilot-u1:10c1f778fd324706de33:07e1b99f5a851150"
+    ],
+    "metadata": {
+      "estate": "tiers état",
+      "locality": "Lawastine",
+      "territory": null,
+      "date": "1789-03-29",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p1 assemblée du 29 mars ; p8 renvoie à cette date"
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE BAILLEÏÏL ou FLANDRE MARITIME "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "court ; numérotation ordinale",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:mc666yy3026:7252b87cf6dd0d663706",
+    "key": "colmar-ville",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Ville de Colmar",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/head[2]",
+        "text": "Des doléances et remontrances que la ville de Col- mar entend faire à\n                            Sa Majeste sur les moyens de pourvoir et subvenir aux besoins de l'Etat,\n                            ainsi qu'à tout ce qui peut intéresser la prospérité du royaume et celle\n                            de tous et chacun des sujets de Sa Majesté (1). "
+      }
+    ],
+    "date_elements_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[61]/date",
+        "attributes": {
+          "value": "1789-04-27"
+        },
+        "text": "27 avril 1789",
+        "start": 138384,
+        "end": 138397
+      }
+    ],
+    "full_text_sha256": "29529cfe8e15b567f0be993cc271a7fd87d8867dc377f6712911a92d23530814",
+    "source_text_start": 110342,
+    "source_text_end": 145872,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "mc666yy3026/mc666yy3026.xml",
+    "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+    "source_text_sha256": "1ca009118bd9860e12c584b6fd9b8426b881bdc0d761849150fdc570019cc060",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "volume": 3,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[3]"
+    ],
+    "pages": [
+      {
+        "n": "12",
+        "id": "mc666yy3026_00_0016",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+      },
+      {
+        "n": "13",
+        "id": "mc666yy3026_00_0017",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0017"
+      },
+      {
+        "n": "14",
+        "id": "mc666yy3026_00_0018",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0018"
+      },
+      {
+        "n": "15",
+        "id": "mc666yy3026_00_0019",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0019"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-6d5278ae0d3fcfcf",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+        "division": 0,
+        "start": 110342,
+        "end": 145872,
+        "title_exact": [
+          "CAHIER",
+          "Des doléances et remontrances que la ville de Col- mar entend faire à\n                            Sa Majeste sur les moyens de pourvoir et subvenir aux besoins de l'Etat,\n                            ainsi qu'à tout ce qui peut intéresser la prospérité du royaume et celle\n                            de tous et chacun des sujets de Sa Majesté (1). "
+        ]
+      },
+      {
+        "id": "section-446046c22182b777",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[64]",
+        "division": 0,
+        "start": 138556,
+        "end": 138593,
+        "title_exact": [
+          " SUPXLÉMENY "
+        ]
+      },
+      {
+        "id": "section-d51cd5bab6b35f63",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[65]",
+        "division": 0,
+        "start": 138593,
+        "end": 145872,
+        "title_exact": [
+          "Aux articles de doléances de la bourgeoisie de lu ville de Colmar. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:386d8065234ccd89",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:e2d1b100626643ac",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:7cfea3d82b0fc416",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:bcb7c561609b1c82",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8576c2316b42dc30",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:4c908c327a60f825",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:89c17cf49b4e3f56",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8bf689af4b1c7b04",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:582506b765b7cc95",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:a5ffabd82feb743f",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8ad163b47f36cd18",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:2b7722bd9163c4ca",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:0d56fc8eda716b52",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:ef4aaf419a09441d",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:d9fa2779f9a06c63",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:c4eba92f20f6fc6a",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8b5fec92845ee849",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:31a37a927405c139",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:16c54f84faf450e7",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:b827fa3ae941ab98",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:e8f063ee546663f1",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:fe349ed121dbffb7",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:c5e864e45a55c39b",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:ab0e3fa2dfef2bbd",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:7f9dce77a891b8b0",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:3194854296c1bf6c",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:aa93f174bb2d885f",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:2e16472a18d76e78",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:d3b125f56c0485a5",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:593b5092666c1626",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:c87d178f4f291bf7",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:98743d1b3b2cdf59",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:64f68142f6780848",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:499c9c33db3a6d58",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:eb31eab7fe6d91d9",
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:7badf2cf56f3c378"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Colmar",
+      "territory": "Districts de Colmar et Schlestadt",
+      "date": "1789-03-24",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Localité dans head[2] ; territoire = contexte div2. Aucun ordre explicite dans le titre de ce cahier : laissé nul.",
+      "date_provenance": "p[57] : fait, lu et interprété ... le 24 mars 1789. La date balisée 27 avril en p[61] est une collation, pas la rédaction. Le div3 inclut aussi un supplément traduit de l’allemand en mai."
+    },
+    "territorial_context_title_exact": [
+      "DISTRICTS DE COLMAR ET SCHLESTADT. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [
+      "Supplément rédigé en allemand puis traduction française certifiée : source de mai distincte du corps de mars ; pas modernisation. Subdivisions du supplément non validées."
+    ],
+    "legacy_document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "legacy_extent_changed": false,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_3_1_1795",
+        "id": "arcpa_0000-0000_1879_num_3_1_1795",
+        "provenance": "Correspondance déjà vérifiée dans 1789-sources-comparison/data/documents.json ; aucune nouvelle collecte.",
+        "use": "Contrôle bibliographique secondaire, pas source du texte ni garantie de licence."
+      }
+    ],
+    "selection_reason": "article sans numéro ; sous-listes ; supplément ; sept initiaux",
+    "previous_audit": true,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:mc666yy3026:f330cd449d20585043c2",
+    "key": "ribaucourt",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Communauté de Ribaucourt",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[9]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[9]/head[2]",
+        "text": "Des doléances que la communauté de la Terre- Franche et comté de\n                            Ribaucourt, châtellenie de Lille, gouvernance de Douai."
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "23462b8d4b2cc51f77f8e0ac2090050f245a460e6a6579c48d920a65582dbd6a",
+    "source_text_start": 1757036,
+    "source_text_end": 1764576,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "mc666yy3026/mc666yy3026.xml",
+    "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+    "source_text_sha256": "1ca009118bd9860e12c584b6fd9b8426b881bdc0d761849150fdc570019cc060",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "volume": 3,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[22]/div3[9]"
+    ],
+    "pages": [
+      {
+        "n": "194",
+        "id": "mc666yy3026_00_0198",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0198"
+      },
+      {
+        "n": "195",
+        "id": "mc666yy3026_00_0199",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0199"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-486f7d6fd742118a",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[9]",
+        "division": 0,
+        "start": 1757036,
+        "end": 1764576,
+        "title_exact": [
+          "CAHIER",
+          "Des doléances que la communauté de la Terre- Franche et comté de\n                            Ribaucourt, châtellenie de Lille, gouvernance de Douai."
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:098edc2ae6d4c152",
+      "ap1789-pilot-u1:f330cd449d20585043c2:3f96a5a566294376",
+      "ap1789-pilot-u1:f330cd449d20585043c2:429e5ca93758ebb6",
+      "ap1789-pilot-u1:f330cd449d20585043c2:3c06721dc09fb621",
+      "ap1789-pilot-u1:f330cd449d20585043c2:9a8f2999e297409c",
+      "ap1789-pilot-u1:f330cd449d20585043c2:ddbcc0f1cc6fea67",
+      "ap1789-pilot-u1:f330cd449d20585043c2:65197273a069de84",
+      "ap1789-pilot-u1:f330cd449d20585043c2:e36bd402030445e7",
+      "ap1789-pilot-u1:f330cd449d20585043c2:e262d3034018b58a",
+      "ap1789-pilot-u1:f330cd449d20585043c2:d2e3df75d33de127",
+      "ap1789-pilot-u1:f330cd449d20585043c2:2a499bea88cf4006"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Ribaucourt",
+      "territory": null,
+      "date": "1789-03-18",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p15 Ainsi fait et arrêté"
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE DOUAI."
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "numérotation ordinale ; communauté",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:mc666yy3026:97af66caeb2eea3e1442",
+    "key": "flines",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Habitants de Flines",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[14]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[14]/head[2]",
+        "text": "Des plaintes, doléances et remontrances des ha- bitants de la\n                            communauté de Flines. "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "45ce237a0059c85126a3b7ebd6000c1bfeef0c4bc1265c66a4095bee507cfc3d",
+    "source_text_start": 1852913,
+    "source_text_end": 1859588,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "mc666yy3026/mc666yy3026.xml",
+    "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+    "source_text_sha256": "1ca009118bd9860e12c584b6fd9b8426b881bdc0d761849150fdc570019cc060",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "volume": 3,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[22]/div3[14]"
+    ],
+    "pages": [
+      {
+        "n": "204",
+        "id": "mc666yy3026_00_0208",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0208"
+      },
+      {
+        "n": "205",
+        "id": "mc666yy3026_00_0209",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0209"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-69f1a79289d551e8",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[14]",
+        "division": 0,
+        "start": 1852913,
+        "end": 1859588,
+        "title_exact": [
+          "CAHIER ",
+          "Des plaintes, doléances et remontrances des ha- bitants de la\n                            communauté de Flines. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:8e7ac5369fe76b80",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:e276fe83e74b782d",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:fd51a75d2324fb71",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:788ef3548e99a1da",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:e330ef207126307e",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:b09fd6b827af13b9",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:a631cde696ba525a",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:7b6b6374359941c7",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:936dbae19702c1bc",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:eb8c4fde6bee679a",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:915a5b2072cab91b",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:212018a192dd656f",
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:d8c298c845026024"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Flines",
+      "territory": null,
+      "date": "1789-03-23",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p1 assemblée du 23 mars ; p17 jour mois an que dessus"
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE DOUAI."
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "articles sur plusieurs paragraphes",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:mc666yy3026:f9e19530b4e33ccf95c7",
+    "key": "carces-mineurs",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Frères mineurs de Carces",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[24]/div3[9]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[24]/div3[9]/head[2]",
+        "text": "Des pétitions et doléances de la communauté des freres mineurs\n                            conventuels du lieu de Carces, fondée par les illustres ancêtres de S.\n                            A. S. monseigneur le prince de Condé."
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "ed19b94923da67ee3c449a885954fb6faf4018db5ebc69b6674215b3bc991322",
+    "source_text_start": 2496436,
+    "source_text_end": 2502151,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "mc666yy3026/mc666yy3026.xml",
+    "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+    "source_text_sha256": "1ca009118bd9860e12c584b6fd9b8426b881bdc0d761849150fdc570019cc060",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "volume": 3,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[24]/div3[9]"
+    ],
+    "pages": [
+      {
+        "n": "273",
+        "id": "mc666yy3026_00_0277",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0277"
+      },
+      {
+        "n": "274",
+        "id": "mc666yy3026_00_0278",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0278"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-1c0c435ba9bdc13e",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[24]/div3[9]",
+        "division": 0,
+        "start": 2496436,
+        "end": 2502151,
+        "title_exact": [
+          "CAHIER ",
+          "Des pétitions et doléances de la communauté des freres mineurs\n                            conventuels du lieu de Carces, fondée par les illustres ancêtres de S.\n                            A. S. monseigneur le prince de Condé."
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:6579f35909cb0649",
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:fb660ac11d99b840",
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:6161002ba2e1ee5c",
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:9c403b50370b29ca",
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:ab37912cab51dc8a",
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:98826e49d5a6e7dd",
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:aef8cb053572b69e",
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:724b34166cfd1bab"
+    ],
+    "metadata": {
+      "estate": "clergé",
+      "locality": "Carces",
+      "territory": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE DE DRAGUIGNAN, ",
+      "Nota. Les cahiers du clergé et dé la noblesse dé la sénéchaussée de\n                        Draguignan manquent aux Archives de l'Empire. Nous demandons ees deux\n                        documents à Draguignan même, et nous les insérerons dans le Supplément qui\n                        terminera le recueil des cahiers. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "très court ; articles et signature",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:mc666yy3026:5ef43e6dd0afce138d76",
+    "key": "montigny-ostrevent",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Montigny en Ostrevent",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[23]/head[1]",
+        "text": "PLAINTES, DOLÉANCES "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[23]/head[2]",
+        "text": "Et remontrances, de la communauté du village de Montigny en\n                            Qstrevettt$ intendance de Fldndrei "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "1fe3049153e1a19eb8e97913e0542d4025a16b6f7c21d2f5580a106e2a986cb0",
+    "source_text_start": 2030673,
+    "source_text_end": 2039539,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "mc666yy3026/mc666yy3026.xml",
+    "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+    "source_text_sha256": "1ca009118bd9860e12c584b6fd9b8426b881bdc0d761849150fdc570019cc060",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "volume": 3,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[22]/div3[23]"
+    ],
+    "pages": [
+      {
+        "n": "222",
+        "id": "mc666yy3026_00_0226",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0226"
+      },
+      {
+        "n": "223",
+        "id": "mc666yy3026_00_0227",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0227"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-18d815c8a0bf4472",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[22]/div3[23]",
+        "division": 0,
+        "start": 2030673,
+        "end": 2039539,
+        "title_exact": [
+          "PLAINTES, DOLÉANCES ",
+          "Et remontrances, de la communauté du village de Montigny en\n                            Qstrevettt$ intendance de Fldndrei "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:a00f2820fb0c0206",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:e4d890cfdc3449f5",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:c9978bf5eef644af",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:23bc365eabc7a544",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:31ba039aa8f8999b",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:a9eb9301bf5d4dca",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:2f37cf1366b1993c",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:be287555b8d6829e",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:54b2ab3a632998ca",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:50e32cbc8c4fdd15",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:6e844cf0e5edd7be",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:9646b75e19608481",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:36d1bd509ca86bbd",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:3c015418d57dc056",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:ee1e57b2f4ca32ee",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:67c5ea019bbaa0cf",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:5c8cbf7b0ad1c899",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:c7f8bbb8a2641feb",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:4746b668fed21d81"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Montigny en Ostrevent",
+      "territory": null,
+      "date": "1789-03-02",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p21 lecture certifiée ; date de lecture, pas nécessairement rédaction"
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE DOUAI."
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [
+      "Numérotation OCR très dégradée : conserver z8,36,B®,Il®, sans restaurer les chiffres ; frontières hors fenêtre non certifiées."
+    ],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "numérotation et titres fortement dégradés",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "key": "mirecourt-noblesse",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Noblesse de Mirecourt",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[2]",
+        "text": " Des remontrances, plaintes et doléances, moyens et avis du corps de\n                            la noblesse de Mirecourt (1). 16 mars\n                                1789"
+      }
+    ],
+    "date_elements_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[2]/date",
+        "attributes": {
+          "value": "1789-03-16"
+        },
+        "text": "16 mars\n                                1789",
+        "start": 7909,
+        "end": 7953
+      }
+    ],
+    "full_text_sha256": "3ff275cf3e7242e84bab75ff585e9cad098bfeb5889b2f5d0387ff8da019dd26",
+    "source_text_start": 7726,
+    "source_text_end": 49457,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xg914wh0253/xg914wh0253.xml",
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_text_sha256": "dfea4f40a664b9682ca732273646dfde5fade24e8641664b5a1c0272f7470914",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "volume": 4,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[2]",
+      "/TEI.2/text/body/div1/div2[1]/div3[3]",
+      "/TEI.2/text/body/div1/div2[1]/div3[4]"
+    ],
+    "pages": [
+      {
+        "n": "1",
+        "id": "xg914wh0253_00_0005",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0005"
+      },
+      {
+        "n": "2",
+        "id": "xg914wh0253_00_0006",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0006"
+      },
+      {
+        "n": "3",
+        "id": "xg914wh0253_00_0007",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0007"
+      },
+      {
+        "n": "4",
+        "id": "xg914wh0253_00_0008",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0008"
+      },
+      {
+        "n": "5",
+        "id": "xg914wh0253_00_0009",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0009"
+      },
+      {
+        "n": "6",
+        "id": "xg914wh0253_00_0010",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0010"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-8e7913603e3d3577",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+        "division": 0,
+        "start": 7726,
+        "end": 11458,
+        "title_exact": [
+          "CAHIER",
+          " Des remontrances, plaintes et doléances, moyens et avis du corps de\n                            la noblesse de Mirecourt (1). 16 mars\n                                1789"
+        ]
+      },
+      {
+        "id": "section-f22756039581807e",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+        "division": 1,
+        "start": 11479,
+        "end": 14391,
+        "title_exact": [
+          "DEMANDES PARTICULIÈRES. ",
+          "Pour la province de Lorraine. "
+        ]
+      },
+      {
+        "id": "section-dca1bab94a8c97e8",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]",
+        "division": 2,
+        "start": 14412,
+        "end": 49457,
+        "title_exact": [
+          "TRAVAIL "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:4697badcca00ee62",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:8f22466b1941f490",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:88c2e94347f1a8a1",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:660c45e65c3c349d",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:ce273b869e79301c",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:4e2092c8f178771c",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:4a836da916014603",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:1252d41dc723ca8c",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:9a8b260444cc2a4a",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:cf7df5bc703ffbb1",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:eb23940451f540bd",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:d37ca13554b87448",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:cf077ab99c65edd8",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:c2c5c4a5a1e9f040",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:129998a8707564e9",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:48bfe4b8e65c492e",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:72138acad10f54bc",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:f36c221c71300197",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:06c83eb0aed71879",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:96734f7172c4b34c",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:8219b282e10ad62d",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:b08ba4c666b31f4c",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:8445d8442178a5cd",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:cbd9b7b01fa8a62d",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:998773681c943dcd"
+    ],
+    "metadata": {
+      "estate": "noblesse",
+      "locality": "Mirecourt",
+      "territory": "Bailliage de Mirecourt",
+      "date": "1789-03-16",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact.",
+      "date_provenance": "date[@value='1789-03-16'] dans head[2]."
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE MIRECOURT. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [
+      "Demandes provinciales et mémoire justificatif joints au dossier ; l’ancien parent ne couvrait que le premier div3. Annexe p2 sans marqueur non certifiée."
+    ],
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "legacy_extent_changed": true,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_4_1_1745",
+        "id": "arcpa_0000-0000_1879_num_4_1_1745",
+        "provenance": "Correspondance déjà vérifiée dans 1789-sources-comparison/data/documents.json ; aucune nouvelle collecte.",
+        "use": "Contrôle bibliographique secondaire, pas source du texte ni garantie de licence."
+      }
+    ],
+    "selection_reason": "deux articles dans un paragraphe ; demandes et travail annexes ; sept initiaux",
+    "previous_audit": true,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xg914wh0253:af71dbb9f75db8ce99b2",
+    "key": "guerande-tiers",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Tiers état de la sénéchaussée de Guérande",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/head[2]",
+        "text": "Des charges et doléances des députés du tiers-état de la sénéchaussée\n                            de Guérandepour être remis à ses électeurs, qui seront nommés pour\n                            procéder à Vélection, en rassemblée de Nantes, des députés aux Etats\n                            généraux (1)."
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "75af14659d8462d1bc6e99187e41feb6de4fd76364247c745b43cf294f92b51a",
+    "source_text_start": 904586,
+    "source_text_end": 926813,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xg914wh0253/xg914wh0253.xml",
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_text_sha256": "dfea4f40a664b9682ca732273646dfde5fade24e8641664b5a1c0272f7470914",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "volume": 4,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[9]/div3[3]"
+    ],
+    "pages": [
+      {
+        "n": "103",
+        "id": "xg914wh0253_00_0107",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+      },
+      {
+        "n": "104",
+        "id": "xg914wh0253_00_0108",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0108"
+      },
+      {
+        "n": "105",
+        "id": "xg914wh0253_00_0109",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0109"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-b0a603fd71b34892",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]",
+        "division": 0,
+        "start": 904586,
+        "end": 926813,
+        "title_exact": [
+          "CAHIER",
+          "Des charges et doléances des députés du tiers-état de la sénéchaussée\n                            de Guérandepour être remis à ses électeurs, qui seront nommés pour\n                            procéder à Vélection, en rassemblée de Nantes, des députés aux Etats\n                            généraux (1)."
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:f9d42ff68470aff4",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:870aac3899c2cbb2",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:586581e391938c6a",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:7acef66220d46352",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:128005c081b6ea2f",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4b3802d0548a5b25",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:0dc17dbe6e8a7530",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e03b80dc9c119b1e",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:0b84ea52e173b9db",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:66a8e7066f6879bb",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e47a2898b7519e47",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e0d0fb1024e9d2b8",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4da931a023f63bd9",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:764357f79d97a107",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:eac1e119c8a18a7f",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:cceff563342cbea4",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:02dc72a32810e0f9",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:2e82a54b0a5ebdd7",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:bb3e27a688bb4cab",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:7e0f46053d003498",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:931c7cb0fcf7e038",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e88974ada6851594",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:a91b13d0f9a3ba1b",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4133237d7b044784",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4a0c2b9d260c9e73",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:93d872d2e6f15c82",
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:9cf2aa4e66ff0821"
+    ],
+    "metadata": {
+      "estate": "tiers état",
+      "locality": null,
+      "territory": "Sénéchaussée de Guérande",
+      "date": "1789-04-03",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. head[2] ; le cahier concerne la sénéchaussée, pas seulement la ville.",
+      "date_provenance": "p[45] : Clos et arrêté ... cedit jour 3 avril 1789 ; extraction manuelle sourcée."
+    },
+    "territorial_context_title_exact": [
+      "SÉNÉCHAUSSÉE DE NANTES. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "legacy_extent_changed": false,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_4_1_1780",
+        "id": "arcpa_0000-0000_1879_num_4_1_1780",
+        "provenance": "Correspondance déjà vérifiée dans 1789-sources-comparison/data/documents.json ; aucune nouvelle collecte.",
+        "use": "Contrôle bibliographique secondaire, pas source du texte ni garantie de licence."
+      }
+    ],
+    "selection_reason": "articles longs ; votes en liste ; sept initiaux",
+    "previous_audit": true,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xg914wh0253:4133d7972888544d97cb",
+    "key": "ferrieres",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Tiers état de Ferrières en Brie",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[145]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[145]/head[2]",
+        "text": "Des plaintes et doléances du tiers-état de la paroisse de Ferrières en\n                            Brie (1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "e6fc732227b1ab1308f8fe2ee4f353bba65c8be276d94de81826c0138f5f7154",
+    "source_text_start": 5028040,
+    "source_text_end": 5034067,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xg914wh0253/xg914wh0253.xml",
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_text_sha256": "dfea4f40a664b9682ca732273646dfde5fade24e8641664b5a1c0272f7470914",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "volume": 4,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[18]/div3[145]",
+      "/TEI.2/text/body/div1/div2[18]/div3[146]",
+      "/TEI.2/text/body/div1/div2[18]/div3[147]",
+      "/TEI.2/text/body/div1/div2[18]/div3[148]",
+      "/TEI.2/text/body/div1/div2[18]/div3[149]"
+    ],
+    "pages": [
+      {
+        "n": "545",
+        "id": "xg914wh0253_00_0549",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0549"
+      },
+      {
+        "n": "546",
+        "id": "xg914wh0253_00_0550",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0550"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-f32b9a371bc87e3c",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[145]",
+        "division": 0,
+        "start": 5028040,
+        "end": 5028383,
+        "title_exact": [
+          "CAHIER ",
+          "Des plaintes et doléances du tiers-état de la paroisse de Ferrières en\n                            Brie (1). "
+        ]
+      },
+      {
+        "id": "section-54dc884adb2d0391",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[146]",
+        "division": 1,
+        "start": 5028404,
+        "end": 5031538,
+        "title_exact": [
+          "CONSTITUTION. "
+        ]
+      },
+      {
+        "id": "section-351039a7609726e5",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[147]",
+        "division": 2,
+        "start": 5031559,
+        "end": 5032843,
+        "title_exact": [
+          "AGRICULTURE. "
+        ]
+      },
+      {
+        "id": "section-5bbfe9e32d98f242",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[148]",
+        "division": 3,
+        "start": 5032864,
+        "end": 5033145,
+        "title_exact": [
+          "COMMERCE. "
+        ]
+      },
+      {
+        "id": "section-70abcc3ac86e1d8b",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[149]",
+        "division": 4,
+        "start": 5033166,
+        "end": 5034067,
+        "title_exact": [
+          "JUSTICES SEIGNEURI ALES. "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:51491aa71d4da9aa",
+      "ap1789-pilot-u1:4133d7972888544d97cb:614a6853b0fb6dd2",
+      "ap1789-pilot-u1:4133d7972888544d97cb:042a97694549cd4c",
+      "ap1789-pilot-u1:4133d7972888544d97cb:366fcb84cf559a8e",
+      "ap1789-pilot-u1:4133d7972888544d97cb:df603b0d58684341",
+      "ap1789-pilot-u1:4133d7972888544d97cb:8e4cc0b349662bbf",
+      "ap1789-pilot-u1:4133d7972888544d97cb:2fe3a30b842ac76d",
+      "ap1789-pilot-u1:4133d7972888544d97cb:03c39373e5981bb1",
+      "ap1789-pilot-u1:4133d7972888544d97cb:06f9fea714659be8",
+      "ap1789-pilot-u1:4133d7972888544d97cb:47e097b455dc88cc",
+      "ap1789-pilot-u1:4133d7972888544d97cb:f41532ffbb3ecbc9",
+      "ap1789-pilot-u1:4133d7972888544d97cb:aac52165de4e92db",
+      "ap1789-pilot-u1:4133d7972888544d97cb:09ca271adad0e46c",
+      "ap1789-pilot-u1:4133d7972888544d97cb:798634a6d87f392c",
+      "ap1789-pilot-u1:4133d7972888544d97cb:bec1e7ee4629e874",
+      "ap1789-pilot-u1:4133d7972888544d97cb:6165e9d95fc16256",
+      "ap1789-pilot-u1:4133d7972888544d97cb:570e9c62e91840ed",
+      "ap1789-pilot-u1:4133d7972888544d97cb:64b8d9b974947e64",
+      "ap1789-pilot-u1:4133d7972888544d97cb:58476a8aece66c06",
+      "ap1789-pilot-u1:4133d7972888544d97cb:355cca24f913f4bd",
+      "ap1789-pilot-u1:4133d7972888544d97cb:63995b9f02d19f05",
+      "ap1789-pilot-u1:4133d7972888544d97cb:1db32941c25e6d29",
+      "ap1789-pilot-u1:4133d7972888544d97cb:fae479bfbe8caf87",
+      "ap1789-pilot-u1:4133d7972888544d97cb:f855490207358d15",
+      "ap1789-pilot-u1:4133d7972888544d97cb:3645e0879944f8e6"
+    ],
+    "metadata": {
+      "estate": "tiers état",
+      "locality": "Ferrières en Brie",
+      "territory": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [],
+    "boundary_review": "verified_xml",
+    "uncertainties": [
+      "Constitution art15 annonce les articles thématiques suivants ; statut hiérarchique à vérifier, pas de segmentation sémantique."
+    ],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_4_1_2175",
+        "id": "arcpa_0000-0000_1879_num_4_1_2175",
+        "provenance": "1789-sources-comparison/data/structure.json : notice unique Ferrières ; pas nouveau téléchargement.",
+        "use": "Corroboration du regroupement, avec vérification XML et scan Stanford."
+      }
+    ],
+    "selection_reason": "cinq divisions ; quatre sections ; reprise des numéros",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xg914wh0253:eef09d567c9a82f751c0",
+    "key": "annet-marne",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Annet-sur-Marne",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[8]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[8]/head[2]",
+        "text": "De doléances de la paroisse d'Annet-sur-Marne (1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "0d1aad0fa2ff20b9c5ece3bf52484a8fd4631ee8d3bc48ed3ac59e7d3bad966e",
+    "source_text_start": 2705601,
+    "source_text_end": 2709736,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xg914wh0253/xg914wh0253.xml",
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_text_sha256": "dfea4f40a664b9682ca732273646dfde5fade24e8641664b5a1c0272f7470914",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "volume": 4,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[18]/div3[8]"
+    ],
+    "pages": [
+      {
+        "n": "297",
+        "id": "xg914wh0253_00_0301",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0301"
+      },
+      {
+        "n": "298",
+        "id": "xg914wh0253_00_0302",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0302"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-7562fe96c760e268",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[8]",
+        "division": 0,
+        "start": 2705601,
+        "end": 2709736,
+        "title_exact": [
+          "CAHIER ",
+          "De doléances de la paroisse d'Annet-sur-Marne (1). "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:a55cc2680052c9a9",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:8a5fc7812cd73c4e",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:58f316ce32016d37",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:d9cbbcf66a5f08db",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:653021cbdd30c903",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:b022003da3d16524",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:afc190e97ff0a876",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:97457a0360f11934",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:e46563add5205833",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:ab7512442cde537a",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:7d9ffd89a6d20b1d",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:c12970e6b991d391",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:d139a3c92bf19459",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:b56ee73f6cb59152",
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:94084dc8eb4ea33a"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Annet-sur-Marne",
+      "territory": null,
+      "date": "1789-04-13",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p18 Fait et arrêté"
+    },
+    "territorial_context_title_exact": [],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "articles ; clôture et signatures",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xg914wh0253:2d9eb8a19442dcf619d3",
+    "key": "ermenonville",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Ermenonville / Arnouville",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[12]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[12]/head[2]",
+        "text": "Des doléances de la paroisse d'Ermenonville, dite vulgairement\n                            Arnouville (1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "06c9f5f09d03fecda94778fa97ef420c811fac63a82e24aee8a03a1b09bbb122",
+    "source_text_start": 2880253,
+    "source_text_end": 2882169,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xg914wh0253/xg914wh0253.xml",
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_text_sha256": "dfea4f40a664b9682ca732273646dfde5fade24e8641664b5a1c0272f7470914",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "volume": 4,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[18]/div3[12]"
+    ],
+    "pages": [
+      {
+        "n": "316",
+        "id": "xg914wh0253_00_0320",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0320"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-29d5382935a063fd",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[18]/div3[12]",
+        "division": 0,
+        "start": 2880253,
+        "end": 2882169,
+        "title_exact": [
+          "CAHIER ",
+          "Des doléances de la paroisse d'Ermenonville, dite vulgairement\n                            Arnouville (1). "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:fd4887460eb7771f",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:15a124e3d6a65837",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:72173a0f37f9ba5e",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:74285b6db4f45715",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:66784f58f836af28",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:7b30ff3d39953b24",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:c8a4ebdbf676f1d1",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:4932b9d96cfbf913",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:cae4de071a8486a4",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:2be143042f065d5c",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:ab2670417201247c",
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:cb9b38d4f8effa39"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Ermenonville, dite Arnouville (titre)",
+      "territory": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [],
+    "boundary_review": "verified_xml",
+    "uncertainties": [
+      "Deux dénominations dans le titre ; aucune résolution géographique moderne."
+    ],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "lieu ambigu dans la source ; Art. ler. OCR",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xg914wh0253:fbbba92b6bb96154d07a",
+    "key": "mirecourt-clerge",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Clergé de Mirecourt",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[1]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[1]/head[2]",
+        "text": "Des plaintes et doléances du clergé du bailliage de Mirecourt (1). "
+      }
+    ],
+    "date_elements_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[1]/p[1]/date",
+        "attributes": {
+          "value": "1789-03-27"
+        },
+        "text": "27 mars 1789",
+        "start": 2464,
+        "end": 2476
+      }
+    ],
+    "full_text_sha256": "7fada55e1a245eb5bd290240344aa720e9b48cc052acca212fa080c22f9a5170",
+    "source_text_start": 2312,
+    "source_text_end": 7705,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xg914wh0253/xg914wh0253.xml",
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_text_sha256": "dfea4f40a664b9682ca732273646dfde5fade24e8641664b5a1c0272f7470914",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "volume": 4,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[1]"
+    ],
+    "pages": [
+      {
+        "n": "1",
+        "id": "xg914wh0253_00_0005",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0005"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-c7c03b2f96316f50",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[1]",
+        "division": 0,
+        "start": 2312,
+        "end": 7705,
+        "title_exact": [
+          "CAHIER ",
+          "Des plaintes et doléances du clergé du bailliage de Mirecourt (1). "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:074dbd310e2e057a",
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:b769c9f3fdeac4e3",
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:67c3eb9735322f48",
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:0bcf82b3b6731b03",
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:77e73a5394bdc04e"
+    ],
+    "metadata": {
+      "estate": "clergé",
+      "locality": "Mirecourt",
+      "territory": null,
+      "date": "1789-03-27",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p1 Du 27 mars 1789"
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE MIRECOURT. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "numérotation ordinale ; certification",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xx284sn7328:12cdaced3d457962e532",
+    "key": "pierrelez-habitants",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Habitants de Pierrelez",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]/head",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]/p[1]",
+        "text": "Des doléances, plaintes et remontrances des habitants de Pierrelez\n                            (Pierre Laye), qu'ils osent très-respectueusement représenter sous les\n                            yeux de Sa Majesté et des Etats généraux (1)."
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "d8751154221ae9f037308062720de87e17ea1bd7de0469bc331e903f7ebff138",
+    "source_text_start": 194234,
+    "source_text_end": 196791,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xx284sn7328/xx284sn7328.xml",
+    "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+    "source_text_sha256": "ca7ab18f48f42cabd8a923a2a2f482249c0d6816302fa29d2f2844ecbfe593e8",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "volume": 5,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[9]"
+    ],
+    "pages": [
+      {
+        "n": "21",
+        "id": "xx284sn7328_00_0025",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0025"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-6991d9748c42f562",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]",
+        "division": 0,
+        "start": 194234,
+        "end": 196791,
+        "title_exact": [
+          "CAHIER"
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:c115459d0d48b64c",
+      "ap1789-pilot-u1:12cdaced3d457962e532:e942d695bbe26376",
+      "ap1789-pilot-u1:12cdaced3d457962e532:290b2efcc121f2f8",
+      "ap1789-pilot-u1:12cdaced3d457962e532:7dff65753c127d36",
+      "ap1789-pilot-u1:12cdaced3d457962e532:a1750977e928ed84",
+      "ap1789-pilot-u1:12cdaced3d457962e532:3a1aee877f1f87c7",
+      "ap1789-pilot-u1:12cdaced3d457962e532:f69ae6eea07e51b5",
+      "ap1789-pilot-u1:12cdaced3d457962e532:6a2bffba5032caca",
+      "ap1789-pilot-u1:12cdaced3d457962e532:2519b66838b7fec7"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Pierrelez (Pierre Laye)",
+      "territory": "Paris hors les murs",
+      "date": "1789-04-14",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Localité dans p[1] ; territoire = section div2. Habitants : ne pas attribuer automatiquement un ordre non indiqué.",
+      "date_provenance": "p[11] : fait le mardi 14 avril 1789 ; extraction manuelle sourcée, pas un attribut date."
+    },
+    "territorial_context_title_exact": [
+      "PARIS HORS LES MURS (suite.)"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "legacy_extent_changed": false,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_5_1_2339",
+        "id": "arcpa_0000-0000_1879_num_5_1_2339",
+        "provenance": "Correspondance déjà vérifiée dans 1789-sources-comparison/data/documents.json ; aucune nouvelle collecte.",
+        "use": "Contrôle bibliographique secondaire, pas source du texte ni garantie de licence."
+      }
+    ],
+    "selection_reason": "neuf articles courts ; sept initiaux",
+    "previous_audit": true,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xx284sn7328:0e4e17a10525b854d367",
+    "key": "perigny-brie",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Tiers état de Périgny-en-Brie",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[5]/head",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[5]/p[1]",
+        "text": "Des plaintes et doléances, remontrances et demandes et pouvoirs donnés\n                            dans rassemblée du ! tiers-état de la paroisse de Périgny en Brie,\n                            tenue, le 14 du présent mois d'avril de l'année 1789 (1)."
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "4ade92469cfee77538d2aaadf060f9f3de6ae5287dc6aad557d7ca5a5e12e77b",
+    "source_text_start": 124227,
+    "source_text_end": 129592,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xx284sn7328/xx284sn7328.xml",
+    "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+    "source_text_sha256": "ca7ab18f48f42cabd8a923a2a2f482249c0d6816302fa29d2f2844ecbfe593e8",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "volume": 5,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[5]"
+    ],
+    "pages": [
+      {
+        "n": "14",
+        "id": "xx284sn7328_00_0018",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0018"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-525db17de708c81e",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[5]",
+        "division": 0,
+        "start": 124227,
+        "end": 129592,
+        "title_exact": [
+          "CAHIER"
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:432dad8a68586a11",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:86831a780086e8d1",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:a8e1927f6e70a7a2",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:bc9426895075c8c2",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:99c8f66fd5ac8df6",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:d8d68edbe4aed61c",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:1fe9d3fe9b2d71a1",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:3c851bd290d51263",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:b8c42f6a63b49275",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:cc72176ab4c96cf2",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:f7c4a3814bc67ec3",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:df1cbdd207d28d2d",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:ed40bdd493b9230b",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:eb178f696ed306b7",
+      "ap1789-pilot-u1:0e4e17a10525b854d367:1ad641c80936901e"
+    ],
+    "metadata": {
+      "estate": "tiers état",
+      "locality": "Périgny-en-Brie",
+      "territory": null,
+      "date": "1789-04-14",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p18 Fait et arrêté"
+    },
+    "territorial_context_title_exact": [
+      "PARIS HORS LES MURS (suite.)"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "articles ; préambule dans le premier article",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xx284sn7328:83dfa5bae7397bf30538",
+    "key": "plessis-secqueville",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Tiers état du Plessis-Secqueville",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[18]/head",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[18]/p[1]",
+        "text": "Des plaintes, doléances et vœux du tiers-étal de la paroisse du\n                            Plessis-Secqueville, du ressort du châ-telet de Paris, délibéré et\n                            arrêté en l'assemblée générale dudit tiers-état, convoqué en exécution\n                            du règlement de Sa Majesté, du 24 janvier dernier, pour la tenue des\n                            Etats généraux du royaume, ladite assemblée présidée par Louis-Didier\n                            Ladey, notaire et greffier des bailliage et baronnie dudit lieu du\n                            Plessis-Secqueville, faisant pour Vempêchement de M. le bailli, à cause\n                            de son indisposition ; contenant les articles qui suivent (1) :"
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "47bfd8c7ebfb2fffa14c1595c71bd072f852108a089382d2de417c797887942d",
+    "source_text_start": 279262,
+    "source_text_end": 283623,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xx284sn7328/xx284sn7328.xml",
+    "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+    "source_text_sha256": "ca7ab18f48f42cabd8a923a2a2f482249c0d6816302fa29d2f2844ecbfe593e8",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "volume": 5,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[18]"
+    ],
+    "pages": [
+      {
+        "n": "30",
+        "id": "xx284sn7328_00_0034",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0034"
+      },
+      {
+        "n": "31",
+        "id": "xx284sn7328_00_0035",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0035"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-f1a1988cdf2dd3f4",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[18]",
+        "division": 0,
+        "start": 279262,
+        "end": 283623,
+        "title_exact": [
+          "CAHIER"
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:311365e83dcb511a",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:3198204abc2e4a37",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:136d787a48f52c83",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:24ed278fde9722db",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:26b95908569571b0",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:10c081734a6f802c",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:008cf814567af584",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:383f3c3543b4ebad",
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:019425769edd94e5"
+    ],
+    "metadata": {
+      "estate": "tiers état",
+      "locality": "Plessis-Secqueville",
+      "territory": null,
+      "date": "1789-04-16",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p11 Fait délibéré et arrêté"
+    },
+    "territorial_context_title_exact": [
+      "PARIS HORS LES MURS (suite.)"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "court ; clôture et signatures",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:xx284sn7328:9a570b0100acb2734ded",
+    "key": "puteaux",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Habitants de Puteaux",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[29]/head",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[29]/p[1]",
+        "text": "Des plaintes, doléances et remontrances des habitants de la paroisse de\n                            Puteaux (1)."
+      }
+    ],
+    "date_elements_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[29]/p[17]/date",
+        "attributes": {
+          "value": "1789-04-14"
+        },
+        "text": "14 avril 1789",
+        "start": 447341,
+        "end": 447354
+      }
+    ],
+    "full_text_sha256": "9b8066a58d5de235106898e2837a76021a565b0fe5f0373bbebbcfbaad57847e",
+    "source_text_start": 440333,
+    "source_text_end": 447416,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "xx284sn7328/xx284sn7328.xml",
+    "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+    "source_text_sha256": "ca7ab18f48f42cabd8a923a2a2f482249c0d6816302fa29d2f2844ecbfe593e8",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "volume": 5,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[29]"
+    ],
+    "pages": [
+      {
+        "n": "47",
+        "id": "xx284sn7328_00_0051",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0051"
+      },
+      {
+        "n": "48",
+        "id": "xx284sn7328_00_0052",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0052"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-a40cd1b92e5298de",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[29]",
+        "division": 0,
+        "start": 440333,
+        "end": 447416,
+        "title_exact": [
+          "CAHIER"
+        ]
+      },
+      {
+        "id": "section-3b67e7289c0eabf8",
+        "kind": "paragraph_heading",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[29]/p[6]",
+        "division": 0,
+        "start": 442831,
+        "end": 447416,
+        "title_exact": [
+          "DEMANDES PARTICULIÈRES."
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:251a41338a7308c0",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:d728cede597b5fea",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:a8efa78095d95e6e",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:f818ce49e402beb3",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:7398b2617e3936fe",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:74a6a2ec05469d2a",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:4c6f701d72c5808e",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:3bc3792730f64d84",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:35b46def79fd3130",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:3a939b14d5090298",
+      "ap1789-pilot-u1:9a570b0100acb2734ded:e00a2433a9cdb42b"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Puteaux",
+      "territory": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "PARIS HORS LES MURS (suite.)"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "onze articles ; demandes particulières ; observation additionnelle après signatures",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:wg983ft3682:72447fb17ff8b4b6f261",
+    "key": "vic-clerge",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Clergé du bailliage de Vie [graphie TEI]",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]/head[2]",
+        "text": " Des doléances et remontrances, dressé dans l'assemblée du clergé' du\n                            bailliage de Vie, le 28 mars 1789.\n                        "
+      }
+    ],
+    "date_elements_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]/head[2]/date",
+        "attributes": {
+          "value": "1789-03-28"
+        },
+        "text": "28 mars 1789",
+        "start": 140954,
+        "end": 140966
+      }
+    ],
+    "full_text_sha256": "7f3bba041ee20cbdebc4d55e1bca0c4fba7f64d857ca71a0cc252b9fa5b5c762",
+    "source_text_start": 140779,
+    "source_text_end": 162953,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "wg983ft3682/wg983ft3682.xml",
+    "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+    "source_text_sha256": "54c466be89910afc4bc7706b74e5aef2e3dc752599c562061d034b7c79bc91e5",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "volume": 6,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[4]"
+    ],
+    "pages": [
+      {
+        "n": "16",
+        "id": "wg983ft3682_00_0020",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0020"
+      },
+      {
+        "n": "17",
+        "id": "wg983ft3682_00_0021",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0021"
+      },
+      {
+        "n": "18",
+        "id": "wg983ft3682_00_0022",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0022"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-c5431fa2c0f06502",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]",
+        "division": 0,
+        "start": 140779,
+        "end": 162953,
+        "title_exact": [
+          "CAHIER",
+          " Des doléances et remontrances, dressé dans l'assemblée du clergé' du\n                            bailliage de Vie, le 28 mars 1789.\n                        "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:81c8372c84167536",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:15783209925020c9",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:54778345ce2bc242",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:c53589cb344ff2a6",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:161950931abf8b4c",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f5c5a116c4e5da87",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:eacd20493def862f",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:fa5fd1fbf57fd88f",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:ace3cff55a82d2ab",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:2efcf9d7dbedb691",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:b21232c7bd48ce40",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f836ec97dcf2821f",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:e1e5205b706c8041",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:848276316c163cd8",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:48678fe3dc0a362a",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:ca7577e900cb1468",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:829b0839403e9243",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:39e775c489b6c2df",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:4f2102d8dc4b7c51",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:0693180af422183a",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:da7414bef6524975",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:415a1f1b9f8908fc",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:0781d1724b61fe7d",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:78ee72fa1f6d5535",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f9c26c7e6f98b134",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:03fa5b161b1ab6e6",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:094794ae945f67cd",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:3147488ee4367c55",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:6f2cee15b1b069f5",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:a14abebdaa3f4dd2",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f74cb6ee9705f088",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:85445e86cf67edaa",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:425ff2e2170d2a55",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:40ae4a679317c3ae",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:7f314c73af96b619",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:cd30433f1a13b14f",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:e0f0c204a0d09111",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:e6e7e84560969552",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:4dc3b1b45e753a75",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:d1ae5970bb1297e4",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:305c14dd705ea3ba",
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:686403af92c9d1ae"
+    ],
+    "metadata": {
+      "estate": "clergé",
+      "locality": null,
+      "territory": "Bailliage de Vie [graphie TEI]",
+      "date": "1789-03-28",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. head[2] ; la graphie Vie ne doit pas être résolue automatiquement en lieu moderne ou en Vic.",
+      "date_provenance": "date[@value='1789-03-28'] dans head[2] ; graphie du lieu conservée comme Vie."
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE TOIIL. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "legacy_extent_changed": false,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [
+      {
+        "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_6_1_2497",
+        "id": "arcpa_0000-0000_1879_num_6_1_2497",
+        "provenance": "Correspondance déjà vérifiée dans 1789-sources-comparison/data/documents.json ; aucune nouvelle collecte.",
+        "use": "Contrôle bibliographique secondaire, pas source du texte ni garantie de licence."
+      }
+    ],
+    "selection_reason": "articles ; collation ; sept initiaux",
+    "previous_audit": true,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:wg983ft3682:8dab1fac50b6320bcb33",
+    "key": "toul-noblesse",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Noblesse de Toul et pays toulois",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[1]",
+        "text": "CAHIER"
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[2]",
+        "text": "Des .respectueuses remontrances et doléances de Tordre de la noblesse\n                            de Tout et pays toulois, adressées au Roi (1). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "2ff2a65344f4546f8037e72a5fc8f7e5116386ef24ed1e61814218234779f26d",
+    "source_text_start": 38189,
+    "source_text_end": 70408,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "wg983ft3682/wg983ft3682.xml",
+    "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+    "source_text_sha256": "54c466be89910afc4bc7706b74e5aef2e3dc752599c562061d034b7c79bc91e5",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "volume": 6,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[1]/div3[2]"
+    ],
+    "pages": [
+      {
+        "n": "4",
+        "id": "wg983ft3682_00_0008",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0008"
+      },
+      {
+        "n": "5",
+        "id": "wg983ft3682_00_0009",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0009"
+      },
+      {
+        "n": "6",
+        "id": "wg983ft3682_00_0010",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0010"
+      },
+      {
+        "n": "7",
+        "id": "wg983ft3682_00_0011",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0011"
+      },
+      {
+        "n": "8",
+        "id": "wg983ft3682_00_0012",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0012"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-7a45af4b49b17e0b",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+        "division": 0,
+        "start": 38189,
+        "end": 70408,
+        "title_exact": [
+          "CAHIER",
+          "Des .respectueuses remontrances et doléances de Tordre de la noblesse\n                            de Tout et pays toulois, adressées au Roi (1). "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:3ac919f5fac87722",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:88e68ba1ceeb5c43",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:4b2f7e455008c004",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:9bad1b46592cd6ae",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:7a14f79ad1478370",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:51764838d9444a55",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:2af4d5489f9e196b",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:a19b531caacf95fc",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:aa2f8879e93999a0",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:adfe7336a0d54305",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:3f4012daa2f9fb38",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:fbb624c9c638eb37",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:ff63905f8e92b156",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:5b69cf74a6b09087",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:f9f8ee0bfd5a25e3",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:3872585d03845daa",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:bd81a647ef51003f",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:095abf44b7db66d9",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:7d3b12d7a74818eb",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:e14d84553db523b6",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:17ba53d169ab3bb4",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:25b07753c7c9ee90",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:8e7d025adf2de98e",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:dafa3bd3be302872",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:08b7299c464f4b10",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:c89820dbd520c6bf",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:d8450ebecf4defd3",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:6317e1e58e26c8da",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:79c6e2bd266a2bf1",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:bb95d8c537fd796b",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:17f4224673f9acb7",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:39e1409a60885a95",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:90a5f0fc9094ba9f",
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:41eb64e39d3465e1"
+    ],
+    "metadata": {
+      "estate": "noblesse",
+      "locality": null,
+      "territory": "Toul et pays toulois",
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "BAILLIAGE DE TOIIL. "
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [
+      "Demandes sans numéro et intitulés fréquents ; rattachement des rubriques hors fenêtres non certifié."
+    ],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "très long ; préambule ; signatures nombreuses",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:wg983ft3682:c33d108ba660e47d2e75",
+    "key": "albertas",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Habitants d’Albertas",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[1]/head[1]",
+        "text": "DOLÉANCES ET REPRÉSENTATIONS "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[1]/head[2]",
+        "text": "De la, communauté du lieu d'Albertas, prises dans l'assemblée générale\n                            du 22 mars 1789(1). ; "
+      }
+    ],
+    "date_elements_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[1]/head[2]/date",
+        "attributes": {
+          "value": "1789-03-22"
+        },
+        "text": "22 mars 1789",
+        "start": 2107520,
+        "end": 2107532
+      }
+    ],
+    "full_text_sha256": "d66f1f87219385961012f51ea2719759daa84f55422175b389db5753e643ecea",
+    "source_text_start": 2107339,
+    "source_text_end": 2111031,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "wg983ft3682/wg983ft3682.xml",
+    "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+    "source_text_sha256": "54c466be89910afc4bc7706b74e5aef2e3dc752599c562061d034b7c79bc91e5",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "volume": 6,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[17]/div3[1]"
+    ],
+    "pages": [
+      {
+        "n": "237",
+        "id": "wg983ft3682_00_0241",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0241"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-77600d544c6a6256",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[1]",
+        "division": 0,
+        "start": 2107339,
+        "end": 2111031,
+        "title_exact": [
+          "DOLÉANCES ET REPRÉSENTATIONS ",
+          "De la, communauté du lieu d'Albertas, prises dans l'assemblée générale\n                            du 22 mars 1789(1). ; "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:420f721c0fbd50e4",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:86dc54259152040e",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:194a122ecafb9c0f",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:4c8568669ae4af0b",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:03455f4326af0668",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:f46546ce862556b1",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:6525b4fe0e4b6895",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:2812c4ceb1368ee0",
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:6b1ec0deed4eceda"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Albertas",
+      "territory": null,
+      "date": "1789-03-22",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "head assemblée générale"
+    },
+    "territorial_context_title_exact": [
+      "SUPPLÉMENT ",
+      "Comprenant les documents parvenus sur les Cahiers des bailliages et\n                        sénéchaussées pendant le cours de la publication. ",
+      "SÉNÉCHAUSSÉE D'AIX"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "articles courts ; clôture et signatures",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  },
+  {
+    "id": "ap1789-pilot-d1:wg983ft3682:f7df571f2f7d6b380e1b",
+    "key": "beaurecueil",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Habitants de Beaurecueil",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[14]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[14]/head[2]",
+        "text": "Des doléances de la communauté de Beaurecueil [l). "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "15d41f929aa887867dd990049b9408b997d5821527015876138baabdf8cc40bf",
+    "source_text_start": 2345533,
+    "source_text_end": 2349561,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "wg983ft3682/wg983ft3682.xml",
+    "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+    "source_text_sha256": "54c466be89910afc4bc7706b74e5aef2e3dc752599c562061d034b7c79bc91e5",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "volume": 6,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[17]/div3[14]"
+    ],
+    "pages": [
+      {
+        "n": "262",
+        "id": "wg983ft3682_00_0266",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0266"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-2c25bc315053033d",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[14]",
+        "division": 0,
+        "start": 2345533,
+        "end": 2349561,
+        "title_exact": [
+          "CAHIER ",
+          "Des doléances de la communauté de Beaurecueil [l). "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [
+      "ap1789-pilot-u1:f7df571f2f7d6b380e1b:f9e2c152ad714016",
+      "ap1789-pilot-u1:f7df571f2f7d6b380e1b:967fbe9c1fa81fe1",
+      "ap1789-pilot-u1:f7df571f2f7d6b380e1b:cb07e7de95a2da0e"
+    ],
+    "metadata": {
+      "estate": null,
+      "locality": "Beaurecueil",
+      "territory": null,
+      "date": null,
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "Non extraite à ce stade ; aucune date inventée."
+    },
+    "territorial_context_title_exact": [
+      "SUPPLÉMENT ",
+      "Comprenant les documents parvenus sur les Cahiers des bailliages et\n                        sénéchaussées pendant le cours de la publication. ",
+      "SÉNÉCHAUSSÉE D'AIX"
+    ],
+    "boundary_review": "verified_xml_and_scan",
+    "uncertainties": [
+      "La même division XML contient ensuite Belcodène (p9–15), exclu du parent ; clôture de Beaurecueil et signature dans p8."
+    ],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "prose puis trois demandes dans un même p ; deux cahiers dans un div3 ; note en p",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": false
+  },
+  {
+    "id": "ap1789-pilot-d1:wg983ft3682:7b9e79cfa79fff18df92",
+    "key": "lourmarin",
+    "corpus_id": "cahiers-1789-ap-stanford",
+    "title_display": "Habitants de Lourmarin",
+    "title_parts_exact": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[43]/head[1]",
+        "text": "CAHIER "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[43]/head[2]",
+        "text": "D'instructions remontrances et doléances de la communauté du lieu de\n                            Lourmarin, sénéchaussée "
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[43]/p[1]",
+        "text": "d'Aix en Provence ( 1). ' "
+      }
+    ],
+    "date_elements_exact": [],
+    "full_text_sha256": "ab5b15789849dbae3feed94955ac79776b53813825c6659a07a9ecc308a7fbe5",
+    "source_text_start": 2881144,
+    "source_text_end": 2889905,
+    "offset_convention": "Unicode codepoints in decoded XML itertext, half-open; no whitespace folding, no Unicode normalization",
+    "source_file": "wg983ft3682/wg983ft3682.xml",
+    "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+    "source_text_sha256": "54c466be89910afc4bc7706b74e5aef2e3dc752599c562061d034b7c79bc91e5",
+    "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "volume": 6,
+    "divisions": [
+      "/TEI.2/text/body/div1/div2[17]/div3[43]"
+    ],
+    "pages": [
+      {
+        "n": "320",
+        "id": "wg983ft3682_00_0324",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0324"
+      },
+      {
+        "n": "321",
+        "id": "wg983ft3682_00_0325",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0325"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-f91b046ff4b62990",
+        "kind": "division",
+        "xpath": "/TEI.2/text/body/div1/div2[17]/div3[43]",
+        "division": 0,
+        "start": 2881144,
+        "end": 2889905,
+        "title_exact": [
+          "CAHIER ",
+          "D'instructions remontrances et doléances de la communauté du lieu de\n                            Lourmarin, sénéchaussée "
+        ]
+      }
+    ],
+    "bibliography": {
+      "collection": "Archives parlementaires, première série",
+      "edition_dates_exact": [],
+      "source_description_exact": "\n                Compiled from ARCHIVES PARLEMENTAIRES documents.\n            ",
+      "historical_original": "Cahier de 1789 publié dans l’édition du XIXe siècle ; aucune assimilation au manuscrit original."
+    },
+    "unit_ids": [],
+    "metadata": {
+      "estate": null,
+      "locality": "Lourmarin",
+      "territory": null,
+      "date": "1789-03-29",
+      "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+      "date_provenance": "p11 certification ; ne pas confondre avec rédaction"
+    },
+    "territorial_context_title_exact": [
+      "SUPPLÉMENT ",
+      "Comprenant les documents parvenus sur les Cahiers des bailliages et\n                        sénéchaussées pendant le cours de la publication. ",
+      "SÉNÉCHAUSSÉE D'AIX"
+    ],
+    "boundary_review": "verified_xml",
+    "uncertainties": [],
+    "legacy_document_id": null,
+    "legacy_extent_changed": null,
+    "method_version": "pilot-1.0.0",
+    "catalogue_crosschecks": [],
+    "selection_reason": "prose ; certification ; titre coupé",
+    "previous_audit": false,
+    "automatic_boundary_matches_review": true
+  }
+]

@@ -1,0 +1,10 @@
+line-length = 100
+
+[lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+# Byte-frozen before documentary review; preserve the three original import blocks.
+[lint.per-file-ignores]
+"build.py" = ["I001"]
+"registry_rules.py" = ["I001"]
+"prepare_review.py" = ["I001"]

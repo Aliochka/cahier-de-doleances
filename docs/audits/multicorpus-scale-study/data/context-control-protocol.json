@@ -1,0 +1,7 @@
+{
+  "status": "secondary exploratory diagnostic; not preregistered primary experiment",
+  "created_at": "2026-10-26T15:43:34.824606+00:00",
+  "reason": "Previously computed paired2019 A/B embeddings discovered in RAG012; test representation effect without new encoding",
+  "selection": "same full-answer single-segment units present in both caches; no query-dependent selection",
+  "main_rankings_changed": false
+}

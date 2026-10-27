@@ -1,0 +1,782 @@
+[
+  {
+    "population": "historical",
+    "query_id": "q01",
+    "query_encoding_ms": 57.261893000031705,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.2861840002879035,
+      "vector_A": 0.24373399992327904,
+      "hybrid_A": 0.4853849995924975,
+      "vector_B": 0.17085800027416553,
+      "hybrid_B": 0.41494400011288235
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q02",
+    "query_encoding_ms": 60.724382000444166,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.15001999963715207,
+      "vector_A": 0.1402019997840398,
+      "hybrid_A": 0.7963560001371661,
+      "vector_B": 0.1425460004611523,
+      "hybrid_B": 0.43395900047471514
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q03",
+    "query_encoding_ms": 62.36082599934889,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.2581709995865822,
+      "vector_A": 0.14390900014404906,
+      "hybrid_A": 0.4681730006268481,
+      "vector_B": 0.1486669998485013,
+      "hybrid_B": 0.4861659999733092
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q04",
+    "query_encoding_ms": 59.31521000002249,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.18289099989488022,
+      "vector_A": 0.13855799988959916,
+      "hybrid_A": 0.4650170003515086,
+      "vector_B": 0.1335890001428197,
+      "hybrid_B": 0.45772399971610866
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q05",
+    "query_encoding_ms": 59.95061799967516,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.12434199925337452,
+      "vector_A": 0.13461099933920195,
+      "hybrid_A": 0.30782500016357517,
+      "vector_B": 0.12712699935946148,
+      "hybrid_B": 0.3061809993596398
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q06",
+    "query_encoding_ms": 61.30455800030177,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.2197599997089128,
+      "vector_A": 0.13394000052358024,
+      "hybrid_A": 0.45246399986353936,
+      "vector_B": 0.14364799972099718,
+      "hybrid_B": 0.4767889995491714
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q07",
+    "query_encoding_ms": 65.62570000005508,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.21788699996250216,
+      "vector_A": 0.13483199927577516,
+      "hybrid_A": 0.440351000179362,
+      "vector_B": 0.13463100003718864,
+      "hybrid_B": 0.4650979999496485
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q08",
+    "query_encoding_ms": 61.09312599983241,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.1813990002119681,
+      "vector_A": 0.13449099969875533,
+      "hybrid_A": 0.48434299969812855,
+      "vector_B": 0.13609399957204005,
+      "hybrid_B": 0.4872780000368948
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q09",
+    "query_encoding_ms": 61.73037700045825,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.19222799983253935,
+      "vector_A": 0.13186599971959367,
+      "hybrid_A": 0.4561810001177946,
+      "vector_B": 0.1334689995928784,
+      "hybrid_B": 0.4668809997383505
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q10",
+    "query_encoding_ms": 57.14142999931937,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.11026500033040065,
+      "vector_A": 0.13789700005872874,
+      "hybrid_A": 0.28806799946323736,
+      "vector_B": 0.12945100024808198,
+      "hybrid_B": 0.25808100053836824
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q11",
+    "query_encoding_ms": 60.9040150002329,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.12610499925358454,
+      "vector_A": 0.13674500041815918,
+      "hybrid_A": 0.41161700028169435,
+      "vector_B": 0.14675300008093473,
+      "hybrid_B": 0.43772600020020036
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q12",
+    "query_encoding_ms": 65.94914899960713,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.1374969997414155,
+      "vector_A": 0.13533200035453774,
+      "hybrid_A": 0.37927799985482125,
+      "vector_B": 0.1433080005881493,
+      "hybrid_B": 0.40465499932906823
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q13",
+    "query_encoding_ms": 56.95868100065127,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.09557799967296887,
+      "vector_A": 0.13243699959275546,
+      "hybrid_A": 0.2869850004572072,
+      "vector_B": 0.13153500003681984,
+      "hybrid_B": 0.2739709998422768
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q14",
+    "query_encoding_ms": 56.26576699978614,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.0861509997776011,
+      "vector_A": 0.1334389999101404,
+      "hybrid_A": 0.2846710003723274,
+      "vector_B": 0.14626300071540754,
+      "hybrid_B": 0.28366900005494244
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q15",
+    "query_encoding_ms": 67.25762600035523,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.21205499979259912,
+      "vector_A": 0.13634500010084594,
+      "hybrid_A": 0.5125659999976051,
+      "vector_B": 0.1417539997419226,
+      "hybrid_B": 0.4591870001604548
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q16",
+    "query_encoding_ms": 60.70462699972268,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.11680800071189879,
+      "vector_A": 0.133749000269745,
+      "hybrid_A": 0.38552899968635757,
+      "vector_B": 0.13351899997360306,
+      "hybrid_B": 0.4095639997103717
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q17",
+    "query_encoding_ms": 60.999563000223134,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.17148899951280328,
+      "vector_A": 0.13636399944516597,
+      "hybrid_A": 0.4416129995661322,
+      "vector_B": 0.14896799984853715,
+      "hybrid_B": 0.4634340002667159
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q18",
+    "query_encoding_ms": 66.82290899971122,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.20252700051059946,
+      "vector_A": 0.1452309998057899,
+      "hybrid_A": 0.408722999964084,
+      "vector_B": 0.13495199982571648,
+      "hybrid_B": 0.4372160001366865
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q19",
+    "query_encoding_ms": 62.13552000008349,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.12297000012040371,
+      "vector_A": 0.1358440003969008,
+      "hybrid_A": 0.3013519999512937,
+      "vector_B": 0.13179599955037702,
+      "hybrid_B": 0.30503899961331626
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q20",
+    "query_encoding_ms": 55.56719200012594,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.10366299920860911,
+      "vector_A": 0.13391999982559355,
+      "hybrid_A": 0.3307169999970938,
+      "vector_B": 0.14259600084187696,
+      "hybrid_B": 0.35194600059185177
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q21",
+    "query_encoding_ms": 55.66882000039186,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.09701999988465104,
+      "vector_A": 0.1378070001010201,
+      "hybrid_A": 0.36691500008600997,
+      "vector_B": 0.14921799993317109,
+      "hybrid_B": 0.3547610003806767
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q22",
+    "query_encoding_ms": 62.07366499984346,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.2163640001526801,
+      "vector_A": 0.1343809999525547,
+      "hybrid_A": 0.46496699997078395,
+      "vector_B": 0.14186400039761793,
+      "hybrid_B": 0.4787030002262327
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q23",
+    "query_encoding_ms": 56.786393000038515,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.18025700046564452,
+      "vector_A": 0.1335890001428197,
+      "hybrid_A": 0.4527450000750832,
+      "vector_B": 0.1318160002483637,
+      "hybrid_B": 0.49530399974173633
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q24",
+    "query_encoding_ms": 57.89137099964137,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.11783900026784977,
+      "vector_A": 0.1347110001006513,
+      "hybrid_A": 0.25595800070732366,
+      "vector_B": 0.14892799936205847,
+      "hybrid_B": 0.264754000454559
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q25",
+    "query_encoding_ms": 65.4167819993745,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.19709800017153611,
+      "vector_A": 0.13601299997390015,
+      "hybrid_A": 0.45404600041365484,
+      "vector_B": 0.14433900014410028,
+      "hybrid_B": 0.47169000026769936
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q26",
+    "query_encoding_ms": 57.41783299981762,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.2247890006401576,
+      "vector_A": 0.1354730002276483,
+      "hybrid_A": 0.4517029992712196,
+      "vector_B": 0.1384880006298772,
+      "hybrid_B": 0.47984499997255625
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q27",
+    "query_encoding_ms": 66.50627299950429,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.12853000043833163,
+      "vector_A": 0.13635499999509193,
+      "hybrid_A": 0.2303300007042708,
+      "vector_B": 0.15441799951076973,
+      "hybrid_B": 0.16947600033745402
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q28",
+    "query_encoding_ms": 60.2322409995395,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.18015599926002324,
+      "vector_A": 0.14357799955178052,
+      "hybrid_A": 0.5330739995770273,
+      "vector_B": 0.14508000003843335,
+      "hybrid_B": 0.4905850000795908
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q29",
+    "query_encoding_ms": 67.24194699927466,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.13734599997405894,
+      "vector_A": 0.13668500014318852,
+      "hybrid_A": 0.2530920000936021,
+      "vector_B": 0.15342599999712547,
+      "hybrid_B": 0.25552599981892854
+    }
+  },
+  {
+    "population": "historical",
+    "query_id": "q30",
+    "query_encoding_ms": 60.961553000197455,
+    "index_seconds": 0.006131255999207497,
+    "ms": {
+      "lexical": 0.10530700001254445,
+      "vector_A": 0.13544300054491032,
+      "hybrid_A": 0.2326439998796559,
+      "vector_B": 0.15173300016613211,
+      "hybrid_B": 0.1927089997479925
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q01",
+    "query_encoding_ms": 57.261893000031705,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.3424780006753281,
+      "vector_A": 0.3176930003974121,
+      "hybrid_A": 0.4823200006285333,
+      "vector_B": 0.26763000005303184,
+      "hybrid_B": 0.46696099980181316
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q02",
+    "query_encoding_ms": 60.724382000444166,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.2568689997133333,
+      "vector_A": 0.23360599971056217,
+      "hybrid_A": 0.4487669993977761,
+      "vector_B": 0.23127199983719038,
+      "hybrid_B": 0.46004800060472917
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q03",
+    "query_encoding_ms": 62.36082599934889,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.4926589999740827,
+      "vector_A": 0.2837089996319264,
+      "hybrid_A": 0.4502199999478762,
+      "vector_B": 0.40255000021716114,
+      "hybrid_B": 0.4757469996548025
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q04",
+    "query_encoding_ms": 59.31521000002249,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.33692800025164615,
+      "vector_A": 0.21462099994096207,
+      "hybrid_A": 0.45845499971619574,
+      "vector_B": 0.228044999857957,
+      "hybrid_B": 0.4832919994441909
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q05",
+    "query_encoding_ms": 59.95061799967516,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.21633300002577016,
+      "vector_A": 0.22198399983608397,
+      "hybrid_A": 0.42944100005115615,
+      "vector_B": 0.2062049998130533,
+      "hybrid_B": 0.39593900055479025
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q06",
+    "query_encoding_ms": 61.30455800030177,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.37061199964227853,
+      "vector_A": 0.20932100051140878,
+      "hybrid_A": 0.4706780000560684,
+      "vector_B": 0.2373019997321535,
+      "hybrid_B": 0.4722399999081972
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q07",
+    "query_encoding_ms": 65.62570000005508,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.39080900023691356,
+      "vector_A": 0.20948099972883938,
+      "hybrid_A": 0.44032100049662404,
+      "vector_B": 0.20624399985536002,
+      "hybrid_B": 0.45155200041335775
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q08",
+    "query_encoding_ms": 61.09312599983241,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.33096700008172775,
+      "vector_A": 0.2064949994746712,
+      "hybrid_A": 0.5072559997643111,
+      "vector_B": 0.22642299973085755,
+      "hybrid_B": 0.47472499954892555
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q09",
+    "query_encoding_ms": 61.73037700045825,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.3562239999155281,
+      "vector_A": 0.2092099994115415,
+      "hybrid_A": 0.4554899996946915,
+      "vector_B": 0.22314599937089952,
+      "hybrid_B": 0.47658899984526215
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q10",
+    "query_encoding_ms": 57.14142999931937,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.17852299970400054,
+      "vector_A": 0.2192390002164757,
+      "hybrid_A": 0.3170910003973404,
+      "vector_B": 0.20266799947421532,
+      "hybrid_B": 0.3070519996981602
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q11",
+    "query_encoding_ms": 60.9040150002329,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.23424600021826336,
+      "vector_A": 0.20632500036299461,
+      "hybrid_A": 0.4425249999258085,
+      "vector_B": 0.22188399998412933,
+      "hybrid_B": 0.45629099986399524
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q12",
+    "query_encoding_ms": 65.94914899960713,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.22856700070406077,
+      "vector_A": 0.21589299922197824,
+      "hybrid_A": 0.4156459999649087,
+      "vector_B": 0.2071369999612216,
+      "hybrid_B": 0.43557200024224585
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q13",
+    "query_encoding_ms": 56.95868100065127,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.18422399989503901,
+      "vector_A": 0.20547299936879426,
+      "hybrid_A": 0.4153750005571055,
+      "vector_B": 0.21244599975034362,
+      "hybrid_B": 0.4603480001605931
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q14",
+    "query_encoding_ms": 56.26576699978614,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.14063199978409102,
+      "vector_A": 0.21335799920052523,
+      "hybrid_A": 0.3060310000364552,
+      "vector_B": 0.20882999979221495,
+      "hybrid_B": 0.3133749996777624
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q15",
+    "query_encoding_ms": 67.25762600035523,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.3526979999151081,
+      "vector_A": 0.2117849999194732,
+      "hybrid_A": 0.46513699999195524,
+      "vector_B": 0.2280450007674517,
+      "hybrid_B": 0.4736240007332526
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q16",
+    "query_encoding_ms": 60.70462699972268,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.20586400023603346,
+      "vector_A": 0.20723700072267093,
+      "hybrid_A": 0.4232300007060985,
+      "vector_B": 0.2074270005323342,
+      "hybrid_B": 0.44761500066670123
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q17",
+    "query_encoding_ms": 60.999563000223134,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.3062509995288565,
+      "vector_A": 0.20859899996139575,
+      "hybrid_A": 0.45934700028738007,
+      "vector_B": 0.218388000575942,
+      "hybrid_B": 0.4713790003734175
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q18",
+    "query_encoding_ms": 66.82290899971122,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.3609630002756603,
+      "vector_A": 0.20940000013069948,
+      "hybrid_A": 0.44069199975638185,
+      "vector_B": 0.20590400072251214,
+      "hybrid_B": 0.45475900060409913
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q19",
+    "query_encoding_ms": 62.13552000008349,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.20559399945341283,
+      "vector_A": 0.20778700036316877,
+      "hybrid_A": 0.3622959993663244,
+      "vector_B": 0.20024300010845764,
+      "hybrid_B": 0.30633100050181383
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q20",
+    "query_encoding_ms": 55.56719200012594,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.17359299999952782,
+      "vector_A": 0.2062049998130533,
+      "hybrid_A": 0.4337899999882211,
+      "vector_B": 0.21354899945436046,
+      "hybrid_B": 0.45680200037168106
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q21",
+    "query_encoding_ms": 55.66882000039186,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.1540670000395039,
+      "vector_A": 0.21166399983485462,
+      "hybrid_A": 0.3437310006120242,
+      "vector_B": 0.20719700023619225,
+      "hybrid_B": 0.37249500019242987
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q22",
+    "query_encoding_ms": 62.07366499984346,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.3799579999395064,
+      "vector_A": 0.21004199970775517,
+      "hybrid_A": 0.4623630002242862,
+      "vector_B": 0.21859800017409725,
+      "hybrid_B": 0.4745860005641589
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q23",
+    "query_encoding_ms": 56.786393000038515,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.32484599978488404,
+      "vector_A": 0.20924999989802018,
+      "hybrid_A": 0.4465729998628376,
+      "vector_B": 0.20272799974918598,
+      "hybrid_B": 0.47952499971870566
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q24",
+    "query_encoding_ms": 57.89137099964137,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.2066650004053372,
+      "vector_A": 0.21087400000396883,
+      "hybrid_A": 0.32524700054636924,
+      "vector_B": 0.20045400015078485,
+      "hybrid_B": 0.3687779999381746
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q25",
+    "query_encoding_ms": 65.4167819993745,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.3305370000816765,
+      "vector_A": 0.2079579999190173,
+      "hybrid_A": 0.48525500005780486,
+      "vector_B": 0.23559900000691414,
+      "hybrid_B": 0.5121650001456146
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q26",
+    "query_encoding_ms": 57.41783299981762,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.37361700015026145,
+      "vector_A": 0.20909000068058958,
+      "hybrid_A": 0.47794199963391293,
+      "vector_B": 0.22639300004811957,
+      "hybrid_B": 0.46348400064744055
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q27",
+    "query_encoding_ms": 66.50627299950429,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.22640299994236557,
+      "vector_A": 0.20816799951717257,
+      "hybrid_A": 0.3182439995725872,
+      "vector_B": 0.21612399996229215,
+      "hybrid_B": 0.31116999980440596
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q28",
+    "query_encoding_ms": 60.2322409995395,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.30276500001491513,
+      "vector_A": 0.20711600063805236,
+      "hybrid_A": 0.4875490003541927,
+      "vector_B": 0.23585000053572003,
+      "hybrid_B": 0.5158720005056239
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q29",
+    "query_encoding_ms": 67.24194699927466,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.22781500047130976,
+      "vector_A": 0.2112440006385441,
+      "hybrid_A": 0.3413069998714491,
+      "vector_B": 0.20420100008777808,
+      "hybrid_B": 0.3896369998983573
+    }
+  },
+  {
+    "population": "mixed",
+    "query_id": "q30",
+    "query_encoding_ms": 60.961553000197455,
+    "index_seconds": 0.0070028520003688755,
+    "ms": {
+      "lexical": 0.16498799959663302,
+      "vector_A": 0.21498099977179663,
+      "hybrid_A": 11.74947500021517,
+      "vector_B": 0.36304700006439816,
+      "hybrid_B": 0.2643230000103358
+    }
+  }
+]

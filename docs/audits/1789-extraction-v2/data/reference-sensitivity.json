@@ -1,0 +1,12 @@
+{
+  "v1": {
+    "reviewed_unambiguous_units": 78,
+    "exact": 68,
+    "reason": "documentary caveat, not rule tuning; primary frozen 79-unit results preserved"
+  },
+  "v2": {
+    "reviewed_unambiguous_units": 78,
+    "exact": 69,
+    "reason": "documentary caveat, not rule tuning; primary frozen 79-unit results preserved"
+  }
+}

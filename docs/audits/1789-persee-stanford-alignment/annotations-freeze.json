@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-10-27T13:10:51.228746+00:00",
+  "files": {
+    "annotations.py": "16ce5a150350ed1a3993bba490e4e8450028ac1f0944edd53b1d868bb46eb8e4",
+    "data/annotations.jsonl": "d860e1b203b10c3e1ba1a4bae0407d565a10368ccb8bd55cc1c0fbbc6c1328b8"
+  },
+  "reviewer": "Codex non-independent, predictions visible",
+  "boundary_references": 26,
+  "limitation": "No Persée full text fetched; cannot certify identity of the producer’s exact intra-page text zones. Source boundaries and document identity are separately annotated."
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "key": "beaurecueil",
+    "volume": 6,
+    "page": {
+      "n": "262",
+      "id": "wg983ft3682_00_0266"
+    },
+    "url": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0266/full/1800,/0/default.jpg",
+    "sha256": "e0d964663187ec1d47672a9f57a65347037464f01c5669dae1833343d4fdfc34",
+    "bytes": 854280,
+    "status": "downloaded",
+    "visual_review": "inspected_by_Codex",
+    "printed_page_observed": "262",
+    "observation": "Cahier complet visible : trois demandes 1°–3° en colonne droite ; signature Roché puis filet et titre distinct Belcodène. Le même div3 mélange les deux cahiers.",
+    "limits": "Lecture du cahier et séparation avec Belcodène ; pas collation caractère par caractère.",
+    "checked_at_utc": "2026-10-26"
+  },
+  {
+    "key": "montigny-ostrevent",
+    "volume": 3,
+    "page": {
+      "n": "222",
+      "id": "mc666yy3026_00_0226"
+    },
+    "url": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0226/full/1800,/0/default.jpg",
+    "sha256": "109e058c3c5e809157840ea9574147c7e4708766db88f41d947d8d232c3c1ba7",
+    "bytes": 997937,
+    "status": "downloaded",
+    "visual_review": "inspected_by_Codex",
+    "printed_page_observed": "222",
+    "observation": "Titre et articles imprimés 1°,2°,3° lisibles ; TEI très dégradé z8 et 36 ; graphies du corps altérées.",
+    "limits": "Début seulement ; les articles 4 et suivants sont sur la page suivante, non consultée.",
+    "checked_at_utc": "2026-10-26"
+  },
+  {
+    "key": "ferrieres",
+    "volume": 4,
+    "page": {
+      "n": "545",
+      "id": "xg914wh0253_00_0549"
+    },
+    "url": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0549/full/1800,/0/default.jpg",
+    "sha256": "8699eb1dc142e69225075ec63bccf0b7cb8ef677f2f3e91e3632a46777991ff1",
+    "bytes": 753813,
+    "status": "downloaded",
+    "visual_review": "inspected_by_Codex",
+    "printed_page_observed": "545",
+    "observation": "Fin Favières, filet, titre Ferrières puis Constitution et Art.1er–4 ; le changement div3146 est une section interne.",
+    "limits": "Début et article4 se poursuivant page suivante ; fin et autres sections contrôlées en XML seulement.",
+    "checked_at_utc": "2026-10-26"
+  },
+  {
+    "key": "anjou-clerge",
+    "volume": 2,
+    "page": {
+      "n": "30",
+      "id": "fz023dp4399_00_0034"
+    },
+    "url": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0034/full/1800,/0/default.jpg",
+    "sha256": "7c4b5d66e95dac671e651ed3c62fe2aa47278a37addffef9f307e3e371402874",
+    "bytes": 762130,
+    "status": "downloaded",
+    "visual_review": "inspected_by_Codex",
+    "printed_page_observed": null,
+    "observation": "Chapitre Ier ; art15 commence au bas de la colonne gauche puis continue en haut de la droite ; 16°,17°,18° distincts à droite mais réunis en p18 TEI.",
+    "limits": "Comparaison visuelle du début et de la continuité15–18 ; aucun numéro de page imprimé visible sur cette image.",
+    "checked_at_utc": "2026-10-26"
+  },
+  {
+    "key": "alencon-noblesse",
+    "volume": 1,
+    "page": {
+      "n": "711",
+      "id": "jt959wc5586_00_0711"
+    },
+    "url": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0711/full/1800,/0/default.jpg",
+    "sha256": "920e1b50c4e94c039a7f275b24d9c1a67b55e867e5f171ab193281bcc770b485",
+    "bytes": 889197,
+    "status": "downloaded",
+    "visual_review": "inspected_by_Codex",
+    "printed_page_observed": "711",
+    "observation": "La citation Lex consensu populi… termine l’article2 ; Art.3 suit au sein du même p10 XML.",
+    "limits": "Frontière2/3 vérifiée visuellement ; fin3 non certifiée, volontairement hors référence.",
+    "checked_at_utc": "2026-10-26"
+  }
+]

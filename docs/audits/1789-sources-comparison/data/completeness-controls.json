@@ -1,0 +1,20 @@
+[
+  {
+    "key": "angoumois",
+    "expected_visible_on_scan": "Proposeront en premier",
+    "stanford_present": true,
+    "artfl_present": true,
+    "persee_page_present": false,
+    "persee_page_url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_2_1_1559/arcpa_0000-0000_1879_num_2_1_T1_0003_0000",
+    "cache_file": "persee-angoumois-0003.html"
+  },
+  {
+    "key": "colmar",
+    "expected_visible_on_scan": "Les députés des dix villes d'Alsace",
+    "stanford_present": true,
+    "artfl_present": true,
+    "persee_page_present": false,
+    "persee_page_url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0012_0000",
+    "cache_file": "persee-colmar-0012.html"
+  }
+]

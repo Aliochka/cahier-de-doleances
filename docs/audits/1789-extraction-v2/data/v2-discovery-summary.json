@@ -1,0 +1,62 @@
+{
+  "records": 1954,
+  "classifications": {
+    "out_of_scope": 121,
+    "mention": 364,
+    "part": 174,
+    "uncertain": 55,
+    "autonomous": 1197,
+    "associated": 43
+  },
+  "per_volume": {
+    "1": {
+      "out_of_scope": 47,
+      "mention": 93,
+      "part": 10,
+      "uncertain": 3,
+      "autonomous": 20
+    },
+    "2": {
+      "autonomous": 171,
+      "associated": 12,
+      "uncertain": 4,
+      "part": 61,
+      "mention": 7,
+      "out_of_scope": 16
+    },
+    "3": {
+      "autonomous": 184,
+      "part": 42,
+      "out_of_scope": 12,
+      "uncertain": 25,
+      "mention": 99,
+      "associated": 12
+    },
+    "4": {
+      "autonomous": 348,
+      "associated": 4,
+      "part": 24,
+      "out_of_scope": 6,
+      "mention": 23,
+      "uncertain": 1
+    },
+    "5": {
+      "autonomous": 292,
+      "part": 19,
+      "uncertain": 11,
+      "out_of_scope": 9,
+      "mention": 24,
+      "associated": 6
+    },
+    "6": {
+      "autonomous": 182,
+      "associated": 9,
+      "part": 18,
+      "uncertain": 11,
+      "out_of_scope": 31,
+      "mention": 118
+    }
+  },
+  "seconds": 5.373594637999759,
+  "all_automatic_unverified": true
+}

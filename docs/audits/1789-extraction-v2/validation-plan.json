@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-10-27T11:31:49.990136+00:00",
+  "rules_finalized": false,
+  "reference_created": false,
+  "candidates": 24,
+  "zones": 12,
+  "candidate_method": "4 raw structural candidates/volume by SHA order in strong-short, alternative, strong-long, remaining strata; no V2 predictions",
+  "zone_method": "2 disjoint complete consecutive-leaf intervals/volume, 400..16000 decoded characters, hash selection independently of detector",
+  "selection_seed": "validation-v2-1789",
+  "prior_170_candidates_excluded": true,
+  "prior_30_parents_excluded": true,
+  "prior_negative_enclosing_divisions_excluded": true,
+  "pecqueuse_excluded": true,
+  "statistically_representative": false,
+  "judge": "Codex, not independent human",
+  "files": {
+    "data/validation-zones.jsonl": "83efe4c3906546c9b040cee0391614d25b507ab80e5668245a1e8fc589eb2dc2",
+    "data/validation-candidates.jsonl": "69a13124f6f1c20786155f5f201885b94163957c268b2ea58dcd8c2e207e2645",
+    "data/validation-exclusions.json": "0b52a1d389fae51899e3d3a9793d53d396583f2ea6f137453fc813b71647aa6b"
+  }
+}

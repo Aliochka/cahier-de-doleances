@@ -1,0 +1,40 @@
+{
+  "parents": 30,
+  "units": 759,
+  "reviewed_A": 269,
+  "retained_C_ranges": 187,
+  "negative_cases": 6,
+  "fault_injections": [
+    {
+      "case": "duplicate",
+      "detected": true
+    },
+    {
+      "case": "invalid_range",
+      "detected": true
+    },
+    {
+      "case": "wrong_parent",
+      "detected": true
+    },
+    {
+      "case": "wrong_order",
+      "detected": true
+    },
+    {
+      "case": "changed_text",
+      "detected": true
+    },
+    {
+      "case": "changed_parent_text",
+      "detected": true
+    },
+    {
+      "case": "changed_source_fingerprint",
+      "detected": true
+    }
+  ],
+  "previous_audit_files_unchanged": 50,
+  "identical_texts_in_distinct_source_ranges": [],
+  "note": "Des textes identiques dans deux sources distinctes sont signalés, jamais supprimés automatiquement."
+}

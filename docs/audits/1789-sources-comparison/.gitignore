@@ -1,0 +1,4 @@
+# Résultats publics de comparaison uniquement.
+!/*.json
+!/data/
+!/data/**

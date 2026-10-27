@@ -1,0 +1,1825 @@
+[
+  {
+    "id": "ap1789-exp-v1:1d3e262a45a8115489830bf1",
+    "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_title": "CAHIER des demandes et doléances de l'ordre du clergé dela sénéchaus8ée d'agenols (1).",
+    "sample_ordinal": 1,
+    "source_paragraphs": [
+      5,
+      6
+    ],
+    "original_label": "Article 1er,",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Article 1er, \n\nQue les lois constitutionnelles du royaume soient invariablement fixées. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[5]",
+        "start": 1746,
+        "end": 1759,
+        "text_exact": "Article 1er, ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[6]",
+        "start": 1784,
+        "end": 1857,
+        "text_exact": "Que les lois constitutionnelles du royaume soient invariablement fixées. ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée d’Agenois",
+      "estate": "clergé",
+      "date": null,
+      "date_provenance": null,
+      "metadata_provenance": "Titre en head et p[1] ; territoire repris du sous-titre, sans géocodage."
+    },
+    "volume": "1",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+      "start": 1746,
+      "end": 1857
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "83ce90d7491b43c1dc7607da8cdfacf5536d63e8847047237b27fb20e8cbc213"
+  },
+  {
+    "id": "ap1789-exp-v1:ba11867be5bf0ac6be0dddfe",
+    "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_title": "CAHIER des demandes et doléances de l'ordre du clergé dela sénéchaus8ée d'agenols (1).",
+    "sample_ordinal": 2,
+    "source_paragraphs": [
+      7,
+      8
+    ],
+    "original_label": "Art, 2.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art, 2. \n\nQue, dans le cas de minorité, la régence ne soit que provisoire, jusqu'à\n                            ce qu'elle ait été con- firmée par la nation, qui sera assemblée à cet\n                            effet, dans l'espace de six mois après la mort du roi. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[7]",
+        "start": 1884,
+        "end": 1892,
+        "text_exact": "Art, 2. ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[8]",
+        "start": 1917,
+        "end": 2172,
+        "text_exact": "Que, dans le cas de minorité, la régence ne soit que provisoire, jusqu'à\n                            ce qu'elle ait été con- firmée par la nation, qui sera assemblée à cet\n                            effet, dans l'espace de six mois après la mort du roi. ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée d’Agenois",
+      "estate": "clergé",
+      "date": null,
+      "date_provenance": null,
+      "metadata_provenance": "Titre en head et p[1] ; territoire repris du sous-titre, sans géocodage."
+    },
+    "volume": "1",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+      "start": 1884,
+      "end": 2172
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "3c0da4a914ae56a2e5c42cd7291f2d765ac9d7b27d4b0c5f8d34d092e47a5786"
+  },
+  {
+    "id": "ap1789-exp-v1:8f9e2d04d62170b373762032",
+    "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_title": "CAHIER des demandes et doléances de l'ordre du clergé dela sénéchaus8ée d'agenols (1).",
+    "sample_ordinal": 3,
+    "source_paragraphs": [
+      9,
+      10
+    ],
+    "original_label": "Art. 3.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 3. \n\nQu'aucune loi constitutionnelle ou d'adminis- tration générale ne puisse\n                            avoir lieu qu'autant qu'elle sera établie par le concours du roi et de\n                            la nation assemblée. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[9]",
+        "start": 2199,
+        "end": 2207,
+        "text_exact": "Art. 3. ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[10]",
+        "start": 2232,
+        "end": 2453,
+        "text_exact": "Qu'aucune loi constitutionnelle ou d'adminis- tration générale ne puisse\n                            avoir lieu qu'autant qu'elle sera établie par le concours du roi et de\n                            la nation assemblée. ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée d’Agenois",
+      "estate": "clergé",
+      "date": null,
+      "date_provenance": null,
+      "metadata_provenance": "Titre en head et p[1] ; territoire repris du sous-titre, sans géocodage."
+    },
+    "volume": "1",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+      "start": 2199,
+      "end": 2453
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "48902207a6172cc3d885ad7f7d734c4913214a7bde10b55050f6becbef3ab6e9"
+  },
+  {
+    "id": "ap1789-exp-v1:08da963c9619f477c3a8cb58",
+    "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_title": "CAHIER des demandes et doléances de l'ordre du clergé dela sénéchaus8ée d'agenols (1).",
+    "sample_ordinal": 4,
+    "source_paragraphs": [
+      11,
+      12
+    ],
+    "original_label": "Art, 4.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art, 4. \n\nLa liberté individuelle, laquelle sera établie et assurée de manière que\n                            tous les citoyens et cha- cun en particulier ne soit soumis qu'à la loi. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[11]",
+        "start": 2480,
+        "end": 2488,
+        "text_exact": "Art, 4. ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[12]",
+        "start": 2513,
+        "end": 2687,
+        "text_exact": "La liberté individuelle, laquelle sera établie et assurée de manière que\n                            tous les citoyens et cha- cun en particulier ne soit soumis qu'à la loi. ",
+        "page": {
+          "id": "jt959wc5586_00_0675",
+          "printed_label": "",
+          "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+          "canvas_label": "Page 675",
+          "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée d’Agenois",
+      "estate": "clergé",
+      "date": null,
+      "date_provenance": null,
+      "metadata_provenance": "Titre en head et p[1] ; territoire repris du sous-titre, sans géocodage."
+    },
+    "volume": "1",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "scan_url": "https://purl.stanford.edu/jt959wc5586",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+      "start": 2480,
+      "end": 2687
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "9c2291bf2c22dc627fdbdcc858579156d9917954260c2c8d5922b1de5f7bca7f"
+  },
+  {
+    "id": "ap1789-exp-v1:6171993211617e23463c9385",
+    "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_title": "CAHIER sommaire des très-humbles remontrances faites et dressées par l'ordre de la noblesse de la province d'Angoumois, en rassemblée tenue en la ville d'Angoulême les 16, 17, 18, 19, et jours suivants du mois de mars 1789, par ordre du roi, suivant la lettre de Sa Majesté à M. le Sénéchal d'Angoumois, en date du 24 janvier dernier, et de l'ordonnance dudit sieur sénéchal du 14 février, sur le sujet de la convocation des Etats généraux en la ville de Versailles, assignés au 27 avril dudit an, et mises entre les mains de MM. le marquis de Saint-Simon et le comte de Culent, députés par ladite noblesse pour assister auxdits Etats généraux, et représenter les articles desdites remontrances qui s'ensuivent ( 1).",
+    "sample_ordinal": 1,
+    "source_paragraphs": [
+      1,
+      2
+    ],
+    "original_label": "Art. 1er.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 1er. Proposeront en premier lieulesdits dépu- \n\ntés d'adresser de très-humblesremercîments au roi d'avoir bien voulu assembler la nation,et\n       d'assurer Sa Majesté du profond respect, parfaite obéissance et inviolable fidélité., de la\n       noblesse de sa province d'Angoumois. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[1]",
+        "start": 786,
+        "end": 837,
+        "text_exact": "Art. 1er. Proposeront en premier lieulesdits dépu- ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]",
+        "start": 927,
+        "end": 1162,
+        "text_exact": "tés d'adresser de très-humblesremercîments au roi d'avoir bien voulu assembler la nation,et\n       d'assurer Sa Majesté du profond respect, parfaite obéissance et inviolable fidélité., de la\n       noblesse de sa province d'Angoumois. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Angoulême",
+      "territory": "Province d’Angoumois",
+      "estate": "noblesse",
+      "date": null,
+      "date_provenance": "Titre : les 16, 17, 18, 19 et jours suivants de mars 1789 ; ne pas transformer en date unique.",
+      "metadata_provenance": "Sous-titre en head[2] ; localité = lieu de réunion mentionné, pas une juridiction moderne."
+    },
+    "volume": "2",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+      "start": 786,
+      "end": 1162
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "278675c4813fe4f1cb86fb7c90986d61b325bc26727330cef110eb6d7ba6d757"
+  },
+  {
+    "id": "ap1789-exp-v1:49635ef2ba54ce22e78f71de",
+    "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_title": "CAHIER sommaire des très-humbles remontrances faites et dressées par l'ordre de la noblesse de la province d'Angoumois, en rassemblée tenue en la ville d'Angoulême les 16, 17, 18, 19, et jours suivants du mois de mars 1789, par ordre du roi, suivant la lettre de Sa Majesté à M. le Sénéchal d'Angoumois, en date du 24 janvier dernier, et de l'ordonnance dudit sieur sénéchal du 14 février, sur le sujet de la convocation des Etats généraux en la ville de Versailles, assignés au 27 avril dudit an, et mises entre les mains de MM. le marquis de Saint-Simon et le comte de Culent, députés par ladite noblesse pour assister auxdits Etats généraux, et représenter les articles desdites remontrances qui s'ensuivent ( 1).",
+    "sample_ordinal": 2,
+    "source_paragraphs": [
+      4,
+      4
+    ],
+    "original_label": "Art. 3.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 3. Quoique le droit de la nation de consentir seule les impôts soit authentiquement\n       reconnu par le roi lui-môme imprescriptible, cependant les altérations que ce droit a reçues\n       en différents temps, rendent nécessaire et convenable une démarche authentique des Etats\n       généraux à ce sujet ; en conséquence, rassemblée a arrêté que la première opération des Etats\n       généraux doit être de déclarer tous les impôts, actuellement existants, nuls et caducs, comme\n       ayant été incom-pétemment établis, étendus, ou continués; mais que dans la même séance ils\n       doivent les recréer tous pour le temps seulement de la durée de la présente tenue, avant la\n       fin de laquelle ils pourvoiront aux besoins de l'Etat par les moyens qu'ils jugeront les plus\n       convenables. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]",
+        "start": 1558,
+        "end": 2363,
+        "text_exact": "Art. 3. Quoique le droit de la nation de consentir seule les impôts soit authentiquement\n       reconnu par le roi lui-môme imprescriptible, cependant les altérations que ce droit a reçues\n       en différents temps, rendent nécessaire et convenable une démarche authentique des Etats\n       généraux à ce sujet ; en conséquence, rassemblée a arrêté que la première opération des Etats\n       généraux doit être de déclarer tous les impôts, actuellement existants, nuls et caducs, comme\n       ayant été incom-pétemment établis, étendus, ou continués; mais que dans la même séance ils\n       doivent les recréer tous pour le temps seulement de la durée de la présente tenue, avant la\n       fin de laquelle ils pourvoiront aux besoins de l'Etat par les moyens qu'ils jugeront les plus\n       convenables. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Angoulême",
+      "territory": "Province d’Angoumois",
+      "estate": "noblesse",
+      "date": null,
+      "date_provenance": "Titre : les 16, 17, 18, 19 et jours suivants de mars 1789 ; ne pas transformer en date unique.",
+      "metadata_provenance": "Sous-titre en head[2] ; localité = lieu de réunion mentionné, pas une juridiction moderne."
+    },
+    "volume": "2",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+      "start": 1558,
+      "end": 2363
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "105347f85021138de06b2af3eb7c4c5b608d155be222945bc9dca415e5d5470f"
+  },
+  {
+    "id": "ap1789-exp-v1:a238d6fed70b278d3ab50f85",
+    "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_title": "CAHIER sommaire des très-humbles remontrances faites et dressées par l'ordre de la noblesse de la province d'Angoumois, en rassemblée tenue en la ville d'Angoulême les 16, 17, 18, 19, et jours suivants du mois de mars 1789, par ordre du roi, suivant la lettre de Sa Majesté à M. le Sénéchal d'Angoumois, en date du 24 janvier dernier, et de l'ordonnance dudit sieur sénéchal du 14 février, sur le sujet de la convocation des Etats généraux en la ville de Versailles, assignés au 27 avril dudit an, et mises entre les mains de MM. le marquis de Saint-Simon et le comte de Culent, députés par ladite noblesse pour assister auxdits Etats généraux, et représenter les articles desdites remontrances qui s'ensuivent ( 1).",
+    "sample_ordinal": 3,
+    "source_paragraphs": [
+      5,
+      20
+    ],
+    "original_label": "Art. 4.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 4. Lesdits députés insisteront à ce que la matière de l'impôt et des autres secours\n       nécessaires, tant aux besoins de l'Etat qu'au payement de la dette, quand elle sera jugée, ne\n       soit traitée qu après la sanction de la charte nationale. \n\nCharte nationale. \n\nLa succession au trône conservée dans l'ordre consacré. \n\nLa liberté générale et individuelle des citoyens. La liberté de la presse, sous les\n       modifications que les Etats généraux jugeront convenable d'v prescrire. \n\nL'abolition absolue des lettres de cachet, tant pour exil que pour emprisonnement; de\n       l'usage dangereux et illégal de toutes commissions particulières pour juger les délits, et de\n       tous les mandats des cours supérieures aux juges inférieurs, connus sous le nom de veniat. \n\nQue la foi publique ne puisse, sous aucun prétexte, être violée dans les bureaux de la\n       poste aux lettres,' \n\nQue l'on assure la périodicité des Etats généraux, dont la première tenue sera indiquée au\n       plus tard dans trois ans, à compter de la fin des Etats prochains, et les autres tenues\n       seront fixées à cinq ans de \"distance de l'une à l'autre, s'en référant au surplus au vœu\n       général des députés aux Etats généraux. \n\nQue l'assemblée prochaine des Etats généraux détermine toutes les précautions à prendre\n       pour assurer l'exercice du pouvoir souverain, dans le cas où il y aurait lieu à la régence,\n       et jusqu'à ce qu'elle ait été déférée par lesdits Etats généraux. \n\nQue les députés aux Etats généraux, comme personnes sacrées, ne puissent, sous aucun\n       prétexte, être troublés dans leurs fonctions. \n\nQu'aucun citoyen, occupant un emploi légal, civil ou militaire, ne puisse être destitué que\n       par ses juges naturels. \n\nQue tout citoyen accusé par le ministère public, et renvoyé absous, ait droit à une\n       indemnité qui sera payée par l'Etat. \n\nQu'aucune loi générale ne puisse avoir lieu qu'autant qu'elle aura été consentie ou propo- \n\nsée par les Etats généraux, et sanctionnée par le roi pour être incontinent transcrite sur\n       les registres des cours, sans vérification, publiée et affichée \n\nQue nul impôt, emprunt, création ou suppression d'offices ne puisse avoir lieu sans le\n       consentement des Etats généraux. \n\nQue les ministres soient responsables envers la nation des fonds qui leur seront confies\n       pour leurs départements, et des abus de leur administration. Lesdits députés proposeront aux\n       Etats généraux d'autoriser particulièrement le ministère public à poursuivre les ministres\n       prévaricateurs dans l'intervalle d'une tenue à l'autre. \n\nAdministration. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]",
+        "start": 2370,
+        "end": 2625,
+        "text_exact": "Art. 4. Lesdits députés insisteront à ce que la matière de l'impôt et des autres secours\n       nécessaires, tant aux besoins de l'Etat qu'au payement de la dette, quand elle sera jugée, ne\n       soit traitée qu après la sanction de la charte nationale. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[6]",
+        "start": 2633,
+        "end": 2651,
+        "text_exact": "Charte nationale. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[7]",
+        "start": 2658,
+        "end": 2714,
+        "text_exact": "La succession au trône conservée dans l'ordre consacré. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[8]",
+        "start": 2721,
+        "end": 2884,
+        "text_exact": "La liberté générale et individuelle des citoyens. La liberté de la presse, sous les\n       modifications que les Etats généraux jugeront convenable d'v prescrire. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[9]",
+        "start": 2891,
+        "end": 3176,
+        "text_exact": "L'abolition absolue des lettres de cachet, tant pour exil que pour emprisonnement; de\n       l'usage dangereux et illégal de toutes commissions particulières pour juger les délits, et de\n       tous les mandats des cours supérieures aux juges inférieurs, connus sous le nom de veniat. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+        "start": 3183,
+        "end": 3297,
+        "text_exact": "Que la foi publique ne puisse, sous aucun prétexte, être violée dans les bureaux de la\n       poste aux lettres,' ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]",
+        "start": 3304,
+        "end": 3634,
+        "text_exact": "Que l'on assure la périodicité des Etats généraux, dont la première tenue sera indiquée au\n       plus tard dans trois ans, à compter de la fin des Etats prochains, et les autres tenues\n       seront fixées à cinq ans de \"distance de l'une à l'autre, s'en référant au surplus au vœu\n       général des députés aux Etats généraux. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]",
+        "start": 3641,
+        "end": 3901,
+        "text_exact": "Que l'assemblée prochaine des Etats généraux détermine toutes les précautions à prendre\n       pour assurer l'exercice du pouvoir souverain, dans le cas où il y aurait lieu à la régence,\n       et jusqu'à ce qu'elle ait été déférée par lesdits Etats généraux. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]",
+        "start": 3908,
+        "end": 4046,
+        "text_exact": "Que les députés aux Etats généraux, comme personnes sacrées, ne puissent, sous aucun\n       prétexte, être troublés dans leurs fonctions. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]",
+        "start": 4053,
+        "end": 4176,
+        "text_exact": "Qu'aucun citoyen, occupant un emploi légal, civil ou militaire, ne puisse être destitué que\n       par ses juges naturels. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[15]",
+        "start": 4183,
+        "end": 4311,
+        "text_exact": "Que tout citoyen accusé par le ministère public, et renvoyé absous, ait droit à une\n       indemnité qui sera payée par l'Etat. ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[16]",
+        "start": 4318,
+        "end": 4409,
+        "text_exact": "Qu'aucune loi générale ne puisse avoir lieu qu'autant qu'elle aura été consentie ou propo- ",
+        "page": {
+          "id": "fz023dp4399_00_0007",
+          "printed_label": "3",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+          "canvas_label": "Page 7",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[17]",
+        "start": 4423,
+        "end": 4585,
+        "text_exact": "sée par les Etats généraux, et sanctionnée par le roi pour être incontinent transcrite sur\n       les registres des cours, sans vérification, publiée et affichée ",
+        "page": {
+          "id": "fz023dp4399_00_0008",
+          "printed_label": "4",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_9",
+          "canvas_label": "Page 8",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0008"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[18]",
+        "start": 4592,
+        "end": 4719,
+        "text_exact": "Que nul impôt, emprunt, création ou suppression d'offices ne puisse avoir lieu sans le\n       consentement des Etats généraux. ",
+        "page": {
+          "id": "fz023dp4399_00_0008",
+          "printed_label": "4",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_9",
+          "canvas_label": "Page 8",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0008"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[19]",
+        "start": 4726,
+        "end": 5076,
+        "text_exact": "Que les ministres soient responsables envers la nation des fonds qui leur seront confies\n       pour leurs départements, et des abus de leur administration. Lesdits députés proposeront aux\n       Etats généraux d'autoriser particulièrement le ministère public à poursuivre les ministres\n       prévaricateurs dans l'intervalle d'une tenue à l'autre. ",
+        "page": {
+          "id": "fz023dp4399_00_0008",
+          "printed_label": "4",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_9",
+          "canvas_label": "Page 8",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0008"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[20]",
+        "start": 5084,
+        "end": 5100,
+        "text_exact": "Administration. ",
+        "page": {
+          "id": "fz023dp4399_00_0008",
+          "printed_label": "4",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_9",
+          "canvas_label": "Page 8",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0008"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Angoulême",
+      "territory": "Province d’Angoumois",
+      "estate": "noblesse",
+      "date": null,
+      "date_provenance": "Titre : les 16, 17, 18, 19 et jours suivants de mars 1789 ; ne pas transformer en date unique.",
+      "metadata_provenance": "Sous-titre en head[2] ; localité = lieu de réunion mentionné, pas une juridiction moderne."
+    },
+    "volume": "2",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+      "start": 2370,
+      "end": 5100
+    },
+    "uncertainties": [
+      "Un article contient ici une charte et plusieurs propositions ; ne pas les déclarer revendications atomiques.",
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "f9a0472a4b57afd6042be83c764d684f80f6b6cb33616437b1c8491da8a1104f"
+  },
+  {
+    "id": "ap1789-exp-v1:cfdbea1cc68482f89aced6e2",
+    "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_title": "CAHIER sommaire des très-humbles remontrances faites et dressées par l'ordre de la noblesse de la province d'Angoumois, en rassemblée tenue en la ville d'Angoulême les 16, 17, 18, 19, et jours suivants du mois de mars 1789, par ordre du roi, suivant la lettre de Sa Majesté à M. le Sénéchal d'Angoumois, en date du 24 janvier dernier, et de l'ordonnance dudit sieur sénéchal du 14 février, sur le sujet de la convocation des Etats généraux en la ville de Versailles, assignés au 27 avril dudit an, et mises entre les mains de MM. le marquis de Saint-Simon et le comte de Culent, députés par ladite noblesse pour assister auxdits Etats généraux, et représenter les articles desdites remontrances qui s'ensuivent ( 1).",
+    "sample_ordinal": 4,
+    "source_paragraphs": [
+      41,
+      43
+    ],
+    "original_label": "Art. 17.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 17. Les députés demanderont la suppression entière et absolue des aides, comme 1 impôt\n       le plus désastreux, le plus vexatoire, le plus décourageant pour l'agriculture, le plus\n       nuisible à la liberté des citoyens. La noblesse réclame depuis quarante ans contre cette\n       inquisition humiliante pour tous, et flétrissante pour elle , et ses réclamations sont encore\n       infructueuses. \n\nIl en est de même des droits réservés, perçus dans les gros lieux, désignés sous le nom des\n       petites villes et bourgades, et sur tous les hameaux-compris dans le même mandement des\n       tailles ; ces derniers droits ont égalé le montant de l'imposition principale des\n       cultivateurs de la dernière classe. \n\nOn ne peut voir sans indignation les amendes prononcées en cas de contraventions, et le\n       prix des transactions, arrachées à la faiblesse et commandées par la crainte, tourner au\n       profit des fermiers généraux et de leurs employés. Le roi, afferme des droits, et non des\n       vexations ruineuses. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[41]",
+        "start": 12704,
+        "end": 13110,
+        "text_exact": "Art. 17. Les députés demanderont la suppression entière et absolue des aides, comme 1 impôt\n       le plus désastreux, le plus vexatoire, le plus décourageant pour l'agriculture, le plus\n       nuisible à la liberté des citoyens. La noblesse réclame depuis quarante ans contre cette\n       inquisition humiliante pour tous, et flétrissante pour elle , et ses réclamations sont encore\n       infructueuses. ",
+        "page": {
+          "id": "fz023dp4399_00_0009",
+          "printed_label": "5",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_10",
+          "canvas_label": "Page 9",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0009"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[42]",
+        "start": 13117,
+        "end": 13436,
+        "text_exact": "Il en est de même des droits réservés, perçus dans les gros lieux, désignés sous le nom des\n       petites villes et bourgades, et sur tous les hameaux-compris dans le même mandement des\n       tailles ; ces derniers droits ont égalé le montant de l'imposition principale des\n       cultivateurs de la dernière classe. ",
+        "page": {
+          "id": "fz023dp4399_00_0009",
+          "printed_label": "5",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_10",
+          "canvas_label": "Page 9",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0009"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[43]",
+        "start": 13443,
+        "end": 13752,
+        "text_exact": "On ne peut voir sans indignation les amendes prononcées en cas de contraventions, et le\n       prix des transactions, arrachées à la faiblesse et commandées par la crainte, tourner au\n       profit des fermiers généraux et de leurs employés. Le roi, afferme des droits, et non des\n       vexations ruineuses. ",
+        "page": {
+          "id": "fz023dp4399_00_0009",
+          "printed_label": "5",
+          "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_10",
+          "canvas_label": "Page 9",
+          "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0009"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Angoulême",
+      "territory": "Province d’Angoumois",
+      "estate": "noblesse",
+      "date": null,
+      "date_provenance": "Titre : les 16, 17, 18, 19 et jours suivants de mars 1789 ; ne pas transformer en date unique.",
+      "metadata_provenance": "Sous-titre en head[2] ; localité = lieu de réunion mentionné, pas une juridiction moderne."
+    },
+    "volume": "2",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "scan_url": "https://purl.stanford.edu/fz023dp4399",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+      "start": 12704,
+      "end": 13752
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "7124ad678e6e543db5d2f132d2a002b4e5e50a7d7445dc78947cb2d29b7cdcf3"
+  },
+  {
+    "id": "ap1789-exp-v1:7b9236a0b0f16f64263c3736",
+    "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_title": "CAHIER Des doléances et remontrances que la ville de Col- mar entend faire à Sa Majeste sur les moyens de pourvoir et subvenir aux besoins de l'Etat, ainsi qu'à tout ce qui peut intéresser la prospérité du royaume et celle de tous et chacun des sujets de Sa Majesté (1).",
+    "sample_ordinal": 1,
+    "source_paragraphs": [
+      1,
+      1
+    ],
+    "original_label": "Art. 1er.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 1er. Les députés des dix villes d'Alsace supplieront Sa Majesté de\n                            supprimer par un édit perpétuel, de l'avis et du consentement des Etats\n                            généraux du royaume, généralement tous les im- pôts royaux pécuniaires,\n                            sans aucune exception quelconque, actuellement levés dans le royaume,\n                            dont l'état visé, par les commissaires des Etats généraux sera joint,\n                            sans qu'aucun desdits impôts, ni autre, puisse être rétabli par la suite\n                            sans le consentement des Etats généraux. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[1]",
+        "start": 429,
+        "end": 1067,
+        "text_exact": "Art. 1er. Les députés des dix villes d'Alsace supplieront Sa Majesté de\n                            supprimer par un édit perpétuel, de l'avis et du consentement des Etats\n                            généraux du royaume, généralement tous les im- pôts royaux pécuniaires,\n                            sans aucune exception quelconque, actuellement levés dans le royaume,\n                            dont l'état visé, par les commissaires des Etats généraux sera joint,\n                            sans qu'aucun desdits impôts, ni autre, puisse être rétabli par la suite\n                            sans le consentement des Etats généraux. ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Colmar",
+      "territory": "Districts de Colmar et Schlestadt",
+      "estate": null,
+      "date": "1789-03-24",
+      "date_provenance": "p[57] : fait, lu et interprété ... le 24 mars 1789. La date balisée 27 avril en p[61] est une collation, pas la rédaction. Le div3 inclut aussi un supplément traduit de l’allemand en mai.",
+      "metadata_provenance": "Localité dans head[2] ; territoire = contexte div2. Aucun ordre explicite dans le titre de ce cahier : laissé nul."
+    },
+    "volume": "3",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+      "start": 429,
+      "end": 1067
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "0f314dfb264e791c1458d6ef09bffcb0dc9e71bfb8eb2ce80d2ef14dbd82392f"
+  },
+  {
+    "id": "ap1789-exp-v1:a2b8a630609143a49a9b80d8",
+    "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_title": "CAHIER Des doléances et remontrances que la ville de Col- mar entend faire à Sa Majeste sur les moyens de pourvoir et subvenir aux besoins de l'Etat, ainsi qu'à tout ce qui peut intéresser la prospérité du royaume et celle de tous et chacun des sujets de Sa Majesté (1).",
+    "sample_ordinal": 2,
+    "source_paragraphs": [
+      2,
+      2
+    ],
+    "original_label": "Art. 2.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 2. Que, pour remplacer les impôts suppri- més et pourvoir aux vrais\n                            besoins de l'Etat et au maintien de la dignité royale, il en soit établi\n                            de suffisants, en ayant soin ae fixer la dépense de chaque département. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[2]",
+        "start": 1092,
+        "end": 1366,
+        "text_exact": "Art. 2. Que, pour remplacer les impôts suppri- més et pourvoir aux vrais\n                            besoins de l'Etat et au maintien de la dignité royale, il en soit établi\n                            de suffisants, en ayant soin ae fixer la dépense de chaque département. ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Colmar",
+      "territory": "Districts de Colmar et Schlestadt",
+      "estate": null,
+      "date": "1789-03-24",
+      "date_provenance": "p[57] : fait, lu et interprété ... le 24 mars 1789. La date balisée 27 avril en p[61] est une collation, pas la rédaction. Le div3 inclut aussi un supplément traduit de l’allemand en mai.",
+      "metadata_provenance": "Localité dans head[2] ; territoire = contexte div2. Aucun ordre explicite dans le titre de ce cahier : laissé nul."
+    },
+    "volume": "3",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+      "start": 1092,
+      "end": 1366
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "a0d6e628d481ad1f17594a910c75f574c919ef6498f34e6d30d6c6d8e777433e"
+  },
+  {
+    "id": "ap1789-exp-v1:206104a6327b29a50da6390b",
+    "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_title": "CAHIER Des doléances et remontrances que la ville de Col- mar entend faire à Sa Majeste sur les moyens de pourvoir et subvenir aux besoins de l'Etat, ainsi qu'à tout ce qui peut intéresser la prospérité du royaume et celle de tous et chacun des sujets de Sa Majesté (1).",
+    "sample_ordinal": 3,
+    "source_paragraphs": [
+      3,
+      7
+    ],
+    "original_label": "Art.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. Qu'à cet effet, il soit remis aux Etats généraux des états exacts et\n                            détaillés par le même : \n\n1° De toutes les dettes de l'Etat, tant en intérêts qu'en capitaux ; \n\n2° De toutes ses dépenses fixés ; \n\n3° Des dépenses casuelles par aperçu ; \n\n4° De tous les revenus actuels de la couronne et des réunions qui\n                            pourraient y être faites avec justice pour, vérification faite, être par\n                            les Etats généraux réglé pour la partie de l'impôt néces- saire pour\n                            suppléer au déficit. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[3]",
+        "start": 1391,
+        "end": 1517,
+        "text_exact": "Art. Qu'à cet effet, il soit remis aux Etats généraux des états exacts et\n                            détaillés par le même : ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[4]",
+        "start": 1542,
+        "end": 1611,
+        "text_exact": "1° De toutes les dettes de l'Etat, tant en intérêts qu'en capitaux ; ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[5]",
+        "start": 1764,
+        "end": 1798,
+        "text_exact": "2° De toutes ses dépenses fixés ; ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[6]",
+        "start": 1823,
+        "end": 1862,
+        "text_exact": "3° Des dépenses casuelles par aperçu ; ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[7]",
+        "start": 1887,
+        "end": 2200,
+        "text_exact": "4° De tous les revenus actuels de la couronne et des réunions qui\n                            pourraient y être faites avec justice pour, vérification faite, être par\n                            les Etats généraux réglé pour la partie de l'impôt néces- saire pour\n                            suppléer au déficit. ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Colmar",
+      "territory": "Districts de Colmar et Schlestadt",
+      "estate": null,
+      "date": "1789-03-24",
+      "date_provenance": "p[57] : fait, lu et interprété ... le 24 mars 1789. La date balisée 27 avril en p[61] est une collation, pas la rédaction. Le div3 inclut aussi un supplément traduit de l’allemand en mai.",
+      "metadata_provenance": "Localité dans head[2] ; territoire = contexte div2. Aucun ordre explicite dans le titre de ce cahier : laissé nul."
+    },
+    "volume": "3",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+      "start": 1391,
+      "end": 2200
+    },
+    "uncertainties": [
+      "Numéro absent du XML ; le scan porte Art. 3. Ne pas réparer le texte extrait.",
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "89867f1d4cb15cd32f8b4701833d07fc2e51596dbe75a5038bab49fbce31247b"
+  },
+  {
+    "id": "ap1789-exp-v1:0c962abc4282bfb94110720d",
+    "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_title": "CAHIER Des doléances et remontrances que la ville de Col- mar entend faire à Sa Majeste sur les moyens de pourvoir et subvenir aux besoins de l'Etat, ainsi qu'à tout ce qui peut intéresser la prospérité du royaume et celle de tous et chacun des sujets de Sa Majesté (1).",
+    "sample_ordinal": 4,
+    "source_paragraphs": [
+      8,
+      11
+    ],
+    "original_label": "Art. 4.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 4. Que ledit impôt soit réparti sur toutes les provinces de la\n                            domination française propor- tionnellement: \n\n1° Aux anciens impôts dont certaines provinces seront déchargées ; \n\n2° A leurs richesses territoriales, industrielles et commerciales, et\n                            relativement aussi à leur posi- tion sur des frontières qui leur font\n                            supporter des charges annuelles auxquelles celles de l'inté- rieur ne\n                            sont pas exposées, et qui, en temps de guerre, augmentent énormément. \n\nL'Alsace est d'autant plus dans le cas de de- mander cette proposition,\n                            qu'elle est chargée de l'entretien des épis du Rhin, qui occasionnent\n                            des frais énormes, et qu'elle a néanmoins contribué jusqu'ici aux frais\n                            de construction des canaux de l'intérieur du royaume. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[8]",
+        "start": 2225,
+        "end": 2365,
+        "text_exact": "Art. 4. Que ledit impôt soit réparti sur toutes les provinces de la\n                            domination française propor- tionnellement: ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[9]",
+        "start": 2390,
+        "end": 2457,
+        "text_exact": "1° Aux anciens impôts dont certaines provinces seront déchargées ; ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[10]",
+        "start": 2482,
+        "end": 2846,
+        "text_exact": "2° A leurs richesses territoriales, industrielles et commerciales, et\n                            relativement aussi à leur posi- tion sur des frontières qui leur font\n                            supporter des charges annuelles auxquelles celles de l'inté- rieur ne\n                            sont pas exposées, et qui, en temps de guerre, augmentent énormément. ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]/p[11]",
+        "start": 2871,
+        "end": 3223,
+        "text_exact": "L'Alsace est d'autant plus dans le cas de de- mander cette proposition,\n                            qu'elle est chargée de l'entretien des épis du Rhin, qui occasionnent\n                            des frais énormes, et qu'elle a néanmoins contribué jusqu'ici aux frais\n                            de construction des canaux de l'intérieur du royaume. ",
+        "page": {
+          "id": "mc666yy3026_00_0016",
+          "printed_label": "12",
+          "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+          "canvas_label": "Page 16",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Colmar",
+      "territory": "Districts de Colmar et Schlestadt",
+      "estate": null,
+      "date": "1789-03-24",
+      "date_provenance": "p[57] : fait, lu et interprété ... le 24 mars 1789. La date balisée 27 avril en p[61] est une collation, pas la rédaction. Le div3 inclut aussi un supplément traduit de l’allemand en mai.",
+      "metadata_provenance": "Localité dans head[2] ; territoire = contexte div2. Aucun ordre explicite dans le titre de ce cahier : laissé nul."
+    },
+    "volume": "3",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "scan_url": "https://purl.stanford.edu/mc666yy3026",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+      "start": 2225,
+      "end": 3223
+    },
+    "uncertainties": [
+      "Article avec sous-énumération ; conserver les paragraphes ensemble.",
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "acf4fbfc5ae894baa3683acf3dba83a4bcce229092ed11d3ec85bcfebbdc6959"
+  },
+  {
+    "id": "ap1789-exp-v1:a50a8f266b2f5d5f3edabc82",
+    "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_title": "CAHIER Des remontrances, plaintes et doléances, moyens et avis du corps de la noblesse de Mirecourt (1). 16 mars 1789",
+    "sample_ordinal": 1,
+    "source_paragraphs": [
+      2,
+      2
+    ],
+    "original_label": "1°",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "1° Que la nation a le droit de s'imposer ellemême. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]",
+        "start": 717,
+        "end": 768,
+        "text_exact": "1° Que la nation a le droit de s'imposer ellemême. ",
+        "page": {
+          "id": "xg914wh0253_00_0005",
+          "printed_label": "1",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_6",
+          "canvas_label": "Page 5",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0005"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Mirecourt",
+      "territory": "Bailliage de Mirecourt",
+      "estate": "noblesse",
+      "date": "1789-03-16",
+      "date_provenance": "date[@value='1789-03-16'] dans head[2].",
+      "metadata_provenance": "Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+      "start": 717,
+      "end": 768
+    },
+    "uncertainties": [
+      "Deux articles réunis dans p[2] : coupe déterministe sur les marqueurs explicites.",
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "f92781e137aef4ea74e355b45c174b3ba16c043ee8c4d0f09b0bc0985ef533a4"
+  },
+  {
+    "id": "ap1789-exp-v1:2e8d467f632a89365fc57e8b",
+    "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_title": "CAHIER Des remontrances, plaintes et doléances, moyens et avis du corps de la noblesse de Mirecourt (1). 16 mars 1789",
+    "sample_ordinal": 2,
+    "source_paragraphs": [
+      2,
+      2
+    ],
+    "original_label": "2°",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "2° Que le droit\n                            d'opiner par ordre tient à la constitution de l'Etat, et qu'il doit être\n                            maintenu pour les objets qui intéresseront particulièrement chaque\n                            ordre, ainsi que la liberté d'opiner par tête pour les objets qui seront\n                            communs à tous les ordres. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]",
+        "start": 768,
+        "end": 1136,
+        "text_exact": "2° Que le droit\n                            d'opiner par ordre tient à la constitution de l'Etat, et qu'il doit être\n                            maintenu pour les objets qui intéresseront particulièrement chaque\n                            ordre, ainsi que la liberté d'opiner par tête pour les objets qui seront\n                            communs à tous les ordres. ",
+        "page": {
+          "id": "xg914wh0253_00_0005",
+          "printed_label": "1",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_6",
+          "canvas_label": "Page 5",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0005"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Mirecourt",
+      "territory": "Bailliage de Mirecourt",
+      "estate": "noblesse",
+      "date": "1789-03-16",
+      "date_provenance": "date[@value='1789-03-16'] dans head[2].",
+      "metadata_provenance": "Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+      "start": 768,
+      "end": 1136
+    },
+    "uncertainties": [
+      "Deuxième article du même paragraphe XML.",
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "40b042d7c95e69badca850784469ed6278d67a2826d092305ace61f7974402fe"
+  },
+  {
+    "id": "ap1789-exp-v1:7865520f783749e29c4294b5",
+    "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_title": "CAHIER Des remontrances, plaintes et doléances, moyens et avis du corps de la noblesse de Mirecourt (1). 16 mars 1789",
+    "sample_ordinal": 3,
+    "source_paragraphs": [
+      3,
+      3
+    ],
+    "original_label": "3°",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": " 3° Que le retour périodique des Etats généraux doit être assuré. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[3]",
+        "start": 1161,
+        "end": 1227,
+        "text_exact": " 3° Que le retour périodique des Etats généraux doit être assuré. ",
+        "page": {
+          "id": "xg914wh0253_00_0005",
+          "printed_label": "1",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_6",
+          "canvas_label": "Page 5",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0005"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Mirecourt",
+      "territory": "Bailliage de Mirecourt",
+      "estate": "noblesse",
+      "date": "1789-03-16",
+      "date_provenance": "date[@value='1789-03-16'] dans head[2].",
+      "metadata_provenance": "Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+      "start": 1161,
+      "end": 1227
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "6ca14c99011bad7357efe891f0349d7c436499de165d6789dadd1e8973902dba"
+  },
+  {
+    "id": "ap1789-exp-v1:374bfb0b7717e99c7bbbdbdc",
+    "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_title": "CAHIER Des remontrances, plaintes et doléances, moyens et avis du corps de la noblesse de Mirecourt (1). 16 mars 1789",
+    "sample_ordinal": 4,
+    "source_paragraphs": [
+      4,
+      5
+    ],
+    "original_label": "4°",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": " 4° Que l'enregistrement ait lieu dans les cours, de toutes les lois\n                            consenties aux Etats généraux, et sanctionnées par le Roi, pour en\n                            conserver le \n\ndépôt ; et que les -dispositions en soient observées. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]",
+        "start": 1252,
+        "end": 1457,
+        "text_exact": " 4° Que l'enregistrement ait lieu dans les cours, de toutes les lois\n                            consenties aux Etats généraux, et sanctionnées par le Roi, pour en\n                            conserver le ",
+        "page": {
+          "id": "xg914wh0253_00_0005",
+          "printed_label": "1",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_6",
+          "canvas_label": "Page 5",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0005"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]",
+        "start": 1635,
+        "end": 1689,
+        "text_exact": "dépôt ; et que les -dispositions en soient observées. ",
+        "page": {
+          "id": "xg914wh0253_00_0006",
+          "printed_label": "2",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_7",
+          "canvas_label": "Page 6",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0006"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Mirecourt",
+      "territory": "Bailliage de Mirecourt",
+      "estate": "noblesse",
+      "date": "1789-03-16",
+      "date_provenance": "date[@value='1789-03-16'] dans head[2].",
+      "metadata_provenance": "Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+      "start": 1252,
+      "end": 1689
+    },
+    "uncertainties": [
+      "Article interrompu au changement de page ; deux paragraphes réunis, sans défaire les césures.",
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "30c215619612233529d8f196f7d69d977bdb792ce9ec59db7f647cee2c4dcf34"
+  },
+  {
+    "id": "ap1789-exp-v1:6c533fb4372901b66b23f087",
+    "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_title": "CAHIER Des doléances, plaintes et remontrances des habitants de Pierrelez (Pierre Laye), qu'ils osent très-respectueusement représenter sous les yeux de Sa Majesté et des Etats généraux (1).",
+    "sample_ordinal": 1,
+    "source_paragraphs": [
+      2,
+      2
+    ],
+    "original_label": "Art. 1er.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 1er. Nous supplions de vouloir bien nous\n                            accorder une modération des impositions, attendu la très-grande modicité\n                            du terrain et qui se trouve encore dévasté par les lapins et autres\n                            gibiers.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]/p[2]",
+        "start": 320,
+        "end": 599,
+        "text_exact": "Art. 1er. Nous supplions de vouloir bien nous\n                            accorder une modération des impositions, attendu la très-grande modicité\n                            du terrain et qui se trouve encore dévasté par les lapins et autres\n                            gibiers.",
+        "page": {
+          "id": "xx284sn7328_00_0025",
+          "printed_label": "21",
+          "canvas_url": "https://purl.stanford.edu/xx284sn7328/iiif/canvas/cocina-fileSet-xx284sn7328-xx284sn7328_26",
+          "canvas_label": "Page 25",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0025"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Pierrelez (Pierre Laye)",
+      "territory": "Paris hors les murs",
+      "estate": null,
+      "date": "1789-04-14",
+      "date_provenance": "p[11] : fait le mardi 14 avril 1789 ; extraction manuelle sourcée, pas un attribut date.",
+      "metadata_provenance": "Localité dans p[1] ; territoire = section div2. Habitants : ne pas attribuer automatiquement un ordre non indiqué."
+    },
+    "volume": "5",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+      "start": 320,
+      "end": 599
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "984505d507a40219cfefb2d69b8c34eb7ffbe4f57b4504cc0ce41667406e046a"
+  },
+  {
+    "id": "ap1789-exp-v1:7a4d33050bace88839d285f8",
+    "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_title": "CAHIER Des doléances, plaintes et remontrances des habitants de Pierrelez (Pierre Laye), qu'ils osent très-respectueusement représenter sous les yeux de Sa Majesté et des Etats généraux (1).",
+    "sample_ordinal": 2,
+    "source_paragraphs": [
+      3,
+      3
+    ],
+    "original_label": "Art. 2.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 2. Que toutes les impositions soient payées chacune dans sa\n                            paroisse, attendu la grande difficulté que cela cause aux\n                            collecteurs.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]/p[3]",
+        "start": 624,
+        "end": 815,
+        "text_exact": "Art. 2. Que toutes les impositions soient payées chacune dans sa\n                            paroisse, attendu la grande difficulté que cela cause aux\n                            collecteurs.",
+        "page": {
+          "id": "xx284sn7328_00_0025",
+          "printed_label": "21",
+          "canvas_url": "https://purl.stanford.edu/xx284sn7328/iiif/canvas/cocina-fileSet-xx284sn7328-xx284sn7328_26",
+          "canvas_label": "Page 25",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0025"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Pierrelez (Pierre Laye)",
+      "territory": "Paris hors les murs",
+      "estate": null,
+      "date": "1789-04-14",
+      "date_provenance": "p[11] : fait le mardi 14 avril 1789 ; extraction manuelle sourcée, pas un attribut date.",
+      "metadata_provenance": "Localité dans p[1] ; territoire = section div2. Habitants : ne pas attribuer automatiquement un ordre non indiqué."
+    },
+    "volume": "5",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+      "start": 624,
+      "end": 815
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "3daa777c4ae124669a6e10165e27f45cf6f4deedee0383ee8987d151323344bb"
+  },
+  {
+    "id": "ap1789-exp-v1:8599d400c410b23252497c46",
+    "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_title": "CAHIER Des doléances, plaintes et remontrances des habitants de Pierrelez (Pierre Laye), qu'ils osent très-respectueusement représenter sous les yeux de Sa Majesté et des Etats généraux (1).",
+    "sample_ordinal": 3,
+    "source_paragraphs": [
+      8,
+      8
+    ],
+    "original_label": "Art. 7.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 7. La diminution sur le prix du sel.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]/p[8]",
+        "start": 1584,
+        "end": 1625,
+        "text_exact": "Art. 7. La diminution sur le prix du sel.",
+        "page": {
+          "id": "xx284sn7328_00_0025",
+          "printed_label": "21",
+          "canvas_url": "https://purl.stanford.edu/xx284sn7328/iiif/canvas/cocina-fileSet-xx284sn7328-xx284sn7328_26",
+          "canvas_label": "Page 25",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0025"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Pierrelez (Pierre Laye)",
+      "territory": "Paris hors les murs",
+      "estate": null,
+      "date": "1789-04-14",
+      "date_provenance": "p[11] : fait le mardi 14 avril 1789 ; extraction manuelle sourcée, pas un attribut date.",
+      "metadata_provenance": "Localité dans p[1] ; territoire = section div2. Habitants : ne pas attribuer automatiquement un ordre non indiqué."
+    },
+    "volume": "5",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+      "start": 1584,
+      "end": 1625
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "f8a7213f49e42a176360f706a28d3fd6ff525ff167307e222dcf131375d2f37a"
+  },
+  {
+    "id": "ap1789-exp-v1:9e7d049fb68cc3e87af6e75e",
+    "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_title": "CAHIER Des doléances, plaintes et remontrances des habitants de Pierrelez (Pierre Laye), qu'ils osent très-respectueusement représenter sous les yeux de Sa Majesté et des Etats généraux (1).",
+    "sample_ordinal": 4,
+    "source_paragraphs": [
+      10,
+      10
+    ],
+    "original_label": "Art. 9.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 9. Que toutes les impositions soient payées par tous les\n                            propriétaires de fonds sans exception.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]/p[10]",
+        "start": 1738,
+        "end": 1866,
+        "text_exact": "Art. 9. Que toutes les impositions soient payées par tous les\n                            propriétaires de fonds sans exception.",
+        "page": {
+          "id": "xx284sn7328_00_0025",
+          "printed_label": "21",
+          "canvas_url": "https://purl.stanford.edu/xx284sn7328/iiif/canvas/cocina-fileSet-xx284sn7328-xx284sn7328_26",
+          "canvas_label": "Page 25",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0025"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": "Pierrelez (Pierre Laye)",
+      "territory": "Paris hors les murs",
+      "estate": null,
+      "date": "1789-04-14",
+      "date_provenance": "p[11] : fait le mardi 14 avril 1789 ; extraction manuelle sourcée, pas un attribut date.",
+      "metadata_provenance": "Localité dans p[1] ; territoire = section div2. Habitants : ne pas attribuer automatiquement un ordre non indiqué."
+    },
+    "volume": "5",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "scan_url": "https://purl.stanford.edu/xx284sn7328",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+      "start": 1738,
+      "end": 1866
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "9b425c3898003db2ed6d6743d6c4ee9a6d2a83fa9caa106ef61e3c6f660151fb"
+  },
+  {
+    "id": "ap1789-exp-v1:cac159c32d0601e9754369c8",
+    "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_title": "CAHIER Des doléances et remontrances, dressé dans l'assemblée du clergé' du bailliage de Vie, le 28 mars 1789.",
+    "sample_ordinal": 1,
+    "source_paragraphs": [
+      2,
+      2
+    ],
+    "original_label": "Art. 1er.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 1er. Il désire que dans les Etats\n                            généraux il soit opiné par tête, lorsqu'il s'agira des intérêts communs\n                            aux trois ordres, et qu'il soit opiné par ordre lorsqu'il\"s-agi rades\n                            intérêts particuliers de l'un ou de l'autre des trois ordres. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]/p[2]",
+        "start": 618,
+        "end": 945,
+        "text_exact": "Art. 1er. Il désire que dans les Etats\n                            généraux il soit opiné par tête, lorsqu'il s'agira des intérêts communs\n                            aux trois ordres, et qu'il soit opiné par ordre lorsqu'il\"s-agi rades\n                            intérêts particuliers de l'un ou de l'autre des trois ordres. ",
+        "page": {
+          "id": "wg983ft3682_00_0020",
+          "printed_label": "16",
+          "canvas_url": "https://purl.stanford.edu/wg983ft3682/iiif/canvas/cocina-fileSet-wg983ft3682-wg983ft3682_21",
+          "canvas_label": "Page 20",
+          "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0020"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Bailliage de Vie [graphie TEI]",
+      "estate": "clergé",
+      "date": "1789-03-28",
+      "date_provenance": "date[@value='1789-03-28'] dans head[2] ; graphie du lieu conservée comme Vie.",
+      "metadata_provenance": "head[2] ; la graphie Vie ne doit pas être résolue automatiquement en lieu moderne ou en Vic."
+    },
+    "volume": "6",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+      "start": 618,
+      "end": 945
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "fb7a85397b5e4cfb0d376be1d653d96b626dc1d2a2a076c82c0ca7d304478686"
+  },
+  {
+    "id": "ap1789-exp-v1:a24bfbb583ecd2e58225fba9",
+    "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_title": "CAHIER Des doléances et remontrances, dressé dans l'assemblée du clergé' du bailliage de Vie, le 28 mars 1789.",
+    "sample_ordinal": 2,
+    "source_paragraphs": [
+      3,
+      3
+    ],
+    "original_label": "Art. 2.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 2.11 désire pàreillement que les Etats généraux se tiennent à\n                            époques périodiques, dont le retour soit fixé par l'autorité du monarque\n                            et la sagesse de l'assemblée nationale. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]/p[3]",
+        "start": 970,
+        "end": 1206,
+        "text_exact": "Art. 2.11 désire pàreillement que les Etats généraux se tiennent à\n                            époques périodiques, dont le retour soit fixé par l'autorité du monarque\n                            et la sagesse de l'assemblée nationale. ",
+        "page": {
+          "id": "wg983ft3682_00_0020",
+          "printed_label": "16",
+          "canvas_url": "https://purl.stanford.edu/wg983ft3682/iiif/canvas/cocina-fileSet-wg983ft3682-wg983ft3682_21",
+          "canvas_label": "Page 20",
+          "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0020"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Bailliage de Vie [graphie TEI]",
+      "estate": "clergé",
+      "date": "1789-03-28",
+      "date_provenance": "date[@value='1789-03-28'] dans head[2] ; graphie du lieu conservée comme Vie.",
+      "metadata_provenance": "head[2] ; la graphie Vie ne doit pas être résolue automatiquement en lieu moderne ou en Vic."
+    },
+    "volume": "6",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+      "start": 970,
+      "end": 1206
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "d092ec1691fb836fddf0774457b4d8d32c3231ddd952261a6fd225fba47c6b9b"
+  },
+  {
+    "id": "ap1789-exp-v1:2370e42bf2300302b3c31a4d",
+    "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_title": "CAHIER Des doléances et remontrances, dressé dans l'assemblée du clergé' du bailliage de Vie, le 28 mars 1789.",
+    "sample_ordinal": 3,
+    "source_paragraphs": [
+      4,
+      4
+    ],
+    "original_label": "Art. 3.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 3.11 supplie Sa Majesté d'accorder qu'il ne soit établi ou prorogé\n                            aucun impôt sans le consentement du la nation légalement assemblée. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]/p[4]",
+        "start": 1231,
+        "end": 1399,
+        "text_exact": "Art. 3.11 supplie Sa Majesté d'accorder qu'il ne soit établi ou prorogé\n                            aucun impôt sans le consentement du la nation légalement assemblée. ",
+        "page": {
+          "id": "wg983ft3682_00_0020",
+          "printed_label": "16",
+          "canvas_url": "https://purl.stanford.edu/wg983ft3682/iiif/canvas/cocina-fileSet-wg983ft3682-wg983ft3682_21",
+          "canvas_label": "Page 20",
+          "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0020"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Bailliage de Vie [graphie TEI]",
+      "estate": "clergé",
+      "date": "1789-03-28",
+      "date_provenance": "date[@value='1789-03-28'] dans head[2] ; graphie du lieu conservée comme Vie.",
+      "metadata_provenance": "head[2] ; la graphie Vie ne doit pas être résolue automatiquement en lieu moderne ou en Vic."
+    },
+    "volume": "6",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+      "start": 1231,
+      "end": 1399
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "df02abd50f00ead9c103e1973f4b8c7690bec61061637005873855b460c47e9e"
+  },
+  {
+    "id": "ap1789-exp-v1:83ea6671404deb76e3c5109c",
+    "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_title": "CAHIER Des doléances et remontrances, dressé dans l'assemblée du clergé' du bailliage de Vie, le 28 mars 1789.",
+    "sample_ordinal": 4,
+    "source_paragraphs": [
+      7,
+      7
+    ],
+    "original_label": "Art. 6.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 6. Il est intéressant et nécessaire pour le bonheur de la nation de\n                            supprimer la ferme générale, les acquits et les traites foraines, qui\n                            nuisent au commerce, ouvrent la porte à une foule de vexations, coûtent\n                            immensément aux peuples et rapportent très-peu à l'Etat, tous les autres\n                            impôts sous quelque dénomination qu'ils puissent être établis, et de\n                            concentrer tous les tributs dans un triple impôt, dont le premier soit\n                            assis sur les facultés foncières, le second sur les facultés\n                            personnelles, et le troisième sur les ob-jéts de luxe, tous trois\n                            également payables en argent. ",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]/p[7]",
+        "start": 2803,
+        "end": 3612,
+        "text_exact": "Art. 6. Il est intéressant et nécessaire pour le bonheur de la nation de\n                            supprimer la ferme générale, les acquits et les traites foraines, qui\n                            nuisent au commerce, ouvrent la porte à une foule de vexations, coûtent\n                            immensément aux peuples et rapportent très-peu à l'Etat, tous les autres\n                            impôts sous quelque dénomination qu'ils puissent être établis, et de\n                            concentrer tous les tributs dans un triple impôt, dont le premier soit\n                            assis sur les facultés foncières, le second sur les facultés\n                            personnelles, et le troisième sur les ob-jéts de luxe, tous trois\n                            également payables en argent. ",
+        "page": {
+          "id": "wg983ft3682_00_0020",
+          "printed_label": "16",
+          "canvas_url": "https://purl.stanford.edu/wg983ft3682/iiif/canvas/cocina-fileSet-wg983ft3682-wg983ft3682_21",
+          "canvas_label": "Page 20",
+          "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0020"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Bailliage de Vie [graphie TEI]",
+      "estate": "clergé",
+      "date": "1789-03-28",
+      "date_provenance": "date[@value='1789-03-28'] dans head[2] ; graphie du lieu conservée comme Vie.",
+      "metadata_provenance": "head[2] ; la graphie Vie ne doit pas être résolue automatiquement en lieu moderne ou en Vic."
+    },
+    "volume": "6",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "scan_url": "https://purl.stanford.edu/wg983ft3682",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+      "start": 2803,
+      "end": 3612
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "cfded82fd5a6c177cdcb121d40a769f35246353f88105b43d5d3bc0dfe6c4866"
+  },
+  {
+    "id": "ap1789-exp-v1:4be0f28a0fc9c6e9d203ee44",
+    "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_title": "CAHIER Des charges et doléances des députés du tiers-état de la sénéchaussée de Guérandepour être remis à ses électeurs, qui seront nommés pour procéder à Vélection, en rassemblée de Nantes, des députés aux Etats généraux (1).",
+    "sample_ordinal": 1,
+    "source_paragraphs": [
+      1,
+      1
+    ],
+    "original_label": "Art. 1er.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 1er. De se joindre à toute la province\n                            pour obtenir l'exécution des réclamations de l'ordre du tiers consignées\n                            dans les arrêtés faits à l'hôtel de ville de Rennes les 22, '24,25, 26\n                            et 27 décembre 1788, et dans le procès-verbal de ses séances du 14 au 21\n                            février dernier.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/p[1]",
+        "start": 384,
+        "end": 773,
+        "text_exact": "Art. 1er. De se joindre à toute la province\n                            pour obtenir l'exécution des réclamations de l'ordre du tiers consignées\n                            dans les arrêtés faits à l'hôtel de ville de Rennes les 22, '24,25, 26\n                            et 27 décembre 1788, et dans le procès-verbal de ses séances du 14 au 21\n                            février dernier.",
+        "page": {
+          "id": "xg914wh0253_00_0107",
+          "printed_label": "103",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_108",
+          "canvas_label": "Page 107",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée de Guérande",
+      "estate": "tiers état",
+      "date": "1789-04-03",
+      "date_provenance": "p[45] : Clos et arrêté ... cedit jour 3 avril 1789 ; extraction manuelle sourcée.",
+      "metadata_provenance": "head[2] ; le cahier concerne la sénéchaussée, pas seulement la ville."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+      "start": 384,
+      "end": 773
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "f607dfaa68e9d4b537650f1ba965af945ebdcb5c09e11486ca8a168483e3eb47"
+  },
+  {
+    "id": "ap1789-exp-v1:4fb89d72138a99bd3652324e",
+    "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_title": "CAHIER Des charges et doléances des députés du tiers-état de la sénéchaussée de Guérandepour être remis à ses électeurs, qui seront nommés pour procéder à Vélection, en rassemblée de Nantes, des députés aux Etats généraux (1).",
+    "sample_ordinal": 2,
+    "source_paragraphs": [
+      2,
+      2
+    ],
+    "original_label": "Art. 2.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 2. La suppression du droit de franc-fief; et en attendant cette\n                            suppression, supplier Sa Majesté de défendre aux receveurs de ces\n                            droits, d'en former la demande pour plus d'une année seulement et sur le\n                            pied du produit réel des biens qui y sont sujets, sans y ajouter les 8\n                            sous pour livre, ne pouvant donner plus que le produit sans aliéner le\n                            fond.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/p[2]",
+        "start": 798,
+        "end": 1293,
+        "text_exact": "Art. 2. La suppression du droit de franc-fief; et en attendant cette\n                            suppression, supplier Sa Majesté de défendre aux receveurs de ces\n                            droits, d'en former la demande pour plus d'une année seulement et sur le\n                            pied du produit réel des biens qui y sont sujets, sans y ajouter les 8\n                            sous pour livre, ne pouvant donner plus que le produit sans aliéner le\n                            fond.",
+        "page": {
+          "id": "xg914wh0253_00_0107",
+          "printed_label": "103",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_108",
+          "canvas_label": "Page 107",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée de Guérande",
+      "estate": "tiers état",
+      "date": "1789-04-03",
+      "date_provenance": "p[45] : Clos et arrêté ... cedit jour 3 avril 1789 ; extraction manuelle sourcée.",
+      "metadata_provenance": "head[2] ; le cahier concerne la sénéchaussée, pas seulement la ville."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+      "start": 798,
+      "end": 1293
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "139830fbfed5408183516bd1e27957b3f7c3734ebcc2de11a15b213b55bcdc26"
+  },
+  {
+    "id": "ap1789-exp-v1:24464ab4d6502dc09aa51371",
+    "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_title": "CAHIER Des charges et doléances des députés du tiers-état de la sénéchaussée de Guérandepour être remis à ses électeurs, qui seront nommés pour procéder à Vélection, en rassemblée de Nantes, des députés aux Etats généraux (1).",
+    "sample_ordinal": 3,
+    "source_paragraphs": [
+      4,
+      4
+    ],
+    "original_label": "Art. 4.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 4. La suppression de tous autres impôts, sous quelque dénomination\n                            qu'ils puissent être établis depuis 1614, attendu qu'ils ont été créés\n                            sans le consentement de la nation.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/p[4]",
+        "start": 1842,
+        "end": 2075,
+        "text_exact": "Art. 4. La suppression de tous autres impôts, sous quelque dénomination\n                            qu'ils puissent être établis depuis 1614, attendu qu'ils ont été créés\n                            sans le consentement de la nation.",
+        "page": {
+          "id": "xg914wh0253_00_0107",
+          "printed_label": "103",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_108",
+          "canvas_label": "Page 107",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée de Guérande",
+      "estate": "tiers état",
+      "date": "1789-04-03",
+      "date_provenance": "p[45] : Clos et arrêté ... cedit jour 3 avril 1789 ; extraction manuelle sourcée.",
+      "metadata_provenance": "head[2] ; le cahier concerne la sénéchaussée, pas seulement la ville."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+      "start": 1842,
+      "end": 2075
+    },
+    "uncertainties": [
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "0c9ad22f594028a145ac394cd33a9d9ded84bfb2e82b4a6acec7b7dad2af3d1e"
+  },
+  {
+    "id": "ap1789-exp-v1:9962c4843ec4eda8b8203b48",
+    "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_title": "CAHIER Des charges et doléances des députés du tiers-état de la sénéchaussée de Guérandepour être remis à ses électeurs, qui seront nommés pour procéder à Vélection, en rassemblée de Nantes, des députés aux Etats généraux (1).",
+    "sample_ordinal": 4,
+    "source_paragraphs": [
+      8,
+      10
+    ],
+    "original_label": "Art. 8.",
+    "extraction_class": "B",
+    "method": "Explicit numbering, paragraph ranges reviewed in selection.json; no semantic splitting.",
+    "text": "Art. 8. L'établissement des juridictions royales, à des distances\n                            convenables et proportionnées au besoin des citoyens, jugeant en dernier\n                            ressort jusqu'à une somme qui sera définie par les Etats généraux.\n\nQu'aucun sujet du Roi ne puisse être jugé et encore moins puni sans être\n                            entendu, ce qui suppose l'abolition, ;en tout cas, la vérification des\n                            lettres de cachet contradictoirement avec Je détenu, qui pourra appeler\n                            des conseils ; mais si le bonheur et la tranquillité des familles exige\n                            que le\n\nmonarque use quelquefois de ce droit, au moins faut-il que l'abominable\n                            juridiction prétendue correctionnelle soit ôtée aux cours souveraines,\n                            qui, sur des accusations inventées par la lâcheté et souvent par la\n                            calomnie, se font un jeu de donner des adveniat et exercent ainsi un\n                            despotisme orgueilleux envers des sujets presque toujours innocents,\n                            mais trop faibles pour se faire rendre justice ; que tout accusateur\n                            sera donc nommé et que les prétendus griefs soient communiqués au\n                            prétendu coupable, afin qu'il puisse y répondre et obtenir des dommages\n                            et intérêts envers le lâche accusateur s'il échoit, et que cet\n                            accusateur ne puisse emprunter le nom d'un insolvable.",
+    "paragraph_separator": "\n\n",
+    "source_spans": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/p[8]",
+        "start": 3581,
+        "end": 3842,
+        "text_exact": "Art. 8. L'établissement des juridictions royales, à des distances\n                            convenables et proportionnées au besoin des citoyens, jugeant en dernier\n                            ressort jusqu'à une somme qui sera définie par les Etats généraux.",
+        "page": {
+          "id": "xg914wh0253_00_0107",
+          "printed_label": "103",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_108",
+          "canvas_label": "Page 107",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/p[9]",
+        "start": 3867,
+        "end": 4273,
+        "text_exact": "Qu'aucun sujet du Roi ne puisse être jugé et encore moins puni sans être\n                            entendu, ce qui suppose l'abolition, ;en tout cas, la vérification des\n                            lettres de cachet contradictoirement avec Je détenu, qui pourra appeler\n                            des conseils ; mais si le bonheur et la tranquillité des familles exige\n                            que le",
+        "page": {
+          "id": "xg914wh0253_00_0107",
+          "printed_label": "103",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_108",
+          "canvas_label": "Page 107",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+        }
+      },
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]/p[10]",
+        "start": 4424,
+        "end": 5349,
+        "text_exact": "monarque use quelquefois de ce droit, au moins faut-il que l'abominable\n                            juridiction prétendue correctionnelle soit ôtée aux cours souveraines,\n                            qui, sur des accusations inventées par la lâcheté et souvent par la\n                            calomnie, se font un jeu de donner des adveniat et exercent ainsi un\n                            despotisme orgueilleux envers des sujets presque toujours innocents,\n                            mais trop faibles pour se faire rendre justice ; que tout accusateur\n                            sera donc nommé et que les prétendus griefs soient communiqués au\n                            prétendu coupable, afin qu'il puisse y répondre et obtenir des dommages\n                            et intérêts envers le lâche accusateur s'il échoit, et que cet\n                            accusateur ne puisse emprunter le nom d'un insolvable.",
+        "page": {
+          "id": "xg914wh0253_00_0107",
+          "printed_label": "103",
+          "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_108",
+          "canvas_label": "Page 107",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+        }
+      }
+    ],
+    "metadata": {
+      "locality": null,
+      "territory": "Sénéchaussée de Guérande",
+      "estate": "tiers état",
+      "date": "1789-04-03",
+      "date_provenance": "p[45] : Clos et arrêté ... cedit jour 3 avril 1789 ; extraction manuelle sourcée.",
+      "metadata_provenance": "head[2] ; le cahier concerne la sénéchaussée, pas seulement la ville."
+    },
+    "volume": "4",
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "scan_url": "https://purl.stanford.edu/xg914wh0253",
+    "context_reference": {
+      "document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+      "start": 3581,
+      "end": 5349
+    },
+    "uncertainties": [
+      "Article long traversant des paragraphes ; les item du même cahier sont des votes, pas des revendications.",
+      "Exact Stanford transcription, not a corrected or modernized manuscript transcription."
+    ],
+    "text_sha256": "46c5d7b8270d7ccb57b28db40e708b6c87877e012a5e71594b54cd5296659e03"
+  }
+]

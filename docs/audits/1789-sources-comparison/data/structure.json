@@ -1,0 +1,164 @@
+{
+  "volume4_mets_griev_entries": 347,
+  "caveat": "Catalogue entries, not a count of validated unique complete cahiers.",
+  "relevant_entries": [
+    {
+      "ID": "TdM_arcpa_0000-0000_1879_num_4_1_1744",
+      "LABEL": "Cahier du clergé du bailliage de Mirecourt",
+      "ORDER": "1",
+      "TYPE": "griev"
+    },
+    {
+      "ID": "TdM_arcpa_0000-0000_1879_num_4_1_1745",
+      "LABEL": "Cahier de la noblesse du bailliage de Mirecourt",
+      "ORDER": "2",
+      "TYPE": "griev"
+    },
+    {
+      "ID": "TdM_arcpa_0000-0000_1879_num_4_1_1746",
+      "LABEL": "Cahier du tiers-état du bailliage de Mirecourt",
+      "ORDER": "3",
+      "TYPE": "griev"
+    },
+    {
+      "ID": "TdM_arcpa_0000-0000_1879_num_4_1_1747",
+      "LABEL": "Cahier du clergé et du tiers-état de Bruyères (Bailliage de Mirecourt)",
+      "ORDER": "4",
+      "TYPE": "griev"
+    },
+    {
+      "ID": "TdM_arcpa_0000-0000_1879_num_4_1_1748",
+      "LABEL": "Cahier du tiers-état de Remiremont (Bailliage de Mirecourt)",
+      "ORDER": "5",
+      "TYPE": "griev"
+    },
+    {
+      "ID": "TdM_arcpa_0000-0000_1879_num_4_1_1780",
+      "LABEL": "Cahier de la sénéchaussée de Guérande (Sénéchaussée de Nantes)",
+      "ORDER": "2",
+      "TYPE": "griev"
+    },
+    {
+      "ID": "TdM_arcpa_0000-0000_1879_num_4_1_2175",
+      "LABEL": "Cahier de Ferrières-en-Brie (Paris)",
+      "ORDER": "148",
+      "TYPE": "griev"
+    }
+  ],
+  "artfl_problem_metadata": {
+    "artfl-problem-ferrieres-title": {
+      "filename": "APvol04.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME QUATRIÈME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "additional markup added by Digital Divide Data,20120701",
+      "year": 1789,
+      "head": "CAHIER Des plaintes et doléances du tiers-état de la paroisse de Ferrières en Brie (1).",
+      "type": "cahier",
+      "n": "4",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "6",
+      "philo_div1_id": "6 2",
+      "philo_div2_id": "6 2 19",
+      "philo_div3_id": "6 2 19 145"
+    },
+    "artfl-problem-anjou-chap1": {
+      "filename": "APvol02.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES & BAILLIAGES",
+      "create_date": "1789",
+      "notes": "Additional markup added by Digital Divide Data, 20120701",
+      "year": 1789,
+      "head": "Demandes et doléances du clergé d'anjou (1). CHAPITRE Ier. du royaume en général.",
+      "type": "cahier",
+      "n": "2",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "4",
+      "philo_div1_id": "4 2",
+      "philo_div2_id": "4 2 3",
+      "philo_div3_id": "4 2 3 2"
+    },
+    "artfl-problem-ferrieres-constitution": {
+      "filename": "APvol04.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME QUATRIÈME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "additional markup added by Digital Divide Data,20120701",
+      "year": 1789,
+      "head": "AGRICULTURE.",
+      "type": "cahier",
+      "n": "4",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "6",
+      "philo_div1_id": "6 2",
+      "philo_div2_id": "6 2 19",
+      "philo_div3_id": "6 2 19 147"
+    },
+    "artfl-problem-anjou-chap2": {
+      "filename": "APvol02.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES & BAILLIAGES",
+      "create_date": "1789",
+      "notes": "Additional markup added by Digital Divide Data, 20120701",
+      "year": 1789,
+      "head": "CHAPITRE II",
+      "type": "cahier",
+      "n": "2",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "4",
+      "philo_div1_id": "4 2",
+      "philo_div2_id": "4 2 3",
+      "philo_div3_id": "4 2 3 3"
+    },
+    "artfl-problem-ferrieres-debut": {
+      "filename": "APvol04.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME QUATRIÈME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "additional markup added by Digital Divide Data,20120701",
+      "year": 1789,
+      "head": "CONSTITUTION.",
+      "type": "cahier",
+      "n": "4",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "6",
+      "philo_div1_id": "6 2",
+      "philo_div2_id": "6 2 19",
+      "philo_div3_id": "6 2 19 146"
+    },
+    "artfl-problem-albret-absence": {
+      "filename": "APvol01.tei",
+      "author": "M. J. MAVIDAL",
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "create_date": "1789",
+      "notes": "Additional markup added by Digital Divide Data, 20120701",
+      "year": 1789,
+      "head": "CAHIER DE L'ORDRE DU CLERGÉ.",
+      "type": "cahier",
+      "n": "01",
+      "id": "",
+      "div_date": "",
+      "who": "",
+      "speaker": "",
+      "philo_doc_id": "2",
+      "philo_div1_id": "2 2",
+      "philo_div2_id": "2 2 8",
+      "philo_div3_id": "2 2 8 2"
+    }
+  }
+}

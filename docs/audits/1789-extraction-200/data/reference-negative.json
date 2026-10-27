@@ -1,0 +1,214 @@
+[
+  {
+    "window_id": "negative-v1-1",
+    "volume": 1,
+    "start": 1778099,
+    "end": 1780309,
+    "classification": "not_cahier",
+    "reason": "Discours au roi et narration des notables; aucune ouverture de cahier dans la fenêtre.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[1]/div3[22]/p[490]",
+      "/TEI.2/text/body/div1/div2[1]/div3[22]/p[491]",
+      "/TEI.2/text/body/div1/div2[1]/div3[22]/p[492]",
+      "/TEI.2/text/body/div1/div2[1]/div3[22]/p[493]",
+      "/TEI.2/text/body/div1/div2[1]/div3[22]/p[494]",
+      "/TEI.2/text/body/div1/div2[1]/div3[22]/p[495]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v1-2",
+    "volume": 1,
+    "start": 817784,
+    "end": 820947,
+    "classification": "not_cahier",
+    "reason": "Analyse historique du pouvoir royal, pas un cahier.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[1]/div3[21]/p[585]",
+      "/TEI.2/text/body/div1/div2[1]/div3[21]/p[586]",
+      "/TEI.2/text/body/div1/div2[1]/div3[21]/p[587]",
+      "/TEI.2/text/body/div1/div2[1]/div3[21]/p[588]",
+      "/TEI.2/text/body/div1/div2[1]/div3[21]/p[589]",
+      "/TEI.2/text/body/div1/div2[1]/div3[21]/p[590]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v2-1",
+    "volume": 2,
+    "start": 522273,
+    "end": 523157,
+    "classification": "missed_cahier",
+    "reason": "Armagnac/Isle-Jourdain, titre REMONTRÂCES puis Plaintes et doléances: corps numéroté de1789 non admis; début du parent inspecté en complément.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[5]/div3[4]/p[47]",
+      "/TEI.2/text/body/div1/div2[5]/div3[4]/p[48]",
+      "/TEI.2/text/body/div1/div2[5]/div3[4]/p[49]",
+      "/TEI.2/text/body/div1/div2[5]/div3[4]/p[50]",
+      "/TEI.2/text/body/div1/div2[5]/div3[4]/p[51]",
+      "/TEI.2/text/body/div1/div2[5]/div3[4]/p[52]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v2-2",
+    "volume": 2,
+    "start": 4635216,
+    "end": 4635918,
+    "classification": "not_cahier",
+    "reason": "Extrait de procès-verbal électoral de Château-Thierry, liste de scrutins.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[47]/div3[4]/p[393]",
+      "/TEI.2/text/body/div1/div2[47]/div3[4]/p[394]",
+      "/TEI.2/text/body/div1/div2[47]/div3[4]/p[395]",
+      "/TEI.2/text/body/div1/div2[47]/div3[4]/p[396]",
+      "/TEI.2/text/body/div1/div2[47]/div3[4]/p[397]",
+      "/TEI.2/text/body/div1/div2[47]/div3[4]/p[398]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v3-1",
+    "volume": 3,
+    "start": 1282987,
+    "end": 1284668,
+    "classification": "missed_cahier",
+    "reason": "Mandats du tiers de Dijon: instructions numérotées de1789 sans le titre Cahier; début inspecté, absent des hypothèses admises.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[19]/div3[1]/p[60]",
+      "/TEI.2/text/body/div1/div2[19]/div3[1]/p[61]",
+      "/TEI.2/text/body/div1/div2[19]/div3[1]/p[62]",
+      "/TEI.2/text/body/div1/div2[19]/div3[1]/p[63]",
+      "/TEI.2/text/body/div1/div2[19]/div3[1]/p[64]",
+      "/TEI.2/text/body/div1/div2[19]/div3[1]/p[65]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v3-2",
+    "volume": 3,
+    "start": 1826575,
+    "end": 1830276,
+    "classification": "missed_embedded_doleances",
+    "reason": "Bouvignies: procès-verbal contenant explicitement les doléances numérotées; l’exclusion globale du PV perd son corps revendicatif.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[22]/div3[13]/p[20]",
+      "/TEI.2/text/body/div1/div2[22]/div3[13]/p[21]",
+      "/TEI.2/text/body/div1/div2[22]/div3[13]/p[22]",
+      "/TEI.2/text/body/div1/div2[22]/div3[13]/p[23]",
+      "/TEI.2/text/body/div1/div2[22]/div3[13]/p[24]",
+      "/TEI.2/text/body/div1/div2[22]/div3[13]/p[25]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v4-1",
+    "volume": 4,
+    "start": 2106931,
+    "end": 2110250,
+    "classification": "not_cahier",
+    "reason": "Chevannes: procès-verbal électoral qui accompagne des instructions précédentes; aucune ouverture supplémentaire.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[10]/div3[6]/p[4]",
+      "/TEI.2/text/body/div1/div2[10]/div3[6]/p[5]",
+      "/TEI.2/text/body/div1/div2[10]/div3[6]/p[6]",
+      "/TEI.2/text/body/div1/div2[10]/div3[6]/p[7]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v4-2",
+    "volume": 4,
+    "start": 4835521,
+    "end": 4838077,
+    "classification": "not_cahier",
+    "reason": "Traité en chapitres sur les ordres religieux; statut de traité, pas nouveau cahier dans cette fenêtre.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[18]/div3[138]/p[153]",
+      "/TEI.2/text/body/div1/div2[18]/div3[138]/p[154]",
+      "/TEI.2/text/body/div1/div2[18]/div3[138]/p[155]",
+      "/TEI.2/text/body/div1/div2[18]/div3[138]/p[156]",
+      "/TEI.2/text/body/div1/div2[18]/div3[138]/p[157]",
+      "/TEI.2/text/body/div1/div2[18]/div3[138]/p[158]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v5-1",
+    "volume": 5,
+    "start": 5722822,
+    "end": 5725408,
+    "classification": "missed_cahier",
+    "reason": "Saint-Pierre-le-Moutier: CAHIER est p1 et son titre p2, aucun head; début inspecté, pas d’hypothèse acceptée.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[22]/div3[2]/p[68]",
+      "/TEI.2/text/body/div1/div2[22]/div3[2]/p[69]",
+      "/TEI.2/text/body/div1/div2[22]/div3[2]/p[70]",
+      "/TEI.2/text/body/div1/div2[22]/div3[2]/p[71]",
+      "/TEI.2/text/body/div1/div2[22]/div3[2]/p[72]",
+      "/TEI.2/text/body/div1/div2[22]/div3[2]/p[73]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v5-2",
+    "volume": 5,
+    "start": 2767956,
+    "end": 2773993,
+    "classification": "not_cahier",
+    "reason": "Procès-verbal de Saint-Germain-des-Prés, relations entre assemblées et députations.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[2]/div3[16]/p[3]",
+      "/TEI.2/text/body/div1/div2[2]/div3[16]/p[4]",
+      "/TEI.2/text/body/div1/div2[2]/div3[16]/p[5]",
+      "/TEI.2/text/body/div1/div2[2]/div3[16]/p[6]",
+      "/TEI.2/text/body/div1/div2[2]/div3[16]/p[7]",
+      "/TEI.2/text/body/div1/div2[2]/div3[16]/p[8]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v6-1",
+    "volume": 6,
+    "start": 1982426,
+    "end": 1985006,
+    "classification": "uncertain_memorandum",
+    "reason": "Mémoire des notaires de Vitry-le-François: doléances professionnelles, mais nature de cahier autonome non établie dans le contrôle.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[14]/div3[6]/p[1]",
+      "/TEI.2/text/body/div1/div2[14]/div3[6]/p[2]",
+      "/TEI.2/text/body/div1/div2[14]/div3[6]/p[3]",
+      "/TEI.2/text/body/div1/div2[14]/div3[6]/p[4]"
+    ],
+    "judge": "Codex non-independent"
+  },
+  {
+    "window_id": "negative-v6-2",
+    "volume": 6,
+    "start": 5024904,
+    "end": 5026091,
+    "classification": "not_cahier",
+    "reason": "Procès-verbal de Chartres, liste des comparants; pas un cahier.",
+    "reference_basis": "full six-p window read; enclosing title/first p inspected for context",
+    "source_xpaths": [
+      "/TEI.2/text/body/div1/div2[35]/div3/p[513]",
+      "/TEI.2/text/body/div1/div2[35]/div3/p[514]",
+      "/TEI.2/text/body/div1/div2[35]/div3/p[515]",
+      "/TEI.2/text/body/div1/div2[35]/div3/p[516]",
+      "/TEI.2/text/body/div1/div2[35]/div3/p[517]",
+      "/TEI.2/text/body/div1/div2[35]/div3/p[518]"
+    ],
+    "judge": "Codex non-independent"
+  }
+]

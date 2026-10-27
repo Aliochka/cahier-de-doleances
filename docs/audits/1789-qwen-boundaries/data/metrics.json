@@ -1,0 +1,279 @@
+{
+  "development": {
+    "methods": {
+      "A": {
+        "cases": 24,
+        "adjudicable_reference_cases": 21,
+        "exact": 6,
+        "wrong_starts": 4,
+        "wrong_ends": 13,
+        "truncated": 9,
+        "overwide": 8,
+        "neighbour_title_absorbed": 5,
+        "annex_misattributed": 1,
+        "abstentions": 1,
+        "invalid": 0,
+        "reported_uncertain": 0,
+        "signature_consistency_failures": 0,
+        "appropriate_abstentions_uncertain_reference": 0
+      },
+      "B": {
+        "cases": 24,
+        "adjudicable_reference_cases": 21,
+        "exact": 1,
+        "wrong_starts": 16,
+        "wrong_ends": 12,
+        "truncated": 8,
+        "overwide": 17,
+        "neighbour_title_absorbed": 7,
+        "annex_misattributed": 1,
+        "abstentions": 0,
+        "invalid": 1,
+        "reported_uncertain": 0,
+        "signature_consistency_failures": 8,
+        "appropriate_abstentions_uncertain_reference": 0,
+        "corrected_initially_wrong": 1,
+        "new_wrong_proposals_on_initially_correct": 6,
+        "initially_correct_lost_to_invalid_or_abstention": 0,
+        "confident_wrong_proposals": 20,
+        "uncertain_wrong_proposals": 0,
+        "uncertain_correct": 0,
+        "net_corrected_minus_degraded": -5,
+        "known_15_errors_fully_corrected": 1,
+        "inference": {
+          "calls": 24,
+          "total_seconds": 190.97063650999917,
+          "median_seconds": 7.926166948000173,
+          "mean_seconds": 7.957109854583298,
+          "p95_seconds": 10.830956862002495,
+          "max_peak_allocated_gib": 12.425367832183838,
+          "max_peak_reserved_gib": 13.078125,
+          "input_tokens_min": 4951,
+          "input_tokens_max": 10826,
+          "output_tokens_total": 5613,
+          "seconds_projection_1305_at_observed_median": 10343.647867140226
+        }
+      },
+      "C": {
+        "cases": 24,
+        "adjudicable_reference_cases": 21,
+        "exact": 8,
+        "wrong_starts": 7,
+        "wrong_ends": 9,
+        "truncated": 7,
+        "overwide": 8,
+        "neighbour_title_absorbed": 4,
+        "annex_misattributed": 1,
+        "abstentions": 0,
+        "invalid": 1,
+        "reported_uncertain": 1,
+        "signature_consistency_failures": 10,
+        "appropriate_abstentions_uncertain_reference": 0,
+        "corrected_initially_wrong": 2,
+        "new_wrong_proposals_on_initially_correct": 0,
+        "initially_correct_lost_to_invalid_or_abstention": 0,
+        "confident_wrong_proposals": 12,
+        "uncertain_wrong_proposals": 1,
+        "uncertain_correct": 0,
+        "net_corrected_minus_degraded": 2,
+        "known_15_errors_fully_corrected": 2,
+        "inference": {
+          "calls": 24,
+          "total_seconds": 172.34682576299383,
+          "median_seconds": 7.2065801524986455,
+          "mean_seconds": 7.181117740124743,
+          "p95_seconds": 9.066530871998111,
+          "max_peak_allocated_gib": 12.461449146270752,
+          "max_peak_reserved_gib": 13.078125,
+          "input_tokens_min": 5079,
+          "input_tokens_max": 10954,
+          "output_tokens_total": 5034,
+          "seconds_projection_1305_at_observed_median": 9404.587099010732
+        }
+      }
+    },
+    "reference_status": {
+      "established": 21,
+      "outside_context": 1,
+      "uncertain_scope": 1,
+      "uncertain_source": 1
+    },
+    "structural_alert_groups": {
+      "suspect": {
+        "A": {
+          "cases": 13,
+          "exact": 0,
+          "wrong_proposals": 12
+        },
+        "B": {
+          "cases": 13,
+          "exact": 1,
+          "wrong_proposals": 12
+        },
+        "C": {
+          "cases": 13,
+          "exact": 2,
+          "wrong_proposals": 11
+        }
+      },
+      "no_structural_alert": {
+        "A": {
+          "cases": 8,
+          "exact": 6,
+          "wrong_proposals": 2
+        },
+        "B": {
+          "cases": 8,
+          "exact": 0,
+          "wrong_proposals": 8
+        },
+        "C": {
+          "cases": 8,
+          "exact": 6,
+          "wrong_proposals": 2
+        }
+      }
+    },
+    "model_calls_expected": 48,
+    "model_calls_observed": 48,
+    "reference_independent_human": false,
+    "counts_not_additive": true
+  },
+  "validation": {
+    "methods": {
+      "A": {
+        "cases": 36,
+        "adjudicable_reference_cases": 36,
+        "exact": 31,
+        "wrong_starts": 2,
+        "wrong_ends": 5,
+        "truncated": 2,
+        "overwide": 3,
+        "neighbour_title_absorbed": 2,
+        "annex_misattributed": 0,
+        "abstentions": 0,
+        "invalid": 0,
+        "reported_uncertain": 0,
+        "signature_consistency_failures": 0,
+        "appropriate_abstentions_uncertain_reference": 0
+      },
+      "B": {
+        "cases": 36,
+        "adjudicable_reference_cases": 36,
+        "exact": 4,
+        "wrong_starts": 22,
+        "wrong_ends": 21,
+        "truncated": 15,
+        "overwide": 21,
+        "neighbour_title_absorbed": 10,
+        "annex_misattributed": 1,
+        "abstentions": 0,
+        "invalid": 1,
+        "reported_uncertain": 0,
+        "signature_consistency_failures": 15,
+        "appropriate_abstentions_uncertain_reference": 0,
+        "corrected_initially_wrong": 0,
+        "new_wrong_proposals_on_initially_correct": 26,
+        "initially_correct_lost_to_invalid_or_abstention": 1,
+        "confident_wrong_proposals": 31,
+        "uncertain_wrong_proposals": 0,
+        "uncertain_correct": 0,
+        "net_corrected_minus_degraded": -26,
+        "known_15_errors_fully_corrected": 0,
+        "inference": {
+          "calls": 36,
+          "total_seconds": 275.0101935079947,
+          "median_seconds": 7.318987615999504,
+          "mean_seconds": 7.639172041888742,
+          "p95_seconds": 10.772610033000092,
+          "max_peak_allocated_gib": 12.547427654266357,
+          "max_peak_reserved_gib": 13.078125,
+          "input_tokens_min": 4780,
+          "input_tokens_max": 11252,
+          "output_tokens_total": 8186,
+          "seconds_projection_1305_at_observed_median": 9551.278838879352
+        }
+      },
+      "C": {
+        "cases": 36,
+        "adjudicable_reference_cases": 36,
+        "exact": 30,
+        "wrong_starts": 3,
+        "wrong_ends": 4,
+        "truncated": 2,
+        "overwide": 5,
+        "neighbour_title_absorbed": 4,
+        "annex_misattributed": 1,
+        "abstentions": 0,
+        "invalid": 0,
+        "reported_uncertain": 0,
+        "signature_consistency_failures": 25,
+        "appropriate_abstentions_uncertain_reference": 0,
+        "corrected_initially_wrong": 0,
+        "new_wrong_proposals_on_initially_correct": 1,
+        "initially_correct_lost_to_invalid_or_abstention": 0,
+        "confident_wrong_proposals": 6,
+        "uncertain_wrong_proposals": 0,
+        "uncertain_correct": 0,
+        "net_corrected_minus_degraded": -1,
+        "known_15_errors_fully_corrected": 0,
+        "inference": {
+          "calls": 36,
+          "total_seconds": 265.8479156510002,
+          "median_seconds": 7.362298917500084,
+          "mean_seconds": 7.384664323638895,
+          "p95_seconds": 8.904086722999637,
+          "max_peak_allocated_gib": 12.581185817718506,
+          "max_peak_reserved_gib": 13.078125,
+          "input_tokens_min": 4904,
+          "input_tokens_max": 11369,
+          "output_tokens_total": 7829,
+          "seconds_projection_1305_at_observed_median": 9607.80008733761
+        }
+      }
+    },
+    "reference_status": {
+      "established": 36
+    },
+    "structural_alert_groups": {
+      "suspect": {
+        "A": {
+          "cases": 5,
+          "exact": 1,
+          "wrong_proposals": 4
+        },
+        "B": {
+          "cases": 5,
+          "exact": 0,
+          "wrong_proposals": 5
+        },
+        "C": {
+          "cases": 5,
+          "exact": 1,
+          "wrong_proposals": 4
+        }
+      },
+      "no_structural_alert": {
+        "A": {
+          "cases": 31,
+          "exact": 30,
+          "wrong_proposals": 1
+        },
+        "B": {
+          "cases": 31,
+          "exact": 4,
+          "wrong_proposals": 26
+        },
+        "C": {
+          "cases": 31,
+          "exact": 29,
+          "wrong_proposals": 2
+        }
+      }
+    },
+    "model_calls_expected": 72,
+    "model_calls_observed": 72,
+    "reference_independent_human": false,
+    "counts_not_additive": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "tracked_diff_paths": [],
+  "git_revision": "818b5464f24cac4d8537793c15c8e2c580505f88",
+  "prior_audits_sha256_files_verified": 50,
+  "new_audit_root": "docs/audits/1789-extraction-pilot",
+  "local_markdown_links_checked": 92,
+  "source_artifacts_match_reproducibility_manifest": 74,
+  "application_changes": false,
+  "database_access": false,
+  "embeddings_generated": false,
+  "deployment": false,
+  "method_note": "Vérification du diff suivi et des empreintes des anciens audits ; ce fichier ne teste pas les fonctionnalités applicatives."
+}

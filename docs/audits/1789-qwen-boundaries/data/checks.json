@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "errors": [],
+  "previous_files_unchanged": 728,
+  "Stanford_source_files": 6,
+  "limited_windows": 60,
+  "exact_source_blocks_checked": 4475,
+  "frozen_validation_references": 36,
+  "final_Qwen_calls": 120,
+  "pilot_v1_calls": 4,
+  "no_overflow_or_silent_truncation": true,
+  "B_does_not_receive_A": true,
+  "all_output_block_IDs_validated": true,
+  "invalid_model_decisions_retained_not_repaired": true
+}

@@ -1,0 +1,1280 @@
+[
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_1529",
+    "volume": 1,
+    "title": "Cahier du clergé de la sénéchaussée d'Agen ",
+    "type": "griev",
+    "catalogue_order": 63,
+    "local_order": "1",
+    "ancestors": [
+      "Sénéchaussée d'Agen ",
+      "Cahiers",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[2]/*[2]/*[1]",
+    "selection": "development_control",
+    "control": "previous_seven_source_comparison"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_1415",
+    "volume": 1,
+    "title": "Avertissement de la deuxième édition ",
+    "type": "edito",
+    "catalogue_order": 1,
+    "local_order": "1",
+    "ancestors": [
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]",
+    "selection": "negative_document_type_control",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_1416",
+    "volume": 1,
+    "title": "Avant-propos",
+    "type": "liminaire",
+    "catalogue_order": 2,
+    "local_order": "2",
+    "ancestors": [
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[2]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_2997",
+    "volume": 1,
+    "title": "Règlement fait par le roi pour l'exécution de ses lettres de convocation aux Etats généraux dans sa province de Roussillon, du 19 février 1789. ",
+    "type": "article",
+    "catalogue_order": 57,
+    "local_order": "52",
+    "ancestors": [
+      "Préliminaires",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[1]/*[52]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_1531",
+    "volume": 1,
+    "title": "Cahier du tiers-état de la sénéchaussée d'Agen ",
+    "type": "griev",
+    "catalogue_order": 65,
+    "local_order": "3",
+    "ancestors": [
+      "Sénéchaussée d'Agen ",
+      "Cahiers",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[2]/*[2]/*[3]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_2960",
+    "volume": 1,
+    "title": "Règlement fait par le roi pour l'exécution de ses lettres de convocation aux Etats généraux dans sa province d'Alsace, du 7 février 1789. ",
+    "type": "article",
+    "catalogue_order": 20,
+    "local_order": "15",
+    "ancestors": [
+      "Préliminaires",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[1]/*[15]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_2952",
+    "volume": 1,
+    "title": "Ordonnance à rendre par les baillis et sénéchaux de la première classe lorsque des bailliages ou sénéchaussées de la seconde classe devront concourir avec eux à la convocation pour les Etats généraux",
+    "type": "article",
+    "catalogue_order": 12,
+    "local_order": "7",
+    "ancestors": [
+      "Préliminaires",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[1]/*[7]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_2949",
+    "volume": 1,
+    "title": "État, par ordre alphabétique, contenant les noms des villes des pays d'élections qui doivent envoyer plus de quatre députés aux assemblées des bailliages et sénéchaussées",
+    "type": "article",
+    "catalogue_order": 10,
+    "local_order": "5",
+    "ancestors": [
+      "Préliminaires",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[1]/*[5]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_2965",
+    "volume": 1,
+    "title": "Règlement fait par le roi pour l'exécution de ses lettres de convocation aux prochains Etats généraux dans le Béarn, du 19 février 1789. ",
+    "type": "article",
+    "catalogue_order": 25,
+    "local_order": "20",
+    "ancestors": [
+      "Préliminaires",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[1]/*[20]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_2955",
+    "volume": 1,
+    "title": "Arrêt du conseil d'État du roi, du 27 février 1789. ",
+    "type": "article",
+    "catalogue_order": 15,
+    "local_order": "10",
+    "ancestors": [
+      "Préliminaires",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[1]/*[10]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_2976",
+    "volume": 1,
+    "title": "Lettre du Roi à la province du Dauphiné pour la convocation des États généraux, à Versailles, du 7 avril 1789",
+    "type": "article",
+    "catalogue_order": 36,
+    "local_order": "31",
+    "ancestors": [
+      "Préliminaires",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[1]/*[31]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_1_1_1543",
+    "volume": 1,
+    "title": "Cahier du bailliage de Domfront (Baillage d'Alençon)",
+    "type": "griev",
+    "catalogue_order": 79,
+    "local_order": "5",
+    "ancestors": [
+      "Bailliage d'Alençon ",
+      "Cahiers",
+      "États Généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome I - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v1.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[4]/*[2]/*[5]/*[5]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1559",
+    "volume": 2,
+    "title": "Cahier de la noblesse de la sénéchaussée d'Angoumois",
+    "type": "griev",
+    "catalogue_order": 5,
+    "local_order": "2",
+    "ancestors": [
+      "Sénéchaussée d'Angoumois",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[2]",
+    "selection": "development_control",
+    "control": "previous_seven_source_comparison"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1563",
+    "volume": 2,
+    "title": "Cahier du clergé de la sénéchaussée d'Anjou ",
+    "type": "griev",
+    "catalogue_order": 8,
+    "local_order": "1",
+    "ancestors": [
+      "Sénéchaussée d'Anjou ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[2]/*[1]",
+    "selection": "development_control",
+    "control": "known_V2_Anjou_clerge"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1562",
+    "volume": 2,
+    "title": "Table alphabétique et analytique",
+    "type": "table",
+    "catalogue_order": 237,
+    "local_order": "3",
+    "ancestors": [
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[3]",
+    "selection": "negative_document_type_control",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1654",
+    "volume": 2,
+    "title": "Cahier du clergé de la province du Bugey et Valromey",
+    "type": "griev",
+    "catalogue_order": 147,
+    "local_order": "1",
+    "ancestors": [
+      "Province du Bugey et Valromey",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[31]/*[1]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1568",
+    "volume": 2,
+    "title": "Cahier de la noblesse de la sénéchaussée d'Annonay ",
+    "type": "griev",
+    "catalogue_order": 13,
+    "local_order": "2",
+    "ancestors": [
+      "Sénéchaussée d'Annonay ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[3]/*[2]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1629",
+    "volume": 2,
+    "title": "Cahier du clergé de la Souveraineté de Béarn ",
+    "type": "griev",
+    "catalogue_order": 90,
+    "local_order": "1",
+    "ancestors": [
+      "Souveraineté de Béarn ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[1]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1719",
+    "volume": 2,
+    "title": "Cahier du tiers-état du bailliage de Clermont en Beauvoisis ",
+    "type": "griev",
+    "catalogue_order": 231,
+    "local_order": "3",
+    "ancestors": [
+      "Bailliage de Clermont en Beauvoisis ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[51]/*[3]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1674",
+    "volume": 2,
+    "title": "Cahier du tiers-état de la sénéchaussée du Boulonnais",
+    "type": "griev",
+    "catalogue_order": 134,
+    "local_order": "3",
+    "ancestors": [
+      "Sénéchaussée du Boulonnais",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[27]/*[3]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1658",
+    "volume": 2,
+    "title": "Cahier du tiers-état du bailliage de Besançon ",
+    "type": "griev",
+    "catalogue_order": 112,
+    "local_order": "2",
+    "ancestors": [
+      "Bailliage de Besançon ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[22]/*[2]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1624",
+    "volume": 2,
+    "title": "Cahier du baillage de Villiers-la-Montagne (Bailliage de Bar-le-Duc)",
+    "type": "griev",
+    "catalogue_order": 80,
+    "local_order": "13",
+    "ancestors": [
+      "Bailliage de Bar-le-Duc ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[14]/*[13]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1597",
+    "volume": 2,
+    "title": "Cahier de la noblesse du bailliage d'Avesnes ",
+    "type": "griev",
+    "catalogue_order": 54,
+    "local_order": "3",
+    "ancestors": [
+      "Bailliage d'Avesnes ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[12]/*[3]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_2_1_1595",
+    "volume": 2,
+    "title": "Cahier de la noblesse du bailliage d'Auxois",
+    "type": "griev",
+    "catalogue_order": 44,
+    "local_order": "2",
+    "ancestors": [
+      "Bailliage d'Auxois",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome II - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v2.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[10]/*[2]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1795",
+    "volume": 3,
+    "title": "Cahier de la ville de Colmar (District de Colmar et Schlesladt)",
+    "type": "griev",
+    "catalogue_order": 7,
+    "local_order": "4",
+    "ancestors": [
+      "District de Colmar et Schlesladt ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[4]",
+    "selection": "development_control",
+    "control": "previous_seven_source_comparison"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1861",
+    "volume": 3,
+    "title": "Cahier du village de Courtiches (Bailliage de Douai)",
+    "type": "griev",
+    "catalogue_order": 68,
+    "local_order": "11",
+    "ancestors": [
+      "Bailliage de Douai ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[12]/*[11]",
+    "selection": "development_control",
+    "control": "known_V2_Courtiches"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1924",
+    "volume": 3,
+    "title": "Cahier du clergé de Grasse et de Vence (Sénéchaussée de Draguignan)",
+    "type": "griev",
+    "catalogue_order": 104,
+    "local_order": "3",
+    "ancestors": [
+      "Sénéchaussée de Draguignan ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[14]/*[3]",
+    "selection": "development_control",
+    "control": "known_V2_Grasse"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_2330",
+    "volume": 3,
+    "title": "Table des matières",
+    "type": "table",
+    "catalogue_order": 271,
+    "local_order": "2",
+    "ancestors": [
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[2]",
+    "selection": "negative_document_type_control",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_2043",
+    "volume": 3,
+    "title": "Cahier du tiers-état du bailliage de Melun ",
+    "type": "griev",
+    "catalogue_order": 253,
+    "local_order": "3",
+    "ancestors": [
+      "Bailliage de Melun ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[43]/*[3]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1927",
+    "volume": 3,
+    "title": "Cahier des communes de la sénéchaussée de Grasse (Sénéchaussée de Draguignan)",
+    "type": "griev",
+    "catalogue_order": 107,
+    "local_order": "6",
+    "ancestors": [
+      "Sénéchaussée de Draguignan ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[14]/*[6]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1981",
+    "volume": 3,
+    "title": "Cahier du clergé de la sénéchaussée de Libourne ",
+    "type": "griev",
+    "catalogue_order": 174,
+    "local_order": "2",
+    "ancestors": [
+      "Sénéchaussée de Libourne ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[27]/*[2]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_2033",
+    "volume": 3,
+    "title": "Cahier du tiers-état de la Sénéchaussée de Marseille ",
+    "type": "griev",
+    "catalogue_order": 241,
+    "local_order": "4",
+    "ancestors": [
+      "Sénéchaussée de Marseille ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[41]/*[4]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1818",
+    "volume": 3,
+    "title": "Cahier du clergé de la sénéchaussée de Dax ",
+    "type": "griev",
+    "catalogue_order": 36,
+    "local_order": "1",
+    "ancestors": [
+      "Sénéchaussée de Dax ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[8]/*[1]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1829",
+    "volume": 3,
+    "title": "Cahier du tiers-état de la ville de Dijon (Bailliage de Dijon)",
+    "type": "griev",
+    "catalogue_order": 48,
+    "local_order": "6",
+    "ancestors": [
+      "Bailliage de Dijon ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[9]/*[6]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1803",
+    "volume": 3,
+    "title": "Cahier de la communauté de Saubens (Comté de Comminges)",
+    "type": "griev",
+    "catalogue_order": 14,
+    "local_order": "5",
+    "ancestors": [
+      "Comté de Comminges ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[2]/*[5]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_3_1_1827",
+    "volume": 3,
+    "title": "Cahier de la noblesse du bailliage de Dijon ",
+    "type": "griev",
+    "catalogue_order": 46,
+    "local_order": "4",
+    "ancestors": [
+      "Bailliage de Dijon ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome III - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v3.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[9]/*[4]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_1745",
+    "volume": 4,
+    "title": "Cahier de la noblesse du bailliage de Mirecourt",
+    "type": "griev",
+    "catalogue_order": 5,
+    "local_order": "2",
+    "ancestors": [
+      "Bailliage de Mirecourt",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[2]",
+    "selection": "development_control",
+    "control": "previous_seven_source_comparison"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_1780",
+    "volume": 4,
+    "title": "Cahier de la sénéchaussée de Guérande (Sénéchaussée de Nantes)",
+    "type": "griev",
+    "catalogue_order": 36,
+    "local_order": "2",
+    "ancestors": [
+      "Sénéchaussée de Nantes",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[9]/*[2]",
+    "selection": "development_control",
+    "control": "previous_seven_source_comparison"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2175",
+    "volume": 4,
+    "title": "Cahier de Ferrières-en-Brie (Paris)",
+    "type": "griev",
+    "catalogue_order": 214,
+    "local_order": "148",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[148]",
+    "selection": "development_control",
+    "control": "known_Ferrieres"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_1743",
+    "volume": 4,
+    "title": "Table des matières",
+    "type": "table",
+    "catalogue_order": 367,
+    "local_order": "2",
+    "ancestors": [
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[2]",
+    "selection": "negative_document_type_control",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2291",
+    "volume": 4,
+    "title": "Cahier de Montlhéry (paroisse de) (Paris)",
+    "type": "griev",
+    "catalogue_order": 329,
+    "local_order": "263",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[263]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2138",
+    "volume": 4,
+    "title": "Cahier de Coudray-sur-Seine (Paris)",
+    "type": "griev",
+    "catalogue_order": 177,
+    "local_order": "111",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[111]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2132",
+    "volume": 4,
+    "title": "Cahier de Compans-la-Ville (Paris)",
+    "type": "griev",
+    "catalogue_order": 171,
+    "local_order": "105",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[105]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_1847",
+    "volume": 4,
+    "title": "Cahier de Aleux-le-Roi (Paris)",
+    "type": "griev",
+    "catalogue_order": 70,
+    "local_order": "4",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[4]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2273",
+    "volume": 4,
+    "title": "Cahier de Méry-sur-Oise (Paris)",
+    "type": "griev",
+    "catalogue_order": 311,
+    "local_order": "245",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[245]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2119",
+    "volume": 4,
+    "title": "Cahier de Chevry (Paris)",
+    "type": "griev",
+    "catalogue_order": 158,
+    "local_order": "92",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[92]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2200",
+    "volume": 4,
+    "title": "Cahier de Gometz-la-Ville (Paris)",
+    "type": "griev",
+    "catalogue_order": 238,
+    "local_order": "172",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[172]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_4_1_2182",
+    "volume": 4,
+    "title": "Cahier de Fontenay-lès-Brüs (Paris)",
+    "type": "griev",
+    "catalogue_order": 221,
+    "local_order": "155",
+    "ancestors": [
+      "Paris (hors les murs)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Emile Laurent et Jérôme Mavidal. Tome IV - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v4.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[17]/*[155]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2333",
+    "volume": 5,
+    "title": "Cahier de Pecqueuse (Paris)",
+    "type": "griev",
+    "catalogue_order": 6,
+    "local_order": "3",
+    "ancestors": [
+      "Paris (hors les murs) (Suite)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[3]",
+    "selection": "development_control",
+    "control": "known_Pecqueuse"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2339",
+    "volume": 5,
+    "title": "Cahier de Pierrelez (Paris)",
+    "type": "griev",
+    "catalogue_order": 12,
+    "local_order": "9",
+    "ancestors": [
+      "Paris (hors les murs) (Suite)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[9]",
+    "selection": "development_control",
+    "control": "previous_seven_source_comparison"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2915",
+    "volume": 5,
+    "title": "Cahier du clergé du bailliage de Soissons",
+    "type": "griev",
+    "catalogue_order": 326,
+    "local_order": "1",
+    "ancestors": [
+      "Bailliage de Soissons",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[32]/*",
+    "selection": "development_control",
+    "control": "known_Soissons_clergy_context_not_absent_notice",
+    "selection_note": "Initial label incorrectly conflated this real clergy cahier with the different missing noblesse/tiers notice; ID and selection unchanged before rule freeze."
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2329",
+    "volume": 5,
+    "title": "Table des matières",
+    "type": "table",
+    "catalogue_order": 336,
+    "local_order": "2",
+    "ancestors": [
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[2]",
+    "selection": "negative_document_type_control",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2828",
+    "volume": 5,
+    "title": "Cahier du clergé de la sénéchaussée de Ponthieu",
+    "type": "griev",
+    "catalogue_order": 216,
+    "local_order": "1",
+    "ancestors": [
+      "Sénéchaussée de Ponthieu",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[9]/*[1]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2377",
+    "volume": 5,
+    "title": "Cahier de Saint-Germain et Morsang-sur-Seine (Paris)",
+    "type": "griev",
+    "catalogue_order": 50,
+    "local_order": "47",
+    "ancestors": [
+      "Paris (hors les murs) (Suite)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[47]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2353",
+    "volume": 5,
+    "title": "Cahier du Pré-Saint-Gervais (Paris)",
+    "type": "griev",
+    "catalogue_order": 26,
+    "local_order": "23",
+    "ancestors": [
+      "Paris (hors les murs) (Suite)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[23]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2920",
+    "volume": 5,
+    "title": "Cahier du tiers-état de la ville de Fort-Louis (Ville de Strasbourg)",
+    "type": "griev",
+    "catalogue_order": 333,
+    "local_order": "2",
+    "ancestors": [
+      "Ville de Strasbourg ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[34]/*[2]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2823",
+    "volume": 5,
+    "title": "Liste de la noblesse de la province de Poitou",
+    "type": "griev",
+    "catalogue_order": 210,
+    "local_order": "4",
+    "ancestors": [
+      "Province de Poitou ",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[8]/*[4]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2407",
+    "volume": 5,
+    "title": "Cahier de Sartrouville (Paris)",
+    "type": "griev",
+    "catalogue_order": 80,
+    "local_order": "77",
+    "ancestors": [
+      "Paris (hors les murs) (Suite)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[77]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2447",
+    "volume": 5,
+    "title": "Cahier de Verlegrand (Paris)",
+    "type": "griev",
+    "catalogue_order": 120,
+    "local_order": "117",
+    "ancestors": [
+      "Paris (hors les murs) (Suite)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[117]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_5_1_2406",
+    "volume": 5,
+    "title": "Cahier de Sarcelles (Paris)",
+    "type": "griev",
+    "catalogue_order": 79,
+    "local_order": "76",
+    "ancestors": [
+      "Paris (hors les murs) (Suite)",
+      "Cahiers",
+      "États généraux",
+      "Archives Parlementaires de 1787 à 1860 - Première série (1787-1799) sous la direction de Jérôme Mavidal et Emile Laurent. Tome V - Etats généraux ; Cahiers des sénéchaussées et bailliages. Paris : Librairie Administrative P. Dupont, 1879."
+    ],
+    "mets_file": "mets-v5.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*[1]/*/*[1]/*[76]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2497",
+    "volume": 6,
+    "title": "Cahier du clergé de Vic (Bailliage de Toul)",
+    "type": "griev",
+    "catalogue_order": 7,
+    "local_order": "4",
+    "ancestors": [
+      "Bailliage de Toul",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[1]/*[4]",
+    "selection": "development_control",
+    "control": "previous_seven_source_comparison"
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2783",
+    "volume": 6,
+    "title": "Table des matières",
+    "type": "index",
+    "catalogue_order": 290,
+    "local_order": "18",
+    "ancestors": [
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[18]",
+    "selection": "negative_document_type_control",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2508",
+    "volume": 6,
+    "title": "Cahier de Saint-Mexme de Chinon (Province de Touraine)",
+    "type": "griev",
+    "catalogue_order": 20,
+    "local_order": "5",
+    "ancestors": [
+      "Province de Touraine",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[3]/*[5]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2651",
+    "volume": 6,
+    "title": "Cahier de la communauté de Saint-Zacharie (Sénéchaussée d'Aix)",
+    "type": "griev",
+    "catalogue_order": 173,
+    "local_order": "96",
+    "ancestors": [
+      "Sénéchaussée d'Aix",
+      "Supplément comprenant les documents parvenus sur les cahiers des bailliages et sénéchaussées pendant le cours de la publication",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[17]/*[1]/*[96]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2597",
+    "volume": 6,
+    "title": "Cahier de la communauté de la Fare (Sénéchaussée d'Aix)",
+    "type": "griev",
+    "catalogue_order": 119,
+    "local_order": "42",
+    "ancestors": [
+      "Sénéchaussée d'Aix",
+      "Supplément comprenant les documents parvenus sur les cahiers des bailliages et sénéchaussées pendant le cours de la publication",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[17]/*[1]/*[42]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2582",
+    "volume": 6,
+    "title": "Cahier de la communauté d'Esparron de Pallières (Sénéchaussée d'Aix)",
+    "type": "griev",
+    "catalogue_order": 104,
+    "local_order": "27",
+    "ancestors": [
+      "Sénéchaussée d'Aix",
+      "Supplément comprenant les documents parvenus sur les cahiers des bailliages et sénéchaussées pendant le cours de la publication",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[17]/*[1]/*[27]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2501",
+    "volume": 6,
+    "title": "Cahier de l'ordre du clergé de la sénéchaussée de Toulouse",
+    "type": "griev",
+    "catalogue_order": 12,
+    "local_order": "1",
+    "ancestors": [
+      "Sénéchaussée de Toulouse ",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[2]/*[1]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2585",
+    "volume": 6,
+    "title": "Cahier de la communauté de Gardanne (Sénéchaussée d'Aix)",
+    "type": "griev",
+    "catalogue_order": 107,
+    "local_order": "30",
+    "ancestors": [
+      "Sénéchaussée d'Aix",
+      "Supplément comprenant les documents parvenus sur les cahiers des bailliages et sénéchaussées pendant le cours de la publication",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[17]/*[1]/*[30]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2503",
+    "volume": 6,
+    "title": "Cahier du tiers-état de la sénéchaussée de Toulouse",
+    "type": "griev",
+    "catalogue_order": 14,
+    "local_order": "3",
+    "ancestors": [
+      "Sénéchaussée de Toulouse ",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[2]/*[3]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2667",
+    "volume": 6,
+    "title": "Cahier de la communauté de Vitrolles-d'Aigues (Sénéchaussée d'Aix)",
+    "type": "griev",
+    "catalogue_order": 189,
+    "local_order": "112",
+    "ancestors": [
+      "Sénéchaussée d'Aix",
+      "Supplément comprenant les documents parvenus sur les cahiers des bailliages et sénéchaussées pendant le cours de la publication",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[17]/*[1]/*[112]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2684",
+    "volume": 6,
+    "title": "Liste des comparants de la noblesse du baillage d'Autun",
+    "type": "griev",
+    "catalogue_order": 199,
+    "local_order": "2",
+    "ancestors": [
+      "Bailliage d'Autun",
+      "Supplément comprenant les documents parvenus sur les cahiers des bailliages et sénéchaussées pendant le cours de la publication",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[17]/*[4]/*[2]",
+    "selection": "new_hash_sample",
+    "control": null
+  },
+  {
+    "id": "arcpa_0000-0000_1879_num_6_1_2659",
+    "volume": 6,
+    "title": "Cahier de la communauté de Varages (Sénéchaussée d'Aix)",
+    "type": "griev",
+    "catalogue_order": 181,
+    "local_order": "104",
+    "ancestors": [
+      "Sénéchaussée d'Aix",
+      "Supplément comprenant les documents parvenus sur les cahiers des bailliages et sénéchaussées pendant le cours de la publication",
+      "Cahiers",
+      "États généraux",
+      "Tome VI - Etats généraux ; Cahiers des sénéchaussées et bailliages."
+    ],
+    "mets_file": "mets-v6.xml",
+    "mets_xpath": "/*/*[3]/*/*[2]/mets:mets/*[4]/*/*/*/*[17]/*[1]/*[104]",
+    "selection": "new_hash_sample",
+    "control": null
+  }
+]

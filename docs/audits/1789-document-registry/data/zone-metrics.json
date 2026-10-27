@@ -1,0 +1,17 @@
+{
+  "zones": 12,
+  "source_characters": 115624,
+  "known_document_starts": 10,
+  "uncertain_composites": 1,
+  "autonomous_starts": 6,
+  "associated_starts": 4,
+  "V2_admitted": 8,
+  "registry_direct": 8,
+  "registry_contains": 8,
+  "combined_direct_or_V2": 8,
+  "unretrieved": [
+    "Pouvoirs clergé Saintonge",
+    "Goullin"
+  ],
+  "no_global_recall_estimate": true
+}

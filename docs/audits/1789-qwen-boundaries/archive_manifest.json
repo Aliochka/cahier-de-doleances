@@ -1,0 +1,23 @@
+{
+  "format": "gzip UTF-8 JSONL",
+  "entries": [
+    {
+      "archive": "data/block-locators.jsonl.gz",
+      "materialized": "data/block-locators.jsonl",
+      "sha256": "a643c6f1e47d50a68e1d46df65ca490c41bc34d29dcd6206e8e24d16ee6c9986",
+      "decoded_sha256": "86209abe6bc404339d2d04a2a6a8d1cc9221f05b98d81a72a8920f08ada1d693",
+      "decoded_bytes": 633689,
+      "archive_bytes": 60190,
+      "records": 4234
+    },
+    {
+      "archive": "data/windows.jsonl.gz",
+      "materialized": "data/windows.jsonl",
+      "sha256": "07c8d6fc71cb1834837a71766cf8bd47f597324bb8e3b680d7177d16c332386d",
+      "decoded_sha256": "77f0730b961fe05b994854472a198d6195c8e9a9a53f4e18d24c534fed811eb7",
+      "decoded_bytes": 2319553,
+      "archive_bytes": 553097,
+      "records": 60
+    }
+  ]
+}

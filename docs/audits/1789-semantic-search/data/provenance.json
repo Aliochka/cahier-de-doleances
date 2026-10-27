@@ -1,0 +1,295 @@
+{
+  "completed_at": "2026-10-26T11:26:39.147702+00:00",
+  "repository_head": "818b5464f24cac4d8537793c15c8e2c580505f88",
+  "experiment_scope": "Only docs/audits/1789-semantic-search added; no application, database or deployed configuration changes",
+  "database_access": false,
+  "production_access": false,
+  "model_downloads": 0,
+  "training": false,
+  "embeddings_generated": "540 historical representations,30 frozen queries,16 contemporary precision probes (initial diagnostic duplicated),1 outside-evaluation CLI smoke query",
+  "previous_audits_verified": 147,
+  "original_code_sha256": {
+    "rag/src/cahier_rag/embeddings/registry.py": "7539d1cb458b4c539d61e5ff2db22a61a41112c3393150721c16a62bcfa8ceeb",
+    "rag/src/cahier_rag/embeddings/core.py": "1de5f1c9c7d072cdfd3f1f4362a586a6b33a6cfbbb7c4899f793656daf570d1e",
+    "rag/src/cahier_rag/embeddings/snapshots.py": "8b8559c217151b87975ee4b09fee99bdb4e244c81773c1c07a632161a3a5fa4d",
+    "rag/src/cahier_rag/embeddings/transformers_backend.py": "4c7bdbd7b418e80b1073f5487440c5d7314c8daa17859c82704f123e6a75e32f",
+    "rag/src/cahier_rag/vector/preparation.py": "b06d1ed754d56113e3a45d8ab5161e85bd724298d3d0ef5bf6c6b62c1159d4e9",
+    "rag/src/cahier_rag/vector/cache.py": "cbb3850dc0fbd76a6fa203586e4dc400f5ae1e4b8a81675b638ed5dc060be84d",
+    "rag/src/cahier_rag/search/preparation.py": "1c6cc9f096141ef19166b025870de2e1da04b2b4e466c86d32588aa3215ec55c",
+    "rag/src/cahier_rag/search/hybrid/core.py": "3399954e9dd746a4858e5dfbc3aeb64f06d3a89561c47f6d8b64c2ccf1728407",
+    "rag/src/cahier_rag/search/service/core.py": "440c54020fd4646c2a886de4185c154738c0e25a0ff29706f8f4461bd958e97f",
+    "rag/src/cahier_rag/search/service/__init__.py": "f0c91cb360606c96314c6f48ceceda94d2b7bd1afde1741bea8b91a9876ea664",
+    "rag/src/cahier_rag/tuning/lexical.py": "b66fc4a9a03e7f6f8e3324371c7cdcb439836da22a7799034c009ee35d1ab23e",
+    "rag/src/cahier_rag/search/flexible.py": "caf45208b995ffdc567f99f87bbb12f18a114e89ba5abdbcfed77f2a81ee7e09"
+  },
+  "experimental_scripts_sha256": {
+    "common.py": "6bc81ab8c59d1d4c960aa470f5fc0fe2ef87c5f54d75fe5dc5df1c9a8477ab3e",
+    "diagnostics.py": "5629fbf112ddfa1ea0f19b7dff4ec579e04983420d1340a7594e4f198149050f",
+    "encode.py": "cf94e10e56c966e9cf0fec9e710875424a6b7dc7f269bf08207b4d28287e5371",
+    "evaluate.py": "c96c67e1932eca2d85199940b74016293f895b5da9f33ac70e864b22aa84a3f2",
+    "finalize.py": "9044cd2477b1bd650251e0191a3b8185e74d728e0e050051fe478d424d2a7194",
+    "prepare.py": "ba4e1b345a19765a0d89a874a22db35b529ab910e7955ea99e63d254924c33c7",
+    "query.py": "453126414c947360a0959b29e7e43e410b9778ba041b587557aedec8f4b0d54a",
+    "reproduce.py": "9b0300387272a993e7bddcbfe5df0ab1a3c5058e5974580bbb3324bb53c8bc7f",
+    "review-decisions.py": "692e6ead3cf22154818431f6561eee7a32622ba56da44f6ddabf97c537a25856",
+    "review_pack.py": "c0d5dcda997e446aa70fe4e06d879edd8cebaa2059e2e884bb2cfc25ecbb7243",
+    "search.py": "3a4600a3b22a960d941d9ccd254be79e8a15bd4b424f34c76eb19bb65e2d74da",
+    "verify.py": "a68e8da874f6305700309e1e7286afaeb5d4b420cb0433284d96fc2461abeb08"
+  },
+  "python": "3.11.17",
+  "libraries": {
+    "torch": "2.10.0+cpu",
+    "transformers": "4.57.6",
+    "numpy": "2.2.6",
+    "psutil": "7.2.2",
+    "SQLAlchemy": "2.0.43",
+    "huggingface-hub": "0.36.0"
+  },
+  "system_lexical_resources": {
+    "libstemmer": {
+      "path": "/lib/x86_64-linux-gnu/libstemmer.so.0d",
+      "version": "2.2.0-1build1",
+      "sha256": "5a1dd61fc7cd0b03fe6612f03d86772f6825d6d5d21e3b37f19c8de4c42e020a"
+    },
+    "stopwords": {
+      "origin": "/usr/share/postgresql/14/tsearch_data/french.stop",
+      "sha256": "6ca60ffd4257c35cc3981d0e923881c3d8b85c8c0f6ef7a6697bd4ae97200fd8"
+    }
+  },
+  "model_source": "https://huggingface.co/BAAI/bge-m3/blob/5617a9f61b028005a4858fdac845db406aefb181/README.md",
+  "model_snapshot_manifest_sha256": "e4f91565ed8fe8ad35ef6994eb5783de225d738b0aef668dfd07b3fd24056ef8",
+  "checks": {
+    "corpus": 509,
+    "historical_status_A": 269,
+    "modern_distinct_parents": 240,
+    "ranking_runs": 300,
+    "annotated_top10_pool_pairs": 1139,
+    "additional_judged_pairs": 16,
+    "prior_audit_files_unchanged": 147,
+    "local_embedding_artifacts_unchanged": 434,
+    "source_fidelity": true,
+    "segment_coverage": true,
+    "finite_unit_norm_vectors": true,
+    "all_top10_judged": true,
+    "query_and_protocol_unchanged": true,
+    "mutation_checks_detected": [
+      "duplicate_id",
+      "altered_text",
+      "wrong_parent",
+      "wrong_status",
+      "bad_offset",
+      "altered_embedding_text"
+    ],
+    "tracked_diff": [],
+    "database_access": false,
+    "external_inference": false
+  },
+  "reproducibility": {
+    "mode": "two cached-vector runs; no model inference repeated",
+    "identical_artifacts": 12,
+    "sha256": {
+      "data/corpus.jsonl": "db057289213e13eab9226322360948f362459031645fdf933dd1aa48b4f8c69e",
+      "data/contemporary-segments.jsonl": "5708251cafa39f1bb007b6ee7e8160f5032ea3807d55af39151d680766dd23e5",
+      "data/preparation.json": "cd7a82df3388dd55a4c93a26e93c88b00089bb17d4d08633a4ecbea7cadafa18",
+      "data/historical-segments.jsonl": "8281524e3935d41460621e51f97803529bb7d14480616d4331d997acf5d77f70",
+      "data/rankings.jsonl": "39c3b9b318a5a13acbb0727a37a624920bafe1806cda392189572debf532ad39",
+      "data/review-pool.jsonl": "3e2b1e773b5c16b8954d48669bfde58cc3fb07743eb0a16cf870e460105f45b3",
+      "annotations.json": "af8c06a188700826b234c16e3147c3d09092a11378a7c98ac100398ee4f06bd0",
+      "data/metrics.json": "942df98be4bfde7adb57c716058e2a175d71949fa78af066b32fab72b1529f85",
+      "data/results.jsonl": "33ce75cf2dabd783396cd605cb28b82c5db3007627716a7bfbbe664227672380",
+      "data/novelty.json": "9d361991d1d558dc39d0f52f6d714f581ec85847ec23c00aad05c194c0f6e625",
+      "COMPARISON.md": "a26260dd48bd44eac9c94f05710f9987ec88a23e14ac0c73607def413e1c0a8b",
+      "GALLERY.md": "07c2c5bc58ce6c611db7ea669acc5ad313a1b0f7186a242481713caa246c59b0"
+    },
+    "excluded": [
+      "search-timings.json",
+      "diagnostics.costs",
+      "runtime timestamps"
+    ],
+    "queries_unchanged": true,
+    "raw_rankings_identical": true,
+    "judgments_identical": true,
+    "metrics_identical": true
+  },
+  "validation": {
+    "ruff": "passed",
+    "existing_unit_tests": 36,
+    "new_query_cli_smoke": "passed locally, excluded from evaluation",
+    "cached_query_cli_comparisons": 10
+  },
+  "local_markdown_links_verified": [
+    {
+      "file": "DATA.md",
+      "target": "data/french.stop"
+    },
+    {
+      "file": "DATA.md",
+      "target": "data/provenance.json"
+    },
+    {
+      "file": "GALLERY.md",
+      "target": "data/corpus.jsonl"
+    },
+    {
+      "file": "GALLERY.md",
+      "target": "data/results.jsonl"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/embeddings/registry.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/embeddings/snapshots.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/embeddings/transformers_backend.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/embeddings/core.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/search/service/core.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/vector/preparation.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/tuning/vector.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/search/service/core.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/tuning/lexical.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/search/flexible.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/search/preparation.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "../../../rag/src/cahier_rag/search/hybrid/core.py"
+    },
+    {
+      "file": "ENGINE.md",
+      "target": "data/encoding.json"
+    },
+    {
+      "file": "README.md",
+      "target": "protocol.json"
+    },
+    {
+      "file": "README.md",
+      "target": "queries.json"
+    },
+    {
+      "file": "README.md",
+      "target": "preregistration.json"
+    },
+    {
+      "file": "README.md",
+      "target": "ENGINE.md"
+    },
+    {
+      "file": "README.md",
+      "target": "data/corpus.jsonl"
+    },
+    {
+      "file": "README.md",
+      "target": "data/preparation.json"
+    },
+    {
+      "file": "README.md",
+      "target": "data/historical-segments.jsonl"
+    },
+    {
+      "file": "README.md",
+      "target": "data/encoding.json"
+    },
+    {
+      "file": "README.md",
+      "target": "vectors/"
+    },
+    {
+      "file": "README.md",
+      "target": "data/rankings.jsonl"
+    },
+    {
+      "file": "README.md",
+      "target": "data/results.jsonl"
+    },
+    {
+      "file": "README.md",
+      "target": "annotations.json"
+    },
+    {
+      "file": "README.md",
+      "target": "review-decisions.py"
+    },
+    {
+      "file": "README.md",
+      "target": "COMPARISON.md"
+    },
+    {
+      "file": "README.md",
+      "target": "data/metrics.json"
+    },
+    {
+      "file": "README.md",
+      "target": "GALLERY.md"
+    },
+    {
+      "file": "README.md",
+      "target": "data/diagnostics.json"
+    },
+    {
+      "file": "README.md",
+      "target": "data/novelty.json"
+    },
+    {
+      "file": "README.md",
+      "target": "DATA.md"
+    },
+    {
+      "file": "README.md",
+      "target": "data/checks.json"
+    },
+    {
+      "file": "README.md",
+      "target": "data/reproducibility.json"
+    },
+    {
+      "file": "README.md",
+      "target": "../1789-extraction-pilot/README.md"
+    },
+    {
+      "file": "README.md",
+      "target": "GALLERY.md"
+    },
+    {
+      "file": "README.md",
+      "target": "data/search-timings.json"
+    },
+    {
+      "file": "README.md",
+      "target": "data/diagnostics.json"
+    },
+    {
+      "file": "README.md",
+      "target": "DATA.md"
+    }
+  ],
+  "tracked_diff": []
+}

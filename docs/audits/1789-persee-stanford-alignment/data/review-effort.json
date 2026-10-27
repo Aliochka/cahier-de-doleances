@@ -1,0 +1,19 @@
+{
+  "reviewer": "Codex, non-independent and predictions visible",
+  "sample_notices_screened": 72,
+  "source_target_documents_examined": 56,
+  "non_cahier_notices": 16,
+  "boundary_references_examined": 26,
+  "body_scope": "source openings, closings, transitions, territorial names, adjacent headings; no full collation of all long bodies",
+  "rules_changed_after_new_B_review": false,
+  "independent_human_interventions": 0,
+  "human_validation_seconds": null,
+  "corrections_applied_to_raw_predictions": 0,
+  "remaining": {
+    "boundary_unreviewed": 30,
+    "bad_ends_in_C_reviewed_subset": 3,
+    "uncertain_identity_or_scope": 2,
+    "multiple_candidate_queues": 2
+  },
+  "counts_overlap": true
+}

@@ -1,0 +1,22 @@
+{
+  "source_only": true,
+  "rules_frozen_before_reading": true,
+  "zone_inspection": "all text and all blocks, complete continuous source intervals",
+  "candidate_inspection": "heads, first10 and final4 p, all short p; not complete OCR collation",
+  "files": {
+    "candidates-v1.txt": "b3b66b0424500e44907528364ac6d9cb1d7eb365d4f92b6c1a806a67885ef668",
+    "zones-v4.txt": "c582b9a8da326e39fd6899fc9268adac79d2a9d0c1719082ff695b0dce298e8a",
+    "zones-v5.txt": "4fcbd335368faf6e657e57bc90e46fde87b346c05a1514df10857cf17b2db7ae",
+    "candidates-v5.txt": "35166606798e9848ea125ca5ede79553161d95cb1f21a83bc1194d6c41c108c7",
+    "zones-v6.txt": "48bba0703488db078b20fd4dca09bc0a37750177c2cad026a5bd142416dbc3d8",
+    "zones-v2.txt": "2aebe8121eb7352ff5a9cce9ba84200e728107836132b6f1e104e3ec34226739",
+    "candidates-v3.txt": "0b224ea135158347e895170213e60c115e2c32e46fb844e385e8c25877228e0f",
+    "candidates-v6.txt": "19523c33de7804b9c279c896edce15bf20cdffba7ce3d46712547443f911ce69",
+    "zones-v1.txt": "4fb00de85771ba7f5a3c791567e5816c6d6fd8bd5f5497aa24ad5a1cbac33b5b",
+    "zones-v3.txt": "14f0be377b938e3f21297f270279797945ff116088bbc3e5d082972d914e6b46",
+    "candidates-v2.txt": "f0b6117313e01495aa6d47e80ffd9a9416fe43916410b8fa108ac9127bd92229",
+    "candidates-v4.txt": "38ebd8ba13cd98f32bbd5fc05bdd594c79595f1c18720d8f7986e3aa30bebfb6"
+  },
+  "predictions_created": false,
+  "cache": "/tmp/cahier-1789-extraction-v2"
+}

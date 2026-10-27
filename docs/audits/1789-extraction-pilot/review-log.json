@@ -1,0 +1,22 @@
+{
+  "reviewer": "Codex, pas une validation humaine indépendante",
+  "started_utc": "2026-10-26T09:45:13Z",
+  "reference_revision_notes": [
+    {
+      "change": "Beaurecueil : première annotation succincte sans articles remplacée après lecture complète et contrôle du scan par trois demandes numérotées, dont la dernière avec explication prolongée.",
+      "timing": "après premier essai technique ; les erreurs de cette annotation initiale ne sont pas imputées à l’extracteur. Ce pilote est un jeu de développement, pas un test aveugle."
+    },
+    {
+      "change": "Alençon noblesse : référence volontairement arrêtée avant Art.3 ; fin3 et début4 non certifiés. Toul : référence arrêtée avant3, rubriques suivantes non certifiées.",
+      "timing": "avant première exécution du segmenteur"
+    },
+    {
+      "change": "Deux fenêtres complètes ajoutées : Anjou15–18 (contrôle image) et Angoumois17 (réutilisation de l’ancien échantillon), cinq unités supplémentaires.",
+      "timing": "complément documentaire après première exécution ; jeu de développement explicitement non aveugle."
+    }
+  ],
+  "human_validation_seconds": null,
+  "historian_review": false,
+  "note": "Durées de revue humaine et coût récurrent non mesurés ; ne pas convertir la durée de session en temps opérateur.",
+  "completed_utc": "2026-10-26T10:30:14.338063+00:00"
+}

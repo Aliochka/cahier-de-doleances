@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "candidate-314a64454989f708a8a3",
+    "window": 0,
+    "kind": "missed_article_start",
+    "reference": {
+      "start": 4358610,
+      "end": 4359255,
+      "xml_blocks": [
+        "/TEI.2/text/body/div1/div2[35]/div3[6]/p[2]"
+      ],
+      "text": "ArtIer. Le pays d'Aunis, d'apfês sa population et la consistance de son\n                            commerce, n'étant pas suffisamment représenté aux Btats généraux par pue\n                            seule députatipn, le tiers-état de la séné- chaussée de la ville et\n                            gouvernement de La Ro- chelle, a arrêté de pe réunir aux deux premiers\n                            ordres ppur sollicite? de la justice du Roi qu'il soit accordé à la\n                            province une seepnifp Réputa- tion, tant pour les Etats généraux\n                            prochains, que pour ceux qui seront convoqués dapg la suite.",
+      "boundary_basis": "source paragraphs and literal marker reviewed before predictions"
+    }
+  },
+  {
+    "candidate_id": "candidate-35fa9083b29b304f3277",
+    "window": 0,
+    "kind": "missed_article_start",
+    "reference": {
+      "start": 1527843,
+      "end": 1528418,
+      "xml_blocks": [
+        "/TEI.2/text/body/div1/div2[1]/div3[120]/p[8]",
+        "/TEI.2/text/body/div1/div2[1]/div3[120]/p[9]",
+        "/TEI.2/text/body/div1/div2[1]/div3[120]/p[10]"
+      ],
+      "text": "Àri. er. Que nous ne pouvons reconnaître que\n                            deux ordres dans l’Etat, qui seuls èn sont Pessençe et là constitution\n                            :\n                        La noblesse, qui représenté nos anciens ducs et comtes qui nous menaient\n                            aux combats. Premier ordre ;\n                        Et notre ordre, qui soutiendra toujours sous epx là constitution\n                            monarchique, la loi salique, et la couronne de France sur la tête des\n                            Bourbons tant qu’il en existera.",
+      "boundary_basis": "source paragraphs and literal marker reviewed before predictions"
+    }
+  }
+]

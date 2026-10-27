@@ -1,0 +1,164 @@
+{
+  "sample": 100,
+  "identity": {
+    "correct": 69,
+    "uncertain": 1,
+    "retrievable_abstention": 19,
+    "false_exclusion": 1,
+    "unresolved": 1,
+    "not_assessed": 6,
+    "incorrect": 3
+  },
+  "boundary": {
+    "incorrect": 15,
+    "correct": 52,
+    "uncertain": 4,
+    "not_assessed": 29
+  },
+  "classification_disagreements": [
+    15,
+    18,
+    26,
+    44,
+    89
+  ],
+  "by_status": {
+    "ambigu": {
+      "uncertain": 1,
+      "correct": 18,
+      "incorrect": 3
+    },
+    "fort": {
+      "correct": 23
+    },
+    "hors_perimetre": {
+      "false_exclusion": 1,
+      "not_assessed": 6,
+      "correct": 5
+    },
+    "non_retrouve": {
+      "retrievable_abstention": 19,
+      "unresolved": 1
+    },
+    "probable": {
+      "correct": 23
+    }
+  },
+  "review_priority": {
+    "haute": 189,
+    "echantillonnage": 821,
+    "intermediaire": 295
+  },
+  "final_boundary": {
+    "verifiees": 78,
+    "proposees": 931,
+    "ambigues": 227,
+    "non_etablies": 69
+  },
+  "complement": 92,
+  "v2_total": 1954,
+  "v2_admitted": 1240,
+  "metadata_anomalies": {},
+  "by_volume": {
+    "1": {
+      "notices": 24,
+      "v2_admitted": 20,
+      "v2_complement": 1
+    },
+    "2": {
+      "notices": 181,
+      "v2_admitted": 183,
+      "v2_complement": 23
+    },
+    "3": {
+      "notices": 223,
+      "v2_admitted": 196,
+      "v2_complement": 14
+    },
+    "4": {
+      "notices": 347,
+      "v2_admitted": 352,
+      "v2_complement": 18
+    },
+    "5": {
+      "notices": 298,
+      "v2_admitted": 298,
+      "v2_complement": 19
+    },
+    "6": {
+      "notices": 232,
+      "v2_admitted": 191,
+      "v2_complement": 17
+    }
+  },
+  "new_boundary_controls": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    19,
+    20,
+    23,
+    24,
+    27,
+    29,
+    31,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    42,
+    43,
+    44,
+    45,
+    47,
+    48,
+    49,
+    51,
+    52,
+    53,
+    55,
+    57,
+    58,
+    59,
+    60,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    75,
+    81,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    92,
+    93,
+    94,
+    95,
+    99
+  ],
+  "no_independent_human_validation": true
+}

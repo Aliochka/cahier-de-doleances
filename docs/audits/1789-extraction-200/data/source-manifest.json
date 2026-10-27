@@ -1,0 +1,66 @@
+{
+  "revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "volumes": [
+    {
+      "volume": 1,
+      "bytes": 6573592,
+      "source_file": "jt959wc5586/jt959wc5586.xml",
+      "source_sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+      "scan_url": "https://purl.stanford.edu/jt959wc5586",
+      "offsets": "half-open Unicode codepoints in decoded XML itertext; no whitespace normalization"
+    },
+    {
+      "volume": 2,
+      "bytes": 5748780,
+      "source_file": "fz023dp4399/fz023dp4399.xml",
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+      "scan_url": "https://purl.stanford.edu/fz023dp4399",
+      "offsets": "half-open Unicode codepoints in decoded XML itertext; no whitespace normalization"
+    },
+    {
+      "volume": 3,
+      "bytes": 7598746,
+      "source_file": "mc666yy3026/mc666yy3026.xml",
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+      "scan_url": "https://purl.stanford.edu/mc666yy3026",
+      "offsets": "half-open Unicode codepoints in decoded XML itertext; no whitespace normalization"
+    },
+    {
+      "volume": 4,
+      "bytes": 7658379,
+      "source_file": "xg914wh0253/xg914wh0253.xml",
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+      "scan_url": "https://purl.stanford.edu/xg914wh0253",
+      "offsets": "half-open Unicode codepoints in decoded XML itertext; no whitespace normalization"
+    },
+    {
+      "volume": 5,
+      "bytes": 7542475,
+      "source_file": "xx284sn7328/xx284sn7328.xml",
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+      "scan_url": "https://purl.stanford.edu/xx284sn7328",
+      "offsets": "half-open Unicode codepoints in decoded XML itertext; no whitespace normalization"
+    },
+    {
+      "volume": 6,
+      "bytes": 7051273,
+      "source_file": "wg983ft3682/wg983ft3682.xml",
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+      "scan_url": "https://purl.stanford.edu/wg983ft3682",
+      "offsets": "half-open Unicode codepoints in decoded XML itertext; no whitespace normalization"
+    }
+  ],
+  "no_source_download": true
+}

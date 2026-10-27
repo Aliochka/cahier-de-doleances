@@ -1,0 +1,372 @@
+{
+  "pilot": [
+    {
+      "key": "agen-clerge",
+      "detected": true,
+      "candidate_id": "candidate-5079deef3ccd3605bf4e",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[6]/div3[1]"
+      ]
+    },
+    {
+      "key": "agen-noblesse",
+      "detected": true,
+      "candidate_id": "candidate-94b4b33d34ab79ef1d0b",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[6]/div3[2]"
+      ]
+    },
+    {
+      "key": "agen-tiers",
+      "detected": true,
+      "candidate_id": "candidate-829cf962b430567381d2",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[6]/div3[3]"
+      ]
+    },
+    {
+      "key": "alencon-clerge",
+      "detected": true,
+      "candidate_id": "candidate-4f8958d245c11feab0bf",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[9]/div3[1]"
+      ]
+    },
+    {
+      "key": "alencon-noblesse",
+      "detected": true,
+      "candidate_id": "candidate-10d5fb08eee99e1a44ce",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[9]/div3[2]"
+      ]
+    },
+    {
+      "key": "angoumois-noblesse",
+      "detected": true,
+      "candidate_id": "candidate-75aaddcb7d1c12b3df48",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[2]"
+      ]
+    },
+    {
+      "key": "anjou-clerge",
+      "detected": true,
+      "candidate_id": "candidate-fa06c9e7e44a60c9af7a",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[2]/div3[1]",
+        "/TEI.2/text/body/div1/div2[2]/div3[2]",
+        "/TEI.2/text/body/div1/div2[2]/div3[3]"
+      ]
+    },
+    {
+      "key": "annonay-clerge",
+      "detected": true,
+      "candidate_id": "candidate-c1b78b4684c951c57551",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[3]/div3[1]"
+      ]
+    },
+    {
+      "key": "beaujolais-noblesse",
+      "detected": true,
+      "candidate_id": "candidate-076cfd4ee1f4724fabad",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[19]/div3[2]"
+      ]
+    },
+    {
+      "key": "lawastine-tiers",
+      "detected": true,
+      "candidate_id": "candidate-2128800cc6c115876434",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[14]/div3[9]"
+      ]
+    },
+    {
+      "key": "colmar-ville",
+      "detected": true,
+      "candidate_id": "candidate-3595ce47067e8685079f",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[3]"
+      ]
+    },
+    {
+      "key": "ribaucourt",
+      "detected": true,
+      "candidate_id": "candidate-2b7d49dc0bd1dc9c09e5",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[22]/div3[9]"
+      ]
+    },
+    {
+      "key": "flines",
+      "detected": true,
+      "candidate_id": "candidate-93816c2903b1b9fdcc80",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[22]/div3[14]"
+      ]
+    },
+    {
+      "key": "carces-mineurs",
+      "detected": true,
+      "candidate_id": "candidate-f8258b49e93303176bdd",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[24]/div3[9]"
+      ]
+    },
+    {
+      "key": "montigny-ostrevent",
+      "detected": true,
+      "candidate_id": "candidate-99899336a2e3f6c65b2d",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[22]/div3[23]"
+      ]
+    },
+    {
+      "key": "mirecourt-noblesse",
+      "detected": true,
+      "candidate_id": "candidate-aef1e5ca5146296ba0d7",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[2]",
+        "/TEI.2/text/body/div1/div2[1]/div3[3]",
+        "/TEI.2/text/body/div1/div2[1]/div3[4]"
+      ]
+    },
+    {
+      "key": "guerande-tiers",
+      "detected": true,
+      "candidate_id": "candidate-687b83b98918b63b1308",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[9]/div3[3]"
+      ]
+    },
+    {
+      "key": "ferrieres",
+      "detected": true,
+      "candidate_id": "candidate-8793abfd39d30c84c285",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[18]/div3[145]",
+        "/TEI.2/text/body/div1/div2[18]/div3[146]",
+        "/TEI.2/text/body/div1/div2[18]/div3[147]",
+        "/TEI.2/text/body/div1/div2[18]/div3[148]",
+        "/TEI.2/text/body/div1/div2[18]/div3[149]"
+      ]
+    },
+    {
+      "key": "annet-marne",
+      "detected": true,
+      "candidate_id": "candidate-fa4a901830f72ecc7151",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[18]/div3[8]"
+      ]
+    },
+    {
+      "key": "ermenonville",
+      "detected": true,
+      "candidate_id": "candidate-7495759311648090e4ef",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[18]/div3[12]"
+      ]
+    },
+    {
+      "key": "mirecourt-clerge",
+      "detected": true,
+      "candidate_id": "candidate-686a1414859e16bfc7d6",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[1]"
+      ]
+    },
+    {
+      "key": "pierrelez-habitants",
+      "detected": true,
+      "candidate_id": "candidate-45886e7415fe3090ce0a",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[9]"
+      ]
+    },
+    {
+      "key": "perigny-brie",
+      "detected": true,
+      "candidate_id": "candidate-f5b68116509c653014b6",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[5]"
+      ]
+    },
+    {
+      "key": "plessis-secqueville",
+      "detected": true,
+      "candidate_id": "candidate-877f569330af40562629",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[18]"
+      ]
+    },
+    {
+      "key": "puteaux",
+      "detected": true,
+      "candidate_id": "candidate-c4b0829d3a94bf778f7e",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[29]"
+      ]
+    },
+    {
+      "key": "vic-clerge",
+      "detected": true,
+      "candidate_id": "candidate-95bd6dba84925759303f",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[4]"
+      ]
+    },
+    {
+      "key": "toul-noblesse",
+      "detected": true,
+      "candidate_id": "candidate-cc70503d7107808e3771",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[1]/div3[2]"
+      ]
+    },
+    {
+      "key": "albertas",
+      "detected": true,
+      "candidate_id": "candidate-c2b60a0ff49231ec3e08",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[17]/div3[1]"
+      ]
+    },
+    {
+      "key": "beaurecueil",
+      "detected": true,
+      "candidate_id": "candidate-fe061b43fec1188c92dc",
+      "exact_boundary": false,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[17]/div3[14]"
+      ]
+    },
+    {
+      "key": "lourmarin",
+      "detected": true,
+      "candidate_id": "candidate-6db8105ed92da13dea73",
+      "exact_boundary": true,
+      "same_nonwhite_extent": true,
+      "grouped_divisions": [
+        "/TEI.2/text/body/div1/div2[17]/div3[43]"
+      ]
+    }
+  ],
+  "pecqueuse": {
+    "candidate_id": "candidate-6395df53ae37141f1c9b",
+    "articles": 38,
+    "article37_xml_blocks": [
+      "/TEI.2/text/body/div1/div2[1]/div3[3]/p[39]",
+      "/TEI.2/text/body/div1/div2[1]/div3[3]/p[40]"
+    ],
+    "development_only": true
+  },
+  "inherited_negative_cases": [
+    {
+      "key": "albret-absence",
+      "expected": "notice_missing_document",
+      "observed": [
+        "notice_missing"
+      ],
+      "standalone_rejected": true
+    },
+    {
+      "key": "anjou-continuation",
+      "expected": "continuation",
+      "observed": [
+        "continuation"
+      ],
+      "standalone_rejected": true
+    },
+    {
+      "key": "mirecourt-annexe",
+      "expected": "attached_document",
+      "observed": [
+        "continuation"
+      ],
+      "standalone_rejected": true
+    },
+    {
+      "key": "mirecourt-memoire",
+      "expected": "supporting_document",
+      "observed": [
+        "continuation"
+      ],
+      "standalone_rejected": true
+    },
+    {
+      "key": "vic-extrait",
+      "expected": "published_extract",
+      "observed": [
+        "published_extract"
+      ],
+      "standalone_rejected": true
+    },
+    {
+      "key": "ferrieres-section",
+      "expected": "internal_section",
+      "observed": [
+        "continuation"
+      ],
+      "standalone_rejected": true
+    }
+  ],
+  "scope": "30 development parents and Pecqueuse; not a generalization estimate"
+}

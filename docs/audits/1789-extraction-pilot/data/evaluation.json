@@ -1,0 +1,1271 @@
+{
+  "documents": [
+    {
+      "key": "agen-clerge",
+      "volume": 1,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[6]/div3[1]"
+        ],
+        "start": 5119872,
+        "end": 5153454
+      },
+      "reviewed_start": 5119872,
+      "reviewed_end": 5153454,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 9,
+      "paragraph_roles_changed": 32,
+      "automatic_units_before_review": 69,
+      "units_after_review": 70,
+      "A": 9,
+      "B": 61,
+      "parent_non_whitespace_characters": 18454,
+      "A_non_whitespace_characters": 1159,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "agen-noblesse",
+      "volume": 1,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[6]/div3[2]"
+        ],
+        "start": 5153475,
+        "end": 5223632
+      },
+      "reviewed_start": 5153475,
+      "reviewed_end": 5223632,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 10,
+      "paragraph_roles_changed": 42,
+      "automatic_units_before_review": 66,
+      "units_after_review": 59,
+      "A": 3,
+      "B": 56,
+      "parent_non_whitespace_characters": 40675,
+      "A_non_whitespace_characters": 1879,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "agen-tiers",
+      "volume": 1,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[6]/div3[3]"
+        ],
+        "start": 5223653,
+        "end": 5272904
+      },
+      "reviewed_start": 5223653,
+      "reviewed_end": 5272904,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 7,
+      "paragraph_roles_changed": 12,
+      "automatic_units_before_review": 0,
+      "units_after_review": 0,
+      "A": 0,
+      "B": 0,
+      "parent_non_whitespace_characters": 28944,
+      "A_non_whitespace_characters": 0,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "alencon-clerge",
+      "volume": 1,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[9]/div3[1]"
+        ],
+        "start": 5411586,
+        "end": 5435510
+      },
+      "reviewed_start": 5411586,
+      "reviewed_end": 5435510,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 15,
+      "paragraph_roles_changed": 14,
+      "automatic_units_before_review": 85,
+      "units_after_review": 86,
+      "A": 5,
+      "B": 81,
+      "parent_non_whitespace_characters": 13580,
+      "A_non_whitespace_characters": 743,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "alencon-noblesse",
+      "volume": 1,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[9]/div3[2]"
+        ],
+        "start": 5435531,
+        "end": 5492248
+      },
+      "reviewed_start": 5435531,
+      "reviewed_end": 5492248,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 5,
+      "paragraph_roles_changed": 8,
+      "automatic_units_before_review": 12,
+      "units_after_review": 12,
+      "A": 2,
+      "B": 10,
+      "parent_non_whitespace_characters": 33164,
+      "A_non_whitespace_characters": 4965,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "angoumois-noblesse",
+      "volume": 2,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]"
+        ],
+        "start": 16826,
+        "end": 49888
+      },
+      "reviewed_start": 16826,
+      "reviewed_end": 49888,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 8,
+      "paragraph_roles_changed": 8,
+      "automatic_units_before_review": 56,
+      "units_after_review": 56,
+      "A": 5,
+      "B": 51,
+      "parent_non_whitespace_characters": 25539,
+      "A_non_whitespace_characters": 4048,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "anjou-clerge",
+      "volume": 2,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[2]/div3[1]",
+          "/TEI.2/text/body/div1/div2[2]/div3[2]",
+          "/TEI.2/text/body/div1/div2[2]/div3[3]"
+        ],
+        "start": 212002,
+        "end": 227226
+      },
+      "reviewed_start": 212002,
+      "reviewed_end": 227226,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 3,
+      "paragraph_roles_changed": 3,
+      "automatic_units_before_review": 80,
+      "units_after_review": 80,
+      "A": 18,
+      "B": 62,
+      "parent_non_whitespace_characters": 11558,
+      "A_non_whitespace_characters": 2155,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "annonay-clerge",
+      "volume": 2,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[3]/div3[1]"
+        ],
+        "start": 317034,
+        "end": 322650
+      },
+      "reviewed_start": 317034,
+      "reviewed_end": 322650,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 2,
+      "paragraph_roles_changed": 4,
+      "automatic_units_before_review": 31,
+      "units_after_review": 31,
+      "A": 13,
+      "B": 18,
+      "parent_non_whitespace_characters": 4255,
+      "A_non_whitespace_characters": 1677,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "beaujolais-noblesse",
+      "volume": 2,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[19]/div3[2]"
+        ],
+        "start": 1938359,
+        "end": 1946016
+      },
+      "reviewed_start": 1938359,
+      "reviewed_end": 1946016,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 1,
+      "paragraph_roles_changed": 1,
+      "automatic_units_before_review": 23,
+      "units_after_review": 32,
+      "A": 15,
+      "B": 17,
+      "parent_non_whitespace_characters": 5833,
+      "A_non_whitespace_characters": 2947,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "lawastine-tiers",
+      "volume": 2,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[14]/div3[9]"
+        ],
+        "start": 1301246,
+        "end": 1304778
+      },
+      "reviewed_start": 1301246,
+      "reviewed_end": 1304778,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 4,
+      "paragraph_roles_changed": 4,
+      "automatic_units_before_review": 5,
+      "units_after_review": 5,
+      "A": 5,
+      "B": 0,
+      "parent_non_whitespace_characters": 2724,
+      "A_non_whitespace_characters": 1640,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "colmar-ville",
+      "volume": 3,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[3]"
+        ],
+        "start": 110342,
+        "end": 145872
+      },
+      "reviewed_start": 110342,
+      "reviewed_end": 145872,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 8,
+      "paragraph_roles_changed": 27,
+      "automatic_units_before_review": 36,
+      "units_after_review": 36,
+      "A": 8,
+      "B": 28,
+      "parent_non_whitespace_characters": 20711,
+      "A_non_whitespace_characters": 3117,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "ribaucourt",
+      "volume": 3,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]"
+        ],
+        "start": 1757036,
+        "end": 1764576
+      },
+      "reviewed_start": 1757036,
+      "reviewed_end": 1764576,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 4,
+      "paragraph_roles_changed": 5,
+      "automatic_units_before_review": 10,
+      "units_after_review": 11,
+      "A": 11,
+      "B": 0,
+      "parent_non_whitespace_characters": 4325,
+      "A_non_whitespace_characters": 3479,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "flines",
+      "volume": 3,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[22]/div3[14]"
+        ],
+        "start": 1852913,
+        "end": 1859588
+      },
+      "reviewed_start": 1852913,
+      "reviewed_end": 1859588,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 3,
+      "paragraph_roles_changed": 4,
+      "automatic_units_before_review": 13,
+      "units_after_review": 13,
+      "A": 13,
+      "B": 0,
+      "parent_non_whitespace_characters": 3856,
+      "A_non_whitespace_characters": 2821,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "carces-mineurs",
+      "volume": 3,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[24]/div3[9]"
+        ],
+        "start": 2496436,
+        "end": 2502151
+      },
+      "reviewed_start": 2496436,
+      "reviewed_end": 2502151,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 1,
+      "paragraph_roles_changed": 1,
+      "automatic_units_before_review": 8,
+      "units_after_review": 8,
+      "A": 8,
+      "B": 0,
+      "parent_non_whitespace_characters": 3289,
+      "A_non_whitespace_characters": 3073,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "montigny-ostrevent",
+      "volume": 3,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]"
+        ],
+        "start": 2030673,
+        "end": 2039539
+      },
+      "reviewed_start": 2030673,
+      "reviewed_end": 2039539,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 3,
+      "paragraph_roles_changed": 4,
+      "automatic_units_before_review": 15,
+      "units_after_review": 19,
+      "A": 11,
+      "B": 8,
+      "parent_non_whitespace_characters": 5114,
+      "A_non_whitespace_characters": 3015,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "mirecourt-noblesse",
+      "volume": 4,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]",
+          "/TEI.2/text/body/div1/div2[1]/div3[3]",
+          "/TEI.2/text/body/div1/div2[1]/div3[4]"
+        ],
+        "start": 7726,
+        "end": 49457
+      },
+      "reviewed_start": 7726,
+      "reviewed_end": 49457,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 7,
+      "paragraph_roles_changed": 48,
+      "automatic_units_before_review": 25,
+      "units_after_review": 25,
+      "A": 13,
+      "B": 12,
+      "parent_non_whitespace_characters": 24336,
+      "A_non_whitespace_characters": 1527,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "guerande-tiers",
+      "volume": 4,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[9]/div3[3]"
+        ],
+        "start": 904586,
+        "end": 926813
+      },
+      "reviewed_start": 904586,
+      "reviewed_end": 926813,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 5,
+      "paragraph_roles_changed": 8,
+      "automatic_units_before_review": 27,
+      "units_after_review": 27,
+      "A": 8,
+      "B": 19,
+      "parent_non_whitespace_characters": 12904,
+      "A_non_whitespace_characters": 2854,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "ferrieres",
+      "volume": 4,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[18]/div3[145]",
+          "/TEI.2/text/body/div1/div2[18]/div3[146]",
+          "/TEI.2/text/body/div1/div2[18]/div3[147]",
+          "/TEI.2/text/body/div1/div2[18]/div3[148]",
+          "/TEI.2/text/body/div1/div2[18]/div3[149]"
+        ],
+        "start": 5028040,
+        "end": 5034067
+      },
+      "reviewed_start": 5028040,
+      "reviewed_end": 5034067,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 2,
+      "paragraph_roles_changed": 2,
+      "automatic_units_before_review": 25,
+      "units_after_review": 25,
+      "A": 24,
+      "B": 1,
+      "parent_non_whitespace_characters": 3240,
+      "A_non_whitespace_characters": 2610,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "annet-marne",
+      "volume": 4,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[18]/div3[8]"
+        ],
+        "start": 2705601,
+        "end": 2709736
+      },
+      "reviewed_start": 2705601,
+      "reviewed_end": 2709736,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 3,
+      "paragraph_roles_changed": 3,
+      "automatic_units_before_review": 15,
+      "units_after_review": 15,
+      "A": 15,
+      "B": 0,
+      "parent_non_whitespace_characters": 2338,
+      "A_non_whitespace_characters": 1694,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "ermenonville",
+      "volume": 4,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[18]/div3[12]"
+        ],
+        "start": 2880253,
+        "end": 2882169
+      },
+      "reviewed_start": 2880253,
+      "reviewed_end": 2882169,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 2,
+      "paragraph_roles_changed": 2,
+      "automatic_units_before_review": 12,
+      "units_after_review": 12,
+      "A": 12,
+      "B": 0,
+      "parent_non_whitespace_characters": 1036,
+      "A_non_whitespace_characters": 644,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "mirecourt-clerge",
+      "volume": 4,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[1]"
+        ],
+        "start": 2312,
+        "end": 7705
+      },
+      "reviewed_start": 2312,
+      "reviewed_end": 7705,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 3,
+      "paragraph_roles_changed": 3,
+      "automatic_units_before_review": 5,
+      "units_after_review": 5,
+      "A": 5,
+      "B": 0,
+      "parent_non_whitespace_characters": 3122,
+      "A_non_whitespace_characters": 2040,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "pierrelez-habitants",
+      "volume": 5,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[9]"
+        ],
+        "start": 194234,
+        "end": 196791
+      },
+      "reviewed_start": 194234,
+      "reviewed_end": 196791,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 3,
+      "paragraph_roles_changed": 2,
+      "automatic_units_before_review": 9,
+      "units_after_review": 9,
+      "A": 9,
+      "B": 0,
+      "parent_non_whitespace_characters": 1424,
+      "A_non_whitespace_characters": 868,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "perigny-brie",
+      "volume": 5,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[5]"
+        ],
+        "start": 124227,
+        "end": 129592
+      },
+      "reviewed_start": 124227,
+      "reviewed_end": 129592,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 4,
+      "paragraph_roles_changed": 3,
+      "automatic_units_before_review": 15,
+      "units_after_review": 15,
+      "A": 15,
+      "B": 0,
+      "parent_non_whitespace_characters": 2997,
+      "A_non_whitespace_characters": 2432,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "plessis-secqueville",
+      "volume": 5,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[18]"
+        ],
+        "start": 279262,
+        "end": 283623
+      },
+      "reviewed_start": 279262,
+      "reviewed_end": 283623,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 3,
+      "paragraph_roles_changed": 2,
+      "automatic_units_before_review": 9,
+      "units_after_review": 9,
+      "A": 9,
+      "B": 0,
+      "parent_non_whitespace_characters": 2496,
+      "A_non_whitespace_characters": 1582,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "puteaux",
+      "volume": 5,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[29]"
+        ],
+        "start": 440333,
+        "end": 447416
+      },
+      "reviewed_start": 440333,
+      "reviewed_end": 447416,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 6,
+      "paragraph_roles_changed": 5,
+      "automatic_units_before_review": 11,
+      "units_after_review": 11,
+      "A": 11,
+      "B": 0,
+      "parent_non_whitespace_characters": 4059,
+      "A_non_whitespace_characters": 2486,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "vic-clerge",
+      "volume": 6,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[4]"
+        ],
+        "start": 140779,
+        "end": 162953
+      },
+      "reviewed_start": 140779,
+      "reviewed_end": 162953,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 4,
+      "paragraph_roles_changed": 11,
+      "automatic_units_before_review": 42,
+      "units_after_review": 42,
+      "A": 8,
+      "B": 34,
+      "parent_non_whitespace_characters": 12858,
+      "A_non_whitespace_characters": 2367,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "toul-noblesse",
+      "volume": 6,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]"
+        ],
+        "start": 38189,
+        "end": 70408
+      },
+      "reviewed_start": 38189,
+      "reviewed_end": 70408,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 52,
+      "paragraph_roles_changed": 79,
+      "automatic_units_before_review": 34,
+      "units_after_review": 34,
+      "A": 2,
+      "B": 32,
+      "parent_non_whitespace_characters": 18202,
+      "A_non_whitespace_characters": 217,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "albertas",
+      "volume": 6,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[17]/div3[1]"
+        ],
+        "start": 2107339,
+        "end": 2111031
+      },
+      "reviewed_start": 2107339,
+      "reviewed_end": 2111031,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 2,
+      "paragraph_roles_changed": 2,
+      "automatic_units_before_review": 9,
+      "units_after_review": 9,
+      "A": 9,
+      "B": 0,
+      "parent_non_whitespace_characters": 2124,
+      "A_non_whitespace_characters": 1655,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "beaurecueil",
+      "volume": 6,
+      "automatic_parent_matches_reference": false,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[17]/div3[14]"
+        ],
+        "start": 2345533,
+        "end": 2351146
+      },
+      "reviewed_start": 2345533,
+      "reviewed_end": 2349561,
+      "parent_correction_required": true,
+      "manual_structure_decisions": 2,
+      "paragraph_roles_changed": 0,
+      "automatic_units_before_review": 3,
+      "units_after_review": 3,
+      "A": 3,
+      "B": 0,
+      "parent_non_whitespace_characters": 2312,
+      "A_non_whitespace_characters": 1001,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    },
+    {
+      "key": "lourmarin",
+      "volume": 6,
+      "automatic_parent_matches_reference": true,
+      "automatic_parent": {
+        "divisions": [
+          "/TEI.2/text/body/div1/div2[17]/div3[43]"
+        ],
+        "start": 2881144,
+        "end": 2889905
+      },
+      "reviewed_start": 2881144,
+      "reviewed_end": 2889905,
+      "parent_correction_required": false,
+      "manual_structure_decisions": 4,
+      "paragraph_roles_changed": 5,
+      "automatic_units_before_review": 0,
+      "units_after_review": 0,
+      "A": 0,
+      "B": 0,
+      "parent_non_whitespace_characters": 5078,
+      "A_non_whitespace_characters": 0,
+      "boundaries_uncertain_after_review": false,
+      "human_review_seconds": null
+    }
+  ],
+  "windows": [
+    {
+      "document_key": "agen-clerge",
+      "window": 0,
+      "gold": 9,
+      "predicted": 8,
+      "correct_starts": 8,
+      "missed_starts": 1,
+      "wrong_starts": 0,
+      "correct_ends": 8,
+      "missed_ends": 1,
+      "wrong_ends": 0,
+      "correct_units": 7
+    },
+    {
+      "document_key": "agen-noblesse",
+      "window": 0,
+      "gold": 3,
+      "predicted": 3,
+      "correct_starts": 3,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 3,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 3
+    },
+    {
+      "document_key": "agen-tiers",
+      "window": 0,
+      "gold": 0,
+      "predicted": 0,
+      "correct_starts": 0,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 0,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 0
+    },
+    {
+      "document_key": "alencon-clerge",
+      "window": 0,
+      "gold": 5,
+      "predicted": 4,
+      "correct_starts": 4,
+      "missed_starts": 1,
+      "wrong_starts": 0,
+      "correct_ends": 3,
+      "missed_ends": 2,
+      "wrong_ends": 1,
+      "correct_units": 2
+    },
+    {
+      "document_key": "alencon-noblesse",
+      "window": 0,
+      "gold": 2,
+      "predicted": 2,
+      "correct_starts": 2,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 2,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 2
+    },
+    {
+      "document_key": "angoumois-noblesse",
+      "window": 0,
+      "gold": 4,
+      "predicted": 4,
+      "correct_starts": 4,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 3,
+      "missed_ends": 1,
+      "wrong_ends": 1,
+      "correct_units": 3
+    },
+    {
+      "document_key": "angoumois-noblesse",
+      "window": 1,
+      "gold": 1,
+      "predicted": 1,
+      "correct_starts": 1,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 1,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 1
+    },
+    {
+      "document_key": "anjou-clerge",
+      "window": 0,
+      "gold": 6,
+      "predicted": 6,
+      "correct_starts": 6,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 6,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 6
+    },
+    {
+      "document_key": "anjou-clerge",
+      "window": 1,
+      "gold": 4,
+      "predicted": 4,
+      "correct_starts": 4,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 4,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 4
+    },
+    {
+      "document_key": "anjou-clerge",
+      "window": 2,
+      "gold": 4,
+      "predicted": 4,
+      "correct_starts": 4,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 4,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 4
+    },
+    {
+      "document_key": "anjou-clerge",
+      "window": 3,
+      "gold": 4,
+      "predicted": 4,
+      "correct_starts": 4,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 4,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 4
+    },
+    {
+      "document_key": "annonay-clerge",
+      "window": 0,
+      "gold": 13,
+      "predicted": 13,
+      "correct_starts": 13,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 13,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 13
+    },
+    {
+      "document_key": "beaujolais-noblesse",
+      "window": 0,
+      "gold": 15,
+      "predicted": 15,
+      "correct_starts": 15,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 15,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 15
+    },
+    {
+      "document_key": "lawastine-tiers",
+      "window": 0,
+      "gold": 5,
+      "predicted": 5,
+      "correct_starts": 5,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 5,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 5
+    },
+    {
+      "document_key": "colmar-ville",
+      "window": 0,
+      "gold": 8,
+      "predicted": 8,
+      "correct_starts": 8,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 8,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 8
+    },
+    {
+      "document_key": "ribaucourt",
+      "window": 0,
+      "gold": 11,
+      "predicted": 10,
+      "correct_starts": 10,
+      "missed_starts": 1,
+      "wrong_starts": 0,
+      "correct_ends": 9,
+      "missed_ends": 2,
+      "wrong_ends": 1,
+      "correct_units": 9
+    },
+    {
+      "document_key": "flines",
+      "window": 0,
+      "gold": 13,
+      "predicted": 13,
+      "correct_starts": 13,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 13,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 13
+    },
+    {
+      "document_key": "carces-mineurs",
+      "window": 0,
+      "gold": 8,
+      "predicted": 8,
+      "correct_starts": 8,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 8,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 8
+    },
+    {
+      "document_key": "montigny-ostrevent",
+      "window": 0,
+      "gold": 11,
+      "predicted": 7,
+      "correct_starts": 6,
+      "missed_starts": 5,
+      "wrong_starts": 1,
+      "correct_ends": 6,
+      "missed_ends": 5,
+      "wrong_ends": 1,
+      "correct_units": 2
+    },
+    {
+      "document_key": "mirecourt-noblesse",
+      "window": 0,
+      "gold": 13,
+      "predicted": 13,
+      "correct_starts": 12,
+      "missed_starts": 1,
+      "wrong_starts": 1,
+      "correct_ends": 12,
+      "missed_ends": 1,
+      "wrong_ends": 1,
+      "correct_units": 11
+    },
+    {
+      "document_key": "guerande-tiers",
+      "window": 0,
+      "gold": 8,
+      "predicted": 8,
+      "correct_starts": 8,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 8,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 8
+    },
+    {
+      "document_key": "ferrieres",
+      "window": 0,
+      "gold": 14,
+      "predicted": 14,
+      "correct_starts": 13,
+      "missed_starts": 1,
+      "wrong_starts": 1,
+      "correct_ends": 13,
+      "missed_ends": 1,
+      "wrong_ends": 1,
+      "correct_units": 12
+    },
+    {
+      "document_key": "ferrieres",
+      "window": 1,
+      "gold": 6,
+      "predicted": 6,
+      "correct_starts": 6,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 6,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 6
+    },
+    {
+      "document_key": "ferrieres",
+      "window": 2,
+      "gold": 2,
+      "predicted": 2,
+      "correct_starts": 2,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 2,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 2
+    },
+    {
+      "document_key": "ferrieres",
+      "window": 3,
+      "gold": 2,
+      "predicted": 2,
+      "correct_starts": 2,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 2,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 2
+    },
+    {
+      "document_key": "annet-marne",
+      "window": 0,
+      "gold": 15,
+      "predicted": 15,
+      "correct_starts": 15,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 15,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 15
+    },
+    {
+      "document_key": "ermenonville",
+      "window": 0,
+      "gold": 12,
+      "predicted": 12,
+      "correct_starts": 12,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 12,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 12
+    },
+    {
+      "document_key": "mirecourt-clerge",
+      "window": 0,
+      "gold": 5,
+      "predicted": 5,
+      "correct_starts": 5,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 5,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 5
+    },
+    {
+      "document_key": "pierrelez-habitants",
+      "window": 0,
+      "gold": 9,
+      "predicted": 9,
+      "correct_starts": 9,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 8,
+      "missed_ends": 1,
+      "wrong_ends": 1,
+      "correct_units": 8
+    },
+    {
+      "document_key": "perigny-brie",
+      "window": 0,
+      "gold": 15,
+      "predicted": 15,
+      "correct_starts": 15,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 15,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 15
+    },
+    {
+      "document_key": "plessis-secqueville",
+      "window": 0,
+      "gold": 9,
+      "predicted": 9,
+      "correct_starts": 9,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 9,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 9
+    },
+    {
+      "document_key": "puteaux",
+      "window": 0,
+      "gold": 11,
+      "predicted": 11,
+      "correct_starts": 11,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 11,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 11
+    },
+    {
+      "document_key": "vic-clerge",
+      "window": 0,
+      "gold": 8,
+      "predicted": 8,
+      "correct_starts": 8,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 8,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 8
+    },
+    {
+      "document_key": "toul-noblesse",
+      "window": 0,
+      "gold": 2,
+      "predicted": 2,
+      "correct_starts": 2,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 0,
+      "missed_ends": 2,
+      "wrong_ends": 2,
+      "correct_units": 0
+    },
+    {
+      "document_key": "albertas",
+      "window": 0,
+      "gold": 9,
+      "predicted": 9,
+      "correct_starts": 9,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 9,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 9
+    },
+    {
+      "document_key": "beaurecueil",
+      "window": 0,
+      "gold": 3,
+      "predicted": 3,
+      "correct_starts": 3,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 2,
+      "missed_ends": 1,
+      "wrong_ends": 1,
+      "correct_units": 2
+    },
+    {
+      "document_key": "lourmarin",
+      "window": 0,
+      "gold": 0,
+      "predicted": 0,
+      "correct_starts": 0,
+      "missed_starts": 0,
+      "wrong_starts": 0,
+      "correct_ends": 0,
+      "missed_ends": 0,
+      "wrong_ends": 0,
+      "correct_units": 0
+    }
+  ],
+  "aggregate_reviewed_windows": {
+    "gold": 269,
+    "predicted": 262,
+    "correct_starts": 259,
+    "missed_starts": 10,
+    "wrong_starts": 3,
+    "correct_ends": 252,
+    "missed_ends": 17,
+    "wrong_ends": 10,
+    "correct_units": 244,
+    "starts_precision": 0.9885496183206107,
+    "starts_recall": 0.9628252788104089,
+    "ends_precision": 0.9618320610687023,
+    "ends_recall": 0.9368029739776952,
+    "unit_precision": 0.9312977099236641,
+    "unit_recall": 0.9070631970260223
+  },
+  "timing": {
+    "run_started_utc": "2026-10-26T10:26:45.586997+00:00",
+    "load_parse_offset_seconds": 1.1663342500000908,
+    "whole_run_seconds": 1.7158552390001205,
+    "process_cpu_seconds": 1.7156895349999999,
+    "human_validation_seconds": null,
+    "note": "Mesures de la commande uniquement ; revue Codex et mise au point non assimilables à du travail humain chronométré.",
+    "scope": "Chargement, positions, extraction et écritures du corpus ; hors écriture finale des métriques/provenance et hors téléchargement."
+  }
+}

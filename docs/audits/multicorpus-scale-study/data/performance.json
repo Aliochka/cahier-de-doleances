@@ -1,0 +1,266 @@
+{
+  "kind": "local exact in-memory, cached inputs; not PostgreSQL service latency",
+  "new_query_encodings": 0,
+  "query_encoding_cost_included": false,
+  "blas_threads": 4,
+  "per_stage": [
+    {
+      "size": 240,
+      "modern_segments": 240,
+      "raw_vector_bytes": 983040,
+      "subset_preparation_seconds": 0.0012987950030947104,
+      "rss_bytes": 68546560,
+      "measurements": [
+        {
+          "query_id": "q01",
+          "vector_dot_aggregation_ms": 0.053160001698415726,
+          "vector_full_sort_ms": 0.057738001487450674,
+          "lexical_score_ms": 0.10434599971631542,
+          "lexical_full_sort_ms": 0.03189899871358648
+        },
+        {
+          "query_id": "q06",
+          "vector_dot_aggregation_ms": 0.019797000277321786,
+          "vector_full_sort_ms": 0.016550999134778976,
+          "lexical_score_ms": 0.07101300070644356,
+          "lexical_full_sort_ms": 0.0219409994315356
+        },
+        {
+          "query_id": "q25",
+          "vector_dot_aggregation_ms": 0.017843998648459092,
+          "vector_full_sort_ms": 0.01546900239191018,
+          "lexical_score_ms": 0.051036000513704494,
+          "lexical_full_sort_ms": 0.0192259976756759
+        }
+      ],
+      "median_ms": {
+        "vector_dot_aggregation_ms": 0.019797000277321786,
+        "vector_full_sort_ms": 0.016550999134778976,
+        "lexical_score_ms": 0.07101300070644356,
+        "lexical_full_sort_ms": 0.0219409994315356
+      }
+    },
+    {
+      "size": 1000,
+      "modern_segments": 1003,
+      "raw_vector_bytes": 4108288,
+      "subset_preparation_seconds": 0.0024690499994903803,
+      "rss_bytes": 76148736,
+      "measurements": [
+        {
+          "query_id": "q01",
+          "vector_dot_aggregation_ms": 0.08376700134249404,
+          "vector_full_sort_ms": 0.06185600068420172,
+          "lexical_score_ms": 0.10040800043498166,
+          "lexical_full_sort_ms": 0.046346998715307564
+        },
+        {
+          "query_id": "q06",
+          "vector_dot_aggregation_ms": 0.020307998056523502,
+          "vector_full_sort_ms": 0.049563001084607095,
+          "lexical_score_ms": 0.07260600250447169,
+          "lexical_full_sort_ms": 0.038992999179754406
+        },
+        {
+          "query_id": "q25",
+          "vector_dot_aggregation_ms": 0.01905599856399931,
+          "vector_full_sort_ms": 0.04711899964604527,
+          "lexical_score_ms": 0.058048997743753716,
+          "lexical_full_sort_ms": 0.037740999687230214
+        }
+      ],
+      "median_ms": {
+        "vector_dot_aggregation_ms": 0.020307998056523502,
+        "vector_full_sort_ms": 0.049563001084607095,
+        "lexical_score_ms": 0.07260600250447169,
+        "lexical_full_sort_ms": 0.038992999179754406
+      }
+    },
+    {
+      "size": 5000,
+      "modern_segments": 5021,
+      "raw_vector_bytes": 20566016,
+      "subset_preparation_seconds": 0.003839488999801688,
+      "rss_bytes": 111378432,
+      "measurements": [
+        {
+          "query_id": "q01",
+          "vector_dot_aggregation_ms": 0.2758169976004865,
+          "vector_full_sort_ms": 0.28133699743193574,
+          "lexical_score_ms": 0.25488800019957125,
+          "lexical_full_sort_ms": 0.15487999917240813
+        },
+        {
+          "query_id": "q06",
+          "vector_dot_aggregation_ms": 0.1064690004568547,
+          "vector_full_sort_ms": 0.26398500267532654,
+          "lexical_score_ms": 0.2404810002190061,
+          "lexical_full_sort_ms": 0.14605400065192953
+        },
+        {
+          "query_id": "q25",
+          "vector_dot_aggregation_ms": 0.0702520010236185,
+          "vector_full_sort_ms": 0.2565809991210699,
+          "lexical_score_ms": 0.12983399938093498,
+          "lexical_full_sort_ms": 0.13397099974099547
+        }
+      ],
+      "median_ms": {
+        "vector_dot_aggregation_ms": 0.1064690004568547,
+        "vector_full_sort_ms": 0.26398500267532654,
+        "lexical_score_ms": 0.2404810002190061,
+        "lexical_full_sort_ms": 0.14605400065192953
+      }
+    },
+    {
+      "size": 20000,
+      "modern_segments": 20061,
+      "raw_vector_bytes": 82169856,
+      "subset_preparation_seconds": 0.013159294998331461,
+      "rss_bytes": 239403008,
+      "measurements": [
+        {
+          "query_id": "q01",
+          "vector_dot_aggregation_ms": 2.068388999759918,
+          "vector_full_sort_ms": 1.216040000144858,
+          "lexical_score_ms": 0.7577409996883944,
+          "lexical_full_sort_ms": 0.585138001042651
+        },
+        {
+          "query_id": "q06",
+          "vector_dot_aggregation_ms": 1.9497460016282275,
+          "vector_full_sort_ms": 1.2056399973516818,
+          "lexical_score_ms": 0.6916559977980796,
+          "lexical_full_sort_ms": 0.5615329973807093
+        },
+        {
+          "query_id": "q25",
+          "vector_dot_aggregation_ms": 1.8937409986392595,
+          "vector_full_sort_ms": 1.193887997942511,
+          "lexical_score_ms": 0.4570159981085453,
+          "lexical_full_sort_ms": 0.5273989991110284
+        }
+      ],
+      "median_ms": {
+        "vector_dot_aggregation_ms": 1.9497460016282275,
+        "vector_full_sort_ms": 1.2056399973516818,
+        "lexical_score_ms": 0.6916559977980796,
+        "lexical_full_sort_ms": 0.5615329973807093
+      }
+    },
+    {
+      "size": 100000,
+      "modern_segments": 100348,
+      "raw_vector_bytes": 411025408,
+      "subset_preparation_seconds": 0.06691493700054707,
+      "rss_bytes": 929796096,
+      "measurements": [
+        {
+          "query_id": "q01",
+          "vector_dot_aggregation_ms": 8.926607999455882,
+          "vector_full_sort_ms": 7.424381001328584,
+          "lexical_score_ms": 4.761197000334505,
+          "lexical_full_sort_ms": 3.0319850011437666
+        },
+        {
+          "query_id": "q06",
+          "vector_dot_aggregation_ms": 8.29607600098825,
+          "vector_full_sort_ms": 7.144125000195345,
+          "lexical_score_ms": 3.8743250006518792,
+          "lexical_full_sort_ms": 2.9256050002004486
+        },
+        {
+          "query_id": "q25",
+          "vector_dot_aggregation_ms": 8.713658000488067,
+          "vector_full_sort_ms": 7.101005001459271,
+          "lexical_score_ms": 3.5350780017324723,
+          "lexical_full_sort_ms": 2.711103999899933
+        }
+      ],
+      "median_ms": {
+        "vector_dot_aggregation_ms": 8.713658000488067,
+        "vector_full_sort_ms": 7.144125000195345,
+        "lexical_score_ms": 3.8743250006518792,
+        "lexical_full_sort_ms": 2.9256050002004486
+      }
+    },
+    {
+      "size": 1000000,
+      "modern_segments": 1003055,
+      "raw_vector_bytes": 4108513280,
+      "subset_preparation_seconds": 0.0015479319990845397,
+      "rss_bytes": 4565676032,
+      "measurements": [
+        {
+          "query_id": "q01",
+          "vector_dot_aggregation_ms": 104.39334999682615,
+          "vector_full_sort_ms": 93.4452430010424,
+          "lexical_score_ms": 80.39721800014377,
+          "lexical_full_sort_ms": 32.11251200264087
+        },
+        {
+          "query_id": "q06",
+          "vector_dot_aggregation_ms": 85.927336000168,
+          "vector_full_sort_ms": 80.25496899790596,
+          "lexical_score_ms": 91.1821970003075,
+          "lexical_full_sort_ms": 30.836077999992995
+        },
+        {
+          "query_id": "q25",
+          "vector_dot_aggregation_ms": 88.46585399805917,
+          "vector_full_sort_ms": 81.82512200073688,
+          "lexical_score_ms": 77.1969050001644,
+          "lexical_full_sort_ms": 31.690971001808066
+        }
+      ],
+      "median_ms": {
+        "vector_dot_aggregation_ms": 88.46585399805917,
+        "vector_full_sort_ms": 81.82512200073688,
+        "lexical_score_ms": 80.39721800014377,
+        "lexical_full_sort_ms": 31.690971001808066
+      }
+    }
+  ],
+  "duplicate_text_counts": [
+    {
+      "size": 240,
+      "distinct_text_hashes": 238,
+      "repeated_text_occurrences": 2,
+      "definition": "Exact answer text SHA256; same short answer to different questions can repeat; not removed"
+    },
+    {
+      "size": 1000,
+      "distinct_text_hashes": 982,
+      "repeated_text_occurrences": 18,
+      "definition": "Exact answer text SHA256; same short answer to different questions can repeat; not removed"
+    },
+    {
+      "size": 5000,
+      "distinct_text_hashes": 4826,
+      "repeated_text_occurrences": 174,
+      "definition": "Exact answer text SHA256; same short answer to different questions can repeat; not removed"
+    },
+    {
+      "size": 20000,
+      "distinct_text_hashes": 18928,
+      "repeated_text_occurrences": 1072,
+      "definition": "Exact answer text SHA256; same short answer to different questions can repeat; not removed"
+    },
+    {
+      "size": 100000,
+      "distinct_text_hashes": 92768,
+      "repeated_text_occurrences": 7232,
+      "definition": "Exact answer text SHA256; same short answer to different questions can repeat; not removed"
+    },
+    {
+      "size": 1000000,
+      "distinct_text_hashes": 892964,
+      "repeated_text_occurrences": 107036,
+      "definition": "Exact answer text SHA256; same short answer to different questions can repeat; not removed"
+    }
+  ],
+  "cache_bytes": 5173849814,
+  "sql_export_seconds": 283.80180638399906,
+  "lexical_preparation_seconds": 16.651571985999908,
+  "full_30_query_vector_score_seconds": 2.679826295006933
+}

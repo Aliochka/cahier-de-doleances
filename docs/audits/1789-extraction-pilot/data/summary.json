@@ -1,0 +1,58 @@
+{
+  "documents": 30,
+  "by_volume": {
+    "1": 5,
+    "2": 5,
+    "3": 5,
+    "4": 6,
+    "5": 4,
+    "6": 5
+  },
+  "by_estate": {
+    "clergé": 7,
+    "noblesse": 6,
+    "tiers état": 6,
+    "non attribué": 11
+  },
+  "parents_matching_automatic_boundaries": 29,
+  "parents_requiring_boundary_correction": 1,
+  "parents_with_uncertain_boundaries_after_xml_review": 0,
+  "raw_candidates": 750,
+  "final_article_candidates": 759,
+  "A": 269,
+  "B": 490,
+  "C_source_ranges_not_articles": 187,
+  "non_whitespace_parent_characters": 320547,
+  "non_whitespace_A_characters": 60695,
+  "A_text_coverage_of_all_parent_text": 0.1893482079071088,
+  "A_share_of_final_candidates": 0.3544137022397892,
+  "fully_reviewed_numbered_body_documents": [
+    "lawastine-tiers",
+    "ribaucourt",
+    "flines",
+    "carces-mineurs",
+    "annet-marne",
+    "ermenonville",
+    "mirecourt-clerge",
+    "pierrelez-habitants",
+    "perigny-brie",
+    "plessis-secqueville",
+    "puteaux",
+    "albertas",
+    "beaurecueil"
+  ],
+  "explicit_structure_decisions": 185,
+  "paragraph_roles_changed": 344,
+  "proposal_review_outcomes": {
+    "unchanged_verified_A": 244,
+    "boundary_changed": 72,
+    "unchanged_unverified_B": 427,
+    "excluded_by_structure_review": 7
+  },
+  "gold_A_windows": 37,
+  "uncertain_B_reference_windows": 1,
+  "legacy_28_crosswalk_same_extent": 27,
+  "human_validation_seconds": null,
+  "external_historian_review": false,
+  "scope": "Mesures sur un échantillon raisonné et des fenêtres de développement vérifiées par Codex, sans test aveugle ni extrapolation."
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "key": "albret-absence",
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[8]/div3[1]",
+    "expected_standalone_cahier": false,
+    "kind": "notice_missing_document",
+    "reason": "Le texte annonce explicitement que le cahier n’a pas été trouvé. Aucune revendication à inventer.",
+    "predicted_standalone_cahier": false,
+    "correct": true,
+    "title_exact": [
+      "CAHIER DE L'ORDRE DU CLERGÉ. "
+    ],
+    "opening_exact": [
+      "(Il notls a été impossible jusqu'à ce jour de trouver ce cahier.\" — M.\n                            Tartière, archiviste des Landes, nous assure qu'il n'existe ni dans les\n                            archives de Mont-de-Marsan, ni dans les archives des villes du\n                            département. M. le baron de Cauna, auteur de l'Armoriai des Landes, n'a\n                            pas été plus heureux que nous dans ses investigations sur le même sujet.\n                            — Nos recherches continuent et nous publierons plus tard ce cahier si\n                            nous parvenons à le découvrir, j m, e. l.) "
+    ],
+    "source_sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6"
+  },
+  {
+    "key": "anjou-continuation",
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[2]",
+    "expected_standalone_cahier": false,
+    "kind": "continuation",
+    "reason": "Chapitre II du parent Anjou, pas nouveau cahier.",
+    "predicted_standalone_cahier": false,
+    "correct": true,
+    "title_exact": [
+      "CHAPITRE II "
+    ],
+    "opening_exact": [
+      "concernant la province d'anjou. ",
+      "1° Que les Etats provinciaux aient lieu pour l'Anjou, séparément de la Touraine et du\n       Maine, à certaines époques fixées par les Etats généraux. "
+    ],
+    "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217"
+  },
+  {
+    "key": "mirecourt-annexe",
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+    "expected_standalone_cahier": false,
+    "kind": "attached_document",
+    "reason": "Demandes provinciales jointes à Mirecourt noblesse, pas nouveau parent dans ce pilote.",
+    "predicted_standalone_cahier": false,
+    "correct": true,
+    "title_exact": [
+      "DEMANDES PARTICULIÈRES. ",
+      "Pour la province de Lorraine. "
+    ],
+    "opening_exact": [
+      "1° Que les Etats provinciaux y soient tenus chaque année. ",
+      "De maintenir les droits des propriété, tels qu'ils sont réglés par les\n                            coutumes, lois et usages de la province. "
+    ],
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f"
+  },
+  {
+    "key": "mirecourt-memoire",
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]",
+    "expected_standalone_cahier": false,
+    "kind": "supporting_document",
+    "reason": "Travail des commissaires à l’appui des cahiers ; conserver dans le dossier, sans compter un cahier supplémentaire.",
+    "predicted_standalone_cahier": false,
+    "correct": true,
+    "title_exact": [
+      "TRAVAIL "
+    ],
+    "opening_exact": [
+      "Présenté par MM. les commissaires, pour servir d'instruction, et venir à\n                            l'appui des cahiers de la noblesse, dont son député est chargé. ",
+      "L'ordre de la noblesse de ce bailliage a arrêté ses cahiers d'après les\n                            motifs et considérations ci-dessous exprimé^ qtii serviront\n                            d'instructions et de moyens à son député pour faire valoir ses\n                            réclamations. Elle a considéré : "
+    ],
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f"
+  },
+  {
+    "key": "vic-extrait",
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[5]",
+    "expected_standalone_cahier": false,
+    "kind": "published_extract",
+    "reason": "Le titre commence par Extrait : ne pas le compter comme cahier intégral dans l’échantillon de 30.",
+    "predicted_standalone_cahier": false,
+    "correct": true,
+    "title_exact": [
+      "Extrait du cahier des demandes et doléances de l'ordre de la norlesse\n                            du bailliage de vlc, déposé au greffe dudit bailliage. ",
+      "CAHIER",
+      " Des demandes et doléances formées par la chambre de la noblesse du\n                            bailliage de Vio, pour être portées aux Etats généraux par son député,\n                            pour s'y conformer (1). "
+    ],
+    "opening_exact": [
+      "L'ordre de la noblesse du bailliage de Vie, assemblé en Vertu des lettres\n                            de convocation de Sa Majesté, du 7 février 1789, demande avec instance : ",
+      "Art. 1er Que les opinions, lors de la tenue\n                            des Etats généraux, soient prises par chambre et non individuellement i\n                            conformément à l'ancienne constitution du royaume. "
+    ],
+    "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8"
+  },
+  {
+    "key": "ferrieres-section",
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[146]",
+    "expected_standalone_cahier": false,
+    "kind": "internal_section",
+    "reason": "Constitution est une section du parent Ferrières.",
+    "predicted_standalone_cahier": false,
+    "correct": true,
+    "title_exact": [
+      "CONSTITUTION. "
+    ],
+    "opening_exact": [
+      "Art. 1er. Renouveler l'adhésion solennelle de\n                            tous les Français à la constitution monarchique. ",
+      "Art. 2. Travailler à une.charte qui renferme inviolablement les droits de\n                            tous. "
+    ],
+    "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f"
+  }
+]

@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-25",
+  "previous_audit": "docs/audits/1789-multicorpus",
+  "previous_audit_files_sha256": {
+    "docs/audits/1789-multicorpus/.gitignore": "7309906834da0b5c53b09365eafe542a96eda26f5c733a4951056e9411bc574b",
+    "docs/audits/1789-multicorpus/selection.json": "3df35898c88f18437d84f7efcf2d7e65fe6c4420200a7e894133f47cafb4ad55",
+    "docs/audits/1789-multicorpus/source-tree.json": "9381cbbffff73cac9bc134c22b83d7404d535fc9969e0a0e794f7833e2964d51",
+    "docs/audits/1789-multicorpus/quality-review.json": "9578eebd85e21f9169b106c176f7adfe26a289ecd64fedd6f162832ebfc17a4d",
+    "docs/audits/1789-multicorpus/README.md": "a774023a90853c087a689c6e89617bc11d62a26ea73849cec133b00ed9100297",
+    "docs/audits/1789-multicorpus/extract.py": "825dba4631deaeb728579aaf0c54a0e1e30e8259fb51bd75ecc1e7ee304aa226",
+    "docs/audits/1789-multicorpus/provenance.json": "882a6170d40e6b5321227a51688b37645f3544523e4d825d0baf8ae8caa8bde3",
+    "docs/audits/1789-multicorpus/verify.py": "d65b79ed1e346a49589dcf32985bd599b18a4c1c9f9ba511fe656729a4b07424",
+    "docs/audits/1789-multicorpus/data/screening.json": "ee2a7c31ae015575a1e0d43bb8378704920040b527f9ef716090b3a380aef787",
+    "docs/audits/1789-multicorpus/data/inventory.json": "b9abc0949adab99c25ada4bd7f200545f766e397b1e50883a76903932711ced9",
+    "docs/audits/1789-multicorpus/data/source-pages.json": "caa4ef2ea40120c31eb91c34da4369d355d9b9904d852af9bb4d0a0c09981a72",
+    "docs/audits/1789-multicorpus/data/passages.json": "681cb1f5d038c32f05da19e5943072ee86c8db209b863bb8b158c815ca4856e7",
+    "docs/audits/1789-multicorpus/data/divisions.json": "ab03aba47585ec853e25b4513f82570f69dd40267b64e2bac33567eebc35130e",
+    "docs/audits/1789-multicorpus/data/documents.json": "456fcd0638c22ded800bc38c74dda912ccc887c772676dcadc2c92dba1535eef",
+    "docs/audits/1789-multicorpus/data/documents/vic-clerge.txt": "7f3bba041ee20cbdebc4d55e1bca0c4fba7f64d857ca71a0cc252b9fa5b5c762",
+    "docs/audits/1789-multicorpus/data/documents/mirecourt-noblesse.txt": "01316143d34fc57e53c1e08d7c53fdb02be90418180c010317a12e3cf6066379",
+    "docs/audits/1789-multicorpus/data/documents/angoumois-noblesse.xml": "b322ff24a6524bb7f69aaef2fa67cb35282e4cf78abbd84a941c2ee3a4a9e46d",
+    "docs/audits/1789-multicorpus/data/documents/agen-clerge.txt": "f535cbfc25abe8efa6e346b310847270cba8d210455b3600f566671e315526f8",
+    "docs/audits/1789-multicorpus/data/documents/pierrelez-habitants.xml": "ad29f9b386e02043719b300866a777f4585801be5584447dd8183b363d5788c9",
+    "docs/audits/1789-multicorpus/data/documents/agen-clerge.xml": "2269d2859a6f7da8de730ef2be977ded7b97d0fbe25638378f27c939b4f42db3",
+    "docs/audits/1789-multicorpus/data/documents/colmar-ville.txt": "29529cfe8e15b567f0be993cc271a7fd87d8867dc377f6712911a92d23530814",
+    "docs/audits/1789-multicorpus/data/documents/angoumois-noblesse.txt": "8ca7590088068842bc70d2794e6544c477b379f5485f0429835ede6679053c48",
+    "docs/audits/1789-multicorpus/data/documents/colmar-ville.xml": "7828fc6d7232a1ba635a6d86a734853a70fb2f2e75cb0d7c587dc6b8b462ab9a",
+    "docs/audits/1789-multicorpus/data/documents/vic-clerge.xml": "aba603e54143d0adfaa50ef315f4ff63eeeb8a5d5f9d5986580f717b238adb22",
+    "docs/audits/1789-multicorpus/data/documents/mirecourt-noblesse.xml": "8c07d06d9f7325bbf145e548f3f8a5262ebc4ad76bd0181cc5469992fdf3e8af",
+    "docs/audits/1789-multicorpus/data/documents/pierrelez-habitants.txt": "d8751154221ae9f037308062720de87e17ea1bd7de0469bc331e903f7ebff138",
+    "docs/audits/1789-multicorpus/data/documents/guerande-tiers.txt": "75af14659d8462d1bc6e99187e41feb6de4fd76364247c745b43cf294f92b51a",
+    "docs/audits/1789-multicorpus/data/documents/guerande-tiers.xml": "7d36d80cb3aacb767cad5c7d2fb6c537a3cbe8af285600d38dc40d7d61c91902",
+    "docs/audits/1789-multicorpus/data/problematic/anjou-chapitre1.xml": "09194fac50a1b3c98d82976558a88400e3291356683561287af18ed7d55657b6",
+    "docs/audits/1789-multicorpus/data/problematic/cases.json": "8646b69d77e886270bbe52ec7548ff618871529239630f77832e112a25ed50a9",
+    "docs/audits/1789-multicorpus/data/problematic/anjou-chapitre2.xml": "7eacc982d70e43cb382f600b71a861c8ee37086ddcfba096e7241dd773d87fdb",
+    "docs/audits/1789-multicorpus/data/problematic/albret-absence.xml": "543db5b6138f7a1c38d1d0e23617964f6e230393d2ee7cf3eef7c6f3ac608f6b",
+    "docs/audits/1789-multicorpus/data/problematic/ferrieres-debut.xml": "27cc63bb2ffbd0115f81e5f3b08bdced4d3e1b82622d504004a43f381653d41b",
+    "docs/audits/1789-multicorpus/data/problematic/cambrai-observations.xml": "e797056434bf8d9648a1680fba3ae47013dc22b9bd12a3d203f1755f1501f36a",
+    "docs/audits/1789-multicorpus/data/problematic/ferrieres-constitution.xml": "2882df6847943239fa840449ac7b8f6d5d72d285d433a597df1e984f179c1c8e"
+  },
+  "previous_audit_changed_files": [],
+  "stanford_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "frenchrevdata_site_revision": "3d38c876a7ff5a230c62ebb41d8c93229a954f80",
+  "external_artfl_corpus_revision": null,
+  "external_artfl_version_limit": "Current public PhiloLogic5 responses, timestamped and hashed; not an immutable TEI release.",
+  "temporary_directory": "/tmp/cahier-1789-source-comparison",
+  "database_access": false,
+  "embeddings_generated": false,
+  "application_changes": false,
+  "contacts_sent": false,
+  "initial_curl_downloads": [
+    {
+      "file": "artfl-project.html",
+      "url": "https://artfl-project.uchicago.edu/archives-parlementaires",
+      "sha256": "21c62f296a239f1ab04cc62ddfc11ff847f78ee58e52f13ba95f331ed2e005b0",
+      "status": "curl -fsSL succeeded; initial fetch before structured journal"
+    },
+    {
+      "file": "persee-pierrelez.html",
+      "url": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_5_1_2339",
+      "sha256": "28be359f4f61458fd75a412c790cfa0695ed58aab60677c10602dff9d083df76",
+      "status": "curl -fsSL succeeded; initial fetch before structured journal"
+    },
+    {
+      "file": "artfl-ui.html",
+      "url": "https://artflsrv04.uchicago.edu/philologic5/archparl/",
+      "sha256": "f3550b8bd7057e6b69444f21effc5128f8a4e342732a25abbb463534434ee336",
+      "status": "curl -fsSL succeeded; initial fetch before structured journal"
+    }
+  ],
+  "visual_checks": [
+    {
+      "file": "persee-angoumois-0003.jpg",
+      "sha256": "8521ce38124c3ed98b12c298b8426f57f8a7805e7c155e60fd98f2bb84b20b5e",
+      "method": "Manual visual inspection of printed page, not a new full transcription"
+    },
+    {
+      "file": "persee-colmar-0012.jpg",
+      "sha256": "fb47967dd19d700a98c70833ff6a3bce64dabc1516cea2ecddd31df5535df53d",
+      "method": "Manual visual inspection of printed page, not a new full transcription"
+    },
+    {
+      "file": "persee-guerande-0103.jpg",
+      "sha256": "fe00a84a457d06d699601f924fa0d96bc40fe3b0a022742ab05a0408db6683ff",
+      "method": "Manual visual inspection of printed page, not a new full transcription"
+    },
+    {
+      "file": "persee-mirecourt-0002.jpg",
+      "sha256": "f7eaa1d4453deb6102f848bda38faa4e6d7c2042a745fd81c21485e6d8f4477c",
+      "method": "Manual visual inspection of printed page, not a new full transcription"
+    },
+    {
+      "file": "persee-vic-0016.jpg",
+      "sha256": "42f91e0334198cabcb151bc6910a9853a0fbd43e7a3d9ccb950f769bcd24032a",
+      "method": "Manual visual inspection of printed page, not a new full transcription"
+    }
+  ],
+  "baseline_visual_reference": "../1789-multicorpus/quality-review.json",
+  "limitations": [
+    "No restricted Persée TEI obtained.",
+    "No corrected ARTFL bulk TEI archive located.",
+    "Seven cahiers are purposive, not a representative corpus sample.",
+    "Comparison of source paragraphs does not compare all headings, notes or tags.",
+    "Some public HTML representations omit text visible in images; this does not prove the restricted TEI omits it."
+  ]
+}

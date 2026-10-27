@@ -1,0 +1,27 @@
+{
+  "documents": 200,
+  "units": 6189,
+  "retained_C": 812,
+  "source_faithfulness": true,
+  "parent_and_xml_ranges": true,
+  "all_new_text_retained_between_AB_and_C": true,
+  "unique_unit_ids": true,
+  "no_duplicate_unit_intervals": true,
+  "neighbor_navigation": true,
+  "legacy_parents_preserved": 30,
+  "legacy_units_preserved": 759,
+  "new_A_reference_matches": 48,
+  "automatic_unit_crosswalks_checked": 5445,
+  "frozen_rules_unchanged": true,
+  "frozen_reference_unchanged": true,
+  "prior_audit_files_unchanged": 314,
+  "injected_faults_detected": [
+    "text_rewritten",
+    "wrong_parent_id",
+    "outside_parent",
+    "bad_parent_offset",
+    "bad_source_span",
+    "bad_text_hash"
+  ],
+  "no_database_access": true
+}

@@ -1,0 +1,10 @@
+{
+  "seed": 17892019,
+  "generator": "NumPy PCG64 permutation",
+  "units": 1000000,
+  "protected_base": 240,
+  "source_population": 5172356,
+  "query_independent": true,
+  "ordinal_plan_sha256": "828a6d39d52b34055099973dfb27388c62d37b2d782f84d3abc9ce195943e78a",
+  "parent_deduplication": false
+}

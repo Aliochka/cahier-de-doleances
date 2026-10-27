@@ -1,0 +1,338 @@
+[
+  {
+    "legacy_passage_id": "ap1789-exp-v1:1d3e262a45a8115489830bf1",
+    "legacy_document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_id": "ap1789-pilot-d1:jt959wc5586:64bb7420785d8cb8ea4b",
+    "document_key": "agen-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3cdbc82bba8aad5e"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:ba11867be5bf0ac6be0dddfe",
+    "legacy_document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_id": "ap1789-pilot-d1:jt959wc5586:64bb7420785d8cb8ea4b",
+    "document_key": "agen-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:86e8c14e342a6031"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:8f9e2d04d62170b373762032",
+    "legacy_document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_id": "ap1789-pilot-d1:jt959wc5586:64bb7420785d8cb8ea4b",
+    "document_key": "agen-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:8209736b4f38334b"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:08da963c9619f477c3a8cb58",
+    "legacy_document_id": "ap1789-exp-v1:jt959wc5586:4765a81b3fcec26c",
+    "document_id": "ap1789-pilot-d1:jt959wc5586:64bb7420785d8cb8ea4b",
+    "document_key": "agen-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3afe8afefa7f104a"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:6171993211617e23463c9385",
+    "legacy_document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "document_key": "angoumois-noblesse",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:7c91a20cc8f74ae3"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:49635ef2ba54ce22e78f71de",
+    "legacy_document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "document_key": "angoumois-noblesse",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e7405b32f433e444"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:a238d6fed70b278d3ab50f85",
+    "legacy_document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "document_key": "angoumois-noblesse",
+    "same_source_extent": false,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:b3ccf078480ba739"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:cfdbea1cc68482f89aced6e2",
+    "legacy_document_id": "ap1789-exp-v1:fz023dp4399:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "document_key": "angoumois-noblesse",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c8709abd5b51d8d1"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:7b9236a0b0f16f64263c3736",
+    "legacy_document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_id": "ap1789-pilot-d1:mc666yy3026:7252b87cf6dd0d663706",
+    "document_key": "colmar-ville",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:386d8065234ccd89"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:a2b8a630609143a49a9b80d8",
+    "legacy_document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_id": "ap1789-pilot-d1:mc666yy3026:7252b87cf6dd0d663706",
+    "document_key": "colmar-ville",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:e2d1b100626643ac"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:206104a6327b29a50da6390b",
+    "legacy_document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_id": "ap1789-pilot-d1:mc666yy3026:7252b87cf6dd0d663706",
+    "document_key": "colmar-ville",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:7cfea3d82b0fc416"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:0c962abc4282bfb94110720d",
+    "legacy_document_id": "ap1789-exp-v1:mc666yy3026:d95062e91737a1e0",
+    "document_id": "ap1789-pilot-d1:mc666yy3026:7252b87cf6dd0d663706",
+    "document_key": "colmar-ville",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:bcb7c561609b1c82"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:a50a8f266b2f5d5f3edabc82",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "document_key": "mirecourt-noblesse",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:4697badcca00ee62"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:2e8d467f632a89365fc57e8b",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "document_key": "mirecourt-noblesse",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:8f22466b1941f490"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:7865520f783749e29c4294b5",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "document_key": "mirecourt-noblesse",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:88c2e94347f1a8a1"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:374bfb0b7717e99c7bbbdbdc",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:8768b731cbb08887",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "document_key": "mirecourt-noblesse",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:660c45e65c3c349d"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:6c533fb4372901b66b23f087",
+    "legacy_document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_id": "ap1789-pilot-d1:xx284sn7328:12cdaced3d457962e532",
+    "document_key": "pierrelez-habitants",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:c115459d0d48b64c"
+    ],
+    "text_serialization_identical": true,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:7a4d33050bace88839d285f8",
+    "legacy_document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_id": "ap1789-pilot-d1:xx284sn7328:12cdaced3d457962e532",
+    "document_key": "pierrelez-habitants",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:e942d695bbe26376"
+    ],
+    "text_serialization_identical": true,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:8599d400c410b23252497c46",
+    "legacy_document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_id": "ap1789-pilot-d1:xx284sn7328:12cdaced3d457962e532",
+    "document_key": "pierrelez-habitants",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:f69ae6eea07e51b5"
+    ],
+    "text_serialization_identical": true,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:9e7d049fb68cc3e87af6e75e",
+    "legacy_document_id": "ap1789-exp-v1:xx284sn7328:82bea0941d78a0f9",
+    "document_id": "ap1789-pilot-d1:xx284sn7328:12cdaced3d457962e532",
+    "document_key": "pierrelez-habitants",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:2519b66838b7fec7"
+    ],
+    "text_serialization_identical": true,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:cac159c32d0601e9754369c8",
+    "legacy_document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_id": "ap1789-pilot-d1:wg983ft3682:72447fb17ff8b4b6f261",
+    "document_key": "vic-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:81c8372c84167536"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:a24bfbb583ecd2e58225fba9",
+    "legacy_document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_id": "ap1789-pilot-d1:wg983ft3682:72447fb17ff8b4b6f261",
+    "document_key": "vic-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:15783209925020c9"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:2370e42bf2300302b3c31a4d",
+    "legacy_document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_id": "ap1789-pilot-d1:wg983ft3682:72447fb17ff8b4b6f261",
+    "document_key": "vic-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:54778345ce2bc242"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:83ea6671404deb76e3c5109c",
+    "legacy_document_id": "ap1789-exp-v1:wg983ft3682:19a628ea936320cd",
+    "document_id": "ap1789-pilot-d1:wg983ft3682:72447fb17ff8b4b6f261",
+    "document_key": "vic-clerge",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f5c5a116c4e5da87"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:4be0f28a0fc9c6e9d203ee44",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:af71dbb9f75db8ce99b2",
+    "document_key": "guerande-tiers",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:f9d42ff68470aff4"
+    ],
+    "text_serialization_identical": true,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:4fb89d72138a99bd3652324e",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:af71dbb9f75db8ce99b2",
+    "document_key": "guerande-tiers",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:870aac3899c2cbb2"
+    ],
+    "text_serialization_identical": true,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:24464ab4d6502dc09aa51371",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:af71dbb9f75db8ce99b2",
+    "document_key": "guerande-tiers",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:7acef66220d46352"
+    ],
+    "text_serialization_identical": true,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  },
+  {
+    "legacy_passage_id": "ap1789-exp-v1:9962c4843ec4eda8b8203b48",
+    "legacy_document_id": "ap1789-exp-v1:xg914wh0253:1b50a9c5d8f1106a",
+    "document_id": "ap1789-pilot-d1:xg914wh0253:af71dbb9f75db8ce99b2",
+    "document_key": "guerande-tiers",
+    "same_source_extent": true,
+    "pilot_unit_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e03b80dc9c119b1e"
+    ],
+    "text_serialization_identical": false,
+    "note": "Nouvelle sérialisation : espaces inter-paragraphes XML conservés et bordures hors texte éliminées, sans réécriture. Le périmètre modifié doit être revu, jamais assimilé au même identifiant."
+  }
+]

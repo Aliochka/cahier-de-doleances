@@ -1,0 +1,219 @@
+[
+  {
+    "candidate_id": "candidate-5079deef3ccd3605bf4e",
+    "reason": "development_overlap",
+    "development_keys": [
+      "agen-clerge"
+    ]
+  },
+  {
+    "candidate_id": "candidate-94b4b33d34ab79ef1d0b",
+    "reason": "development_overlap",
+    "development_keys": [
+      "agen-noblesse"
+    ]
+  },
+  {
+    "candidate_id": "candidate-829cf962b430567381d2",
+    "reason": "development_overlap",
+    "development_keys": [
+      "agen-tiers"
+    ]
+  },
+  {
+    "candidate_id": "candidate-4f8958d245c11feab0bf",
+    "reason": "development_overlap",
+    "development_keys": [
+      "alencon-clerge"
+    ]
+  },
+  {
+    "candidate_id": "candidate-10d5fb08eee99e1a44ce",
+    "reason": "development_overlap",
+    "development_keys": [
+      "alencon-noblesse"
+    ]
+  },
+  {
+    "candidate_id": "candidate-75aaddcb7d1c12b3df48",
+    "reason": "development_overlap",
+    "development_keys": [
+      "angoumois-noblesse"
+    ]
+  },
+  {
+    "candidate_id": "candidate-fa06c9e7e44a60c9af7a",
+    "reason": "development_overlap",
+    "development_keys": [
+      "anjou-clerge"
+    ]
+  },
+  {
+    "candidate_id": "candidate-c1b78b4684c951c57551",
+    "reason": "development_overlap",
+    "development_keys": [
+      "annonay-clerge"
+    ]
+  },
+  {
+    "candidate_id": "candidate-2128800cc6c115876434",
+    "reason": "development_overlap",
+    "development_keys": [
+      "lawastine-tiers"
+    ]
+  },
+  {
+    "candidate_id": "candidate-076cfd4ee1f4724fabad",
+    "reason": "development_overlap",
+    "development_keys": [
+      "beaujolais-noblesse"
+    ]
+  },
+  {
+    "candidate_id": "candidate-3595ce47067e8685079f",
+    "reason": "development_overlap",
+    "development_keys": [
+      "colmar-ville"
+    ]
+  },
+  {
+    "candidate_id": "candidate-2b7d49dc0bd1dc9c09e5",
+    "reason": "development_overlap",
+    "development_keys": [
+      "ribaucourt"
+    ]
+  },
+  {
+    "candidate_id": "candidate-93816c2903b1b9fdcc80",
+    "reason": "development_overlap",
+    "development_keys": [
+      "flines"
+    ]
+  },
+  {
+    "candidate_id": "candidate-99899336a2e3f6c65b2d",
+    "reason": "development_overlap",
+    "development_keys": [
+      "montigny-ostrevent"
+    ]
+  },
+  {
+    "candidate_id": "candidate-f8258b49e93303176bdd",
+    "reason": "development_overlap",
+    "development_keys": [
+      "carces-mineurs"
+    ]
+  },
+  {
+    "candidate_id": "candidate-686a1414859e16bfc7d6",
+    "reason": "development_overlap",
+    "development_keys": [
+      "mirecourt-clerge"
+    ]
+  },
+  {
+    "candidate_id": "candidate-aef1e5ca5146296ba0d7",
+    "reason": "development_overlap",
+    "development_keys": [
+      "mirecourt-noblesse"
+    ]
+  },
+  {
+    "candidate_id": "candidate-687b83b98918b63b1308",
+    "reason": "development_overlap",
+    "development_keys": [
+      "guerande-tiers"
+    ]
+  },
+  {
+    "candidate_id": "candidate-fa4a901830f72ecc7151",
+    "reason": "development_overlap",
+    "development_keys": [
+      "annet-marne"
+    ]
+  },
+  {
+    "candidate_id": "candidate-7495759311648090e4ef",
+    "reason": "development_overlap",
+    "development_keys": [
+      "ermenonville"
+    ]
+  },
+  {
+    "candidate_id": "candidate-8793abfd39d30c84c285",
+    "reason": "development_overlap",
+    "development_keys": [
+      "ferrieres"
+    ]
+  },
+  {
+    "candidate_id": "candidate-6395df53ae37141f1c9b",
+    "reason": "development_overlap",
+    "development_keys": [
+      "pecqueuse"
+    ]
+  },
+  {
+    "candidate_id": "candidate-f5b68116509c653014b6",
+    "reason": "development_overlap",
+    "development_keys": [
+      "perigny-brie"
+    ]
+  },
+  {
+    "candidate_id": "candidate-45886e7415fe3090ce0a",
+    "reason": "development_overlap",
+    "development_keys": [
+      "pierrelez-habitants"
+    ]
+  },
+  {
+    "candidate_id": "candidate-877f569330af40562629",
+    "reason": "development_overlap",
+    "development_keys": [
+      "plessis-secqueville"
+    ]
+  },
+  {
+    "candidate_id": "candidate-c4b0829d3a94bf778f7e",
+    "reason": "development_overlap",
+    "development_keys": [
+      "puteaux"
+    ]
+  },
+  {
+    "candidate_id": "candidate-cc70503d7107808e3771",
+    "reason": "development_overlap",
+    "development_keys": [
+      "toul-noblesse"
+    ]
+  },
+  {
+    "candidate_id": "candidate-95bd6dba84925759303f",
+    "reason": "development_overlap",
+    "development_keys": [
+      "vic-clerge"
+    ]
+  },
+  {
+    "candidate_id": "candidate-c2b60a0ff49231ec3e08",
+    "reason": "development_overlap",
+    "development_keys": [
+      "albertas"
+    ]
+  },
+  {
+    "candidate_id": "candidate-fe061b43fec1188c92dc",
+    "reason": "development_overlap",
+    "development_keys": [
+      "beaurecueil"
+    ]
+  },
+  {
+    "candidate_id": "candidate-6db8105ed92da13dea73",
+    "reason": "development_overlap",
+    "development_keys": [
+      "lourmarin"
+    ]
+  }
+]

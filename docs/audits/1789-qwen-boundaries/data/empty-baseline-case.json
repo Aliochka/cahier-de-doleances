@@ -1,0 +1,11 @@
+{
+  "window_id": "validation-26",
+  "persee_id": "arcpa_0000-0000_1879_num_5_1_2405",
+  "span": [
+    979462,
+    979487
+  ],
+  "exact_source_slice": "\n                        ",
+  "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+  "conclusion": "Automatic A proposal exists but contains no non-whitespace source text; not an abstention"
+}

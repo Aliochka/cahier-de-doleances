@@ -1,0 +1,12 @@
+{
+  "observed_local_time": "2026-10-27 18:45:14 Europe/Paris",
+  "tool": "nvidia-smi after inference process exited",
+  "driver": "595.99.02",
+  "driver_cuda": "13.2",
+  "gpu": "NVIDIA GeForce RTX5090",
+  "memory_used_MiB": 179,
+  "memory_total_MiB": 32607,
+  "compute_processes": [],
+  "remaining_process": "gnome-shell graphics159MiB",
+  "model_process_released": true
+}

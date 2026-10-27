@@ -1,0 +1,68 @@
+{
+  "records": 1305,
+  "seconds": 15.02258782199715,
+  "alignment_status": {
+    "ambigu": 75,
+    "fort": 964,
+    "probable": 182,
+    "non_retrouve": 32,
+    "hors_perimetre": 52
+  },
+  "kinds": {
+    "cahier_autonome_probable": 1227,
+    "document_associe": 20,
+    "notice_absence": 5,
+    "proces_verbal": 4,
+    "liste": 46,
+    "autre_document": 1,
+    "extrait": 2
+  },
+  "boundary_status": {
+    "ambigues": 248,
+    "proposees": 988,
+    "non_etablies": 69
+  },
+  "per_volume": {
+    "1": {
+      "ambigu": 2,
+      "fort": 20,
+      "probable": 2
+    },
+    "2": {
+      "fort": 123,
+      "probable": 47,
+      "non_retrouve": 5,
+      "ambigu": 5,
+      "hors_perimetre": 1
+    },
+    "3": {
+      "fort": 162,
+      "non_retrouve": 6,
+      "probable": 35,
+      "hors_perimetre": 12,
+      "ambigu": 8
+    },
+    "4": {
+      "fort": 285,
+      "probable": 32,
+      "ambigu": 25,
+      "hors_perimetre": 1,
+      "non_retrouve": 4
+    },
+    "5": {
+      "fort": 231,
+      "ambigu": 18,
+      "probable": 37,
+      "non_retrouve": 7,
+      "hors_perimetre": 5
+    },
+    "6": {
+      "probable": 29,
+      "fort": 143,
+      "hors_perimetre": 33,
+      "ambigu": 17,
+      "non_retrouve": 10
+    }
+  },
+  "unverified": true
+}

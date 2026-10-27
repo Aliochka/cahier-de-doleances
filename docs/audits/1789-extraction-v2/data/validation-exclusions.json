@@ -1,0 +1,1007 @@
+[
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[14]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[16]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[21]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[22]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[5]/div3[36]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[6]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[7]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[7]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[8]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[10]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[11]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[5]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[6]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 1,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[7]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[11]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[11]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[14]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[14]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[15]/div3[6]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[15]/div3[8]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[16]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[19]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[24]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[24]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[27]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[31]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[33]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[38]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[39]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[3]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[3]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[42]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[42]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[43]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[45]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[46]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[47]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[47]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[48]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[48]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[4]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[50]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[5]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 2,
+    "xpath": "/TEI.2/text/body/div1/div2[6]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[19]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[10]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[13]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[14]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[21]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[23]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[25]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[26]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[29]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[32]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[24]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[24]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[25]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[27]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[27]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[27]/div3[7]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[27]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[29]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[33]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[34]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[35]/div3[6]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[38]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[40]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[50]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[50]/div3[5]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[50]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[51]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[52]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[53]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[53]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[54]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[54]/div3[5]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 3,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[6]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[13]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[16]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[106]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[108]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[118]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[12]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[138]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[145]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[146]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[147]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[148]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[149]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[153]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[16]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[170]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[178]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[19]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[224]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[228]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[240]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[45]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[68]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[77]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[8]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[90]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[18]/div3[93]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[3]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[4]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[5]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[8]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 4,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[12]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[14]/div3[5]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[16]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[19]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[110]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[112]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[118]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[120]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[137]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[140]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[155]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[157]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[18]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[29]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[44]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[5]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[61]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[88]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[99]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[22]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[24]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[25]/div3[11]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[25]/div3[16]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[25]/div3[7]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[25]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[29]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[16]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[5]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[9]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[30]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 5,
+    "xpath": "/TEI.2/text/body/div1/div2[3]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[10]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[11]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[11]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[14]/div3[6]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[14]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[43]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[44]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[57]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[62]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[67]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[70]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[81]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[91]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[97]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[17]/div3[99]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[6]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[7]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[25]/div3",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[29]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[2]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[35]/div3",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[4]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[4]/div3[3]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[51]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[5]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[62]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[8]/div3[1]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[8]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  },
+  {
+    "volume": 6,
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[2]",
+    "reason": "prior selected/development/negative-context inspected; conservative whole-division exclusion"
+  }
+]

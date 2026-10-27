@@ -1,0 +1,120 @@
+{
+  "segmentation": {
+    "gold": 269,
+    "v1_exact": 250,
+    "v2_exact": 260,
+    "lost_previously_correct": 0
+  },
+  "parent_cases": [
+    {
+      "candidate_id": "candidate-a8987424bbb5cb9fa345",
+      "expected_real": false,
+      "classification": "out_of_scope",
+      "subtype": "historical_or_editorial_context",
+      "start": 394266,
+      "end": 417965,
+      "reason": "Résumé sous Charles VIII, pas un cahier de1789; titre interne p57."
+    },
+    {
+      "candidate_id": "candidate-b289035431c04956dabe",
+      "expected_real": false,
+      "classification": "out_of_scope",
+      "subtype": "historical_or_editorial_context",
+      "start": 440308,
+      "end": 446342,
+      "reason": "Résumé sous Charles IX, pas un cahier de1789; p61 appartient au récit."
+    },
+    {
+      "candidate_id": "candidate-5f5cd4b2ef58f7dece46",
+      "expected_real": false,
+      "classification": "out_of_scope",
+      "subtype": "missing_document_notice",
+      "start": 2401977,
+      "end": 2402224,
+      "reason": "Béziers tiers: p2 déclare que le cahier manque; deux paragraphes sans revendication."
+    },
+    {
+      "candidate_id": "candidate-506a682f65ae1e814a3a",
+      "expected_real": true,
+      "classification": "associated",
+      "subtype": "professional_doleances",
+      "start": 419889,
+      "end": 422476,
+      "reason": "Doléances des médecins, titre p81, introduction p82, articles et signatures jusqu’àp92; p93 commence les procureurs. Sous-document revendicatif annexé au dossier d’Arles."
+    },
+    {
+      "candidate_id": "candidate-314a64454989f708a8a3",
+      "expected_real": true,
+      "classification": "autonomous",
+      "subtype": "cahier_or_instructions",
+      "start": 4358207,
+      "end": 4424198,
+      "reason": "La Rochelle tiers, corps finissant àl’article110 puis demandes de l’île de Ré jointes avant les signatures; deux divisions liées, hiérarchie d’annexe conservée."
+    },
+    {
+      "candidate_id": "candidate-b11e579d4bc7daa5ad33",
+      "expected_real": true,
+      "classification": "autonomous",
+      "subtype": "cahier_or_instructions",
+      "start": 6970618,
+      "end": 6983047,
+      "reason": "Thionville clergé, préambule p1, articles, réserves puis signatures et copie conforme p33–35."
+    },
+    {
+      "candidate_id": "candidate-8615aa6715be49c318a9",
+      "expected_real": false,
+      "classification": "part",
+      "subtype": "internal_title_without_autonomy",
+      "start": 168591,
+      "end": 187078,
+      "reason": "Doléances pour le clergé p39: section du cahier de Montargis ouvert en tête du div3, pas un cahier autonome."
+    },
+    {
+      "candidate_id": "candidate-cd771995c951b0c35db8",
+      "expected_real": false,
+      "classification": "part",
+      "subtype": "section_heading",
+      "start": 4091091,
+      "end": 4093124,
+      "reason": "Plaintes locales p228: fin du cahier de Claye ouvert p199; ne pas fabriquer un deuxième cahier."
+    },
+    {
+      "candidate_id": "candidate-e2ed8e80bf9d0e527ede",
+      "expected_real": false,
+      "classification": "out_of_scope",
+      "subtype": "missing_document_notice",
+      "start": 6904719,
+      "end": 6905144,
+      "reason": "Soissons noblesse et tiers: note déclarant les documents absents; aucune transcription du cahier."
+    },
+    {
+      "candidate_id": "candidate-35fa9083b29b304f3277",
+      "expected_real": true,
+      "classification": "autonomous",
+      "subtype": "cahier_or_instructions",
+      "start": 1524281,
+      "end": 1636400,
+      "reason": "Vernouillet: tête du div3 jusqu’àla rédaction Laroche p317. Verrières commence au p318. L’année1739 dans la pièce suivante est conservée sans correction."
+    },
+    {
+      "candidate_id": "candidate-f2f9d83b2569c0ce70ef",
+      "expected_real": true,
+      "classification": "autonomous",
+      "subtype": "cahier_or_instructions",
+      "start": 3611619,
+      "end": 3618370,
+      "reason": "Rognac: prose non numérotée, clôture25mars1789 p17, signatures p18. Pas de subdivision en articles certifiée."
+    },
+    {
+      "candidate_id": "candidate-ed9e410244588392930b",
+      "expected_real": true,
+      "classification": "autonomous",
+      "subtype": "cahier_or_instructions",
+      "start": 178458,
+      "end": 206979,
+      "reason": "Vic tiers, articles puis clôture28mars1789 et copie conforme; extrait des liasses désigne la provenance et non un abrégé de cahier."
+    }
+  ],
+  "pecqueuse_articles": 38,
+  "scope": "development only; all previously inspected documents, never validation"
+}

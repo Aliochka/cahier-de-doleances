@@ -1,0 +1,20 @@
+{
+  "new_candidate_records_examined": 17,
+  "held_out_candidates": 12,
+  "additional_period_heading_reviews": 5,
+  "parent_boundaries_corrected": 1,
+  "new_article_units_reviewed": 48,
+  "missed_article_units_added": 2,
+  "incorrect_predicted_article_boundaries_in_held_out_true_parent_windows": 0,
+  "raw_unit_crosswalk_relations": {
+    "same_id": 5418,
+    "parent_id_changed_same_bounds": 10,
+    "excluded_or_retained_C": 17
+  },
+  "negative_windows_read": 12,
+  "negative_paragraphs_read": 68,
+  "independent_human_validators": 0,
+  "human_seconds": null,
+  "workflow_timestamps_are_not_human_time": true,
+  "decisions_not_summed_as_minutes_or_costs": true
+}
