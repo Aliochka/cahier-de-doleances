@@ -1,0 +1,13 @@
+{
+  "documents": 7,
+  "paragraph_pairs": 497,
+  "identical_paragraphs": 497,
+  "comparison": "Direct p elements, text_content vs itertext source; whitespace reduction only, no case/Unicode/hyphen/spelling normalization.",
+  "targeted_probes": 5,
+  "exact_reference_units": {
+    "stanford": 0,
+    "artfl": 0,
+    "persee": 4
+  },
+  "probe_method": "Levenshtein over whitespace-folded, casefolded selected short units. Purposive known-defect probes, not a corpus accuracy or CER/WER estimate."
+}

@@ -85,3 +85,16 @@ Thumbs.db
 /private/search/
 /search-transfer/
 /benchmark-results/
+
+# Local inference weights, numerical arrays and download/runtime caches.
+# Small audit deliverables may be explicitly allowed by their own .gitignore.
+.cache/
+*.safetensors
+*.gguf
+*.ggml
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.npy
+*.npz

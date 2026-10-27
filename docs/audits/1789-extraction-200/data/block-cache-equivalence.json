@@ -1,0 +1,18 @@
+{
+  "validation_candidates_checked": [
+    "candidate-a8987424bbb5cb9fa345",
+    "candidate-b289035431c04956dabe",
+    "candidate-5f5cd4b2ef58f7dece46",
+    "candidate-506a682f65ae1e814a3a",
+    "candidate-314a64454989f708a8a3",
+    "candidate-b11e579d4bc7daa5ad33",
+    "candidate-8615aa6715be49c318a9",
+    "candidate-cd771995c951b0c35db8",
+    "candidate-e2ed8e80bf9d0e527ede",
+    "candidate-35fa9083b29b304f3277",
+    "candidate-f2f9d83b2569c0ce70ef",
+    "candidate-ed9e410244588392930b"
+  ],
+  "identical": true,
+  "change": "pure memoization and first-child test, no classification or segmentation rule changed"
+}

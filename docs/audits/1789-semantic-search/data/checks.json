@@ -1,0 +1,26 @@
+{
+  "corpus": 509,
+  "historical_status_A": 269,
+  "modern_distinct_parents": 240,
+  "ranking_runs": 300,
+  "annotated_top10_pool_pairs": 1139,
+  "additional_judged_pairs": 16,
+  "prior_audit_files_unchanged": 147,
+  "local_embedding_artifacts_unchanged": 434,
+  "source_fidelity": true,
+  "segment_coverage": true,
+  "finite_unit_norm_vectors": true,
+  "all_top10_judged": true,
+  "query_and_protocol_unchanged": true,
+  "mutation_checks_detected": [
+    "duplicate_id",
+    "altered_text",
+    "wrong_parent",
+    "wrong_status",
+    "bad_offset",
+    "altered_embedding_text"
+  ],
+  "tracked_diff": [],
+  "database_access": false,
+  "external_inference": false
+}

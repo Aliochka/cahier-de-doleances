@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "errors": [],
+  "previous_files_checked": 493,
+  "source_files_checked": 6,
+  "registry_records": 1305,
+  "metadata_records": 1305,
+  "automatic_boundaries": 1236,
+  "explicit_Codex_boundary_references": 78,
+  "validation_notices": 100,
+  "continuous_zones": 12,
+  "previous_document_ids_preserved": 200,
+  "no_application_command_or_database_access": true
+}

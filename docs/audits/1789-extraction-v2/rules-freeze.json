@@ -1,0 +1,24 @@
+{
+  "created_at": "2026-10-27T11:44:24.796831+00:00",
+  "reference_exists": false,
+  "new_validation_source_packs_examined": false,
+  "files": {
+    "common.py": "f530e2f64d56257433713523a542a2538e5fddcfaf2ee6ec3e149418b469c659",
+    "rules_v2.py": "ac0452ee29f5ab738ee3fea2d6edd8e2c659445c5aad97f3e1ea7633af71e765",
+    "discover_v2.py": "fb5b73827945dec2f4cd573b38abcf9541ea581cdd90107d7c11ffcefea426bc",
+    "configuration.json": "72949356c743755d75f54a8a4cc6954eadad5c3099ab8a6faa7e7af5cc55e05c",
+    "prepare_validation.py": "10bc489d14606fad7a9c213e48e9ef7ce68480c715348e268bad76e5158a4d80",
+    "validation-plan.json": "2f2ed7014214fb5f12c4cb28b21ec98cc8cc39212a32d1573eddb43311952fa9"
+  },
+  "v1_dependencies": {
+    "1789-extraction-200/rules.py": "be6ca66796c9d45e73bc669c6de3f35af33bc5b8d0698d2d56b9ce56ec2af23d",
+    "1789-extraction-200/pilot_segment.py": "899501c95a53c98524870ffbc28ec30ef3e300c630ebcb563a771a0d8b7ec2ab",
+    "1789-extraction-200/fast_blocks.py": "3f4341a5e8489cf115df70415755db63b38d004812b7d2a11a31d58fc119877f"
+  },
+  "development_result": {
+    "gold": 269,
+    "v1_exact": 250,
+    "v2_exact": 260,
+    "lost_previously_correct": 0
+  }
+}

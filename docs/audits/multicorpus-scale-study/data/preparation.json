@@ -1,0 +1,492 @@
+{
+  "terms": [
+    "abol",
+    "abus",
+    "achat",
+    "aid",
+    "amélior",
+    "campagn",
+    "charg",
+    "class",
+    "compt",
+    "consent",
+    "contr",
+    "contrôl",
+    "cooper",
+    "corv",
+    "coûteux",
+    "création",
+    "cyberattaqu",
+    "dev",
+    "doit",
+    "doivent",
+    "don",
+    "droit",
+    "décid",
+    "dépens",
+    "déploi",
+    "entre",
+    "express",
+    "famill",
+    "faut",
+    "femm",
+    "fibr",
+    "fiscal",
+    "g",
+    "gabel",
+    "garant",
+    "habit",
+    "il",
+    "impôt",
+    "justic",
+    "justici",
+    "le",
+    "libert",
+    "limit",
+    "lutt",
+    "mainten",
+    "moin",
+    "nation",
+    "optiqu",
+    "ordre",
+    "organis",
+    "pauvr",
+    "personnel",
+    "plus",
+    "polit",
+    "pouvoir",
+    "privileg",
+    "proteg",
+    "public",
+    "publiqu",
+    "rapproch",
+    "rendr",
+    "représent",
+    "réduir",
+    "répart",
+    "réseau",
+    "seigneurial",
+    "servic",
+    "smartphon",
+    "social",
+    "subvention",
+    "supprim",
+    "taill",
+    "usag",
+    "ven",
+    "voitur",
+    "écol",
+    "égal",
+    "électr",
+    "équit",
+    "état"
+  ],
+  "query_terms": [
+    [
+      "faut",
+      "impôt",
+      "le",
+      "réduir"
+    ],
+    [
+      "fiscal",
+      "plus",
+      "répart",
+      "équit"
+    ],
+    [
+      "contrôl",
+      "doivent",
+      "dépens",
+      "il",
+      "le",
+      "publiqu"
+    ],
+    [
+      "contr",
+      "le",
+      "lutt",
+      "privileg"
+    ],
+    [
+      "dev",
+      "garant",
+      "justic",
+      "égal"
+    ],
+    [
+      "coûteux",
+      "justic",
+      "justici",
+      "le",
+      "moin",
+      "rendr"
+    ],
+    [
+      "compt",
+      "doivent",
+      "il",
+      "le",
+      "rendr",
+      "représent"
+    ],
+    [
+      "abus",
+      "le",
+      "limit",
+      "pouvoir"
+    ],
+    [
+      "habit",
+      "le",
+      "public",
+      "rapproch",
+      "servic"
+    ],
+    [
+      "express",
+      "libert",
+      "proteg"
+    ],
+    [
+      "aid",
+      "pauvr",
+      "plus",
+      "ven"
+    ],
+    [
+      "création",
+      "doit",
+      "décid",
+      "impôt"
+    ],
+    [
+      "faut",
+      "gabel",
+      "supprim"
+    ],
+    [
+      "répart",
+      "taill"
+    ],
+    [
+      "abol",
+      "faut",
+      "fiscal",
+      "le",
+      "privileg"
+    ],
+    [
+      "consent",
+      "doit",
+      "impôt"
+    ],
+    [
+      "corv",
+      "faut",
+      "le",
+      "supprim"
+    ],
+    [
+      "droit",
+      "faut",
+      "le",
+      "seigneurial",
+      "supprim"
+    ],
+    [
+      "class",
+      "limit",
+      "taill",
+      "écol"
+    ],
+    [
+      "mainten",
+      "ordre",
+      "public"
+    ],
+    [
+      "nation",
+      "représent"
+    ],
+    [
+      "cooper",
+      "doivent",
+      "entre",
+      "il",
+      "le",
+      "état"
+    ],
+    [
+      "charg",
+      "famill",
+      "le",
+      "réduir"
+    ],
+    [
+      "amélior",
+      "femm",
+      "polit",
+      "représent"
+    ],
+    [
+      "campagn",
+      "déploi",
+      "fibr",
+      "le",
+      "optiqu"
+    ],
+    [
+      "don",
+      "le",
+      "personnel",
+      "proteg",
+      "réseau",
+      "social"
+    ],
+    [
+      "achat",
+      "faut",
+      "subvention",
+      "voitur",
+      "électr"
+    ],
+    [
+      "contr",
+      "cyberattaqu",
+      "le",
+      "lutt"
+    ],
+    [
+      "faut",
+      "limit",
+      "smartphon",
+      "usag",
+      "écol"
+    ],
+    [
+      "déploi",
+      "g",
+      "organis"
+    ]
+  ],
+  "queries_sha256": "5103d6d95f17bb47db54dc663acea7dd076bf5d8fd23c7bd0fe3bfe8b00b17b1",
+  "export_sha256": "2f77b87ce7a82fc98910fdc4e132c89595e8c6bba8657665b942986a4c1b3e80",
+  "total_seconds": 21.678828210002393,
+  "tokenization_seconds": 16.651571985999908,
+  "distinct_stems": 138233,
+  "vector_timings": [
+    {
+      "query_id": "q01",
+      "seconds": 0.10389969899915741
+    },
+    {
+      "query_id": "q02",
+      "seconds": 0.08970753199901083
+    },
+    {
+      "query_id": "q03",
+      "seconds": 0.08837088600193965
+    },
+    {
+      "query_id": "q04",
+      "seconds": 0.08985069800110068
+    },
+    {
+      "query_id": "q05",
+      "seconds": 0.08853152599840541
+    },
+    {
+      "query_id": "q06",
+      "seconds": 0.08859378100169124
+    },
+    {
+      "query_id": "q07",
+      "seconds": 0.088225606999913
+    },
+    {
+      "query_id": "q08",
+      "seconds": 0.08929207999972277
+    },
+    {
+      "query_id": "q09",
+      "seconds": 0.08878860299955704
+    },
+    {
+      "query_id": "q10",
+      "seconds": 0.08871326299777138
+    },
+    {
+      "query_id": "q11",
+      "seconds": 0.08858217900342424
+    },
+    {
+      "query_id": "q12",
+      "seconds": 0.08882665399869438
+    },
+    {
+      "query_id": "q13",
+      "seconds": 0.0886505969974678
+    },
+    {
+      "query_id": "q14",
+      "seconds": 0.08942066900272039
+    },
+    {
+      "query_id": "q15",
+      "seconds": 0.08801940299963462
+    },
+    {
+      "query_id": "q16",
+      "seconds": 0.08873573500022758
+    },
+    {
+      "query_id": "q17",
+      "seconds": 0.08851491499808617
+    },
+    {
+      "query_id": "q18",
+      "seconds": 0.08839809700293699
+    },
+    {
+      "query_id": "q19",
+      "seconds": 0.08811624299778487
+    },
+    {
+      "query_id": "q20",
+      "seconds": 0.0899879630014766
+    },
+    {
+      "query_id": "q21",
+      "seconds": 0.08835206300136633
+    },
+    {
+      "query_id": "q22",
+      "seconds": 0.0884879049990559
+    },
+    {
+      "query_id": "q23",
+      "seconds": 0.08872394300124142
+    },
+    {
+      "query_id": "q24",
+      "seconds": 0.0885798449999129
+    },
+    {
+      "query_id": "q25",
+      "seconds": 0.0880527549998078
+    },
+    {
+      "query_id": "q26",
+      "seconds": 0.0909180330017989
+    },
+    {
+      "query_id": "q27",
+      "seconds": 0.08800249200066901
+    },
+    {
+      "query_id": "q28",
+      "seconds": 0.08888034499977948
+    },
+    {
+      "query_id": "q29",
+      "seconds": 0.08924114500041469
+    },
+    {
+      "query_id": "q30",
+      "seconds": 0.08936163900216343
+    }
+  ],
+  "stages": [
+    {
+      "size": 240,
+      "distinct_parents": 240,
+      "additional_answers_same_parent": 0,
+      "questionnaires": {
+        "4": 60,
+        "5": 60,
+        "7": 60,
+        "10": 60
+      },
+      "sum_lexical_lengths": 11544,
+      "mean_lexical_length": 22.67976424361493
+    },
+    {
+      "size": 1000,
+      "distinct_parents": 999,
+      "additional_answers_same_parent": 1,
+      "questionnaires": {
+        "4": 193,
+        "5": 373,
+        "7": 200,
+        "10": 234
+      },
+      "sum_lexical_lengths": 27771,
+      "mean_lexical_length": 21.88416075650118
+    },
+    {
+      "size": 5000,
+      "distinct_parents": 4963,
+      "additional_answers_same_parent": 37,
+      "questionnaires": {
+        "4": 875,
+        "5": 2029,
+        "7": 1015,
+        "10": 1081
+      },
+      "sum_lexical_lengths": 103228,
+      "mean_lexical_length": 19.59157335357753
+    },
+    {
+      "size": 20000,
+      "distinct_parents": 19502,
+      "additional_answers_same_parent": 498,
+      "questionnaires": {
+        "4": 3381,
+        "5": 8132,
+        "7": 3914,
+        "10": 4573
+      },
+      "sum_lexical_lengths": 379309,
+      "mean_lexical_length": 18.71375006167053
+    },
+    {
+      "size": 100000,
+      "distinct_parents": 87824,
+      "additional_answers_same_parent": 12176,
+      "questionnaires": {
+        "4": 16724,
+        "5": 40990,
+        "7": 20011,
+        "10": 22275
+      },
+      "sum_lexical_lengths": 1899643,
+      "mean_lexical_length": 18.94546669459155
+    },
+    {
+      "size": 1000000,
+      "distinct_parents": 406475,
+      "additional_answers_same_parent": 593525,
+      "questionnaires": {
+        "4": 165456,
+        "5": 411719,
+        "7": 200979,
+        "10": 221846
+      },
+      "sum_lexical_lengths": 18719725,
+      "mean_lexical_length": 18.714690748188737
+    }
+  ],
+  "rss_bytes": 4782501888,
+  "cache": "/tmp/cahier-multicorpus-scale-study",
+  "files": {
+    "term-counts.npy": "5971014ad0fdabb574e125d4e29b1b5dcab5693b05de94031beaa9738dc1ffb7",
+    "lengths.npy": "34ea6f6fcec00937e6be054c37ed4ab53d265ee24176abf8a8e84505da48c3c1",
+    "parents.npy": "1dc176114d6d98b76c79388dee2e694370c721b104e741bc05a3a57957f2ab4e",
+    "forms.npy": "76436ab68f722a221ae1fcdfeef4de492f16a422f73389b5509ee3c327d3eef7",
+    "ids.npy": "be4d472ca1786fa87321bf44d08d66819369d610d517bd5872d79eabec9893e3",
+    "id-order.npy": "4bd34a887c0a88ed5c14b8e9477beb3ad030440d76b24a22b7f726de8782f109",
+    "vector-scores.npy": "dfa91090ee3391b02a4b8825a0d269a300ecf6d17c083cb12f03f0f15bcd40c2",
+    "historical-B-scores.npy": "367cbd31636f64ba388b5f1c3a56610b508d03bf27ba0b4ea60dc78f1ebd12de"
+  }
+}

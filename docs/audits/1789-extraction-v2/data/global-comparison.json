@@ -1,0 +1,59 @@
+{
+  "v1_all_signals": 4448,
+  "v1_admitted": 1278,
+  "v2_all_classified_anchors": 1954,
+  "v2_admitted_including_attached": 1240,
+  "v2_parent_hypotheses_without_attached": 1234,
+  "v1_reclassified": {
+    "autonomous": 1166,
+    "part": 40,
+    "out_of_scope": 31,
+    "uncertain": 25,
+    "associated": 13,
+    "mention": 1,
+    "not_in_leaf_frame": 2
+  },
+  "old_admitted_missing_from_leaf_frame": 2,
+  "added_admitted_anchors": 61,
+  "old_admitted_ids_preserved": 1276,
+  "matched_bounds_changed": 58,
+  "old30_exact_parent_hypotheses": 28,
+  "anomalies": 26,
+  "anomaly_types": {
+    "split_root_requires_review": 24,
+    "short_admitted_hypothesis": 2
+  },
+  "by_volume": {
+    "1": {
+      "v1": 31,
+      "v2_autonomous": 20,
+      "v2_associated": 0
+    },
+    "2": {
+      "v1": 187,
+      "v2_autonomous": 171,
+      "v2_associated": 12
+    },
+    "3": {
+      "v1": 212,
+      "v2_autonomous": 184,
+      "v2_associated": 12
+    },
+    "4": {
+      "v1": 356,
+      "v2_autonomous": 348,
+      "v2_associated": 4
+    },
+    "5": {
+      "v1": 299,
+      "v2_autonomous": 292,
+      "v2_associated": 6
+    },
+    "6": {
+      "v1": 193,
+      "v2_autonomous": 182,
+      "v2_associated": 9
+    }
+  },
+  "all_global_predictions_unverified": true
+}

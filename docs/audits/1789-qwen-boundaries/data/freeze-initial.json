@@ -1,0 +1,31 @@
+{
+  "version": "qwen-boundary-frozen-v2",
+  "rules_frozen_before_validation_reference_read": true,
+  "development_pilot": "4 unconstrained outputs retained separately; 4 constrained development outputs inspected; no validation Qwen output generated",
+  "model": "Qwen3-14B",
+  "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+  "inference": {
+    "batch_size": 1,
+    "max_input_tokens": 24576,
+    "max_new_tokens": 512,
+    "seed": 42,
+    "do_sample": false,
+    "thinking": false,
+    "quantization": "NF4 double BF16",
+    "decoder": "LM Format Enforcer0.11.3 visible ID enums"
+  },
+  "files": {
+    "prompt.py": "3eead8b7ccbe0c9e6611618eef2fb631e5280075bd3beba0cbe326b3b7746390",
+    "constrained.py": "c3082dd5e04b8d4dbed76bdea6ab03a766b762cddd481340ed4e0e6da570e9dd",
+    "run_local.py": "30d7ee84e5f751dbbd6115710f2939c4add8cbb1f0542af6c904bcc719250f89",
+    "prepare.py": "1fae68b78e9bd5f9323ab0e61f96a3568e5ef71dffe4824c27abbf45a500a340",
+    "qcommon.py": "e52ffdd039ccc576adb24e790709fae1ea16d3c8afb40d26efd8f5b9f713352a",
+    "bootstrap.py": "9408c9b546db9757482bf48ea386e934b4325b0a5b0cd862e37df6352eb0f5dc",
+    "data/selection.json": "3fb455658d0acf9bf514ac928275247b269f7a64e38771285093a4198467c762",
+    "data/windows.jsonl": "77f0730b961fe05b994854472a198d6195c8e9a9a53f4e18d24c534fed811eb7",
+    "data/preparation.json": "08a13489abdc6573c6f2cdf69237c8598259afa7483e6e258528088e8bc06c06"
+  },
+  "reference_policy": "dossier of the specific notice; include linked preliminary pieces/signatures/certifications and annexes within scope; exclude separately described neighbours and general territorial headings; ambiguous scope excluded from exact-score denominator, retained for abstention evaluation",
+  "comparison_unit": "first and last nonempty source blocks, whitespace-only div padding ignored; IDs mapped to exact XML Unicode ranges",
+  "annotator": "Codex exploratory reference, not blind to historical studies nor independent human; validation reference produced before Qwen validation predictions"
+}

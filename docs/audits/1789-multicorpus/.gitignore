@@ -1,0 +1,7 @@
+# Artefacts publics de l'audit, séparés des données applicatives ignorées à la racine.
+!/*.json
+!/data/
+!/data/**
+
+# Large audit artefacts remain local; see ../LOCAL_DATA.md.
+/data/divisions.json

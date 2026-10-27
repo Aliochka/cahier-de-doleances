@@ -1,0 +1,9 @@
+{
+  "cause": "Generic import evaluate resolved to the previous V2 audit after the helper modified sys.path.",
+  "effect": "V2 evaluator reran locally; only evaluation-metrics.json changed bytes, in created_at and seconds. Other serialized results were byte-identical.",
+  "restoration": "Original bytes reconstructed from recorded earlier values and accepted only after exact match to the pre-study SHA-256.",
+  "restored_file": "docs/audits/1789-extraction-v2/data/evaluation-metrics.json",
+  "original_and_current_sha256": "c9967e5bb16c5d20cdbfd7713f836b6c7993a385c2f48da16e62493b29337d5f",
+  "remaining_prior_file_changes": [],
+  "prevention": "Replay checker now loads each local script through importlib.util.spec_from_file_location and checks prior file hashes both before and after."
+}

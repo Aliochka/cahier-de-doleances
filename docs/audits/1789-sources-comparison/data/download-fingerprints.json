@@ -1,0 +1,512 @@
+[
+  {
+    "file": "access.jsonl",
+    "bytes": 44426,
+    "sha256": "55bf5f4f596f8c827983c865c09e0d598b20a6c0975c3c5eac90c350bf7cacf6"
+  },
+  {
+    "file": "artfl-APvol01.tei",
+    "bytes": 3577,
+    "sha256": "f3550b8bd7057e6b69444f21effc5128f8a4e342732a25abbb463534434ee336"
+  },
+  {
+    "file": "artfl-Bibliography-BrRzbCsa.js",
+    "bytes": 3930,
+    "sha256": "6748fa8e1ed557f99b875fa336244203ae4ab367278d0e2124e7ff197a5565ed"
+  },
+  {
+    "file": "artfl-LandingPage-C2QrbUq2.js",
+    "bytes": 8988,
+    "sha256": "b32a9204c934ffaa6a89e5e3ba86d2f79c3a46fede918ece86a7cc082871b230"
+  },
+  {
+    "file": "artfl-TableOfContents-DZy7FUsp.js",
+    "bytes": 4478,
+    "sha256": "132219a74c03b96f3b7615094a154f3ac88255fd38ed9dd4a171cc70b11b729a"
+  },
+  {
+    "file": "artfl-TextNavigation-B9QKKFbq.js",
+    "bytes": 72816,
+    "sha256": "e542c585aaf33e60534a6481386d4d59c0474bf174f5f9cfb61c4b7e8e7928ee"
+  },
+  {
+    "file": "artfl-analytics-README.md",
+    "bytes": 15,
+    "sha256": "4da866dc8d4472fc133533a5578c2041c61aa7a99c7b32a2277e47ffc8457935"
+  },
+  {
+    "file": "artfl-app.js",
+    "bytes": 420214,
+    "sha256": "0f760807a844747d26a3eb51fb1a4bcea1ca7bb9909014dbbb80175399342a3c"
+  },
+  {
+    "file": "artfl-bibliography.json",
+    "bytes": 42430,
+    "sha256": "fb10fecf8cb1e2a60370e7d6f0b1dc35deaf76aec3e29fc4977283a84daf4f15"
+  },
+  {
+    "file": "artfl-citation-mirecourt.json",
+    "bytes": 102,
+    "sha256": "bbae233fb5fe2b2b66978982e2e362538fbcd470d874e5a629617458cc60dfb0"
+  },
+  {
+    "file": "artfl-config.json",
+    "bytes": 9159,
+    "sha256": "9d71e6e7c1a0b36f07f63e26bf06b21b4d057e98f7f2cb86eb01b4a152c88497"
+  },
+  {
+    "file": "artfl-evaluation-README.md",
+    "bytes": 33,
+    "sha256": "b22a71a9cfa6a721bb8715936524a0843bcc49e959bf93991ff40a874f0a7a75"
+  },
+  {
+    "file": "artfl-evaluation-footnotes.py",
+    "bytes": 5077,
+    "sha256": "2dc0413b696dd5fc8395f918a117abce474e5b0b107c4971779019b7bb0a0029"
+  },
+  {
+    "file": "artfl-evaluation-ocrerrors.py",
+    "bytes": 5895,
+    "sha256": "b50e03521093398350be16c934b93e807f8f0be4951ff6c8918ac140ebdffa01"
+  },
+  {
+    "file": "artfl-header-2.json",
+    "bytes": 1339,
+    "sha256": "8bab818ad139d7f494507115dd3a5feb99a2ef0bb1c9b42ee4f6b699837e58d3"
+  },
+  {
+    "file": "artfl-nav-agen.json",
+    "bytes": 69237,
+    "sha256": "9fb524bbd1aaf5760f5707f76e8c927dac3a3d3d72898c18bd119ac348cc4e80"
+  },
+  {
+    "file": "artfl-nav-angoumois.json",
+    "bytes": 69156,
+    "sha256": "577141040c3a4bf05fde1981414e79eb8af3ea4da6405b0dbed11621e40c79b2"
+  },
+  {
+    "file": "artfl-nav-colmar.json",
+    "bytes": 70410,
+    "sha256": "732f5fe94e65f25df6eadfd4297bbccbc72c384e9934127ce3d2e68ed4f668fd"
+  },
+  {
+    "file": "artfl-nav-guerande.json",
+    "bytes": 55467,
+    "sha256": "01474692dcf0d090c73a068f2a7db88e42c3706a52d7cd0e23f7dc9b46c4f189"
+  },
+  {
+    "file": "artfl-nav-mirecourt.json",
+    "bytes": 35445,
+    "sha256": "1bdeb9add1ff949615b7666b6b3c1183a448edb4e1e357895f580eb43cffbacf"
+  },
+  {
+    "file": "artfl-nav-pierrelez.json",
+    "bytes": 33622,
+    "sha256": "2608db18f874c8c68090b2b2220d0746c6f2ed0bc6e543bd8ff1fb67abb24c41"
+  },
+  {
+    "file": "artfl-nav-vic.json",
+    "bytes": 54403,
+    "sha256": "aca96535f332bfbeac0a1a7fe4bd27329cf4cffbd497ba6b89d2f167a41cd025"
+  },
+  {
+    "file": "artfl-problem-albret-absence.json",
+    "bytes": 31451,
+    "sha256": "e68aabe2c4c899c4245d69c716ea0f40ceeb2055eda5803bf2309a6242a0df35"
+  },
+  {
+    "file": "artfl-problem-anjou-chap1.json",
+    "bytes": 38833,
+    "sha256": "dc24cbef62e2e0521d88120294b23bc7423ce99446634e7416c3b95f3270e2a4"
+  },
+  {
+    "file": "artfl-problem-anjou-chap2.json",
+    "bytes": 35572,
+    "sha256": "09959f2e69eedda68bed8c93013dc0d38b0bab62fcac0ed67ceb8db4124864e0"
+  },
+  {
+    "file": "artfl-problem-ferrieres-constitution.json",
+    "bytes": 32035,
+    "sha256": "67ac4b8ffd38b421fabf12dcc929fd2c82294412ee36b344ab37730286e5203d"
+  },
+  {
+    "file": "artfl-problem-ferrieres-debut.json",
+    "bytes": 34806,
+    "sha256": "d8e6da4e067fbe6609821c292c9dce61a542b73ffda9cb5be83b060507e77fea"
+  },
+  {
+    "file": "artfl-problem-ferrieres-title.json",
+    "bytes": 31155,
+    "sha256": "104967bb2e5f80f671f1456094b132e5504fe0ce90c572cf546ff9658200b10d"
+  },
+  {
+    "file": "artfl-project.html",
+    "bytes": 20894,
+    "sha256": "21c62f296a239f1ab04cc62ddfc11ff847f78ee58e52f13ba95f331ed2e005b0"
+  },
+  {
+    "file": "artfl-toc-1.json",
+    "bytes": 45740,
+    "sha256": "effca22b40172d7da28f6118194c19b45e62c75358c35fbdc9a8f09a35c238dc"
+  },
+  {
+    "file": "artfl-toc-2.json",
+    "bytes": 23903,
+    "sha256": "98de7b8353e84f09deb85c4d963ebe23f309a91d244eb10d2356d6b98f552b04"
+  },
+  {
+    "file": "artfl-toc-3.json",
+    "bytes": 80961,
+    "sha256": "4582075defc4c2c5cc3ceeeecc331ada94d4d72db45e4134b5220473c58e3318"
+  },
+  {
+    "file": "artfl-toc-4.json",
+    "bytes": 50864,
+    "sha256": "1e3b99301ba30644ac5953329f2cc25408f428121a0fb22df6c3b393d7a1fce8"
+  },
+  {
+    "file": "artfl-toc-5.json",
+    "bytes": 70970,
+    "sha256": "169d3fa9531466b9e587d1b50a6107205b34d17c3e56a81f2393c61adcac3350"
+  },
+  {
+    "file": "artfl-toc-6.json",
+    "bytes": 102139,
+    "sha256": "501e772b875107affd9b7edd3a12da8f66abbf5abd1537b1191e0ed6cd48f081"
+  },
+  {
+    "file": "artfl-ui.html",
+    "bytes": 3577,
+    "sha256": "f3550b8bd7057e6b69444f21effc5128f8a4e342732a25abbb463534434ee336"
+  },
+  {
+    "file": "frenchrevdata-LICENSE.txt",
+    "bytes": 6555,
+    "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673"
+  },
+  {
+    "file": "frenchrevdata-commit.json",
+    "bytes": 5812,
+    "sha256": "38469cb7f6103429c0097339500ce9c2bbe88d99b24bcdc665f59687f36f9452"
+  },
+  {
+    "file": "frenchrevdata-repos.json",
+    "bytes": 45794,
+    "sha256": "30bad6fe73eaf0f5c68fe154462ca7f230f29af368a49ce7db42a206cb3288a9"
+  },
+  {
+    "file": "frenchrevdata-tree.json",
+    "bytes": 8860,
+    "sha256": "c2f3cea5f0b725ef41f69cf469fd68364bd2286d72023b13a1ad8235e0cb51b8"
+  },
+  {
+    "file": "frenchrevdata.html",
+    "bytes": 5588,
+    "sha256": "6244e97a04ab4f92a9ea07646076d3b102f11669b262c2c174acd7190aeb87fe"
+  },
+  {
+    "file": "persee-agen-0675.html",
+    "bytes": 4864,
+    "sha256": "8f35544e22183f68f01731d1ad94acd3b536bb86c495a0412d4a73e7ce79c26c"
+  },
+  {
+    "file": "persee-agen-0676.html",
+    "bytes": 5404,
+    "sha256": "b1c9391c44c016853eac2050bb6781fe0c15f88f9663d439c21e9d61812144a1"
+  },
+  {
+    "file": "persee-agen-0677.html",
+    "bytes": 5583,
+    "sha256": "429aa67afc5b0545b773a6c68ef7ee1ab577f94f141ed718dec3fd877e40ecfb"
+  },
+  {
+    "file": "persee-agen-0678.html",
+    "bytes": 7207,
+    "sha256": "c7080ec0e3e4840ff271d028d5961cc6497ff8a5ded1c8b0758bee24622fc75a"
+  },
+  {
+    "file": "persee-agen-0679.html",
+    "bytes": 2991,
+    "sha256": "fef7a9c7ced38628bdfac0ec2beed4fd44bcf4651e23972c5fb7602a181da95c"
+  },
+  {
+    "file": "persee-agen-mods.xml",
+    "bytes": 2908,
+    "sha256": "eb016511e0ce905cfe29933f203bbb0339f79053ba51dfc8c46c5e8a9e7e83bb"
+  },
+  {
+    "file": "persee-agen.html",
+    "bytes": 75772,
+    "sha256": "006ed9e4b612476b98fa8c07207ca175f0dccf92624a6135a92e899e7d447d5a"
+  },
+  {
+    "file": "persee-angoumois-0003.html",
+    "bytes": 1015,
+    "sha256": "94515878fe51061846f0f0f933f9e0a35c3b7aa3be99c31905a8171800a1229d"
+  },
+  {
+    "file": "persee-angoumois-0003.jpg",
+    "bytes": 328783,
+    "sha256": "8521ce38124c3ed98b12c298b8426f57f8a7805e7c155e60fd98f2bb84b20b5e"
+  },
+  {
+    "file": "persee-angoumois-0004.html",
+    "bytes": 7433,
+    "sha256": "3c89c35d40e5a7c4b1c4e2712b60ddb31f5b7bd6e5df9fa5951814c754f2f0f3"
+  },
+  {
+    "file": "persee-angoumois-0005.html",
+    "bytes": 7595,
+    "sha256": "1a99d7296b6426a4a3cf09c74f5175e9f4cb36a4ae532459d355ddf9467f344c"
+  },
+  {
+    "file": "persee-angoumois-0006.html",
+    "bytes": 7604,
+    "sha256": "e407d9d06e41ea917132019b67ba2300deff1e3ead9554340292469403bb2215"
+  },
+  {
+    "file": "persee-angoumois-0007.html",
+    "bytes": 6974,
+    "sha256": "0de61c92ba83b1dc742e8aaa68134afb081e790105e38274450935df14feb9cc"
+  },
+  {
+    "file": "persee-angoumois-mods.xml",
+    "bytes": 2912,
+    "sha256": "ae3012327a79eb3236581d3383e509abe4e7c59f95ac10aa51f761bba91b7942"
+  },
+  {
+    "file": "persee-angoumois.html",
+    "bytes": 73860,
+    "sha256": "6f523d61d5b68def841825e17370cec367d8124213ab885f5f0fc2bf0549d244"
+  },
+  {
+    "file": "persee-cgu.html",
+    "bytes": 51116,
+    "sha256": "e22be59b210c77b46777b82ac0a1ada1110f45fdbbe8bbf40b2cd02d8aabf077"
+  },
+  {
+    "file": "persee-colmar-0012.html",
+    "bytes": 5081,
+    "sha256": "e2d0ef5e6e0883de77830aeb6a0416f623bcfd4ac3df359acfba1f6c990d047b"
+  },
+  {
+    "file": "persee-colmar-0012.jpg",
+    "bytes": 334451,
+    "sha256": "fb47967dd19d700a98c70833ff6a3bce64dabc1516cea2ecddd31df5535df53d"
+  },
+  {
+    "file": "persee-colmar-0013.html",
+    "bytes": 7659,
+    "sha256": "560937e9e67d970141bedb785daa4134bea063168c1401f7bcd07c27b4c9e0a2"
+  },
+  {
+    "file": "persee-colmar-0014.html",
+    "bytes": 7507,
+    "sha256": "43f531a00e861862097e5aefa48aeb8284742c8f6ddd2e8dfad7cc464653236b"
+  },
+  {
+    "file": "persee-colmar-0015.html",
+    "bytes": 7228,
+    "sha256": "bd55eaac5f07c07c5dbc4766e628d1c4889ca7c9e34cd7fa0b38707f4d95a82e"
+  },
+  {
+    "file": "persee-colmar-mods.xml",
+    "bytes": 2922,
+    "sha256": "5ebeeb72784dbef137681ade6db7525bad73e7ec821a09f6106f653dc5d47d58"
+  },
+  {
+    "file": "persee-colmar.html",
+    "bytes": 76002,
+    "sha256": "761e464f557db92818f165a2bf1c298c9b653107c7744050f2cfc167b88a1a09"
+  },
+  {
+    "file": "persee-ferrieres.html",
+    "bytes": 67067,
+    "sha256": "d2a8386f30cf6e6702bf4fd48ee076d0d951f89ae1b308c918b78b1f98e5a9dc"
+  },
+  {
+    "file": "persee-guerande-0103.html",
+    "bytes": 7140,
+    "sha256": "4d884915c5990ab1d46dab821aa0e08c72e0805df4a3a7fc788f99543532fc21"
+  },
+  {
+    "file": "persee-guerande-0103.jpg",
+    "bytes": 319427,
+    "sha256": "fe00a84a457d06d699601f924fa0d96bc40fe3b0a022742ab05a0408db6683ff"
+  },
+  {
+    "file": "persee-guerande-0104.html",
+    "bytes": 7457,
+    "sha256": "fd0b768943b4f58055143e6e84f3f5bd489d17a4fa7acdd96f0b766a25066d5c"
+  },
+  {
+    "file": "persee-guerande-0105.html",
+    "bytes": 2848,
+    "sha256": "906a8346baf4c7010b952aec867d470b377a66ce2c1754eaec4137d13dd549cf"
+  },
+  {
+    "file": "persee-guerande-mods.xml",
+    "bytes": 2930,
+    "sha256": "4a017ec071789ccd99c150f522c149ad2a1513e170ab2b82c0eeb79663c3db6f"
+  },
+  {
+    "file": "persee-guerande.html",
+    "bytes": 74706,
+    "sha256": "24de7cb0071a7e6bdd86914cd3d04a46ba53074490f207eb5be293c955692b8a"
+  },
+  {
+    "file": "persee-mirecourt-0001.html",
+    "bytes": 1436,
+    "sha256": "e2495968c2c2318bf1263178d1d81c263ad5b1540898c12ee3f3515c829f9a90"
+  },
+  {
+    "file": "persee-mirecourt-0002.html",
+    "bytes": 7029,
+    "sha256": "8ab3aa787b083868fed17fab32c384591584b9abe0174be1f6bef41ef8be9503"
+  },
+  {
+    "file": "persee-mirecourt-0002.jpg",
+    "bytes": 318133,
+    "sha256": "f7eaa1d4453deb6102f848bda38faa4e6d7c2042a745fd81c21485e6d8f4477c"
+  },
+  {
+    "file": "persee-mirecourt-0003.html",
+    "bytes": 7786,
+    "sha256": "a897700481c68d5a4303857bebffc1f7725a138ae675abecddadbb66331f305f"
+  },
+  {
+    "file": "persee-mirecourt-0004.html",
+    "bytes": 7642,
+    "sha256": "08c68d8a3929ea139891efad4043a2cf56f61aabf3c031872f6a4ca9f1acf4e1"
+  },
+  {
+    "file": "persee-mirecourt-0005.html",
+    "bytes": 7666,
+    "sha256": "99993d3bab0e03206137b832b151835d3fed468027aa4ce303dd3da7f5385b00"
+  },
+  {
+    "file": "persee-mirecourt-0006.html",
+    "bytes": 1074,
+    "sha256": "ae6ed6f8bcef6b32da0ecd442488981d47a1596a5efda288a93e4c6f08b77094"
+  },
+  {
+    "file": "persee-mirecourt-mods.xml",
+    "bytes": 2904,
+    "sha256": "014bc8a7749d0a59841a2d9b6dfc2082262759f69771c8fee84c13ea33f822cd"
+  },
+  {
+    "file": "persee-mirecourt.html",
+    "bytes": 73849,
+    "sha256": "819d067f71cfae12e303c08afdf2143027a3b951dbf1de84f0e67f3893f18e67"
+  },
+  {
+    "file": "persee-oai-doc.html",
+    "bytes": 35095,
+    "sha256": "695cefb5d44edcab1ac31d8022aa3e5e4e58f928c1c91d4c4b26b8fe9dad9433"
+  },
+  {
+    "file": "persee-oai-formats.xml",
+    "bytes": 1440,
+    "sha256": "53ba051163c186fcc633a33e41e353ede58af7b26fb76bb6af2538a8b1cbe869"
+  },
+  {
+    "file": "persee-page-jobs.json",
+    "bytes": 3776,
+    "sha256": "cec201b17975fe8879dab9cccb89c6f22a1c3915e4bf8c3503cacf882a65153b"
+  },
+  {
+    "file": "persee-pierrelez-0021.html",
+    "bytes": 2089,
+    "sha256": "2c02a5665db26b9c985495eb3eb6252790b6d75a7aee629bb625ea0b73b75888"
+  },
+  {
+    "file": "persee-pierrelez-mods.xml",
+    "bytes": 2886,
+    "sha256": "9c3dfb3468d262d28e9da4cba74e6909ffa9bb2b33f687b3bc2f03a53e5d4027"
+  },
+  {
+    "file": "persee-pierrelez-page21.html",
+    "bytes": 2089,
+    "sha256": "2c02a5665db26b9c985495eb3eb6252790b6d75a7aee629bb625ea0b73b75888"
+  },
+  {
+    "file": "persee-pierrelez.bib",
+    "bytes": 476,
+    "sha256": "af4b631bdf3e766820c57d9da384983f8c007b3e78ed6622522be8766bd4081f"
+  },
+  {
+    "file": "persee-pierrelez.html",
+    "bytes": 66062,
+    "sha256": "28be359f4f61458fd75a412c790cfa0695ed58aab60677c10602dff9d083df76"
+  },
+  {
+    "file": "persee-vic-0016.html",
+    "bytes": 7194,
+    "sha256": "c6fbe512b3b00dfd5043cdccbe8b2aa8dd836d6e9d25aea10d10d9c8219ece4a"
+  },
+  {
+    "file": "persee-vic-0016.jpg",
+    "bytes": 347001,
+    "sha256": "42f91e0334198cabcb151bc6910a9853a0fbd43e7a3d9ccb950f769bcd24032a"
+  },
+  {
+    "file": "persee-vic-0017.html",
+    "bytes": 7596,
+    "sha256": "3d921a6bd781067b920c6b18526c2b7bedf5f27ad35b558128ac66529ac8296b"
+  },
+  {
+    "file": "persee-vic-0018.html",
+    "bytes": 2640,
+    "sha256": "0a8d337df590afaa938f4a075ccc0afb084886436254e900c851f2e36d85328b"
+  },
+  {
+    "file": "persee-vic-mods.xml",
+    "bytes": 3679,
+    "sha256": "b66742a57502aca2c4d6072b5c7a351980b32c17472a8ecd40699447fc0544ef"
+  },
+  {
+    "file": "persee-vic.html",
+    "bytes": 76251,
+    "sha256": "b75ab7c495314ce37ec033c96b04bef909ea8d7b2b4b8825acbdaaeb5f3cb5cd"
+  },
+  {
+    "file": "persee-volume1.html",
+    "bytes": 215059,
+    "sha256": "20c769d57fdabc7458468b6898397b8aae03ea02c764b5309e80e9ba5fe1a0fb"
+  },
+  {
+    "file": "persee-volume4-mets.xml",
+    "bytes": 283002,
+    "sha256": "1574d9d3cb9ab5bec1edf172e209658598262440f9ae722be837c048ff537cbc"
+  },
+  {
+    "file": "repo-ap-analytics-tree.json",
+    "bytes": 3014,
+    "sha256": "a9550ecc345e803bab82dc67fc3c3ad241edc578b0465e4cea94b2740599a395"
+  },
+  {
+    "file": "repo-ap-evaluation-digital-artifact-tree.json",
+    "bytes": 1200,
+    "sha256": "9f24b2252dcc82420a7a2cee5fe168f5b20df4356f9db8f374cc1b67fcf025bb"
+  },
+  {
+    "file": "repo-ap-tree.json",
+    "bytes": 13114,
+    "sha256": "e812663673f4bb13d4ab447fa5f05de8b046884e3791316caca08d876d29a4fb"
+  },
+  {
+    "file": "stanford-copyright.html",
+    "bytes": 142012,
+    "sha256": "926d795d7f3b83624be1dff8b0046fee0a8add1d99d1c21a6dabb11c12a86c1c"
+  },
+  {
+    "file": "stanford-philo-ui.html",
+    "bytes": 10306,
+    "sha256": "fbacfb7efcc6382cc325dc91d8f9ee5552bdb7342d41569dc44c65d918b4d91c"
+  },
+  {
+    "file": "stanford-philo.js",
+    "bytes": 161690,
+    "sha256": "948185757bd927cb2f3b192a9aa261c103ef3e19f9ee704ce796fc2f786f9f2d"
+  }
+]

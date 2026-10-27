@@ -1,0 +1,7 @@
+{
+  "frozen_at": "2026-10-26T10:55:09.595059+00:00",
+  "queries_sha256": "5103d6d95f17bb47db54dc663acea7dd076bf5d8fd23c7bd0fe3bfe8b00b17b1",
+  "protocol_sha256": "3ca3810939e67192122888034a48d70bca1180cc83365b75029fb91415913053",
+  "rankings_examined": false,
+  "status": "Queries and selection rules fixed before embeddings and rankings"
+}

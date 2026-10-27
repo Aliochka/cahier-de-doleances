@@ -1,0 +1,197 @@
+{
+  "jt959wc5586": {
+    "manifest_url": "https://purl.stanford.edu/jt959wc5586/iiif/manifest",
+    "manifest_sha256": "31d3b308f07b152891cb6b1f92f226860da3eeea80ac691e604f2f4fd2f33668",
+    "attribution": "Property rights reside with the repository. Copyright © Stanford University. All Rights Reserved.",
+    "license": null,
+    "pages": {
+      "jt959wc5586_00_0675": {
+        "id": "jt959wc5586_00_0675",
+        "printed_label": "",
+        "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+        "canvas_label": "Page 675",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675"
+      },
+      "jt959wc5586_00_0676": {
+        "id": "jt959wc5586_00_0676",
+        "printed_label": "676",
+        "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_677",
+        "canvas_label": "Page 676",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0676"
+      },
+      "jt959wc5586_00_0677": {
+        "id": "jt959wc5586_00_0677",
+        "printed_label": "677",
+        "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_678",
+        "canvas_label": "Page 677",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0677"
+      },
+      "jt959wc5586_00_0678": {
+        "id": "jt959wc5586_00_0678",
+        "printed_label": "678",
+        "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_679",
+        "canvas_label": "Page 678",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0678"
+      },
+      "jt959wc5586_00_0679": {
+        "id": "jt959wc5586_00_0679",
+        "printed_label": "679",
+        "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_680",
+        "canvas_label": "Page 679",
+        "image_service": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0679"
+      }
+    }
+  },
+  "fz023dp4399": {
+    "manifest_url": "https://purl.stanford.edu/fz023dp4399/iiif/manifest",
+    "manifest_sha256": "cca97612209b00b5d815b75a8fbc79327bdb6727aa6dd185b15c84266da87123",
+    "attribution": "Property rights reside with the repository. Copyright © Stanford University. All Rights Reserved.",
+    "license": null,
+    "pages": {
+      "fz023dp4399_00_0007": {
+        "id": "fz023dp4399_00_0007",
+        "printed_label": "3",
+        "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_8",
+        "canvas_label": "Page 7",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0007"
+      },
+      "fz023dp4399_00_0008": {
+        "id": "fz023dp4399_00_0008",
+        "printed_label": "4",
+        "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_9",
+        "canvas_label": "Page 8",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0008"
+      },
+      "fz023dp4399_00_0009": {
+        "id": "fz023dp4399_00_0009",
+        "printed_label": "5",
+        "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_10",
+        "canvas_label": "Page 9",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0009"
+      },
+      "fz023dp4399_00_0010": {
+        "id": "fz023dp4399_00_0010",
+        "printed_label": "6",
+        "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_11",
+        "canvas_label": "Page 10",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0010"
+      },
+      "fz023dp4399_00_0011": {
+        "id": "fz023dp4399_00_0011",
+        "printed_label": "7",
+        "canvas_url": "https://purl.stanford.edu/fz023dp4399/iiif/canvas/cocina-fileSet-fz023dp4399-fz023dp4399_12",
+        "canvas_label": "Page 11",
+        "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0011"
+      }
+    }
+  },
+  "mc666yy3026": {
+    "manifest_url": "https://purl.stanford.edu/mc666yy3026/iiif/manifest",
+    "manifest_sha256": "3c4218a15393d326a0ec92fab18778285de49bbb8a541e988b97a4fbe1ad5aeb",
+    "attribution": "Property rights reside with the repository. Copyright © Stanford University. All Rights Reserved.",
+    "license": null,
+    "pages": {
+      "mc666yy3026_00_0016": {
+        "id": "mc666yy3026_00_0016",
+        "printed_label": "12",
+        "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+        "canvas_label": "Page 16",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016"
+      },
+      "mc666yy3026_00_0017": {
+        "id": "mc666yy3026_00_0017",
+        "printed_label": "13",
+        "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_18",
+        "canvas_label": "Page 17",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0017"
+      },
+      "mc666yy3026_00_0018": {
+        "id": "mc666yy3026_00_0018",
+        "printed_label": "14",
+        "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_19",
+        "canvas_label": "Page 18",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0018"
+      },
+      "mc666yy3026_00_0019": {
+        "id": "mc666yy3026_00_0019",
+        "printed_label": "15",
+        "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_20",
+        "canvas_label": "Page 19",
+        "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0019"
+      }
+    }
+  },
+  "xg914wh0253": {
+    "manifest_url": "https://purl.stanford.edu/xg914wh0253/iiif/manifest",
+    "manifest_sha256": "f2dc3c850898f8d1ed12e2652e191ceae3871a30a410385703f1d7fdbd9d3250",
+    "attribution": "Property rights reside with the repository. Copyright © Stanford University. All Rights Reserved.",
+    "license": null,
+    "pages": {
+      "xg914wh0253_00_0107": {
+        "id": "xg914wh0253_00_0107",
+        "printed_label": "103",
+        "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_108",
+        "canvas_label": "Page 107",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0107"
+      },
+      "xg914wh0253_00_0108": {
+        "id": "xg914wh0253_00_0108",
+        "printed_label": "104",
+        "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_109",
+        "canvas_label": "Page 108",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0108"
+      },
+      "xg914wh0253_00_0109": {
+        "id": "xg914wh0253_00_0109",
+        "printed_label": "105",
+        "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_110",
+        "canvas_label": "Page 109",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0109"
+      }
+    }
+  },
+  "xx284sn7328": {
+    "manifest_url": "https://purl.stanford.edu/xx284sn7328/iiif/manifest",
+    "manifest_sha256": "f3dd11bdbea7bf2a2e1aa861c38dbfa9930037a2a2521e97112ea68c0321c36e",
+    "attribution": "Property rights reside with the repository. Copyright © Stanford University. All Rights Reserved.",
+    "license": null,
+    "pages": {
+      "xx284sn7328_00_0025": {
+        "id": "xx284sn7328_00_0025",
+        "printed_label": "21",
+        "canvas_url": "https://purl.stanford.edu/xx284sn7328/iiif/canvas/cocina-fileSet-xx284sn7328-xx284sn7328_26",
+        "canvas_label": "Page 25",
+        "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0025"
+      }
+    }
+  },
+  "wg983ft3682": {
+    "manifest_url": "https://purl.stanford.edu/wg983ft3682/iiif/manifest",
+    "manifest_sha256": "bbd3696aad57c25f66c791ee5af09c116bed3b59911d4fda2dd89d7f8408c2b3",
+    "attribution": "Property rights reside with the repository. Copyright © Stanford University. All Rights Reserved.",
+    "license": null,
+    "pages": {
+      "wg983ft3682_00_0020": {
+        "id": "wg983ft3682_00_0020",
+        "printed_label": "16",
+        "canvas_url": "https://purl.stanford.edu/wg983ft3682/iiif/canvas/cocina-fileSet-wg983ft3682-wg983ft3682_21",
+        "canvas_label": "Page 20",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0020"
+      },
+      "wg983ft3682_00_0021": {
+        "id": "wg983ft3682_00_0021",
+        "printed_label": "17",
+        "canvas_url": "https://purl.stanford.edu/wg983ft3682/iiif/canvas/cocina-fileSet-wg983ft3682-wg983ft3682_22",
+        "canvas_label": "Page 21",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0021"
+      },
+      "wg983ft3682_00_0022": {
+        "id": "wg983ft3682_00_0022",
+        "printed_label": "18",
+        "canvas_url": "https://purl.stanford.edu/wg983ft3682/iiif/canvas/cocina-fileSet-wg983ft3682-wg983ft3682_23",
+        "canvas_label": "Page 22",
+        "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0022"
+      }
+    }
+  }
+}

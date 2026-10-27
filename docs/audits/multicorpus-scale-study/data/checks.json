@@ -1,0 +1,18 @@
+{
+  "replayed_fusions": 1800,
+  "verified_hybrid_witness_records": 16200,
+  "all_witness_records": 19440,
+  "unchanged_prior_audit_files": 225,
+  "reference_top10_reproductions": 90,
+  "queries_identical": true,
+  "protocol_unchanged": true,
+  "nested_populations": true,
+  "unique_modern_units": 1000000,
+  "deterministic_selection_reproduced": true,
+  "constant_historical_cosines": true,
+  "monotone_historical_vector_ranks": true,
+  "prior_judgments_unchanged": true,
+  "global_rank_vs_per_corpus_reset_counterexample_detected": true,
+  "no_database_connection_in_replay": true,
+  "tracked_application_diff": []
+}

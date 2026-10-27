@@ -1,0 +1,26 @@
+[
+  {
+    "id": "development-01",
+    "method": "B",
+    "input_tokens": 9048,
+    "within_budget": true
+  },
+  {
+    "id": "development-01",
+    "method": "C",
+    "input_tokens": 9175,
+    "within_budget": true
+  },
+  {
+    "id": "development-02",
+    "method": "B",
+    "input_tokens": 9779,
+    "within_budget": true
+  },
+  {
+    "id": "development-02",
+    "method": "C",
+    "input_tokens": 9900,
+    "within_budget": true
+  }
+]

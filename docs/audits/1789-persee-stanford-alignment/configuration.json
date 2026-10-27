@@ -1,0 +1,14 @@
+{
+  "version": "alignment-1.0",
+  "page_tolerance": 1,
+  "min_score": 0.62,
+  "min_own_coverage": 0.5,
+  "strong_score": 0.78,
+  "strong_margin": 0.1,
+  "weights": {
+    "own": 0.55,
+    "context": 0.1,
+    "page": 0.35
+  },
+  "no_historical_text_normalization": true
+}

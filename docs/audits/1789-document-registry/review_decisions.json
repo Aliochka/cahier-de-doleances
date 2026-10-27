@@ -1,0 +1,602 @@
+{
+  "1": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Clergé Aix reconnu; fin englobe les pouvoirs et instructions de la noblesse à partir de p40."
+  ],
+  "2": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Dossier noblesse Aix: pouvoirs puis instructions et signatures, distinct du tiers suivant."
+  ],
+  "3": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Instructions du tiers Aix; clôture collationnée avant Albret."
+  ],
+  "4": [
+    "uncertain",
+    "uncertain",
+    "cahier_autonome_probable",
+    "Plusieurs cahiers noblesse Albret dans la même division; hypothèse vaste inclut le tiers de Tartas. Identité du dossier et périmètre à arbitrer."
+  ],
+  "5": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Alençon particulier: ouverture tiers et collation Brémontier avant cahier suivant."
+  ],
+  "6": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Verneuil: date, 52 degrés et clôture avant Alsace."
+  ],
+  "7": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Amiens clergé avec protestations et certification finale; noblesse suivante distincte."
+  ],
+  "8": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Tiers Amiens/Ham, clôture avant bailliage d'Amont."
+  ],
+  "9": [
+    "correct",
+    "uncertain",
+    "cahier_autonome_probable",
+    "Cahier Auxerre retrouvé; la notice pp108-114 couvre aussi une liste commençant après la clôture p112. Portée de la notice non certifiée."
+  ],
+  "10": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Contrôle complémentaire: remontrances des trois ordres Bassigny-Barrois à div2[15]/div3[1]/p83 p196. Début intégré au dossier Bar; abstention documentaire excessive."
+  ],
+  "11": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Tiers Beaujolais: assemblée à Villefranche et signatures; Beauvais suit."
+  ],
+  "12": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Noblesse Berry présente mais l'hypothèse commence à la notice du clergé absent dans le même bloc."
+  ],
+  "13": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Tiers Bigorre et signatures avant cahier Saint-Sever."
+  ],
+  "14": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Bordeaux identifié par sénéchaussée de Guyenne; fin avant demandes des corporations."
+  ],
+  "15": [
+    "retrievable_abstention",
+    "not_assessed",
+    "proces_verbal",
+    "Brest: PV et cahier commun explicitement présents dans le premier candidat; abstention excessive, document composite."
+  ],
+  "16": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Cambrai: proposition ne couvre que discours préliminaire et s'arrête avant le cahier de noblesse dans la division suivante."
+  ],
+  "17": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Castelmoron clergé: proposition limitée aux pouvoirs; cahier commence dans la division suivante."
+  ],
+  "18": [
+    "retrievable_abstention",
+    "not_assessed",
+    "proces_verbal",
+    "Massugas identifié en p1 de div3[6]: copie du PV de nomination et cahier, 1er mars. Titre générique COPIE masque identité."
+  ],
+  "19": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Lauraguais/Castelnaudary noblesse: délibérations initiales seulement; CAHIER DE DOLÉANCES suit la fin proposée."
+  ],
+  "20": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Noblesse Châlons-sur-Marne avec procès d'élection et mémoires, clôture avant tiers."
+  ],
+  "21": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Tiers Chalon retrouvé p23 de div3[3], après pouvoirs noblesse, puis suite dans div3[4]; abstention malgré texte présent."
+  ],
+  "22": [
+    "correct",
+    "uncertain",
+    "cahier_autonome_probable",
+    "Tiers Thimerais avec remontrances communes à noblesse et tiers; portée interne à arbitrer."
+  ],
+  "23": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Châtellerault clergé: proposition PV coupée juste avant CAHIER p6, pourtant dans la même division."
+  ],
+  "24": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Noblesse Montagne/Châtillon, clôture Pour expédition Bourru avant tiers."
+  ],
+  "25": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Chaumont Bassigny noblesse présent p6 et suivants après protestations du clergé."
+  ],
+  "26": [
+    "false_exclusion",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Noblesse Chaumont Vexin présente dès p2 CAHIER; absence du clergé précédent incorrectement propagée à la noblesse."
+  ],
+  "27": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Tiers Coutances: assemblée et clôture du 30 mars avec signatures."
+  ],
+  "28": [
+    "unresolved",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Saint-Jean-des-Agneaux aucun candidat; correspondance non établie."
+  ],
+  "29": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Clergé Crépy: Crépu/Grépy dans OCR, même date, fin avant noblesse."
+  ],
+  "30": [
+    "not_assessed",
+    "not_assessed",
+    "liste",
+    "Comparants Dijon: liste alphabétique éclatée en divisions A, B; exclusion du corpus de cahiers pertinente, identité exhaustive non certifiée."
+  ],
+  "31": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Douai noblesse, clôture signée du 12 avril; tiers suivant distinct."
+  ],
+  "32": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Landas identifiable dans l'ouverture et le corps malgré titre OCR très dégradé; premier candidat juste, rejet par seuil."
+  ],
+  "33": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Millonfosse: OCR Milï/onfosse et conflits abbaye Hasnon; signatures avant Bouvignies."
+  ],
+  "34": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Boussignies/Bouvignies reconnu mais division contient aussi Sin-Lebled à partir de p15; fin trop longue."
+  ],
+  "35": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Alne/Aine: ouverture et signatures cohérentes avant Warlaing."
+  ],
+  "36": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Hamelle: marais indivis avec Arleux et signatures avant Erarde."
+  ],
+  "37": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Eterpigny explicitement en p1; clôture signatures avant Waziers."
+  ],
+  "38": [
+    "incorrect",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Doléances particulières du chapitre Riez dans un dossier Digne, pas le cahier de chambre ecclésiastique de Riez qui commence après la fin proposée."
+  ],
+  "39": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Tiers Digne identifié; fin proposée contient des cahiers et instructions postérieurs jusqu'à Barcelonnette clergé."
+  ],
+  "40": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Barcelonnette tiers retrouvé; bloc jusqu'à p381 englobe des cahiers particuliers après la fin de notice p374."
+  ],
+  "41": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Lauzet retrouvé p241-246: titre OCR BOLEA.NCES puis signature Régnier/Vigne; top candidats précédents étaient des cahiers voisins."
+  ],
+  "42": [
+    "correct",
+    "correct",
+    "liste",
+    "La Rochelle liste des trois ordres, clôture avant clergé; exclusion comme cahier correcte."
+  ],
+  "43": [
+    "correct",
+    "correct",
+    "liste",
+    "Lille liste des trois ordres, copie collationnée avant cahier clergé."
+  ],
+  "44": [
+    "correct",
+    "correct",
+    "document_associe",
+    "Turenne: mémoire explicitement à joindre et annexer au cahier général, donc document associé à conserver plutôt qu'autre document exclu."
+  ],
+  "45": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Saint-Quintin/Cayrac, OCR Cayrà/LimoUos, signatures avant document suivant."
+  ],
+  "46": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Mâcon: nobles explicitement dans le corps du même dossier, mandat au comte de Montrevel p59 et instructions p71; début exact non certifié."
+  ],
+  "47": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Tiers Mirecourt: articles et signatures avant Bruyères."
+  ],
+  "48": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Nantes: cahier et certification du 23 avril avant Guérande; pagination déclarée divergente à contrôler séparément."
+  ],
+  "49": [
+    "incorrect",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Contrôle complémentaire: Uzent-en-Foix explicitement à div3[3]/p129; hypothèse choisit à tort le cahier Vicdessos suivant."
+  ],
+  "50": [
+    "not_assessed",
+    "not_assessed",
+    "liste",
+    "Tableau Paris: divisions alphabétiques A/B; exclusion correcte, correspondance exhaustive non établie."
+  ],
+  "51": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Bouffemont confirmé en p1 et certification avant Boulogne."
+  ],
+  "52": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Bouray séparé du Bourget voisin; clôture signée."
+  ],
+  "53": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Fontenay-sous-Bois correspond à sur-le-bois-de-Vincennes; clôture avant Fontenay-lès-Brus."
+  ],
+  "54": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Fourqueux retrouvé dans division précédente div3[159]/p117 et clôture p137; titre interne non proposé."
+  ],
+  "55": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Garches confirmé par date et noms malgré OCR Cloua/Gloud."
+  ],
+  "56": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Gif retrouvé div3[169]/p61 et habitants p62, arrêté p109; titre interne manqué dans division Germigny."
+  ],
+  "57": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Grés en Brie: suite de titre p1; signatures avant Gressy."
+  ],
+  "58": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Issy: procès-verbal et signatures, suivant Juilly distinct."
+  ],
+  "59": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Liverdy-en-Brie: certification Meunier, avant Livry."
+  ],
+  "60": [
+    "incorrect",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Deux notices distinctes:2264 Marolles p680,2265 Marolles-Hurepoix pp680-681. La première doit correspondre à div3[230] Marottes/Marolles; prédiction choisit le cahier suivant div3[231]."
+  ],
+  "61": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Messy explicitement identifié dans le titre du premier candidat; rejet excessif."
+  ],
+  "62": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Morangis, syndic Le Gaigneur et signatures avant Morsang-sur-Orge."
+  ],
+  "63": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Nozay: cahier et signatures avant Ocquerres."
+  ],
+  "64": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Orly: clôture avec députés Degram et Delanoue avant Orsay."
+  ],
+  "65": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Cahier individuel Carré du Pin, 9 articles et signature du 28 avril; distinct du cahier collectif du Pin."
+  ],
+  "66": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Pontault en Brie, clôture signatures avant Pontcarré; note éditoriale mêlée au texte à conserver séparément plus tard."
+  ],
+  "67": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Rueil sans Brie: clôture et signatures; autre cahier de Rueil en Brie distinct après."
+  ],
+  "68": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Villecresnes: arrêté 14 avril et signatures avant Villedubois."
+  ],
+  "69": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Villiers-le-Bel: certification Ferellier et suivant distinct."
+  ],
+  "70": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Sorbonne: 21-22 avril et liste commissaires, avant Saint-Eustache."
+  ],
+  "71": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Saint-Louis-de-la-Culture: clôture Deyeux/Thuriot avant Saint-Nicolas-des-Champs."
+  ],
+  "72": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Ploërmel: bloc contient des pièces ultérieures et va jusqu à p388 au lieu du cahier p385, notamment Pontivy."
+  ],
+  "73": [
+    "retrievable_abstention",
+    "not_assessed",
+    "document_associe",
+    "Pontivy retrouvé dans dossier Ploërmel p128, délibération du 11 novembre1788. Pièce préparatoire antérieure à1789, à conserver associée avec cette date."
+  ],
+  "74": [
+    "not_assessed",
+    "not_assessed",
+    "liste",
+    "Quercy: liste de comparants et métiers; exclusion comme cahier pertinente."
+  ],
+  "75": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Rhodez/Milhau cahier général, fin avant cahier spécifique bailliage de Milhau."
+  ],
+  "76": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Riom: instructions pour députés du tiers proposées par ville de Riom, div3[4]/p1-2, après discours Malouet. Abstention excessive."
+  ],
+  "77": [
+    "correct",
+    "uncertain",
+    "cahier_autonome_probable",
+    "Montaigut: cahier puis expédition du greffier; portée p578 contre p577 de la notice demande contrôle."
+  ],
+  "78": [
+    "retrievable_abstention",
+    "not_assessed",
+    "document_associe",
+    "Clergé Bretagne: déclaration et protestation explicites dans première partie de la division, avant noblesse p8."
+  ],
+  "79": [
+    "retrievable_abstention",
+    "not_assessed",
+    "document_associe",
+    "Noblesse Bretagne: déclaration et protestation p8 et signature Boisgelin; même division que clergé."
+  ],
+  "80": [
+    "not_assessed",
+    "not_assessed",
+    "liste",
+    "Sarreguemines: comparants et défauts, pas un cahier."
+  ],
+  "81": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Noblesse Sarreguemines: doléances et pouvoirs, double certification avant notice tiers absent."
+  ],
+  "82": [
+    "not_assessed",
+    "not_assessed",
+    "liste",
+    "Senlis: liste noblesse et tiers, pas de revendications autonomes certifiées."
+  ],
+  "83": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Châtillon-sur-Indre: cahier et collation Lusseau avant Saint-Mexme."
+  ],
+  "84": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Magistrats Valenciennes: première partie seulement; SECONDE PARTIE dans division suivante omise."
+  ],
+  "85": [
+    "correct",
+    "incorrect",
+    "cahier_autonome_probable",
+    "Habitants Valenciennes: liste de rédacteurs et introduction seulement; PREMIÈRE PARTIE suit et manque à la plage."
+  ],
+  "86": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Clergé Vitry et secondaires, titre OCR fortement altéré; certification Félix avant noblesse absente."
+  ],
+  "87": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Wasigny: articles et collation notaire Watellier avant Guadeloupe."
+  ],
+  "88": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Berre: cahier et références de privilèges associés; Brue commence après."
+  ],
+  "89": [
+    "retrievable_abstention",
+    "not_assessed",
+    "proces_verbal",
+    "Gréasque retrouvé div3[35]/p76: procès-verbal des assemblées avec plaintes/doléances; pas le cahier Istres proposé en première alternative."
+  ],
+  "90": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Lauris identifiable dans titre et contexte malgré jointure OCR LauriSptenu; premier candidat rejeté."
+  ],
+  "91": [
+    "retrievable_abstention",
+    "not_assessed",
+    "cahier_autonome_probable",
+    "Naux correspond à NaufC dans OCR; lieu et ressort explicités, premier candidat identifiable."
+  ],
+  "92": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Saint-Paul-le-Lougassier/Longassier: ouverture et signatures avant Saint-Savournin."
+  ],
+  "93": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Saint-Savournin: signé et double 29 mars avant Saint-Victoret."
+  ],
+  "94": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Saunes: source dit communauté et non sénéchaussée; identité concordante, particularité de métadonnée conservée."
+  ],
+  "95": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Vellaux: plaintes générales/particulières et signature Marroc avant Venelles."
+  ],
+  "96": [
+    "not_assessed",
+    "not_assessed",
+    "liste",
+    "Avesnes: comparants éclatés par ordre; portée complète non certifiée."
+  ],
+  "97": [
+    "correct",
+    "not_assessed",
+    "liste",
+    "Boulonnais: extrait de PV listant les trois ordres; exclusion comme cahier justifiée."
+  ],
+  "98": [
+    "correct",
+    "not_assessed",
+    "liste",
+    "Châlons-sur-Marne: comparants des trois ordres, pas un cahier."
+  ],
+  "99": [
+    "correct",
+    "correct",
+    "cahier_autonome_probable",
+    "Orléanais: cahier de plusieurs bailliages, signatures et distinction du cahier principal Orléans suivant."
+  ],
+  "100": [
+    "retrievable_abstention",
+    "not_assessed",
+    "document_associe",
+    "Annexe Tulle/Brive/Uzerche explicitement au premier candidat, état nominatif de députés; conservée comme annexe documentaire, rejet excessif."
+  ]
+}

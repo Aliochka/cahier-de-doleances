@@ -1,0 +1,234 @@
+{
+  "validation-01": {
+    "start_id": "v1-b015894",
+    "end_id": "v1-b015988",
+    "status": "established",
+    "reason": "Cahier général tiers Alençon, distinct du bailliage particulier qui commence au bloc suivant."
+  },
+  "validation-02": {
+    "start_id": "v1-b016123",
+    "end_id": "v1-b016171",
+    "status": "established",
+    "reason": "Exmes: titre propre et expédition greffier du21mars, avant Verneuil."
+  },
+  "validation-03": {
+    "start_id": "v1-b016844",
+    "end_id": "v1-b017017",
+    "status": "established",
+    "reason": "Amont clergé: cahier et signatures du1ermai; titre territorial général exclu, noblesse commence après."
+  },
+  "validation-04": {
+    "start_id": "v1-b017018",
+    "end_id": "v1-b017125",
+    "status": "established",
+    "reason": "Amont noblesse: cahier et suite du PV de nominations, certification Fleury avant cahier général tiers."
+  },
+  "validation-05": {
+    "start_id": "v1-b017126",
+    "end_id": "v1-b017228",
+    "status": "established",
+    "reason": "Tiers Amont: cahier général et signatures, distinct du cahier général des trois ordres qui suit."
+  },
+  "validation-06": {
+    "start_id": "v1-b017319",
+    "end_id": "v1-b017460",
+    "status": "established",
+    "reason": "Gray: titre en paragraphe, liste de signatures et collation Vivant clôturant le tome."
+  },
+  "validation-07": {
+    "start_id": "v2-b001494",
+    "end_id": "v2-b001559",
+    "status": "established",
+    "reason": "Armagnac noblesse: titre propre et collation du27mars avant tiers Isle-Jourdain."
+  },
+  "validation-09": {
+    "start_id": "v2-b008071",
+    "end_id": "v2-b008179",
+    "status": "established",
+    "reason": "Besançon clergé: cahier de pouvoirs et instructions, fin avant notice absence noblesse, titre territorial exclu."
+  },
+  "validation-10": {
+    "start_id": "v2-b012492",
+    "end_id": "v2-b012514",
+    "status": "established",
+    "reason": "Marchands drapiers Caen: cahier de corporation signé Duperré/Philippe/François Jentaigne, avant cahier tiers ville."
+  },
+  "validation-11": {
+    "start_id": "v2-b013227",
+    "end_id": "v2-b013348",
+    "status": "established",
+    "reason": "Cambrésis tiers provincial: cahier et PV/expédition Allier, avant cahier propre ville Cambrai."
+  },
+  "validation-12": {
+    "start_id": "v2-b016283",
+    "end_id": "v2-b016422",
+    "status": "established",
+    "reason": "Charolais tiers: cahier avec extrait clôturant les délibérations et signatures communes clergé/tiers, avant Chartres."
+  },
+  "validation-08": {
+    "start_id": "v2-b001958",
+    "end_id": "v2-b002078",
+    "status": "established",
+    "reason": "Arras ville: cahier distinct de la notice absence tiers province, signatures et fragments de certification Dauchez avant Hénin-Liétard; ordre OCR perturbé dans la fin."
+  },
+  "validation-13": {
+    "start_id": "v3-b002707",
+    "end_id": "v3-b002786",
+    "status": "established",
+    "reason": "Demandes particulières Landes/Dax: début instructions et certification de Mausienne, avant Dijon."
+  },
+  "validation-14": {
+    "start_id": "v3-b005775",
+    "end_id": "v3-b005804",
+    "status": "established",
+    "reason": "Abscon: titre OCR très altéré, signatures avant cahier Erré."
+  },
+  "validation-15": {
+    "start_id": "v3-b010066",
+    "end_id": "v3-b010135",
+    "status": "established",
+    "reason": "Noblesse Forez: arrêté Montbrison et commissaires, avant tiers Forez."
+  },
+  "validation-16": {
+    "start_id": "v3-b014121",
+    "end_id": "v3-b014237",
+    "status": "established",
+    "reason": "Clergé Lille: cahier et compléments signés Le Blon/Becu jusqu au2avril, avant noblesse Lille."
+  },
+  "validation-17": {
+    "start_id": "v3-b014699",
+    "end_id": "v3-b014769",
+    "status": "established",
+    "reason": "Tiers Brives: cahier signé; mémoire Turenne explicitement annexé mais possédant sa propre notice, donc conservé lié et séparé.",
+    "annexes": [
+      {
+        "start_id": "v3-b014770",
+        "end_id": "v3-b014782",
+        "relation": "excluded",
+        "reason": "Notice propre Persée1992"
+      }
+    ]
+  },
+  "validation-18": {
+    "start_id": "v3-b016210",
+    "end_id": "v3-b016277",
+    "status": "established",
+    "reason": "Tiers Limoux: instructions et doléances, collation Amalic avant Sainte-Colombe."
+  },
+  "validation-19": {
+    "start_id": "v4-b007828",
+    "end_id": "v4-b007885",
+    "status": "established",
+    "reason": "Aubervilliers: signatures traversant le changement de page325/326, avant Aulnay."
+  },
+  "validation-20": {
+    "start_id": "v4-b008651",
+    "end_id": "v4-b008674",
+    "status": "established",
+    "reason": "Bièvres:17articles et signatures, avant Bobigny."
+  },
+  "validation-21": {
+    "start_id": "v4-b012510",
+    "end_id": "v4-b012525",
+    "status": "established",
+    "reason": "Egremont: distinct de Egly précédent et Elancourt suivant sur pages partagées."
+  },
+  "validation-22": {
+    "start_id": "v4-b018080",
+    "end_id": "v4-b018235",
+    "status": "established",
+    "reason": "Massy: cahier de pouvoirs/instructions se terminant par témoignage de reconnaissance, avant Maule; ne pas inventer une signature absente."
+  },
+  "validation-23": {
+    "start_id": "v4-b019355",
+    "end_id": "v4-b019406",
+    "status": "established",
+    "reason": "Montlhéry ville: arrêté du13avril et signatures avant Montmagny."
+  },
+  "validation-24": {
+    "start_id": "v4-b019441",
+    "end_id": "v4-b019465",
+    "status": "established",
+    "reason": "Montmartre: titre, arrêté du15avril et signatures avant Montreuil-sur-Vincennes."
+  },
+  "validation-25": {
+    "start_id": "v5-b000365",
+    "end_id": "v5-b000403",
+    "status": "established",
+    "reason": "Jean-Baptiste Lardier seigneur Pierrefitte: cahier individuel, fin article32 avant Pierrelez; ne pas confondre avec cahier habitants Pierrefitte précédent."
+  },
+  "validation-26": {
+    "start_id": "v5-b002758",
+    "end_id": "v5-b002787",
+    "status": "established",
+    "reason": "Santeny: titre CAHIER dans un p, clôture signée avant Sarcelles; borne exacte présente malgré proposition automatique située ailleurs."
+  },
+  "validation-27": {
+    "start_id": "v5-b003009",
+    "end_id": "v5-b003030",
+    "status": "established",
+    "reason": "Soisy-sous-Enghien: observation et signatures, certification Gobert, avant Soisy-sous-Etiolles."
+  },
+  "validation-28": {
+    "start_id": "v5-b006015",
+    "end_id": "v5-b006144",
+    "status": "established",
+    "reason": "Clergé Paris hors murs: cahier avec arrêté du6mai et trois secrétaires, avant noblesse."
+  },
+  "validation-29": {
+    "start_id": "v5-b007390",
+    "end_id": "v5-b007424",
+    "status": "established",
+    "reason": "Chapitre Eglise Paris: intentions et voeux, avant procès-verbal de paroisse Saint-Paul, autre document."
+  },
+  "validation-30": {
+    "start_id": "v5-b007887",
+    "end_id": "v5-b008167",
+    "status": "established",
+    "reason": "Tiers Paris intra muros: signatures Target/Camus/Bailly/Guillotin et indication éditoriale de signatures, avant cahier particulier municipal."
+  },
+  "validation-31": {
+    "start_id": "v6-b005766",
+    "end_id": "v6-b005824",
+    "status": "established",
+    "reason": "Tiers Villers-Cotterets: cahier général, certification et signature Dequeu avant Vitry."
+  },
+  "validation-32": {
+    "start_id": "v6-b008080",
+    "end_id": "v6-b008117",
+    "status": "established",
+    "reason": "Châteauneuf: cahier et procès-verbal de nomination/remise des députés, avant Châteauneuf-le-Rouge distinct."
+  },
+  "validation-33": {
+    "start_id": "v6-b010527",
+    "end_id": "v6-b010593",
+    "status": "established",
+    "reason": "Peypin-d Aigues: arrêté et certification finale Chapier, avant Peyrolles."
+  },
+  "validation-35": {
+    "start_id": "v6-b022152",
+    "end_id": "v6-b022189",
+    "status": "established",
+    "reason": "Blancs-Manteaux: instructions du district et signatures Target/Picard, avant Enfants-Rouges."
+  },
+  "validation-36": {
+    "start_id": "v6-b024432",
+    "end_id": "v6-b024459",
+    "status": "established",
+    "reason": "Uzerche: arrêté du4mars et signatures, avant annexe commune Tulle/Brive/Uzerche qui possède sa propre notice; en-têtes territoriaux exclus.",
+    "annexes": [
+      {
+        "start_id": "v6-b024461",
+        "end_id": null,
+        "relation": "excluded",
+        "reason": "Annexe notice2775 distincte; fin hors fenêtre, seul début certifié ici"
+      }
+    ]
+  },
+  "validation-34": {
+    "start_id": "v6-b014996",
+    "end_id": "v6-b015112",
+    "status": "established",
+    "reason": "Béarn: cahier des trois Etats, signature Barry avant titre territorial Belfort-Huningue; titre général souveraineté exclu."
+  }
+}

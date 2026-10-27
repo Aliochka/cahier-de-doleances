@@ -1,0 +1,327 @@
+[
+  {
+    "document_key": "agen-clerge",
+    "window": 0,
+    "volume": 1,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "reference_comment": "arf. 9 conservé ; frontière reconnue par inspection, pas correction du texte.",
+    "incorrect_predictions": [
+      {
+        "start": 5123467,
+        "end": 5123945,
+        "text": "Art. 8. \n                        La réforme des abus dans la perception des impôts. \n\n\n                        arf. 9, \n                        La suppression du tarif actuel du contrôle, remplacé par un nouveau qui\n                            ne soit point sujet aux interprétations arbitraires, clair, précis, à la\n                            portée de tout le monde, et demande que toute contestation sur le tarif\n                            soit renvoyée aux juges naturels."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 5123467,
+        "end": 5123550,
+        "text": "Art. 8. \n                        La réforme des abus dans la perception des impôts."
+      },
+      {
+        "start": 5123578,
+        "end": 5123945,
+        "text": "arf. 9, \n                        La suppression du tarif actuel du contrôle, remplacé par un nouveau qui\n                            ne soit point sujet aux interprétations arbitraires, clair, précis, à la\n                            portée de tout le monde, et demande que toute contestation sur le tarif\n                            soit renvoyée aux juges naturels."
+      }
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "window": 0,
+    "volume": 1,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/jt959wc5586/jt959wc5586.xml",
+    "reference_comment": "",
+    "incorrect_predictions": [
+      {
+        "start": 5412650,
+        "end": 5413084,
+        "text": "1° N'admettre personne aux Etats s'il n'est dé- puté par la nation, toute\n                            autre qualité étant con- traire aux lois d'une véritable représentation. \n                        2°-Arrêter que si un membre des Etats se char- geait de porter à\n                            l'assemblée nationale les ordres du gouvernement, il perdrait sa qualité\n                            de député et ne pourrait plus délibérer."
+      },
+      {
+        "start": 5413730,
+        "end": 5413926,
+        "text": "5° Défendre aux députés de s'occuper au com- mencement de leur séance\n                            d'aucun impôt et ren- voyer cet objet à la Un de l'assemblée. \n\n\n                        Religion."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 5412650,
+        "end": 5412824,
+        "text": "1° N'admettre personne aux Etats s'il n'est dé- puté par la nation, toute\n                            autre qualité étant con- traire aux lois d'une véritable représentation."
+      },
+      {
+        "start": 5412850,
+        "end": 5413084,
+        "text": "2°-Arrêter que si un membre des Etats se char- geait de porter à\n                            l'assemblée nationale les ordres du gouvernement, il perdrait sa qualité\n                            de député et ne pourrait plus délibérer."
+      },
+      {
+        "start": 5413730,
+        "end": 5413889,
+        "text": "5° Défendre aux députés de s'occuper au com- mencement de leur séance\n                            d'aucun impôt et ren- voyer cet objet à la Un de l'assemblée."
+      }
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "window": 0,
+    "volume": 2,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+    "reference_comment": "p20 Administration est un intitulé du groupe suivant, pas le texte de l’article 4. Rectifie le périmètre expérimental précédent.",
+    "incorrect_predictions": [
+      {
+        "start": 19196,
+        "end": 21925,
+        "text": "Art. 4. Lesdits députés insisteront à ce que la matière de l'impôt et des autres secours\n       nécessaires, tant aux besoins de l'Etat qu'au payement de la dette, quand elle sera jugée, ne\n       soit traitée qu après la sanction de la charte nationale. \n\n      Charte nationale. \n      La succession au trône conservée dans l'ordre consacré. \n      La liberté générale et individuelle des citoyens. La liberté de la presse, sous les\n       modifications que les Etats généraux jugeront convenable d'v prescrire. \n      L'abolition absolue des lettres de cachet, tant pour exil que pour emprisonnement; de\n       l'usage dangereux et illégal de toutes commissions particulières pour juger les délits, et de\n       tous les mandats des cours supérieures aux juges inférieurs, connus sous le nom de veniat. \n      Que la foi publique ne puisse, sous aucun prétexte, être violée dans les bureaux de la\n       poste aux lettres,' \n      Que l'on assure la périodicité des Etats généraux, dont la première tenue sera indiquée au\n       plus tard dans trois ans, à compter de la fin des Etats prochains, et les autres tenues\n       seront fixées à cinq ans de \"distance de l'une à l'autre, s'en référant au surplus au vœu\n       général des députés aux Etats généraux. \n      Que l'assemblée prochaine des Etats généraux détermine toutes les précautions à prendre\n       pour assurer l'exercice du pouvoir souverain, dans le cas où il y aurait lieu à la régence,\n       et jusqu'à ce qu'elle ait été déférée par lesdits Etats généraux. \n      Que les députés aux Etats généraux, comme personnes sacrées, ne puissent, sous aucun\n       prétexte, être troublés dans leurs fonctions. \n      Qu'aucun citoyen, occupant un emploi légal, civil ou militaire, ne puisse être destitué que\n       par ses juges naturels. \n      Que tout citoyen accusé par le ministère public, et renvoyé absous, ait droit à une\n       indemnité qui sera payée par l'Etat. \n      Qu'aucune loi générale ne puisse avoir lieu qu'autant qu'elle aura été consentie ou propo- \n      \n      sée par les Etats généraux, et sanctionnée par le roi pour être incontinent transcrite sur\n       les registres des cours, sans vérification, publiée et affichée \n      Que nul impôt, emprunt, création ou suppression d'offices ne puisse avoir lieu sans le\n       consentement des Etats généraux. \n      Que les ministres soient responsables envers la nation des fonds qui leur seront confies\n       pour leurs départements, et des abus de leur administration. Lesdits députés proposeront aux\n       Etats généraux d'autoriser particulièrement le ministère public à poursuivre les ministres\n       prévaricateurs dans l'intervalle d'une tenue à l'autre. \n\n      Administration."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 19196,
+        "end": 21901,
+        "text": "Art. 4. Lesdits députés insisteront à ce que la matière de l'impôt et des autres secours\n       nécessaires, tant aux besoins de l'Etat qu'au payement de la dette, quand elle sera jugée, ne\n       soit traitée qu après la sanction de la charte nationale. \n\n      Charte nationale. \n      La succession au trône conservée dans l'ordre consacré. \n      La liberté générale et individuelle des citoyens. La liberté de la presse, sous les\n       modifications que les Etats généraux jugeront convenable d'v prescrire. \n      L'abolition absolue des lettres de cachet, tant pour exil que pour emprisonnement; de\n       l'usage dangereux et illégal de toutes commissions particulières pour juger les délits, et de\n       tous les mandats des cours supérieures aux juges inférieurs, connus sous le nom de veniat. \n      Que la foi publique ne puisse, sous aucun prétexte, être violée dans les bureaux de la\n       poste aux lettres,' \n      Que l'on assure la périodicité des Etats généraux, dont la première tenue sera indiquée au\n       plus tard dans trois ans, à compter de la fin des Etats prochains, et les autres tenues\n       seront fixées à cinq ans de \"distance de l'une à l'autre, s'en référant au surplus au vœu\n       général des députés aux Etats généraux. \n      Que l'assemblée prochaine des Etats généraux détermine toutes les précautions à prendre\n       pour assurer l'exercice du pouvoir souverain, dans le cas où il y aurait lieu à la régence,\n       et jusqu'à ce qu'elle ait été déférée par lesdits Etats généraux. \n      Que les députés aux Etats généraux, comme personnes sacrées, ne puissent, sous aucun\n       prétexte, être troublés dans leurs fonctions. \n      Qu'aucun citoyen, occupant un emploi légal, civil ou militaire, ne puisse être destitué que\n       par ses juges naturels. \n      Que tout citoyen accusé par le ministère public, et renvoyé absous, ait droit à une\n       indemnité qui sera payée par l'Etat. \n      Qu'aucune loi générale ne puisse avoir lieu qu'autant qu'elle aura été consentie ou propo- \n      \n      sée par les Etats généraux, et sanctionnée par le roi pour être incontinent transcrite sur\n       les registres des cours, sans vérification, publiée et affichée \n      Que nul impôt, emprunt, création ou suppression d'offices ne puisse avoir lieu sans le\n       consentement des Etats généraux. \n      Que les ministres soient responsables envers la nation des fonds qui leur seront confies\n       pour leurs départements, et des abus de leur administration. Lesdits députés proposeront aux\n       Etats généraux d'autoriser particulièrement le ministère public à poursuivre les ministres\n       prévaricateurs dans l'intervalle d'une tenue à l'autre."
+      }
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "window": 0,
+    "volume": 3,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "reference_comment": "Dernier marqueur i lfl illisible ; pas de numéro historique reconstruit.",
+    "incorrect_predictions": [
+      {
+        "start": 1762743,
+        "end": 1763808,
+        "text": "10° On met sous les yeux de Sa Majesté que les droits de péage,\n                            pontonnages, chaussées et autres sont très-frayeu* à son peuple, et que\n                            les pigepns causent un tort considérable aux aveties crois- santés de\n                            toute espèce.\n                        i lfl IJ ne reste plus pour lq onzième chef de do- léances que de\n                            supplier 3a Majesté de vouloir bien maintenir cette communauté de\n                            Ribaucourt dans ses droits de franchise sur les vins, bière, tabac et\n                            autres, que les habitants d'icelle communauté jouissent depuis mémoire\n                            d'homme , pour lui avoir été confirmés par la concession des ducs de\n                            Bourgogne et des comtes de Flandre.\n                        Seront tenus les députés nommés pour cet effet, de présenter ledit\n                            cahier, et supplient M. le lieutenant général lors de l'assemblée du\n                            30."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 1762743,
+        "end": 1763046,
+        "text": "10° On met sous les yeux de Sa Majesté que les droits de péage,\n                            pontonnages, chaussées et autres sont très-frayeu* à son peuple, et que\n                            les pigepns causent un tort considérable aux aveties crois- santés de\n                            toute espèce."
+      },
+      {
+        "start": 1763071,
+        "end": 1763588,
+        "text": "i lfl IJ ne reste plus pour lq onzième chef de do- léances que de\n                            supplier 3a Majesté de vouloir bien maintenir cette communauté de\n                            Ribaucourt dans ses droits de franchise sur les vins, bière, tabac et\n                            autres, que les habitants d'icelle communauté jouissent depuis mémoire\n                            d'homme , pour lui avoir été confirmés par la concession des ducs de\n                            Bourgogne et des comtes de Flandre."
+      }
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "window": 0,
+    "volume": 3,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+    "reference_comment": "Frontières lisibles par répétition typographique et contexte ; z8, 36, B®, Il® restent inchangés. Numéros normalisés absents.",
+    "incorrect_predictions": [
+      {
+        "start": 2030891,
+        "end": 2033536,
+        "text": "1° il existe un marais cdmmtiti entre les habi- tàtitS dti Viliagè dë\n                            Modtigny ët cëlui dë DeëhV, Voisin ; cë marais était ci-dèvànt pdfesédé\n                            ët Cul- tivé par indivis ; les paysans y ënVoyàiënt paître leurs\n                            bestiaux indivisément. 11 a pfu aux habi- tants de Dëchy de susciter\n                            différentes chicanés a eeut de Mdtitigtiy pour lëtir ëiilevër là\n                            propriété, tantôt en les forçant de se cantonner dans certains etidroits\n                            dtidit marais, tantôt en les nécëssitarit de se. cdtitëtitèr d'une\n                            jôtiiséaticë Viagère^ d'esf-à- diré tlë la stiperficie de cërfàihS\n                            droits boncëtitrës ; en Sdrte qtië lës habitants dë Mohtighy, soit par\n                            l'ignorance des gèns dë loi qtii lës présidaient, sbit par négligence,\n                            soit par dol përsdfinel, Së SdUt vus rêdtiits à tin droit limité de\n                            certaines paissons; lëS habitants de Montigny dêthaiidertt dbnd que lë-\n                            dit ttiâràis soit réfldti ët restitué Cdmmtiti entre les fiàbitàfitë\n                            dudit Mc/ntigny ëtDëdtty, àihSi qtie de toute ancienneté, notamment\n                            depuis i'érectidh du |duyërriërîfëhf féodal, dë qtii Së trouve\n                            Caractérisé par lës chartes de la Botirgogtie, en dbsërvatit no-\n                            tâitimëht dtié lës seignétirs respectifs dë fcës dëtit Villagèi\n                            iimitrd^heS ti^dtit lâmaiS èXë|*cé les mdindres droits propriétàireS Sur\n                            ce marais commun. \n                        z8 Les Chargés de FEtàt doivëht êfrë subpdftéës par tous lës\n                            propriétaires, ati prorata de letir dd- maiûë. LëS habitàtitS\n                            dèftiàtidëtii etiCdrë à de que la subvention territoriale soit imposée\n                            sur toutes lës terrés, sans atiCtiné distinction tii dti Clergé ni dë là\n                            ndblëssë. _ t \n                        36 0ri tiidyeô racile potti® réparer lë déficit des fitiàticëS et M\n                            dotitièr une stabilité immtiable, c'ëSt, otitrë iadité Subvention\n                            tërrltdrriâlë qui Sera sutipdrtéepar chaque propriétaire sàns àucunëdis-\n                            titictidn, tf'assëdir titi impôt sur tous les objets de\n\n\n                        \n\n\n                        luxe et sur toutes choses absolument superflues."
+      },
+      {
+        "start": 2033537,
+        "end": 2034133,
+        "text": "4® La Flandre, avant sa\n                            réunion à la couronqë; était composéedes Etats les plus réguliers,\n                            savoir: du Clergé^ de la ndbiesse et du tiers-état ; elle est maintenant\n                            gouvernée pat quatre grands hajllis dont la composition est aussi\n                            extraordi- naire qu'incroyable. Les habitants de Montigny demandent\n                            encore à ce que leurs anciens Etats soient réintégrés comme ils étaient\n                            du temps des comtes de Flandre. \n                        ,"
+      },
+      {
+        "start": 2034133,
+        "end": 2034386,
+        "text": "5® L'ordre des paysans, est ignore en Flandre,qui est cependant le plus\n                            utile à rfilât. Ils demandent encore à ce qu'on ajoute auxdits trois\n                            Etats, celui des paysans, comme il së pratiqué en Suède."
+      },
+      {
+        "start": 2034639,
+        "end": 2035218,
+        "text": "7® Les maîtrises dèséàux et forêts sont très- inutiles et\n                            très-dispendieuses à l'Etat ; on en de- mande la suppression! et a ce\n                            qu'élles soient gou- vernées par la voie de régie ou celles moins\n                            dispendieuses. \n                        B® Les seignëurs territoriaux convertissent la plupart des sentiers en,\n                            chemins vicomtiers ; on en demande,la suppression, ,et notamment à ce\n                            que les sentiers superflus soient rendus â la cul- ture. ,, , ."
+      },
+      {
+        "start": 2035482,
+        "end": 2036084,
+        "text": "10® Les gens de loi dé Montigny, ainsi què de tous les villages\n                            eirconvoisins de là Flandre* sont nommes d'après le caprice du seigneur\n                            ; oh de- mande à ce que cette élection des gens de loi se fasse par la\n                            commune à la pluralitédes voix, tous les ans.. \n                        Il® Les collecteurs des deniers royaux devront être choisis par les\n                            communes à la .pluralité des suffrages, et ils spront en premier lieu\n                            responsa- bles. de leur gestiqn à la commune,"
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 2030891,
+        "end": 2032644,
+        "text": "1° il existe un marais cdmmtiti entre les habi- tàtitS dti Viliagè dë\n                            Modtigny ët cëlui dë DeëhV, Voisin ; cë marais était ci-dèvànt pdfesédé\n                            ët Cul- tivé par indivis ; les paysans y ënVoyàiënt paître leurs\n                            bestiaux indivisément. 11 a pfu aux habi- tants de Dëchy de susciter\n                            différentes chicanés a eeut de Mdtitigtiy pour lëtir ëiilevër là\n                            propriété, tantôt en les forçant de se cantonner dans certains etidroits\n                            dtidit marais, tantôt en les nécëssitarit de se. cdtitëtitèr d'une\n                            jôtiiséaticë Viagère^ d'esf-à- diré tlë la stiperficie de cërfàihS\n                            droits boncëtitrës ; en Sdrte qtië lës habitants dë Mohtighy, soit par\n                            l'ignorance des gèns dë loi qtii lës présidaient, sbit par négligence,\n                            soit par dol përsdfinel, Së SdUt vus rêdtiits à tin droit limité de\n                            certaines paissons; lëS habitants de Montigny dêthaiidertt dbnd que lë-\n                            dit ttiâràis soit réfldti ët restitué Cdmmtiti entre les fiàbitàfitë\n                            dudit Mc/ntigny ëtDëdtty, àihSi qtie de toute ancienneté, notamment\n                            depuis i'érectidh du |duyërriërîfëhf féodal, dë qtii Së trouve\n                            Caractérisé par lës chartes de la Botirgogtie, en dbsërvatit no-\n                            tâitimëht dtié lës seignétirs respectifs dë fcës dëtit Villagèi\n                            iimitrd^heS ti^dtit lâmaiS èXë|*cé les mdindres droits propriétàireS Sur\n                            ce marais commun."
+      },
+      {
+        "start": 2032670,
+        "end": 2033062,
+        "text": "z8 Les Chargés de FEtàt doivëht êfrë subpdftéës par tous lës\n                            propriétaires, ati prorata de letir dd- maiûë. LëS habitàtitS\n                            dèftiàtidëtii etiCdrë à de que la subvention territoriale soit imposée\n                            sur toutes lës terrés, sans atiCtiné distinction tii dti Clergé ni dë là\n                            ndblëssë. _ t"
+      },
+      {
+        "start": 2033088,
+        "end": 2033536,
+        "text": "36 0ri tiidyeô racile potti® réparer lë déficit des fitiàticëS et M\n                            dotitièr une stabilité immtiable, c'ëSt, otitrë iadité Subvention\n                            tërrltdrriâlë qui Sera sutipdrtéepar chaque propriétaire sàns àucunëdis-\n                            titictidn, tf'assëdir titi impôt sur tous les objets de\n\n\n                        \n\n\n                        luxe et sur toutes choses absolument superflues."
+      },
+      {
+        "start": 2033537,
+        "end": 2034106,
+        "text": "4® La Flandre, avant sa\n                            réunion à la couronqë; était composéedes Etats les plus réguliers,\n                            savoir: du Clergé^ de la ndbiesse et du tiers-état ; elle est maintenant\n                            gouvernée pat quatre grands hajllis dont la composition est aussi\n                            extraordi- naire qu'incroyable. Les habitants de Montigny demandent\n                            encore à ce que leurs anciens Etats soient réintégrés comme ils étaient\n                            du temps des comtes de Flandre."
+      },
+      {
+        "start": 2034132,
+        "end": 2034386,
+        "text": ",5® L'ordre des paysans, est ignore en Flandre,qui est cependant le plus\n                            utile à rfilât. Ils demandent encore à ce qu'on ajoute auxdits trois\n                            Etats, celui des paysans, comme il së pratiqué en Suède."
+      },
+      {
+        "start": 2034639,
+        "end": 2034931,
+        "text": "7® Les maîtrises dèséàux et forêts sont très- inutiles et\n                            très-dispendieuses à l'Etat ; on en de- mande la suppression! et a ce\n                            qu'élles soient gou- vernées par la voie de régie ou celles moins\n                            dispendieuses."
+      },
+      {
+        "start": 2034957,
+        "end": 2035218,
+        "text": "B® Les seignëurs territoriaux convertissent la plupart des sentiers en,\n                            chemins vicomtiers ; on en demande,la suppression, ,et notamment à ce\n                            que les sentiers superflus soient rendus â la cul- ture. ,, , ."
+      },
+      {
+        "start": 2035482,
+        "end": 2035819,
+        "text": "10® Les gens de loi dé Montigny, ainsi què de tous les villages\n                            eirconvoisins de là Flandre* sont nommes d'après le caprice du seigneur\n                            ; oh de- mande à ce que cette élection des gens de loi se fasse par la\n                            commune à la pluralitédes voix, tous les ans.."
+      },
+      {
+        "start": 2035845,
+        "end": 2036084,
+        "text": "Il® Les collecteurs des deniers royaux devront être choisis par les\n                            communes à la .pluralité des suffrages, et ils spront en premier lieu\n                            responsa- bles. de leur gestiqn à la commune,"
+      }
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "window": 0,
+    "volume": 4,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "reference_comment": "",
+    "incorrect_predictions": [
+      {
+        "start": 10263,
+        "end": 10399,
+        "text": "10° Que les articles 8 et 9 seront réglés avant de pouvoir consentir\n                            aucun impôt. \n                        -"
+      },
+      {
+        "start": 10399,
+        "end": 10841,
+        "text": "11° Que, dans la supposition que de nouveaux impôts seraient jugés\n                            indispensables, on choisira de préférence ceux qui atteindront plus\n                            facilement les facultés de tous genres, et présenteront le moins de gêne\n                            et de frais, dans leur perception, en adoptant les formes qui se\n                            concilieront avec les privilèges des différents ordres. ."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 10263,
+        "end": 10372,
+        "text": "10° Que les articles 8 et 9 seront réglés avant de pouvoir consentir\n                            aucun impôt."
+      },
+      {
+        "start": 10398,
+        "end": 10841,
+        "text": "-11° Que, dans la supposition que de nouveaux impôts seraient jugés\n                            indispensables, on choisira de préférence ceux qui atteindront plus\n                            facilement les facultés de tous genres, et présenteront le moins de gêne\n                            et de frais, dans leur perception, en adoptant les formes qui se\n                            concilieront avec les privilèges des différents ordres. ."
+      }
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "window": 0,
+    "volume": 4,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+    "reference_comment": "Article 15 introductif exclu du référentiel : portée sur les sections suivantes à clarifier.",
+    "incorrect_predictions": [
+      {
+        "start": 5030860,
+        "end": 5031024,
+        "text": "Art. 13. Lesdits députés de Ferrières porteront le vœu formel de la\n                            délibération par tête aux Etats généraux. \n                        ,"
+      },
+      {
+        "start": 5031025,
+        "end": 5031335,
+        "text": "Art. 14. Les Etats généraux ayant établi la constitution sur des bases\n                            solides et inviolahles, et, par conséquent, ayant assuré leur retour\n                            périodique en supposant qu'il ne leur paraisse pas convenable de se\n                            rendre perpétuels,"
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 5030860,
+        "end": 5030997,
+        "text": "Art. 13. Lesdits députés de Ferrières porteront le vœu formel de la\n                            délibération par tête aux Etats généraux."
+      },
+      {
+        "start": 5031023,
+        "end": 5031335,
+        "text": ", Art. 14. Les Etats généraux ayant établi la constitution sur des bases\n                            solides et inviolahles, et, par conséquent, ayant assuré leur retour\n                            périodique en supposant qu'il ne leur paraisse pas convenable de se\n                            rendre perpétuels,"
+      }
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "window": 0,
+    "volume": 5,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+    "reference_comment": "",
+    "incorrect_predictions": [
+      {
+        "start": 195972,
+        "end": 196770,
+        "text": "Art. 9. Que toutes les impositions soient payées par tous les\n                            propriétaires de fonds sans exception.\n                        Ce fut fait le mardi 14 avril 1789, en présence de toute l’assemblée, et\n                            ont signé :\n                        Denis Leveau, ancien marguillier ; Duvivier; Louis-Alexandre Mael;\n                            Courteville; Jean-Louis Legrand ; Jean-Louis Leveau , marguillier en\n                            charge; Louis Jacquin; Vaillant-Courteville; Bernard ; Dumeny, ancien\n                            marguillier ; Du Bucquoi ; Jean-Pierre Rougeaux; Jean-Baptiste Leveau;\n                            Jean-Louis Callé; Pierre Cousin; Cousin, syndic; Danjeau, greffier;\n                            Cousin Fleuret, député."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 195972,
+        "end": 196100,
+        "text": "Art. 9. Que toutes les impositions soient payées par tous les\n                            propriétaires de fonds sans exception."
+      }
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "window": 0,
+    "volume": 6,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "reference_comment": "Intitulés p9,p12,p14 séparés. Article 3 non certifié : rattachement de la rubrique Réduction des rentes et des paragraphes suivants à contrôler.",
+    "incorrect_predictions": [
+      {
+        "start": 44192,
+        "end": 44477,
+        "text": "Art. 1er. L'ordre de la noblesse désire et\n                            de- \n                        mandé que les Etats généraux votent par tête en matière d'impositions, et\n                            par ordre pour tout le reste. \n\n                        Dette nationale consolidée."
+      },
+      {
+        "start": 44503,
+        "end": 44712,
+        "text": "Art. 2. Désire et demande que la dettte de l'Etat soit discutée, vérifiée\n                            et ensuite consolidée par la nation. * \n\n                        Visite des titres des créanciers de VEtat."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 44192,
+        "end": 44423,
+        "text": "Art. 1er. L'ordre de la noblesse désire et\n                            de- \n                        mandé que les Etats généraux votent par tête en matière d'impositions, et\n                            par ordre pour tout le reste."
+      },
+      {
+        "start": 44503,
+        "end": 44643,
+        "text": "Art. 2. Désire et demande que la dettte de l'Etat soit discutée, vérifiée\n                            et ensuite consolidée par la nation. *"
+      }
+    ]
+  },
+  {
+    "document_key": "beaurecueil",
+    "window": 0,
+    "volume": 6,
+    "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+    "reference_comment": "Revue approfondie XML + image p262 : prose initiale puis trois demandes numérotées dans p5 ; 3° prolongé par p6–8 avant Signé. Belcodène p9 suivant hors parent.",
+    "incorrect_predictions": [
+      {
+        "start": 2348004,
+        "end": 2349560,
+        "text": "3° Que les\n                            petites communautés de la Provence aient un défenseur ou syndic ou un\n                            bureau de syndics, défendeurs libres, indépendants; et qu'on ne soit pas\n                            obligé de payer à l'effet de faire valoir les droits des petites\n                            communautés contre leur seigneur. \n                        Les- grandes communautés ont des moyens pour se défendre ; les petites\n                            n'en ont point; et souvent même elles ont des droits à faire valoir\n                            contre les grandes communautés. \n                        La petite ^communauté de Beaurecueil est dans ce cas vis-à-vis de la\n                            communauté d'Aix. Elle était exempte autrefois des droits d'entrée ;\n                            elle venait y vendre ses denrées librement. Depuis quelque temps, on y a\n                            mis obstacle : le seigneur seul en jouit aujourd'hui, ainsi que les\n                            possédants biens qui résident à Aix. r , \n                        Un moyen plus simple et plus naturel encore de donner de la consistance à\n                            cette communauté, ce serait de la réunir à la communauté de\n                            Roquet-Hautes, dépendant du même seigneur, et déjà comprise sous un même\n                            rôle de capitation. Signé Roché, lieutenant dé jugé; Gabriel Gautier;\n                            Pierre Rocher; Antoine Roché ; P. Roubard ; P. Sorger, etB. Cheilan."
+      }
+    ],
+    "missed_or_incorrectly_bounded_units": [
+      {
+        "start": 2348004,
+        "end": 2349413,
+        "text": "3° Que les\n                            petites communautés de la Provence aient un défenseur ou syndic ou un\n                            bureau de syndics, défendeurs libres, indépendants; et qu'on ne soit pas\n                            obligé de payer à l'effet de faire valoir les droits des petites\n                            communautés contre leur seigneur. \n                        Les- grandes communautés ont des moyens pour se défendre ; les petites\n                            n'en ont point; et souvent même elles ont des droits à faire valoir\n                            contre les grandes communautés. \n                        La petite ^communauté de Beaurecueil est dans ce cas vis-à-vis de la\n                            communauté d'Aix. Elle était exempte autrefois des droits d'entrée ;\n                            elle venait y vendre ses denrées librement. Depuis quelque temps, on y a\n                            mis obstacle : le seigneur seul en jouit aujourd'hui, ainsi que les\n                            possédants biens qui résident à Aix. r , \n                        Un moyen plus simple et plus naturel encore de donner de la consistance à\n                            cette communauté, ce serait de la réunir à la communauté de\n                            Roquet-Hautes, dépendant du même seigneur, et déjà comprise sous un même\n                            rôle de capitation."
+      }
+    ]
+  }
+]

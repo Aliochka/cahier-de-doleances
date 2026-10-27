@@ -1,0 +1,330 @@
+[
+  {
+    "documents": 240,
+    "segments": 240,
+    "elapsed_seconds": 0.5004505600008997,
+    "last_query_seconds": 0.2617307950022223,
+    "rss_bytes": 101961728,
+    "available_ram": 126353350656
+  },
+  {
+    "documents": 25240,
+    "segments": 25312,
+    "elapsed_seconds": 14.183399524001288,
+    "last_query_seconds": 0.45136704499964253,
+    "rss_bytes": 139722752,
+    "available_ram": 126327689216
+  },
+  {
+    "documents": 50240,
+    "segments": 50398,
+    "elapsed_seconds": 25.008487751001667,
+    "last_query_seconds": 0.37171915100043407,
+    "rss_bytes": 143745024,
+    "available_ram": 126256517120
+  },
+  {
+    "documents": 75240,
+    "segments": 75528,
+    "elapsed_seconds": 34.418278653000016,
+    "last_query_seconds": 0.345205181001802,
+    "rss_bytes": 143953920,
+    "available_ram": 126353465344
+  },
+  {
+    "documents": 100240,
+    "segments": 100588,
+    "elapsed_seconds": 43.132947185000376,
+    "last_query_seconds": 0.31536416400194867,
+    "rss_bytes": 143953920,
+    "available_ram": 126287126528
+  },
+  {
+    "documents": 125240,
+    "segments": 125658,
+    "elapsed_seconds": 51.44867530999909,
+    "last_query_seconds": 0.29715393200240214,
+    "rss_bytes": 143953920,
+    "available_ram": 126264721408
+  },
+  {
+    "documents": 150240,
+    "segments": 150743,
+    "elapsed_seconds": 59.45851875099834,
+    "last_query_seconds": 0.2927692709999974,
+    "rss_bytes": 140292096,
+    "available_ram": 126164451328
+  },
+  {
+    "documents": 175240,
+    "segments": 175812,
+    "elapsed_seconds": 67.26434635199985,
+    "last_query_seconds": 0.28199698900061776,
+    "rss_bytes": 140390400,
+    "available_ram": 126315978752
+  },
+  {
+    "documents": 200240,
+    "segments": 200859,
+    "elapsed_seconds": 74.84626830900015,
+    "last_query_seconds": 0.277067104998423,
+    "rss_bytes": 140390400,
+    "available_ram": 126221434880
+  },
+  {
+    "documents": 225240,
+    "segments": 225912,
+    "elapsed_seconds": 82.24290611499964,
+    "last_query_seconds": 0.26725382299991907,
+    "rss_bytes": 140390400,
+    "available_ram": 126172856320
+  },
+  {
+    "documents": 250240,
+    "segments": 250972,
+    "elapsed_seconds": 89.54447980999976,
+    "last_query_seconds": 0.2671890599995095,
+    "rss_bytes": 140390400,
+    "available_ram": 126251921408
+  },
+  {
+    "documents": 275240,
+    "segments": 276059,
+    "elapsed_seconds": 96.71015803300179,
+    "last_query_seconds": 0.26117701399925863,
+    "rss_bytes": 141750272,
+    "available_ram": 126221012992
+  },
+  {
+    "documents": 300240,
+    "segments": 301125,
+    "elapsed_seconds": 103.77959156900033,
+    "last_query_seconds": 0.26069804900180316,
+    "rss_bytes": 141770752,
+    "available_ram": 126224474112
+  },
+  {
+    "documents": 325240,
+    "segments": 326178,
+    "elapsed_seconds": 110.70062202099871,
+    "last_query_seconds": 0.2524961809976958,
+    "rss_bytes": 141770752,
+    "available_ram": 126298652672
+  },
+  {
+    "documents": 350240,
+    "segments": 351293,
+    "elapsed_seconds": 117.61893826999949,
+    "last_query_seconds": 0.25063551800121786,
+    "rss_bytes": 141770752,
+    "available_ram": 126218489856
+  },
+  {
+    "documents": 375240,
+    "segments": 376367,
+    "elapsed_seconds": 124.4578295680003,
+    "last_query_seconds": 0.2526058860021294,
+    "rss_bytes": 141770752,
+    "available_ram": 126236516352
+  },
+  {
+    "documents": 400240,
+    "segments": 401438,
+    "elapsed_seconds": 131.29379143700135,
+    "last_query_seconds": 0.24325867699735682,
+    "rss_bytes": 141770752,
+    "available_ram": 126221950976
+  },
+  {
+    "documents": 425240,
+    "segments": 426519,
+    "elapsed_seconds": 138.07335788099954,
+    "last_query_seconds": 0.24355009500141023,
+    "rss_bytes": 143769600,
+    "available_ram": 126267781120
+  },
+  {
+    "documents": 450240,
+    "segments": 451589,
+    "elapsed_seconds": 144.7346424210009,
+    "last_query_seconds": 0.2389726410001458,
+    "rss_bytes": 143769600,
+    "available_ram": 126144282624
+  },
+  {
+    "documents": 475240,
+    "segments": 476664,
+    "elapsed_seconds": 151.4145718079999,
+    "last_query_seconds": 0.2375890739967872,
+    "rss_bytes": 140206080,
+    "available_ram": 126256648192
+  },
+  {
+    "documents": 500240,
+    "segments": 501734,
+    "elapsed_seconds": 158.1076182780016,
+    "last_query_seconds": 0.23585277199890697,
+    "rss_bytes": 140206080,
+    "available_ram": 126275694592
+  },
+  {
+    "documents": 525240,
+    "segments": 526791,
+    "elapsed_seconds": 164.73424578300182,
+    "last_query_seconds": 0.23633433200302534,
+    "rss_bytes": 140206080,
+    "available_ram": 126316548096
+  },
+  {
+    "documents": 550240,
+    "segments": 551859,
+    "elapsed_seconds": 171.27980290100095,
+    "last_query_seconds": 0.240818431997468,
+    "rss_bytes": 143773696,
+    "available_ram": 126306009088
+  },
+  {
+    "documents": 575240,
+    "segments": 576955,
+    "elapsed_seconds": 177.83248138600175,
+    "last_query_seconds": 0.23716794999927515,
+    "rss_bytes": 137883648,
+    "available_ram": 126214541312
+  },
+  {
+    "documents": 600240,
+    "segments": 602012,
+    "elapsed_seconds": 184.34061858900168,
+    "last_query_seconds": 0.22996820099797333,
+    "rss_bytes": 143847424,
+    "available_ram": 126203256832
+  },
+  {
+    "documents": 625240,
+    "segments": 627070,
+    "elapsed_seconds": 190.8010775670009,
+    "last_query_seconds": 0.22432083799867542,
+    "rss_bytes": 143847424,
+    "available_ram": 126218723328
+  },
+  {
+    "documents": 650240,
+    "segments": 652139,
+    "elapsed_seconds": 197.26080615699902,
+    "last_query_seconds": 0.23192120000021532,
+    "rss_bytes": 143847424,
+    "available_ram": 126317379584
+  },
+  {
+    "documents": 675240,
+    "segments": 677241,
+    "elapsed_seconds": 203.69008385900088,
+    "last_query_seconds": 0.22875040100188926,
+    "rss_bytes": 143847424,
+    "available_ram": 126272028672
+  },
+  {
+    "documents": 700240,
+    "segments": 702314,
+    "elapsed_seconds": 210.03395029899912,
+    "last_query_seconds": 0.22675323099974776,
+    "rss_bytes": 143847424,
+    "available_ram": 126216306688
+  },
+  {
+    "documents": 725240,
+    "segments": 727375,
+    "elapsed_seconds": 216.39856575399972,
+    "last_query_seconds": 0.2290879659994971,
+    "rss_bytes": 143847424,
+    "available_ram": 126265622528
+  },
+  {
+    "documents": 750240,
+    "segments": 752414,
+    "elapsed_seconds": 222.68028989400045,
+    "last_query_seconds": 0.22190195100120036,
+    "rss_bytes": 143847424,
+    "available_ram": 126193025024
+  },
+  {
+    "documents": 775240,
+    "segments": 777497,
+    "elapsed_seconds": 228.93098278199977,
+    "last_query_seconds": 0.2251127740019001,
+    "rss_bytes": 143847424,
+    "available_ram": 126239399936
+  },
+  {
+    "documents": 800240,
+    "segments": 802571,
+    "elapsed_seconds": 235.18001724200076,
+    "last_query_seconds": 0.22062647699931404,
+    "rss_bytes": 143847424,
+    "available_ram": 126254903296
+  },
+  {
+    "documents": 825240,
+    "segments": 827660,
+    "elapsed_seconds": 241.3557807899997,
+    "last_query_seconds": 0.2200959639994835,
+    "rss_bytes": 143847424,
+    "available_ram": 126241853440
+  },
+  {
+    "documents": 850240,
+    "segments": 852737,
+    "elapsed_seconds": 247.52552871399894,
+    "last_query_seconds": 0.22309967199907987,
+    "rss_bytes": 143847424,
+    "available_ram": 126230257664
+  },
+  {
+    "documents": 875240,
+    "segments": 877827,
+    "elapsed_seconds": 253.600020124999,
+    "last_query_seconds": 0.2168858539989742,
+    "rss_bytes": 143847424,
+    "available_ram": 126150832128
+  },
+  {
+    "documents": 900240,
+    "segments": 902922,
+    "elapsed_seconds": 259.711357401,
+    "last_query_seconds": 0.21209679399908055,
+    "rss_bytes": 143847424,
+    "available_ram": 126132793344
+  },
+  {
+    "documents": 925240,
+    "segments": 927975,
+    "elapsed_seconds": 265.73752089999834,
+    "last_query_seconds": 0.21499296099864296,
+    "rss_bytes": 143847424,
+    "available_ram": 126156050432
+  },
+  {
+    "documents": 950240,
+    "segments": 953056,
+    "elapsed_seconds": 271.70503154700054,
+    "last_query_seconds": 0.21306842600097298,
+    "rss_bytes": 143847424,
+    "available_ram": 126170734592
+  },
+  {
+    "documents": 975240,
+    "segments": 978120,
+    "elapsed_seconds": 277.64993432100164,
+    "last_query_seconds": 0.21579691199804074,
+    "rss_bytes": 143847424,
+    "available_ram": 126197784576
+  },
+  {
+    "documents": 1000000,
+    "segments": 1003055,
+    "elapsed_seconds": 283.7981660160003,
+    "last_query_seconds": 0.18513796499973978,
+    "rss_bytes": 139661312,
+    "available_ram": 126236545024
+  }
+]

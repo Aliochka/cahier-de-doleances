@@ -1,0 +1,15 @@
+!*.json
+!*.jsonl
+!data/
+!data/**
+!figures/
+!figures/**
+__pycache__/
+
+# Large audit artefacts remain local; see ../LOCAL_DATA.md.
+/data/population-ids.jsonl.gz
+/data/qualitative-rankings.jsonl
+/data/rankings.jsonl.gz
+/data/raw-branches.jsonl.gz
+/data/representation-diagnostic.jsonl.gz
+/data/result-documents.jsonl.gz

@@ -1,0 +1,7 @@
+[
+ {"id":"agen-title","key":"agen","stanford_paragraph":1,"persee_file":"persee-agen-0675.html","persee_paragraph":3,"pattern":"(sénéchau[\\w8]+)","reference":"sénéchaussée","scan":"../1789-multicorpus/quality-review.json","note":"Mot du titre ; casse neutralisée uniquement pour la mesure."},
+ {"id":"colmar-art2","key":"colmar","stanford_paragraph":2,"persee_file":"persee-colmar-0012.html","persee_paragraph":4,"pattern":"en ayant soin (ae|de) fixer","reference":"de","scan":"persee-colmar-0012.jpg","note":"Mot dans l’article 2."},
+ {"id":"colmar-art3","key":"colmar","stanford_paragraph":3,"persee_file":"persee-colmar-0012.html","persee_paragraph":5,"pattern":"^(Art\\.(?:\\s+3\\.)?)","reference":"Art. 3.","scan":"persee-colmar-0012.jpg","note":"Numéro présent dans l’édition imprimée."},
+ {"id":"mirecourt-art5","key":"mirecourt","stanford_paragraph":6,"persee_file":"persee-mirecourt-0002.html","persee_paragraph":3,"pattern":"la (lib\\S+)","reference":"liberté","scan":"persee-mirecourt-0002.jpg","note":"Persée lit libërté, et non liberté : une substitution subsiste."},
+ {"id":"vic-art2","key":"vic","stanford_paragraph":3,"persee_file":"persee-vic-0016.html","persee_paragraph":4,"pattern":"^(Art\\. 2\\.(?:11| Il))","reference":"Art. 2. Il","scan":"persee-vic-0016.jpg","note":"Séparation et lecture de Il en début de phrase."}
+]

@@ -1,0 +1,62 @@
+{
+  "revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "method": "pilot-1.0.0",
+  "decisions_sha256": "054caec6aa830a3c4134c1c94cd30444f72c76c6d51f1d4f3d099e3210333f3f",
+  "extractor_sha256": "c6d8d1469a543d92280ea8c3cbbdc335a86dc11cf3929b89dded55f26ef2fa2e",
+  "common_sha256": "57ee21104bdca8e7795e2fee3cb95a43a29cb21899a7566665e4b75b8f62e812",
+  "sources": [
+    {
+      "volume": 1,
+      "file": "jt959wc5586.xml",
+      "sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+      "decoded_text_sha256": "2a1ae3c339448c00e6f6733e7abeb59bcb14e5a0b33e15af5f911a1d7a2a4a14"
+    },
+    {
+      "volume": 2,
+      "file": "fz023dp4399.xml",
+      "sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "decoded_text_sha256": "5ba4946c43311c1bc0f7431859858da03ae65e6742e19e9c0cb94b6c220a4032"
+    },
+    {
+      "volume": 3,
+      "file": "mc666yy3026.xml",
+      "sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "decoded_text_sha256": "1ca009118bd9860e12c584b6fd9b8426b881bdc0d761849150fdc570019cc060"
+    },
+    {
+      "volume": 4,
+      "file": "xg914wh0253.xml",
+      "sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "decoded_text_sha256": "dfea4f40a664b9682ca732273646dfde5fade24e8641664b5a1c0272f7470914"
+    },
+    {
+      "volume": 5,
+      "file": "xx284sn7328.xml",
+      "sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "decoded_text_sha256": "ca7ab18f48f42cabd8a923a2a2f482249c0d6816302fa29d2f2844ecbfe593e8"
+    },
+    {
+      "volume": 6,
+      "file": "wg983ft3682.xml",
+      "sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "decoded_text_sha256": "54c466be89910afc4bc7706b74e5aef2e3dc752599c562061d034b7c79bc91e5"
+    }
+  ],
+  "parser": {
+    "name": "lxml.etree",
+    "version": [
+      4,
+      8,
+      0,
+      0
+    ],
+    "load_dtd": false,
+    "resolve_entities": false,
+    "no_network": true,
+    "recover": false
+  },
+  "previous_audits_modified": false,
+  "application_modified": false,
+  "database_access": false,
+  "embeddings_generated": false
+}

@@ -1,0 +1,40 @@
+{
+  "per_volume": {
+    "1": {
+      "edito": 1,
+      "liminaire": 2,
+      "article": 55,
+      "theme": 9,
+      "griev": 24,
+      "table": 2
+    },
+    "2": {
+      "theme": 54,
+      "griev": 181,
+      "table": 2
+    },
+    "3": {
+      "theme": 47,
+      "griev": 223,
+      "table": 1
+    },
+    "4": {
+      "theme": 19,
+      "griev": 347,
+      "table": 1
+    },
+    "5": {
+      "theme": 37,
+      "griev": 298,
+      "table": 1
+    },
+    "6": {
+      "theme": 57,
+      "griev": 232,
+      "index": 1
+    }
+  },
+  "all_entries_are_catalogue_not_verified_cahiers": true,
+  "scope": "Six issue METS metadata records, not documentary text harvesting",
+  "griev_total": 1305
+}

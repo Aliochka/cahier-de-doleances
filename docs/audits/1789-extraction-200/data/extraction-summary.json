@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-10-26T17:31:01.928349+00:00",
+  "seconds": 5.132690605998505,
+  "documents": 200,
+  "inherited": 30,
+  "new": 170,
+  "raw_new_article_proposals": 5445,
+  "statuses": {
+    "A": 317,
+    "B": 5872
+  },
+  "new_statuses": {
+    "B": 5382,
+    "A": 48
+  },
+  "retained_C_ranges": 812,
+  "parent_statuses": {
+    "prior_reviewed_document": 30,
+    "quarantined_false_parent": 11,
+    "automatic_unverified": 153,
+    "source_boundaries_reviewed": 6
+  },
+  "parent_corrections": 1,
+  "new_reviewed_articles": 48
+}

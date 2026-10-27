@@ -1,0 +1,78 @@
+{
+  "audit_date": "2026-10-25",
+  "application_revision": "818b5464f24cac4d8537793c15c8e2c580505f88",
+  "source_repository": "https://github.com/StanfordUniversityLibraries/ap_tei",
+  "source_commit": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "source_tree": "94b6c32f4dcf3e51ef3e4415420dc0ea4c7b8a62",
+  "source_commit_date": "2014-03-27T17:31:24Z",
+  "archive_sha256": "335f24f7a1e9a80a3d1301432c15e8614baea0704663eaa61bc713f6a1819b9c",
+  "source_blob_count_verified": 88,
+  "source_blob_mismatches": 0,
+  "xml_files": 83,
+  "xml_bytes": 513226252,
+  "xml_parser": {
+    "name": "lxml.etree",
+    "version": "4.8.0.0",
+    "load_dtd": false,
+    "resolve_entities": false,
+    "no_network": true,
+    "recover": false
+  },
+  "database_access": false,
+  "embeddings_generated": false,
+  "application_changes": false,
+  "external_checks": [
+    {
+      "url": "https://github.com/StanfordUniversityLibraries/ap_tei",
+      "result": "README and all pinned XML inspected locally"
+    },
+    {
+      "url": "https://purl.stanford.edu/jt959wc5586/iiif/manifest",
+      "result": "Manifest downloaded; attribution present, license absent; five image pages inspected across volumes"
+    },
+    {
+      "url": "https://frda.stanford.edu/",
+      "result": "Web tool 502; IIIF access worked separately"
+    },
+    {
+      "url": "https://www.persee.fr/collection/arcpa",
+      "result": "Collection descriptions read"
+    },
+    {
+      "url": "https://info.persee.fr/arcpa/",
+      "result": "Producer describes enhanced structure and IIIF"
+    },
+    {
+      "url": "https://archives-parlementaires.persee.fr/comprendre-le-corpus",
+      "result": "Specialized site inaccessible/403 in this audit environment"
+    },
+    {
+      "url": "https://frenchrevdata.github.io/",
+      "result": "ARTFL cleaning announced; corrected cahier TEI not acquired"
+    },
+    {
+      "url": "https://github.com/StanfordUniversityLibraries/ap_tei/pull/4",
+      "result": "Open PR and diff reviewed; no first-six-volume XML in patch"
+    },
+    {
+      "url": "https://archives.finistere.fr/rechercher/recherche-de-z/les-cahiers-de-doleances-de-1789-sous-serie-10-b",
+      "result": "Originals, transcriptions, authorship and explicitly modernized spelling described"
+    },
+    {
+      "url": "https://archives.seine-et-marne.fr/fr/les-cahiers-de-doleances",
+      "result": "Educational edition described; no mass download"
+    },
+    {
+      "url": "https://archives.cotesdarmor.fr/2024-2025-doleances-1789",
+      "result": "Digitized heterogeneous documentary corpus described"
+    },
+    {
+      "url": "https://library.stanford.edu/copyright-notice",
+      "result": "General rights notice read"
+    },
+    {
+      "url": "https://www.persee.fr/cgu",
+      "result": "Definitions, use and attribution conditions read"
+    }
+  ]
+}

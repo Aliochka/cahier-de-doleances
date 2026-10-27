@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-10-27T12:59:47.848019+00:00",
+  "files": {
+    "complementary.py": "92f6bd66a42d2bdf33e676ddeb7089bb6878868dafbabf00545cd8efb80f2eee"
+  },
+  "timing": "B frozen before any new source review; complementary candidate-queue prototype formalized after reading volumes1–3 packs. No changes to B. Only volumes4–6 new hash notices still unexamined for this complementary comparison.",
+  "unexamined_new_ids": [
+    "arcpa_0000-0000_1879_num_4_1_2291",
+    "arcpa_0000-0000_1879_num_4_1_2138",
+    "arcpa_0000-0000_1879_num_4_1_2132",
+    "arcpa_0000-0000_1879_num_4_1_1847",
+    "arcpa_0000-0000_1879_num_4_1_2273",
+    "arcpa_0000-0000_1879_num_4_1_2119",
+    "arcpa_0000-0000_1879_num_4_1_2200",
+    "arcpa_0000-0000_1879_num_4_1_2182",
+    "arcpa_0000-0000_1879_num_5_1_2828",
+    "arcpa_0000-0000_1879_num_5_1_2377",
+    "arcpa_0000-0000_1879_num_5_1_2353",
+    "arcpa_0000-0000_1879_num_5_1_2920",
+    "arcpa_0000-0000_1879_num_5_1_2823",
+    "arcpa_0000-0000_1879_num_5_1_2407",
+    "arcpa_0000-0000_1879_num_5_1_2447",
+    "arcpa_0000-0000_1879_num_5_1_2406",
+    "arcpa_0000-0000_1879_num_6_1_2508",
+    "arcpa_0000-0000_1879_num_6_1_2651",
+    "arcpa_0000-0000_1879_num_6_1_2597",
+    "arcpa_0000-0000_1879_num_6_1_2582",
+    "arcpa_0000-0000_1879_num_6_1_2501",
+    "arcpa_0000-0000_1879_num_6_1_2585",
+    "arcpa_0000-0000_1879_num_6_1_2503",
+    "arcpa_0000-0000_1879_num_6_1_2667",
+    "arcpa_0000-0000_1879_num_6_1_2684",
+    "arcpa_0000-0000_1879_num_6_1_2659"
+  ],
+  "not_independent_human": true,
+  "no_new_thresholds": true
+}

@@ -1,0 +1,344 @@
+{
+  "parent_validation": {
+    "evaluated": 12,
+    "true_cahiers": 6,
+    "false_positives": 6,
+    "precision": 0.5,
+    "correct_boundaries": 5,
+    "true_parent_boundary_errors": 1,
+    "global_recall": null,
+    "scope": "12 held-out selected candidates, balanced deliberate length/structure strata; Codex not independent human"
+  },
+  "parents": [
+    {
+      "candidate_id": "candidate-a8987424bbb5cb9fa345",
+      "volume": 1,
+      "true_cahier": false,
+      "kind": "historical_summary_1483",
+      "correct_parent_boundary": false,
+      "automatic_span": [
+        394266,
+        394924
+      ],
+      "reference_span": null,
+      "reason": "Résumé sous Charles VIII, pas un cahier de1789; titre interne p57."
+    },
+    {
+      "candidate_id": "candidate-b289035431c04956dabe",
+      "volume": 1,
+      "true_cahier": false,
+      "kind": "historical_summary_1560",
+      "correct_parent_boundary": false,
+      "automatic_span": [
+        440308,
+        446342
+      ],
+      "reference_span": null,
+      "reason": "Résumé sous Charles IX, pas un cahier de1789; p61 appartient au récit."
+    },
+    {
+      "candidate_id": "candidate-5f5cd4b2ef58f7dece46",
+      "volume": 2,
+      "true_cahier": false,
+      "kind": "missing_document_notice",
+      "correct_parent_boundary": false,
+      "automatic_span": [
+        2401977,
+        2402224
+      ],
+      "reference_span": null,
+      "reason": "Béziers tiers: p2 déclare que le cahier manque; deux paragraphes sans revendication."
+    },
+    {
+      "candidate_id": "candidate-506a682f65ae1e814a3a",
+      "volume": 2,
+      "true_cahier": true,
+      "kind": "corporate_cahier_attached_to_arles",
+      "correct_parent_boundary": false,
+      "automatic_span": [
+        419889,
+        428283
+      ],
+      "reference_span": [
+        419889,
+        422467
+      ],
+      "reason": "Doléances des médecins, titre p81, introduction p82, articles et signatures jusqu’àp92; p93 commence les procureurs. Sous-document revendicatif annexé au dossier d’Arles."
+    },
+    {
+      "candidate_id": "candidate-314a64454989f708a8a3",
+      "volume": 3,
+      "true_cahier": true,
+      "kind": "cahier_with_attached_local_demands",
+      "correct_parent_boundary": true,
+      "automatic_span": [
+        4358207,
+        4430325
+      ],
+      "reference_span": [
+        4358232,
+        4430303
+      ],
+      "reason": "La Rochelle tiers, corps finissant àl’article110 puis demandes de l’île de Ré jointes avant les signatures; deux divisions liées, hiérarchie d’annexe conservée."
+    },
+    {
+      "candidate_id": "candidate-b11e579d4bc7daa5ad33",
+      "volume": 3,
+      "true_cahier": true,
+      "kind": "cahier",
+      "correct_parent_boundary": true,
+      "automatic_span": [
+        6970618,
+        6983047
+      ],
+      "reference_span": [
+        6970643,
+        6983025
+      ],
+      "reason": "Thionville clergé, préambule p1, articles, réserves puis signatures et copie conforme p33–35."
+    },
+    {
+      "candidate_id": "candidate-8615aa6715be49c318a9",
+      "volume": 4,
+      "true_cahier": false,
+      "kind": "internal_section_false_parent",
+      "correct_parent_boundary": false,
+      "automatic_span": [
+        168591,
+        175139
+      ],
+      "reference_span": null,
+      "reason": "Doléances pour le clergé p39: section du cahier de Montargis ouvert en tête du div3, pas un cahier autonome."
+    },
+    {
+      "candidate_id": "candidate-cd771995c951b0c35db8",
+      "volume": 4,
+      "true_cahier": false,
+      "kind": "local_section_false_parent",
+      "correct_parent_boundary": false,
+      "automatic_span": [
+        4091091,
+        4093124
+      ],
+      "reference_span": null,
+      "reason": "Plaintes locales p228: fin du cahier de Claye ouvert p199; ne pas fabriquer un deuxième cahier."
+    },
+    {
+      "candidate_id": "candidate-e2ed8e80bf9d0e527ede",
+      "volume": 5,
+      "true_cahier": false,
+      "kind": "missing_document_notice",
+      "correct_parent_boundary": false,
+      "automatic_span": [
+        6904719,
+        6905144
+      ],
+      "reference_span": null,
+      "reason": "Soissons noblesse et tiers: note déclarant les documents absents; aucune transcription du cahier."
+    },
+    {
+      "candidate_id": "candidate-35fa9083b29b304f3277",
+      "volume": 5,
+      "true_cahier": true,
+      "kind": "cahier_split_inside_division",
+      "correct_parent_boundary": true,
+      "automatic_span": [
+        1524281,
+        1636400
+      ],
+      "reference_span": [
+        1524306,
+        1636375
+      ],
+      "reason": "Vernouillet: tête du div3 jusqu’àla rédaction Laroche p317. Verrières commence au p318. L’année1739 dans la pièce suivante est conservée sans correction."
+    },
+    {
+      "candidate_id": "candidate-f2f9d83b2569c0ce70ef",
+      "volume": 6,
+      "true_cahier": true,
+      "kind": "unnumbered_cahier",
+      "correct_parent_boundary": true,
+      "automatic_span": [
+        3611619,
+        3618370
+      ],
+      "reference_span": [
+        3611644,
+        3618348
+      ],
+      "reason": "Rognac: prose non numérotée, clôture25mars1789 p17, signatures p18. Pas de subdivision en articles certifiée."
+    },
+    {
+      "candidate_id": "candidate-ed9e410244588392930b",
+      "volume": 6,
+      "true_cahier": true,
+      "kind": "cahier",
+      "correct_parent_boundary": true,
+      "automatic_span": [
+        178458,
+        206979
+      ],
+      "reference_span": [
+        178483,
+        206958
+      ],
+      "reason": "Vic tiers, articles puis clôture28mars1789 et copie conforme; extrait des liasses désigne la provenance et non un abrégé de cahier."
+    }
+  ],
+  "article_validation_before_correction": {
+    "gold": 48,
+    "predicted": 46,
+    "correct": 46,
+    "correct_starts": 46,
+    "correct_ends": 46,
+    "missed": 2,
+    "false_predictions": 0,
+    "fused": 0,
+    "split": 0,
+    "precision": 1.0,
+    "recall": 0.9583333333333334,
+    "start_precision": 1.0,
+    "end_precision": 1.0
+  },
+  "windows": [
+    {
+      "candidate_id": "candidate-506a682f65ae1e814a3a",
+      "window": 0,
+      "volume": 2,
+      "start": 420127,
+      "end": 421471,
+      "gold": 7,
+      "predicted": 7,
+      "correct": 7,
+      "correct_starts": 7,
+      "correct_ends": 7,
+      "missed": 0,
+      "false_predictions": 0,
+      "fused": 0,
+      "split": 0
+    },
+    {
+      "candidate_id": "candidate-314a64454989f708a8a3",
+      "window": 0,
+      "volume": 3,
+      "start": 4358610,
+      "end": 4363970,
+      "gold": 10,
+      "predicted": 9,
+      "correct": 9,
+      "correct_starts": 9,
+      "correct_ends": 9,
+      "missed": 1,
+      "false_predictions": 0,
+      "fused": 0,
+      "split": 0
+    },
+    {
+      "candidate_id": "candidate-314a64454989f708a8a3",
+      "window": 1,
+      "volume": 3,
+      "start": 4423483,
+      "end": 4424176,
+      "gold": 1,
+      "predicted": 1,
+      "correct": 1,
+      "correct_starts": 1,
+      "correct_ends": 1,
+      "missed": 0,
+      "false_predictions": 0,
+      "fused": 0,
+      "split": 0
+    },
+    {
+      "candidate_id": "candidate-b11e579d4bc7daa5ad33",
+      "window": 0,
+      "volume": 3,
+      "start": 6972466,
+      "end": 6976609,
+      "gold": 12,
+      "predicted": 12,
+      "correct": 12,
+      "correct_starts": 12,
+      "correct_ends": 12,
+      "missed": 0,
+      "false_predictions": 0,
+      "fused": 0,
+      "split": 0
+    },
+    {
+      "candidate_id": "candidate-35fa9083b29b304f3277",
+      "window": 0,
+      "volume": 5,
+      "start": 1527843,
+      "end": 1530649,
+      "gold": 8,
+      "predicted": 7,
+      "correct": 7,
+      "correct_starts": 7,
+      "correct_ends": 7,
+      "missed": 1,
+      "false_predictions": 0,
+      "fused": 0,
+      "split": 0
+    },
+    {
+      "candidate_id": "candidate-f2f9d83b2569c0ce70ef",
+      "window": 0,
+      "volume": 6,
+      "start": 3611807,
+      "end": 3618349,
+      "gold": 0,
+      "predicted": 0,
+      "correct": 0,
+      "correct_starts": 0,
+      "correct_ends": 0,
+      "missed": 0,
+      "false_predictions": 0,
+      "fused": 0,
+      "split": 0
+    },
+    {
+      "candidate_id": "candidate-ed9e410244588392930b",
+      "window": 0,
+      "volume": 6,
+      "start": 179300,
+      "end": 185108,
+      "gold": 10,
+      "predicted": 10,
+      "correct": 10,
+      "correct_starts": 10,
+      "correct_ends": 10,
+      "missed": 0,
+      "false_predictions": 0,
+      "fused": 0,
+      "split": 0
+    }
+  ],
+  "false_parent_article_proposals_excluded_from_conditional_article_metrics": 11,
+  "negative_control": {
+    "windows": 12,
+    "classifications": {
+      "not_cahier": 7,
+      "missed_cahier": 3,
+      "missed_embedded_doleances": 1,
+      "uncertain_memorandum": 1
+    },
+    "global_recall": null,
+    "scope": "conditional uncovered paragraph windows; additional enclosing beginnings inspected; not exhaustive source-area census"
+  },
+  "final_corpus": {
+    "records": 200,
+    "quarantined": 11,
+    "non_quarantined_hypotheses": 189,
+    "verified_units_A": 317,
+    "proposed_units_B": 5872,
+    "A_fraction": 0.051219906285344965,
+    "A_nonwhite_characters": 72446,
+    "all_active_parent_nonwhite_characters": 4406144,
+    "A_text_coverage": 0.016442040931935045,
+    "new_A": 48,
+    "overlapping_parent_hypotheses": []
+  },
+  "human_validation_seconds": null,
+  "independent_human_validation": false
+}

@@ -1,0 +1,9 @@
+!*.json
+!*.jsonl
+!data/
+!data/**
+/.cache/
+__pycache__/
+
+# Large audit artefacts remain local; see ../LOCAL_DATA.md.
+/data/v2-document-predictions.jsonl

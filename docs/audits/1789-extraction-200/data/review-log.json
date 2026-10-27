@@ -1,0 +1,161 @@
+{
+  "operations": [
+    {
+      "candidate_id": "candidate-29f6d470df225b383ee8",
+      "operation": "additional_source_heading_triage",
+      "reference": "historical_summary_outside_1789",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-a8987424bbb5cb9fa345",
+      "operation": "held_out_source_review",
+      "reference": "historical_summary_1483",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-b289035431c04956dabe",
+      "operation": "held_out_source_review",
+      "reference": "historical_summary_1560",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-605c80ae97003aefd109",
+      "operation": "additional_source_heading_triage",
+      "reference": "historical_summary_outside_1789",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-0836dfb5e18470b57802",
+      "operation": "additional_source_heading_triage",
+      "reference": "historical_summary_outside_1789",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-6ba426eeb56a6b73df24",
+      "operation": "additional_source_heading_triage",
+      "reference": "historical_summary_outside_1789",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-5918b3440db8d4bc918b",
+      "operation": "additional_source_heading_triage",
+      "reference": "historical_summary_outside_1789",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-5f5cd4b2ef58f7dece46",
+      "operation": "held_out_source_review",
+      "reference": "missing_document_notice",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-506a682f65ae1e814a3a",
+      "operation": "held_out_source_review",
+      "reference": "corporate_cahier_attached_to_arles",
+      "parent_boundary_corrections": 1,
+      "gold_articles": 7,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-314a64454989f708a8a3",
+      "operation": "held_out_source_review",
+      "reference": "cahier_with_attached_local_demands",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 11,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-b11e579d4bc7daa5ad33",
+      "operation": "held_out_source_review",
+      "reference": "cahier",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 12,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-8615aa6715be49c318a9",
+      "operation": "held_out_source_review",
+      "reference": "internal_section_false_parent",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-cd771995c951b0c35db8",
+      "operation": "held_out_source_review",
+      "reference": "local_section_false_parent",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-e2ed8e80bf9d0e527ede",
+      "operation": "held_out_source_review",
+      "reference": "missing_document_notice",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-35fa9083b29b304f3277",
+      "operation": "held_out_source_review",
+      "reference": "cahier_split_inside_division",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 8,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-f2f9d83b2569c0ce70ef",
+      "operation": "held_out_source_review",
+      "reference": "unnumbered_cahier",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 0,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    },
+    {
+      "candidate_id": "candidate-ed9e410244588392930b",
+      "operation": "held_out_source_review",
+      "reference": "cahier",
+      "parent_boundary_corrections": 0,
+      "gold_articles": 10,
+      "judge": "Codex non-independent",
+      "human_validation_seconds": null
+    }
+  ],
+  "source_pack_started": "2026-10-26T16:55:53.565905+00:00",
+  "reference_frozen": "2026-10-26T17:02:01.403077+00:00",
+  "time_interpretation": "timestamps of Codex workflow, not human validation durations",
+  "human_validation_seconds": null
+}

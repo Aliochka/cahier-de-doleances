@@ -1,0 +1,18 @@
+{
+  "completed_at": "2026-10-27T12:09:49.570539+00:00",
+  "ruff": {
+    "command": [
+      ".venv/bin/ruff",
+      "check",
+      "docs/audits/1789-extraction-v2",
+      "--per-file-ignores",
+      "annotate_reference.py:I001,annotate_reference.py:F401,annotate_reference.py:E701,annotate_reference.py:E702,rules_v2.py:F841"
+    ],
+    "exit_code": 0,
+    "output": "All checks passed!",
+    "exceptions_reason": "Preserve exact frozen reference/rule files; style-only issues and unused local variable."
+  },
+  "application_tracked_diff": [],
+  "documentary_checks": "checks.json",
+  "build_and_database_tests": "Not run: isolated audit scripts only; no application or database modifications."
+}

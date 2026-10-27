@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-25",
+  "sampling": "Purposive, not representative",
+  "pages": [
+    {
+      "druid": "jt959wc5586",
+      "page_id": "jt959wc5586_00_0675",
+      "canvas_url": "https://purl.stanford.edu/jt959wc5586/iiif/canvas/cocina-fileSet-jt959wc5586-jt959wc5586_676",
+      "image_url": "https://stacks.stanford.edu/image/iiif/jt959wc5586%2Fjt959wc5586_00_0675/full/1800,/0/default.jpg",
+      "image_sha256": "e00c305170a0a452100e1b4b6f6dab2b4785f66355c63cded1d50ba3f8c75f4f",
+      "comparison_scope": "Titre et articles 1–4, étiquette 9",
+      "observation": "sénéchaus8ée dans le TEI pour un titre imprimé lisible ; l’imprimé porte lui aussi ARF. 9 : anomalie de l’édition à distinguer de l’OCR.",
+      "limits": "n TEI vide : aucune pagination imprimée inventée.",
+      "method": "Manual visual inspection; no OCR correction, no CER/WER estimate."
+    },
+    {
+      "druid": "mc666yy3026",
+      "page_id": "mc666yy3026_00_0016",
+      "canvas_url": "https://purl.stanford.edu/mc666yy3026/iiif/canvas/cocina-fileSet-mc666yy3026-mc666yy3026_17",
+      "image_url": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0016/full/1800,/0/default.jpg",
+      "image_sha256": "13c0495eead717da7a2ab260c9db014a687b3b6df3de32e2810143afec7d6b05",
+      "comparison_scope": "Articles 1–4",
+      "observation": "Art. 3. sur le scan contre Art. dans le TEI ; sous-liste répartie sur les colonnes ; ae / de dans l’article 2.",
+      "limits": "Page imprimée 12, différente de la vue 16.",
+      "method": "Manual visual inspection; no OCR correction, no CER/WER estimate."
+    },
+    {
+      "druid": "xg914wh0253",
+      "page_id": "xg914wh0253_00_0006",
+      "canvas_url": "https://purl.stanford.edu/xg914wh0253/iiif/canvas/cocina-fileSet-xg914wh0253-xg914wh0253_7",
+      "image_url": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0006/full/1800,/0/default.jpg",
+      "image_sha256": "dd1914af31f27e5c245ee607cc06022f40a833772ce736b9d2c58f0c15b31d95",
+      "comparison_scope": "Fin article 4, article 5 et pièces voisines",
+      "observation": "Continuation dépôt ; et que les dispositions... au début du scan ; libdrté dans le TEI contre liberté imprimé.",
+      "limits": "Page imprimée 2 ; le début de l’article 4 se trouve page 1, non téléchargée pour cette comparaison.",
+      "method": "Manual visual inspection; no OCR correction, no CER/WER estimate."
+    },
+    {
+      "druid": "xx284sn7328",
+      "page_id": "xx284sn7328_00_0025",
+      "canvas_url": "https://purl.stanford.edu/xx284sn7328/iiif/canvas/cocina-fileSet-xx284sn7328-xx284sn7328_26",
+      "image_url": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0025/full/1800,/0/default.jpg",
+      "image_sha256": "0565d3a83e1c380ee04b5be28b73377701a920ac2c743a5a75c173ac8e4cbd0e",
+      "comparison_scope": "Cahier de Pierrelez, neuf articles et clôture",
+      "observation": "Texte des demandes sélectionnées sur le sel et l’impôt retrouvé ; date et signatures puis cahier distinct au-dessous.",
+      "limits": "Page imprimée 21. Pas de mesure exhaustive caractère par caractère.",
+      "method": "Manual visual inspection; no OCR correction, no CER/WER estimate."
+    },
+    {
+      "druid": "yk966sx2246",
+      "page_id": "yk966sx2246_00_0467",
+      "canvas_url": "https://purl.stanford.edu/yk966sx2246/iiif/canvas/cocina-fileSet-yk966sx2246-yk966sx2246_467",
+      "image_url": "https://stacks.stanford.edu/image/iiif/yk966sx2246%2Fyk966sx2246_00_0467/full/1800,/0/default.jpg",
+      "image_sha256": "3f51df9df1f386c88cf8d84921a2dafde5072dfc4412f82babd77d44cd4638dd",
+      "comparison_scope": "Début du cahier de Cambrai et observations en parallèle",
+      "observation": "Quatre sous-colonnes cahier/observations ; le TEI alterne les rôles et lit I8 pour le premier marqueur imprimé 1°.",
+      "limits": "Page imprimée 463 ; ce fragment est exclu des 28 passages.",
+      "method": "Manual visual inspection; no OCR correction, no CER/WER estimate."
+    }
+  ]
+}

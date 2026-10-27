@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-10-27T11:55:16.200423+00:00",
+  "predictions_examined": false,
+  "judge": "Codex, source examination separated from rule development, NOT independent human or blind trial",
+  "candidates": 25,
+  "novel_candidates": 24,
+  "continuous_zones": 12,
+  "parents": 15,
+  "article_boundaries": 79,
+  "selection_bias": "small deliberately varied hash-stratified sample; partial article windows; no global precision/recall extrapolation",
+  "files": {
+    "annotate_reference.py": "e3a98c75a53909e62861ffebbc3fe06c2835b834d5a4b99523db2b01be5bb372",
+    "data/reference-candidates.jsonl": "c6fe125e669b75a687b94ed2f1ab1cee96b4313ac94856aa7f364a1c486ceac2",
+    "data/reference-zones.jsonl": "6fc4fc363e33f635dd63d31cf778b7539b6e20cd020e4075a9463341c38a4265",
+    "data/reference-parents.jsonl": "f67267fd64d9e54eb3eb1f72fd67bed45069b4b4eb52a1563f75fde73262d9cb",
+    "data/reference-articles.jsonl": "6c1b998e8f3091de112f7824c0dba0630635a6f994850e5677e98d1c3dcf7d84",
+    "novelty-amendment.json": "663750dc0decf3c02b387935fa8b05505a5fef2d964f877b1a575a0e010e1d61"
+  }
+}

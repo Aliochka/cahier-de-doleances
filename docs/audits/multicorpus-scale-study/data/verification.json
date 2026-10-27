@@ -1,0 +1,110 @@
+{
+  "verified_at": "2026-10-26T16:17:05.117786+00:00",
+  "python": "3.11.17",
+  "packages": {
+    "numpy": "2.2.6",
+    "psutil": "7.2.2",
+    "psycopg2-binary": "2.9.10",
+    "torch": "2.10.0+cpu",
+    "transformers": "4.57.6",
+    "ruff": "0.17.0"
+  },
+  "isolated_plot_packages": {
+    "python-dateutil": "3.0.0",
+    "tzdata": "2026.5",
+    "contourpy": "1.3.3",
+    "fonttools": "4.67.0",
+    "cycler": "0.12.1",
+    "kiwisolver": "1.5.1",
+    "pillow": "13.0.0",
+    "packaging": "26.3",
+    "numpy": "2.4.6",
+    "pyparsing": "3.3.3",
+    "six": "1.17.0",
+    "matplotlib": "3.10.7"
+  },
+  "parsed_artifacts": {
+    "data/checks.json": "JSON",
+    "data/context-control-documents.jsonl": 510,
+    "data/context-control-protocol.json": "JSON",
+    "data/context-control-scores.npz": {
+      "A": [
+        30,
+        510
+      ],
+      "B": [
+        30,
+        510
+      ]
+    },
+    "data/context-control.json": "JSON",
+    "data/export-progress.json": "JSON",
+    "data/export.json": "JSON",
+    "data/history.jsonl": 269,
+    "data/inventory.json": "JSON",
+    "data/per-query-metrics.json": "JSON",
+    "data/performance.json": "JSON",
+    "data/population-ids.jsonl.gz": 1000000,
+    "data/preparation.json": "JSON",
+    "data/qualitative-documents.jsonl": 391,
+    "data/qualitative-judgments.json": "JSON",
+    "data/qualitative-metrics.json": "JSON",
+    "data/qualitative-pool.json": "JSON",
+    "data/qualitative-rankings.jsonl": 240,
+    "data/ranking-costs.json": "JSON",
+    "data/rankings.jsonl.gz": 2160,
+    "data/raw-branches.jsonl.gz": 180,
+    "data/reference-reproduction.json": "JSON",
+    "data/representation-diagnostic.jsonl.gz": 180,
+    "data/result-documents.json": "JSON",
+    "data/result-documents.jsonl.gz": 14777,
+    "data/review-pairs.json": "JSON",
+    "data/selection.json": "JSON",
+    "data/summary.json": "JSON",
+    "data/witness-tracking.jsonl.gz": 19440,
+    "data/witnesses.jsonl": 270,
+    "preregistration.json": "JSON",
+    "prior-audits-sha256.json": "JSON",
+    "protocol.json": "JSON",
+    "queries.json": "JSON"
+  },
+  "local_markdown_links_checked": 29,
+  "full_top100_documents": 14777,
+  "full_text_coverage_of_all_stored_results": true,
+  "prior_audit_files_unchanged": 225,
+  "no_tracked_application_change": true,
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "replay": {
+    "replayed_fusions": 1800,
+    "verified_hybrid_witness_records": 16200,
+    "all_witness_records": 19440,
+    "unchanged_prior_audit_files": 225,
+    "reference_top10_reproductions": 90,
+    "queries_identical": true,
+    "protocol_unchanged": true,
+    "nested_populations": true,
+    "unique_modern_units": 1000000,
+    "deterministic_selection_reproduced": true,
+    "constant_historical_cosines": true,
+    "monotone_historical_vector_ranks": true,
+    "prior_judgments_unchanged": true,
+    "global_rank_vs_per_corpus_reset_counterexample_detected": true,
+    "no_database_connection_in_replay": true,
+    "tracked_application_diff": []
+  },
+  "existing_tests": {
+    "command": "PYTHONPATH=rag/src PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q -p no:cacheprovider rag/tests/unit/test_embeddings.py rag/tests/unit/test_hybrid.py",
+    "observed_result": "36 passed in 1.00s",
+    "note": "Executed during this mission; no database fixture or service started"
+  },
+  "figures_visually_reviewed": [
+    "01-witness-ranks",
+    "02-known-witness-recall",
+    "03-result-composition",
+    "04-candidate-depth",
+    "05-first-pages"
+  ],
+  "new_embeddings": 0,
+  "database_connections_in_this_verification": 0
+}

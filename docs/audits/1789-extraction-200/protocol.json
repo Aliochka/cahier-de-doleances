@@ -1,0 +1,53 @@
+{
+  "version": "discovery-200-v1",
+  "inventory_before_selection": true,
+  "selected_new": 170,
+  "inherited": 30,
+  "quotas": {
+    "1": 26,
+    "2": 29,
+    "3": 29,
+    "4": 29,
+    "5": 29,
+    "6": 28
+  },
+  "selection": "round-robin over volume x length tercile x explicit estate word x structural type; within cell SHA256 order; no query or manual title choice",
+  "seed_string": "selection-1789-200-v1",
+  "selection_is_statistically_representative": false,
+  "development": "30 prior parents plus Pecqueuse; excluded from held-out inference",
+  "validation_ids": [
+    "candidate-b289035431c04956dabe",
+    "candidate-a8987424bbb5cb9fa345",
+    "candidate-5f5cd4b2ef58f7dece46",
+    "candidate-506a682f65ae1e814a3a",
+    "candidate-b11e579d4bc7daa5ad33",
+    "candidate-314a64454989f708a8a3",
+    "candidate-8615aa6715be49c318a9",
+    "candidate-cd771995c951b0c35db8",
+    "candidate-e2ed8e80bf9d0e527ede",
+    "candidate-35fa9083b29b304f3277",
+    "candidate-f2f9d83b2569c0ce70ef",
+    "candidate-ed9e410244588392930b"
+  ],
+  "validation_method": "2 selected new candidates per volume: hashed short and hashed difficult/long",
+  "article_reference": "source-only windows annotated before new segmentation predictions; limited windows, not assumed complete parent article counts",
+  "negative_windows": [
+    "negative-v1-1",
+    "negative-v1-2",
+    "negative-v2-1",
+    "negative-v2-2",
+    "negative-v3-1",
+    "negative-v3-2",
+    "negative-v4-1",
+    "negative-v4-2",
+    "negative-v5-1",
+    "negative-v5-2",
+    "negative-v6-1",
+    "negative-v6-2"
+  ],
+  "negative_sampling": "conditional on non-detection, not global recall sampling",
+  "no_tuning_after_validation": true,
+  "judge": "Codex; separate from development, not independent human or a blind historical validation",
+  "status_A": "only reviewed exact boundaries or inherited previous A; never regular numbering alone",
+  "human_validation_seconds": null
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "candidate_id": "candidate-29f6d470df225b383ee8",
+    "volume": 1,
+    "source_xpath": "/TEI.2/text/body/div1/div2[1]/div3[16]",
+    "real": false,
+    "kind": "historical_summary_outside_1789",
+    "reason": "Triage supplémentaire du titre source: ÉTATS GÉNÉRAUX DE 1560, TENUS A ORIÉANS, DURANT LA MINORITÉ DE CHARLES IX.",
+    "reviewer": "Codex source-heading review after held-out reference, not added to validation metrics",
+    "reference_windows": []
+  },
+  {
+    "candidate_id": "candidate-605c80ae97003aefd109",
+    "volume": 1,
+    "source_xpath": "/TEI.2/text/body/div1/div2[1]/div3[14]",
+    "real": false,
+    "kind": "historical_summary_outside_1789",
+    "reason": "Triage supplémentaire du titre source: ÉTATS GÉNÉRAUX DE 1483, SOUS CHARLES VIII. | Guillaume de Roehefort, chancelier.",
+    "reviewer": "Codex source-heading review after held-out reference, not added to validation metrics",
+    "reference_windows": []
+  },
+  {
+    "candidate_id": "candidate-0836dfb5e18470b57802",
+    "volume": 1,
+    "source_xpath": "/TEI.2/text/body/div1/div2[1]/div3[14]",
+    "real": false,
+    "kind": "historical_summary_outside_1789",
+    "reason": "Triage supplémentaire du titre source: ÉTATS GÉNÉRAUX DE 1483, SOUS CHARLES VIII. | Guillaume de Roehefort, chancelier.",
+    "reviewer": "Codex source-heading review after held-out reference, not added to validation metrics",
+    "reference_windows": []
+  },
+  {
+    "candidate_id": "candidate-6ba426eeb56a6b73df24",
+    "volume": 1,
+    "source_xpath": "/TEI.2/text/body/div1/div2[1]/div3[16]",
+    "real": false,
+    "kind": "historical_summary_outside_1789",
+    "reason": "Triage supplémentaire du titre source: ÉTATS GÉNÉRAUX DE 1560, TENUS A ORIÉANS, DURANT LA MINORITÉ DE CHARLES IX.",
+    "reviewer": "Codex source-heading review after held-out reference, not added to validation metrics",
+    "reference_windows": []
+  },
+  {
+    "candidate_id": "candidate-5918b3440db8d4bc918b",
+    "volume": 1,
+    "source_xpath": "/TEI.2/text/body/div1/div2[1]/div3[14]",
+    "real": false,
+    "kind": "historical_summary_outside_1789",
+    "reason": "Triage supplémentaire du titre source: ÉTATS GÉNÉRAUX DE 1483, SOUS CHARLES VIII. | Guillaume de Roehefort, chancelier.",
+    "reviewer": "Codex source-heading review after held-out reference, not added to validation metrics",
+    "reference_windows": []
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "articles": {
+    "v1": {
+      "reference_units": 48,
+      "exact": 46,
+      "development_not_generalization": true
+    },
+    "v2": {
+      "reference_units": 48,
+      "exact": 48,
+      "development_not_generalization": true
+    }
+  },
+  "pilot_parents": 30,
+  "autonomous_admitted": 28,
+  "bounds_match": 28
+}

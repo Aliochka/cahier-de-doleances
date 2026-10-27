@@ -1,0 +1,22 @@
+[
+  {
+    "set": "volumes",
+    "page1_records": 20,
+    "page2_records": 20,
+    "overlap": [],
+    "page2_cursor": "20",
+    "next_token_present": true,
+    "continued_with_only_verb_and_token": true,
+    "stopped_deliberately": true
+  },
+  {
+    "set": "documents",
+    "page1_records": 20,
+    "page2_records": 20,
+    "overlap": [],
+    "page2_cursor": "20",
+    "next_token_present": true,
+    "continued_with_only_verb_and_token": true,
+    "stopped_deliberately": true
+  }
+]

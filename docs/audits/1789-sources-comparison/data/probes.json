@@ -1,0 +1,137 @@
+[
+  {
+    "id": "agen-title",
+    "key": "agen",
+    "stanford_paragraph": 1,
+    "persee_file": "persee-agen-0675.html",
+    "persee_paragraph": 3,
+    "pattern": "(sénéchau[\\w8]+)",
+    "reference": "sénéchaussée",
+    "scan": "../1789-multicorpus/quality-review.json",
+    "note": "Mot du titre ; casse neutralisée uniquement pour la mesure.",
+    "observed": {
+      "stanford": "sénéchaus8ée",
+      "artfl": "sénéchaus8ée",
+      "persee": "SÉNÉCHAUSSÉE"
+    },
+    "character_edit_distances": {
+      "stanford": 1,
+      "artfl": 1,
+      "persee": 0
+    },
+    "contexts": {
+      "stanford": "des demandes et doléances de l'ordre du clergé dela sénéchaus8ée d'agenols (1).",
+      "artfl": "des demandes et doléances de l'ordre du clergé dela sénéchaus8ée d'agenols (1).",
+      "persee": "DES DEMANDES ET DOLÉANCES DE L'ORDRE DU CLERGÉ DELA SÉNÉCHAUSSÉE D'AGENOIS (1)."
+    },
+    "persee_page_url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_1_1_1529/arcpa_0000-0000_1879_num_1_1_T2_0675_0000"
+  },
+  {
+    "id": "colmar-art2",
+    "key": "colmar",
+    "stanford_paragraph": 2,
+    "persee_file": "persee-colmar-0012.html",
+    "persee_paragraph": 4,
+    "pattern": "en ayant soin (ae|de) fixer",
+    "reference": "de",
+    "scan": "persee-colmar-0012.jpg",
+    "note": "Mot dans l’article 2.",
+    "observed": {
+      "stanford": "ae",
+      "artfl": "ae",
+      "persee": "de"
+    },
+    "character_edit_distances": {
+      "stanford": 1,
+      "artfl": 1,
+      "persee": 0
+    },
+    "contexts": {
+      "stanford": "Art. 2. Que, pour remplacer les impôts suppri- més et pourvoir aux vrais besoins de l'Etat et au maintien de la dignité royale, il en soit établi de suffisants, en ayant soin ae fixer la dépense de chaque département.",
+      "artfl": "Art. 2. Que, pour remplacer les impôts suppri- més et pourvoir aux vrais besoins de l'Etat et au maintien de la dignité royale, il en soit établi de suffisants, en ayant soin ae fixer la dépense de chaque département.",
+      "persee": "Art. 2. Que, pour remplacer les impôts suppri¬ més et pourvoir aux vrais besoins de l'Etat et au maintien de la dignité royale, il en soit établi de suffisants, en ayant soin de fixer la dépense de chaque département."
+    },
+    "persee_page_url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0012_0000"
+  },
+  {
+    "id": "colmar-art3",
+    "key": "colmar",
+    "stanford_paragraph": 3,
+    "persee_file": "persee-colmar-0012.html",
+    "persee_paragraph": 5,
+    "pattern": "^(Art\\.(?:\\s+3\\.)?)",
+    "reference": "Art. 3.",
+    "scan": "persee-colmar-0012.jpg",
+    "note": "Numéro présent dans l’édition imprimée.",
+    "observed": {
+      "stanford": "Art.",
+      "artfl": "Art.",
+      "persee": "Art. 3."
+    },
+    "character_edit_distances": {
+      "stanford": 3,
+      "artfl": 3,
+      "persee": 0
+    },
+    "contexts": {
+      "stanford": "Art. Qu'à cet effet, il soit remis aux Etats généraux des états exacts et détaillés par le même :",
+      "artfl": "Art. Qu'à cet effet, il soit remis aux Etats généraux des états exacts et détaillés par le même :",
+      "persee": "Art. 3. Qu'à cet effet, il soit remis aux Etats généraux des états exacts et détaillés par le même :"
+    },
+    "persee_page_url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_3_1_1795/arcpa_0000-0000_1879_num_3_1_T1_0012_0000"
+  },
+  {
+    "id": "mirecourt-art5",
+    "key": "mirecourt",
+    "stanford_paragraph": 6,
+    "persee_file": "persee-mirecourt-0002.html",
+    "persee_paragraph": 3,
+    "pattern": "la (lib\\S+)",
+    "reference": "liberté",
+    "scan": "persee-mirecourt-0002.jpg",
+    "note": "Persée lit libërté, et non liberté : une substitution subsiste.",
+    "observed": {
+      "stanford": "libdrté",
+      "artfl": "libdrté",
+      "persee": "libërté"
+    },
+    "character_edit_distances": {
+      "stanford": 1,
+      "artfl": 1,
+      "persee": 1
+    },
+    "contexts": {
+      "stanford": "5° Que la libdrté individuelle soit établie de teile sorte qu'aucun sujet du Roi ne puisse en être privé qu'en vertu des lois qui seront faites.",
+      "artfl": "5° Que la libdrté individuelle soit établie de teile sorte qu'aucun sujet du Roi ne puisse en être privé qu'en vertu des lois qui seront faites.",
+      "persee": "5° Que la libërté individuelle soit établie de telle sorte qu'aucun sujet du Roi ne puisse en être privé qu'en vertu des lois qui seront faites."
+    },
+    "persee_page_url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_4_1_1745/arcpa_0000-0000_1879_num_4_1_T1_0002_0000"
+  },
+  {
+    "id": "vic-art2",
+    "key": "vic",
+    "stanford_paragraph": 3,
+    "persee_file": "persee-vic-0016.html",
+    "persee_paragraph": 4,
+    "pattern": "^(Art\\. 2\\.(?:11| Il))",
+    "reference": "Art. 2. Il",
+    "scan": "persee-vic-0016.jpg",
+    "note": "Séparation et lecture de Il en début de phrase.",
+    "observed": {
+      "stanford": "Art. 2.11",
+      "artfl": "Art. 2.11",
+      "persee": "Art. 2. Il"
+    },
+    "character_edit_distances": {
+      "stanford": 3,
+      "artfl": 3,
+      "persee": 0
+    },
+    "contexts": {
+      "stanford": "Art. 2.11 désire pàreillement que les Etats généraux se tiennent à époques périodiques, dont le retour soit fixé par l'autorité du monarque et la sagesse de l'assemblée nationale.",
+      "artfl": "Art. 2.11 désire pàreillement que les Etats généraux se tiennent à époques périodiques, dont le retour soit fixé par l'autorité du monarque et la sagesse de l'assemblée nationale.",
+      "persee": "Art. 2. Il désire pareillement que les Etats gé¬ néraux se tiennent à époques périodiques , dont le retour soit fixé par l'autorité du monarque et la sagesse de l'assemblée nationale."
+    },
+    "persee_page_url": "https://www.persee.fr/doc/page/arcpa_0000-0000_1879_num_6_1_2497/arcpa_0000-0000_1879_num_6_1_T1_0016_0000"
+  }
+]

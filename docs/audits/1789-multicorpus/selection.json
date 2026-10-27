@@ -1,0 +1,261 @@
+[
+  {
+    "key": "agen-clerge",
+    "druid": "jt959wc5586",
+    "volume": "1",
+    "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]",
+    "title_paragraphs": [
+      1
+    ],
+    "locality": null,
+    "territory": "Sénéchaussée d’Agenois",
+    "estate": "clergé",
+    "metadata_provenance": "Titre en head et p[1] ; territoire repris du sous-titre, sans géocodage.",
+    "date": null,
+    "date_provenance": null,
+    "passages": [
+      {
+        "from": 5,
+        "to": 6,
+        "label": "Article 1er,"
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "label": "Art, 2."
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "label": "Art. 3."
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "label": "Art, 4."
+      }
+    ]
+  },
+  {
+    "key": "angoumois-noblesse",
+    "druid": "fz023dp4399",
+    "volume": "2",
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+    "title_paragraphs": [],
+    "locality": "Angoulême",
+    "territory": "Province d’Angoumois",
+    "estate": "noblesse",
+    "metadata_provenance": "Sous-titre en head[2] ; localité = lieu de réunion mentionné, pas une juridiction moderne.",
+    "date": null,
+    "date_provenance": "Titre : les 16, 17, 18, 19 et jours suivants de mars 1789 ; ne pas transformer en date unique.",
+    "passages": [
+      {
+        "from": 1,
+        "to": 2,
+        "label": "Art. 1er."
+      },
+      {
+        "from": 4,
+        "to": 4,
+        "label": "Art. 3."
+      },
+      {
+        "from": 5,
+        "to": 20,
+        "label": "Art. 4.",
+        "warning": "Un article contient ici une charte et plusieurs propositions ; ne pas les déclarer revendications atomiques."
+      },
+      {
+        "from": 41,
+        "to": 43,
+        "label": "Art. 17."
+      }
+    ]
+  },
+  {
+    "key": "colmar-ville",
+    "druid": "mc666yy3026",
+    "volume": "3",
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[3]",
+    "title_paragraphs": [],
+    "locality": "Colmar",
+    "territory": "Districts de Colmar et Schlestadt",
+    "estate": null,
+    "metadata_provenance": "Localité dans head[2] ; territoire = contexte div2. Aucun ordre explicite dans le titre de ce cahier : laissé nul.",
+    "date": "1789-03-24",
+    "date_provenance": "p[57] : fait, lu et interprété ... le 24 mars 1789. La date balisée 27 avril en p[61] est une collation, pas la rédaction. Le div3 inclut aussi un supplément traduit de l’allemand en mai.",
+    "passages": [
+      {
+        "from": 1,
+        "to": 1,
+        "label": "Art. 1er."
+      },
+      {
+        "from": 2,
+        "to": 2,
+        "label": "Art. 2."
+      },
+      {
+        "from": 3,
+        "to": 7,
+        "label": "Art.",
+        "warning": "Numéro absent du XML ; le scan porte Art. 3. Ne pas réparer le texte extrait."
+      },
+      {
+        "from": 8,
+        "to": 11,
+        "label": "Art. 4.",
+        "warning": "Article avec sous-énumération ; conserver les paragraphes ensemble."
+      }
+    ]
+  },
+  {
+    "key": "mirecourt-noblesse",
+    "druid": "xg914wh0253",
+    "volume": "4",
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]",
+    "title_paragraphs": [],
+    "locality": "Mirecourt",
+    "territory": "Bailliage de Mirecourt",
+    "estate": "noblesse",
+    "metadata_provenance": "Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact.",
+    "date": "1789-03-16",
+    "date_provenance": "date[@value='1789-03-16'] dans head[2].",
+    "passages": [
+      {
+        "from": 2,
+        "to": 2,
+        "split_start": "1°",
+        "split_end": "2°",
+        "label": "1°",
+        "warning": "Deux articles réunis dans p[2] : coupe déterministe sur les marqueurs explicites."
+      },
+      {
+        "from": 2,
+        "to": 2,
+        "split_start": "2°",
+        "label": "2°",
+        "warning": "Deuxième article du même paragraphe XML."
+      },
+      {
+        "from": 3,
+        "to": 3,
+        "label": "3°"
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "label": "4°",
+        "warning": "Article interrompu au changement de page ; deux paragraphes réunis, sans défaire les césures."
+      }
+    ]
+  },
+  {
+    "key": "pierrelez-habitants",
+    "druid": "xx284sn7328",
+    "volume": "5",
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[9]",
+    "title_paragraphs": [
+      1
+    ],
+    "locality": "Pierrelez (Pierre Laye)",
+    "territory": "Paris hors les murs",
+    "estate": null,
+    "metadata_provenance": "Localité dans p[1] ; territoire = section div2. Habitants : ne pas attribuer automatiquement un ordre non indiqué.",
+    "date": "1789-04-14",
+    "date_provenance": "p[11] : fait le mardi 14 avril 1789 ; extraction manuelle sourcée, pas un attribut date.",
+    "passages": [
+      {
+        "from": 2,
+        "to": 2,
+        "label": "Art. 1er."
+      },
+      {
+        "from": 3,
+        "to": 3,
+        "label": "Art. 2."
+      },
+      {
+        "from": 8,
+        "to": 8,
+        "label": "Art. 7."
+      },
+      {
+        "from": 10,
+        "to": 10,
+        "label": "Art. 9."
+      }
+    ]
+  },
+  {
+    "key": "vic-clerge",
+    "druid": "wg983ft3682",
+    "volume": "6",
+    "xpath": "/TEI.2/text/body/div1/div2[1]/div3[4]",
+    "title_paragraphs": [],
+    "locality": null,
+    "territory": "Bailliage de Vie [graphie TEI]",
+    "estate": "clergé",
+    "metadata_provenance": "head[2] ; la graphie Vie ne doit pas être résolue automatiquement en lieu moderne ou en Vic.",
+    "date": "1789-03-28",
+    "date_provenance": "date[@value='1789-03-28'] dans head[2] ; graphie du lieu conservée comme Vie.",
+    "passages": [
+      {
+        "from": 2,
+        "to": 2,
+        "label": "Art. 1er."
+      },
+      {
+        "from": 3,
+        "to": 3,
+        "label": "Art. 2."
+      },
+      {
+        "from": 4,
+        "to": 4,
+        "label": "Art. 3."
+      },
+      {
+        "from": 7,
+        "to": 7,
+        "label": "Art. 6."
+      }
+    ]
+  },
+  {
+    "key": "guerande-tiers",
+    "druid": "xg914wh0253",
+    "volume": "4",
+    "xpath": "/TEI.2/text/body/div1/div2[9]/div3[3]",
+    "title_paragraphs": [],
+    "locality": null,
+    "territory": "Sénéchaussée de Guérande",
+    "estate": "tiers état",
+    "metadata_provenance": "head[2] ; le cahier concerne la sénéchaussée, pas seulement la ville.",
+    "date": "1789-04-03",
+    "date_provenance": "p[45] : Clos et arrêté ... cedit jour 3 avril 1789 ; extraction manuelle sourcée.",
+    "passages": [
+      {
+        "from": 1,
+        "to": 1,
+        "label": "Art. 1er."
+      },
+      {
+        "from": 2,
+        "to": 2,
+        "label": "Art. 2."
+      },
+      {
+        "from": 4,
+        "to": 4,
+        "label": "Art. 4."
+      },
+      {
+        "from": 8,
+        "to": 10,
+        "label": "Art. 8.",
+        "warning": "Article long traversant des paragraphes ; les item du même cahier sont des votes, pas des revendications."
+      }
+    ]
+  }
+]

@@ -1,0 +1,2370 @@
+{
+  "scope": "development only, not held-out generalization",
+  "windows": [
+    {
+      "document_key": "agen-clerge",
+      "gold": 9,
+      "predicted": 9,
+      "correct": 9
+    },
+    {
+      "document_key": "agen-noblesse",
+      "gold": 3,
+      "predicted": 3,
+      "correct": 3
+    },
+    {
+      "document_key": "agen-tiers",
+      "gold": 0,
+      "predicted": 0,
+      "correct": 0
+    },
+    {
+      "document_key": "alencon-clerge",
+      "gold": 5,
+      "predicted": 5,
+      "correct": 4
+    },
+    {
+      "document_key": "alencon-noblesse",
+      "gold": 2,
+      "predicted": 2,
+      "correct": 2
+    },
+    {
+      "document_key": "angoumois-noblesse",
+      "gold": 4,
+      "predicted": 4,
+      "correct": 3
+    },
+    {
+      "document_key": "angoumois-noblesse",
+      "gold": 1,
+      "predicted": 1,
+      "correct": 1
+    },
+    {
+      "document_key": "anjou-clerge",
+      "gold": 6,
+      "predicted": 6,
+      "correct": 6
+    },
+    {
+      "document_key": "anjou-clerge",
+      "gold": 4,
+      "predicted": 4,
+      "correct": 4
+    },
+    {
+      "document_key": "anjou-clerge",
+      "gold": 4,
+      "predicted": 4,
+      "correct": 4
+    },
+    {
+      "document_key": "anjou-clerge",
+      "gold": 4,
+      "predicted": 4,
+      "correct": 4
+    },
+    {
+      "document_key": "annonay-clerge",
+      "gold": 13,
+      "predicted": 13,
+      "correct": 13
+    },
+    {
+      "document_key": "beaujolais-noblesse",
+      "gold": 15,
+      "predicted": 15,
+      "correct": 15
+    },
+    {
+      "document_key": "lawastine-tiers",
+      "gold": 5,
+      "predicted": 5,
+      "correct": 5
+    },
+    {
+      "document_key": "colmar-ville",
+      "gold": 8,
+      "predicted": 8,
+      "correct": 8
+    },
+    {
+      "document_key": "ribaucourt",
+      "gold": 11,
+      "predicted": 10,
+      "correct": 9
+    },
+    {
+      "document_key": "flines",
+      "gold": 13,
+      "predicted": 13,
+      "correct": 13
+    },
+    {
+      "document_key": "carces-mineurs",
+      "gold": 8,
+      "predicted": 8,
+      "correct": 8
+    },
+    {
+      "document_key": "montigny-ostrevent",
+      "gold": 11,
+      "predicted": 7,
+      "correct": 2
+    },
+    {
+      "document_key": "mirecourt-noblesse",
+      "gold": 13,
+      "predicted": 13,
+      "correct": 11
+    },
+    {
+      "document_key": "guerande-tiers",
+      "gold": 8,
+      "predicted": 8,
+      "correct": 8
+    },
+    {
+      "document_key": "ferrieres",
+      "gold": 14,
+      "predicted": 14,
+      "correct": 12
+    },
+    {
+      "document_key": "ferrieres",
+      "gold": 6,
+      "predicted": 6,
+      "correct": 6
+    },
+    {
+      "document_key": "ferrieres",
+      "gold": 2,
+      "predicted": 2,
+      "correct": 2
+    },
+    {
+      "document_key": "ferrieres",
+      "gold": 2,
+      "predicted": 2,
+      "correct": 2
+    },
+    {
+      "document_key": "annet-marne",
+      "gold": 15,
+      "predicted": 15,
+      "correct": 15
+    },
+    {
+      "document_key": "ermenonville",
+      "gold": 12,
+      "predicted": 12,
+      "correct": 12
+    },
+    {
+      "document_key": "mirecourt-clerge",
+      "gold": 5,
+      "predicted": 5,
+      "correct": 5
+    },
+    {
+      "document_key": "pierrelez-habitants",
+      "gold": 9,
+      "predicted": 9,
+      "correct": 9
+    },
+    {
+      "document_key": "perigny-brie",
+      "gold": 15,
+      "predicted": 15,
+      "correct": 15
+    },
+    {
+      "document_key": "plessis-secqueville",
+      "gold": 9,
+      "predicted": 9,
+      "correct": 9
+    },
+    {
+      "document_key": "puteaux",
+      "gold": 11,
+      "predicted": 11,
+      "correct": 11
+    },
+    {
+      "document_key": "vic-clerge",
+      "gold": 8,
+      "predicted": 8,
+      "correct": 8
+    },
+    {
+      "document_key": "toul-noblesse",
+      "gold": 2,
+      "predicted": 2,
+      "correct": 0
+    },
+    {
+      "document_key": "albertas",
+      "gold": 9,
+      "predicted": 9,
+      "correct": 9
+    },
+    {
+      "document_key": "beaurecueil",
+      "gold": 3,
+      "predicted": 3,
+      "correct": 3
+    },
+    {
+      "document_key": "lourmarin",
+      "gold": 0,
+      "predicted": 0,
+      "correct": 0
+    }
+  ],
+  "errors": [
+    {
+      "document_key": "alencon-clerge",
+      "prediction": {
+        "start": 5413730,
+        "end": 5413926,
+        "label_exact": "5°",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[9]/div3[1]/p[9]",
+          "/TEI.2/text/body/div1/div2[9]/div3[1]/p[10]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "5° Défendre aux députés de s'occuper au com- mencement de leur séance\n                            d'aucun impôt et ren- voyer cet objet à la Un de l'assemblée. \n\n\n                        Religion.",
+      "reference": [
+        {
+          "start": 5412650,
+          "end": 5412824,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[9]/div3[1]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5412850,
+          "end": 5413084,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[9]/div3[1]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5413110,
+          "end": 5413318,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[9]/div3[1]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5413344,
+          "end": 5413704,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[9]/div3[1]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5413730,
+          "end": 5413889,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[9]/div3[1]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    },
+    {
+      "document_key": "angoumois-noblesse",
+      "prediction": {
+        "start": 19196,
+        "end": 21925,
+        "label_exact": "Art. 4.",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[6]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[7]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[8]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[9]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[15]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[16]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[17]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[18]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[19]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[20]"
+        ],
+        "rule": "article"
+      },
+      "text": "Art. 4. Lesdits députés insisteront à ce que la matière de l'impôt et des autres secours\n       nécessaires, tant aux besoins de l'Etat qu'au payement de la dette, quand elle sera jugée, ne\n       soit traitée qu après la sanction de la charte nationale. \n\n      Charte nationale. \n      La succession au trône conservée dans l'ordre consacré. \n      La liberté générale et individuelle des citoyens. La liberté de la presse, sous les\n       modifications que les Etats généraux jugeront convenable d'v prescrire. \n      L'abolition absolue des lettres de cachet, tant pour exil que pour emprisonnement; de\n       l'usage dangereux et illégal de toutes commissions particulières pour juger les délits, et de\n       tous les mandats des cours supérieures aux juges inférieurs, connus sous le nom de veniat. \n      Que la foi publique ne puisse, sous aucun prétexte, être violée dans les bureaux de la\n       poste aux lettres,' \n      Que l'on assure la périodicité des Etats généraux, dont la première tenue sera indiquée au\n       plus tard dans trois ans, à compter de la fin des Etats prochains, et les autres tenues\n       seront fixées à cinq ans de \"distance de l'une à l'autre, s'en référant au surplus au vœu\n       général des députés aux Etats généraux. \n      Que l'assemblée prochaine des Etats généraux détermine toutes les précautions à prendre\n       pour assurer l'exercice du pouvoir souverain, dans le cas où il y aurait lieu à la régence,\n       et jusqu'à ce qu'elle ait été déférée par lesdits Etats généraux. \n      Que les députés aux Etats généraux, comme personnes sacrées, ne puissent, sous aucun\n       prétexte, être troublés dans leurs fonctions. \n      Qu'aucun citoyen, occupant un emploi légal, civil ou militaire, ne puisse être destitué que\n       par ses juges naturels. \n      Que tout citoyen accusé par le ministère public, et renvoyé absous, ait droit à une\n       indemnité qui sera payée par l'Etat. \n      Qu'aucune loi générale ne puisse avoir lieu qu'autant qu'elle aura été consentie ou propo- \n      \n      sée par les Etats généraux, et sanctionnée par le roi pour être incontinent transcrite sur\n       les registres des cours, sans vérification, publiée et affichée \n      Que nul impôt, emprunt, création ou suppression d'offices ne puisse avoir lieu sans le\n       consentement des Etats généraux. \n      Que les ministres soient responsables envers la nation des fonds qui leur seront confies\n       pour leurs départements, et des abus de leur administration. Lesdits députés proposeront aux\n       Etats généraux d'autoriser particulièrement le ministère public à poursuivre les ministres\n       prévaricateurs dans l'intervalle d'une tenue à l'autre. \n\n      Administration.",
+      "reference": [
+        {
+          "start": 17612,
+          "end": 17987,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[1]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 17995,
+          "end": 18376,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[3]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 18384,
+          "end": 19188,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 19196,
+          "end": 21901,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[6]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[7]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[8]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[9]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[15]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[16]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[17]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[18]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[19]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    },
+    {
+      "document_key": "ribaucourt",
+      "prediction": {
+        "start": 1762743,
+        "end": 1763808,
+        "label_exact": "10°",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[12]",
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[13]",
+          "/TEI.2/text/body/div1/div2[22]/div3[9]/p[14]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "10° On met sous les yeux de Sa Majesté que les droits de péage,\n                            pontonnages, chaussées et autres sont très-frayeu* à son peuple, et que\n                            les pigepns causent un tort considérable aux aveties crois- santés de\n                            toute espèce.\n                        i lfl IJ ne reste plus pour lq onzième chef de do- léances que de\n                            supplier 3a Majesté de vouloir bien maintenir cette communauté de\n                            Ribaucourt dans ses droits de franchise sur les vins, bière, tabac et\n                            autres, que les habitants d'icelle communauté jouissent depuis mémoire\n                            d'homme , pour lui avoir été confirmés par la concession des ducs de\n                            Bourgogne et des comtes de Flandre.\n                        Seront tenus les députés nommés pour cet effet, de présenter ledit\n                            cahier, et supplient M. le lieutenant général lors de l'assemblée du\n                            30.",
+      "reference": [
+        {
+          "start": 1757591,
+          "end": 1758334,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1758359,
+          "end": 1758569,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[3]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1758594,
+          "end": 1759201,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1759226,
+          "end": 1759943,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1759968,
+          "end": 1760888,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1760913,
+          "end": 1761587,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1761612,
+          "end": 1762037,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[8]",
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1762062,
+          "end": 1762361,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1762386,
+          "end": 1762718,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[11]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1762743,
+          "end": 1763046,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[12]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 1763071,
+          "end": 1763588,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[9]/p[13]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 5
+        }
+      ]
+    },
+    {
+      "document_key": "montigny-ostrevent",
+      "prediction": {
+        "start": 2030891,
+        "end": 2033536,
+        "label_exact": "1°",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[1]",
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]",
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[3]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "1° il existe un marais cdmmtiti entre les habi- tàtitS dti Viliagè dë\n                            Modtigny ët cëlui dë DeëhV, Voisin ; cë marais était ci-dèvànt pdfesédé\n                            ët Cul- tivé par indivis ; les paysans y ënVoyàiënt paître leurs\n                            bestiaux indivisément. 11 a pfu aux habi- tants de Dëchy de susciter\n                            différentes chicanés a eeut de Mdtitigtiy pour lëtir ëiilevër là\n                            propriété, tantôt en les forçant de se cantonner dans certains etidroits\n                            dtidit marais, tantôt en les nécëssitarit de se. cdtitëtitèr d'une\n                            jôtiiséaticë Viagère^ d'esf-à- diré tlë la stiperficie de cërfàihS\n                            droits boncëtitrës ; en Sdrte qtië lës habitants dë Mohtighy, soit par\n                            l'ignorance des gèns dë loi qtii lës présidaient, sbit par négligence,\n                            soit par dol përsdfinel, Së SdUt vus rêdtiits à tin droit limité de\n                            certaines paissons; lëS habitants de Montigny dêthaiidertt dbnd que lë-\n                            dit ttiâràis soit réfldti ët restitué Cdmmtiti entre les fiàbitàfitë\n                            dudit Mc/ntigny ëtDëdtty, àihSi qtie de toute ancienneté, notamment\n                            depuis i'érectidh du |duyërriërîfëhf féodal, dë qtii Së trouve\n                            Caractérisé par lës chartes de la Botirgogtie, en dbsërvatit no-\n                            tâitimëht dtié lës seignétirs respectifs dë fcës dëtit Villagèi\n                            iimitrd^heS ti^dtit lâmaiS èXë|*cé les mdindres droits propriétàireS Sur\n                            ce marais commun. \n                        z8 Les Chargés de FEtàt doivëht êfrë subpdftéës par tous lës\n                            propriétaires, ati prorata de letir dd- maiûë. LëS habitàtitS\n                            dèftiàtidëtii etiCdrë à de que la subvention territoriale soit imposée\n                            sur toutes lës terrés, sans atiCtiné distinction tii dti Clergé ni dë là\n                            ndblëssë. _ t \n                        36 0ri tiidyeô racile potti® réparer lë déficit des fitiàticëS et M\n                            dotitièr une stabilité immtiable, c'ëSt, otitrë iadité Subvention\n                            tërrltdrriâlë qui Sera sutipdrtéepar chaque propriétaire sàns àucunëdis-\n                            titictidn, tf'assëdir titi impôt sur tous les objets de\n\n\n                        \n\n\n                        luxe et sur toutes choses absolument superflues.",
+      "reference": [
+        {
+          "start": 2030891,
+          "end": 2032644,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[1]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2032670,
+          "end": 2033062,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033088,
+          "end": 2033536,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[3]",
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033537,
+          "end": 2034106,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034132,
+          "end": 2034386,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034412,
+          "end": 2034613,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034639,
+          "end": 2034931,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034957,
+          "end": 2035218,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2035218,
+          "end": 2035456,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035482,
+          "end": 2035819,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035845,
+          "end": 2036084,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 3
+        }
+      ]
+    },
+    {
+      "document_key": "montigny-ostrevent",
+      "prediction": {
+        "start": 2033537,
+        "end": 2034133,
+        "label_exact": "4®",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "4® La Flandre, avant sa\n                            réunion à la couronqë; était composéedes Etats les plus réguliers,\n                            savoir: du Clergé^ de la ndbiesse et du tiers-état ; elle est maintenant\n                            gouvernée pat quatre grands hajllis dont la composition est aussi\n                            extraordi- naire qu'incroyable. Les habitants de Montigny demandent\n                            encore à ce que leurs anciens Etats soient réintégrés comme ils étaient\n                            du temps des comtes de Flandre. \n                        ,",
+      "reference": [
+        {
+          "start": 2030891,
+          "end": 2032644,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[1]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2032670,
+          "end": 2033062,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033088,
+          "end": 2033536,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[3]",
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033537,
+          "end": 2034106,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034132,
+          "end": 2034386,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034412,
+          "end": 2034613,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034639,
+          "end": 2034931,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034957,
+          "end": 2035218,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2035218,
+          "end": 2035456,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035482,
+          "end": 2035819,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035845,
+          "end": 2036084,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 3
+        }
+      ]
+    },
+    {
+      "document_key": "montigny-ostrevent",
+      "prediction": {
+        "start": 2034133,
+        "end": 2034386,
+        "label_exact": "5®",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[5]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "5® L'ordre des paysans, est ignore en Flandre,qui est cependant le plus\n                            utile à rfilât. Ils demandent encore à ce qu'on ajoute auxdits trois\n                            Etats, celui des paysans, comme il së pratiqué en Suède.",
+      "reference": [
+        {
+          "start": 2030891,
+          "end": 2032644,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[1]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2032670,
+          "end": 2033062,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033088,
+          "end": 2033536,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[3]",
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033537,
+          "end": 2034106,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034132,
+          "end": 2034386,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034412,
+          "end": 2034613,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034639,
+          "end": 2034931,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034957,
+          "end": 2035218,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2035218,
+          "end": 2035456,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035482,
+          "end": 2035819,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035845,
+          "end": 2036084,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 3
+        }
+      ]
+    },
+    {
+      "document_key": "montigny-ostrevent",
+      "prediction": {
+        "start": 2034639,
+        "end": 2035218,
+        "label_exact": "7®",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[7]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "7® Les maîtrises dèséàux et forêts sont très- inutiles et\n                            très-dispendieuses à l'Etat ; on en de- mande la suppression! et a ce\n                            qu'élles soient gou- vernées par la voie de régie ou celles moins\n                            dispendieuses. \n                        B® Les seignëurs territoriaux convertissent la plupart des sentiers en,\n                            chemins vicomtiers ; on en demande,la suppression, ,et notamment à ce\n                            que les sentiers superflus soient rendus â la cul- ture. ,, , .",
+      "reference": [
+        {
+          "start": 2030891,
+          "end": 2032644,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[1]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2032670,
+          "end": 2033062,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033088,
+          "end": 2033536,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[3]",
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033537,
+          "end": 2034106,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034132,
+          "end": 2034386,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034412,
+          "end": 2034613,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034639,
+          "end": 2034931,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034957,
+          "end": 2035218,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2035218,
+          "end": 2035456,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035482,
+          "end": 2035819,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035845,
+          "end": 2036084,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 3
+        }
+      ]
+    },
+    {
+      "document_key": "montigny-ostrevent",
+      "prediction": {
+        "start": 2035482,
+        "end": 2036084,
+        "label_exact": "10®",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[9]",
+          "/TEI.2/text/body/div1/div2[22]/div3[23]/p[10]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "10® Les gens de loi dé Montigny, ainsi què de tous les villages\n                            eirconvoisins de là Flandre* sont nommes d'après le caprice du seigneur\n                            ; oh de- mande à ce que cette élection des gens de loi se fasse par la\n                            commune à la pluralitédes voix, tous les ans.. \n                        Il® Les collecteurs des deniers royaux devront être choisis par les\n                            communes à la .pluralité des suffrages, et ils spront en premier lieu\n                            responsa- bles. de leur gestiqn à la commune,",
+      "reference": [
+        {
+          "start": 2030891,
+          "end": 2032644,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[1]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2032670,
+          "end": 2033062,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033088,
+          "end": 2033536,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[3]",
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2033537,
+          "end": 2034106,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[4]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034132,
+          "end": 2034386,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034412,
+          "end": 2034613,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034639,
+          "end": 2034931,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2034957,
+          "end": 2035218,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 2
+        },
+        {
+          "start": 2035218,
+          "end": 2035456,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035482,
+          "end": 2035819,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 2035845,
+          "end": 2036084,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[22]/div3[23]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": 3
+        }
+      ]
+    },
+    {
+      "document_key": "mirecourt-noblesse",
+      "prediction": {
+        "start": 10263,
+        "end": 10399,
+        "label_exact": "10°",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "10° Que les articles 8 et 9 seront réglés avant de pouvoir consentir\n                            aucun impôt. \n                        -",
+      "reference": [
+        {
+          "start": 8443,
+          "end": 8493,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 8494,
+          "end": 8861,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 8888,
+          "end": 8952,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[3]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 8979,
+          "end": 9414,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9440,
+          "end": 9612,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9638,
+          "end": 9778,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9804,
+          "end": 9912,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9938,
+          "end": 10076,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10102,
+          "end": 10237,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10263,
+          "end": 10372,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10398,
+          "end": 10841,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10867,
+          "end": 11115,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 11141,
+          "end": 11261,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    },
+    {
+      "document_key": "mirecourt-noblesse",
+      "prediction": {
+        "start": 10399,
+        "end": 10841,
+        "label_exact": "11°",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]"
+        ],
+        "rule": "ordinal"
+      },
+      "text": "11° Que, dans la supposition que de nouveaux impôts seraient jugés\n                            indispensables, on choisira de préférence ceux qui atteindront plus\n                            facilement les facultés de tous genres, et présenteront le moins de gêne\n                            et de frais, dans leur perception, en adoptant les formes qui se\n                            concilieront avec les privilèges des différents ordres. .",
+      "reference": [
+        {
+          "start": 8443,
+          "end": 8493,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 8494,
+          "end": 8861,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 8888,
+          "end": 8952,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[3]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 8979,
+          "end": 9414,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9440,
+          "end": 9612,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9638,
+          "end": 9778,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[7]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9804,
+          "end": 9912,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[8]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 9938,
+          "end": 10076,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10102,
+          "end": 10237,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10263,
+          "end": 10372,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10398,
+          "end": 10841,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 10867,
+          "end": 11115,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 11141,
+          "end": 11261,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    },
+    {
+      "document_key": "ferrieres",
+      "prediction": {
+        "start": 5030860,
+        "end": 5031024,
+        "label_exact": "Art. 13.",
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[16]"
+        ],
+        "rule": "article"
+      },
+      "text": "Art. 13. Lesdits députés de Ferrières porteront le vœu formel de la\n                            délibération par tête aux Etats généraux. \n                        ,",
+      "reference": [
+        {
+          "start": 5028468,
+          "end": 5028590,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[1]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5028616,
+          "end": 5028723,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5028749,
+          "end": 5028816,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[3]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5028842,
+          "end": 5029209,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[4]",
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5029235,
+          "end": 5029534,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5029560,
+          "end": 5029954,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[7]",
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[8]",
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5029980,
+          "end": 5030103,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030129,
+          "end": 5030283,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[11]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030309,
+          "end": 5030382,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[12]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030408,
+          "end": 5030562,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[13]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030588,
+          "end": 5030698,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[14]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030724,
+          "end": 5030834,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[15]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030860,
+          "end": 5030997,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[16]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5031023,
+          "end": 5031335,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[17]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    },
+    {
+      "document_key": "ferrieres",
+      "prediction": {
+        "start": 5031025,
+        "end": 5031335,
+        "label_exact": "Art. 14.",
+        "division": 1,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[18]/div3[146]/p[17]"
+        ],
+        "rule": "article"
+      },
+      "text": "Art. 14. Les Etats généraux ayant établi la constitution sur des bases\n                            solides et inviolahles, et, par conséquent, ayant assuré leur retour\n                            périodique en supposant qu'il ne leur paraisse pas convenable de se\n                            rendre perpétuels,",
+      "reference": [
+        {
+          "start": 5028468,
+          "end": 5028590,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[1]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5028616,
+          "end": 5028723,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[2]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5028749,
+          "end": 5028816,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[3]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5028842,
+          "end": 5029209,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[4]",
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[5]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5029235,
+          "end": 5029534,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[6]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5029560,
+          "end": 5029954,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[7]",
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[8]",
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[9]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5029980,
+          "end": 5030103,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[10]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030129,
+          "end": 5030283,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[11]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030309,
+          "end": 5030382,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[12]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030408,
+          "end": 5030562,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[13]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030588,
+          "end": 5030698,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[14]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030724,
+          "end": 5030834,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[15]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5030860,
+          "end": 5030997,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[16]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 5031023,
+          "end": 5031335,
+          "division": 1,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[18]/div3[146]/p[17]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    },
+    {
+      "document_key": "toul-noblesse",
+      "prediction": {
+        "start": 44192,
+        "end": 44477,
+        "label_exact": "Art. 1er.",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[12]"
+        ],
+        "rule": "article"
+      },
+      "text": "Art. 1er. L'ordre de la noblesse désire et\n                            de- \n                        mandé que les Etats généraux votent par tête en matière d'impositions, et\n                            par ordre pour tout le reste. \n\n                        Dette nationale consolidée.",
+      "reference": [
+        {
+          "start": 44192,
+          "end": 44423,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 44503,
+          "end": 44643,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    },
+    {
+      "document_key": "toul-noblesse",
+      "prediction": {
+        "start": 44503,
+        "end": 44712,
+        "label_exact": "Art. 2.",
+        "division": 0,
+        "xml_blocks": [
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]",
+          "/TEI.2/text/body/div1/div2[1]/div3[2]/p[14]"
+        ],
+        "rule": "article"
+      },
+      "text": "Art. 2. Désire et demande que la dettte de l'Etat soit discutée, vérifiée\n                            et ensuite consolidée par la nation. * \n\n                        Visite des titres des créanciers de VEtat.",
+      "reference": [
+        {
+          "start": 44192,
+          "end": 44423,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[10]",
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[11]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        },
+        {
+          "start": 44503,
+          "end": 44643,
+          "division": 0,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]"
+          ],
+          "status": "A",
+          "validation": "xml_boundaries_reviewed",
+          "reference_window": 0,
+          "rule": "reviewed_reference",
+          "label_exact": null,
+          "label_length": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parents": 15,
+  "reviewed_A": 78,
+  "uncovered_C": 93,
+  "B_proposals": 166,
+  "reference_export_not_automatic_correction": true,
+  "ambiguous_reference_units_withheld": 1,
+  "no_full_article_order_claim": true
+}

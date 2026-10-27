@@ -1,0 +1,504 @@
+{
+  "entries": 83,
+  "files": [
+    {
+      "filename": "APvol05.tei",
+      "philo_id": 1,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME CINQUIÉME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "year": 1789
+    },
+    {
+      "filename": "APvol01.tei",
+      "philo_id": 2,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "year": 1789
+    },
+    {
+      "filename": "APvol06.tei",
+      "philo_id": 3,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "year": 1789
+    },
+    {
+      "filename": "APvol02.tei",
+      "philo_id": 4,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES & BAILLIAGES",
+      "year": 1789
+    },
+    {
+      "filename": "APvol03.tei",
+      "philo_id": 5,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME PREMIER ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES & BAILLIAGES",
+      "year": 1789
+    },
+    {
+      "filename": "APvol04.tei",
+      "philo_id": 6,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME QUATRIÈME ÉTATS GÉNÉRAUX. - CAHIERS DES SÉNÉCHAUSSÉES BAILLIAGES",
+      "year": 1789
+    },
+    {
+      "filename": "APvol07.tei",
+      "philo_id": 7,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME VII TABLE DES CHAIERS DES ÉTATS GÉNÉRAUX RÉDIGÉE PAR M. LA TASTE",
+      "year": 1789
+    },
+    {
+      "filename": "APvol08.tei",
+      "philo_id": 8,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME VIII DU 5 MAI 1789 AU 15 SEPTEMBRE 1789",
+      "year": 1789
+    },
+    {
+      "filename": "APvol10.tei",
+      "philo_id": 9,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME X DU 12 NOVEMBRE 1789 AU 24 DECEMBRE 1789",
+      "year": 1789
+    },
+    {
+      "filename": "APvol09.tei",
+      "philo_id": 10,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1789 à 1799) TOME IX DU 16 SEPTEMBRE AU 11 NOVEMBRE 1789.",
+      "year": 1789
+    },
+    {
+      "filename": "APvol11.tei",
+      "philo_id": 11,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1789 à 1800) TOME XI DU 24 DÉCEMBRE 1789 AU 1er MARS 1790",
+      "year": 1789
+    },
+    {
+      "filename": "APvol12.tei",
+      "philo_id": 12,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1789 à 1800)) TOME XII ASSEMBLÉE NATIONALE CONSTITUANTE DU 2 MARSAD 14 AVRIL 1790",
+      "year": 1789
+    },
+    {
+      "filename": "APvol19.tei",
+      "philo_id": 13,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XIX DU 16 SEPTEMBRE 1790 AU 23 OCTOBRE 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol17.tei",
+      "philo_id": 14,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XVII DU 9 JUILLET 1790 AU 12 AOÛT 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol18.tei",
+      "philo_id": 15,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XVIII DU 12 AOUT 1790 AU 15 SEPTEMBRE 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol20.tei",
+      "philo_id": 16,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XX DU 23 OCTOBRE 1790 AU 26 NOVEMBRE 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol21.tei",
+      "philo_id": 17,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXI DU 26 NOVEMBRE 1790 AU 2 JANVIER 1791",
+      "year": 1790
+    },
+    {
+      "filename": "APvol13.tei",
+      "philo_id": 18,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1789 à 1800) TOME XIII ASSEMBLÉE NATIONALE CONSTITUANTE DU 14 AVRIL AU 21 AVRIL 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol14.tei",
+      "philo_id": 19,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1789 à 1800) TOME XIV ASSEMBLÉE NATIONALE CONSTITUANTE DU 21 AVRIL 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol15.tei",
+      "philo_id": 20,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1789 à 1800) TOME XV ASSEMBLÉE NATIONALE CONSTITUANTE DU 21 AVRIL 1790 AU 30 MAI 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol16.tei",
+      "philo_id": 21,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE TOME XVI ASSEMBLÉE NATIONALE CONSTITUANTE DU 31 MAI 1790 AU 8 JUILLET 1790",
+      "year": 1790
+    },
+    {
+      "filename": "APvol22.tei",
+      "philo_id": 22,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXII DU 3 JANVIER 1791 AU 5 FVRIER 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol23.tei",
+      "philo_id": 23,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXIII DU 6 FÉVRIER 1791 AU 9 MARS 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol24.tei",
+      "philo_id": 24,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXIV DU 10 MARS 1791 AU 12 AVRIL 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol29.tei",
+      "philo_id": 25,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXIX DU 29 JUILLET AU 27 AOUT 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol25.tei",
+      "philo_id": 26,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÉRE SÉRIE (1787 à 1799) TOME XXV DU13 AVRIL AU 22 MAI 1791.",
+      "year": 1791
+    },
+    {
+      "filename": "APvol26.tei",
+      "philo_id": 27,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXVI DU 12 MAI AU 5 JUIN 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol27.tei",
+      "philo_id": 28,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXVII DU 6 JUIN AUS 5 JUILLET 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol28.tei",
+      "philo_id": 29,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXVIII DU 6 JUILLET AU 28 JUILLET 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol30.tei",
+      "philo_id": 30,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 á 1799) TOME XXX DU 28 AOUT AU 17 SEPTEMBRE 1719",
+      "year": 1791
+    },
+    {
+      "filename": "APvol31.tei",
+      "philo_id": 31,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIERE SERIE (1787 à 1799) TOME XXXI DU 17 SEPTEMBRE 1791 AU 30 SEPTEMBRE 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol32.tei",
+      "philo_id": 32,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXXII DU 30 SEPTERMBRE 1791 (SUITE DES ANNEXES) TABLE GÉNÉRALE CHRONOLOGIQUE DE L'ASSEMBLÉE NATIONALE CONSTITUANTE",
+      "year": 1791
+    },
+    {
+      "filename": "APvol33.tei",
+      "philo_id": 33,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXXIII TABLE GÉNÉRALE ALPHABÉTIQUE DE L'ASSEMBLÉE NATIONALE CONSTITUANTE COORDONNÉE PAR M. L. LATASTE COMMIS PRINCIPAL DU BUREAU DES PROCÈS-VERBAUX DE LA CHAMBRE DES DÉPUTÉS",
+      "year": 1791
+    },
+    {
+      "filename": "APvol34.tei",
+      "philo_id": 34,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÉRE SÉRIE (1787 à 1799) TOME XXXIV DU1er OCTOBRE AU 10 NOVEMBRE 1791.",
+      "year": 1791
+    },
+    {
+      "filename": "APvol35.tei",
+      "philo_id": 35,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXXV DU 11 NOVEMBRE AU 10 DÉCEMBRE 1791",
+      "year": 1791
+    },
+    {
+      "filename": "APvol36.tei",
+      "philo_id": 36,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXXVI DU 11 DÉCEMBRE 1791 AU 1 er",
+      "year": 1791
+    },
+    {
+      "filename": "APvol37.tei",
+      "philo_id": 37,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXXVII DU 2 AU 28 JANVIER 1792",
+      "year": 1791
+    },
+    {
+      "filename": "APvol38.tei",
+      "philo_id": 38,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXXVIII DU 29 JANVIER AU 21 FÉVRIER 1792.",
+      "year": 1791
+    },
+    {
+      "filename": "APvol49.tei",
+      "philo_id": 39,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1792
+    },
+    {
+      "filename": "APvol40.tei",
+      "philo_id": 40,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XL DU 15 MARS 1792 AU 30 MARS 1792.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol41.tei",
+      "philo_id": 41,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLI DU 80 MARS 1792 AU SOIR, AU 16 AVRIL 1792 AU SOIR.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol42.tei",
+      "philo_id": 42,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLII DU 17 AVRIL 1792 AU MATIN, AU 4 MAI 1792 AU MATIN,",
+      "year": 1792
+    },
+    {
+      "filename": "APvol43.tei",
+      "philo_id": 43,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLIII DU 4 MAI 1792 AU 22 MAI 1792.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol44.tei",
+      "philo_id": 44,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLIV DU 22 MAI 1792 AU SOIR, AU 8 JUIN 1792 AU SOIR.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol45.tei",
+      "philo_id": 45,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLV DU 9 JUIN 1792 AU MATIN, AU 30 JUIN 1792 AU MATIN",
+      "year": 1792
+    },
+    {
+      "filename": "APvol46.tei",
+      "philo_id": 46,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLVI DU 30 JUIN 1792 AU SOIR, AU 20 JUILLET 1792 AU SOIR.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol47.tei",
+      "philo_id": 47,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLVII DU 21 JUILLET 1792, AU 10 AOUT 1792.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol39.tei",
+      "philo_id": 48,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XXXIX DU 22 FÉVRIER AU 14 MARS 1792.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol52.tei",
+      "philo_id": 49,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LII DU 22 SEPTEMBRE 1792 AU 26 OCTOBRE 1792.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol71B.tei",
+      "philo_id": 50,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LXXI 20 Septembre 1792 au 10 Août 1793.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol54.tei",
+      "philo_id": 51,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1792
+    },
+    {
+      "filename": "APvol61.tei",
+      "philo_id": 52,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1792
+    },
+    {
+      "filename": "APvol59.tei",
+      "philo_id": 53,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1792
+    },
+    {
+      "filename": "APvol48.tei",
+      "philo_id": 54,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME XLVIII DU 11 AOUT 1792 AU 25 AOUT 1792.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol56.tei",
+      "philo_id": 55,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1792
+    },
+    {
+      "filename": "APvol57.tei",
+      "philo_id": 56,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1792
+    },
+    {
+      "filename": "APvol58.tei",
+      "philo_id": 57,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1792
+    },
+    {
+      "filename": "APvol60.tei",
+      "philo_id": 58,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1792
+    },
+    {
+      "filename": "APvol53.tei",
+      "philo_id": 59,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LIII 27 OCTOBRE 1792 AU 30 NOVEMBRE 1792",
+      "year": 1792
+    },
+    {
+      "filename": "APvol55.tei",
+      "philo_id": 60,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LV 11 DECEMBRE 1792 AU 27 DECEMBRE 1792, AU SOIR.",
+      "year": 1792
+    },
+    {
+      "filename": "APvol71A.tei",
+      "philo_id": 61,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LXXI TABLE ALPHABÉTIQUE ET ANALYTIQUE DES SÉANCES DE LA CONVENTION NATIONALE du 20 Septembre 1792 au 10 août 1793. PREMIÈRE PARTIE A-K",
+      "year": 1792
+    },
+    {
+      "filename": "APvol50.tei",
+      "philo_id": 62,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)TOME L ET ANNEXES DU 15 SEPTEMBRE 1792 AU SOIR AU 21 SEPTEMBRE 1792 AU MATIN",
+      "year": 1792
+    },
+    {
+      "filename": "APvol51.tei",
+      "philo_id": 63,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)TOME LI TABLE GÉNÉRALE ALPHABÉTIQUE DE L'ASSEMBLÉE NATIONALE LÉGISLATIVE RÉDIGÉE PAR M. CONSTANT PIONNIER SOUS-BIBLIOTHÉCAIRE DE LA CHAMBRE DES DÉPUTÉS",
+      "year": 1792
+    },
+    {
+      "filename": "APvol73.tei",
+      "philo_id": 64,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1793
+    },
+    {
+      "filename": "APvol76.tei",
+      "philo_id": 65,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1793
+    },
+    {
+      "filename": "APvol62.tei",
+      "philo_id": 66,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)TOME LXII DU 13 AVRIL 1793 AU 19 AVRIL 1793",
+      "year": 1793
+    },
+    {
+      "filename": "APvol63.tei",
+      "philo_id": 67,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1793
+    },
+    {
+      "filename": "APvol79.tei",
+      "philo_id": 68,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1793
+    },
+    {
+      "filename": "APvol81.tei",
+      "philo_id": 69,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1793
+    },
+    {
+      "filename": "APvol82.tei",
+      "philo_id": 70,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799",
+      "year": 1793
+    },
+    {
+      "filename": "APvol69.tei",
+      "philo_id": 71,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799 TOME LXIX DU 15 JUILLET 1793 AU 29 JUILLET 1793",
+      "year": 1793
+    },
+    {
+      "filename": "APvol77.tei",
+      "philo_id": 72,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799 TOME LXXVII Du 28 JOUR DU PREMIER MOIS DE L'AN II AU 7 BRUMAIRE AN II ( 19 OCTOBRE 1793 AU 28 OCROBRE 1793).",
+      "year": 1793
+    },
+    {
+      "filename": "APvol65.tei",
+      "philo_id": 73,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1793
+    },
+    {
+      "filename": "APvol67.tei",
+      "philo_id": 74,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1793
+    },
+    {
+      "filename": "APvol68.tei",
+      "philo_id": 75,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)",
+      "year": 1793
+    },
+    {
+      "filename": "APvol64.tei",
+      "philo_id": 76,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SERIE (1787 à 1799) TOME LXIV DU 2 MAI 1793 AU 16 MAI 1793",
+      "year": 1793
+    },
+    {
+      "filename": "APvol66.tei",
+      "philo_id": 77,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LXVI DU 3 JUIN 1793 AU 19 JUIN 1793",
+      "year": 1793
+    },
+    {
+      "filename": "APvol70.tei",
+      "philo_id": 78,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LXX DU 30 JUILLET 1793 AU 9 AOUT 1793.",
+      "year": 1793
+    },
+    {
+      "filename": "APvol74.tei",
+      "philo_id": 79,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LXXIV DU12 SEPTEMRE 1793 AU 22 SEPTEMRE 1793.",
+      "year": 1793
+    },
+    {
+      "filename": "APvol75.tei",
+      "philo_id": 80,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799) TOME LXXV Du 23 SEPTEMBRE 1793 AU 3 OCTOBRE 1793",
+      "year": 1793
+    },
+    {
+      "filename": "APvol72.tei",
+      "philo_id": 81,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)TOME LXXII DU 11 AOUT 1793 AU 24 AOUT 1793",
+      "year": 1793
+    },
+    {
+      "filename": "APvol78.tei",
+      "philo_id": 82,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)TOME LXXVIII DU 8 BRUMAIRE AN II (29 OCTOBRE 1793 AU 10 NOVEMBRE 1793).",
+      "year": 1793
+    },
+    {
+      "filename": "APvol80.tei",
+      "philo_id": 83,
+      "title": "ARCHIVES PARLEMENTAIRES DE 1787 A 1860 PREMIÈRE SÉRIE (1787 à 1799)TOME LXXX Du 4 FRIMAIRE AN II AU 15 FRIMAIRE AN II (24 NOVEMBRE 1793 AU 5 DÉCEMBRE 1793)",
+      "year": 1793
+    }
+  ],
+  "caveat": "Runtime catalogue, not a count of validated cahiers or proof of a downloadable TEI archive."
+}

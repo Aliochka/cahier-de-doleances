@@ -1,0 +1,722 @@
+[
+  {
+    "id": "development-01",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1532",
+    "volume": 1,
+    "title": "Cahier du clergé de la sénéchaussée d'Aix",
+    "pages": [
+      692,
+      693
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-02",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1542",
+    "volume": 1,
+    "title": "Cahier du bailliage particulier d'Alençon",
+    "pages": [
+      720,
+      722
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-03",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1643",
+    "volume": 2,
+    "title": "Cahier de la noblesse de la province du Berry",
+    "pages": [
+      319,
+      323
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-04",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1671",
+    "volume": 2,
+    "title": "Cahier du tiers-état de la sénéchaussée de Bordeaux",
+    "pages": [
+      397,
+      405
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-05",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1679",
+    "volume": 2,
+    "title": "Cahier de la noblesse du bailliage de Cambrai",
+    "pages": [
+      517,
+      519
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-06",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1682",
+    "volume": 2,
+    "title": "Cahier du clergé de la sénéchaussée de Castelmoron d'Albret",
+    "pages": [
+      542,
+      543
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-07",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1706",
+    "volume": 2,
+    "title": "Cahier de la noblesse de la sénéchaussée de Castelnaudary",
+    "pages": [
+      553,
+      559
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-08",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1692",
+    "volume": 2,
+    "title": "Cahier du clergé de la sénéchaussée de Châtellerault",
+    "pages": [
+      686,
+      690
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-09",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1717",
+    "volume": 2,
+    "title": "Cahier de la noblesse du bailliage de Chaumont en Vexin",
+    "pages": [
+      730,
+      732
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-10",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1891",
+    "volume": 3,
+    "title": "Cahier de la communauté de Boussignies (Bailliage de Douai)",
+    "pages": [
+      220,
+      220
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-11",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1898",
+    "volume": 3,
+    "title": "Cahier de la communauté d'Alne (Bailliage de Douai)",
+    "pages": [
+      228,
+      229
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-12",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1942",
+    "volume": 3,
+    "title": "Cahier du clergé de Riez (Sénéchaussée de Forcalquier)",
+    "pages": [
+      339,
+      346
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-13",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1944",
+    "volume": 3,
+    "title": "Cahier du tiers-état de Digne (Sénéchaussée de Forcalquier)",
+    "pages": [
+      348,
+      356
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-14",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1949",
+    "volume": 3,
+    "title": "Cahier du tiers-état de Barcelonnette (Sénéchaussée de Forcalquier)",
+    "pages": [
+      366,
+      374
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-15",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1788",
+    "volume": 4,
+    "title": "Cahier de la commune d'Uzent-en-Foix (Sénéchaussée de Pamiers)",
+    "pages": [
+      285,
+      285
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-16",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_2264",
+    "volume": 4,
+    "title": "Cahier de Marolles (Paris)",
+    "pages": [
+      680,
+      680
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-17",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2351",
+    "volume": 5,
+    "title": "Cahier de Pontault en Brie (Paris)",
+    "pages": [
+      37,
+      40
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-18",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2818",
+    "volume": 5,
+    "title": "Cahier du tiers-état de la sénéchaussée de Ploërmel",
+    "pages": [
+      378,
+      385
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-19",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2892",
+    "volume": 5,
+    "title": "Cahier de la noblesse du bailliage de Sarreguemines",
+    "pages": [
+      690,
+      692
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-20",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2520",
+    "volume": 6,
+    "title": "Cahier des magistrats de la ville de Valenciennes",
+    "pages": [
+      97,
+      99
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-21",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2521",
+    "volume": 6,
+    "title": "Cahier des habitants de la ville de Valenciennes",
+    "pages": [
+      99,
+      105
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-22",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2570",
+    "volume": 6,
+    "title": "Cahier de la communauté de Berre (Sénéchaussée d'Aix)",
+    "pages": [
+      263,
+      265
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-23",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1578",
+    "volume": 2,
+    "title": "Cahier du clergé de la province d'Artois",
+    "pages": [
+      78,
+      79
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "development-24",
+    "split": "development",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2581",
+    "volume": 6,
+    "title": "Cahier de la communauté d'Eguilles (Sénéchaussée d'Aix)",
+    "pages": [
+      288,
+      289
+    ],
+    "selection": "development known errors and controls"
+  },
+  {
+    "id": "validation-01",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1541",
+    "volume": 1,
+    "title": "Cahier du tiers-état du bailliage d'Alençon",
+    "pages": [
+      716,
+      720
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-02",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1544",
+    "volume": 1,
+    "title": "Cahier du bailliage d'Exmes (Baillage d'Alençon)",
+    "pages": [
+      726,
+      729
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-03",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1550",
+    "volume": 1,
+    "title": "Cahier du clergé du bailliage d'Amont",
+    "pages": [
+      757,
+      763
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-04",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1551",
+    "volume": 1,
+    "title": "Cahier de la noblesse du bailliage d'Amont",
+    "pages": [
+      763,
+      768
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-05",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1552",
+    "volume": 1,
+    "title": "Cahier du tiers-état du bailliage d'Amont",
+    "pages": [
+      768,
+      773
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-06",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1554",
+    "volume": 1,
+    "title": "Cahier de Gray (Bailliage d'Amont )",
+    "pages": [
+      777,
+      782
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-07",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1575",
+    "volume": 2,
+    "title": "Cahier de la noblesse de la sénéchaussée d'Armagnac",
+    "pages": [
+      69,
+      72
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-08",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1580",
+    "volume": 2,
+    "title": "Cahier de la ville d'Arras (Province d'Artois)",
+    "pages": [
+      85,
+      88
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-09",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1644",
+    "volume": 2,
+    "title": "Cahier du clergé du bailliage de Besançon",
+    "pages": [
+      333,
+      337
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-10",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1727",
+    "volume": 2,
+    "title": "Cahier des marchands drapiers de Caen (Bailliage de Caen)",
+    "pages": [
+      497,
+      498
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-11",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1730",
+    "volume": 2,
+    "title": "Cahier du tiers-état du bailliage de Cambrai",
+    "pages": [
+      519,
+      523
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-12",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1740",
+    "volume": 2,
+    "title": "Cahier du tiers-état du bailliage de Charolles",
+    "pages": [
+      618,
+      622
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-13",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1823",
+    "volume": 3,
+    "title": "Instructions et demandes particulières de certaines villes (Sénéchaussée de Dax)",
+    "pages": [
+      107,
+      110
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-14",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1895",
+    "volume": 3,
+    "title": "Cahier du village d'Abscon (Bailliage de Douai)",
+    "pages": [
+      223,
+      224
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-15",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1958",
+    "volume": 3,
+    "title": "Cahier de la noblesse de la province du Forez",
+    "pages": [
+      383,
+      385
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-16",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1985",
+    "volume": 3,
+    "title": "Cahier du clergé de la gouvernance de Lille",
+    "pages": [
+      522,
+      526
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-17",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1991",
+    "volume": 3,
+    "title": "Cahier du tiers-état de la sénéchaussée de Brives (Province du Bas-Limousin)",
+    "pages": [
+      542,
+      544
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-18",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_2002",
+    "volume": 3,
+    "title": "Cahier du tiers-état de la sénéchaussée de Limoux",
+    "pages": [
+      579,
+      582
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-19",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1867",
+    "volume": 4,
+    "title": "Cahier d'Aubervilliers-les-Vertus (Paris)",
+    "pages": [
+      322,
+      326
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-20",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_2064",
+    "volume": 4,
+    "title": "Cahier de Bièvres-le-Chatel (Paris)",
+    "pages": [
+      358,
+      359
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-21",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_2160",
+    "volume": 4,
+    "title": "Cahier d'Egremont-près-Poissy (Paris)",
+    "pages": [
+      501,
+      502
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-22",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_2266",
+    "volume": 4,
+    "title": "Cahier de Massy (Paris)",
+    "pages": [
+      681,
+      688
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-23",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_2292",
+    "volume": 4,
+    "title": "Cahier de Montlhéry (ville de) (Paris)",
+    "pages": [
+      731,
+      732
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-24",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_2294",
+    "volume": 4,
+    "title": "Cahier de Montmartre (Paris)",
+    "pages": [
+      733,
+      733
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-25",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2338",
+    "volume": 5,
+    "title": "Cahier de Jean Lardier, seigneur de Pierrefitte (Paris)",
+    "pages": [
+      17,
+      21
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-26",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2405",
+    "volume": 5,
+    "title": "Cahier de Santeny (Paris)",
+    "pages": [
+      107,
+      109
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-27",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2414",
+    "volume": 5,
+    "title": "Cahier de Soisy-sous-Enghien (Paris)",
+    "pages": [
+      119,
+      120
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-28",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2489",
+    "volume": 5,
+    "title": "Cahier du clergé (Paris)",
+    "pages": [
+      230,
+      235
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-29",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2785",
+    "volume": 5,
+    "title": "Cahier du chapitre de l'église de Paris (Paris intra muros)",
+    "pages": [
+      267,
+      269
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-30",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2791",
+    "volume": 5,
+    "title": "Cahier du tiers-état de Paris intra muros",
+    "pages": [
+      281,
+      290
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-31",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2544",
+    "volume": 6,
+    "title": "Cahier du tiers-état du bailliage de Villers-Cotterets",
+    "pages": [
+      191,
+      193
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-32",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2579",
+    "volume": 6,
+    "title": "Cahier de la communauté de Châteauneuf (Sénéchaussée d'Aix)",
+    "pages": [
+      285,
+      287
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-33",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2622",
+    "volume": 6,
+    "title": "Cahier de la communauté de Peypin d'Aigues (Sénéchaussée d'Aix)",
+    "pages": [
+      374,
+      376
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-34",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_3803",
+    "volume": 6,
+    "title": "Cahier des griefs, plaintes et doléances des Etats de Béarn",
+    "pages": [
+      497,
+      503
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-35",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2748",
+    "volume": 6,
+    "title": "Cahier du tiers-état, district des Blancs-Manteaux (Paris intra-muros)",
+    "pages": [
+      686,
+      688
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  },
+  {
+    "id": "validation-36",
+    "split": "validation",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2773",
+    "volume": 6,
+    "title": "Arrêté des députés du tiers-état de la sénéchaussée du bas pays du Limousin (Sénéchaussée d'Urzerche)",
+    "pages": [
+      745,
+      746
+    ],
+    "selection": "deterministic volume/complexity stratification; excludes reviewed IDs and source leaves"
+  }
+]

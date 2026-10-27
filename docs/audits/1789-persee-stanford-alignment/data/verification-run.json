@@ -1,0 +1,21 @@
+{
+  "completed_at": "2026-10-27T13:27:15.342705+00:00",
+  "ruff": {
+    "command": [
+      ".venv/bin/ruff",
+      "check",
+      "docs/audits/1789-persee-stanford-alignment",
+      "--per-file-ignores",
+      "auditlib.py:I001,annotations.py:I001,annotations.py:E701,annotations.py:E702,annotations.py:F841",
+      "--output-format",
+      "concise"
+    ],
+    "exit_code": 0,
+    "output": "All checks passed!",
+    "exceptions": "Only preserve exact frozen helper/annotation bytes: import style, compact statements, unused local variable."
+  },
+  "prior_files_unchanged_before_and_after_replay": 448,
+  "application_tracked_diff": [],
+  "documentary_checks": "checks.json",
+  "application_tests": "Not run: no application changes, no database access."
+}

@@ -1,0 +1,15 @@
+!*.json
+!*.jsonl
+!data/
+!data/**
+__pycache__/
+
+# Large audit artefacts remain local; see ../LOCAL_DATA.md.
+/data/automatic-parents.jsonl.gz
+/data/automatic-units.jsonl
+/data/candidates.jsonl
+/data/crosswalk.json
+/data/documents.jsonl.gz
+/data/register.json
+/data/retained-C.jsonl.gz
+/data/units-B.jsonl.gz

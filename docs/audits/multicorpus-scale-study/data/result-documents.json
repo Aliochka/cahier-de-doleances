@@ -1,0 +1,9 @@
+{
+  "documents": 14777,
+  "historical": 256,
+  "contemporary": 14521,
+  "coverage": "Every stored top100 result in all2160 rankings, exact full text and parent reference",
+  "source_cache_metadata_sha256": "985577b15403c7afff697c47a8fa8f25b37a7dbdd9669d345a2d1a6e271b468a",
+  "result_documents_sha256": "c00e55dd12cb7fd00986b97112f2e55510891dca54f53343459029062d973dd5",
+  "source_database_access": false
+}

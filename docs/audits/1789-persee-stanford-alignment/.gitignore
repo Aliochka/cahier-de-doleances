@@ -1,0 +1,6 @@
+/.cache/
+__pycache__/
+!*.json
+!*.jsonl
+!data/
+!data/**

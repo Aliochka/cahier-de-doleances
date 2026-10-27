@@ -1,0 +1,70 @@
+{
+  "created_at": "2026-10-26T16:52:02.363343+00:00",
+  "method": "discovery-200-v1",
+  "candidates": 4448,
+  "classifications": {
+    "incidental_mention": 3078,
+    "document_candidate": 1278,
+    "incidental_or_uncertain": 42,
+    "notice_missing": 7,
+    "attached_or_other_document": 15,
+    "continuation": 18,
+    "published_extract": 6,
+    "uncertain_short_notice": 4
+  },
+  "per_volume": {
+    "1": {
+      "incidental_mention": 407,
+      "document_candidate": 31,
+      "incidental_or_uncertain": 3,
+      "notice_missing": 2
+    },
+    "2": {
+      "document_candidate": 187,
+      "incidental_mention": 488,
+      "attached_or_other_document": 3,
+      "continuation": 9,
+      "incidental_or_uncertain": 4,
+      "notice_missing": 2,
+      "published_extract": 2,
+      "uncertain_short_notice": 4
+    },
+    "3": {
+      "document_candidate": 212,
+      "incidental_mention": 477,
+      "incidental_or_uncertain": 14,
+      "attached_or_other_document": 5,
+      "continuation": 1
+    },
+    "4": {
+      "document_candidate": 356,
+      "continuation": 6,
+      "incidental_mention": 353,
+      "notice_missing": 1,
+      "attached_or_other_document": 1,
+      "incidental_or_uncertain": 5
+    },
+    "5": {
+      "document_candidate": 299,
+      "incidental_mention": 582,
+      "incidental_or_uncertain": 10,
+      "attached_or_other_document": 2,
+      "notice_missing": 1,
+      "published_extract": 2,
+      "continuation": 1
+    },
+    "6": {
+      "document_candidate": 193,
+      "incidental_mention": 771,
+      "published_extract": 2,
+      "notice_missing": 1,
+      "attached_or_other_document": 4,
+      "incidental_or_uncertain": 6,
+      "continuation": 1
+    }
+  },
+  "document_candidates": 1278,
+  "seconds": 3.3440566799981752,
+  "inventory_sha256": "87b6b8a130df5f00e2c3e4e06cb5812f8af9dd2c8c85f3c7e7e07245708ebae8",
+  "selection_performed": false
+}

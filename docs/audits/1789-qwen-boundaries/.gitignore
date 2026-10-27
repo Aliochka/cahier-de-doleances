@@ -1,0 +1,40 @@
+# Local caches and working data are excluded by default.
+/.cache/
+__pycache__/
+/data/*
+
+# Explicit, compact deliverables required to reproduce this audit.
+# Do not use blanket !data/** or !*.json exceptions here.
+!/data/
+!/archive_manifest.json
+!/data/block-locators.jsonl.gz
+!/data/checks.json
+!/data/comparison.jsonl
+!/data/deliverables-sha256.json
+!/data/development-outputs.jsonl
+!/data/development-recipe.json
+!/data/development-runtime.json
+!/data/development-token-counts.json
+!/data/empty-baseline-case.json
+!/data/environment.json
+!/data/freeze-initial.json
+!/data/freeze.json
+!/data/gallery.jsonl
+!/data/gpu-after.json
+!/data/metrics.json
+!/data/pilot-v1-outputs.jsonl
+!/data/pilot-v1-recipe.json
+!/data/pilot-v1-runtime.json
+!/data/pilot-v1-token-counts.json
+!/data/preparation.json
+!/data/prompt-v1.txt
+!/data/reference-development.jsonl
+!/data/reference-validation.jsonl
+!/data/selection.json
+!/data/validation-outputs.jsonl
+!/data/validation-recipe.json
+!/data/validation-runtime.json
+!/data/validation-token-counts.json
+!/data/windows.jsonl.gz
+!/prior-files-sha256.json
+!/reference_decisions.json

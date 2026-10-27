@@ -1,0 +1,257 @@
+[
+  {
+    "result": {
+      "start": 8979,
+      "end": 9414,
+      "division": 0,
+      "xml_blocks": [
+        "/TEI.2/text/body/div1/div2[1]/div3[2]/p[4]",
+        "/TEI.2/text/body/div1/div2[1]/div3[2]/p[5]"
+      ],
+      "status": "A",
+      "validation": "xml_boundaries_reviewed",
+      "reference_window": 0,
+      "rule": "reviewed_reference",
+      "label_exact": "4°",
+      "label_length": null,
+      "id": "ap1789-pilot-u1:b6a30344f86d9da9f1ea:660c45e65c3c349d",
+      "anchor": "unit-660c45e65c3c349d",
+      "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "order": 4,
+      "historical_number": "4",
+      "kind": "documentary_article_candidate",
+      "text": "4° Que l'enregistrement ait lieu dans les cours, de toutes les lois\n                            consenties aux Etats généraux, et sanctionnées par le Roi, pour en\n                            conserver le \n                        \n                        \n                        dépôt ; et que les -dispositions en soient observées.",
+      "text_sha256": "73b29b0dbfe80f5ca28ea3752124a4bcf4823f88c058527b555c93d9e19f95ec",
+      "text_spans": [
+        [
+          8979,
+          9208
+        ],
+        [
+          9311,
+          9414
+        ]
+      ],
+      "parent_start": 1253,
+      "parent_end": 1688,
+      "section": 0,
+      "pages": [
+        {
+          "n": "1",
+          "id": "xg914wh0253_00_0005",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0005"
+        },
+        {
+          "n": "2",
+          "id": "xg914wh0253_00_0006",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0006"
+        }
+      ],
+      "separated_annotations": [
+        {
+          "kind": "editorial_note",
+          "start": 9208,
+          "end": 9311,
+          "xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/note"
+        }
+      ],
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "method_version": "pilot-1.0.0",
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "legacy_passage_ids": [],
+      "section_id": "section-8e7913603e3d3577",
+      "source_file": "xg914wh0253/xg914wh0253.xml",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+      "scan_url": "https://purl.stanford.edu/xg914wh0253",
+      "document_key": "mirecourt-noblesse",
+      "volume": 4,
+      "document_title": "Noblesse de Mirecourt",
+      "metadata": {
+        "estate": "noblesse",
+        "locality": "Mirecourt",
+        "territory": "Bailliage de Mirecourt",
+        "date": "1789-03-16",
+        "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. Ordre et localité dans head[2], bailliage dans div2 ; graphies de présentation, texte source conservé dans title_parts_exact.",
+        "date_provenance": "date[@value='1789-03-16'] dans head[2]."
+      },
+      "number_provenance": "literal token in label, no OCR restoration",
+      "previous_unit_id": "ap1789-pilot-u1:b6a30344f86d9da9f1ea:88c2e94347f1a8a1",
+      "next_unit_id": "ap1789-pilot-u1:b6a30344f86d9da9f1ea:ce273b869e79301c",
+      "warnings": []
+    },
+    "parent_file": "parents/mirecourt-noblesse.txt",
+    "context": {
+      "document_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+      "anchor": "unit-660c45e65c3c349d",
+      "start": 1253,
+      "end": 1688,
+      "preceding": "ap1789-pilot-u1:b6a30344f86d9da9f1ea:88c2e94347f1a8a1",
+      "following": "ap1789-pilot-u1:b6a30344f86d9da9f1ea:ce273b869e79301c"
+    },
+    "interpretation": "Données de navigation seulement ; aucune route ou interface créée."
+  },
+  {
+    "result": {
+      "start": 128521,
+      "end": 128999,
+      "division": 0,
+      "xml_blocks": [
+        "/TEI.2/text/body/div1/div2[1]/div3[5]/p[16]"
+      ],
+      "status": "A",
+      "validation": "xml_boundaries_reviewed",
+      "reference_window": 0,
+      "rule": "reviewed_reference",
+      "label_exact": "Art. 15.",
+      "label_length": null,
+      "id": "ap1789-pilot-u1:0e4e17a10525b854d367:1ad641c80936901e",
+      "anchor": "unit-1ad641c80936901e",
+      "document_id": "ap1789-pilot-d1:xx284sn7328:0e4e17a10525b854d367",
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "order": 15,
+      "historical_number": "15",
+      "kind": "documentary_article_candidate",
+      "text": "Art. 15. Arrêté que le sel est si cher, que l’on ne peut plus en avoir\n                            que dans les petites ga-  belles, et que\n                            l'on est forcé d’aller chercher le sel à la grande gabelle, et que le\n                            moyen ne permet pas d’aller chercher le sel qu’ils ordonnent aux\n                            particuliers.",
+      "text_sha256": "489171fb52ee815bac3a7d134e0f3fad54e6094f8c7a33edbf7dfbc83b042c94",
+      "text_spans": [
+        [
+          128521,
+          128645
+        ],
+        [
+          128751,
+          128999
+        ]
+      ],
+      "parent_start": 4294,
+      "parent_end": 4772,
+      "section": 0,
+      "pages": [
+        {
+          "n": "14",
+          "id": "xx284sn7328_00_0018",
+          "image_service": "https://stacks.stanford.edu/image/iiif/xx284sn7328%2Fxx284sn7328_00_0018"
+        }
+      ],
+      "separated_annotations": [
+        {
+          "kind": "editorial_note",
+          "start": 128645,
+          "end": 128751,
+          "xpath": "/TEI.2/text/body/div1/div2[1]/div3[5]/p[16]/note"
+        }
+      ],
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "method_version": "pilot-1.0.0",
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "legacy_passage_ids": [],
+      "section_id": "section-525db17de708c81e",
+      "source_file": "xx284sn7328/xx284sn7328.xml",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xx284sn7328/xx284sn7328.xml",
+      "scan_url": "https://purl.stanford.edu/xx284sn7328",
+      "document_key": "perigny-brie",
+      "volume": 5,
+      "document_title": "Tiers état de Périgny-en-Brie",
+      "metadata": {
+        "estate": "tiers état",
+        "locality": "Périgny-en-Brie",
+        "territory": null,
+        "date": "1789-04-14",
+        "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+        "date_provenance": "p18 Fait et arrêté"
+      },
+      "number_provenance": "literal token in label, no OCR restoration",
+      "previous_unit_id": "ap1789-pilot-u1:0e4e17a10525b854d367:eb178f696ed306b7",
+      "next_unit_id": null,
+      "warnings": []
+    },
+    "parent_file": "parents/perigny-brie.txt",
+    "context": {
+      "document_id": "ap1789-pilot-d1:xx284sn7328:0e4e17a10525b854d367",
+      "anchor": "unit-1ad641c80936901e",
+      "start": 4294,
+      "end": 4772,
+      "preceding": "ap1789-pilot-u1:0e4e17a10525b854d367:eb178f696ed306b7",
+      "following": null
+    },
+    "interpretation": "Données de navigation seulement ; aucune route ou interface créée."
+  },
+  {
+    "result": {
+      "start": 2032670,
+      "end": 2033062,
+      "division": 0,
+      "xml_blocks": [
+        "/TEI.2/text/body/div1/div2[22]/div3[23]/p[2]"
+      ],
+      "status": "A",
+      "validation": "xml_boundaries_reviewed",
+      "reference_window": 0,
+      "rule": "reviewed_reference",
+      "label_exact": "z8",
+      "label_length": 2,
+      "id": "ap1789-pilot-u1:5ef43e6dd0afce138d76:e4d890cfdc3449f5",
+      "anchor": "unit-e4d890cfdc3449f5",
+      "document_id": "ap1789-pilot-d1:mc666yy3026:5ef43e6dd0afce138d76",
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "order": 2,
+      "historical_number": null,
+      "kind": "documentary_article_candidate",
+      "text": "z8 Les Chargés de FEtàt doivëht êfrë subpdftéës par tous lës\n                            propriétaires, ati prorata de letir dd- maiûë. LëS habitàtitS\n                            dèftiàtidëtii etiCdrë à de que la subvention territoriale soit imposée\n                            sur toutes lës terrés, sans atiCtiné distinction tii dti Clergé ni dë là\n                            ndblëssë. _ t",
+      "text_sha256": "ff08bbe9028f2ad9a928920dd063c783cae02ea2fe281fcef49483e5dc0e4217",
+      "text_spans": [
+        [
+          2032670,
+          2033062
+        ]
+      ],
+      "parent_start": 1997,
+      "parent_end": 2389,
+      "section": 0,
+      "pages": [
+        {
+          "n": "222",
+          "id": "mc666yy3026_00_0226",
+          "image_service": "https://stacks.stanford.edu/image/iiif/mc666yy3026%2Fmc666yy3026_00_0226"
+        }
+      ],
+      "separated_annotations": [],
+      "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+      "method_version": "pilot-1.0.0",
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "legacy_passage_ids": [],
+      "section_id": "section-18d815c8a0bf4472",
+      "source_file": "mc666yy3026/mc666yy3026.xml",
+      "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/mc666yy3026/mc666yy3026.xml",
+      "scan_url": "https://purl.stanford.edu/mc666yy3026",
+      "document_key": "montigny-ostrevent",
+      "volume": 3,
+      "document_title": "Montigny en Ostrevent",
+      "metadata": {
+        "estate": null,
+        "locality": "Montigny en Ostrevent",
+        "territory": null,
+        "date": "1789-03-02",
+        "metadata_provenance": "Libellé de sélection ; ordre et localité lus dans titre/premiers paragraphes, sans géocodage ; voir titre exact et décisions. ",
+        "date_provenance": "p21 lecture certifiée ; date de lecture, pas nécessairement rédaction"
+      },
+      "number_provenance": null,
+      "previous_unit_id": "ap1789-pilot-u1:5ef43e6dd0afce138d76:a00f2820fb0c0206",
+      "next_unit_id": "ap1789-pilot-u1:5ef43e6dd0afce138d76:c9978bf5eef644af",
+      "warnings": [
+        "number_not_reliably_read"
+      ]
+    },
+    "parent_file": "parents/montigny-ostrevent.txt",
+    "context": {
+      "document_id": "ap1789-pilot-d1:mc666yy3026:5ef43e6dd0afce138d76",
+      "anchor": "unit-e4d890cfdc3449f5",
+      "start": 1997,
+      "end": 2389,
+      "preceding": "ap1789-pilot-u1:5ef43e6dd0afce138d76:a00f2820fb0c0206",
+      "following": "ap1789-pilot-u1:5ef43e6dd0afce138d76:c9978bf5eef644af"
+    },
+    "interpretation": "Données de navigation seulement ; aucune route ou interface créée."
+  }
+]

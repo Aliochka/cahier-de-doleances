@@ -1,0 +1,175 @@
+{
+  "created_at": "2026-10-26T15:21:09.668822+00:00",
+  "connection": {
+    "transport": "unix",
+    "host": "/var/run/postgresql",
+    "port": 5432,
+    "role": "ro",
+    "read_only": true,
+    "remote_dsn_used": false
+  },
+  "resources": {
+    "available_ram": 126582730752,
+    "free_disk": 1310882480128,
+    "cpu_percent_1s": 0.4,
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35"
+  },
+  "queries": [
+    {
+      "database": "cahier_doleances_local",
+      "name": "answers",
+      "result": [
+        15792750
+      ],
+      "seconds": 1.2810397280009056,
+      "status": "measured"
+    },
+    {
+      "database": "cahier_doleances_local",
+      "name": "contributions",
+      "result": [
+        1589285
+      ],
+      "seconds": 0.059296243998687714,
+      "status": "measured"
+    },
+    {
+      "database": "cahier_rag",
+      "name": "full_documents",
+      "result": [
+        5172356,
+        1,
+        5172356
+      ],
+      "seconds": 6.819573277000018,
+      "status": "measured"
+    }
+  ],
+  "postgresql": "PostgreSQL 17.11 (Ubuntu 17.11-1.pgdg22.04+2) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, 64-bit",
+  "spaces": [
+    {
+      "space_id": "full",
+      "documents": 5172356,
+      "segments": 5187190,
+      "verified": true,
+      "vectors_complete": true,
+      "recipe_hash": "912c45857238fc60b0f2e0c1ebea4dabb73bbcdc973816ec5825edbd8e825d8a",
+      "chain_hash": "bf1bac7a6c9af63c1cb5d465cd4611310f77e7923b75ce5d9fc105afedbcf4d3",
+      "manifest": {
+        "model": {
+          "key": "bge-m3",
+          "source": "https://huggingface.co/BAAI/bge-m3/tree/5617a9f61b028005a4858fdac845db406aefb181",
+          "license": "MIT",
+          "pooling": "cls",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "dimension": 1024,
+          "max_tokens": 8192,
+          "parameters": 568000000,
+          "repository": "BAAI/bge-m3",
+          "weight_file": "pytorch_model.bin",
+          "query_prefix": "",
+          "document_prefix": ""
+        },
+        "space": "full",
+        "corpus": "gdn-2019",
+        "reader": "gdn-v1",
+        "tokens": {
+          "budget": 1024,
+          "offsets": "unicode-codepoints",
+          "overlap": 128,
+          "version": 1,
+          "strategy": "B"
+        },
+        "adapter": "full-keyset-v1",
+        "storage": "float32",
+        "version": 1,
+        "normalize": true,
+        "precision": "bfloat16",
+        "selection": "all usable units through audited max_answer_id",
+        "audit_source": {
+          "cluster_id": "7697259424657850634",
+          "database_oid": 16385,
+          "database_name": "cahier_doleances_local",
+          "schema_revision": "remove_runtime_caches"
+        },
+        "max_answer_id": "15915250",
+        "selection_hash": "39fcc82862b72cda1844dcdbfccc8fb9d24c012a92b654808fe9539a1d627817",
+        "contract_version": 1,
+        "historical_partitions": "RAG007 membership retained; other documents unassigned"
+      }
+    },
+    {
+      "space_id": "pilot100k",
+      "documents": 100000,
+      "segments": 100258,
+      "verified": true,
+      "vectors_complete": true,
+      "recipe_hash": "66c11e52b4458322ec8b12f7d449f7e461eb99ce3c7b3fa8012c2734fea2d2d6",
+      "chain_hash": "b7d55a4ffbdc53529fde0876f92c9186a6f68273d343fb2cda545d8a7bbe87c8",
+      "manifest": {
+        "model": {
+          "key": "bge-m3",
+          "source": "https://huggingface.co/BAAI/bge-m3/tree/5617a9f61b028005a4858fdac845db406aefb181",
+          "license": "MIT",
+          "pooling": "cls",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "dimension": 1024,
+          "max_tokens": 8192,
+          "parameters": 568000000,
+          "repository": "BAAI/bge-m3",
+          "weight_file": "pytorch_model.bin",
+          "query_prefix": "",
+          "document_prefix": ""
+        },
+        "space": "pilot100k",
+        "corpus": "gdn-2019",
+        "reader": "gdn-v1",
+        "tokens": {
+          "budget": 1024,
+          "offsets": "unicode-codepoints",
+          "overlap": 128,
+          "version": 1,
+          "strategy": "B"
+        },
+        "adapter": "full-keyset-v1",
+        "storage": "float32",
+        "version": 1,
+        "normalize": true,
+        "precision": "bfloat16",
+        "selection": "hashtextextended(parent,26) mod 50 = 0; first 100000 usable units",
+        "audit_source": {
+          "cluster_id": "7697259424657850634",
+          "database_oid": 16385,
+          "database_name": "cahier_doleances_local",
+          "schema_revision": "remove_runtime_caches"
+        },
+        "max_answer_id": "15915250",
+        "selection_hash": "39fcc82862b72cda1844dcdbfccc8fb9d24c012a92b654808fe9539a1d627817",
+        "contract_version": 1,
+        "historical_partitions": "RAG007 membership retained; other documents unassigned"
+      }
+    }
+  ],
+  "activity": {
+    "active": 1
+  },
+  "pgvector": {
+    "vector": "0.8.7"
+  },
+  "prior_local_sample": {
+    "units": 20000,
+    "segments": 20067,
+    "scope": "Union expérimentale enrichie, non représentative du corpus national.",
+    "path": "rag/evaluation/local/rag013/bge-B/encoded",
+    "manifest_sha256": "f0102f3752acf905b4bccab94018ddb4cda7ab082ac578cad250b55d39da8a8e"
+  },
+  "selected_maximum": 1000000,
+  "resource_assumptions": {
+    "raw_vectors_bytes_1m_approx": 4109000000,
+    "working_ram_budget_bytes": 12884901888,
+    "cache_path": "/tmp/cahier-multicorpus-scale-study",
+    "sequential_bounded_queries": true,
+    "other_running_db_queries_observed": 0,
+    "new_embeddings": 0
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "load_seconds": 16.483131976998266,
+  "load_and_setup_seconds": 16.49040320199856,
+  "completed_before": 0,
+  "process_id": 34646,
+  "recipe": {
+    "model": {
+      "key": "qwen3-14b",
+      "repository": "Qwen/Qwen3-14B",
+      "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+      "parameters_billions": 14.8,
+      "shards": 8,
+      "license": "Apache-2.0",
+      "context_tokens": 32768
+    },
+    "snapshot_hash": "d3fde2ccf3d22b339b8e586f488fecbc6b5b3648b4f4073f62e20fa30e09b642",
+    "inference": {
+      "batch_size": 1,
+      "max_input_tokens": 24576,
+      "max_new_tokens": 512,
+      "seed": 42,
+      "do_sample": false,
+      "num_beams": 1,
+      "thinking": false,
+      "quantization": "NF4-double",
+      "compute_dtype": "bfloat16",
+      "truncation": false,
+      "attention": "sdpa"
+    },
+    "prompt_version": "qwen-document-boundaries-fr-v2",
+    "prompt_sha256": "bc4c60ed6ed7cd62f6dd8e77fc089fa8dbc26ca76ae09db008fe2372b66ca526",
+    "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+    "process_memory_fraction": 0.72,
+    "decoder": "lm-format-enforcer-0.11.3-visible-block-enums-v1",
+    "safe_token_filter": "existing safe_token_ids; output only"
+  }
+}

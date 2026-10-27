@@ -1,0 +1,15 @@
+!*.json
+!*.jsonl
+!data/
+!data/**
+!vectors/
+!vectors/**
+__pycache__/
+
+# Large audit artefacts remain local; see ../LOCAL_DATA.md.
+/annotations.json
+/data/rankings.jsonl
+/data/results.jsonl
+/data/review-pool.jsonl
+/vectors/historical_A.npy
+/vectors/historical_B.npy

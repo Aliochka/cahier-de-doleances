@@ -1,0 +1,186 @@
+{
+  "cached_queries": [
+    {
+      "population": "historical",
+      "method": "lexical",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "historical",
+      "method": "vector_A",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "historical",
+      "method": "vector_B",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "historical",
+      "method": "hybrid_A",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "historical",
+      "method": "hybrid_B",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "mixed",
+      "method": "lexical",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "mixed",
+      "method": "vector_A",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "mixed",
+      "method": "vector_B",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "mixed",
+      "method": "hybrid_A",
+      "matches_frozen_results": true
+    },
+    {
+      "population": "mixed",
+      "method": "hybrid_B",
+      "matches_frozen_results": true
+    }
+  ],
+  "new_query_outside_evaluation": {
+    "query": "Rendre moins coûteux l’accès aux tribunaux",
+    "population": "mixed",
+    "method": "vector_A",
+    "score_kind": "cosine_similarity",
+    "not_a_probability": true,
+    "results": [
+      {
+        "rank": 1,
+        "id": "ap1789-pilot-u1:b6a30344f86d9da9f1ea:d37ca13554b87448",
+        "score": 0.6458624601364136,
+        "segment_index": 0,
+        "segment_start": 0,
+        "segment_end": 248,
+        "corpus": "cahiers-1789-ap-stanford",
+        "text": "12° Que la réforme dans les lois civiles et cri- minelles ait lieu, pour\n                            éviter les lenteurs des procès et l'énormité des frais\n                            qu'ils-entraînent, ainsi que réduction des tribunaux inférieurs.",
+        "parent_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+        "title": "Noblesse de Mirecourt",
+        "references": {
+          "volume": 4,
+          "pages": [
+            {
+              "n": "2",
+              "id": "xg914wh0253_00_0006",
+              "image_service": "https://stacks.stanford.edu/image/iiif/xg914wh0253%2Fxg914wh0253_00_0006"
+            }
+          ],
+          "scan_url": "https://purl.stanford.edu/xg914wh0253",
+          "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/xg914wh0253/xg914wh0253.xml",
+          "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+          "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+          "text_spans": [
+            [
+              10867,
+              11115
+            ]
+          ],
+          "parent_start": 3141,
+          "parent_end": 3389,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[1]/div3[2]/p[13]"
+          ],
+          "anchor": "unit-d37ca13554b87448",
+          "section_id": "section-8e7913603e3d3577"
+        }
+      },
+      {
+        "rank": 2,
+        "id": "ap1789-pilot-u1:c33d108ba660e47d2e75:f46546ce862556b1",
+        "score": 0.6160457134246826,
+        "segment_index": 0,
+        "segment_start": 0,
+        "segment_end": 148,
+        "corpus": "cahiers-1789-ap-stanford",
+        "text": "Art, 6. Demander la réformation de la justice tant civile que criminelle,\n                            et la diminution des frais qu'elle occasionne.",
+        "parent_id": "ap1789-pilot-d1:wg983ft3682:c33d108ba660e47d2e75",
+        "title": "Habitants d’Albertas",
+        "references": {
+          "volume": 6,
+          "pages": [
+            {
+              "n": "237",
+              "id": "wg983ft3682_00_0241",
+              "image_service": "https://stacks.stanford.edu/image/iiif/wg983ft3682%2Fwg983ft3682_00_0241"
+            }
+          ],
+          "scan_url": "https://purl.stanford.edu/wg983ft3682",
+          "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/wg983ft3682/wg983ft3682.xml",
+          "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+          "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+          "text_spans": [
+            [
+              2108512,
+              2108660
+            ]
+          ],
+          "parent_start": 1173,
+          "parent_end": 1321,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[17]/div3[1]/p[6]"
+          ],
+          "anchor": "unit-f46546ce862556b1",
+          "section_id": "section-77600d544c6a6256"
+        }
+      },
+      {
+        "rank": 3,
+        "id": "ap1789-pilot-u1:b1c515d7e3ec55e7f988:34d78201e1effc40",
+        "score": 0.5955284237861633,
+        "segment_index": 0,
+        "segment_start": 0,
+        "segment_end": 187,
+        "corpus": "cahiers-1789-ap-stanford",
+        "text": "15° Que l'on s'occupe incessamment de la' réforme du Code civil et criminel et que les\n       formes \n      \n      judiciaires soient abrégées, simplifiées et rendues moins dispendieuses.",
+        "parent_id": "ap1789-pilot-d1:fz023dp4399:b1c515d7e3ec55e7f988",
+        "title": "Clergé d’Anjou",
+        "references": {
+          "volume": 2,
+          "pages": [
+            {
+              "n": "30",
+              "id": "fz023dp4399_00_0034",
+              "image_service": "https://stacks.stanford.edu/image/iiif/fz023dp4399%2Ffz023dp4399_00_0034"
+            }
+          ],
+          "scan_url": "https://purl.stanford.edu/fz023dp4399",
+          "source_url": "https://github.com/StanfordUniversityLibraries/ap_tei/blob/926fd3cd986a3c3d411e93d1845fff6475cb2602/fz023dp4399/fz023dp4399.xml",
+          "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+          "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+          "text_spans": [
+            [
+              214641,
+              214749
+            ],
+            [
+              214824,
+              214903
+            ]
+          ],
+          "parent_start": 2639,
+          "parent_end": 2901,
+          "xml_blocks": [
+            "/TEI.2/text/body/div1/div2[2]/div3[1]/p[17]",
+            "/TEI.2/text/body/div1/div2[2]/div3[1]/p[18]"
+          ],
+          "anchor": "unit-34d78201e1effc40",
+          "section_id": "section-fc8cdaf6abbb552b"
+        }
+      }
+    ]
+  },
+  "evaluation_queries_unchanged": true
+}

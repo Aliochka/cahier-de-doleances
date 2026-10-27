@@ -1,0 +1,290 @@
+[
+  {
+    "id": "development-01",
+    "method": "B",
+    "input_tokens": 9144,
+    "within_budget": true
+  },
+  {
+    "id": "development-01",
+    "method": "C",
+    "input_tokens": 9271,
+    "within_budget": true
+  },
+  {
+    "id": "development-02",
+    "method": "B",
+    "input_tokens": 9875,
+    "within_budget": true
+  },
+  {
+    "id": "development-02",
+    "method": "C",
+    "input_tokens": 9996,
+    "within_budget": true
+  },
+  {
+    "id": "development-03",
+    "method": "B",
+    "input_tokens": 9099,
+    "within_budget": true
+  },
+  {
+    "id": "development-03",
+    "method": "C",
+    "input_tokens": 9221,
+    "within_budget": true
+  },
+  {
+    "id": "development-04",
+    "method": "B",
+    "input_tokens": 8538,
+    "within_budget": true
+  },
+  {
+    "id": "development-04",
+    "method": "C",
+    "input_tokens": 8660,
+    "within_budget": true
+  },
+  {
+    "id": "development-05",
+    "method": "B",
+    "input_tokens": 9033,
+    "within_budget": true
+  },
+  {
+    "id": "development-05",
+    "method": "C",
+    "input_tokens": 9161,
+    "within_budget": true
+  },
+  {
+    "id": "development-06",
+    "method": "B",
+    "input_tokens": 7698,
+    "within_budget": true
+  },
+  {
+    "id": "development-06",
+    "method": "C",
+    "input_tokens": 7826,
+    "within_budget": true
+  },
+  {
+    "id": "development-07",
+    "method": "B",
+    "input_tokens": 10826,
+    "within_budget": true
+  },
+  {
+    "id": "development-07",
+    "method": "C",
+    "input_tokens": 10954,
+    "within_budget": true
+  },
+  {
+    "id": "development-08",
+    "method": "B",
+    "input_tokens": 8834,
+    "within_budget": true
+  },
+  {
+    "id": "development-08",
+    "method": "C",
+    "input_tokens": 8970,
+    "within_budget": true
+  },
+  {
+    "id": "development-09",
+    "method": "B",
+    "input_tokens": 9119,
+    "within_budget": true
+  },
+  {
+    "id": "development-09",
+    "method": "C",
+    "input_tokens": 9147,
+    "within_budget": true
+  },
+  {
+    "id": "development-10",
+    "method": "B",
+    "input_tokens": 5111,
+    "within_budget": true
+  },
+  {
+    "id": "development-10",
+    "method": "C",
+    "input_tokens": 5240,
+    "within_budget": true
+  },
+  {
+    "id": "development-11",
+    "method": "B",
+    "input_tokens": 8371,
+    "within_budget": true
+  },
+  {
+    "id": "development-11",
+    "method": "C",
+    "input_tokens": 8494,
+    "within_budget": true
+  },
+  {
+    "id": "development-12",
+    "method": "B",
+    "input_tokens": 9228,
+    "within_budget": true
+  },
+  {
+    "id": "development-12",
+    "method": "C",
+    "input_tokens": 9356,
+    "within_budget": true
+  },
+  {
+    "id": "development-13",
+    "method": "B",
+    "input_tokens": 8824,
+    "within_budget": true
+  },
+  {
+    "id": "development-13",
+    "method": "C",
+    "input_tokens": 8960,
+    "within_budget": true
+  },
+  {
+    "id": "development-14",
+    "method": "B",
+    "input_tokens": 9484,
+    "within_budget": true
+  },
+  {
+    "id": "development-14",
+    "method": "C",
+    "input_tokens": 9612,
+    "within_budget": true
+  },
+  {
+    "id": "development-15",
+    "method": "B",
+    "input_tokens": 4951,
+    "within_budget": true
+  },
+  {
+    "id": "development-15",
+    "method": "C",
+    "input_tokens": 5079,
+    "within_budget": true
+  },
+  {
+    "id": "development-16",
+    "method": "B",
+    "input_tokens": 5823,
+    "within_budget": true
+  },
+  {
+    "id": "development-16",
+    "method": "C",
+    "input_tokens": 5953,
+    "within_budget": true
+  },
+  {
+    "id": "development-17",
+    "method": "B",
+    "input_tokens": 10192,
+    "within_budget": true
+  },
+  {
+    "id": "development-17",
+    "method": "C",
+    "input_tokens": 10310,
+    "within_budget": true
+  },
+  {
+    "id": "development-18",
+    "method": "B",
+    "input_tokens": 8342,
+    "within_budget": true
+  },
+  {
+    "id": "development-18",
+    "method": "C",
+    "input_tokens": 8466,
+    "within_budget": true
+  },
+  {
+    "id": "development-19",
+    "method": "B",
+    "input_tokens": 8782,
+    "within_budget": true
+  },
+  {
+    "id": "development-19",
+    "method": "C",
+    "input_tokens": 8904,
+    "within_budget": true
+  },
+  {
+    "id": "development-20",
+    "method": "B",
+    "input_tokens": 8792,
+    "within_budget": true
+  },
+  {
+    "id": "development-20",
+    "method": "C",
+    "input_tokens": 8915,
+    "within_budget": true
+  },
+  {
+    "id": "development-21",
+    "method": "B",
+    "input_tokens": 9264,
+    "within_budget": true
+  },
+  {
+    "id": "development-21",
+    "method": "C",
+    "input_tokens": 9387,
+    "within_budget": true
+  },
+  {
+    "id": "development-22",
+    "method": "B",
+    "input_tokens": 8808,
+    "within_budget": true
+  },
+  {
+    "id": "development-22",
+    "method": "C",
+    "input_tokens": 8931,
+    "within_budget": true
+  },
+  {
+    "id": "development-23",
+    "method": "B",
+    "input_tokens": 8463,
+    "within_budget": true
+  },
+  {
+    "id": "development-23",
+    "method": "C",
+    "input_tokens": 8580,
+    "within_budget": true
+  },
+  {
+    "id": "development-24",
+    "method": "B",
+    "input_tokens": 8394,
+    "within_budget": true
+  },
+  {
+    "id": "development-24",
+    "method": "C",
+    "input_tokens": 8517,
+    "within_budget": true
+  }
+]

@@ -1,0 +1,6757 @@
+[
+  {
+    "document_key": "agen-clerge",
+    "start": 5121618,
+    "end": 5121728,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3cdbc82bba8aad5e"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5121756,
+    "end": 5122043,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:86e8c14e342a6031"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5122071,
+    "end": 5122324,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:8209736b4f38334b"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5122352,
+    "end": 5122558,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3afe8afefa7f104a"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5122586,
+    "end": 5122877,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:afc371ef1020507f"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5122905,
+    "end": 5123258,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:470b2ad38cca2686"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5123286,
+    "end": 5123439,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ea953d36940780c4"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5123467,
+    "end": 5123945,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:393cfbad41b496da",
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:7ee6cc23f697bee4"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5123973,
+    "end": 5124241,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:fc72d563d887bed8"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5124269,
+    "end": 5124414,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ea4591324e26f4e5"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5124442,
+    "end": 5124604,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:5ad3345d75665277"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5124632,
+    "end": 5125173,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ad34aa1c91157c39"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5125201,
+    "end": 5125446,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:dfe4b38c59bc1d96"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5125474,
+    "end": 5125917,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6eb3682d121a9f49"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5125945,
+    "end": 5126231,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1e7a630a44312918"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5126283,
+    "end": 5126519,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:4f30485c2807a1e0"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5126547,
+    "end": 5126829,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:cf1a6b8dc4a60a4a"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5126857,
+    "end": 5127188,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3c55ba9a2d37cb1f"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5127216,
+    "end": 5127402,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:db868da2b04ec55f"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5127430,
+    "end": 5127622,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:d28aa13c4d48af24"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5127650,
+    "end": 5127946,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:9482500867ebc23e"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5127974,
+    "end": 5128179,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b607fc2b63749c89"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5128207,
+    "end": 5128393,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:34e5cd2282de60ad"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5128421,
+    "end": 5128577,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ebe68a5e60ad1bd5"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5128605,
+    "end": 5128987,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:c429d98c0c399aef"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5129015,
+    "end": 5129664,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:d8776b4fa8bec920"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5129692,
+    "end": 5129863,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:e98c226cdad43634"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5129891,
+    "end": 5130155,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:0c1f387ba5c2328e"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5130183,
+    "end": 5130375,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:5141810dc2106b59"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5130401,
+    "end": 5130548,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b9be9ad9d2bab836"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5130576,
+    "end": 5130864,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:be59fb25a0f58c1c"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5131017,
+    "end": 5131261,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:731d56cd8a88c97d"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5131289,
+    "end": 5131544,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:42e3d173d1d205cd"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5131572,
+    "end": 5131837,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:fe5c37703f47b875"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5131865,
+    "end": 5132048,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:e90c4b281357b046"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5132076,
+    "end": 5132260,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b4fa8da11ceebfa5"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5132288,
+    "end": 5132669,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:26e675a9f9e1e197"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5132697,
+    "end": 5132990,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6b0a5f802e0c0448"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5133018,
+    "end": 5133315,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:10aee3fff0e3017a"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5133367,
+    "end": 5133752,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6b73928fa7353a75"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5133780,
+    "end": 5134151,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1c58ac70b905c59a"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5134179,
+    "end": 5134328,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:796308ff46501a33"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5134356,
+    "end": 5134707,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:008829ee76a76072"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5134735,
+    "end": 5135111,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a7afa82b799e0755"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5135139,
+    "end": 5135386,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:453bf1a4e552440b"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5135414,
+    "end": 5135615,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6b15f6b7fa7bad7c"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5135615,
+    "end": 5135849,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:8e76ea69f866bcca"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5135877,
+    "end": 5136140,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6ba29512485095db"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5136168,
+    "end": 5136416,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:c12c3aa2fca54311"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5136444,
+    "end": 5136737,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:6d61776510eb9967"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5136765,
+    "end": 5137030,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:799401b79e238fe4"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5137058,
+    "end": 5137306,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a7dd6869ecda8602"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5137334,
+    "end": 5137610,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:e3906d0bb10e28d5"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5137638,
+    "end": 5137725,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b217f5c12bd155e5"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5137753,
+    "end": 5137924,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1d217c477676019a"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5137952,
+    "end": 5138134,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:8fd68cb80e6e5997"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5138162,
+    "end": 5138364,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:f30add3d1ac50f02"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5138392,
+    "end": 5138679,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:34dacc390ad06655"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5138707,
+    "end": 5139106,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:92907c7d7cee3ae6"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5139134,
+    "end": 5139990,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:ff8dd3cfa22350ce"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5140018,
+    "end": 5140254,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:dc2da5a582a97e86"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5140282,
+    "end": 5140544,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:1b531f01248f379a"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5140572,
+    "end": 5140837,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:7810817d641af6ce"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5141332,
+    "end": 5141616,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:5041d5f94cf262b7"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5141644,
+    "end": 5141844,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:81be5763559f836b"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5141872,
+    "end": 5142112,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a148fe8e2d31ed1f"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5142140,
+    "end": 5142694,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b53fb98e6dd08425"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5142722,
+    "end": 5142919,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:b2eefbcd30d682e3"
+    ]
+  },
+  {
+    "document_key": "agen-clerge",
+    "start": 5142947,
+    "end": 5145758,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:a45e563d0e81cfea"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5155243,
+    "end": 5155961,
+    "outcome": "excluded_by_structure_review",
+    "successor_ids": []
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5155962,
+    "end": 5156339,
+    "outcome": "excluded_by_structure_review",
+    "successor_ids": []
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5156340,
+    "end": 5156613,
+    "outcome": "excluded_by_structure_review",
+    "successor_ids": []
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5156614,
+    "end": 5156890,
+    "outcome": "excluded_by_structure_review",
+    "successor_ids": []
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5156891,
+    "end": 5157257,
+    "outcome": "excluded_by_structure_review",
+    "successor_ids": []
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5157258,
+    "end": 5157491,
+    "outcome": "excluded_by_structure_review",
+    "successor_ids": []
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5157492,
+    "end": 5158687,
+    "outcome": "excluded_by_structure_review",
+    "successor_ids": []
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5158688,
+    "end": 5159388,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:5f4c0e60017f055b"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5159389,
+    "end": 5159761,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4036832f2abe77b9"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5159762,
+    "end": 5160296,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d5ec70a19df839df"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5160297,
+    "end": 5160576,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d31c2d19f6f3aaa7"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5160577,
+    "end": 5161013,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:f315311fc7f81228"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5161014,
+    "end": 5161160,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8e44f9ab2ca7a473"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5161161,
+    "end": 5161329,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:7325005396c6d8de"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5161330,
+    "end": 5161598,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:e1f016ee8e96d97c"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5161599,
+    "end": 5162037,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:31641957ebc00359"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5162038,
+    "end": 5162181,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:b86ab446e763ce66"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5162182,
+    "end": 5162614,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:9691539c24d733e5"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5162614,
+    "end": 5163293,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4c50128e40501947"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5163294,
+    "end": 5163685,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:cf868c4ad42d5dbc"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5163686,
+    "end": 5164402,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4ffa38c6dff90eac"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5164403,
+    "end": 5168583,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4efa4d707241e9d2"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5168609,
+    "end": 5169698,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d42a6aaa4c9994ee"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5169724,
+    "end": 5171530,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:740f0b648b5692cf"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5171556,
+    "end": 5171799,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:e558513f1cc84726"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5171825,
+    "end": 5183626,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:648300645d05624b"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5183652,
+    "end": 5184644,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:7149bd20b5332fa9"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5184670,
+    "end": 5185450,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:04c490bd68a80633"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5185476,
+    "end": 5185729,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:b5fa1b8eb19f77ea"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5185755,
+    "end": 5186096,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:1cbef5a5c28597d4"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5186122,
+    "end": 5187045,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:dc19d8e068b27732"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5187071,
+    "end": 5188120,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:98a9ee47a17b2000"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5188146,
+    "end": 5188382,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:3a4ca6c946d7bd12"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5188408,
+    "end": 5188860,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:0fb20f5c2e4be101"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5188886,
+    "end": 5189295,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8667ece962dbef5a"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5189321,
+    "end": 5189657,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a7b1e0632ac301a0"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5189683,
+    "end": 5190091,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:cfc4aab4587fadba"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5190117,
+    "end": 5191235,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8ae93bbff4e1d4d9"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5191385,
+    "end": 5192379,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:6524cd805b8ac663"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5192405,
+    "end": 5193131,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d02e968e4ebb5511"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5193157,
+    "end": 5193850,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:4f04a72b37e60410"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5193876,
+    "end": 5195300,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:c4f4652c45a8f47a"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5195326,
+    "end": 5195643,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a2452f8194982e37"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5195669,
+    "end": 5196123,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:65e4168d110df145"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5196149,
+    "end": 5198172,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a20f715f82f0f786"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5198294,
+    "end": 5199116,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:63c5f95fe2e2313c"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5199142,
+    "end": 5199705,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:dbc046f90036dab4"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5199731,
+    "end": 5200880,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:8d70d0fd6fd81695"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5200906,
+    "end": 5201330,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:f40c6129b24052fd"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5201356,
+    "end": 5201905,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:98b1826b923ad249"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5201931,
+    "end": 5202090,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:ae4ad23f23250659"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5202116,
+    "end": 5202922,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:bd7bfcc00c03e0a1"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5202948,
+    "end": 5203978,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:2155a3138699aebb"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5204004,
+    "end": 5204644,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:958f48439292ef04"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5204670,
+    "end": 5205653,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:81466390f2340c08"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5205679,
+    "end": 5206298,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:5821f2652a793e5e"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5206324,
+    "end": 5206549,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:7955e39dfcd669cc"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5206575,
+    "end": 5207007,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d7abdc7f245dd7bf"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5207033,
+    "end": 5207485,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:9f8d5482f0a32c88"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5207511,
+    "end": 5207825,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:537a21b3230a993c"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5207851,
+    "end": 5208156,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:b47a027a75d4c52a"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5208288,
+    "end": 5208946,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:2e32badea7eb3e13"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5208972,
+    "end": 5209604,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:a24bad80bca0cac0"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5209630,
+    "end": 5210457,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:81aa8bf93c2fbb28"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5210483,
+    "end": 5210741,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:d0e51f2ba9e4b608"
+    ]
+  },
+  {
+    "document_key": "agen-noblesse",
+    "start": 5210767,
+    "end": 5213499,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:e3853dbbb35a07b290ab:e92cb6eb47bd61d1"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5412650,
+    "end": 5413084,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7f073d44862c46d0",
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:96abe03adfd9e2e5"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5413110,
+    "end": 5413318,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:4fb06ffa0f3f6033"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5413344,
+    "end": 5413704,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c0d4ceea1194c236"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5413730,
+    "end": 5413926,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e3ad2997652eff3a"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5413952,
+    "end": 5414154,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:67fd84be00cbf103"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5414180,
+    "end": 5414414,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e4fd162d27296bb6"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5414440,
+    "end": 5414574,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:234d95bce89fa02e"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5414600,
+    "end": 5414825,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:b37cf89befd102d2"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5414851,
+    "end": 5415241,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c6ad6c816a16836a"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5415267,
+    "end": 5415422,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:049367c89e8aa73b"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5415448,
+    "end": 5415553,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7c19c739d64f7ffa"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5415579,
+    "end": 5415784,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3bfeddccd039662d"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5415810,
+    "end": 5416041,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:b35f1d5b24704f00"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5416067,
+    "end": 5416174,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:88e5326e95fecc68"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5416200,
+    "end": 5416360,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:545fa9bfae622035"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5416386,
+    "end": 5416427,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:d0643bb3508f4e09"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5416453,
+    "end": 5416799,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:75f49deec4f91a7f"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5416825,
+    "end": 5417473,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8cd7b2e55395b91a"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5417499,
+    "end": 5417818,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3f9de9bef8db6479"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5417844,
+    "end": 5418187,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e1f1c23d855a58aa"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5418213,
+    "end": 5418618,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:ab4583ee1b44f1fb"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5418644,
+    "end": 5419133,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:f3a7304f52150236"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5419159,
+    "end": 5419374,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:849a6ac94bb172b1"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5419400,
+    "end": 5419467,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:dcd7bf10c44e72fa"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5419493,
+    "end": 5419628,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:51f72aa29ad215a4"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5419654,
+    "end": 5419788,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:30ad5bad35a9bb1a"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5419814,
+    "end": 5419993,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:94006fec5ce58efa"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5420019,
+    "end": 5420084,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:9ed85e19b3b53187"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5420110,
+    "end": 5420780,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:19d3559d39f35088"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5420806,
+    "end": 5420962,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1354747cf6c55a28"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5420988,
+    "end": 5421151,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:4259c3c123c01a57"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5421177,
+    "end": 5421383,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:a13851306d74a6b1"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5421409,
+    "end": 5421474,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c5c7dcb650ceede7"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5421500,
+    "end": 5421823,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:ddd253ca8383c65f"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5421849,
+    "end": 5422007,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7ceadfc374280676"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5422033,
+    "end": 5422294,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:ac8b8d3fdcb1b9b7"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5422320,
+    "end": 5422429,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7e5d110d33e79b98"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5422455,
+    "end": 5422791,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:efb23b17bed89ad5"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5422817,
+    "end": 5423052,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:56d17fe69dc294b9"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5423078,
+    "end": 5423258,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:e846543830f66d69"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5423284,
+    "end": 5423614,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:46f5665357a051fa"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5423640,
+    "end": 5423808,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:0307d324af5e2931"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5423834,
+    "end": 5423977,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:a31c9a0a3ba7f831"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5424003,
+    "end": 5424170,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1dca215e027c13af"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5424196,
+    "end": 5424303,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:74fa23846cbb191d"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5424329,
+    "end": 5424586,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:066158da1ed120ad"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5424612,
+    "end": 5424665,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:799e2d4b72a464da"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5424691,
+    "end": 5424800,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:91e01519c86a7ea8"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5424826,
+    "end": 5425966,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:fddade51daff1eb8"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5425992,
+    "end": 5426232,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:d4e971bd9e22d367"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5426258,
+    "end": 5426398,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:6b5a3ed1c206ea50"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5426424,
+    "end": 5426643,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:2490f57caf78f3b7"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5426669,
+    "end": 5426786,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:5da54ee7b0c34b89"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5426812,
+    "end": 5426946,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3b49a947882d3808"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5426972,
+    "end": 5427128,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:729b263d32cb64e1"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5427154,
+    "end": 5427395,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:586b297e9aee3e13"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5427421,
+    "end": 5427890,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:97bb855aa73fcc01"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5427916,
+    "end": 5428179,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:4c93f4a8001e5cdc"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5428205,
+    "end": 5428373,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:f68fa415ac199697"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5428399,
+    "end": 5428564,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:2cc43dc27fcef3da"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5428590,
+    "end": 5428740,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:6171a0149b2f7ed7"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5428766,
+    "end": 5429025,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1ebf6199e0c01dd8"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5429051,
+    "end": 5429260,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c55008de105f5860"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5429286,
+    "end": 5429339,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:073c955086a350ef"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5429365,
+    "end": 5429483,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:b9e623c023b9d9d8"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5429509,
+    "end": 5429721,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8d48cbd5e20789e8"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5429747,
+    "end": 5429812,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:7a2c9b519a3d5bae"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5429838,
+    "end": 5429985,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:eeaa1301837b5985"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5430011,
+    "end": 5430120,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:0c7cef31cbba3eed"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5430146,
+    "end": 5430314,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:5fafe7b8305e561e"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5430340,
+    "end": 5430566,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:89a91f515618db19"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5430592,
+    "end": 5430834,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8c949cb67d9e0173"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5430860,
+    "end": 5431092,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:f58a1366df10d626"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5431118,
+    "end": 5431261,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:8abdddaddb23c9ab"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5431287,
+    "end": 5431357,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:3660f6fd675c319e"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5431383,
+    "end": 5431558,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:18a963c568dad0ac"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5431584,
+    "end": 5431726,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:c533d66604ce6bad"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5431752,
+    "end": 5431874,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:843c79059e84dcae"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5431900,
+    "end": 5432113,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:1e77c59452736577"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5432139,
+    "end": 5432291,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:619c45bc836783df"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5432317,
+    "end": 5432639,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:52d754b920fd1a8a"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5432665,
+    "end": 5432962,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:5620104887e82362"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5432988,
+    "end": 5433490,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:d95e05df7f2d8367"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5433516,
+    "end": 5433677,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:59844ba7dd648198"
+    ]
+  },
+  {
+    "document_key": "alencon-clerge",
+    "start": 5433703,
+    "end": 5435326,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:c8caba17ed36b64403f1:283e18344fffedb7"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5435667,
+    "end": 5438037,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:b97c1594ae1727c8"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5438063,
+    "end": 5444261,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:7a7b7e2ebbe01eff"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5444262,
+    "end": 5452946,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:c7bae7d0c85ce46d"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5452972,
+    "end": 5454760,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:dce9be948e4e4ea7"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5454786,
+    "end": 5457567,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:8d8cc17b7b737cd4"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5457593,
+    "end": 5461132,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:9fd3052382edc905"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5461158,
+    "end": 5465946,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:c406f564236acade"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5465972,
+    "end": 5470157,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:5174a6e8aee98bd0"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5470183,
+    "end": 5474223,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:903ab05db0482943"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5474249,
+    "end": 5475856,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:fa11374a6dce9f5a"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5475882,
+    "end": 5484281,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:6d444a7d6bfe694a"
+    ]
+  },
+  {
+    "document_key": "alencon-noblesse",
+    "start": 5484307,
+    "end": 5486970,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:bcdc69723b9153e44463:338059f4b5d0e1b9"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 17612,
+    "end": 17987,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:7c91a20cc8f74ae3"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 17995,
+    "end": 18376,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:407d372cb193c655"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 18384,
+    "end": 19188,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e7405b32f433e444"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 19196,
+    "end": 21925,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:b3ccf078480ba739"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 21933,
+    "end": 22366,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:ba129a119a6d3490"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 22374,
+    "end": 22809,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:884315791d174e26"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 22817,
+    "end": 23096,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:517e2abf2497b04d"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 23104,
+    "end": 24935,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:b380604d6f363804"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 24943,
+    "end": 26252,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a474b19b5cf847ed"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 26260,
+    "end": 27015,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:3c37f6d45623c333"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 27023,
+    "end": 27414,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c444c0150c271c7b"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 27422,
+    "end": 27854,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:59ac096a4afd7a53"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 27862,
+    "end": 28183,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:dbcf3b323059695c"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 28191,
+    "end": 28708,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:4ae79e34b6db4ff9"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 28716,
+    "end": 28869,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:8e58b8c22df2b5b7"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 28877,
+    "end": 29522,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:db170791c247b79c"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 29530,
+    "end": 30577,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c8709abd5b51d8d1"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 30585,
+    "end": 32616,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:6c8edd9b5dd1a43e"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 32625,
+    "end": 33320,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a6f9bda2b8dfd074"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 33328,
+    "end": 33684,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:bb060629ff05f1e5"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 33692,
+    "end": 34013,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:362d088f67cc9573"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 34021,
+    "end": 34291,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:45976dd3ae032e30"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 34299,
+    "end": 34652,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:35172a30e105aa20"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 34660,
+    "end": 35124,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:5b46f439c97efd64"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 35132,
+    "end": 35823,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:408fc6e79b67db9f"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 35831,
+    "end": 36079,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:7feef68931627c05"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 36087,
+    "end": 36355,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:9106ac76acf49e61"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 36363,
+    "end": 36615,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:f4db5b79bc0b7275"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 36623,
+    "end": 37683,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:286e1a1e7f8c48bd"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 37683,
+    "end": 38184,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a6aa318a373051b3"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 38192,
+    "end": 38536,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:791a368a80d9c234"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 38544,
+    "end": 38891,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:a995575b76fb4712"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 38899,
+    "end": 39177,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:34c2e39ac624f51b"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 39185,
+    "end": 39590,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:0d7b52c26de8a3eb"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 39598,
+    "end": 40173,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:2177f61ab65bb7ad"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 40181,
+    "end": 40461,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:cb9d27ee891ab53d"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 40469,
+    "end": 40693,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:4638e42d074f1d81"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 40701,
+    "end": 41142,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c7c3f07eacd645b5"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 41150,
+    "end": 41287,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e9ad00ac3c968e5b"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 41295,
+    "end": 41645,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:bb3d911d2d0e8865"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 41653,
+    "end": 41992,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:ae108ea261238751"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 42000,
+    "end": 42576,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:780a337e00ef0f77"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 42584,
+    "end": 42770,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e71c48d023eed295"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 42778,
+    "end": 43079,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:cd8ac7f98ec162f4"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 43094,
+    "end": 43632,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:2dd5f1238f5eb445"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 43640,
+    "end": 44107,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:99bcf0edeac158bd"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 44115,
+    "end": 44884,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:725c141bdd0e78b4"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 44892,
+    "end": 45055,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:7fa6cce4d472cac8"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 45063,
+    "end": 45490,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:c73c9255370295f1"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 45498,
+    "end": 46073,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:168b1b0b7ede429d"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 46081,
+    "end": 46902,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:ed3ccda6d86c361e"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 46910,
+    "end": 47030,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:088774d099a45b60"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 47038,
+    "end": 47383,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:e9872ec38d201f80"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 47391,
+    "end": 48423,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:5ed0fa0ea2943608"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 48431,
+    "end": 48749,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:3670164f3e71c93d"
+    ]
+  },
+  {
+    "document_key": "angoumois-noblesse",
+    "start": 48757,
+    "end": 49130,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:116d12e81ebea8a7220b:099144e82eec7833"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 212147,
+    "end": 212430,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:3612dbd62e0f6c28"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 212438,
+    "end": 212657,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:1ba7c4990e0e3fca"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 212665,
+    "end": 212997,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a0412929ae279376"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 213005,
+    "end": 213119,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:308f3ecffbfcd76c"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 213127,
+    "end": 213277,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:8df51e1a3b345333"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 213285,
+    "end": 213427,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:c2512cff812b6766"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 213435,
+    "end": 213582,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:e26c6283ee1cc486"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 213590,
+    "end": 213729,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:418d4ecb3b028e2e"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 213737,
+    "end": 213886,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:37d3e69814fc3f2f"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 213894,
+    "end": 214000,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:804c289949e72f68"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 214008,
+    "end": 214153,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:773038fbbc7a8b12"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 214161,
+    "end": 214378,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4bde762c7bbcd310"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 214386,
+    "end": 214526,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:c5758471cc261ecf"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 214534,
+    "end": 214633,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:2ab50be216b8830b"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 214641,
+    "end": 214903,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:34d78201e1effc40"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 214904,
+    "end": 214954,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:6d36c71cb69f8ec2"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 214955,
+    "end": 215046,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:fe526f12523c039a"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 215047,
+    "end": 215235,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a0b8f12e2bd4cc6b"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 215243,
+    "end": 215463,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:749ada11ef7b530c"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 215471,
+    "end": 215591,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7f101033788be9da"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 215599,
+    "end": 215743,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:762e54bbe41468e3"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 215751,
+    "end": 215820,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b222dce8a406add2"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 215828,
+    "end": 216190,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:d3096ea1f43c59c6"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 216198,
+    "end": 216312,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:04d2aac17f732836"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 216320,
+    "end": 216621,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b6e8ee223c6d5d7b"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 216629,
+    "end": 216816,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:9b8a015bcb1a3b49"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 216824,
+    "end": 216924,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:561fe54cade2383f"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 216932,
+    "end": 217136,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:653862340be73564"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 217144,
+    "end": 217356,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:80cd318f0f303073"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 217364,
+    "end": 217620,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:aefb85270a427920"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 217628,
+    "end": 217714,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:3dc1d50b29dd2842"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 217722,
+    "end": 217926,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:461ff9444f1f11f1"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 217934,
+    "end": 218143,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:5673d70effa6f070"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 218151,
+    "end": 218332,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:0572ba564a5ec801"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 218340,
+    "end": 218482,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:d00d76793b6ef776"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 218490,
+    "end": 218748,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:3f38c6511d88c039"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 218828,
+    "end": 218978,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:ff52609412740f26"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 218986,
+    "end": 219101,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b2764acee0ccea48"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 219109,
+    "end": 219262,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:0a4da882bc519aeb"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 219270,
+    "end": 219417,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:2070eec67fe6ba7a"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 219425,
+    "end": 219677,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:6fb07d5489c53059"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 219685,
+    "end": 219801,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7afe81b3afbecde6"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 219809,
+    "end": 219929,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:eae9b135917973c9"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 219937,
+    "end": 220078,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:44d3553602122370"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 220086,
+    "end": 220397,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7bdee5931251239d"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 220405,
+    "end": 220635,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:21387409bf6bdd6f"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 220643,
+    "end": 220790,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:52b0ed44f33d0ca2"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 220798,
+    "end": 220969,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:af1c03c94f46e9c2"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 220977,
+    "end": 221112,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:ec4c5e3b1eba577c"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 221120,
+    "end": 221441,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a9722417855e9e2b"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 221449,
+    "end": 221561,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:afe4772314b344b7"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 221569,
+    "end": 221701,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:be7ce5f8c1ace230"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 221709,
+    "end": 221957,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:17f9bea069739060"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 221965,
+    "end": 222148,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:449644a9f4f5ef68"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 222156,
+    "end": 222262,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:89e0719f1af71fac"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 222270,
+    "end": 222483,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:542ac304c77149bc"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 222491,
+    "end": 222801,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:91d2c103de4b4c4a"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 222809,
+    "end": 223133,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:febed8a27a7bec89"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 223141,
+    "end": 223214,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4317604aea8c21c6"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 223285,
+    "end": 223395,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:039b323dd5ad39f6"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 223403,
+    "end": 223462,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:518ee513ac234f18"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 223470,
+    "end": 223569,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4c5396a6904e64d6"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 223577,
+    "end": 223708,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:d4d0cc46832f6b65"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 223716,
+    "end": 223966,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:eee1c0a8c5bba57b"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 223974,
+    "end": 224075,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:c387970f17c599b9"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 224083,
+    "end": 224214,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:fa59a3b5b42e5811"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 224222,
+    "end": 224359,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:94e1616ab39df4cc"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 224367,
+    "end": 225023,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:a5a4296c7a423a0b"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 225031,
+    "end": 225108,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:4b21bcf7d2840bcc"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 225116,
+    "end": 225295,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:eca023ea257fdc27"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 225303,
+    "end": 225417,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:5f47823ba634e887"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 225425,
+    "end": 225501,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:b1f6c179944027f3"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 225509,
+    "end": 225663,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:7ffd7bd6ebbc10f3"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 225671,
+    "end": 225777,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:f39f6ee0631500da"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 225785,
+    "end": 226273,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:04113846bc6b0769"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 226281,
+    "end": 226409,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:44042f9f349da9c1"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 226417,
+    "end": 226458,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:f9b07900972e1c44"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 226466,
+    "end": 226734,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:02b90f8480d1b0c2"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 226742,
+    "end": 226882,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:378631ecd99e6ee3"
+    ]
+  },
+  {
+    "document_key": "anjou-clerge",
+    "start": 226890,
+    "end": 227219,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b1c515d7e3ec55e7f988:84778b619a0f3817"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 317130,
+    "end": 317431,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:cd521dfbac057b78"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 317439,
+    "end": 317767,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:c54db98982106b29"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 317775,
+    "end": 317933,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:65a396219b8e83de"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 317941,
+    "end": 318062,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:7ab68eabd571030f"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 318070,
+    "end": 318146,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:25491c6794d01bd1"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 318154,
+    "end": 318276,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:57fe43e6b9afbfec"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 318284,
+    "end": 318348,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:96ab2272b9e75f7e"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 318356,
+    "end": 318512,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:b4e4ca867685cdf9"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 318520,
+    "end": 318597,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:6e747b54a915c42f"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 318598,
+    "end": 318824,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:cdbe059170e5b8dc"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 318832,
+    "end": 319018,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:04df069de9fbfea1"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 319026,
+    "end": 319199,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:54ae79ab21280c0e"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 319207,
+    "end": 319322,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f01b39ca0a338ea7"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 319330,
+    "end": 319719,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:e5ed428e7f671923"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 319727,
+    "end": 320062,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:37d75f2865858c8b"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320070,
+    "end": 320157,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:b17621c4a8ca342b"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320165,
+    "end": 320269,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:cf7856f5cb63f3af"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320277,
+    "end": 320406,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f36b3f237f93e1c4"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320414,
+    "end": 320530,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:d6ff9853fefa8f97"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320538,
+    "end": 320683,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:59cc94e554f0a86c"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320691,
+    "end": 320767,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:2d870144fe26ae01"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320768,
+    "end": 320857,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:c0020dfa1d80766f"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 320865,
+    "end": 320999,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:c3f044faf3e1f453"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 321007,
+    "end": 321180,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:5efbb5b64e82b709"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 321188,
+    "end": 321316,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f3e10a3c7013f198"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 321317,
+    "end": 321454,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:84277533972e3b9d"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 321462,
+    "end": 321711,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:f9baa84045f50f40"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 321719,
+    "end": 321860,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:d63c5236cd82b0f0"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 321868,
+    "end": 321969,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:6479566606089ef3"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 321977,
+    "end": 322082,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:e5a5bda8134f4689"
+    ]
+  },
+  {
+    "document_key": "annonay-clerge",
+    "start": 322090,
+    "end": 322209,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b7bcc2acbfad93e812c1:ebf039284e1cb341"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1938472,
+    "end": 1938696,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:515f4d600746e859"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1938704,
+    "end": 1939205,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:aee37cd0d599a2b6"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1939213,
+    "end": 1939315,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:4279452d9a5da93c"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1939323,
+    "end": 1939469,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:8d36baa870747b5a"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1939477,
+    "end": 1939674,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:4bc61bb986cc1240"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1939682,
+    "end": 1940023,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:3c016c547916ff50"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1940031,
+    "end": 1940204,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:69baa32797dc3d8c"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1940212,
+    "end": 1940295,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:0b6636f1c683ed17"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1940303,
+    "end": 1940587,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:5b1bcf263ad9c50b"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1940595,
+    "end": 1941143,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:cf3fbd78e18aac8b"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1941151,
+    "end": 1941295,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:dd7e224360ec473c"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1941303,
+    "end": 1941456,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:41549c2dbaf7c439"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1941464,
+    "end": 1941539,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:668a98fb4831bbc9"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1941539,
+    "end": 1941721,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:d940dafd992412f5"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1941729,
+    "end": 1942407,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:5e1570eb3a264aad"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1942415,
+    "end": 1942530,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:7318a08821ee8afb"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1942538,
+    "end": 1942914,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:33ee83d6ff6ddf15"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1942922,
+    "end": 1943054,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:fd83159e9ea37224"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1943062,
+    "end": 1943150,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:9218cfc975f514ee"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1943158,
+    "end": 1943318,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:debb61892594550f"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1943326,
+    "end": 1943598,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:4f679204d87afae9"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1943606,
+    "end": 1943669,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:654f0c2d638451f7"
+    ]
+  },
+  {
+    "document_key": "beaujolais-noblesse",
+    "start": 1943677,
+    "end": 1946009,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:90721a22ef4991a9",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:bfaaa34a7214452a",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:11339ea49ec8c446",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:0544ea60693c2aa6",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:6e15b3dd50f56d2e",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:8bce71c0547c18b9",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:603f434b078b00b7",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:20854ecffbd24ab4",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:fb33704dffebd1db",
+      "ap1789-pilot-u1:3e6a4db201abec55cb3e:d9a32b167af08ea1"
+    ]
+  },
+  {
+    "document_key": "lawastine-tiers",
+    "start": 1301684,
+    "end": 1302099,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:10c1f778fd324706de33:d95a637381cb3345"
+    ]
+  },
+  {
+    "document_key": "lawastine-tiers",
+    "start": 1302107,
+    "end": 1302839,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:10c1f778fd324706de33:164f4c12e9e2edf6"
+    ]
+  },
+  {
+    "document_key": "lawastine-tiers",
+    "start": 1302840,
+    "end": 1303369,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:10c1f778fd324706de33:94e0e5ef7a8c8b62"
+    ]
+  },
+  {
+    "document_key": "lawastine-tiers",
+    "start": 1303377,
+    "end": 1303691,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:10c1f778fd324706de33:a82ae4993a62ab99"
+    ]
+  },
+  {
+    "document_key": "lawastine-tiers",
+    "start": 1303699,
+    "end": 1303878,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:10c1f778fd324706de33:07e1b99f5a851150"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 110771,
+    "end": 111408,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:386d8065234ccd89"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 111434,
+    "end": 111707,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:e2d1b100626643ac"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 111733,
+    "end": 112541,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:7cfea3d82b0fc416"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 112567,
+    "end": 113564,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:bcb7c561609b1c82"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 113590,
+    "end": 113837,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8576c2316b42dc30"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 113863,
+    "end": 115049,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:4c908c327a60f825"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 115075,
+    "end": 115815,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:89c17cf49b4e3f56"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 115841,
+    "end": 116168,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8bf689af4b1c7b04"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 116194,
+    "end": 117797,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:582506b765b7cc95"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 117823,
+    "end": 118372,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:a5ffabd82feb743f"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 118398,
+    "end": 118901,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8ad163b47f36cd18"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 118927,
+    "end": 119354,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:2b7722bd9163c4ca"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 119380,
+    "end": 119627,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:0d56fc8eda716b52"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 119653,
+    "end": 121047,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:ef4aaf419a09441d"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 121073,
+    "end": 121692,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:d9fa2779f9a06c63"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 121718,
+    "end": 123405,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:c4eba92f20f6fc6a"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 123431,
+    "end": 123929,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:8b5fec92845ee849"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 123955,
+    "end": 124649,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:31a37a927405c139"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 124675,
+    "end": 125180,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:16c54f84faf450e7"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 125206,
+    "end": 125922,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:b827fa3ae941ab98"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 125948,
+    "end": 126343,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:e8f063ee546663f1"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 126369,
+    "end": 126939,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:fe349ed121dbffb7"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 126965,
+    "end": 127178,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:c5e864e45a55c39b"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 127204,
+    "end": 127348,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:ab0e3fa2dfef2bbd"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 127374,
+    "end": 127604,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:7f9dce77a891b8b0"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 127630,
+    "end": 127856,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:3194854296c1bf6c"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 127882,
+    "end": 128393,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:aa93f174bb2d885f"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 128419,
+    "end": 128727,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:2e16472a18d76e78"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 128753,
+    "end": 129382,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:d3b125f56c0485a5"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 129408,
+    "end": 129836,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:593b5092666c1626"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 129862,
+    "end": 130109,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:c87d178f4f291bf7"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 130135,
+    "end": 130379,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:98743d1b3b2cdf59"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 130405,
+    "end": 136111,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:64f68142f6780848"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 136137,
+    "end": 136375,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:499c9c33db3a6d58"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 136376,
+    "end": 136498,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:eb31eab7fe6d91d9"
+    ]
+  },
+  {
+    "document_key": "colmar-ville",
+    "start": 138685,
+    "end": 142029,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:7252b87cf6dd0d663706:7badf2cf56f3c378"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1757591,
+    "end": 1758334,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:098edc2ae6d4c152"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1758359,
+    "end": 1758569,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:3f96a5a566294376"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1758594,
+    "end": 1759201,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:429e5ca93758ebb6"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1759226,
+    "end": 1759943,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:3c06721dc09fb621"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1759968,
+    "end": 1760888,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:9a8f2999e297409c"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1760913,
+    "end": 1761587,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:ddbcc0f1cc6fea67"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1761612,
+    "end": 1762037,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:65197273a069de84"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1762062,
+    "end": 1762361,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:e36bd402030445e7"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1762386,
+    "end": 1762718,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:e262d3034018b58a"
+    ]
+  },
+  {
+    "document_key": "ribaucourt",
+    "start": 1762743,
+    "end": 1763808,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:f330cd449d20585043c2:d2e3df75d33de127",
+      "ap1789-pilot-u1:f330cd449d20585043c2:2a499bea88cf4006"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1854041,
+    "end": 1854546,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:8e7ac5369fe76b80"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1854572,
+    "end": 1854928,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:e276fe83e74b782d"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1854954,
+    "end": 1855407,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:fd51a75d2324fb71"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1855433,
+    "end": 1855776,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:788ef3548e99a1da"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1855802,
+    "end": 1856250,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:e330ef207126307e"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1856276,
+    "end": 1856710,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:b09fd6b827af13b9"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1856736,
+    "end": 1857177,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:a631cde696ba525a"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1857203,
+    "end": 1857589,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:7b6b6374359941c7"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1857615,
+    "end": 1857963,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:936dbae19702c1bc"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1857989,
+    "end": 1858238,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:eb8c4fde6bee679a"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1858264,
+    "end": 1858328,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:915a5b2072cab91b"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1858354,
+    "end": 1858660,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:212018a192dd656f"
+    ]
+  },
+  {
+    "document_key": "flines",
+    "start": 1858686,
+    "end": 1858839,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:97af66caeb2eea3e1442:d8c298c845026024"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2496745,
+    "end": 2497103,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:6579f35909cb0649"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2497154,
+    "end": 2497507,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:fb660ac11d99b840"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2497533,
+    "end": 2497839,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:6161002ba2e1ee5c"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2497865,
+    "end": 2498394,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:9c403b50370b29ca"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2498420,
+    "end": 2498765,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:ab37912cab51dc8a"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2498791,
+    "end": 2500018,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:98826e49d5a6e7dd"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2500044,
+    "end": 2500551,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:aef8cb053572b69e"
+    ]
+  },
+  {
+    "document_key": "carces-mineurs",
+    "start": 2500577,
+    "end": 2501997,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f9e19530b4e33ccf95c7:724b34166cfd1bab"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2030891,
+    "end": 2033536,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:a00f2820fb0c0206",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:e4d890cfdc3449f5",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:c9978bf5eef644af"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2033537,
+    "end": 2034133,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:23bc365eabc7a544",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:31ba039aa8f8999b"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2034133,
+    "end": 2034386,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:31ba039aa8f8999b"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2034412,
+    "end": 2034613,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:a9eb9301bf5d4dca"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2034639,
+    "end": 2035218,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:2f37cf1366b1993c",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:be287555b8d6829e"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2035218,
+    "end": 2035456,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:54b2ab3a632998ca"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2035482,
+    "end": 2036084,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:50e32cbc8c4fdd15",
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:6e844cf0e5edd7be"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2036110,
+    "end": 2036442,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:9646b75e19608481"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2036468,
+    "end": 2036715,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:36d1bd509ca86bbd"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2036741,
+    "end": 2037197,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:3c015418d57dc056"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2037223,
+    "end": 2037426,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:ee1e57b2f4ca32ee"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2037452,
+    "end": 2037599,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:67c5ea019bbaa0cf"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2037625,
+    "end": 2038076,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:5c8cbf7b0ad1c899"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2038102,
+    "end": 2038629,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:c7f8bbb8a2641feb"
+    ]
+  },
+  {
+    "document_key": "montigny-ostrevent",
+    "start": 2038655,
+    "end": 2039189,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:5ef43e6dd0afce138d76:4746b668fed21d81"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 8443,
+    "end": 8493,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:4697badcca00ee62"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 8494,
+    "end": 8861,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:8f22466b1941f490"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 8888,
+    "end": 8952,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:88c2e94347f1a8a1"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 8979,
+    "end": 9414,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:660c45e65c3c349d"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 9440,
+    "end": 9612,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:ce273b869e79301c"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 9638,
+    "end": 9778,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:4e2092c8f178771c"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 9804,
+    "end": 9912,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:4a836da916014603"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 9938,
+    "end": 10076,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:1252d41dc723ca8c"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 10102,
+    "end": 10237,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:9a8b260444cc2a4a"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 10263,
+    "end": 10399,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:cf7df5bc703ffbb1",
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:eb23940451f540bd"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 10399,
+    "end": 10841,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:eb23940451f540bd"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 10867,
+    "end": 11115,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:d37ca13554b87448"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 11141,
+    "end": 11261,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:cf077ab99c65edd8"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 11608,
+    "end": 11830,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:c2c5c4a5a1e9f040"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 11856,
+    "end": 12146,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:129998a8707564e9"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 12147,
+    "end": 13095,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:48bfe4b8e65c492e"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 13121,
+    "end": 13332,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:72138acad10f54bc"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 13358,
+    "end": 13494,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:f36c221c71300197"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 13520,
+    "end": 13835,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:06c83eb0aed71879"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 13861,
+    "end": 14199,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:96734f7172c4b34c"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 34359,
+    "end": 38026,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:8219b282e10ad62d"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 38051,
+    "end": 39448,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:b08ba4c666b31f4c"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 39474,
+    "end": 46024,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:8445d8442178a5cd"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 46050,
+    "end": 47371,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:cbd9b7b01fa8a62d"
+    ]
+  },
+  {
+    "document_key": "mirecourt-noblesse",
+    "start": 47397,
+    "end": 49025,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:b6a30344f86d9da9f1ea:998773681c943dcd"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 904970,
+    "end": 905359,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:f9d42ff68470aff4"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 905384,
+    "end": 905879,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:870aac3899c2cbb2"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 905904,
+    "end": 906403,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:586581e391938c6a"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 906428,
+    "end": 906661,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:7acef66220d46352"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 906686,
+    "end": 907310,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:128005c081b6ea2f"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 907335,
+    "end": 907782,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4b3802d0548a5b25"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 907807,
+    "end": 908142,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:0dc17dbe6e8a7530"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 908167,
+    "end": 909935,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e03b80dc9c119b1e"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 909960,
+    "end": 910887,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:0b84ea52e173b9db"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 910912,
+    "end": 911695,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:66a8e7066f6879bb"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 911720,
+    "end": 912793,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e47a2898b7519e47"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 912818,
+    "end": 913277,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e0d0fb1024e9d2b8"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 913302,
+    "end": 914799,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4da931a023f63bd9"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 914824,
+    "end": 915445,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:764357f79d97a107"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 915470,
+    "end": 915707,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:eac1e119c8a18a7f"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 915732,
+    "end": 916630,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:cceff563342cbea4"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 916655,
+    "end": 917083,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:02dc72a32810e0f9"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 917108,
+    "end": 917312,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:2e82a54b0a5ebdd7"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 917337,
+    "end": 917449,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:bb3e27a688bb4cab"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 917474,
+    "end": 917691,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:7e0f46053d003498"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 917716,
+    "end": 918033,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:931c7cb0fcf7e038"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 918058,
+    "end": 918971,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:e88974ada6851594"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 918996,
+    "end": 920463,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:a91b13d0f9a3ba1b"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 920488,
+    "end": 920833,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4133237d7b044784"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 920858,
+    "end": 921109,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:4a0c2b9d260c9e73"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 921134,
+    "end": 921653,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:93d872d2e6f15c82"
+    ]
+  },
+  {
+    "document_key": "guerande-tiers",
+    "start": 921678,
+    "end": 924702,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:af71dbb9f75db8ce99b2:9cf2aa4e66ff0821"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5028468,
+    "end": 5028590,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:51491aa71d4da9aa"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5028616,
+    "end": 5028723,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:614a6853b0fb6dd2"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5028749,
+    "end": 5028816,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:042a97694549cd4c"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5028842,
+    "end": 5029209,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:366fcb84cf559a8e"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5029235,
+    "end": 5029534,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:df603b0d58684341"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5029560,
+    "end": 5029954,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:8e4cc0b349662bbf"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5029980,
+    "end": 5030103,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:2fe3a30b842ac76d"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5030129,
+    "end": 5030283,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:03c39373e5981bb1"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5030309,
+    "end": 5030382,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:06f9fea714659be8"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5030408,
+    "end": 5030562,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:47e097b455dc88cc"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5030588,
+    "end": 5030698,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:f41532ffbb3ecbc9"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5030724,
+    "end": 5030834,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:aac52165de4e92db"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5030860,
+    "end": 5031024,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:09ca271adad0e46c",
+      "ap1789-pilot-u1:4133d7972888544d97cb:798634a6d87f392c"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5031025,
+    "end": 5031335,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:798634a6d87f392c"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5031361,
+    "end": 5031516,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:bec1e7ee4629e874"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5031622,
+    "end": 5031753,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:6165e9d95fc16256"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5031779,
+    "end": 5031909,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:570e9c62e91840ed"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5031935,
+    "end": 5032085,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:64b8d9b974947e64"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5032111,
+    "end": 5032460,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:58476a8aece66c06"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5032486,
+    "end": 5032728,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:355cca24f913f4bd"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5032754,
+    "end": 5032821,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:63995b9f02d19f05"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5032924,
+    "end": 5033052,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:1db32941c25e6d29"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5033078,
+    "end": 5033123,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:fae479bfbe8caf87"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5033241,
+    "end": 5033419,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:f855490207358d15"
+    ]
+  },
+  {
+    "document_key": "ferrieres",
+    "start": 5033445,
+    "end": 5033611,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:4133d7972888544d97cb:3645e0879944f8e6"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2705734,
+    "end": 2705769,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:a55cc2680052c9a9"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2705795,
+    "end": 2706066,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:8a5fc7812cd73c4e"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2706092,
+    "end": 2706333,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:58f316ce32016d37"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2706359,
+    "end": 2706710,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:d9cbbcf66a5f08db"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2706736,
+    "end": 2706950,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:653021cbdd30c903"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2706976,
+    "end": 2707098,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:b022003da3d16524"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2707124,
+    "end": 2707265,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:afc190e97ff0a876"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2707291,
+    "end": 2707393,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:97457a0360f11934"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2707419,
+    "end": 2707553,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:e46563add5205833"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2707579,
+    "end": 2707806,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:ab7512442cde537a"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2707832,
+    "end": 2707901,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:7d9ffd89a6d20b1d"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2707927,
+    "end": 2708240,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:c12970e6b991d391"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2708266,
+    "end": 2708334,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:d139a3c92bf19459"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2708360,
+    "end": 2708646,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:b56ee73f6cb59152"
+    ]
+  },
+  {
+    "document_key": "annet-marne",
+    "start": 2708672,
+    "end": 2708817,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:eef09d567c9a82f751c0:94084dc8eb4ea33a"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2880442,
+    "end": 2880482,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:fd4887460eb7771f"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2880508,
+    "end": 2880613,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:15a124e3d6a65837"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2880639,
+    "end": 2880680,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:72173a0f37f9ba5e"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2880706,
+    "end": 2880835,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:74285b6db4f45715"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2880861,
+    "end": 2880920,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:66784f58f836af28"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2880946,
+    "end": 2880989,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:7b30ff3d39953b24"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2881015,
+    "end": 2881119,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:c8a4ebdbf676f1d1"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2881145,
+    "end": 2881197,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:4932b9d96cfbf913"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2881223,
+    "end": 2881267,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:cae4de071a8486a4"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2881293,
+    "end": 2881326,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:2be143042f065d5c"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2881352,
+    "end": 2881391,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:ab2670417201247c"
+    ]
+  },
+  {
+    "document_key": "ermenonville",
+    "start": 2881417,
+    "end": 2881624,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:2d9eb8a19442dcf619d3:cb9b38d4f8effa39"
+    ]
+  },
+  {
+    "document_key": "mirecourt-clerge",
+    "start": 3881,
+    "end": 5277,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:074dbd310e2e057a"
+    ]
+  },
+  {
+    "document_key": "mirecourt-clerge",
+    "start": 5303,
+    "end": 6235,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:b769c9f3fdeac4e3"
+    ]
+  },
+  {
+    "document_key": "mirecourt-clerge",
+    "start": 6261,
+    "end": 6622,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:67c3eb9735322f48"
+    ]
+  },
+  {
+    "document_key": "mirecourt-clerge",
+    "start": 6648,
+    "end": 7154,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:0bcf82b3b6731b03"
+    ]
+  },
+  {
+    "document_key": "mirecourt-clerge",
+    "start": 7180,
+    "end": 7442,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:fbbba92b6bb96154d07a:77e73a5394bdc04e"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 194554,
+    "end": 194833,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:c115459d0d48b64c"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 194858,
+    "end": 195049,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:e942d695bbe26376"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 195074,
+    "end": 195416,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:290b2efcc121f2f8"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 195441,
+    "end": 195553,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:7dff65753c127d36"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 195578,
+    "end": 195726,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:a1750977e928ed84"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 195751,
+    "end": 195793,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:3a1aee877f1f87c7"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 195818,
+    "end": 195859,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:f69ae6eea07e51b5"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 195884,
+    "end": 195947,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:6a2bffba5032caca"
+    ]
+  },
+  {
+    "document_key": "pierrelez-habitants",
+    "start": 195972,
+    "end": 196770,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:12cdaced3d457962e532:2519b66838b7fec7"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 124559,
+    "end": 124681,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:432dad8a68586a11"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 124706,
+    "end": 124953,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:86831a780086e8d1"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 124978,
+    "end": 125319,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:a8e1927f6e70a7a2"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 125344,
+    "end": 125553,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:bc9426895075c8c2"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 125578,
+    "end": 125787,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:99c8f66fd5ac8df6"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 125812,
+    "end": 126008,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:d8d68edbe4aed61c"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 126033,
+    "end": 126181,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:1fe9d3fe9b2d71a1"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 126206,
+    "end": 126609,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:3c851bd290d51263"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 126634,
+    "end": 127041,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:b8c42f6a63b49275"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 127066,
+    "end": 127272,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:cc72176ab4c96cf2"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 127297,
+    "end": 127547,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:f7c4a3814bc67ec3"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 127572,
+    "end": 127871,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:df1cbdd207d28d2d"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 127896,
+    "end": 128157,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:ed40bdd493b9230b"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 128182,
+    "end": 128496,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:eb178f696ed306b7"
+    ]
+  },
+  {
+    "document_key": "perigny-brie",
+    "start": 128521,
+    "end": 128999,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:0e4e17a10525b854d367:1ad641c80936901e"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 280082,
+    "end": 280469,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:311365e83dcb511a"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 280494,
+    "end": 280559,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:3198204abc2e4a37"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 280584,
+    "end": 280778,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:136d787a48f52c83"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 280803,
+    "end": 281023,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:24ed278fde9722db"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 281048,
+    "end": 281267,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:26b95908569571b0"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 281292,
+    "end": 281431,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:10c081734a6f802c"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 281456,
+    "end": 281518,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:008cf814567af584"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 281543,
+    "end": 282402,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:383f3c3543b4ebad"
+    ]
+  },
+  {
+    "document_key": "plessis-secqueville",
+    "start": 282427,
+    "end": 282942,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:83dfa5bae7397bf30538:019425769edd94e5"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 441091,
+    "end": 441368,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:251a41338a7308c0"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 441393,
+    "end": 441704,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:d728cede597b5fea"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 441729,
+    "end": 442806,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:a8efa78095d95e6e"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 442879,
+    "end": 443243,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:f818ce49e402beb3"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 443268,
+    "end": 443606,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:7398b2617e3936fe"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 443631,
+    "end": 444328,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:74a6a2ec05469d2a"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 444353,
+    "end": 444800,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:4c6f701d72c5808e"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 444825,
+    "end": 444959,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:3bc3792730f64d84"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 444984,
+    "end": 445100,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:35b46def79fd3130"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 445125,
+    "end": 445383,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:3a939b14d5090298"
+    ]
+  },
+  {
+    "document_key": "puteaux",
+    "start": 445408,
+    "end": 445539,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:9a570b0100acb2734ded:e00a2433a9cdb42b"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 141397,
+    "end": 141723,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:81c8372c84167536"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 141749,
+    "end": 141984,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:15783209925020c9"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 142010,
+    "end": 142177,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:54778345ce2bc242"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 142203,
+    "end": 142998,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:c53589cb344ff2a6"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 143024,
+    "end": 143556,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:161950931abf8b4c"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 143582,
+    "end": 144390,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f5c5a116c4e5da87"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 144416,
+    "end": 144771,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:eacd20493def862f"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 144797,
+    "end": 145516,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:fa5fd1fbf57fd88f"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 145542,
+    "end": 146008,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:ace3cff55a82d2ab"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 146009,
+    "end": 146371,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:2efcf9d7dbedb691"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 146372,
+    "end": 147256,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:b21232c7bd48ce40"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 147282,
+    "end": 147616,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f836ec97dcf2821f"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 147642,
+    "end": 148009,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:e1e5205b706c8041"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 148035,
+    "end": 148430,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:848276316c163cd8"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 148457,
+    "end": 148863,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:48678fe3dc0a362a"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 148889,
+    "end": 149620,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:ca7577e900cb1468"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 149647,
+    "end": 151337,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:829b0839403e9243"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 151363,
+    "end": 151933,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:39e775c489b6c2df"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 151959,
+    "end": 152167,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:4f2102d8dc4b7c51"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 152193,
+    "end": 152410,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:0693180af422183a"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 152436,
+    "end": 152673,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:da7414bef6524975"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 152699,
+    "end": 153226,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:415a1f1b9f8908fc"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 153252,
+    "end": 153657,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:0781d1724b61fe7d"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 153683,
+    "end": 154102,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:78ee72fa1f6d5535"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 154128,
+    "end": 154619,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f9c26c7e6f98b134"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 154645,
+    "end": 155472,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:03fa5b161b1ab6e6"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 155498,
+    "end": 155735,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:094794ae945f67cd"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 155761,
+    "end": 156090,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:3147488ee4367c55"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 156116,
+    "end": 156555,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:6f2cee15b1b069f5"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 156581,
+    "end": 156839,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:a14abebdaa3f4dd2"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 156865,
+    "end": 157465,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:f74cb6ee9705f088"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 157491,
+    "end": 158040,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:85445e86cf67edaa"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 158066,
+    "end": 158400,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:425ff2e2170d2a55"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 158426,
+    "end": 158693,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:40ae4a679317c3ae"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 158719,
+    "end": 159430,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:7f314c73af96b619"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 159456,
+    "end": 160346,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:cd30433f1a13b14f"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 160372,
+    "end": 160639,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:e0f0c204a0d09111"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 160665,
+    "end": 160866,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:e6e7e84560969552"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 160892,
+    "end": 161296,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:4dc3b1b45e753a75"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 161322,
+    "end": 161483,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:d1ae5970bb1297e4"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 161509,
+    "end": 161817,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:305c14dd705ea3ba"
+    ]
+  },
+  {
+    "document_key": "vic-clerge",
+    "start": 161843,
+    "end": 162165,
+    "outcome": "unchanged_unverified_B",
+    "successor_ids": [
+      "ap1789-pilot-u1:72447fb17ff8b4b6f261:686403af92c9d1ae"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 44192,
+    "end": 44477,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:3ac919f5fac87722"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 44503,
+    "end": 44712,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:88e68ba1ceeb5c43"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 44738,
+    "end": 47243,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:4b2f7e455008c004"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 47269,
+    "end": 47720,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:9bad1b46592cd6ae"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 47746,
+    "end": 48554,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:7a14f79ad1478370"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 48580,
+    "end": 48914,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:51764838d9444a55"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 48940,
+    "end": 49296,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:2af4d5489f9e196b"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 49322,
+    "end": 50074,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:a19b531caacf95fc"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 50100,
+    "end": 50370,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:aa2f8879e93999a0"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 50396,
+    "end": 50679,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:adfe7336a0d54305"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 50705,
+    "end": 51136,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:3f4012daa2f9fb38"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 51162,
+    "end": 51368,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:fbb624c9c638eb37"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 51394,
+    "end": 51749,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:ff63905f8e92b156"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 51775,
+    "end": 52071,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:5b69cf74a6b09087"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 52097,
+    "end": 52572,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:f9f8ee0bfd5a25e3"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 52598,
+    "end": 53559,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:3872585d03845daa"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 53585,
+    "end": 54001,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:bd81a647ef51003f"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 54027,
+    "end": 54417,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:095abf44b7db66d9"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 54443,
+    "end": 54597,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:7d3b12d7a74818eb"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 54623,
+    "end": 55017,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:e14d84553db523b6"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 55043,
+    "end": 57098,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:17ba53d169ab3bb4"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 57124,
+    "end": 58996,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:25b07753c7c9ee90"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 59022,
+    "end": 59882,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:8e7d025adf2de98e"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 59908,
+    "end": 61639,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:dafa3bd3be302872"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 61665,
+    "end": 61778,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:08b7299c464f4b10"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 61804,
+    "end": 62137,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:c89820dbd520c6bf"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 62163,
+    "end": 62431,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:d8450ebecf4defd3"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 62457,
+    "end": 62907,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:6317e1e58e26c8da"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 62933,
+    "end": 63386,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:79c6e2bd266a2bf1"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 63412,
+    "end": 64311,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:bb95d8c537fd796b"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 64337,
+    "end": 65922,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:17f4224673f9acb7"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 65948,
+    "end": 66959,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:39e1409a60885a95"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 66985,
+    "end": 67187,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:90a5f0fc9094ba9f"
+    ]
+  },
+  {
+    "document_key": "toul-noblesse",
+    "start": 67213,
+    "end": 70385,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:8dab1fac50b6320bcb33:41eb64e39d3465e1"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2107564,
+    "end": 2107796,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:420f721c0fbd50e4"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2107822,
+    "end": 2108057,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:86dc54259152040e"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2108083,
+    "end": 2108153,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:194a122ecafb9c0f"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2108179,
+    "end": 2108391,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:4c8568669ae4af0b"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2108417,
+    "end": 2108486,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:03455f4326af0668"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2108512,
+    "end": 2108660,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:f46546ce862556b1"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2108686,
+    "end": 2109397,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:6525b4fe0e4b6895"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2109423,
+    "end": 2109843,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:2812c4ceb1368ee0"
+    ]
+  },
+  {
+    "document_key": "albertas",
+    "start": 2109869,
+    "end": 2110382,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:c33d108ba660e47d2e75:6b1ec0deed4eceda"
+    ]
+  },
+  {
+    "document_key": "beaurecueil",
+    "start": 2347682,
+    "end": 2347957,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f7df571f2f7d6b380e1b:f9e2c152ad714016"
+    ]
+  },
+  {
+    "document_key": "beaurecueil",
+    "start": 2347958,
+    "end": 2348003,
+    "outcome": "unchanged_verified_A",
+    "successor_ids": [
+      "ap1789-pilot-u1:f7df571f2f7d6b380e1b:967fbe9c1fa81fe1"
+    ]
+  },
+  {
+    "document_key": "beaurecueil",
+    "start": 2348004,
+    "end": 2349560,
+    "outcome": "boundary_changed",
+    "successor_ids": [
+      "ap1789-pilot-u1:f7df571f2f7d6b380e1b:cb07e7de95a2da0e"
+    ]
+  }
+]

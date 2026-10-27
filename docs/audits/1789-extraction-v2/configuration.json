@@ -1,0 +1,33 @@
+{
+  "version": "documentary-v2.0",
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "classes": [
+    "autonomous",
+    "part",
+    "associated",
+    "mention",
+    "out_of_scope",
+    "uncertain"
+  ],
+  "strict_cahier_class": "autonomous",
+  "inclusive_document_classes": [
+    "autonomous",
+    "associated"
+  ],
+  "numbering_is_not_verification": true,
+  "automatic_units_status": "B",
+  "offsets": "decoded XML Unicode, half-open",
+  "matching": "only boundary whitespace trimmed; original text untouched",
+  "new_validation_not_examined": true,
+  "rule_changes": [
+    "contextual exclusion of introduction/pre1789 headings",
+    "explicit absence variants",
+    "rubric vs internal restart",
+    "professional associated documents and minutes",
+    "p1 titles and non-cahier openings",
+    "continuations and attached pieces",
+    "short nominal headings before marker with bare-marker safeguard",
+    "prefix punctuation retained with its paragraph",
+    "ArtIer and Ari OCR variants without normalization"
+  ]
+}
