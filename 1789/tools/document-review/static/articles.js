@@ -1,5 +1,6 @@
 'use strict';
 // One interface and one source: the Articles view uses the existing API/DOM helpers.
+let articleVisibleParents = [], articleUnresolved = [];
 let articleParents = [], articleDocument = null, articleSelected = new Set();
 let articleEditorIds = [], articleRange = {}, articlePreviewDigest = null, articleDirty = false, articleSaving = false;
 let articleReturnPosition = null, articleCampaign = null;
@@ -45,7 +46,7 @@ async function articlePost(path,payload){
   return await request();
  }
 }
-async function switchReviewMode(mode){
+async function switchReviewMode(mode,documentId=null){
  if(mode==='articles'){
   if(!canLeave())return;
   dirty=false;current=null;$('document').hidden=true;$('catalogue').hidden=false;
@@ -56,19 +57,24 @@ async function switchReviewMode(mode){
  $('mode-articles').setAttribute('aria-pressed',String(mode==='articles'));
  if(mode==='cahiers'){ articleDirty=false;await refresh();return; }
  try{
+  $('article-stream').hidden=true;
   articleMessage('Chargement des cahiers et des unités…');
   articleParents=await api('/api/articles/list');
   articleCampaign=await api('/api/articles/campaign').catch(()=>null);
   renderArticleCampaign();
-  const select=$('article-parent');select.replaceChildren();
-  for(const p of articleParents){const option=el('option',`${p.title} · ${p.articles} articles · ${p.human_reviewed} unités examinées`);option.value=p.id;select.append(option);}
+  filterArticleParents(false);
+  articleUnresolved=await api('/api/corpus/unresolved').catch(()=>[]);renderUnresolvedArticles();
+  const select=$('article-parent');
   if(articleDocument&&articleParents.some(p=>p.id===articleDocument.parent.id))select.value=articleDocument.parent.id;
-  if(select.value)await loadArticleParent(select.value);
+  if(documentId&&articleParents.some(p=>p.id===documentId))await loadArticleParent(documentId);
+  else if(select.value)await loadArticleParent(select.value);
   $('articles-title').focus();
  }catch(e){articleMessage(e.message,true);}
 }
 async function loadArticleParent(id,afterMessage=''){
+ $('article-stream').hidden=true;
  try{
+  if(!articleVisibleParents.some(p=>p.id===id)){$('article-query').value='';$('article-volume').value='';$('article-boundary-filter').value='';$('article-needs-review').checked=false;filterArticleParents(false);}
   articleDocument=await api('/api/articles/document?'+new URLSearchParams({id}));
   articleSelected=new Set();articleDirty=false;articlePreviewDigest=null;articleReturnPosition=null;
   $('article-editor').hidden=true;$('article-parent').value=id;$('article-note').value='';
@@ -76,6 +82,7 @@ async function loadArticleParent(id,afterMessage=''){
   if(row){row.articles=articleDocument.units.filter(u=>u.type==='article').length;row.human_reviewed=articleDocument.units.filter(u=>u.human_validated).length;const option=[...$('article-parent').options].find(o=>o.value===id);if(option)option.textContent=`${row.title} · ${row.articles} articles · ${row.human_reviewed} unités examinées`;}
   renderArticles();renderArticleCampaign();articleMessage(afterMessage);
  }catch(e){articleMessage(e.message,true);}
+ finally{$('article-stream').hidden=false;}
 }
 function articlePayload(action,ids){
  if(!articleDocument)throw new Error('Ouvrez un cahier.');
@@ -100,9 +107,10 @@ function articleGroupCount(){
 function renderArticles(){
  const d=articleDocument,p=d.parent,units=d.units,articles=units.filter(u=>u.type==='article');
  const human=units.filter(u=>u.human_validated).length;
- $('article-meta').textContent=`Tome ${p.volume} · ${p.metadata.title} · ${articles.length} articles · ${human} unités validées/corrigées humainement. La validation du cahier reste distincte.`;
+ $('article-meta').textContent=`Tome ${p.volume} · ${p.metadata.id||p.id} · ${p.metadata.title} · ${p.document_kind||'cahier'} · ${p.boundary_class||'Référence du lot initial'} · ${articles.length} articles · ${human} unités validées/corrigées humainement. La validation du cahier reste distincte.`;
  $('article-warning').hidden=!d.warning&&!d.stale_events.length;
  $('article-warning').textContent=d.warning||`${d.stale_events.length} décision(s) concernent une autre version du parent. Les validations correspondantes doivent être reprises.`;
+ if(p.anomalies?.length){$('article-warning').hidden=false;$('article-warning').textContent+='\nAlertes documentaires proposées (à examiner) : '+[...new Set(p.anomalies)].map(a=>documentaryAlerts[a]||({overlapping_document_proposals:'Propositions de documents qui se chevauchent : vérifier les voisins.',articles_withheld_pending_documentary_review:'Articles non proposés dans l’attente d’un examen documentaire.'}[a])||a).join(' · ');}
  $('article-range-end').max=String(articles.length);$('article-range-start').max=String(articles.length);
  $('article-range-end').value=String(Math.min(15,articles.length)||1);
  const stream=$('article-stream');stream.replaceChildren();let articleRank=0;
@@ -122,7 +130,7 @@ function renderArticles(){
   const page=unit.pages.map(p=>p.n||p.id).join(', ');
   card.append(el('p',`Origine ${unit.source_status==='human_created'?'création/correction humaine':unit.source_status} · ${articleStates[unit.validation_status]||unit.validation_status} · page ${page||'non identifiée'} · ordre documentaire ${unit.order}`));
   if(unit.section)card.append(el('p',`Rubrique : ${unit.section.trim()}`));
-  if(unit.anomalies.length)card.append(el('p',unit.anomalies.join(' ')));
+  if(unit.anomalies.length)card.append(el('p',unit.anomalies.map(a=>a==='unusually_long_article_over_12000_chars'?'Article de plus de 12 000 caractères : contrôler la longueur et les limites.':a).join(' ')));
   const text=el('p',unit.text);text.className='article-original';
   if(unit.type==='technical_passage'||unit.type==='paratext'){
    const detail=document.createElement('details');detail.append(el('summary',`${unit.text.trim()?'Lire le passage conservé':'Blancs entre unités'} (${unicodeLength(unit.text)} caractères)`),text);card.append(detail);
@@ -143,8 +151,8 @@ function renderArticles(){
  }
  $('article-history').textContent=d.history.length?JSON.stringify(d.history,null,2):'Aucune décision sur les articles de ce cahier.';
  $('article-undo').disabled=!d.history.length;
- const index=articleParents.findIndex(row=>row.id===p.id);
- $('article-prev-parent').disabled=index<=0;$('article-next-parent').disabled=index<0||index===articleParents.length-1;
+ const index=articleVisibleParents.findIndex(row=>row.id===p.id);
+ $('article-prev-parent').disabled=index<=0;$('article-next-parent').disabled=index<0||index===articleVisibleParents.length-1;
  articleGroupCount();
  renderSegmentationComparison();
 }
@@ -191,7 +199,7 @@ $('mode-cahiers').addEventListener('click',()=>switchReviewMode('cahiers'));
 $('mode-articles').addEventListener('click',()=>switchReviewMode('articles'));
 $('article-parent').addEventListener('change',()=>{if(articleCanLeave())loadArticleParent($('article-parent').value);else $('article-parent').value=articleDocument.parent.id;});
 for(const [id,step] of [['article-prev-parent',-1],['article-next-parent',1]])$(id).addEventListener('click',()=>{
- if(!articleCanLeave())return;const i=articleParents.findIndex(p=>p.id===articleDocument.parent.id);if(articleParents[i+step])loadArticleParent(articleParents[i+step].id);
+ if(!articleCanLeave())return;const i=articleVisibleParents.findIndex(p=>p.id===articleDocument.parent.id);if(articleVisibleParents[i+step])loadArticleParent(articleVisibleParents[i+step].id);
 });
 $('article-show-c').addEventListener('change',()=>{for(const card of document.querySelectorAll('.review-technical'))card.hidden=!$('article-show-c').checked;});
 $('article-clear-selection').addEventListener('click',()=>{articleSelected.clear();articleGroupCount();});
@@ -279,3 +287,25 @@ function renderArticleCampaign(){
   list.append(item);
  }
 }
+
+function filterArticleParents(load=true){
+ const q=$('article-query').value.toLocaleLowerCase('fr'),volume=$('article-volume').value,status=$('article-boundary-filter').value;
+ articleVisibleParents=articleParents.filter(p=>(!q||`${p.title} ${p.id} ${p.persee_id}`.toLocaleLowerCase('fr').includes(q))&&(!volume||String(p.volume)===volume)&&(!status||p.boundary_class===status)&&(!$('article-needs-review').checked||p.boundary_class!=='human_validated'||p.uncertain));
+ const select=$('article-parent'),previous=articleDocument?.parent.id;select.replaceChildren();
+ for(const p of articleVisibleParents){const option=el('option',`${p.title} · ${p.articles} articles · ${p.human_reviewed} unités examinées`);option.value=p.id;select.append(option);}
+ if(articleVisibleParents.some(p=>p.id===previous))select.value=previous;
+ $('article-filter-count').textContent=`${articleVisibleParents.length} documents extraits affichés sur ${articleParents.length}.`;
+ if(load&&select.value&&select.value!==previous){if(articleCanLeave())loadArticleParent(select.value);else select.value=previous;}
+ renderUnresolvedArticles();
+}
+function renderUnresolvedArticles(){
+ const list=$('article-unresolved-list');list.replaceChildren();
+ const q=$('article-query').value.toLocaleLowerCase('fr'),v=$('article-volume').value;
+ for(const p of articleUnresolved.filter(p=>(!q||`${p.title} ${p.id}`.toLocaleLowerCase('fr').includes(q))&&(!v||String(p.volume)===v))){
+  const row=el('li',`${p.title} · tome ${p.volume} · ${p.extraction_state} `);
+  row.append(articleButton('Examiner les frontières',async()=>{if(!articleCanLeave())return;articleDirty=false;await switchReviewMode('cahiers');await open(p.id);}));list.append(row);
+ }
+}
+for(const id of ['article-query','article-volume','article-boundary-filter','article-needs-review'])$(id).addEventListener(id==='article-query'?'input':'change',()=>filterArticleParents());
+$('article-review-boundaries').addEventListener('click',async()=>{if(!articleDocument||!articleCanLeave())return;const id=articleDocument.parent.id;articleDirty=false;await switchReviewMode('cahiers');await open(id);});
+$('article-rebuild').addEventListener('click',()=>{if(articleDocument&&articleCanLeave()){articleDirty=false;rebuildDocument(articleDocument.parent.id);}});

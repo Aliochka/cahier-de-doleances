@@ -11,8 +11,19 @@ from reviewlib import HERE, Conflict, Store
 
 
 class ReviewServer(HTTPServer):
-    def __init__(self, port, store, article_journal=None, article_export_directory=None):
+    def __init__(
+        self,
+        port,
+        store,
+        article_journal=None,
+        article_export_directory=None,
+        corpus_directory="auto",
+        override_directory=None,
+    ):
         self.store = store
+        self.corpus_directory = corpus_directory
+        self.override_directory = override_directory
+        self._inventory = None
         self.article_journal = article_journal
         self.article_export_directory = (
             article_export_directory or HERE.parents[1] / "data/review-exports"
@@ -23,10 +34,34 @@ class ReviewServer(HTTPServer):
 
     def articles(self):
         if self._articles is None:
-            from articles import Articles
+            from articles import INPUT, Articles
+            from collection import discover
 
-            self._articles = Articles(self.store, self.article_journal)
+            directory = discover() if self.corpus_directory == "auto" else self.corpus_directory
+            self._articles = Articles(
+                self.store,
+                self.article_journal,
+                directory=directory or INPUT,
+                override_directory=self.override_directory,
+            )
         return self._articles
+
+    def corpus_info(self):
+        engine = self.articles()
+        path = engine.directory / "summary.json"
+        if not (engine.directory / "complete.json").exists():
+            return dict(available=False)
+        return dict(
+            available=True, summary=json.loads(path.read_text()), directory=engine.directory.name
+        )
+
+    def inventory(self):
+        if self._inventory is None:
+            from reviewlib import rows
+
+            path = self.articles().directory / "inventory.jsonl.gz"
+            self._inventory = {r["id"]: r for r in rows(path)} if path.exists() else {}
+        return self._inventory
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -64,10 +99,61 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if url.path == "/api/meta":
                 return self.send(
-                    200, dict(token=self.server.token, stats=self.server.store.stats())
+                    200,
+                    dict(
+                        token=self.server.token,
+                        stats=self.server.store.stats(),
+                        corpus=self.server.corpus_info(),
+                    ),
                 )
             if url.path == "/api/list":
-                return self.send(200, self.server.store.listing())
+                listing = self.server.store.listing()
+                inventory = self.server.inventory()
+                for row in listing:
+                    item = inventory.get(row["id"], {})
+                    row.update(
+                        extraction_state=item.get("extraction_state"),
+                        boundary_class="human_validated"
+                        if row["status"] == "human_validated"
+                        else item.get("boundary_class"),
+                        document_kind=item.get("document_kind"),
+                        extracted=row["id"] in self.server.articles().parents,
+                    )
+                return self.send(200, listing)
+            if url.path == "/api/corpus/unresolved":
+                parents = self.server.articles().parents
+                return self.send(
+                    200,
+                    [
+                        {
+                            k: r[k]
+                            for k in [
+                                "id",
+                                "persee_id",
+                                "title",
+                                "volume",
+                                "extraction_state",
+                                "document_kind",
+                                "anomalies",
+                            ]
+                        }
+                        for r in self.server.inventory().values()
+                        if r["id"] not in parents
+                    ],
+                )
+            if url.path == "/api/volume/search":
+                volume = int(q["volume"][0])
+                query = q.get("query", [""])[0].casefold().strip()
+                if volume not in self.server.store.blocks or len(query) < 3:
+                    return self.send(
+                        400, {"error": "Volume valide et au moins trois caractères requis."}
+                    )
+                hits = [
+                    b for b in self.server.store.blocks[volume] if query in b["text"].casefold()
+                ]
+                return self.send(200, dict(total=len(hits), blocks=hits[:50]))
+            if url.path == "/api/corpus/summary":
+                return self.send(200, self.server.corpus_info())
             if url.path == "/api/articles/campaign":
                 path = HERE / "campaigns/five-cahiers.json"
                 return self.send(200, json.loads(path.read_text()) if path.exists() else None)
@@ -117,6 +203,7 @@ class Handler(BaseHTTPRequestHandler):
             "/api/articles/decision",
             "/api/articles/preview",
             "/api/articles/export",
+            "/api/articles/rebuild",
         }:
             return self.send(404, {"error": "Not found"})
         try:
@@ -124,6 +211,18 @@ class Handler(BaseHTTPRequestHandler):
             if not 0 < length <= 32768 or self.headers.get("Content-Type") != "application/json":
                 return self.send(400, {"error": "Expected JSON, max 32 KiB"})
             payload = json.loads(self.rfile.read(length))
+            if self.path == "/api/articles/rebuild":
+                from collection import rebuild
+
+                return self.send(
+                    200,
+                    rebuild(
+                        self.server.store,
+                        self.server.articles(),
+                        payload["document_id"],
+                        payload.get("parent_event_id"),
+                    ),
+                )
             if self.path == "/api/articles/preview":
                 result = self.server.articles().preview(payload)
             elif self.path == "/api/articles/decision":

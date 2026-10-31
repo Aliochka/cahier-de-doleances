@@ -7,3 +7,15 @@ Il utilise les primitives documentaires V2 conservées dans `../archives/1789-ex
 Les scripts anciens `extract.py`, `build.py`, etc. restent dans leurs expériences : chacun décrit et peut reproduire un protocole précis. Ne pas les considérer comme une nouvelle chaîne globale et ne pas les exécuter pendant une simple vérification de déplacement.
 
 Les journaux humains sous `../data/private/document-review/` sont prioritaires. Les propositions de segmentation sous `../data/segmentation-proposals/` restent distinctes ; aucune proposition n’a été appliquée pendant la réorganisation.
+
+## Extraction globale
+
+`production.py` exécute la chaîne sur les 1 305 notices avec le registre et les journaux existants. Il réutilise les règles ci-dessus, sans les modifier. Il produit une génération immuable sous `../data/corpus/`, puis l’active seulement après contrôles.
+
+```sh
+python3 1789/extraction/production.py
+python3 1789/extraction/production.py --resume
+python3 1789/extraction/production.py --verify-only 1789/data/corpus/global-corpus-1-<empreinte>
+```
+
+Le bilan réel, les fichiers, les précautions de reprise et les limites documentaires sont dans [../docs/PRODUCTION.md](../docs/PRODUCTION.md). Cette commande produit des textes et des unités documentaires : elle ne calcule pas d’embeddings et ne prépare pas d’index.

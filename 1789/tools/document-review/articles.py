@@ -50,14 +50,40 @@ def intersects(left, right):
 
 
 class Articles:
-    def __init__(self, parent_store, journal=None, directory=INPUT):
+    def __init__(self, parent_store, journal=None, directory=INPUT, override_directory=None):
         self.store = parent_store
         self.log = Journal(journal or PRIVATE / "article-decisions.jsonl")
         if self.log.journal.resolve() == self.store.journal.resolve():
             raise ValueError("Article and Cahiers journals must be distinct")
         self.directory = Path(directory)
+        self.override_directory = (
+            Path(override_directory) if override_directory else PRIVATE / "corpus-overrides"
+        )
+        self._stat_fingerprint = None
         self.fingerprint = None
         self.refresh()
+
+    @staticmethod
+    def record_from_unit(p, u):
+        return dict(
+            id=u["id"],
+            parent_id=p["id"],
+            parent_extent_id=p["extent_id"],
+            type=u["type"],
+            number=u["historical_number"],
+            label=u["label_exact"],
+            number_origin="source_recognition",
+            source_status=u["status"],
+            review_status="codex_examined"
+            if u["status"] == "A"
+            else "automatic_proposal"
+            if u["status"] == "B"
+            else "technical_unclassified",
+            spans=u["text_spans"],
+            origin_ids=[u["id"]],
+            section_id=u["section_id"],
+            last_event_id=None,
+        )
 
     def refresh(self):
         paths = [
@@ -69,7 +95,13 @@ class Articles:
                 "units-C.jsonl.gz",
             ]
         ]
-        fingerprint = sha(canonical({p.name: sha(p.read_bytes()) for p in paths}))
+        override_log = self.override_directory / "rebuilds.jsonl"
+        use_overrides = (self.directory / "complete.json").exists()
+        watch = paths + ([override_log] if use_overrides and override_log.exists() else [])
+        signature = [(str(p), p.stat().st_size, p.stat().st_mtime_ns) for p in watch]
+        if signature == self._stat_fingerprint:
+            return
+        fingerprint = sha(canonical({str(p): sha(p.read_bytes()) for p in watch}))
         if fingerprint == self.fingerprint:
             return
         parents = rows(paths[0])
@@ -78,29 +110,20 @@ class Articles:
         for path in paths[1:]:
             for u in rows(path):
                 p = self.parents[u["parent_id"]]
-                record = dict(
-                    id=u["id"],
-                    parent_id=p["id"],
-                    parent_extent_id=p["extent_id"],
-                    type=u["type"],
-                    number=u["historical_number"],
-                    label=u["label_exact"],
-                    number_origin="source_recognition",
-                    source_status=u["status"],
-                    review_status="codex_examined"
-                    if u["status"] == "A"
-                    else "automatic_proposal"
-                    if u["status"] == "B"
-                    else "technical_unclassified",
-                    spans=u["text_spans"],
-                    origin_ids=[u["id"]],
-                    section_id=u["section_id"],
-                    last_event_id=None,
-                )
+                record = self.record_from_unit(p, u)
                 if record["id"] in self.base[p["id"]]:
                     raise ValueError("Duplicate baseline unit")
                 self.base[p["id"]][u["id"]] = record
-        for p in parents:
+        if use_overrides:
+            from collection import overrides
+
+            for amendment in overrides(self.directory, self.override_directory):
+                p = amendment["parent"]
+                self.parents[p["id"]] = p
+                self.base[p["id"]] = {
+                    u["id"]: self.record_from_unit(p, u) for u in amendment["units"]
+                }
+        for p in self.parents.values():
             source = self.store.sources[p["volume"]]
             if (
                 source.sha256 != p["source"]["source_sha256"]
@@ -109,10 +132,11 @@ class Articles:
                 raise ValueError("Parent/source mismatch")
             self.check(p, list(self.base[p["id"]].values()))
         self.fingerprint = fingerprint
+        self._stat_fingerprint = signature
 
     def parent_version(self, p):
         r = self.store.by_id[p["id"]]
-        state = self.store.state(r)
+        state = self.store.state(r, getattr(self, "_listing_parent_events", None))
         span = state["selected"] or {}
         compatible = (
             not state["stale"] and span.get("start") == p["start"] and span.get("end") == p["end"]
@@ -229,6 +253,8 @@ class Articles:
                     previous[r.get("section_id")] = n
             else:
                 flags[r["id"]].append("Numéro non reconnu ; vérifier le repère original.")
+            if sum(z - a for a, z in r["spans"]) > 12000:
+                flags[r["id"]].append("unusually_long_article_over_12000_chars")
             if not self.text(p, r).strip():
                 flags[r["id"]].append("Texte vide.")
         # Optional proposals flag unreviewed fusions but never invalidate human decisions.
@@ -255,6 +281,14 @@ class Articles:
                 flags[r["id"]].append(
                     "Anciennes décisions liées à une autre version du cahier : réexamen requis."
                 )
+        for marker in p.get("segmentation_alerts", []):
+            for r in articles:
+                if r["review_status"] not in HUMAN and any(
+                    a < marker["start"] < z for a, z in r["spans"]
+                ):
+                    flags[r["id"]].append(
+                        "Fusion potentielle signalée par le segmenteur : " + marker["raw_label"]
+                    )
         return flags
 
     def present(self, p, records, stale_events=None):
@@ -328,31 +362,46 @@ class Articles:
     def listing(self):
         self.refresh()
         events = self.log.history()
+        self._listing_parent_events = self.store.latest()
         result = []
         for key in self.parents:
             p, records, history, head, stale = self.state(key, events)
-            actual = self.present(p, list(records.values()), stale)
+            actual = list(records.values())
+            version = self.parent_version(p)
             result.append(
                 dict(
                     id=key,
                     title=p["metadata"]["title"],
                     volume=p["volume"],
                     persee_id=p["persee_id"],
-                    parent_ready=self.parent_version(p)["ready"],
+                    parent_ready=version["ready"],
+                    boundary_class="human_validated"
+                    if version["ready"]
+                    else p.get("boundary_class", "uncertain"),
+                    document_kind=p.get("document_kind", "cahier_autonome_probable"),
+                    documentary_anomalies=p.get("anomalies", []),
                     articles=sum(r["type"] == "article" for r in actual),
-                    human_reviewed=sum(r["human_validated"] for r in actual),
+                    human_reviewed=sum(
+                        r["review_status"] in HUMAN and version["ready"] and not stale
+                        for r in actual
+                    ),
                     proposed_articles=sum(
                         r["type"] == "article" and r["source_status"] == "B" for r in actual
                     ),
                     longest_technical_passage=max(
-                        (len(r["text"]) for r in actual if r["type"] == "technical_passage"),
+                        (
+                            sum(z - a for a, z in r["spans"])
+                            for r in actual
+                            if r["type"] == "technical_passage"
+                        ),
                         default=0,
                     ),
-                    uncertain=sum(r["validation_status"] == "uncertain" for r in actual),
+                    uncertain=sum(r["review_status"] == "uncertain" for r in actual),
                     stale_decisions=len(stale),
                     units=len(actual),
                 )
             )
+        self._listing_parent_events = None
         return result
 
     def document(self, key):
@@ -362,18 +411,26 @@ class Articles:
         return dict(
             segmentation_comparison=comparison(p),
             parent={
-                k: p[k]
-                for k in [
-                    "id",
-                    "extent_id",
-                    "volume",
-                    "metadata",
-                    "source",
-                    "start",
-                    "end",
-                    "full_text",
-                    "sections",
-                ]
+                "boundary_class": "human_validated"
+                if self.parent_version(p)["ready"]
+                else p.get("boundary_class", "uncertain"),
+                **{
+                    k: p[k] for k in ["document_kind", "anomalies", "segmentation_policy"] if k in p
+                },
+                **{
+                    k: p[k]
+                    for k in [
+                        "id",
+                        "extent_id",
+                        "volume",
+                        "metadata",
+                        "source",
+                        "start",
+                        "end",
+                        "full_text",
+                        "sections",
+                    ]
+                },
             },
             version=self.version(p),
             previous_event_id=head,
@@ -388,7 +445,7 @@ class Articles:
             stale_events=stale,
             warning=None
             if self.parent_version(p)["ready"]
-            else "Les frontières du cahier sont incertaines ou ont changé. Régénérez le corpus et réexaminez les articles avant validation ou indexation.",
+            else "Frontières non validées humainement ou périmètre modifié. Vérifiez le cahier, puis reconstruisez ce document si nécessaire avant de valider ses articles.",
         )
 
     def _new(self, p, kind, spans, origins, number=None, section=None):

@@ -12,7 +12,7 @@ Ouvrir **http://127.0.0.1:1789** dans un navigateur. Pour arrêter : Ctrl-C. Si 
 
 ## Effectuer une vérification
 
-1. La liste affiche par défaut les **30 dossiers préparés**. Décocher « Lot initial de 30 » pour parcourir tout le registre. Utiliser la recherche, le filtre de statut ou « Priorité haute ».
+1. Avec une génération globale active, la liste affiche par défaut les **1 305 notices**. Cocher « Lot initial de 30 » pour retrouver les dossiers initiaux. Un filtre de volume est disponible. Sans génération globale, le comportement initial est conservé. Utiliser la recherche, le filtre de statut ou « Priorité haute ».
 2. Ouvrir un dossier : titre, notice Persée, pages, numérisation Stanford, identité, état des frontières et alertes apparaissent au-dessus du texte. Les propositions originales, contrôles antérieurs et autres candidats restent consultables. Les alertes sont traduites et dédupliquées ; elles signalent un point à vérifier, pas nécessairement une erreur. Leurs codes bruts restent accessibles dans les détails techniques.
 3. Examiner les panneaux « Début » et « Fin ». Les blocs choisis sont surlignés ; leurs ID exacts sont affichés. « Élargir les deux contextes » augmente progressivement le nombre de blocs complets, jusqu’à 2 000 de chaque côté. Aucun texte de bloc n’est tronqué. Les alternatives permettent de déplacer l’ancre de début vers un autre candidat existant.
 4. Pour corriger, utiliser « Choisir comme début » ou « Choisir comme fin » sur un bloc. Le dernier bloc choisi fait partie du cahier. La sélection est convertie côté Python en positions exactes ; aucune manipulation d’offset ou de XML n’est nécessaire.
@@ -35,16 +35,21 @@ Le compteur d’activité mesure approximativement le temps où la fenêtre est 
 
 Pour un essai isolé, utiliser `--journal /tmp/mon-essai-review/decisions.jsonl`. Ne pas mélanger ces décisions synthétiques avec le vrai journal.
 
-## Régénérer le corpus après vérification
+## Appliquer une frontière validée à la collection globale
+
+Après vérification d’un parent, utiliser **Reconstruire** pour appliquer explicitement les frontières humaines à ce seul document, puis ouvrir ses articles. Les propositions de base sont conservées ; une version locale et un événement système sont ajoutés dans `1789/data/private/document-review/corpus-overrides/`. L’opération ne valide aucun article. Elle nécessite une génération globale terminée et une validation du parent à jour.
+
+Un document ayant déjà des décisions d’articles garde ses unités si son périmètre est compatible. Si le périmètre a changé, l’outil refuse de transférer silencieusement ces décisions et demande une réconciliation explicite. Les anciennes validations restent conservées et sont signalées comme incompatibles.
+
+Le mode Articles propose une recherche par titre ou identifiant, un filtre de volume et de statut des frontières, les documents à examiner, ainsi qu’un accès aux notices sans texte extrait. **Examiner les frontières** revient au même dossier dans le mode Cahiers. **Rechercher un bloc dans le volume** permet de retrouver un bloc exact en dehors des propositions disponibles, sans manipuler le XML.
+
+Pour régénérer la collection complète après des décisions :
 
 ```sh
-/usr/bin/python3 1789/archives/1789-first-article-corpus/build.py
-/usr/bin/python3 1789/archives/1789-first-article-corpus/verify.py
+python3 1789/extraction/production.py
 ```
 
-Les décisions humaines priment sur les contrôles Codex. Les dossiers incertains, bloqués ou liés à une ancienne source sont retirés du nouvel export et consignés dans `withheld.json`. Une correction produit une nouvelle version de périmètre et des identifiants d’unités déterministes. **Valider le parent ne valide pas automatiquement ses articles.** L’export reste limité aux 30 dossiers sélectionnés ; vérifier une autre notice ne déclenche aucune extraction massive.
-
-Voir [le rapport du corpus](../../archives/1789-first-article-corpus/README.md) pour les formats, limites et résultats.
+La génération précédente et les journaux restent conservés. Les anciens scripts du premier corpus restent des reproductions historiques, pas la procédure actuelle. Voir [le bilan de production](../../docs/PRODUCTION.md) pour les fichiers, contrôles et limites. **Valider le parent ne valide pas automatiquement ses articles.**
 
 ## Tests
 
@@ -71,7 +76,7 @@ Le serveur local impose Host/Origin de boucle locale et un jeton pour chaque éc
 
 Le même serveur propose désormais **Cahiers** et **Articles**. Redémarrer le serveur Python après la mise à jour du logiciel, puis recharger le navigateur. Le mode Cahiers et son journal restent conservés.
 
-Le mode Articles lit les 29 parents validés et les 719 articles du premier corpus. Les unités validées ou corrigées humainement se distinguent par un fond vert, un filet latéral et un badge ✓ explicite. Un simple examen Codex ne reçoit pas ce marquage. Lire les textes en continu, puis utiliser **Valider** sur une unité ou ouvrir **Validation rapide par groupes** pour sélectionner explicitement une suite après lecture. Les anomalies et incertitudes bloquent la validation groupée. **Annuler la dernière décision** reste disponible.
+Le mode Articles lit la génération globale active (1 237 textes à la production initiale), avec reprise des 333 articles humains. Sans corpus global, il conserve le premier lot de 29 parents. Les unités validées ou corrigées humainement se distinguent par un fond vert, un filet latéral et un badge ✓ explicite. Un simple examen Codex ne reçoit pas ce marquage. Lire les textes en continu, puis utiliser **Valider** sur une unité ou ouvrir **Validation rapide par groupes** pour sélectionner explicitement une suite après lecture. Les anomalies et incertitudes bloquent la validation groupée. **Annuler la dernière décision** reste disponible.
 
 L’éditeur partagé permet de choisir le début/la fin ou le point de séparation dans le texte intégral en lecture seule, de fusionner des fragments, d’ajouter un article manquant, d’attribuer un numéro et de classer les C. La prévisualisation montre le résultat avant enregistrement. Classer une prose revendicative ne la transforme pas en article historique.
 
