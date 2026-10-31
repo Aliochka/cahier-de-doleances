@@ -1,5 +1,7 @@
 # Corpus global de travail — 1789
 
+> Bilan de la première génération conservé pour comparaison. La génération courante est décrite dans [BOUNDARY-CORRECTIONS.md](BOUNDARY-CORRECTIONS.md) : 1 244 textes, 38 553 articles, 29 frontières et 333 articles humains préservés.
+
 L’extraction des **1 305 notices** a été exécutée sur les six XML Stanford figés à la révision `926fd3cd986a3c3d411e93d1845fff6475cb2602`. Elle produit **1 237 textes parents**, dont **1 201 cahiers autonomes probables**, et **38 186 articles**. Les **29 validations humaines de parents et les 333 articles humains** ont été conservés et comparés aux décisions originales, sans écrire dans leurs journaux.
 
 Les autres résultats restent des propositions documentaires. Ce corpus n’a été ni publié ni indexé. Aucun embedding, OCR, modèle ou accès PostgreSQL n’a été utilisé.

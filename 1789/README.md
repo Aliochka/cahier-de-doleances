@@ -1,6 +1,6 @@
 # Corpus historique de 1789
 
-Espace unique de travail pour les cahiers de doléances : sources, registre, corpus expérimental, extraction, vérification humaine et expériences antérieures. L’extraction globale est produite : **1 305 notices traitées, 1 237 textes, 38 186 articles**, dont 333 validés/corrigés humainement. Voir [le bilan de production](docs/PRODUCTION.md) pour les statuts, limites et commandes.
+Espace unique de travail pour les cahiers de doléances : sources, registre, corpus expérimental, extraction, vérification humaine et expériences antérieures. L’extraction globale est produite : **1 305 notices traitées, 1 244 textes, 38 553 articles**, dont 333 validés/corrigés humainement. Voir [les corrections de frontières](docs/BOUNDARY-CORRECTIONS.md) et [le bilan initial de production](docs/PRODUCTION.md) pour les statuts, limites et commandes.
 
 ```text
 1789/

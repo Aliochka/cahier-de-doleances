@@ -68,3 +68,6 @@ __pycache__/
 
 # Small production summary and test outcomes; no raw texts or private decisions.
 !/docs/production-checks.json
+
+# Aggregate documentary correction outcomes; no source texts or private events.
+!/docs/boundary-checks.json

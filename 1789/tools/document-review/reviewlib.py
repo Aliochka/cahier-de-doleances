@@ -59,6 +59,7 @@ class Conflict(ValueError):
 
 class Store:
     def __init__(self, journal=None):
+        self.automatic_corrections = {}
         self.records = rows(REGISTRY)
         self.by_id = {r["id"]: r for r in self.records}
         self.registry_sha = sha(REGISTRY.read_bytes())
@@ -162,6 +163,15 @@ class Store:
         )
 
     def base(self, record):
+        correction = self.automatic_corrections.get(record["id"])
+        if correction and correction["changed"]:
+            if correction["source_sha256"] != self.sources[record["metadata"]["volume"]].sha256:
+                raise ValueError("Documentary correction/source fingerprint mismatch")
+            return (
+                correction["selected"],
+                "proposed",
+                correction["version"] + ":source_evidenced_proposal",
+            )
         if record["id"] in self.references:
             ref = self.references[record["id"]]
             if ref["source_sha256"] != self.sources[record["metadata"]["volume"]].sha256:
