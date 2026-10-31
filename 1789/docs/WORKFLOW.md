@@ -2,7 +2,7 @@
 
 ## Lire et vérifier
 
-Lancer `python3 1789/review.py` depuis la racine. L’interface utilise le registre, le corpus initial et les journaux existants. Une validation humaine n’est jamais recréée à partir d’une annotation Codex ou d’une proposition OCR.
+Lancer `python3 1789/review.py` depuis la racine. L’interface utilise le registre, la génération globale active et les journaux existants. [PRODUCTION.md](PRODUCTION.md) décrit le corpus produit et sa reproduction. Une validation humaine n’est jamais recréée à partir d’une annotation Codex ou d’une proposition OCR.
 
 L’organisation reste : **notice documentaire → parent établi → article/section/passage → futur segment vectoriel**. La préparation de l’extraction globale n’autorise pas à traiter des notices d’annexe ou des parents incertains comme des cahiers complets.
 
@@ -13,6 +13,7 @@ L’organisation reste : **notice documentaire → parent établi → article/se
 | Transcriptions intégrales figées | `1789/sources/stanford/926fd3cd986a3c3d411e93d1845fff6475cb2602/` |
 | Métadonnées Persée déjà collectées | `1789/sources/persee/` |
 | Registre documentaire | `1789/data/registry/` |
+| Corpus global versionné et sélection active | `1789/data/corpus/` |
 | Parents et unités initiaux | `1789/data/article-corpus/` |
 | Journaux Cahiers et Articles | `1789/data/private/document-review/` |
 | Exports de vérification | `1789/data/review-exports/` |
@@ -22,7 +23,7 @@ L’organisation reste : **notice documentaire → parent établi → article/se
 
 Les instantanés privés propres à un ancien audit restent dans son sous-dossier `.local/`, ignoré par Git. Ils sont des références d’expérience, pas le journal actif. Les décisions courantes ne doivent être écrites que dans les journaux actifs.
 
-## Avant une extraction globale ultérieure
+## Reproduire une génération globale
 
 1. Sauvegarder les journaux et les sources nécessaires.
 2. Figer une version du registre et des frontières retenues.
@@ -31,7 +32,7 @@ Les instantanés privés propres à un ancien audit restent dans son sous-dossie
 5. Évaluer anomalies, couverture et articles non signalés selon le protocole du bilan humain.
 6. Distinguer les articles historiques, passages techniques et segments vectoriels ; conserver les statuts et l’accès au parent.
 
-Aucune de ces opérations d’extraction ou d’indexation n’est effectuée par le déplacement de dossiers.
+La commande actuelle est `python3 1789/extraction/production.py`. Elle ne prépare aucune indexation. L’export de l’interface applique les décisions courantes sans modifier les générations immuables.
 
 ## Sauvegardes et Git
 

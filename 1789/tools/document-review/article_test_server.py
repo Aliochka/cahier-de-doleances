@@ -4,6 +4,7 @@ import argparse
 import tempfile
 from pathlib import Path
 
+from articles import INPUT
 from reviewlib import Store
 from server import ReviewServer
 from test_articles import synthetic_parents
@@ -17,7 +18,14 @@ def main():
         root = Path(directory)
         store = Store(root / "parents.jsonl")
         synthetic_parents(store, store.journal)
-        server = ReviewServer(args.port, store, root / "articles.jsonl", root / "exports")
+        server = ReviewServer(
+            args.port,
+            store,
+            root / "articles.jsonl",
+            root / "exports",
+            corpus_directory=INPUT,
+            override_directory=root / "overrides",
+        )
         print(f"Synthetic fixture ready: http://127.0.0.1:{server.server_port}", flush=True)
         try:
             server.serve_forever()

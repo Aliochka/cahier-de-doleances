@@ -1,0 +1,223 @@
+{
+  "generation": "global-corpus-1-95b58b690be5",
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "summary": {
+    "version": "global-corpus-1",
+    "notices_examined": 1305,
+    "document_kinds": {
+      "cahier_autonome_probable": 1225,
+      "document_associe": 21,
+      "proces_verbal": 7,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "autonomous_probable": 1225,
+    "texts_extracted": 1237,
+    "autonomous_texts_extracted": 1201,
+    "boundary_classes": {
+      "human_validated": 29,
+      "automatic_no_alert": 805,
+      "automatic_suspect": 402,
+      "uncertain": 1
+    },
+    "unresolved_notices": 68,
+    "absence_notices": 4,
+    "unresolved_without_usable_span": 64,
+    "counts": {
+      "technical_passage": 41322,
+      "article": 38186,
+      "human_articles": 333,
+      "articles_with_anomalies": 4698,
+      "section": 1311,
+      "automatic_articles": 37853
+    },
+    "by_volume": {
+      "1": {
+        "notices": 24,
+        "texts": 24,
+        "autonomous_texts": 24,
+        "unresolved": 0,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_no_alert": 12,
+          "automatic_suspect": 7
+        },
+        "technical_passage": 1224,
+        "article": 1146,
+        "human_articles": 143,
+        "articles_with_anomalies": 175,
+        "section": 23,
+        "automatic_articles": 1003
+      },
+      "2": {
+        "notices": 181,
+        "texts": 176,
+        "autonomous_texts": 171,
+        "unresolved": 5,
+        "boundary_classes": {
+          "automatic_no_alert": 101,
+          "human_validated": 5,
+          "automatic_suspect": 70
+        },
+        "technical_passage": 8727,
+        "article": 8187,
+        "automatic_articles": 8102,
+        "articles_with_anomalies": 1440,
+        "section": 106,
+        "human_articles": 85
+      },
+      "3": {
+        "notices": 223,
+        "texts": 214,
+        "autonomous_texts": 198,
+        "unresolved": 9,
+        "boundary_classes": {
+          "automatic_no_alert": 124,
+          "automatic_suspect": 85,
+          "human_validated": 4,
+          "uncertain": 1
+        },
+        "technical_passage": 7733,
+        "article": 7060,
+        "automatic_articles": 7049,
+        "articles_with_anomalies": 1193,
+        "section": 474,
+        "human_articles": 11
+      },
+      "4": {
+        "notices": 347,
+        "texts": 342,
+        "autonomous_texts": 342,
+        "unresolved": 5,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_suspect": 82,
+          "automatic_no_alert": 255
+        },
+        "technical_passage": 8449,
+        "article": 7706,
+        "human_articles": 33,
+        "automatic_articles": 7673,
+        "articles_with_anomalies": 701,
+        "section": 212
+      },
+      "5": {
+        "notices": 298,
+        "texts": 287,
+        "autonomous_texts": 285,
+        "unresolved": 11,
+        "boundary_classes": {
+          "automatic_no_alert": 184,
+          "automatic_suspect": 98,
+          "human_validated": 5
+        },
+        "technical_passage": 8944,
+        "section": 345,
+        "article": 8293,
+        "automatic_articles": 8275,
+        "human_articles": 18,
+        "articles_with_anomalies": 480
+      },
+      "6": {
+        "notices": 232,
+        "texts": 194,
+        "autonomous_texts": 181,
+        "unresolved": 38,
+        "boundary_classes": {
+          "automatic_suspect": 60,
+          "human_validated": 5,
+          "automatic_no_alert": 129
+        },
+        "technical_passage": 6245,
+        "article": 5794,
+        "automatic_articles": 5751,
+        "articles_with_anomalies": 709,
+        "human_articles": 43,
+        "section": 151
+      }
+    },
+    "document_overlap_pairs": 46,
+    "duplicate_source_span_groups": 377,
+    "total_parent_characters": 30556018,
+    "total_parent_utf8_bytes": 31353097,
+    "unassigned_source_characters": 10091317,
+    "review_queue_entries": 5177,
+    "elapsed_seconds": 43.74343966200104,
+    "no_embeddings": true,
+    "no_index_preparation": true
+  },
+  "tests": {
+    "python_tests_passed": 39,
+    "ruff": "passed",
+    "javascript_syntax": "passed",
+    "git_diff_check": "passed",
+    "protected_input_files_unchanged": 19,
+    "real_parent_and_article_journals": "byte-identical to production snapshots",
+    "full_corpus_verify_only": "passed",
+    "legacy_browser": {
+      "passed": true,
+      "Pierrelez_nine_articles": true,
+      "group_confirmation": true,
+      "group_undo": true,
+      "human_visual_markers": true,
+      "save_reload": true,
+      "split_inside_paragraph": true,
+      "merge_preserves_text": true,
+      "C_classification_not_article": true,
+      "missing_article_explicit": true,
+      "uncertain_not_batch_validated": true,
+      "Ferrieres_rubrics": true,
+      "B_dossier": "Cahier du clergé du bailliage d'Alençon",
+      "long_C_dossier": "Cahier de la noblesse de la sénéchaussée d'Agen",
+      "viewports": [
+        {
+          "width": 320,
+          "no_horizontal_overflow": true
+        },
+        {
+          "width": 375,
+          "no_horizontal_overflow": true
+        },
+        {
+          "width": 768,
+          "no_horizontal_overflow": true
+        },
+        {
+          "width": 1280,
+          "no_horizontal_overflow": true
+        }
+      ],
+      "text_200_percent": true,
+      "keyboard": true,
+      "Unicode_codepoints": true,
+      "cahiers_mode_preserved": true,
+      "structured_export": true,
+      "synthetic_journals_only": true,
+      "js_errors": []
+    },
+    "global_browser": {
+      "passed": true,
+      "notices": 1305,
+      "full_collection": true,
+      "original_human_articles_preserved": 333,
+      "Pecqueuse_articles": 38,
+      "volume_filter": true,
+      "title_search": true,
+      "unresolved_access": true,
+      "source_search": true,
+      "parent_validation_then_rebuild": true,
+      "article_validation_reload": true,
+      "keyboard": true,
+      "viewports": [
+        320,
+        375,
+        768,
+        1280
+      ],
+      "text_zoom_200_percent": true,
+      "js_errors": [],
+      "temporary_journals_only": true
+    }
+  }
+}

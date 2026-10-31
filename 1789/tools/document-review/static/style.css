@@ -8,3 +8,7 @@ body{overflow-wrap:anywhere}
 
 #segmentation-comparison { margin-block: 1rem; padding: 1rem; border: 1px solid currentColor; }
 .segmentation-proposal { padding-block: .75rem; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+
+.notice,#article-unresolved-list li{overflow-wrap:anywhere}#articles-panel .filters>label{min-width:0;max-width:100%}
+
+#article-meta{overflow-wrap:anywhere}

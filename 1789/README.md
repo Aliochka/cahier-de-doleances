@@ -1,6 +1,6 @@
 # Corpus historique de 1789
 
-Espace unique de travail pour les cahiers de doléances : sources, registre, corpus expérimental, extraction, vérification humaine et expériences antérieures. **La réorganisation ne lance pas l’extraction globale.**
+Espace unique de travail pour les cahiers de doléances : sources, registre, corpus expérimental, extraction, vérification humaine et expériences antérieures. L’extraction globale est produite : **1 305 notices traitées, 1 237 textes, 38 186 articles**, dont 333 validés/corrigés humainement. Voir [le bilan de production](docs/PRODUCTION.md) pour les statuts, limites et commandes.
 
 ```text
 1789/
@@ -11,11 +11,13 @@ Espace unique de travail pour les cahiers de doléances : sources, registre, cor
 │   └── persee/                  # caches des métadonnées déjà collectées
 ├── data/
 │   ├── registry/                # registre des 1 305 notices et rapprochements
+│   ├── corpus/                  # générations globales et sélection current.json
 │   ├── article-corpus/          # référence initiale : 29 parents, 719 articles
 │   ├── review-exports/          # exports de l’outil, avec statuts explicites
 │   ├── segmentation-proposals/ # comparaisons et propositions, séparées des décisions
 │   └── private/document-review/ # journaux humains et sessions, jamais dans Git
 ├── extraction/
+│   ├── production.py           # extraction globale, reprise et contrôles
 │   └── segmentation.py         # segmenteur existant, inchangé
 ├── tools/document-review/       # interface locale, tests et campagnes
 ├── review.py                    # lanceur de cette interface
@@ -32,12 +34,13 @@ Depuis la racine du dépôt :
 python3 1789/review.py
 ```
 
-Ouvrir **http://127.0.0.1:1789**. Pour arrêter : Ctrl-C. Le serveur reste strictement lié à `127.0.0.1`. Le lanceur délègue au serveur existant ; les modes Cahiers/Articles, l’historique et les campagnes ne changent pas. En cas de serveur démarré avant le déplacement, l’arrêter puis le relancer avec cette commande avant de recharger le navigateur.
+Ouvrir **http://127.0.0.1:1789**. Pour arrêter : Ctrl-C. Le serveur reste strictement lié à `127.0.0.1`. Le serveur sélectionne la génération globale active. Les modes Cahiers/Articles, l’historique et les campagnes sont conservés ; les filtres permettent de parcourir les six volumes. En cas de serveur démarré avant le déplacement, l’arrêter puis le relancer avec cette commande avant de recharger le navigateur.
 
 Les instructions détaillées sont dans [tools/document-review/README.md](tools/document-review/README.md). La campagne de cinq cahiers reste dans [tools/document-review/campaigns/](tools/document-review/campaigns/README.md).
 
 ## Ce qui sert au travail actuel
 
+- `data/corpus/current.json` : sélection de la génération globale ; ses textes, unités et inventaire complet sont décrits dans [docs/PRODUCTION.md](docs/PRODUCTION.md).
 - `data/registry/registry.jsonl.gz` : 1 305 notices ; ne pas les assimiler à autant de cahiers autonomes certifiés.
 - `data/article-corpus/parents.jsonl.gz` et `units-A/B/C.jsonl.gz` : corpus initial conservé, sans réécriture par les décisions ultérieures.
 - `data/private/document-review/decisions.jsonl` : décisions des frontières parentales.
@@ -46,7 +49,7 @@ Les instructions détaillées sont dans [tools/document-review/README.md](tools/
 - `data/segmentation-proposals/` : propositions OCR et signalements documentaires, jamais substitués silencieusement aux validations.
 - `extraction/segmentation.py` : module existant, pas une commande d’extraction globale. Il réutilise les primitives historiques V2 et le lecteur Stanford ; ces dépendances sont conservées dans les archives.
 
-Le futur corpus global devra utiliser un nouveau dossier versionné sous `data/corpus/`, sans écraser `article-corpus/` ni les journaux. Aucun dossier de résultats globaux n’est rempli pendant cette migration.
+Le corpus global utilise des générations versionnées sous `data/corpus/`, sans écraser `article-corpus/` ni les journaux. Les 29 parents initiaux et leurs identifiants sont conservés pour reprendre les décisions humaines.
 
 ## Archives et conclusions
 
