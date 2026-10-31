@@ -76,7 +76,7 @@ Le serveur local impose Host/Origin de boucle locale et un jeton pour chaque éc
 
 Le même serveur propose désormais **Cahiers** et **Articles**. Redémarrer le serveur Python après la mise à jour du logiciel, puis recharger le navigateur. Le mode Cahiers et son journal restent conservés.
 
-Le mode Articles lit la génération globale active (1 244 textes après correction des frontières), avec reprise des 333 articles humains. Sans corpus global, il conserve le premier lot de 29 parents. Les unités validées ou corrigées humainement se distinguent par un fond vert, un filet latéral et un badge ✓ explicite. Un simple examen Codex ne reçoit pas ce marquage. Lire les textes en continu, puis utiliser **Valider** sur une unité ou ouvrir **Validation rapide par groupes** pour sélectionner explicitement une suite après lecture. Les anomalies et incertitudes bloquent la validation groupée. **Annuler la dernière décision** reste disponible.
+Le mode Articles lit la génération globale active (1 267 textes après finalisation documentaire), avec reprise des 333 articles humains. Sans corpus global, il conserve le premier lot de 29 parents. Les unités validées ou corrigées humainement se distinguent par un fond vert, un filet latéral et un badge ✓ explicite. Un simple examen Codex ne reçoit pas ce marquage. Lire les textes en continu, puis utiliser **Valider** sur une unité ou ouvrir **Validation rapide par groupes** pour sélectionner explicitement une suite après lecture. Les anomalies et incertitudes bloquent la validation groupée. **Annuler la dernière décision** reste disponible.
 
 L’éditeur partagé permet de choisir le début/la fin ou le point de séparation dans le texte intégral en lecture seule, de fusionner des fragments, d’ajouter un article manquant, d’attribuer un numéro et de classer les C. La prévisualisation montre le résultat avant enregistrement. Classer une prose revendicative ne la transforme pas en article historique.
 
@@ -103,3 +103,11 @@ Après redémarrage, le menu **Contrôle documentaire** propose les priorités h
 Un lien `/?document=<identifiant du registre>` ouvre directement un dossier. Les limites issues des corrections déterministes sont des propositions ; l’interface affiche leurs explications et conserve leurs sources dans les détails. Les décisions humaines sont toujours prioritaires. Les alertes historiques expliquées ne sont pas effacées du registre original.
 
 Voir [le bilan des frontières](../../docs/BOUNDARY-CORRECTIONS.md), avec les chiffres, exceptions et liens vers les dossiers restants.
+
+## Contrôle humain des 12 cahiers
+
+Dans **Cahiers**, la rubrique **Contrôle des frontières : 12 cahiers tirés au sort** donne accès à deux dossiers par volume. Ouvrir `http://127.0.0.1:1789/?boundary_sample=1` ou cocher **Seulement les 12 cahiers du tirage**. Les boutons suivant/précédent suivent alors l’ordre figé. Utiliser le formulaire habituel pour examiner les deux extrémités ; aucune validation n’est créée en ouvrant les dossiers.
+
+Les cinq notices des trois blocages ciblés s’ouvrent avec `?finalization_blockers=1`. Cette vue évite de parcourir toute l’ancienne file technique. Les décisions existantes sont conservées.
+
+Le tirage, la graine, les références et ses limites sont détaillés dans [la finalisation documentaire](../../docs/DOCUMENTARY-FINALIZATION.md). `campaigns/draw_boundaries.py --verify` reproduit les choix à partir des données et du journal figés, même après de nouvelles décisions humaines. Le lot ne se renouvelle pas quand un dossier paraît difficile.

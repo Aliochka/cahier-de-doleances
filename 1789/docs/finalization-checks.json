@@ -1,0 +1,600 @@
+{
+  "before_generation": "global-corpus-2-45273d688b59",
+  "after_generation": "global-corpus-3-d0df8e19ee01",
+  "before": {
+    "version": "global-corpus-2",
+    "documentary_repairs": {
+      "changed_documents": 26,
+      "actions": {
+        "stop_before_identified_next_cahier": 14,
+        "unique_explicit_opening_name_estate_and_page": 12
+      },
+      "resolved_alerts": {
+        "new_control_boundary_incorrect": 12,
+        "end_page_mismatch_requires_review": 101,
+        "identity_ambigu": 44,
+        "same_primary_anchor_multiple_notices": 11
+      },
+      "documents_with_conflicts": 16
+    },
+    "documentary_review_levels": {
+      "high": 144,
+      "medium": 183,
+      "low": 946,
+      "none": 32
+    },
+    "notices_examined": 1305,
+    "document_kinds": {
+      "cahier_autonome_probable": 1225,
+      "document_associe": 21,
+      "proces_verbal": 7,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "autonomous_probable": 1225,
+    "texts_extracted": 1244,
+    "autonomous_texts_extracted": 1202,
+    "boundary_classes": {
+      "human_validated": 29,
+      "automatic_no_alert": 932,
+      "automatic_suspect": 282,
+      "uncertain": 1
+    },
+    "unresolved_notices": 61,
+    "absence_notices": 4,
+    "unresolved_without_usable_span": 57,
+    "counts": {
+      "technical_passage": 41681,
+      "article": 38553,
+      "human_articles": 333,
+      "articles_with_anomalies": 4678,
+      "section": 1222,
+      "automatic_articles": 38220
+    },
+    "by_volume": {
+      "1": {
+        "notices": 24,
+        "texts": 24,
+        "autonomous_texts": 24,
+        "unresolved": 0,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_no_alert": 16,
+          "automatic_suspect": 3
+        },
+        "technical_passage": 1127,
+        "article": 1055,
+        "human_articles": 143,
+        "articles_with_anomalies": 161,
+        "section": 23,
+        "automatic_articles": 912
+      },
+      "2": {
+        "notices": 181,
+        "texts": 178,
+        "autonomous_texts": 171,
+        "unresolved": 3,
+        "boundary_classes": {
+          "automatic_no_alert": 111,
+          "human_validated": 5,
+          "automatic_suspect": 62
+        },
+        "technical_passage": 8658,
+        "article": 8117,
+        "automatic_articles": 8032,
+        "articles_with_anomalies": 1437,
+        "section": 123,
+        "human_articles": 85
+      },
+      "3": {
+        "notices": 223,
+        "texts": 214,
+        "autonomous_texts": 198,
+        "unresolved": 9,
+        "boundary_classes": {
+          "automatic_no_alert": 146,
+          "automatic_suspect": 63,
+          "human_validated": 4,
+          "uncertain": 1
+        },
+        "technical_passage": 7567,
+        "article": 6924,
+        "automatic_articles": 6913,
+        "articles_with_anomalies": 1159,
+        "section": 411,
+        "human_articles": 11
+      },
+      "4": {
+        "notices": 347,
+        "texts": 342,
+        "autonomous_texts": 342,
+        "unresolved": 5,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_suspect": 50,
+          "automatic_no_alert": 287
+        },
+        "technical_passage": 8670,
+        "article": 7925,
+        "human_articles": 33,
+        "automatic_articles": 7892,
+        "articles_with_anomalies": 681,
+        "section": 189
+      },
+      "5": {
+        "notices": 298,
+        "texts": 290,
+        "autonomous_texts": 285,
+        "unresolved": 8,
+        "boundary_classes": {
+          "automatic_no_alert": 228,
+          "human_validated": 5,
+          "automatic_suspect": 57
+        },
+        "technical_passage": 9224,
+        "section": 331,
+        "article": 8556,
+        "automatic_articles": 8538,
+        "human_articles": 18,
+        "articles_with_anomalies": 499
+      },
+      "6": {
+        "notices": 232,
+        "texts": 196,
+        "autonomous_texts": 182,
+        "unresolved": 36,
+        "boundary_classes": {
+          "automatic_no_alert": 144,
+          "human_validated": 5,
+          "automatic_suspect": 47
+        },
+        "technical_passage": 6435,
+        "article": 5976,
+        "automatic_articles": 5933,
+        "articles_with_anomalies": 741,
+        "human_articles": 43,
+        "section": 145
+      }
+    },
+    "document_overlap_pairs": 16,
+    "duplicate_source_span_groups": 73,
+    "total_parent_characters": 30230159,
+    "total_parent_utf8_bytes": 31020647,
+    "unassigned_source_characters": 9822095,
+    "review_queue_entries": 5031,
+    "elapsed_seconds": 48.235902608998,
+    "no_embeddings": true,
+    "no_index_preparation": true
+  },
+  "after": {
+    "version": "global-corpus-3",
+    "documentary_repairs": {
+      "changed_documents": 73,
+      "actions": {
+        "stop_before_identified_next_cahier": 14,
+        "scoped_documentary_source_examination": 48,
+        "unique_explicit_opening_name_estate_and_page": 12
+      },
+      "resolved_alerts": {
+        "new_control_boundary_incorrect": 12,
+        "end_page_mismatch_requires_review": 124,
+        "identity_ambigu": 44,
+        "same_primary_anchor_multiple_notices": 16
+      },
+      "documents_with_conflicts": 15
+    },
+    "documentary_review_levels": {
+      "high": 98,
+      "medium": 180,
+      "low": 995,
+      "none": 32
+    },
+    "notices_examined": 1305,
+    "document_kinds": {
+      "cahier_autonome_probable": 1224,
+      "document_associe": 21,
+      "proces_verbal": 8,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "autonomous_probable": 1224,
+    "texts_extracted": 1267,
+    "autonomous_texts_extracted": 1224,
+    "boundary_classes": {
+      "human_validated": 29,
+      "automatic_no_alert": 981,
+      "automatic_suspect": 256,
+      "uncertain": 1
+    },
+    "unresolved_notices": 38,
+    "absence_notices": 4,
+    "unresolved_without_usable_span": 34,
+    "counts": {
+      "technical_passage": 42262,
+      "article": 39072,
+      "human_articles": 333,
+      "articles_with_anomalies": 4723,
+      "section": 1231,
+      "automatic_articles": 38739
+    },
+    "by_volume": {
+      "1": {
+        "notices": 24,
+        "texts": 24,
+        "autonomous_texts": 24,
+        "unresolved": 0,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_no_alert": 16,
+          "automatic_suspect": 3
+        },
+        "technical_passage": 1127,
+        "article": 1055,
+        "human_articles": 143,
+        "articles_with_anomalies": 161,
+        "section": 23,
+        "automatic_articles": 912
+      },
+      "2": {
+        "notices": 181,
+        "texts": 181,
+        "autonomous_texts": 174,
+        "unresolved": 0,
+        "boundary_classes": {
+          "automatic_no_alert": 122,
+          "human_validated": 5,
+          "automatic_suspect": 54
+        },
+        "technical_passage": 8852,
+        "article": 8310,
+        "automatic_articles": 8225,
+        "articles_with_anomalies": 1482,
+        "section": 129,
+        "human_articles": 85
+      },
+      "3": {
+        "notices": 223,
+        "texts": 220,
+        "autonomous_texts": 204,
+        "unresolved": 3,
+        "boundary_classes": {
+          "automatic_no_alert": 160,
+          "human_validated": 4,
+          "automatic_suspect": 55,
+          "uncertain": 1
+        },
+        "technical_passage": 7589,
+        "article": 6947,
+        "automatic_articles": 6936,
+        "articles_with_anomalies": 1141,
+        "section": 411,
+        "human_articles": 11
+      },
+      "4": {
+        "notices": 347,
+        "texts": 346,
+        "autonomous_texts": 346,
+        "unresolved": 1,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_suspect": 46,
+          "automatic_no_alert": 295
+        },
+        "technical_passage": 8704,
+        "article": 7952,
+        "human_articles": 33,
+        "automatic_articles": 7919,
+        "articles_with_anomalies": 662,
+        "section": 187
+      },
+      "5": {
+        "notices": 298,
+        "texts": 294,
+        "autonomous_texts": 288,
+        "unresolved": 4,
+        "boundary_classes": {
+          "automatic_no_alert": 236,
+          "human_validated": 5,
+          "automatic_suspect": 53
+        },
+        "technical_passage": 9385,
+        "section": 336,
+        "article": 8704,
+        "automatic_articles": 8686,
+        "human_articles": 18,
+        "articles_with_anomalies": 517
+      },
+      "6": {
+        "notices": 232,
+        "texts": 202,
+        "autonomous_texts": 188,
+        "unresolved": 30,
+        "boundary_classes": {
+          "automatic_no_alert": 152,
+          "human_validated": 5,
+          "automatic_suspect": 45
+        },
+        "technical_passage": 6605,
+        "article": 6104,
+        "automatic_articles": 6061,
+        "articles_with_anomalies": 760,
+        "human_articles": 43,
+        "section": 145
+      }
+    },
+    "document_overlap_pairs": 2,
+    "duplicate_source_span_groups": 0,
+    "total_parent_characters": 30657280,
+    "total_parent_utf8_bytes": 31459492,
+    "unassigned_source_characters": 9236281,
+    "review_queue_entries": 5028,
+    "elapsed_seconds": 49.13150787000268,
+    "no_embeddings": true,
+    "no_index_preparation": true
+  },
+  "scope": {
+    "overlap_pairs": 16,
+    "corrected_pairs": 14,
+    "uncertain_pairs": 2,
+    "missing_probable_cahiers": 23,
+    "recovered_texts": 23
+  },
+  "changed_existing_parents": 25,
+  "new_parents": 23,
+  "human_parents_preserved": 29,
+  "human_articles_preserved": 333,
+  "human_journals_unchanged": true,
+  "checks": {
+    "notices_preserved": true,
+    "metadata_preserved": true,
+    "previously_extracted_documents_preserved": true,
+    "human_parent_boundaries_preserved": 29,
+    "human_articles_preserved": 333,
+    "real_journals_byte_identical": true,
+    "protected_data_source_files_unchanged": 13,
+    "no_new_overlap_pair": true,
+    "all_documentary_changes_applied": true
+  },
+  "sample": {
+    "seed": 17891789,
+    "population_by_volume": {
+      "1": {
+        "count": 4,
+        "ids_sha256": "694f90e973d7f0dfa60580f6a6941d678d595143939a95dcd2338e5310209803"
+      },
+      "2": {
+        "count": 95,
+        "ids_sha256": "151b181a29f7290eee507900a1956a751dae5bd66cf32f1c4e3a3d7a51afa8fa"
+      },
+      "3": {
+        "count": 124,
+        "ids_sha256": "b07a140e64b83061736c11b2ad2a07a595dd793a0413fceabdd2b10dd8af07c8"
+      },
+      "4": {
+        "count": 273,
+        "ids_sha256": "c42ea5d3e6def7cf295132d47c6b065c6ae53653b8bd88db85e0d1ec3cdba82e"
+      },
+      "5": {
+        "count": 209,
+        "ids_sha256": "2f787e3ab7d5614b4aadb3140ad1159d41c18bd0df85dfe79e3261371fb5b101"
+      },
+      "6": {
+        "count": 122,
+        "ids_sha256": "ef5134ff0a5aa2de8241ad799072447a3dc573f82c07d1fe9e4bafc9d1268d6c"
+      }
+    },
+    "selected": [
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1548",
+        "persee_id": "arcpa_0000-0000_1879_num_1_1_1548",
+        "title": "Cahier de la noblesse du bailliage d'Amiens",
+        "volume": 1,
+        "pages": [
+          739,
+          744
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1548"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1537",
+        "persee_id": "arcpa_0000-0000_1879_num_1_1_1537",
+        "title": "Cahier de la noblesse de Nérac (Sénéchaussée d'Albret)",
+        "volume": 1,
+        "pages": [
+          701,
+          704
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1537"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1699",
+        "persee_id": "arcpa_0000-0000_1879_num_2_1_1699",
+        "title": "Cahier du tiers-état de la sénéchaussée de Clermont-Ferrand",
+        "volume": 2,
+        "pages": [
+          769,
+          774
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1699"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1642",
+        "persee_id": "arcpa_0000-0000_1879_num_2_1_1642",
+        "title": "Cahier du tiers-état du district de Belfort",
+        "volume": 2,
+        "pages": [
+          315,
+          318
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1642"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2032",
+        "persee_id": "arcpa_0000-0000_1879_num_3_1_2032",
+        "title": "Cahier de la noblesse de la sénéchaussée de Marseille",
+        "volume": 3,
+        "pages": [
+          700,
+          701
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2032"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2053",
+        "persee_id": "arcpa_0000-0000_1879_num_3_1_2053",
+        "title": "Cahier du tiers-état du bailliage de Thionville (Bailliage de Metz)",
+        "volume": 3,
+        "pages": [
+          776,
+          780
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2053"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2300",
+        "persee_id": "arcpa_0000-0000_1879_num_4_1_2300",
+        "title": "Cahier de Morsang-sur-Orge (Paris)",
+        "volume": 4,
+        "pages": [
+          739,
+          741
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2300"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2147",
+        "persee_id": "arcpa_0000-0000_1879_num_4_1_2147",
+        "title": "Cahier de Cuisy (Paris)",
+        "volume": 4,
+        "pages": [
+          482,
+          483
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2147"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2803",
+        "persee_id": "arcpa_0000-0000_1879_num_5_1_2803",
+        "title": "Cahier du clergé de la province du Perche",
+        "volume": 5,
+        "pages": [
+          319,
+          322
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2803"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2896",
+        "persee_id": "arcpa_0000-0000_1879_num_5_1_2896",
+        "title": "Cahier de la noblesse de Bouzonville (Bailliage de Sarreguemines)",
+        "volume": 5,
+        "pages": [
+          701,
+          703
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2896"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2499",
+        "persee_id": "arcpa_0000-0000_1879_num_6_1_2499",
+        "title": "Cahier du tiers-état de Vic (Bailliage de Toul)",
+        "volume": 6,
+        "pages": [
+          20,
+          22
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2499"
+      },
+      {
+        "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2602",
+        "persee_id": "arcpa_0000-0000_1879_num_6_1_2602",
+        "title": "Cahier de la communauté de la Roquette (Sénéchaussée d'Aix)",
+        "volume": 6,
+        "pages": [
+          334,
+          335
+        ],
+        "boundary_status_at_draw": "automatic_no_alert",
+        "human_validated_at_draw": false,
+        "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2602"
+      }
+    ],
+    "unchanged_parent_dataset": true,
+    "human_validations_created": 0
+  },
+  "tests": {
+    "python_tests_passed": 51,
+    "ruff": "passed",
+    "javascript_syntax": "passed",
+    "git_diff_check": "passed",
+    "verify_only": "passed",
+    "production_inputs_unchanged": 22,
+    "sample_reproduced": true,
+    "browser": {
+      "passed": true,
+      "sample_size": 12,
+      "two_per_volume": true,
+      "focused_blockers": 5,
+      "sample_navigation": true,
+      "keyboard": true,
+      "viewports": [
+        320,
+        375,
+        768,
+        1280
+      ],
+      "text_200_percent": true,
+      "no_human_validation": true,
+      "no_POST": true,
+      "no_documentary_assessment_of_sample": true,
+      "js_errors": []
+    },
+    "global_browser": {
+      "passed": true,
+      "notices": 1305,
+      "full_collection": true,
+      "original_human_articles_preserved": 333,
+      "Pecqueuse_articles": 38,
+      "volume_filter": true,
+      "title_search": true,
+      "unresolved_access": true,
+      "source_search": true,
+      "parent_validation_then_rebuild": true,
+      "article_validation_reload": true,
+      "keyboard": true,
+      "viewports": [
+        320,
+        375,
+        768,
+        1280
+      ],
+      "text_zoom_200_percent": true,
+      "js_errors": [],
+      "temporary_journals_only": true
+    }
+  }
+}

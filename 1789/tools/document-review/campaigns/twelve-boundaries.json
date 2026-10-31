@@ -1,0 +1,195 @@
+{
+  "version": "boundary-sample-1",
+  "seed": 17891789,
+  "random_method": "Python random.Random(seed), volumes 1..6, sample(sorted(eligible_ids),2) without replacement",
+  "eligibility": "probable autonomous cahier, automatic_no_alert; exclude human boundaries and previously source-examined controls/references/finalization cases; no text, article-count or difficulty selection",
+  "generation": "data/corpus/global-corpus-3-35374eeca66d",
+  "parents_sha256": "6b4d237446e033ac7b91c2b394aff65f7f4cb023eea9aa38c73c40640d24a98d",
+  "registry_sha256": "e038897d111e889461d5669e01b63e2e0027e7f0bf373b7920bfd2cbd1e7642f",
+  "source_examination_performed": false,
+  "human_decisions_created": 0,
+  "population_by_volume": {
+    "1": {
+      "count": 4,
+      "ids_sha256": "694f90e973d7f0dfa60580f6a6941d678d595143939a95dcd2338e5310209803"
+    },
+    "2": {
+      "count": 95,
+      "ids_sha256": "151b181a29f7290eee507900a1956a751dae5bd66cf32f1c4e3a3d7a51afa8fa"
+    },
+    "3": {
+      "count": 124,
+      "ids_sha256": "b07a140e64b83061736c11b2ad2a07a595dd793a0413fceabdd2b10dd8af07c8"
+    },
+    "4": {
+      "count": 273,
+      "ids_sha256": "c42ea5d3e6def7cf295132d47c6b065c6ae53653b8bd88db85e0d1ec3cdba82e"
+    },
+    "5": {
+      "count": 209,
+      "ids_sha256": "2f787e3ab7d5614b4aadb3140ad1159d41c18bd0df85dfe79e3261371fb5b101"
+    },
+    "6": {
+      "count": 122,
+      "ids_sha256": "ef5134ff0a5aa2de8241ad799072447a3dc573f82c07d1fe9e4bafc9d1268d6c"
+    }
+  },
+  "selected": [
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1548",
+      "persee_id": "arcpa_0000-0000_1879_num_1_1_1548",
+      "title": "Cahier de la noblesse du bailliage d'Amiens",
+      "volume": 1,
+      "pages": [
+        739,
+        744
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1548"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1537",
+      "persee_id": "arcpa_0000-0000_1879_num_1_1_1537",
+      "title": "Cahier de la noblesse de Nérac (Sénéchaussée d'Albret)",
+      "volume": 1,
+      "pages": [
+        701,
+        704
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1537"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1699",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1699",
+      "title": "Cahier du tiers-état de la sénéchaussée de Clermont-Ferrand",
+      "volume": 2,
+      "pages": [
+        769,
+        774
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1699"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1642",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1642",
+      "title": "Cahier du tiers-état du district de Belfort",
+      "volume": 2,
+      "pages": [
+        315,
+        318
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1642"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2032",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2032",
+      "title": "Cahier de la noblesse de la sénéchaussée de Marseille",
+      "volume": 3,
+      "pages": [
+        700,
+        701
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2032"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2053",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2053",
+      "title": "Cahier du tiers-état du bailliage de Thionville (Bailliage de Metz)",
+      "volume": 3,
+      "pages": [
+        776,
+        780
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2053"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2300",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2300",
+      "title": "Cahier de Morsang-sur-Orge (Paris)",
+      "volume": 4,
+      "pages": [
+        739,
+        741
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2300"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2147",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2147",
+      "title": "Cahier de Cuisy (Paris)",
+      "volume": 4,
+      "pages": [
+        482,
+        483
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2147"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2803",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2803",
+      "title": "Cahier du clergé de la province du Perche",
+      "volume": 5,
+      "pages": [
+        319,
+        322
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2803"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2896",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2896",
+      "title": "Cahier de la noblesse de Bouzonville (Bailliage de Sarreguemines)",
+      "volume": 5,
+      "pages": [
+        701,
+        703
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2896"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2499",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2499",
+      "title": "Cahier du tiers-état de Vic (Bailliage de Toul)",
+      "volume": 6,
+      "pages": [
+        20,
+        22
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2499"
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2602",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2602",
+      "title": "Cahier de la communauté de la Roquette (Sénéchaussée d'Aix)",
+      "volume": 6,
+      "pages": [
+        334,
+        335
+      ],
+      "boundary_status_at_draw": "automatic_no_alert",
+      "human_validated_at_draw": false,
+      "url": "/?document=ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2602"
+    }
+  ]
+}

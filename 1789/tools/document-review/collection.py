@@ -39,7 +39,9 @@ def rebuild(store, engine, key, expected_event):
 
     if not (engine.directory / "complete.json").exists():
         raise Conflict("Activez le corpus global avant une reconstruction documentaire.")
-    record = store.by_id[key]
+    from boundary_rules import effective
+
+    record = effective(store.by_id[key], store.automatic_corrections.get(key))
     state = store.state(record)
     if state["status"] != "human_validated" or state["stale"]:
         raise Conflict("Validez d’abord les frontières du document dans le mode Cahiers.")

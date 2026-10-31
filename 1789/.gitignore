@@ -71,3 +71,12 @@ __pycache__/
 
 # Aggregate documentary correction outcomes; no source texts or private events.
 !/docs/boundary-checks.json
+
+# Scoped documentary decisions: references and short source evidence, no human journal.
+!/extraction/documentary-finalization.json
+
+# Frozen random boundary sample: metadata and identifiers only.
+!/tools/document-review/campaigns/twelve-boundaries.json
+
+# Aggregate finalization results and sample metadata, without source corpus or journals.
+!/docs/finalization-checks.json

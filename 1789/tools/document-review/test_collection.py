@@ -97,6 +97,16 @@ class CollectionTests(unittest.TestCase):
             (self.engine.override_directory / "rebuilds.jsonl").read_bytes().startswith(before)
         )
 
+    def test_rebuild_preserves_documentary_kind_override(self):
+        self.store.automatic_corrections[self.key] = dict(
+            changed=False, alignment="fort", resolved_alerts=[], documentary_kind="proces_verbal"
+        )
+        self.rebuild()
+        self.assertEqual(self.engine.parents[self.key]["document_kind"], "proces_verbal")
+        self.assertEqual(
+            self.engine.parents[self.key]["metadata"], self.store.by_id[self.key]["metadata"]
+        )
+
     def test_rebuild_never_erases_article_decisions(self):
         self.rebuild()
         doc = self.engine.document(self.key)

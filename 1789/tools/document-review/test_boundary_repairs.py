@@ -92,6 +92,54 @@ class BoundaryRepairsTests(unittest.TestCase):
         uncertain = {r["code"] for r in self.by_suffix["1944"]["resolved_alerts"]}
         self.assertNotIn("new_control_boundary_incorrect", uncertain)
 
+    def test_recovered_openings_do_not_include_previous_certification(self):
+        for suffix, expected in [("2186", "Des plaintes"), ("2530", "VŒU DE LA NOBLESSE")]:
+            row = self.by_suffix[suffix]
+            span = row["selected"]
+            text = self.store.sources[row["volume"]].text[span["start"] : span["end"]]
+            self.assertTrue(text.startswith(expected))
+        self.assertEqual(self.by_suffix["2797"]["documentary_kind"], "proces_verbal")
+
+    def test_lauzet_and_revel_do_not_share_their_tail(self):
+        lauzet = self.by_suffix["1952"]["selected"]
+        revel = self.by_suffix["1953"]["selected"]
+        self.assertLessEqual(self.by_suffix["1951"]["selected"]["end"], lauzet["start"])
+        self.assertLessEqual(lauzet["end"], revel["start"])
+        self.assertLessEqual(revel["end"], self.by_suffix["1955"]["selected"]["start"])
+
+    def test_scoped_correction_cannot_replace_a_later_human_decision(self):
+        import copy
+
+        from documentary_finalization import apply
+
+        findings = copy.deepcopy(self.plan)
+        row = next(r for r in findings if r["persee_id"].endswith("_2238"))
+        record = self.store.by_id[row["document_id"]]
+        retained = copy.deepcopy(row["original_span"])
+        row["selected"] = retained
+        row["changed"] = False
+        original_latest = self.store.latest
+        latest = original_latest()
+        latest[row["document_id"]] = dict(
+            id="SYNTHETIC-NOT-WRITTEN",
+            status="human_validated",
+            retained=retained,
+            source_version=self.store.source_version(record),
+        )
+        try:
+            self.store.latest = lambda: latest
+            result = next(
+                r for r in apply(self.store, findings) if r["document_id"] == row["document_id"]
+            )
+            self.assertEqual(result["selected"], retained)
+            self.assertTrue(
+                any(c["reason"] == "human_decision_has_priority" for c in result["conflicts"])
+            )
+        finally:
+            self.store.latest = original_latest
+        for name, data in self.original.items():
+            self.assertEqual((PRIVATE / name).read_bytes(), data)
+
     def test_all_changes_are_traceable_source_positions(self):
         for row in self.plan:
             if not row["changed"]:

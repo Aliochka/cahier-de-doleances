@@ -347,7 +347,9 @@ def plan(store):
                     reason="final_selected_openings_distinct_and_explicit_name_matches",
                 )
             )
-    return list(findings.values())
+    from documentary_finalization import apply
+
+    return apply(store, list(findings.values()))
 
 
 def effective(record, resolution):
@@ -364,6 +366,9 @@ def effective(record, resolution):
             "proposal": dict(record["boundaries"].get("proposal") or {}),
         },
     }
+    if resolution.get("documentary_kind"):
+        r["document_kind"] = resolution["documentary_kind"]
+        r["document_kind_reference"] = resolution["documentary_kind"]
     r["boundaries"]["proposal"]["flags"] = [
         a for a in r["boundaries"]["proposal"].get("flags", []) if a not in resolved
     ]
