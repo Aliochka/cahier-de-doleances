@@ -1,0 +1,16 @@
+/.local/
+__pycache__/
+/data/*
+!/data/
+!/data/selection.json
+!/data/quality.json
+!/data/source-manifest.json
+!/data/crosswalk.jsonl
+!/data/review-summary.json
+!/data/extraction-manifest.json
+!/data/small-examples.json
+!/prior-files-sha256.json
+!/data/browser-checks.json
+
+# Internal alias to the unique canonical dataset/source cache.
+!/data

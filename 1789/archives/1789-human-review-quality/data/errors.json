@@ -1,0 +1,622 @@
+[
+  {
+    "id": "clerge-agen-rubrique",
+    "category": "D",
+    "subtype": "paratext_heading_absorbed",
+    "severity": "structural",
+    "event_ids": [
+      "b2059dff-c12e-48bc-9a16-625194ecd0f1"
+    ],
+    "diagnosis": "Rubrique des demandes particulières du clergé incluse après l’article 27 ; la note humaine évoque une signature mais le texte observé est un titre.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1529",
+    "original_ids": [
+      "ap1789-unit-1:4637bc447bd2a70428edd883e19e"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5138389,
+        5138532
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": false,
+    "automatic_marker_hits": [],
+    "manual_notes": [],
+    "role_difference_panel_signals": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[126]",
+        "reason": "explicit_documentary_rubric",
+        "start": 5138560
+      }
+    ],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "clerge-agen-art6",
+    "category": "F",
+    "subtype": "article_marker_role_misclassified",
+    "severity": "major",
+    "event_ids": [
+      "b9a6c56e-4b33-407e-989f-c942233b0a82"
+    ],
+    "diagnosis": "ART. 6. est un paragraphe distinct auparavant classé en rubrique ; article ajouté depuis les passages C, pas une fusion avec un autre article.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1529",
+    "original_ids": [],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5140840,
+        5141305
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": false,
+    "automatic_marker_hits": [
+      {
+        "start": 5140865,
+        "label": "ART. 6.",
+        "status": "proposed"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[139]",
+        "reason": "explicit_article_marker_misclassified_as_heading",
+        "start": 5140865
+      }
+    ],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-1-2",
+    "category": "A",
+    "subtype": "ocr_ordinal_quote",
+    "severity": "major",
+    "event_ids": [
+      "0f39a3a4-79c6-4496-a944-e308da4d62bc",
+      "e8828694-1754-45c1-8df4-1a2d96177939"
+    ],
+    "diagnosis": "Le début « 2\" D’assurer… était absorbé dans l’article 1.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:8080b62cd85bc96ec08012648e1e"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5155243,
+        5155507
+      ],
+      [
+        5155532,
+        5155935
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [
+      {
+        "start": 5155532,
+        "label": "« 2\"",
+        "status": "proposed"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-3-4",
+    "category": "C",
+    "subtype": "quotation_and_ocr_prefix_ownership",
+    "severity": "minor",
+    "event_ids": [
+      "86de6bdd-f1bb-4c73-91de-8f544aaafbcf"
+    ],
+    "diagnosis": "Déplacement de guillemet et retrait du préfixe OCR h avant 4° ; l’article 4 existait déjà.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:84e5e257d88d3004301acec7ebfa"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5155960,
+        5156312
+      ]
+    ],
+    "old_direct_alert": true,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-8-1",
+    "category": "A",
+    "subtype": "ocr_restart_with_interstitial_prose",
+    "severity": "major",
+    "event_ids": [
+      "e52f4782-4bc5-4852-92db-f8c229b50224",
+      "9ad34e7e-e7f8-4c9b-bec7-fb371d172c5a"
+    ],
+    "diagnosis": "t° après une prose de liaison et une reprise de numérotation ; le nouvel article était inclus dans le précédent.",
+    "secondary_categories": [
+      "E",
+      "F"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:9903c71b5cfc633bb2c0d84b81bc"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5157492,
+        5157753
+      ],
+      [
+        5158416,
+        5158660
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [
+      {
+        "start": 5158416,
+        "label": "« t°",
+        "status": "proposed"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[15]",
+        "reason": "prose_after_closed_numbered_quotation",
+        "start": 5157779
+      }
+    ],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-16",
+    "category": "F",
+    "subtype": "unnumbered_mandate_absorbed",
+    "severity": "structural",
+    "event_ids": [
+      "d8cefba7-6362-4bfc-b24d-a35d2a87fc9f"
+    ],
+    "diagnosis": "Après la citation numérotée, Nous enjoignons… et les mandats suivants sont de la prose documentaire/revendicative ; leur assimilation à du simple paratexte ne serait pas justifiée.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:c00ad1b35f0967448700a0f7e22d"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5164403,
+        5164836
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": false,
+    "automatic_marker_hits": [],
+    "manual_notes": [],
+    "role_difference_panel_signals": [
+      {
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[39]",
+        "reason": "prose_after_closed_numbered_quotation",
+        "start": 5164862
+      }
+    ],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-9-10",
+    "category": "A",
+    "subtype": "ocr_suffix_d",
+    "severity": "major",
+    "event_ids": [
+      "d43a24a2-1985-4a13-8070-b6cb13899fc7",
+      "c2c22280-e01e-469c-ae6e-22e7a1706b6c",
+      "fbabcf6b-35b3-4760-a399-e4b84c4543b6"
+    ],
+    "diagnosis": "10d Nos députés… non reconnu ; l’ajout est suivi d’une attribution du numéro 10, sans seconde erreur de limites.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:68c1234b7a15f4a4a6222795472e"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5186122,
+        5186556
+      ],
+      [
+        5186582,
+        5187045
+      ]
+    ],
+    "old_direct_alert": true,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [
+      {
+        "start": 5186582,
+        "label": "10d",
+        "status": "proposed"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-13-14",
+    "category": "A",
+    "subtype": "ocr_suffix_a",
+    "severity": "major",
+    "event_ids": [
+      "b88e1fba-56b2-4b21-9cec-b8315fd1db9f",
+      "8c76ac21-8fca-42b8-a56e-72618c1e06a2"
+    ],
+    "diagnosis": "14a Nos députés… non reconnu.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:5c084cbed534d284bbe3e2b79f07"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5188408,
+        5188607
+      ],
+      [
+        5188633,
+        5188861
+      ]
+    ],
+    "old_direct_alert": true,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [
+      {
+        "start": 5188633,
+        "label": "14a",
+        "status": "proposed"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-7-8",
+    "category": "A",
+    "subtype": "ocr_suffix_tt",
+    "severity": "major",
+    "event_ids": [
+      "ea7c2b72-54a0-4dcc-933f-da0d29d7732e",
+      "3acfebf6-f7ab-4e11-b6bd-d674286c1f8d",
+      "81fd9728-704f-4ef0-9df1-d7b3c3d40d79"
+    ],
+    "diagnosis": "8tt Les graviers… non reconnu ; la correction ultérieure du numéro porte sur les mêmes limites.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:6dadc828deacdbb3ac5c1c282e85"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5196149,
+        5197335
+      ],
+      [
+        5197361,
+        5198172
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": false,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [
+      {
+        "start": 5197361,
+        "label": "8tt",
+        "status": "proposed"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "noblesse-agen-10-11",
+    "category": "A",
+    "subtype": "ocr_letters_il",
+    "severity": "major",
+    "event_ids": [
+      "1259fe0c-d804-4442-97fd-f51141baeddf",
+      "c5056bb1-8bf3-4cd2-b03f-f05fb346e91c"
+    ],
+    "diagnosis": "il* Le roi et les États… entre 10 et 12.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "original_ids": [
+      "ap1789-unit-1:b306555d21f9d421e3f36ef9b6fb"
+    ],
+    "source_version": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "source_spans_after": [
+      [
+        5204670,
+        5205291
+      ],
+      [
+        5205317,
+        5205653
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [
+      {
+        "start": 5205317,
+        "label": "il*",
+        "status": "proposed"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "terre-franche-11",
+    "category": "E",
+    "subtype": "number_metadata_only",
+    "severity": "metadata",
+    "event_ids": [
+      "eb77f769-d759-438b-9db5-c25c4d34e6f4"
+    ],
+    "diagnosis": "i lfl… onzième chef… : article déjà séparé dans le corpus initial ; seul le numéro passe de null à 11, positions inchangées.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1844",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1844",
+    "original_ids": [
+      "ap1789-unit-1:44689d2fd0bdcf6e3ea2d560c7de"
+    ],
+    "source_version": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+    "source_spans_after": [
+      [
+        1763071,
+        1763588
+      ]
+    ],
+    "old_direct_alert": true,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [],
+    "manual_notes": [
+      {
+        "start": 1763071,
+        "label": "i lfl",
+        "status": "review_note"
+      }
+    ],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "vic-31-32",
+    "category": "A",
+    "subtype": "ocr_article_prefix",
+    "severity": "major",
+    "event_ids": [
+      "d07d1c2a-ece7-4e96-94f5-73bebc65962e",
+      "ab912f6b-2fa0-4d09-9b77-fb5436780824"
+    ],
+    "diagnosis": "A:rt. 32. Pour le bien du commerce… absorbé dans 31.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2497",
+    "original_ids": [
+      "ap1789-unit-1:c9989ba983b5fa2068534ba8f057"
+    ],
+    "source_version": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+    "source_spans_after": [
+      [
+        156865,
+        157006
+      ],
+      [
+        157031,
+        157466
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": false,
+    "automatic_marker_hits": [],
+    "manual_notes": [
+      {
+        "start": 157031,
+        "label": "A:rt. 32.",
+        "status": "review_note"
+      }
+    ],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "mirecourt-prose-2",
+    "category": "F",
+    "subtype": "unmarked_prose_promoted_to_article",
+    "severity": "interpretation",
+    "event_ids": [
+      "fcef9ec6-83f1-4889-900f-97b1e983bc36",
+      "93d13c72-9967-421a-a7ea-f6256dd7b8f6"
+    ],
+    "diagnosis": "De maintenir les droits… ne porte pas de marqueur 2 visible dans le TEI. Un article 2 est créé par décision humaine. Cette interprétation n’est pas une fusion numérotée démontrée par la seule transcription.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1745",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1745",
+    "original_ids": [
+      "ap1789-unit-1:af72c8660e6781afacdb77c0353c"
+    ],
+    "source_version": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_spans_after": [
+      [
+        11608,
+        11665
+      ],
+      [
+        11691,
+        11831
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": false,
+    "automatic_marker_hits": [],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "mirecourt-4-5",
+    "category": "A",
+    "subtype": "ocr_56",
+    "severity": "major",
+    "event_ids": [
+      "42c03503-c40a-4a63-8b81-50db72fd5b77",
+      "a14654be-0ad1-4758-8e57-eb3b3dc9b179"
+    ],
+    "diagnosis": "56 Que les lettres de change… est séparé de 4 et numéroté 5 par le lecteur.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1745",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1745",
+    "original_ids": [
+      "ap1789-unit-1:56e0d38fb9c2e6716b14fec9e64d"
+    ],
+    "source_version": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_spans_after": [
+      [
+        12147,
+        12437
+      ],
+      [
+        12463,
+        13095
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": true,
+    "automatic_marker_hits": [
+      {
+        "start": 12463,
+        "label": "56",
+        "status": "suspect"
+      }
+    ],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  },
+  {
+    "id": "mirecourt-3-4",
+    "category": "A",
+    "subtype": "unexpected_backslash_after_ordinal",
+    "severity": "major",
+    "event_ids": [
+      "84996656-051c-41ad-9243-1678b37727ab",
+      "6219c2d3-d40b-453b-bf9d-e8d9c5101906"
+    ],
+    "diagnosis": "Le marqueur 4°\\Que… existe ; le caractère entre le marqueur et le texte empêche sa reconnaissance.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication",
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1745",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1745",
+    "original_ids": [
+      "ap1789-unit-1:0adfa26041d099ee86f898601de4"
+    ],
+    "source_version": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "source_spans_after": [
+      [
+        39474,
+        40821
+      ],
+      [
+        40847,
+        46024
+      ]
+    ],
+    "old_direct_alert": false,
+    "old_neighbour_alert": true,
+    "automatic_direct_alert": false,
+    "automatic_marker_hits": [],
+    "manual_notes": [],
+    "role_difference_panel_signals": [],
+    "proposed_context_queue_or_marker_hit": true
+  }
+]

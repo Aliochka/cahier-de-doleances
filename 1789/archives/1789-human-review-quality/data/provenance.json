@@ -1,0 +1,82 @@
+{
+  "snapshot_events": 346,
+  "files": {
+    "docs/tools/1789-document-review/.local/article-decisions.jsonl": {
+      "bytes": 864108,
+      "sha256": "5ee4b46722447864640d7b1a38f5a1bf7d90bbc36ad6ff0054dc6b875eaf95c7"
+    },
+    "docs/audits/1789-human-review-quality/.local/article-decisions.snapshot.jsonl": {
+      "bytes": 864108,
+      "sha256": "5ee4b46722447864640d7b1a38f5a1bf7d90bbc36ad6ff0054dc6b875eaf95c7"
+    },
+    "docs/tools/1789-document-review/.local/decisions.jsonl": {
+      "bytes": 55580,
+      "sha256": "fd1ff67ea32b3b25c9b33c4bb53a5e8fd8eb31659d684d3cbca0e451db6c2fd4"
+    },
+    "docs/audits/1789-human-review-quality/.local/parent-decisions.snapshot.jsonl": {
+      "bytes": 55580,
+      "sha256": "fd1ff67ea32b3b25c9b33c4bb53a5e8fd8eb31659d684d3cbca0e451db6c2fd4"
+    },
+    "docs/tools/1789-document-review/campaigns/five-cahiers.json": {
+      "bytes": 8256,
+      "sha256": "3b27f40925f336742d03122a20fcf3143e132aa75575824630ba60a43cc89300"
+    },
+    "docs/audits/1789-first-article-corpus/data/parents.jsonl.gz": {
+      "bytes": 275395,
+      "sha256": "88e8242d49be0f22cc90179dcca99f1ff2764ebaf4a96ac5c9191e3376caabfc"
+    },
+    "docs/audits/1789-first-article-corpus/data/units-A.jsonl.gz": {
+      "bytes": 70533,
+      "sha256": "bf5d8b43ad6dcf79e9d2aae9858cc0e0c2aebaedf6a478628bfecd00386f1996"
+    },
+    "docs/audits/1789-first-article-corpus/data/units-B.jsonl.gz": {
+      "bytes": 219806,
+      "sha256": "f1c0f5f3e209eedc8b9d2338da4fe82a1df5eba80af4b1c7b94b1f82b93821b9"
+    },
+    "docs/audits/1789-first-article-corpus/data/units-C.jsonl.gz": {
+      "bytes": 148344,
+      "sha256": "7f67dffd2f454cf4037f15691edecf1ef5649ec191ad37dc34f29a0241551863"
+    },
+    "docs/tools/1789-document-review/articles.py": {
+      "bytes": 32873,
+      "sha256": "5a40c5984b8b6f3da7820cf12e5378dc8862c55b0f89f65ec260d5cddfae9266"
+    },
+    "docs/tools/1789-document-review/segmentation.py": {
+      "bytes": 14169,
+      "sha256": "b8ec263cdd86b5d3af3ed08bbdd7de4a1d3ebe9e90322cb21b8782df4328cb43"
+    },
+    "docs/audits/1789-article-segmentation-improvement/data/comparison.jsonl.gz": {
+      "bytes": 243753,
+      "sha256": "2f9fd745fbbaf62b2b4bb7ff4ac43ab808d8b3190f2baa58e6dfc0cada243ed9"
+    },
+    "docs/audits/1789-human-review-quality/annotations.json": {
+      "bytes": 7774,
+      "sha256": "7f3d5c0f6cacdf4b975163d0c03f6da1506f6711f045ca7d82d6170a8a5b3cbb"
+    },
+    "docs/audits/1789-extraction-v2/.cache/sources/jt959wc5586.xml": {
+      "bytes": 6573592,
+      "sha256": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6"
+    },
+    "docs/audits/1789-extraction-v2/.cache/sources/fz023dp4399.xml": {
+      "bytes": 5748780,
+      "sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217"
+    },
+    "docs/audits/1789-extraction-v2/.cache/sources/mc666yy3026.xml": {
+      "bytes": 7598746,
+      "sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01"
+    },
+    "docs/audits/1789-extraction-v2/.cache/sources/xg914wh0253.xml": {
+      "bytes": 7658379,
+      "sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f"
+    },
+    "docs/audits/1789-extraction-v2/.cache/sources/xx284sn7328.xml": {
+      "bytes": 7542475,
+      "sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44"
+    },
+    "docs/audits/1789-extraction-v2/.cache/sources/wg983ft3682.xml": {
+      "bytes": 7051273,
+      "sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8"
+    }
+  },
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602"
+}

@@ -1,0 +1,215 @@
+[
+  {
+    "id": "clerge-agen-rubrique",
+    "category": "D",
+    "subtype": "paratext_heading_absorbed",
+    "severity": "structural",
+    "event_ids": [
+      "b2059dff-c12e-48bc-9a16-625194ecd0f1"
+    ],
+    "diagnosis": "Rubrique des demandes particulières du clergé incluse après l’article 27 ; la note humaine évoque une signature mais le texte observé est un titre.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "clerge-agen-art6",
+    "category": "F",
+    "subtype": "article_marker_role_misclassified",
+    "severity": "major",
+    "event_ids": [
+      "b9a6c56e-4b33-407e-989f-c942233b0a82"
+    ],
+    "diagnosis": "ART. 6. est un paragraphe distinct auparavant classé en rubrique ; article ajouté depuis les passages C, pas une fusion avec un autre article.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-1-2",
+    "category": "A",
+    "subtype": "ocr_ordinal_quote",
+    "severity": "major",
+    "event_ids": [
+      "0f39a3a4-79c6-4496-a944-e308da4d62bc",
+      "e8828694-1754-45c1-8df4-1a2d96177939"
+    ],
+    "diagnosis": "Le début « 2\" D’assurer… était absorbé dans l’article 1.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-3-4",
+    "category": "C",
+    "subtype": "quotation_and_ocr_prefix_ownership",
+    "severity": "minor",
+    "event_ids": [
+      "86de6bdd-f1bb-4c73-91de-8f544aaafbcf"
+    ],
+    "diagnosis": "Déplacement de guillemet et retrait du préfixe OCR h avant 4° ; l’article 4 existait déjà.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-8-1",
+    "category": "A",
+    "subtype": "ocr_restart_with_interstitial_prose",
+    "severity": "major",
+    "event_ids": [
+      "e52f4782-4bc5-4852-92db-f8c229b50224",
+      "9ad34e7e-e7f8-4c9b-bec7-fb371d172c5a"
+    ],
+    "diagnosis": "t° après une prose de liaison et une reprise de numérotation ; le nouvel article était inclus dans le précédent.",
+    "secondary_categories": [
+      "E",
+      "F"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-16",
+    "category": "F",
+    "subtype": "unnumbered_mandate_absorbed",
+    "severity": "structural",
+    "event_ids": [
+      "d8cefba7-6362-4bfc-b24d-a35d2a87fc9f"
+    ],
+    "diagnosis": "Après la citation numérotée, Nous enjoignons… et les mandats suivants sont de la prose documentaire/revendicative ; leur assimilation à du simple paratexte ne serait pas justifiée.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-9-10",
+    "category": "A",
+    "subtype": "ocr_suffix_d",
+    "severity": "major",
+    "event_ids": [
+      "d43a24a2-1985-4a13-8070-b6cb13899fc7",
+      "c2c22280-e01e-469c-ae6e-22e7a1706b6c",
+      "fbabcf6b-35b3-4760-a399-e4b84c4543b6"
+    ],
+    "diagnosis": "10d Nos députés… non reconnu ; l’ajout est suivi d’une attribution du numéro 10, sans seconde erreur de limites.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-13-14",
+    "category": "A",
+    "subtype": "ocr_suffix_a",
+    "severity": "major",
+    "event_ids": [
+      "b88e1fba-56b2-4b21-9cec-b8315fd1db9f",
+      "8c76ac21-8fca-42b8-a56e-72618c1e06a2"
+    ],
+    "diagnosis": "14a Nos députés… non reconnu.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-7-8",
+    "category": "A",
+    "subtype": "ocr_suffix_tt",
+    "severity": "major",
+    "event_ids": [
+      "ea7c2b72-54a0-4dcc-933f-da0d29d7732e",
+      "3acfebf6-f7ab-4e11-b6bd-d674286c1f8d",
+      "81fd9728-704f-4ef0-9df1-d7b3c3d40d79"
+    ],
+    "diagnosis": "8tt Les graviers… non reconnu ; la correction ultérieure du numéro porte sur les mêmes limites.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "noblesse-agen-10-11",
+    "category": "A",
+    "subtype": "ocr_letters_il",
+    "severity": "major",
+    "event_ids": [
+      "1259fe0c-d804-4442-97fd-f51141baeddf",
+      "c5056bb1-8bf3-4cd2-b03f-f05fb346e91c"
+    ],
+    "diagnosis": "il* Le roi et les États… entre 10 et 12.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "terre-franche-11",
+    "category": "E",
+    "subtype": "number_metadata_only",
+    "severity": "metadata",
+    "event_ids": [
+      "eb77f769-d759-438b-9db5-c25c4d34e6f4"
+    ],
+    "diagnosis": "i lfl… onzième chef… : article déjà séparé dans le corpus initial ; seul le numéro passe de null à 11, positions inchangées.",
+    "secondary_categories": [],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "vic-31-32",
+    "category": "A",
+    "subtype": "ocr_article_prefix",
+    "severity": "major",
+    "event_ids": [
+      "d07d1c2a-ece7-4e96-94f5-73bebc65962e",
+      "ab912f6b-2fa0-4d09-9b77-fb5436780824"
+    ],
+    "diagnosis": "A:rt. 32. Pour le bien du commerce… absorbé dans 31.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "mirecourt-prose-2",
+    "category": "F",
+    "subtype": "unmarked_prose_promoted_to_article",
+    "severity": "interpretation",
+    "event_ids": [
+      "fcef9ec6-83f1-4889-900f-97b1e983bc36",
+      "93d13c72-9967-421a-a7ea-f6256dd7b8f6"
+    ],
+    "diagnosis": "De maintenir les droits… ne porte pas de marqueur 2 visible dans le TEI. Un article 2 est créé par décision humaine. Cette interprétation n’est pas une fusion numérotée démontrée par la seule transcription.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "mirecourt-4-5",
+    "category": "A",
+    "subtype": "ocr_56",
+    "severity": "major",
+    "event_ids": [
+      "42c03503-c40a-4a63-8b81-50db72fd5b77",
+      "a14654be-0ad1-4758-8e57-eb3b3dc9b179"
+    ],
+    "diagnosis": "56 Que les lettres de change… est séparé de 4 et numéroté 5 par le lecteur.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  },
+  {
+    "id": "mirecourt-3-4",
+    "category": "A",
+    "subtype": "unexpected_backslash_after_ordinal",
+    "severity": "major",
+    "event_ids": [
+      "84996656-051c-41ad-9243-1678b37727ab",
+      "6219c2d3-d40b-453b-bf9d-e8d9c5101906"
+    ],
+    "diagnosis": "Le marqueur 4°\\Que… existe ; le caractère entre le marqueur et le texte empêche sa reconnaissance.",
+    "secondary_categories": [
+      "E"
+    ],
+    "reviewer": "Codex exploratory classification of human corrections; not independent human adjudication"
+  }
+]
