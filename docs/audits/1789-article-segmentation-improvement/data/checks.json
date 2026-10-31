@@ -1,0 +1,8 @@
+{
+  "source_slices_exact": true,
+  "unique_proposal_ids": true,
+  "no_overlaps": true,
+  "parent_bounds": true,
+  "source_and_previous_audits_unchanged": true,
+  "journal_prefixes_preserved": true
+}

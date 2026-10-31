@@ -1,0 +1,10 @@
+{
+  "docs/tools/1789-document-review/.local/decisions.jsonl": {
+    "bytes": 55580,
+    "sha256": "fd1ff67ea32b3b25c9b33c4bb53a5e8fd8eb31659d684d3cbca0e451db6c2fd4"
+  },
+  "docs/tools/1789-document-review/.local/article-decisions.jsonl": {
+    "bytes": 395689,
+    "sha256": "f7419e1babe0493b6dda75c46b17128ec2e31d1b786f87a6433deeb981bdecde"
+  }
+}

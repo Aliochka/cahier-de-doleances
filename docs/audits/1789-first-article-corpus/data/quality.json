@@ -1,0 +1,52 @@
+{
+  "ok": true,
+  "prepared": 30,
+  "exploitable_parents": 29,
+  "withheld": 1,
+  "by_volume": {
+    "1": 5,
+    "2": 5,
+    "3": 4,
+    "4": 5,
+    "5": 5,
+    "6": 5
+  },
+  "units_by_type": {
+    "article": 719,
+    "section": 4,
+    "technical_passage": 793
+  },
+  "units_by_status": {
+    "A": 217,
+    "B": 506,
+    "C": 793
+  },
+  "articles_total": 719,
+  "articles_codex_examined": 217,
+  "articles_proposed": 502,
+  "articles_uncertain_fraction": 0.6981919332406119,
+  "human_validated_parents": 29,
+  "human_validated_articles": 0,
+  "all_source_characters_preserved_exactly_once_in_unit_spans": true,
+  "parent_texts_complete_for_selected_extents": true,
+  "prior_files_unchanged": 583,
+  "extraction_is_not_historical_certification": true,
+  "human_activity": {
+    "events": 33,
+    "examined_documents": 30,
+    "human_validated": 29,
+    "uncertain": 1,
+    "blocked": 0,
+    "accepted_endpoints": 57,
+    "corrected_endpoints": 2,
+    "measured_active_seconds": 1716.0399999999995,
+    "warning": "User activity estimate, not script runtime or independent time study"
+  },
+  "local_outputs": {
+    "parents.jsonl.gz": 275395,
+    "units-A.jsonl.gz": 70533,
+    "units-B.jsonl.gz": 219806,
+    "automatic-proposals.jsonl.gz": 12401,
+    "units-C.jsonl.gz": 148344
+  }
+}

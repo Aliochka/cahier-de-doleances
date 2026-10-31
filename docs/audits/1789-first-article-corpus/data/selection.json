@@ -1,0 +1,422 @@
+[
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1529",
+    "title": "Cahier du clergé de la sénéchaussée d'Agen",
+    "volume": 1,
+    "reason": "Contrôle hérité du pilote : agen-clerge ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:jt959wc5586:64bb7420785d8cb8ea4b",
+    "legacy_key": "agen-clerge",
+    "legacy_range": [
+      5119872,
+      5153454
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1530",
+    "title": "Cahier de la noblesse de la sénéchaussée d'Agen",
+    "volume": 1,
+    "reason": "Contrôle hérité du pilote : agen-noblesse ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:jt959wc5586:e3853dbbb35a07b290ab",
+    "legacy_key": "agen-noblesse",
+    "legacy_range": [
+      5153475,
+      5223632
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1539",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1539",
+    "title": "Cahier du clergé du bailliage d'Alençon",
+    "volume": 1,
+    "reason": "Contrôle hérité du pilote : alencon-clerge ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:jt959wc5586:c8caba17ed36b64403f1",
+    "legacy_key": "alencon-clerge",
+    "legacy_range": [
+      5411586,
+      5435510
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1540",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1540",
+    "title": "Cahier de la noblesse du bailliage d'Alençon",
+    "volume": 1,
+    "reason": "Contrôle hérité du pilote : alencon-noblesse ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:jt959wc5586:bcdc69723b9153e44463",
+    "legacy_key": "alencon-noblesse",
+    "legacy_range": [
+      5435531,
+      5492248
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1554",
+    "persee_id": "arcpa_0000-0000_1879_num_1_1_1554",
+    "title": "Cahier de Gray (Bailliage d'Amont )",
+    "volume": 1,
+    "reason": "Référence documentaire Codex corrigée/complexe, sans utilisation des prédictions Qwen : Gray: titre en paragraphe, liste de signatures et collation Vivant clôturant le tome.",
+    "legacy_parent_id": null,
+    "selection_type": "previously_reviewed_reference_not_new_validation",
+    "source_reference": "1789-qwen-boundaries/data/reference-validation.jsonl#validation-06"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1559",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1559",
+    "title": "Cahier de la noblesse de la sénéchaussée d'Angoumois",
+    "volume": 2,
+    "reason": "Contrôle hérité du pilote : angoumois-noblesse ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:fz023dp4399:116d12e81ebea8a7220b",
+    "legacy_key": "angoumois-noblesse",
+    "legacy_range": [
+      16826,
+      49888
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1563",
+    "title": "Cahier du clergé de la sénéchaussée d'Anjou",
+    "volume": 2,
+    "reason": "Contrôle hérité du pilote : anjou-clerge ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:fz023dp4399:b1c515d7e3ec55e7f988",
+    "legacy_key": "anjou-clerge",
+    "legacy_range": [
+      212002,
+      227226
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1612",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1612",
+    "title": "Cahier de Lawastine (Bailliage de Bailleul)",
+    "volume": 2,
+    "reason": "Contrôle hérité du pilote : lawastine-tiers ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:fz023dp4399:10c1f778fd324706de33",
+    "legacy_key": "lawastine-tiers",
+    "legacy_range": [
+      1301246,
+      1304778
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1634",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1634",
+    "title": "Cahier de la noblesse de la sénéchaussée du Beaujolais",
+    "volume": 2,
+    "reason": "Contrôle hérité du pilote : beaujolais-noblesse ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:fz023dp4399:3e6a4db201abec55cb3e",
+    "legacy_key": "beaujolais-noblesse",
+    "legacy_range": [
+      1938359,
+      1946016
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1692",
+    "persee_id": "arcpa_0000-0000_1879_num_2_1_1692",
+    "title": "Cahier du clergé de la sénéchaussée de Châtellerault",
+    "volume": 2,
+    "reason": "Référence documentaire Codex corrigée/complexe, sans utilisation des prédictions Qwen : Châtellerault clergé: PV introductif et cahier, signatures avant noblesse absente.",
+    "legacy_parent_id": null,
+    "selection_type": "previously_reviewed_reference_not_new_validation",
+    "source_reference": "1789-qwen-boundaries/data/reference-development.jsonl#development-08"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1795",
+    "title": "Cahier de la ville de Colmar (District de Colmar et Schlesladt)",
+    "volume": 3,
+    "reason": "Contrôle hérité du pilote : colmar-ville ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:mc666yy3026:7252b87cf6dd0d663706",
+    "legacy_key": "colmar-ville",
+    "legacy_range": [
+      110342,
+      145872
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1844",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1844",
+    "title": "Cahier de la communauté de Terre-Franche et du comté de Ribeaucourt (Bailliage de Douai)",
+    "volume": 3,
+    "reason": "Contrôle hérité du pilote : ribaucourt ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:mc666yy3026:f330cd449d20585043c2",
+    "legacy_key": "ribaucourt",
+    "legacy_range": [
+      1757036,
+      1764576
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1874",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1874",
+    "title": "Cahier de la communauté de Flines (Bailliage de Douai)",
+    "volume": 3,
+    "reason": "Contrôle hérité du pilote : flines ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:mc666yy3026:97af66caeb2eea3e1442",
+    "legacy_key": "flines",
+    "legacy_range": [
+      1852913,
+      1859588
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1926",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1926",
+    "title": "Cahier de la communauté des frères mineurs de Carces (Sénéchaussée de Draguignan)",
+    "volume": 3,
+    "reason": "Contrôle hérité du pilote : carces-mineurs ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:mc666yy3026:f9e19530b4e33ccf95c7",
+    "legacy_key": "carces-mineurs",
+    "legacy_range": [
+      2496436,
+      2502151
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1944",
+    "persee_id": "arcpa_0000-0000_1879_num_3_1_1944",
+    "title": "Cahier du tiers-état de Digne (Sénéchaussée de Forcalquier)",
+    "volume": 3,
+    "reason": "Référence documentaire Codex corrigée/complexe, sans utilisation des prédictions Qwen : Digne tiers: signature Trabue avant doléances locales séparées.",
+    "legacy_parent_id": null,
+    "selection_type": "previously_reviewed_reference_not_new_validation",
+    "source_reference": "1789-qwen-boundaries/data/reference-development.jsonl#development-13"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1744",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1744",
+    "title": "Cahier du clergé du bailliage de Mirecourt",
+    "volume": 4,
+    "reason": "Contrôle hérité du pilote : mirecourt-clerge ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xg914wh0253:fbbba92b6bb96154d07a",
+    "legacy_key": "mirecourt-clerge",
+    "legacy_range": [
+      2312,
+      7705
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1745",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1745",
+    "title": "Cahier de la noblesse du bailliage de Mirecourt",
+    "volume": 4,
+    "reason": "Contrôle hérité du pilote : mirecourt-noblesse ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xg914wh0253:b6a30344f86d9da9f1ea",
+    "legacy_key": "mirecourt-noblesse",
+    "legacy_range": [
+      7726,
+      49457
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1857",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1857",
+    "title": "Cahier d'Arnouville ou Ermenouville (Paris)",
+    "volume": 4,
+    "reason": "Contrôle hérité du pilote : ermenonville ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xg914wh0253:2d9eb8a19442dcf619d3",
+    "legacy_key": "ermenonville",
+    "legacy_range": [
+      2880253,
+      2882169
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1867",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_1867",
+    "title": "Cahier d'Aubervilliers-les-Vertus (Paris)",
+    "volume": 4,
+    "reason": "Référence documentaire Codex corrigée/complexe, sans utilisation des prédictions Qwen : Aubervilliers: signatures traversant le changement de page325/326, avant Aulnay.",
+    "legacy_parent_id": null,
+    "selection_type": "previously_reviewed_reference_not_new_validation",
+    "source_reference": "1789-qwen-boundaries/data/reference-validation.jsonl#validation-19"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2175",
+    "persee_id": "arcpa_0000-0000_1879_num_4_1_2175",
+    "title": "Cahier de Ferrières-en-Brie (Paris)",
+    "volume": 4,
+    "reason": "Contrôle hérité du pilote : ferrieres ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xg914wh0253:4133d7972888544d97cb",
+    "legacy_key": "ferrieres",
+    "legacy_range": [
+      5028040,
+      5034067
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2335",
+    "title": "Cahier de Perigny en Brie (Paris)",
+    "volume": 5,
+    "reason": "Contrôle hérité du pilote : perigny-brie ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xx284sn7328:0e4e17a10525b854d367",
+    "legacy_key": "perigny-brie",
+    "legacy_range": [
+      124227,
+      129592
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2339",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2339",
+    "title": "Cahier de Pierrelez (Paris)",
+    "volume": 5,
+    "reason": "Contrôle hérité du pilote : pierrelez-habitants ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xx284sn7328:12cdaced3d457962e532",
+    "legacy_key": "pierrelez-habitants",
+    "legacy_range": [
+      194234,
+      196791
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2348",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2348",
+    "title": "Cahier de Plessis-Secqueville (Paris)",
+    "volume": 5,
+    "reason": "Contrôle hérité du pilote : plessis-secqueville ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xx284sn7328:83dfa5bae7397bf30538",
+    "legacy_key": "plessis-secqueville",
+    "legacy_range": [
+      279262,
+      283623
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2358",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2358",
+    "title": "Cahier de Puteaux (Paris)",
+    "volume": 5,
+    "reason": "Contrôle hérité du pilote : puteaux ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:xx284sn7328:9a570b0100acb2734ded",
+    "legacy_key": "puteaux",
+    "legacy_range": [
+      440333,
+      447416
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2405",
+    "persee_id": "arcpa_0000-0000_1879_num_5_1_2405",
+    "title": "Cahier de Santeny (Paris)",
+    "volume": 5,
+    "reason": "Référence documentaire Codex corrigée/complexe, sans utilisation des prédictions Qwen : Santeny: titre CAHIER dans un p, clôture signée avant Sarcelles; borne exacte présente malgré proposition automatique située ailleurs.",
+    "legacy_parent_id": null,
+    "selection_type": "previously_reviewed_reference_not_new_validation",
+    "source_reference": "1789-qwen-boundaries/data/reference-validation.jsonl#validation-26"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2495",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2495",
+    "title": "Cahier de l'ordre de la noblesse du bailliage de Toul",
+    "volume": 6,
+    "reason": "Contrôle hérité du pilote : toul-noblesse ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:wg983ft3682:8dab1fac50b6320bcb33",
+    "legacy_key": "toul-noblesse",
+    "legacy_range": [
+      38189,
+      70408
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2497",
+    "title": "Cahier du clergé de Vic (Bailliage de Toul)",
+    "volume": 6,
+    "reason": "Contrôle hérité du pilote : vic-clerge ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:wg983ft3682:72447fb17ff8b4b6f261",
+    "legacy_key": "vic-clerge",
+    "legacy_range": [
+      140779,
+      162953
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2556",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2556",
+    "title": "Cahier de la communauté d'Albertas (Sénéchaussée d'Aix)",
+    "volume": 6,
+    "reason": "Contrôle hérité du pilote : albertas ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:wg983ft3682:c33d108ba660e47d2e75",
+    "legacy_key": "albertas",
+    "legacy_range": [
+      2107339,
+      2111031
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2568",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2568",
+    "title": "Cahier de la communauté de Beaurecueil (Sénéchaussée d'Aix)",
+    "volume": 6,
+    "reason": "Contrôle hérité du pilote : beaurecueil ; diversité de longueur/ordre, titres, sections, notes et signatures.",
+    "legacy_parent_id": "ap1789-pilot-d1:wg983ft3682:f7df571f2f7d6b380e1b",
+    "legacy_key": "beaurecueil",
+    "legacy_range": [
+      2345533,
+      2349561
+    ],
+    "selection_type": "inherited_development_not_new_validation",
+    "source_reference": "1789-extraction-pilot/data/documents.jsonl"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2579",
+    "persee_id": "arcpa_0000-0000_1879_num_6_1_2579",
+    "title": "Cahier de la communauté de Châteauneuf (Sénéchaussée d'Aix)",
+    "volume": 6,
+    "reason": "Référence documentaire Codex corrigée/complexe, sans utilisation des prédictions Qwen : Châteauneuf: cahier et procès-verbal de nomination/remise des députés, avant Châteauneuf-le-Rouge distinct.",
+    "legacy_parent_id": null,
+    "selection_type": "previously_reviewed_reference_not_new_validation",
+    "source_reference": "1789-qwen-boundaries/data/reference-validation.jsonl#validation-32"
+  }
+]

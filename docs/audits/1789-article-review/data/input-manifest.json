@@ -1,0 +1,20 @@
+{
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "files": {
+    "docs/audits/1789-first-article-corpus/data/parents.jsonl.gz": "88e8242d49be0f22cc90179dcca99f1ff2764ebaf4a96ac5c9191e3376caabfc",
+    "docs/audits/1789-first-article-corpus/data/units-A.jsonl.gz": "bf5d8b43ad6dcf79e9d2aae9858cc0e0c2aebaedf6a478628bfecd00386f1996",
+    "docs/audits/1789-first-article-corpus/data/units-B.jsonl.gz": "f1c0f5f3e209eedc8b9d2338da4fe82a1df5eba80af4b1c7b94b1f82b93821b9",
+    "docs/audits/1789-first-article-corpus/data/units-C.jsonl.gz": "7f67dffd2f454cf4037f15691edecf1ef5649ec191ad37dc34f29a0241551863",
+    "docs/audits/1789-first-article-corpus/data/source-manifest.json": "088069616e223076a5cf3cd01b83504a4720a52668dd9a2f4eb3c3b88a8c2210",
+    "docs/audits/1789-first-article-corpus/data/quality.json": "3d73eb357d4b4ad738ab428815726eb0e85b6948d7fcc2518a63dd058e16ae97"
+  },
+  "initial_articles": 719,
+  "A": 217,
+  "B": 502,
+  "human_validations_added": 0,
+  "parent_journal_baseline": {
+    "path": "docs/tools/1789-document-review/.local/decisions.jsonl",
+    "bytes": 55580,
+    "sha256": "fd1ff67ea32b3b25c9b33c4bb53a5e8fd8eb31659d684d3cbca0e451db6c2fd4"
+  }
+}

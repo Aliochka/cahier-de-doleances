@@ -1,0 +1,38 @@
+{
+  "viewports": [
+    {
+      "width": 320,
+      "no_horizontal_overflow": true,
+      "source_visible": true,
+      "context_expanded": true
+    },
+    {
+      "width": 375,
+      "no_horizontal_overflow": true,
+      "source_visible": true,
+      "context_expanded": true
+    },
+    {
+      "width": 768,
+      "no_horizontal_overflow": true,
+      "source_visible": true,
+      "context_expanded": true
+    },
+    {
+      "width": 1280,
+      "no_horizontal_overflow": true,
+      "source_visible": true,
+      "context_expanded": true
+    }
+  ],
+  "text_200_percent": true,
+  "keyboard": true,
+  "save_correct_reload_history": true,
+  "auto_next_after_validation": true,
+  "failed_save_stays": true,
+  "uncertain_stays": true,
+  "last_in_filtered_selection_stays": true,
+  "documentary_alerts_translated_and_deduplicated": true,
+  "js_errors": [],
+  "synthetic_journal_only": true
+}

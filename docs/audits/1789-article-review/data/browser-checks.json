@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "Pierrelez_nine_articles": true,
+  "group_confirmation": true,
+  "group_undo": true,
+  "save_reload": true,
+  "split_inside_paragraph": true,
+  "merge_preserves_text": true,
+  "C_classification_not_article": true,
+  "missing_article_explicit": true,
+  "uncertain_not_batch_validated": true,
+  "Ferrieres_rubrics": true,
+  "B_dossier": "Cahier du clergé du bailliage d'Alençon",
+  "long_C_dossier": "Cahier de la noblesse de la sénéchaussée d'Agen",
+  "viewports": [
+    {
+      "width": 320,
+      "no_horizontal_overflow": true
+    },
+    {
+      "width": 375,
+      "no_horizontal_overflow": true
+    },
+    {
+      "width": 768,
+      "no_horizontal_overflow": true
+    },
+    {
+      "width": 1280,
+      "no_horizontal_overflow": true
+    }
+  ],
+  "text_200_percent": true,
+  "keyboard": true,
+  "Unicode_codepoints": true,
+  "cahiers_mode_preserved": true,
+  "structured_export": true,
+  "synthetic_journals_only": true,
+  "js_errors": []
+}

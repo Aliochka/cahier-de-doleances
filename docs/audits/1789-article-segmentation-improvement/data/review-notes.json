@@ -1,0 +1,24 @@
+[
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+    "start": 157031,
+    "end": 157465,
+    "label": "A:rt. 32.",
+    "number": null,
+    "evidence": [
+      "Codex_note_after_frozen_evaluation_not_an_extractor_prediction"
+    ],
+    "status": "review_note"
+  },
+  {
+    "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1844",
+    "start": 1763071,
+    "end": 1763588,
+    "label": "i lfl",
+    "number": null,
+    "evidence": [
+      "Codex_note_after_frozen_evaluation_not_an_extractor_prediction"
+    ],
+    "status": "review_note"
+  }
+]

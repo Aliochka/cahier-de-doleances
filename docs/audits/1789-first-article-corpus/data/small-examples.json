@@ -1,0 +1,139 @@
+[
+  {
+    "id": "ap1789-unit-1:7a330e3714643aab9325104a463b",
+    "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "type": "article",
+    "status": "A",
+    "start": 5121618,
+    "end": 5121728,
+    "parent_start": 1696,
+    "parent_end": 1806,
+    "text_spans": [
+      [
+        5121618,
+        5121728
+      ]
+    ],
+    "xml_blocks": [
+      {
+        "end": 5121631,
+        "id": "v1-b014733",
+        "start": 5121618,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[5]"
+      },
+      {
+        "end": 5121728,
+        "id": "v1-b014734",
+        "start": 5121656,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[6]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "jt959wc5586_00_0675",
+        "n": ""
+      }
+    ],
+    "legacy_unit_ids": [
+      "ap1789-pilot-u1:64bb7420785d8cb8ea4b:3cdbc82bba8aad5e"
+    ],
+    "text_excerpt_exact_prefix": "Article 1er, \n                        Que les lois constitutionnelles du royaume soient invariablement fixées.",
+    "excerpt_only": true
+  },
+  {
+    "id": "ap1789-unit-1:c27e02558dc9ce38871fde8d68db",
+    "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "type": "article",
+    "status": "B",
+    "start": 5123973,
+    "end": 5124241,
+    "parent_start": 4051,
+    "parent_end": 4319,
+    "text_spans": [
+      [
+        5123973,
+        5124241
+      ]
+    ],
+    "xml_blocks": [
+      {
+        "end": 5123982,
+        "id": "v1-b014753",
+        "start": 5123973,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[24]"
+      },
+      {
+        "end": 5124241,
+        "id": "v1-b014754",
+        "start": 5124007,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[25]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "jt959wc5586_00_0675",
+        "n": ""
+      }
+    ],
+    "legacy_unit_ids": [],
+    "text_excerpt_exact_prefix": "Art. 10, \n                        Que les douanes, péages et autres impôts qui gênent la liberté du\n                            commerce soient abolis dans l'intérieur du royaume et portés aux\n                            frontières, sauf l'indemnité des propriétaires.",
+    "excerpt_only": true
+  },
+  {
+    "id": "ap1789-unit-1:f4606b397b8fb70166288dd16191",
+    "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "type": "technical_passage",
+    "status": "C",
+    "start": 5119922,
+    "end": 5121618,
+    "parent_start": 0,
+    "parent_end": 1696,
+    "text_spans": [
+      [
+        5119922,
+        5121618
+      ]
+    ],
+    "xml_blocks": [
+      {
+        "end": 5119928,
+        "id": "v1-b014728",
+        "start": 5119922,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/head"
+      },
+      {
+        "end": 5120061,
+        "id": "v1-b014729",
+        "start": 5119953,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[1]"
+      },
+      {
+        "end": 5121473,
+        "id": "v1-b014730",
+        "start": 5120086,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[2]"
+      },
+      {
+        "end": 5121506,
+        "id": "v1-b014731",
+        "start": 5121499,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[3]"
+      },
+      {
+        "end": 5121591,
+        "id": "v1-b014732",
+        "start": 5121531,
+        "xpath": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[4]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "jt959wc5586_00_0675",
+        "n": ""
+      }
+    ],
+    "legacy_unit_ids": [],
+    "text_excerpt_exact_prefix": "CAHIER\n                        des demandes et doléances de l'ordre du clergé dela sénéchaus8ée\n                            d'agenols (1). \n                        Le clergé de la sénéchaussée d'Agenois, pénétré de la plus vive\n                            reconnaissance pour les .vues bien- faisantes du roi, encouragé par Sa\n                            Majesté à lui dénoncer tous les abus qui rendent inutile son amour pour\n                            ses peuples, jaloux de concourir avec elle au rétablissement de la\n                            constitution, et con- sidérant que la généreuse intention du roi est de\n                            n'établir ni proroger aucun impôt sans le con- sentement des Etats\n                            généraux de son royaume, d'assurer le retour périodique",
+    "excerpt_only": true
+  }
+]

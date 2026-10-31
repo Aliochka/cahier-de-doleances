@@ -1,0 +1,23 @@
+{
+  "docs/audits/1789-article-review/.gitignore": "44bf979d7ae62ff65a3b09f34a94fa836a5aae0eb52227d3e9d1da9f319247ec",
+  "docs/audits/1789-article-review/DATA.md": "9e86dd5a26ef46c99809d1778fa4b0b1301da257d658eb6781f23d8acc9b58fc",
+  "docs/audits/1789-article-review/README.md": "b3337f920e29fd619b8928fce243f32f96a1feb50927dc63a85a25a0a8f85901",
+  "docs/audits/1789-article-review/TESTS.md": "9cc85d24d39f3da754d2dc4fab34ec0dbb7f25ee66dcc510eafc6f49abb669c4",
+  "docs/audits/1789-article-review/check.py": "30318c39a6393dec1c5509db482c42aa34e3d23f390b0716e23df3a08bc5675f",
+  "docs/audits/1789-article-review/export.py": "03e6fd66ed8788b62e56d4d8b0baaf01b1c0b4371a51932d8659aa9924878677",
+  "docs/audits/1789-article-review/prior-files-sha256.json": "2ed39a7c08a9043da5002164741489ec0dc00f3c9083ef88e322caf7011a2a76",
+  "docs/tools/1789-document-review/.gitignore": "ea49267c9c71ac9716166e54bec1a327076f8dbb2fad79475e87c48511d82e01",
+  "docs/tools/1789-document-review/README.md": "aa1ea559a2e45cf3f333029098ba700ac0983e4d243e5d6ac3eb6388e27f6220",
+  "docs/tools/1789-document-review/article-smoke.cjs": "ec0dfa4bdb4ea3acfb83abc7af2efffa8923123d7b3a1c87a24f8ac17ba596ba",
+  "docs/tools/1789-document-review/article_test_server.py": "0a233f119b3eab0be193fda09c260afe80867494d52c09103e85645ed626c269",
+  "docs/tools/1789-document-review/articles.py": "33bdddb918eb3dd8df2a0be7be3fb135f098824a732b187da24906be89c4c21e",
+  "docs/tools/1789-document-review/reviewlib.py": "818758f5d6370ef835efadd660941d4972f54838599fc54dfd8943ebf4a95bcc",
+  "docs/tools/1789-document-review/server.py": "633ba0a009b41cf55181fc5dde0b093cb7f5d92cc5c9b78aa04682484582d7f7",
+  "docs/tools/1789-document-review/smoke.cjs": "a7a3e700428435d2340befc48a9cec4ff4628aa83f0a904364f8754cf1d1a68a",
+  "docs/tools/1789-document-review/static/app.js": "6406cb198689be8977186cee2f5fa2ce8346a1a5d36ff884518344a39053486f",
+  "docs/tools/1789-document-review/static/articles.js": "e0e3872c09a179076a89365e6e23fdfbd42e1511c0aba563ee5fb75037fbe8c0",
+  "docs/tools/1789-document-review/static/index.html": "fc52a71499204ed67ebf7711c3f14a229ae3678fefcbb2024e312bee0e2cad0f",
+  "docs/tools/1789-document-review/static/style.css": "3b150ec9d06fc01571f000ae5a7b67968d824fbc4b5e759863bae4a8180cfc6f",
+  "docs/tools/1789-document-review/test_articles.py": "a2e7085b8269fb1c1256ef56e6034695e889fe67cf7531243f20ae092163c4d6",
+  "docs/tools/1789-document-review/test_review.py": "50228355b1f7b6040ee85d4bb06df3d4f5da840bf667ed31ca306b3d5756645c"
+}

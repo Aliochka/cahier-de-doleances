@@ -1,0 +1,36 @@
+{
+  "parents": 29,
+  "units": 1516,
+  "by_type": {
+    "technical_passage": 793,
+    "article": 719,
+    "section": 4
+  },
+  "article_source_status": {
+    "A": 217,
+    "B": 502
+  },
+  "article_validation_status": {
+    "codex_examined": 217,
+    "automatic_proposal": 502
+  },
+  "by_source_status": {
+    "C": 793,
+    "A": 217,
+    "B": 506
+  },
+  "by_validation": {
+    "technical_unclassified": 793,
+    "codex_examined": 217,
+    "automatic_proposal": 506
+  },
+  "human_validated_units": 0,
+  "indexing_eligible": 723,
+  "publication_ready": 0,
+  "invalidated_parents": 0,
+  "article_journal_events": 0,
+  "article_journal_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "corpus_fingerprint": "6154fc251c01a1b6b9e7feeace62b295536bff8e9826547812ab34585c3a971a",
+  "method": "article-review-1.0",
+  "no_embeddings": true
+}

@@ -1,0 +1,25 @@
+{
+  "registry_sha256": "e038897d111e889461d5669e01b63e2e0027e7f0bf373b7920bfd2cbd1e7642f",
+  "human_decisions": {
+    "journal_sha256": "fd1ff67ea32b3b25c9b33c4bb53a5e8fd8eb31659d684d3cbca0e451db6c2fd4",
+    "event_count": 33,
+    "private_journal_not_exported": true
+  },
+  "sources": {
+    "1": "2ec227f29ccc418ea981db979046848a4b0637df8ef8b85858606de1a17174b6",
+    "2": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+    "3": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+    "4": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+    "5": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+    "6": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8"
+  },
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "code": {
+    "docs/audits/1789-first-article-corpus/build.py": "1e97b2c390b48bfea8311479f9b908bf8b1375b8afb0049cd681c1490dc820b9",
+    "docs/tools/1789-document-review/reviewlib.py": "818758f5d6370ef835efadd660941d4972f54838599fc54dfd8943ebf4a95bcc",
+    "docs/audits/1789-extraction-v2/rules_v2.py": "ac0452ee29f5ab738ee3fea2d6edd8e2c659445c5aad97f3e1ea7633af71e765",
+    "docs/audits/1789-extraction-200/rules.py": "be6ca66796c9d45e73bc669c6de3f35af33bc5b8d0698d2d56b9ce56ec2af23d",
+    "docs/audits/1789-extraction-200/pilot_segment.py": "899501c95a53c98524870ffbc28ec30ef3e300c630ebcb563a771a0d8b7ec2ab",
+    "docs/audits/1789-extraction-200/fast_blocks.py": "3f4341a5e8489cf115df70415755db63b38d004812b7d2a11a31d58fc119877f"
+  }
+}

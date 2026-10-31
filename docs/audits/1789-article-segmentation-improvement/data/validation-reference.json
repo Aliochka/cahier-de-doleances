@@ -1,0 +1,536 @@
+{
+  "validation-v1-1": {
+    "article_starts": [
+      5470183
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v1-2": {
+    "article_starts": [
+      5438063,
+      5444262
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v2-1": {
+    "article_starts": [
+      223974,
+      224083,
+      224222,
+      224367,
+      225031,
+      225116,
+      225303,
+      225425,
+      225509,
+      225671,
+      225785
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v2-2": {
+    "article_starts": [
+      216629,
+      216824,
+      216932,
+      217144,
+      217364,
+      217628,
+      217722,
+      217934,
+      218151,
+      218340,
+      218490
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v3-1": {
+    "article_starts": [
+      126965,
+      127204,
+      127374,
+      127630,
+      127882,
+      128419,
+      128753,
+      129408,
+      129862,
+      130135,
+      130405
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v3-2": {
+    "article_starts": [
+      113590,
+      113863,
+      115075,
+      115841,
+      116194,
+      117823,
+      118398,
+      118927,
+      119380,
+      119653,
+      121073
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v4-1": {
+    "article_starts": [
+      2964626
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v4-2": {
+    "article_starts": [],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v5-1": {
+    "article_starts": [
+      124559,
+      124706,
+      124978,
+      125344,
+      125578,
+      125812,
+      126033,
+      126206,
+      126634,
+      127066,
+      127297
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v5-2": {
+    "article_starts": [
+      125578,
+      125812,
+      126033,
+      126206,
+      126634,
+      127066,
+      127297,
+      127572,
+      127896,
+      128182,
+      128521
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v6-1": {
+    "article_starts": [
+      149647,
+      151363,
+      151959,
+      152193,
+      152436,
+      152699,
+      153252,
+      153683,
+      154128,
+      154645
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "validation-v6-2": {
+    "article_starts": [
+      157031,
+      157491,
+      158066,
+      158426,
+      158719,
+      159456,
+      160372,
+      160665,
+      160892,
+      161322,
+      161509
+    ],
+    "annotation_origin": "Codex source inspection after rule freeze; not independent human validation",
+    "note": "Subparagraph ordinals in Alençon remain internal lists; missing number in Colmar retained; A:rt.32 in Vic is an article despite OCR. Last end excluded where censored."
+  },
+  "_complete_articles": [
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1540",
+      "start": 5438063,
+      "end": 5444261
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 223974,
+      "end": 224075
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 224083,
+      "end": 224214
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 224222,
+      "end": 224359
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 224367,
+      "end": 225023
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 225031,
+      "end": 225108
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 225116,
+      "end": 225295
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 225303,
+      "end": 225417
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 225425,
+      "end": 225501
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 225509,
+      "end": 225663
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 225671,
+      "end": 225777
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 216629,
+      "end": 216816
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 216824,
+      "end": 216924
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 216932,
+      "end": 217136
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 217144,
+      "end": 217356
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 217364,
+      "end": 217620
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 217628,
+      "end": 217714
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 217722,
+      "end": 217926
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 217934,
+      "end": 218143
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 218151,
+      "end": 218332
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "start": 218340,
+      "end": 218482
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 126965,
+      "end": 127178
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 127204,
+      "end": 127348
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 127374,
+      "end": 127604
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 127630,
+      "end": 127856
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 127882,
+      "end": 128393
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 128419,
+      "end": 128727
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 128753,
+      "end": 129382
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 129408,
+      "end": 129836
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 129862,
+      "end": 130109
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 130135,
+      "end": 130379
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 113590,
+      "end": 113837
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 113863,
+      "end": 115049
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 115075,
+      "end": 115815
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 115841,
+      "end": 116168
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 116194,
+      "end": 117797
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 117823,
+      "end": 118372
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 118398,
+      "end": 118901
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 118927,
+      "end": 119354
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 119380,
+      "end": 119627
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+      "start": 119653,
+      "end": 121047
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 124559,
+      "end": 124681
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 124706,
+      "end": 124953
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 124978,
+      "end": 125319
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 125344,
+      "end": 125553
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 125578,
+      "end": 125787
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 125812,
+      "end": 126008
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 126033,
+      "end": 126181
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 126206,
+      "end": 126609
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 126634,
+      "end": 127041
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 127066,
+      "end": 127272
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 127297,
+      "end": 127547
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 127572,
+      "end": 127871
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 127896,
+      "end": 128157
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+      "start": 128182,
+      "end": 128496
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 149647,
+      "end": 151337
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 151363,
+      "end": 151933
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 151959,
+      "end": 152167
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 152193,
+      "end": 152410
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 152436,
+      "end": 152673
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 152699,
+      "end": 153226
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 153252,
+      "end": 153657
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 153683,
+      "end": 154102
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 154128,
+      "end": 154619
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 157031,
+      "end": 157465
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 157491,
+      "end": 158040
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 158066,
+      "end": 158400
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 158426,
+      "end": 158693
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 158719,
+      "end": 159430
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 159456,
+      "end": 160346
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 160372,
+      "end": 160639
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 160665,
+      "end": 160866
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 160892,
+      "end": 161296
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+      "start": 161322,
+      "end": 161483
+    }
+  ]
+}
