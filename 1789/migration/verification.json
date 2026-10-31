@@ -1,0 +1,43 @@
+{
+  "original_files": 2256,
+  "original_bytes": 209855170,
+  "payload_files_preserved_bit_for_bit": 1989,
+  "missing_files": 0,
+  "approved_code_doc_path_changes": 70,
+  "generated_bytecode_changes": 4,
+  "unchanged_extraction_rule_files": [
+    "1789/archives/1789-extraction-200/rules.py",
+    "1789/archives/1789-extraction-v2/rules_v2.py",
+    "1789/extraction/segmentation.py"
+  ],
+  "python_syntax_checked": 149,
+  "stanford_volumes": 6,
+  "registry_notices": 1305,
+  "parents": 29,
+  "initial_articles": 719,
+  "current_human_articles": 333,
+  "article_events": 346,
+  "parent_events": 33,
+  "stale_article_decisions": 0,
+  "new_extraction_run": false,
+  "database_access": false,
+  "python_tests": 36,
+  "browser_scenarios": [
+    "cahiers",
+    "articles",
+    "segmentation_comparison",
+    "campaign",
+    "reading_position"
+  ],
+  "browser_js_errors": 0,
+  "viewports": [
+    320,
+    375,
+    768,
+    1280
+  ],
+  "text_zoom_200_percent": true,
+  "markdown_local_links_checked": 345,
+  "broken_markdown_links": 0,
+  "private_or_large_files_exposed_to_git": 0
+}

@@ -1,0 +1,113 @@
+{
+  "directory_moves": [
+    {
+      "old": "docs/audits/1789-article-review",
+      "new": "1789/archives/1789-article-review"
+    },
+    {
+      "old": "docs/audits/1789-article-segmentation-improvement",
+      "new": "1789/archives/1789-article-segmentation-improvement"
+    },
+    {
+      "old": "docs/audits/1789-document-registry",
+      "new": "1789/archives/1789-document-registry"
+    },
+    {
+      "old": "docs/audits/1789-extraction-200",
+      "new": "1789/archives/1789-extraction-200"
+    },
+    {
+      "old": "docs/audits/1789-extraction-pilot",
+      "new": "1789/archives/1789-extraction-pilot"
+    },
+    {
+      "old": "docs/audits/1789-extraction-v2",
+      "new": "1789/archives/1789-extraction-v2"
+    },
+    {
+      "old": "docs/audits/1789-first-article-corpus",
+      "new": "1789/archives/1789-first-article-corpus"
+    },
+    {
+      "old": "docs/audits/1789-human-review-quality",
+      "new": "1789/archives/1789-human-review-quality"
+    },
+    {
+      "old": "docs/audits/1789-multicorpus",
+      "new": "1789/archives/1789-multicorpus"
+    },
+    {
+      "old": "docs/audits/1789-pecqueuse-comparison",
+      "new": "1789/archives/1789-pecqueuse-comparison"
+    },
+    {
+      "old": "docs/audits/1789-persee-stanford-alignment",
+      "new": "1789/archives/1789-persee-stanford-alignment"
+    },
+    {
+      "old": "docs/audits/1789-qwen-boundaries",
+      "new": "1789/archives/1789-qwen-boundaries"
+    },
+    {
+      "old": "docs/audits/1789-semantic-search",
+      "new": "1789/archives/1789-semantic-search"
+    },
+    {
+      "old": "docs/audits/1789-sources-comparison",
+      "new": "1789/archives/1789-sources-comparison"
+    },
+    {
+      "old": "docs/audits/multicorpus-scale-study",
+      "new": "1789/archives/multicorpus-scale-study"
+    },
+    {
+      "old": "docs/tools/1789-document-review",
+      "new": "1789/tools/document-review"
+    }
+  ],
+  "extra_moves": [
+    {
+      "old": "1789/archives/1789-extraction-v2/.cache/sources",
+      "new": "1789/sources/stanford/926fd3cd986a3c3d411e93d1845fff6475cb2602"
+    },
+    {
+      "old": "1789/archives/1789-document-registry/.cache",
+      "new": "1789/sources/persee/registry-cache"
+    },
+    {
+      "old": "1789/archives/1789-persee-stanford-alignment/.cache",
+      "new": "1789/sources/persee/alignment-cache"
+    },
+    {
+      "old": "1789/tools/document-review/.local",
+      "new": "1789/data/private/document-review"
+    },
+    {
+      "old": "1789/tools/document-review/segmentation.py",
+      "new": "1789/extraction/segmentation.py"
+    },
+    {
+      "old": "1789/archives/1789-document-registry/data",
+      "new": "1789/data/registry"
+    },
+    {
+      "old": "1789/archives/1789-first-article-corpus/data",
+      "new": "1789/data/article-corpus"
+    },
+    {
+      "old": "1789/archives/1789-article-review/data",
+      "new": "1789/data/review-exports"
+    },
+    {
+      "old": "1789/archives/1789-article-segmentation-improvement/data",
+      "new": "1789/data/segmentation-proposals"
+    }
+  ],
+  "file_moves": [
+    {
+      "old": "docs/audits/LOCAL_DATA.md",
+      "new": "1789/docs/LOCAL_DATA.md"
+    }
+  ],
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602"
+}

@@ -1,0 +1,12 @@
+/.local/
+__pycache__/
+/data/*
+!/data/
+!/data/summary.json
+!/data/cahiers.json
+!/data/errors.json
+!/data/detection.json
+!/data/provenance.json
+!/data/checks.json
+!/data/strategy-plan.json
+!/annotations.json

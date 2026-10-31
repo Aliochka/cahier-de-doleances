@@ -1,0 +1,9 @@
+/.cache/
+__pycache__/
+!*.json
+!*.jsonl
+!data/
+!data/**
+
+# Internal alias to the unique canonical dataset/source cache.
+!/.cache

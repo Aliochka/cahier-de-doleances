@@ -1,0 +1,25 @@
+{
+  "context_queue_all_initial_articles": 128,
+  "context_queue_unreviewed_initial_articles": 69,
+  "major_context_queue_or_marker_hits": 10,
+  "incident_count": 15,
+  "major_incidents": 10,
+  "old_direct": 4,
+  "automatic_direct": 9,
+  "major_old_direct": 2,
+  "major_automatic_direct": 7,
+  "major_automatic_marker_hits": 8,
+  "major_with_manual_note": 1,
+  "triage_all_initial_articles": {
+    "1": 640,
+    "2": 79
+  },
+  "triage_random_five": {
+    "1": 107,
+    "2": 1
+  },
+  "triage_unreviewed_initial_articles": {
+    "1": 357,
+    "2": 40
+  }
+}

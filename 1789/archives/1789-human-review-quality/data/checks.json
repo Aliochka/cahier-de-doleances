@@ -1,0 +1,13 @@
+{
+  "valid_hash_chained_journal": true,
+  "coverage_checks_passed": true,
+  "stale_events": 0,
+  "real_journal_prefix_preserved": true,
+  "human_decisions_written": 0,
+  "segmentation_executed": false,
+  "all_27_mutation_events_classified_once": true,
+  "counter_reconciliation": true,
+  "provenance_files_unchanged_at_finish": true,
+  "random_group_zero_recorded_corrections": true,
+  "no_automatic_extraction": true
+}

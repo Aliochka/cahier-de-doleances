@@ -1,0 +1,63 @@
+{
+  "distinct_ids_ever_validated": 312,
+  "repeated_validate_operations": 5,
+  "mutation_events_classified": 27,
+  "events": 346,
+  "cahiers": 10,
+  "groups": {
+    "development_five": {
+      "initial_articles": 214,
+      "final_articles": 225,
+      "human_reviewed_articles": 225,
+      "accepted_without_change": 200,
+      "corrected_or_created_final": 25,
+      "initial_articles_changed": 14,
+      "new_articles": 11,
+      "confirmed_fusions": 9,
+      "possible_fusion_without_explicit_number": 1,
+      "other_incidents": 6,
+      "individual_validation_operations": 209,
+      "group_validation_operations": 0,
+      "final_uncertain_articles": 0
+    },
+    "random_five": {
+      "initial_articles": 108,
+      "final_articles": 108,
+      "human_reviewed_articles": 108,
+      "accepted_without_change": 108,
+      "corrected_or_created_final": 0,
+      "initial_articles_changed": 0,
+      "new_articles": 0,
+      "confirmed_fusions": 0,
+      "possible_fusion_without_explicit_number": 0,
+      "other_incidents": 0,
+      "individual_validation_operations": 108,
+      "group_validation_operations": 0,
+      "final_uncertain_articles": 0
+    }
+  },
+  "current_human_articles": 333,
+  "accepted_without_change": 308,
+  "corrected_or_created_final": 25,
+  "initial_articles_changed": 14,
+  "new_articles": 11,
+  "incident_categories": {
+    "D": 1,
+    "F": 3,
+    "A": 9,
+    "C": 1,
+    "E": 1
+  },
+  "human_article_duration_fields": [],
+  "parent_instrumentation": {
+    "events": 33,
+    "events_with_active_seconds": 33,
+    "active_seconds_sum": 1716.0399999999995
+  },
+  "reported_times_minutes": {
+    "previous_three_difficult": 30,
+    "random_five": 15
+  },
+  "time_measurement": "Approximate user statements, not measured active times",
+  "random_campaign_events_since_baseline": 108
+}
