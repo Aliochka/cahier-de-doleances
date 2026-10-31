@@ -41,3 +41,9 @@ Le bilan n’est **pas réalisé maintenant**. Il comparera les unités initiale
 Une copie privée du journal initial et des unités initiales sélectionnées est conservée sous `../../../data/private/document-review/campaigns/five-cahiers-01/`, ignorée par Git. Les décisions ultérieures restent dans le journal habituel, jamais dans les fichiers sources. Aucun événement de test n’est ajouté au journal réel.
 
 Ce petit lot oriente les prochaines décisions ; il ne permettra pas d’estimer fiablement la qualité des 1 305 notices. Aucun bilan, aucune extraction, aucun embedding ou accès PostgreSQL n’est réalisé pendant cette préparation.
+
+## Lot distinct : 12 frontières documentaires
+
+`twelve-boundaries.json` et `draw_boundaries.py` concernent les **frontières des cahiers**, deux par volume, après finalisation. Ils ne remplacent pas la campagne de cinq cahiers d’articles ci-dessus. Le lot est accessible dans **Cahiers**, avec le filtre `?boundary_sample=1`.
+
+[Instructions, tirage et limites](../../../docs/DOCUMENTARY-FINALIZATION.md). Aucune frontière du lot n’est validée par le tirage. La vérification humaine reste à effectuer avant de reprendre le contrôle qualité des articles.

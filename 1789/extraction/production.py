@@ -20,7 +20,7 @@ from reviewlib import AUDITS, PRIVATE, Store, module, rows, sha  # noqa: E402
 from segmentation import VERSION as SEGMENTER_VERSION  # noqa: E402
 from segmentation import run as segment  # noqa: E402
 
-VERSION = "global-corpus-2"
+VERSION = "global-corpus-3"
 CURRENT = BASE / "data/corpus/current.json"
 
 
@@ -53,6 +53,8 @@ def input_paths(store):
         PRIVATE / "article-decisions.jsonl",
         BASE / "extraction/segmentation.py",
         BASE / "extraction/boundary_rules.py",
+        BASE / "extraction/documentary_finalization.py",
+        BASE / "extraction/documentary-finalization.json",
         AUDITS / "1789-extraction-v2/rules_v2.py",
         AUDITS / "1789-extraction-200/rules.py",
         Path(__file__),
@@ -710,6 +712,7 @@ def build(output=None, resume=False, activate=True):
                     legacy_units.get(r["id"]),
                 )
                 resolution = store.automatic_corrections[r["id"]]
+                entry["document_kind_original"] = r["document_kind"]
                 entry["documentary_resolution"] = resolution
                 entry["original_registry_boundaries"] = r["boundaries"]
                 if parent:

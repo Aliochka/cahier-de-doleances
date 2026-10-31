@@ -7,7 +7,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
-from reviewlib import HERE, Conflict, Store
+from reviewlib import HERE, Conflict, Store, sha
 
 
 class ReviewServer(HTTPServer):
@@ -199,6 +199,20 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(200, dict(total=len(hits), blocks=hits[:50]))
             if url.path == "/api/corpus/summary":
                 return self.send(200, self.server.corpus_info())
+            if url.path == "/api/boundary-campaign":
+                path = HERE / "campaigns/twelve-boundaries.json"
+                if not path.exists():
+                    return self.send(200, None)
+                campaign = json.loads(path.read_text())
+                active = self.server.articles().directory.resolve()
+                campaign["matches_active_generation"] = (
+                    sha((active / "parents.jsonl.gz").read_bytes()) == campaign["parents_sha256"]
+                )
+                decisions = json.loads(
+                    (HERE.parents[1] / "extraction/documentary-finalization.json").read_text()
+                )
+                campaign["blockers"] = decisions["blockers"]
+                return self.send(200, campaign)
             if url.path == "/api/articles/campaign":
                 path = HERE / "campaigns/five-cahiers.json"
                 return self.send(200, json.loads(path.read_text()) if path.exists() else None)

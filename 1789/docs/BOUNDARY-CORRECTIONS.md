@@ -1,5 +1,7 @@
 # Frontières documentaires — corrections de production
 
+> Bilan de la génération 2 conservé. La [finalisation documentaire](DOCUMENTARY-FINALIZATION.md) décrit la génération 3 et le lot de 12 cahiers prêt au contrôle humain.
+
 Une nouvelle génération complète a été **exécutée** sur les six volumes : `data/corpus/global-corpus-2-45273d688b59/`. La génération de référence `global-corpus-1-95b58b690be5/` est conservée. Le registre, les sources et les journaux n’ont pas été modifiés.
 
 **26 documents ont effectivement changé de plage** : 14 fins arrêtées avant un autre cahier identifié et 12 alignements repris à partir d’une ouverture explicite. Ces derniers comprennent **7 notices auparavant sans texte**, avec leur nature propre conservée. Aucun document précédemment extrait n’a disparu.

@@ -13,7 +13,7 @@ const assert=require('node:assert/strict');
   assert.equal(await page.locator('#batch').isChecked(),false);
   assert.equal(await page.locator('#list > li').count(),1305);
   await page.locator('#mode-articles').click();await page.waitForFunction(()=>articleDocument&&articleParents.length>=1200);
-  assert.ok(await page.locator('#article-unresolved-list > li').count()>=60);
+  assert.equal(await page.locator('#article-unresolved-list > li').count(),(await (await page.request.get(base+'/api/corpus/summary')).json()).summary.unresolved_notices);
   assert.equal(await page.evaluate(()=>articleParents.reduce((n,p)=>n+p.human_reviewed,0)),333);
   await page.locator('#article-volume').selectOption('6');
   await page.waitForFunction(()=>articleDocument.parent.volume===6);

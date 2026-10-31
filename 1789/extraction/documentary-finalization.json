@@ -1,0 +1,1337 @@
+{
+  "version": "documentary-finalization-1",
+  "baseline_generation": "global-corpus-2-45273d688b59",
+  "baseline_registry_sha256": "e038897d111e889461d5669e01b63e2e0027e7f0bf373b7920bfd2cbd1e7642f",
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "human_validation": false,
+  "scope": "16 remaining overlap pairs and 23 missing probable cahiers; source examination by Codex, not independent human validation",
+  "repairs": [
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1613",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1613",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": null,
+      "selected": {
+        "start": 1332276,
+        "end": 1341065
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[15]/div3[1]/p[83]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[15]/div3[1]/p[106]",
+      "opening_exact": "Très-humbles et très-respectueuses remontrances présentées au Roi et à nosseigneurs des\n       Etats généraux par les trois ordres du Bassigny-Barrois. ",
+      "closing_exact": "t la personne chargée de ses\n       pouvoirs, instructions et mémoires, ayant un caractère légal et députée régulièrement près d\n       elle par les trois ordres du même pays, pour y être leur représentant, l'interprète et le\n       patron de leurs intérêts, et sera justice (1). ",
+      "reason": "Remontrances des trois ordres du Bassigny après la certification du tiers de Bar-le-Duc ; titre interne p[83], requête terminale p[105].",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1592",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1592",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": {
+        "start": 1304953,
+        "end": 1341065
+      },
+      "selected": {
+        "start": 1304953,
+        "end": 1332276
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[15]/div3[1]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[15]/div3[1]/p[82]",
+      "opening_exact": "CAHIER GÉNÉRAL",
+      "closing_exact": "me à la minute par nous, lieutenant général civil et criminel au\n       bailliage royal de Bar-le-Duc, président de l'assemblée clu tiers-état dudit bailliage, et\n       par le secrétaire dudit ordre, tous deux soussignés, cejourd'hui 30 mars 1789. Signé Gossin\n       et Michel. ",
+      "reason": "Le titre de la notice 1613 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1738",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1738",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": null,
+      "selected": {
+        "start": 4144136,
+        "end": 4177506
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[43]/div3[3]/p[22]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[43]/div3[4]/p[25]",
+      "opening_exact": "RESPECTUEUSES REMONTRANCES. ",
+      "closing_exact": "Coilationné à l'original déposé au greffe du bailliage de Châlon-sur-Saône. Signé Bottex,\n       secrétaire. ",
+      "reason": "Remontrances du tiers après la signature de la noblesse ; poursuite dans la division des doléances particulières, puis signatures et collation Bottex. Les deux divisions forment le dossier, sans absorber le clergé du Charolais.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1716",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1716",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": null,
+      "selected": {
+        "start": 4924966,
+        "end": 4939557
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[50]/div3[2]/p[5]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[50]/div3[2]/p[73]",
+      "opening_exact": "PÉTITIONS ",
+      "closing_exact": "Le26 mars 1789. ",
+      "reason": "Pétitions de la noblesse après la signature du clergé régulier ; clôture et signatures des nobles avant le titre du tiers.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1800",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1800",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": null,
+      "selected": {
+        "start": 81482,
+        "end": 110321
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[33]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[94]",
+      "opening_exact": "redaction",
+      "closing_exact": "Signé Klein, greffier. ",
+      "reason": "Rédaction du tiers de Colmar et Schlestadt après les signatures des nobles ; certification du 31 mars et signature Klein.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1794",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1794",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": {
+        "start": 63939,
+        "end": 110321
+      },
+      "selected": {
+        "start": 63939,
+        "end": 81482
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[1]/div3[2]/p[32]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "ouis Sanson, baron de Rathsamhausen d'Ehenweger; le\n                            baron de Bertett ; de Michelet ; le prince de Broglie, commissaire et\n                            grand bailli d'épée, et de Millier, secrétaire de l'ordre de la\n                            noblesse. ",
+      "reason": "Le titre de la notice 1800 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1812",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1812",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": null,
+      "selected": {
+        "start": 551171,
+        "end": 583819
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[6]/div3[4]/p[88]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[6]/div3[4]/p[187]",
+      "opening_exact": " Griefs, plaintes et doléances des habitants de la pa- roisse de\n                            Saint-Jean des Agneaux (1). ",
+      "closing_exact": "Paris, été., etc. ",
+      "reason": "Griefs de Saint-Jean-des-Agneaux après les signatures du document précédent ; certification des commissaires du 4 mars. Conserver le paratexte final dans le parent.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1811",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1811",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": {
+        "start": 503379,
+        "end": 583819
+      },
+      "selected": {
+        "start": 503379,
+        "end": 551171
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[6]/div3[4]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[6]/div3[4]/p[87]",
+      "opening_exact": "CAHIER",
+      "closing_exact": "Et signés Robillard et Raoutte",
+      "reason": "Le titre de la notice 1812 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1887",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1887",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": null,
+      "selected": {
+        "start": 1914311,
+        "end": 1947495
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[22]/div3[17]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[22]/div3[17]/p[46]",
+      "opening_exact": "RÉDACTION",
+      "closing_exact": "                Dupire, ï.-J.Salez, J.-B. Bazin, J.-F.-J. Dqqûesàe, 6.-/. Glaire, J.-B.\n                            Lâcquement, E.-J. Lapère, A. Délyign'e, J.-A. Mielley, J.-B. Ro- bêrt,\n                            P.-J. Rogier, J.-B. Dupirè, P.-P. Leprêtre, C,-m-J.-J. Ducauché. ",
+      "reason": "Titre RÉDACTION fortement dégradé, mais Landas est explicite dans le premier paragraphe ; clôture du 24 mars et signatures avant Beuvry.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1952",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1952",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": null,
+      "selected": {
+        "start": 3443846,
+        "end": 3446621
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[27]/div3[9]/p[241]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[27]/div3[9]/p[246]",
+      "opening_exact": "BOLEA.NCES PARTICULIÈRES De la communauté du Lauzet.",
+      "closing_exact": " Signé GU-rault. ",
+      "reason": "Titre BOLEA.NCES PARTICULIÈRES du Lauzet, entre la certification de Chatelard et le titre de Revel ; signature GU-rault.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2016",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2016",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": null,
+      "selected": {
+        "start": 5613251,
+        "end": 5657719
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[45]/div3[1]/p[47]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[45]/div3[1]/p[186]",
+      "opening_exact": "COPIE",
+      "closing_exact": "58. Qu'ils prennent les mesures les plus sages pour cesser de payer à la\n                            cour de Rome les annales ou tributs quelconques accordés au pape à cha-\n                            que mutation de certains bénéfices. ",
+      "reason": "Copie du mandat de la noblesse du Mâconnais après la certification Greuze du clergé ; instructions et réclamations locales, signatures et articles annexés du même ordre.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2015",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2015",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": {
+        "start": 5590983,
+        "end": 5657719
+      },
+      "selected": {
+        "start": 5590983,
+        "end": 5613251
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[45]/div3[1]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[45]/div3[1]/p[46]",
+      "opening_exact": "CAHIER GÉNÉRAL",
+      "closing_exact": "Signé Greuze, curé de SainkSorlin-les-Mâqon, secrétaire.",
+      "reason": "Le titre de la notice 2016 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2056",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2056",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": null,
+      "selected": {
+        "start": 7089307,
+        "end": 7130999
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[54]/div3[9]/p[25]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[54]/div3[9]/p[85]",
+      "opening_exact": "HUMBLES DOLÉANCES Du corps des vicaires de la paroisse des Trois- Evêchés\n                            (1). Domine Rex, propitius esto sorti ; converte luctum nostrum in\n                            gandinm, ut, viventes, laudemos no- men tuum. ",
+      "closing_exact": "s au moins de celui d'être\n                            entendus et de répéter avec respect : Domine Rex, propitius esto sorti,\n                            converte luctum nôstrum in gaudium, ut, viventes, laudemus nomentuum. Et\n                            ferez grâce et justice. ",
+      "reason": "Humbles doléances du corps des vicaires après la signature Mathey et Embry du clergé de Sarrebourg ; texte jusqu’à la fin de division, sans titre voisin.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2055",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2055",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": {
+        "start": 7079863,
+        "end": 7130999
+      },
+      "selected": {
+        "start": 7079863,
+        "end": 7089307
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[54]/div3[9]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[54]/div3[9]/p[24]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "Signé Mathey ; Embry, secrétaire-greffier. ",
+      "reason": "Le titre de la notice 2056 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2186",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2186",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": null,
+      "selected": {
+        "start": 5219083,
+        "end": 5226415
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[159]/p[117]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[159]/p[138]",
+      "opening_exact": "Des plaintes, doléances et remontrances que font les habitants de la\n                            paroisse de Fourqueux au /loi et # nosseigneurs des Etals généraux (1). ",
+      "closing_exact": "rand ; C. Lecointe; J.-B.\n                            Jouan ; J.-B. Charpentier ; D. Beauvais; J. Aerambon; J.-A. Roupet;\n                            D.-F. Clérembourt; Rège ; Rousse ^.Beauvais; P. Gilbert; Jacques Bedoct;\n                            RenéHalloré; J.-C. Perruque. ",
+      "reason": "Titre Des plaintes de Fourqueux après la signature Leflamand de Joyeuval du cahier de Fosses ; signatures des habitants de Fourqueux à p[138].",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2185",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2185",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": {
+        "start": 5171808,
+        "end": 5226436
+      },
+      "selected": {
+        "start": 5171808,
+        "end": 5219083
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[159]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[159]/p[116]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "Leflamand de Joyeuval. ",
+      "reason": "Le titre de la notice 2186 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2198",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2198",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": null,
+      "selected": {
+        "start": 5349468,
+        "end": 5367672
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[169]/p[60]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[169]/p[111]",
+      "opening_exact": "GAHIER ",
+      "closing_exact": "Paraphé Gautier. ",
+      "reason": "Titre GAHIER dans un paragraphe ; Gif-pi ès-Chevreuse dans le suivant ; signatures Legrand et paraphé Gautier avant le cahier suivant.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2197",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2197",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": {
+        "start": 5335859,
+        "end": 5367698
+      },
+      "selected": {
+        "start": 5335859,
+        "end": 5349468
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[169]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[169]/p[59]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "Paraphé ne varietur. HoCHART. ",
+      "reason": "Le titre de la notice 2198 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2272",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2272",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": null,
+      "selected": {
+        "start": 6417421,
+        "end": 6421155
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[238]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[238]/note",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "(1) Nous .publions ce cahier d'après un manuscrit des\n                            Archives de l'Empire.",
+      "reason": "La notice Marielle correspond à la paroisse de Meriel dans le texte. Position entre Mennecy et Méry, pagination et clôture concordantes ; graphie de source conservée.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2278",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2278",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": null,
+      "selected": {
+        "start": 6478239,
+        "end": 6495369
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[244]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[244]/p[23]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "de Coudun ; Lanfant ; Nicolas\n                            Barrat; Nicolas Vallet; J. Vaignau, Barton; Boucher; S. Robiche; Huget;\n                            Antoine Cassu; Barat; Lecointre; Claude Domme; Louis-HonorédeGau; Paul\n                            Domine ; Rejes, syndic.",
+      "reason": "Nom collé deMessy dans le titre ; division propre, articles et clôture avant le titre du document suivant.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2788",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2788",
+      "volume": 5,
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "expected_previous": null,
+      "selected": {
+        "start": 2498663,
+        "end": 2513804
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[2]/div3[6]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[2]/div3[6]/p[104]",
+      "opening_exact": "CAHIER ET INSTRUCTIONS",
+      "closing_exact": "Du Tremblay de Rubelle, secrétaire.",
+      "reason": "Premier département écrit en toutes lettres dans le titre ; liste des rédacteurs, instructions et clôture du dossier avant le département suivant.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2797",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2797",
+      "volume": 5,
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "expected_previous": null,
+      "selected": {
+        "start": 2764965,
+        "end": 2799161
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[2]/div3[16]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[2]/div3[16]/p[88]",
+      "opening_exact": "PROCÈS-VERBAL",
+      "closing_exact": "heradame; Le Jeune; Bernier; Cosson;\n                            Guiret ; Popelin; Hom ; Boicervoise ; Dulion ; Lohier ; Perard ; Henri\n                            Voisin; Garan de Coulon; Monge; Bernier; Le Roi; Fortin, secrétaire;\n                            Hémart, secrétaire.",
+      "reason": "La source est un procès-verbal de Saint-Germain-des-Prés avec pouvoirs et instructions intégrés, non un cahier autonome ; même pagination 304–308 et signatures finales. Notice et titre Persée conservés.",
+      "documentary_kind": "proces_verbal",
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2856",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2856",
+      "volume": 5,
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "expected_previous": null,
+      "selected": {
+        "start": 5083414,
+        "end": 5139908
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[17]/div3[3]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[17]/div3[4]/p[129]",
+      "opening_exact": "DISCOURS",
+      "closing_exact": "Signé Arghon-Besperouses.",
+      "reason": "Dossier de Riom : discours de Malouet suivi de la division INSTRUCTIONS, signatures et certification finales ; les deux divisions sont conservées séparément dans la structure.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2883",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2883",
+      "volume": 5,
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "expected_previous": null,
+      "selected": {
+        "start": 5949834,
+        "end": 5991520
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[24]/div3[3]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[24]/div3[3]/p[67]",
+      "opening_exact": "POUVOIRS",
+      "closing_exact": "ous\n                            donnons à nos députés afin qu’ils ne le perdent pas de vue, et qu’ils\n                            n’oublient pas que de la manière dont ils répondront à notre confiance,\n                            dépend le jugement que portera d’eux la postérité.",
+      "reason": "Titre Pouvoirs de la noblesse de Saintonge, dans la sénéchaussée de Saintes ; instructions et dernière injonction au député terminent la division.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2530",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2530",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": null,
+      "selected": {
+        "start": 1160408,
+        "end": 1180813
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[137]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[232]",
+      "opening_exact": "VŒU DE LA NOBLESSE DU BAILLIAGE DE VERDUN (1) Etats généraux. ",
+      "closing_exact": "rd ; chevalier de\n                            Gri-moard; le chevalier de Gorday Desgodins; Lassus; Dugaz; Sabardin de\n                            Watronville; Hallot; Tardif du Désert ; Le Bacbellé ; de Bounay de\n                            Nonan-court ; Boutteville, secrétaire. ",
+      "reason": "Vœu de la noblesse de Verdun après la certification Georgia du clergé ; signatures puis réclamations réservées avant la notice d’absence du tiers.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2529",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2529",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": {
+        "start": 1128102,
+        "end": 1180813
+      },
+      "selected": {
+        "start": 1128102,
+        "end": 1160408
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[9]/div3[1]/p[136]",
+      "opening_exact": "CAHIER GÉNÉRAL ",
+      "closing_exact": "hier\n                            ci-dessus, est conseiller du Roi, greffier en chef audit bailliage, et\n                            que foi doit être ajoutée à sa signature, tant en jugement que dehors.\n                            Donné à Verdun, en notre hôtel, le 6 avril 1789. ",
+      "reason": "Le titre de la notice 2530 suit la clôture/certification de ce document ; son texte était absorbé à tort par la division XML commune.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2569",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2569",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": null,
+      "selected": {
+        "start": 2349587,
+        "end": 2351146
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[17]/div3[14]/p[9]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[17]/div3[14]/p[15]",
+      "opening_exact": "D0LÉANCE ET PLAINTES",
+      "closing_exact": " (1) Nous publions ce cahier d'après un manuscrit des Archives de\n                            l'Empire.",
+      "reason": "D0LÉANCE ET PLAINTES de Belèodène à l’intérieur de la division de Beaurecueil ; signatures Velin et note éditoriale finales. Ne pas corriger ces graphies.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2576",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2576",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": null,
+      "selected": {
+        "start": 2506347,
+        "end": 2519056
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[17]/div3[21]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[17]/div3[21]/p[48]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "Signé Jean Laurens; Guillaume Gidde; J.-J. Gidde •; Tronc, lieutenant de\n                            juge, et Mimdre, greffier. ",
+      "reason": "Titre Gurri et Rouât dégradé ; identité étayée par le contexte, les répétitions du nom et les deux exemplaires du cahier, signatures avant Cassis.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2594",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2594",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": null,
+      "selected": {
+        "start": 2848218,
+        "end": 2881123
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[17]/div3[42]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[17]/div3[42]/p[64]",
+      "opening_exact": "INSTRUCTIONS ",
+      "closing_exact": "Bressier, et au-dessous, Guibert, lieutenant. ",
+      "reason": "Laurisptenu fusionné dans le titre, conseil du 25 mars et clôture avant Lourmarin ; nom original jamais corrigé.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2615",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2615",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": null,
+      "selected": {
+        "start": 3269903,
+        "end": 3297445
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[17]/div3[63]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[17]/div3[63]/p[58]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "Paraphé ne varietur. Signé Gilly, lieutenant de juge. \" ",
+      "reason": "Titre NaufC] dégradé ; les Naux sont nommés dans le corps aux offsets 3285010 et 3291581 ; clôture et signatures Castinel avant Ollières.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2770",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2770",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": null,
+      "selected": {
+        "start": 6430095,
+        "end": 6502952
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[59]/div3/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[59]/div3/p[103]",
+      "opening_exact": "BAILLIAGE D'AVAL. ",
+      "closing_exact": "; que\n                            l'église, dont la première institution est d'imiter son législateur,\n                            humble et pauvre, ne doit pas s'engraisser du fruit des travaux des\n                            hommes, et qu'enfin c'est justice que nous demandons.",
+      "reason": "Très humbles doléances des habitants du M(LNT-JURA sous Bailliage d’Aval ; période 737–744, fin de division avant Province du Bas-Limousin.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1951",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1951",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": {
+        "start": 3436876,
+        "end": 3446647
+      },
+      "selected": {
+        "start": 3436876,
+        "end": 3443820
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[27]/div3[9]/p[233]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[27]/div3[9]/p[240]",
+      "opening_exact": "DOLEANCES",
+      "closing_exact": "lancau, greffier Joseph Plesant, député Joseph Chapenel, député. Paraphé,\n                            e varietur, l'assemblée tenant. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1953",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1953",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": {
+        "start": 3446647,
+        "end": 3468826
+      },
+      "selected": {
+        "start": 3446647,
+        "end": 3450857
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[27]/div3[9]/p[247]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[27]/div3[9]/p[257]",
+      "opening_exact": "DOLÉANCES PARTICULIÈRES De Revel.",
+      "closing_exact": " Paraphé, ne varietur, l'assemblée tenant. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1572",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1572",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": {
+        "start": 391821,
+        "end": 431798
+      },
+      "selected": {
+        "start": 391821,
+        "end": 419802
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[4]/div3[3]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[4]/div3[3]/p[79]",
+      "opening_exact": "CAHIER",
+      "closing_exact": "Collectionné à l'orignal. Signé Barras-Lançac, C. Gr., Bontemps,G. Gr., Férand, Constant,\n       greffier. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1614",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1614",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": {
+        "start": 1341072,
+        "end": 1385400
+      },
+      "selected": {
+        "start": 1341072,
+        "end": 1366812
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[15]/div3[2]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[15]/div3[2]/p[75]",
+      "opening_exact": "CAHIER",
+      "closing_exact": "Gollationné par nous, greffier en chef du bailliage royal de Bassigny, séant à Bourmont, et\n       secrétaire du tiers-état 'dépositaire de l'original des présentes, ce 21 mars 1789. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1622",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1622",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": {
+        "start": 1578476,
+        "end": 1613014
+      },
+      "selected": {
+        "start": 1578476,
+        "end": 1607141
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[15]/div3[8]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[15]/div3[8]/p[88]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "président; Georges des Aulnois procu reur du Roi et Vistor, secrétaire du\n       tiers ' Collationné certifié véritable par l'avocat' en Parlement, greffier en chef du\n       bailliage royal de Pont-à-Mousson, soussigné, les susdits jour et an, Signe Vistor, avec\n       paraphe. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1623",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1623",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": {
+        "start": 1607149,
+        "end": 1613014
+      },
+      "selected": {
+        "start": 1607149,
+        "end": 1684751
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[15]/div3[8]/p[89]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[15]/div3[9]/p[145]",
+      "opening_exact": "POUVOIRS de l'ordre de la noblesse du bailliaqe de Saint-Mihiel (1), ",
+      "closing_exact": "Signé Brousmard , président ; le chevalier Damoiseau ; le chevalier de Faillonnet;\n       Faillon-net de Domremy ; Rousmard de Chantraine ; le baron de Manonville ; F.-G. Rouvroir,\n       secrétaire. ",
+      "reason": "Les pouvoirs de Saint-Mihiel se prolongent dans le CAHIER de la division suivante ; clôture et signatures de la noblesse au 26 mars, page 244.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1672",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1672",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": {
+        "start": 2774511,
+        "end": 2795605
+      },
+      "selected": {
+        "start": 2774511,
+        "end": 2788445
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[27]/div3[4]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[27]/div3[4]/p[41]",
+      "opening_exact": "Demandes particulieres des différentes corporations de bordeaux. ",
+      "closing_exact": "Signé, Barnay, Bonnoit, Pomard, Batut. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1673",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1673",
+      "volume": 2,
+      "source_sha256": "62c28739a48ad42d0fd134f9fe8992a3d1e059f8346cd50213709034b28d9217",
+      "expected_previous": {
+        "start": 2788453,
+        "end": 2795605
+      },
+      "selected": {
+        "start": 2788453,
+        "end": 2834421
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[27]/div3[4]/p[42]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[27]/div3[5]/p[173]",
+      "opening_exact": "demandes ",
+      "closing_exact": "commissaire; Roullet, Damas, commissaire ; La\n       Thuilière, Le-veque, commissaire; Lavarde, Fisson, Lesnier, Deluze-Letang, Monerie,\n       Mercier-Terrefond, Clerc, Dubourge, Fadeville, Pujouhe-Laroque, Deleyre, Crozillac, Chicon,\n       Poulié, Cluchard, Lafargue et Pépin. ",
+      "reason": "Demandes des corporations à partir de p[42], puis demandes des communautés réparties par rubriques dans la division suivante ; clôture globale de Guyenne du 6 avril, conforme à la pagination 407–414.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1976",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1976",
+      "volume": 3,
+      "source_sha256": "985b9cb2f5f21f329929b43a26ac8424dab6d7af84964625c31d1652d1af4a01",
+      "expected_previous": {
+        "start": 4358207,
+        "end": 4430325
+      },
+      "selected": {
+        "start": 4358207,
+        "end": 4424198
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[35]/div3[6]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[35]/div3[6]/p[123]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "du caractère de la nation, a chargé ses\n                            députés de déterminer les Etats à supplier Sa Ma- jesté d'agréer\n                            l'hommage d'une statue qui sera élevée dans la ville où se tiendront les\n                            Etats gén- éraux. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1787",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_1787",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": {
+        "start": 2567613,
+        "end": 2602716
+      },
+      "selected": {
+        "start": 2567613,
+        "end": 2597327
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[16]/div3[3]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[16]/div3[3]/p[128]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "Collationné : Monsirbent, greffier. ",
+      "reason": "Clôture et certification du premier document achevées avant le titre autonome suivant ; le texte voisin est conservé sous sa propre notice.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2238",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2238",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": {
+        "start": 5927161,
+        "end": 5931138
+      },
+      "selected": {
+        "start": 5931159,
+        "end": 5937778
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[203]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[203]/p[15]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": " Pierre\n                            Bellavoine; Jean Bellavoine; Jean Nicaise; Miissé; Thomas Bellavoine ;\n                            Jean Lherault ; Prieur ; Claude Bellavoine; Claude-Joseph Gauvien;\n                            Prieur, greffier de la municipalité ; Jetuillier. ",
+      "reason": "Titre propre, pagination, corps et clôture concordent ; remplacement de l’ancre du document voisin sans modifier le texte.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2321",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2321",
+      "volume": 4,
+      "source_sha256": "a280d3cb83135fbe34e7c0ae5a13b09ad1918208200783bc7062fa8dadf3563f",
+      "expected_previous": {
+        "start": 7187650,
+        "end": 7192297
+      },
+      "selected": {
+        "start": 7192318,
+        "end": 7200311
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[18]/div3[287]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[18]/div3[287]/p[15]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "                            Alexandre Hameau ; Pierre Be-nard ; Denis Bezard ; Alexandre Tamard ;\n                            Marsaut l'aîné, Louis Pinteux; Alexis Marsaut; Gervais Foissv; Jeulen;\n                            Simon; Marsaut ; Brossard ; Simon Taillard ; Bertrand. ",
+      "reason": "Titre propre, pagination, corps et clôture concordent ; remplacement de l’ancre du document voisin sans modifier le texte.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2341",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2341",
+      "volume": 5,
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "expected_previous": {
+        "start": 196812,
+        "end": 206343
+      },
+      "selected": {
+        "start": 206364,
+        "end": 224692
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[1]/div3[11]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[1]/div3[11]/p[66]",
+      "opening_exact": "CAHIER",
+      "closing_exact": "Signé Guibert-Legrand.",
+      "reason": "Titre propre, pagination, corps et clôture concordent ; remplacement de l’ancre du document voisin sans modifier le texte.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2460",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2460",
+      "volume": 5,
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "expected_previous": {
+        "start": 1776307,
+        "end": 1783740
+      },
+      "selected": {
+        "start": 1783761,
+        "end": 1799150
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[1]/div3[131]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[1]/div3[131]/p[44]",
+      "opening_exact": "CAHIER",
+      "closing_exact": "dement des soulèvements des nobles qui se sont présentés dans\n                            l’assemblée du tiers-état; que le tiers-état n’en veut pas un seul pour\n                            député, et suivant le règlement du Roi du 24\n                                janvier 1789.",
+      "reason": "Titre propre, pagination, corps et clôture concordent ; remplacement de l’ancre du document voisin sans modifier le texte.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2820",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2820",
+      "volume": 5,
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "expected_previous": {
+        "start": 3514221,
+        "end": 3567654
+      },
+      "selected": {
+        "start": 3504677,
+        "end": 3514200
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[8]/div3[1]/head",
+      "end_xpath": "/TEI.2/text/body/div1/div2[8]/div3[1]/p[183]",
+      "opening_exact": "LISTE",
+      "closing_exact": "Bridier, curé^de Saint-André de Niort.",
+      "reason": "Titre propre, pagination, corps et clôture concordent ; remplacement de l’ancre du document voisin sans modifier le texte.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2657",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2657",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": {
+        "start": 3867445,
+        "end": 3874140
+      },
+      "selected": {
+        "start": 3874161,
+        "end": 3887497
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[17]/div3[106]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[17]/div3[106]/p[52]",
+      "opening_exact": "CAHIER ",
+      "closing_exact": "Paraphé ne varietur, Signé Ghanteduc, ; lieutenant de juge. ",
+      "reason": "Titre propre, pagination, corps et clôture concordent ; remplacement de l’ancre du document voisin sans modifier le texte.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2580",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2580",
+      "volume": 6,
+      "source_sha256": "0a28d5c9d4c037bb70780d5c2f14735b2de9ad0555d03e1e45fdc5b009c7cfa8",
+      "expected_previous": {
+        "start": 2570824,
+        "end": 2576490
+      },
+      "selected": {
+        "start": 2570824,
+        "end": 2583689
+      },
+      "start_xpath": "/TEI.2/text/body/div1/div2[17]/div3[25]/head[1]",
+      "end_xpath": "/TEI.2/text/body/div1/div2[17]/div3[26]/p[16]",
+      "opening_exact": "DÉLIBÉRATION ",
+      "closing_exact": "Signé : Blanc, greffier. ",
+      "reason": "Délibération de Châteauneuf-le-Rouge suivie de son cahier propre, avant Eguilles. Le conflit avec la fin humaine du cahier précédent est conservé, jamais recoupé automatiquement.",
+      "documentary_kind": null,
+      "reviewer_type": "Codex_source_examination_not_independent_human",
+      "human_validated": false
+    }
+  ],
+  "overlap_cases": [
+    {
+      "end": 431798,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1572",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1573",
+      "start": 419810,
+      "status": "corrected",
+      "volume": 2,
+      "number": 1,
+      "reason": "Clôture/collation du tiers avant les doléances des corps. Pièces liées mais documents distincts ; fin du tiers corrigée."
+    },
+    {
+      "end": 1385400,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1614",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1615",
+      "start": 1366819,
+      "status": "corrected",
+      "volume": 2,
+      "number": 2,
+      "reason": "Titre Pouvoirs et instructions de la noblesse de Briey après la clôture de Bassigny ; fin de Bassigny corrigée."
+    },
+    {
+      "end": 1613014,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1622",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1623",
+      "start": 1607149,
+      "status": "corrected",
+      "volume": 2,
+      "number": 3,
+      "reason": "Pouvoirs de Saint-Mihiel puis cahier continué dans la division suivante ; fin de Pont-à-Mousson et fin de Saint-Mihiel corrigées."
+    },
+    {
+      "end": 2795605,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1672",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1673",
+      "start": 2788453,
+      "status": "corrected",
+      "volume": 2,
+      "number": 4,
+      "reason": "Signatures des hôteliers avant les demandes des autres corporations. Fin des hôteliers corrigée ; dossier des corporations prolongé jusqu’à la clôture collective de Guyenne."
+    },
+    {
+      "end": 3103521,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1941",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1942",
+      "start": 3087444,
+      "status": "uncertain",
+      "volume": 3,
+      "number": 5,
+      "reason": "Le cahier de Digne contient des doléances des chapitres de Digne et Riez réunis puis une rubrique propre au chapitre de Riez. L’intitulé catalogue « clergé de Riez » ne permet pas de certifier quelle portée retenir. Relation documentaire réelle, identité/périmètre de la notice encore incertains."
+    },
+    {
+      "end": 3455023,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1953",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1955",
+      "start": 3450883,
+      "status": "corrected",
+      "volume": 3,
+      "number": 6,
+      "reason": "Certification de Revel avant le titre OCR Tournouqo et Crlpi§Qllea ; fin de Revel corrigée."
+    },
+    {
+      "end": 3468826,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1953",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1956",
+      "start": 3455023,
+      "status": "corrected",
+      "volume": 3,
+      "number": 7,
+      "reason": "La même fin trop large de Revel absorbait également Fours ; correction identique, sans couper ni modifier Fours."
+    },
+    {
+      "end": 4430325,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1976",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1977",
+      "start": 4424219,
+      "status": "corrected",
+      "volume": 3,
+      "number": 8,
+      "reason": "Fin du cahier général de La Rochelle avant la division Demandes particulières de l’île de Ré ; pièce associée conservée sous sa notice, sans fusion."
+    },
+    {
+      "end": 2602695,
+      "kind": "containment",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1787",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1788",
+      "start": 2597353,
+      "status": "corrected",
+      "volume": 4,
+      "number": 9,
+      "reason": "Signatures et collation du cahier général de Pamiers avant le Plan à la suite du cahier d’Uzent. Le périmètre humain d’Uzent est conservé ; seule la fin automatique de Pamiers change."
+    },
+    {
+      "end": 5931138,
+      "kind": "identical_extent",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2237",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2238",
+      "start": 5927161,
+      "status": "corrected",
+      "volume": 4,
+      "number": 10,
+      "reason": "Lessart et VEta»g-la-Ville sont deux divisions successives ; réattribution de Létang à sa propre division, avec certification finale."
+    },
+    {
+      "end": 7192297,
+      "kind": "identical_extent",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2320",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2321",
+      "start": 7187650,
+      "status": "corrected",
+      "volume": 4,
+      "number": 11,
+      "reason": "Ormoy près Lieusaint puis Ormoy-Villabé sont deux titres et deux clôtures ; réattribution d’Ormoy-Villabé."
+    },
+    {
+      "end": 206343,
+      "kind": "identical_extent",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2340",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2341",
+      "start": 196812,
+      "status": "corrected",
+      "volume": 5,
+      "number": 12,
+      "reason": "Messire Carré possède un cahier individuel, suivi de celui des habitants du Pin (« fin » dans le titre OCR) ; réattribution du Pin."
+    },
+    {
+      "end": 1783740,
+      "kind": "identical_extent",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2461",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2460",
+      "start": 1776307,
+      "status": "corrected",
+      "volume": 5,
+      "number": 13,
+      "reason": "Villecresnes et Villedubois ont des titres et clôtures distincts ; réattribution de Ville-du-Bois."
+    },
+    {
+      "end": 3567654,
+      "kind": "identical_extent",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2820",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2821",
+      "start": 3514221,
+      "status": "corrected",
+      "volume": 5,
+      "number": 14,
+      "reason": "La LISTE précède le CAHIER du clergé du Poitou. Retour de la liste à sa propre division, sans la classer comme cahier."
+    },
+    {
+      "end": 2576469,
+      "kind": "partial_overlap",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2579",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2580",
+      "start": 2570824,
+      "status": "uncertain",
+      "volume": 6,
+      "number": 15,
+      "reason": "La frontière humaine de Châteauneuf englobe la délibération de Châteauneuf-le-Rouge. Elle reste intacte ; le vrai cahier de Châteauneuf-le-Rouge est récupéré en aval. Arbitrage humain nécessaire sur le parent validé."
+    },
+    {
+      "end": 3874140,
+      "kind": "identical_extent",
+      "left_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2656",
+      "right_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2657",
+      "start": 3867445,
+      "status": "corrected",
+      "volume": 6,
+      "number": 16,
+      "reason": "Tholànet et frets sont deux divisions successives ; identité de Trets étayée par la clôture, les signatures et le voisinage ; réattribution à sa propre division."
+    }
+  ],
+  "missing_cases": [
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1613",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1613",
+      "status": "recovered",
+      "reason": "Remontrances des trois ordres du Bassigny après la certification du tiers de Bar-le-Duc ; titre interne p[83], requête terminale p[105]."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1738",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1738",
+      "status": "recovered",
+      "reason": "Remontrances du tiers après la signature de la noblesse ; poursuite dans la division des doléances particulières, puis signatures et collation Bottex. Les deux divisions forment le dossier, sans absorber le clergé du Charolais."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1716",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1716",
+      "status": "recovered",
+      "reason": "Pétitions de la noblesse après la signature du clergé régulier ; clôture et signatures des nobles avant le titre du tiers."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1800",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1800",
+      "status": "recovered",
+      "reason": "Rédaction du tiers de Colmar et Schlestadt après les signatures des nobles ; certification du 31 mars et signature Klein."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1812",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1812",
+      "status": "recovered",
+      "reason": "Griefs de Saint-Jean-des-Agneaux après les signatures du document précédent ; certification des commissaires du 4 mars. Conserver le paratexte final dans le parent."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1887",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1887",
+      "status": "recovered",
+      "reason": "Titre RÉDACTION fortement dégradé, mais Landas est explicite dans le premier paragraphe ; clôture du 24 mars et signatures avant Beuvry."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1952",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_1952",
+      "status": "recovered",
+      "reason": "Titre BOLEA.NCES PARTICULIÈRES du Lauzet, entre la certification de Chatelard et le titre de Revel ; signature GU-rault."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2016",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2016",
+      "status": "recovered",
+      "reason": "Copie du mandat de la noblesse du Mâconnais après la certification Greuze du clergé ; instructions et réclamations locales, signatures et articles annexés du même ordre."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2056",
+      "persee_id": "arcpa_0000-0000_1879_num_3_1_2056",
+      "status": "recovered",
+      "reason": "Humbles doléances du corps des vicaires après la signature Mathey et Embry du clergé de Sarrebourg ; texte jusqu’à la fin de division, sans titre voisin."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2186",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2186",
+      "status": "recovered",
+      "reason": "Titre Des plaintes de Fourqueux après la signature Leflamand de Joyeuval du cahier de Fosses ; signatures des habitants de Fourqueux à p[138]."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2198",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2198",
+      "status": "recovered",
+      "reason": "Titre GAHIER dans un paragraphe ; Gif-pi ès-Chevreuse dans le suivant ; signatures Legrand et paraphé Gautier avant le cahier suivant."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2272",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2272",
+      "status": "recovered",
+      "reason": "La notice Marielle correspond à la paroisse de Meriel dans le texte. Position entre Mennecy et Méry, pagination et clôture concordantes ; graphie de source conservée."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2278",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_2278",
+      "status": "recovered",
+      "reason": "Nom collé deMessy dans le titre ; division propre, articles et clôture avant le titre du document suivant."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2788",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2788",
+      "status": "recovered",
+      "reason": "Premier département écrit en toutes lettres dans le titre ; liste des rédacteurs, instructions et clôture du dossier avant le département suivant."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2797",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2797",
+      "status": "recovered_composite_minutes",
+      "reason": "La source est un procès-verbal de Saint-Germain-des-Prés avec pouvoirs et instructions intégrés, non un cahier autonome ; même pagination 304–308 et signatures finales. Notice et titre Persée conservés."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2856",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2856",
+      "status": "recovered",
+      "reason": "Dossier de Riom : discours de Malouet suivi de la division INSTRUCTIONS, signatures et certification finales ; les deux divisions sont conservées séparément dans la structure."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2883",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2883",
+      "status": "recovered",
+      "reason": "Titre Pouvoirs de la noblesse de Saintonge, dans la sénéchaussée de Saintes ; instructions et dernière injonction au député terminent la division."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2530",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2530",
+      "status": "recovered",
+      "reason": "Vœu de la noblesse de Verdun après la certification Georgia du clergé ; signatures puis réclamations réservées avant la notice d’absence du tiers."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2569",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2569",
+      "status": "recovered",
+      "reason": "D0LÉANCE ET PLAINTES de Belèodène à l’intérieur de la division de Beaurecueil ; signatures Velin et note éditoriale finales. Ne pas corriger ces graphies."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2576",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2576",
+      "status": "recovered",
+      "reason": "Titre Gurri et Rouât dégradé ; identité étayée par le contexte, les répétitions du nom et les deux exemplaires du cahier, signatures avant Cassis."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2594",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2594",
+      "status": "recovered",
+      "reason": "Laurisptenu fusionné dans le titre, conseil du 25 mars et clôture avant Lourmarin ; nom original jamais corrigé."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2615",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2615",
+      "status": "recovered",
+      "reason": "Titre NaufC] dégradé ; les Naux sont nommés dans le corps aux offsets 3285010 et 3291581 ; clôture et signatures Castinel avant Ollières."
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2770",
+      "persee_id": "arcpa_0000-0000_1879_num_6_1_2770",
+      "status": "recovered",
+      "reason": "Très humbles doléances des habitants du M(LNT-JURA sous Bailliage d’Aval ; période 737–744, fin de division avant Province du Bas-Limousin."
+    }
+  ],
+  "blockers": [
+    {
+      "document_ids": [
+        "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1941",
+        "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1942"
+      ],
+      "reason": "Le cahier de Digne contient des doléances des chapitres de Digne et Riez réunis puis une rubrique propre au chapitre de Riez. L’intitulé catalogue « clergé de Riez » ne permet pas de certifier quelle portée retenir. Relation documentaire réelle, identité/périmètre de la notice encore incertains."
+    },
+    {
+      "document_ids": [
+        "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2579",
+        "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2580"
+      ],
+      "reason": "La frontière humaine de Châteauneuf englobe la délibération de Châteauneuf-le-Rouge. Elle reste intacte ; le vrai cahier de Châteauneuf-le-Rouge est récupéré en aval. Arbitrage humain nécessaire sur le parent validé."
+    },
+    {
+      "document_ids": [
+        "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1944"
+      ],
+      "reason": "Le dossier de Digne laissé incertain par l’utilisateur reste inchangé ; son périmètre humain n’est pas résolu par les autres corrections."
+    }
+  ]
+}
