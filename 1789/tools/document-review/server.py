@@ -24,6 +24,7 @@ class ReviewServer(HTTPServer):
         self.corpus_directory = corpus_directory
         self.override_directory = override_directory
         self._inventory = None
+        self._documentary_review = None
         self.article_journal = article_journal
         self.article_export_directory = (
             article_export_directory or HERE.parents[1] / "data/review-exports"
@@ -38,6 +39,11 @@ class ReviewServer(HTTPServer):
             from collection import discover
 
             directory = discover() if self.corpus_directory == "auto" else self.corpus_directory
+            from reviewlib import rows
+
+            resolutions = (directory / "boundary-resolutions.jsonl.gz") if directory else None
+            if resolutions and resolutions.exists():
+                self.store.automatic_corrections = {r["document_id"]: r for r in rows(resolutions)}
             self._articles = Articles(
                 self.store,
                 self.article_journal,
@@ -62,6 +68,40 @@ class ReviewServer(HTTPServer):
             path = self.articles().directory / "inventory.jsonl.gz"
             self._inventory = {r["id"]: r for r in rows(path)} if path.exists() else {}
         return self._inventory
+
+    def documentary_review(self):
+        if self._documentary_review is None:
+            from reviewlib import rows
+
+            path = self.articles().directory / "documentary-review.jsonl.gz"
+            self._documentary_review = (
+                {r["document_id"]: r for r in rows(path)} if path.exists() else {}
+            )
+            snapshot = self.articles().directory / ".private/decisions.jsonl"
+            self._generation_parent_events = (
+                {r["document_id"]: r["id"] for r in rows(snapshot)} if snapshot.exists() else {}
+            )
+        return self._documentary_review
+
+    def review_for(self, key, state=None):
+        review = self.documentary_review().get(key)
+        if not review:
+            return None
+        state = state or self.store.state(self.store.by_id[key])
+        event = state.get("event") or {}
+        if (
+            state["status"] == "human_validated"
+            and not state["stale"]
+            and event.get("id") != self._generation_parent_events.get(key)
+        ):
+            return dict(
+                review,
+                generation_priority=review["priority"],
+                priority="none",
+                mandatory_review=False,
+                reasons=["human_boundary_validated_since_generation"],
+            )
+        return review
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -109,6 +149,7 @@ class Handler(BaseHTTPRequestHandler):
             if url.path == "/api/list":
                 listing = self.server.store.listing()
                 inventory = self.server.inventory()
+                latest = self.server.store.latest()
                 for row in listing:
                     item = inventory.get(row["id"], {})
                     row.update(
@@ -118,6 +159,10 @@ class Handler(BaseHTTPRequestHandler):
                         else item.get("boundary_class"),
                         document_kind=item.get("document_kind"),
                         extracted=row["id"] in self.server.articles().parents,
+                        documentary_review=self.server.review_for(
+                            row["id"],
+                            self.server.store.state(self.server.store.by_id[row["id"]], latest),
+                        ),
                     )
                 return self.send(200, listing)
             if url.path == "/api/corpus/unresolved":
@@ -162,15 +207,21 @@ class Handler(BaseHTTPRequestHandler):
             if url.path == "/api/articles/document":
                 return self.send(200, self.server.articles().document(q["id"][0]))
             if url.path == "/api/document":
-                return self.send(
-                    200,
-                    self.server.store.document(
-                        q["id"][0],
-                        int(q.get("radius", ["6"])[0]),
-                        q.get("start_id", [None])[0],
-                        q.get("end_id", [None])[0],
-                    ),
+                self.server.articles()  # Install active documentary proposals before displaying boundaries.
+                doc = self.server.store.document(
+                    q["id"][0],
+                    int(q.get("radius", ["6"])[0]),
+                    q.get("start_id", [None])[0],
+                    q.get("end_id", [None])[0],
                 )
+                resolution = self.server.store.automatic_corrections.get(q["id"][0])
+                if resolution:
+                    from boundary_rules import effective
+
+                    doc["record"] = effective(doc["record"], resolution)
+                    doc["documentary_resolution"] = resolution
+                doc["documentary_review"] = self.server.review_for(q["id"][0], doc["state"])
+                return self.send(200, doc)
             static = {
                 "/": ("index.html", "text/html; charset=utf-8"),
                 "/app.js": ("app.js", "text/javascript; charset=utf-8"),

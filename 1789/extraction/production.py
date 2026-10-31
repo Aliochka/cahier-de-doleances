@@ -13,11 +13,14 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BASE / "tools/document-review"))
 from articles import INPUT, Articles, canonical, subtract  # noqa: E402
+from boundary_rules import effective  # noqa: E402
+from boundary_rules import plan as boundary_plan  # noqa: E402
+from boundary_rules import summary as boundary_summary  # noqa: E402
 from reviewlib import AUDITS, PRIVATE, Store, module, rows, sha  # noqa: E402
 from segmentation import VERSION as SEGMENTER_VERSION  # noqa: E402
 from segmentation import run as segment  # noqa: E402
 
-VERSION = "global-corpus-1"
+VERSION = "global-corpus-2"
 CURRENT = BASE / "data/corpus/current.json"
 
 
@@ -49,6 +52,7 @@ def input_paths(store):
         store.journal,
         PRIVATE / "article-decisions.jsonl",
         BASE / "extraction/segmentation.py",
+        BASE / "extraction/boundary_rules.py",
         AUDITS / "1789-extraction-v2/rules_v2.py",
         AUDITS / "1789-extraction-200/rules.py",
         Path(__file__),
@@ -438,6 +442,9 @@ def write_core(out, parents, units):
 
 def verify_corpus(out, store=None):
     store = store or Store()
+    resolutions_path = out / "boundary-resolutions.jsonl.gz"
+    if resolutions_path.exists():
+        store.automatic_corrections = {r["document_id"]: r for r in rows(resolutions_path)}
     engine = Articles(store, directory=out)
     inventory = rows(out / "inventory.jsonl.gz")
     parents = engine.parents
@@ -547,6 +554,103 @@ def verify_corpus(out, store=None):
     return engine, current, problems, duplicates, counts, volumes
 
 
+def documentary_review(inventory, resolutions, pairs):
+    """Document-level priorities, deliberately separate from article segmentation alerts."""
+    explanations = {r["document_id"]: r for r in resolutions}
+    overlaps_by_id = defaultdict(list)
+    for pair in pairs:
+        for key in [pair["left_id"], pair["right_id"]]:
+            overlaps_by_id[key].append(pair)
+    queue = []
+    for r in inventory:
+        x = explanations[r["id"]]
+        flags = set(r["anomalies"])
+        kind = r["document_kind"]
+        if (
+            r["boundary_class"] == "human_validated"
+            or r["extraction_state"] == "absence_notice_not_a_cahier"
+        ):
+            priority = (
+                "high"
+                if any(c.get("proposed") for c in x["conflicts"])
+                and r["boundary_class"] == "human_validated"
+                else "none"
+            )
+            reasons = [
+                "human_boundary_preserved_with_documentary_alternative"
+                if priority == "high"
+                else "human_boundary_preserved"
+                if r["boundary_class"] == "human_validated"
+                else "document_announced_absent"
+            ]
+        elif (
+            overlaps_by_id[r["id"]]
+            or any(f.startswith("identity_") for f in flags)
+            or flags
+            & {
+                "new_control_identity_error",
+                "new_control_boundary_incorrect",
+                "new_control_source_composite_or_interleaved_columns",
+                "parent_uncertain",
+            }
+        ):
+            priority = "high"
+            reasons = sorted(
+                flags
+                | ({"overlap_requires_attribution_review"} if overlaps_by_id[r["id"]] else set())
+            )
+        elif r["parent_id"] is None:
+            priority = "medium"
+            reasons = [
+                "associated_document_not_located"
+                if kind in {"liste", "document_associe", "proces_verbal"}
+                else "cahier_not_located"
+            ]
+        elif (
+            r["alignment_status"] == "probable"
+            or x["conflicts"]
+            or flags
+            & {
+                "end_page_mismatch_requires_review",
+                "following_section_or_attached_piece_within_metadata_pages",
+                "new_control_boundary_uncertain",
+                "new_control_classification_disagreement",
+                "same_primary_anchor_multiple_notices",
+            }
+        ):
+            priority = "medium"
+            reasons = sorted(
+                flags
+                | ({"documentary_alternatives_require_review"} if x["conflicts"] else set())
+                | (
+                    {"alignment_probable_not_independently_established"}
+                    if r["alignment_status"] == "probable"
+                    else set()
+                )
+            )
+        else:
+            priority = "low"
+            reasons = sorted(flags) or ["sampling_only_no_documentary_alert_detected"]
+        queue.append(
+            dict(
+                document_id=r["id"],
+                persee_id=r["persee_id"],
+                title=r["title"],
+                volume=r["volume"],
+                priority=priority,
+                mandatory_review=priority in {"high", "medium"},
+                reasons=reasons,
+                corrected=x["changed"],
+                resolved_alerts=x["resolved_alerts"],
+                conflicts=x["conflicts"],
+                url="/?document=" + r["id"],
+                overlaps=overlaps_by_id[r["id"]],
+            )
+        )
+    order = {"high": 0, "medium": 1, "low": 2, "none": 3}
+    return sorted(queue, key=lambda r: (order[r["priority"]], r["volume"], r["document_id"]))
+
+
 def build(output=None, resume=False, activate=True):
     started = time.perf_counter()
     store = Store()
@@ -579,6 +683,9 @@ def build(output=None, resume=False, activate=True):
         snapshots.mkdir(exist_ok=True)
         for p in [store.journal, base.log.journal]:
             (snapshots / p.name).write_bytes(p.read_bytes())
+    resolutions = boundary_plan(store)
+    store.automatic_corrections = {r["document_id"]: r for r in resolutions}
+    jsonl(out / "boundary-resolutions.jsonl.gz", resolutions)
     latest = store.latest()
     all_inventory = []
     all_parents = []
@@ -597,11 +704,16 @@ def build(output=None, resume=False, activate=True):
             for r in [r for r in store.records if r["metadata"]["volume"] == volume]:
                 entry, parent, own, raw = extract_one(
                     store,
-                    r,
+                    effective(r, store.automatic_corrections[r["id"]]),
                     store.state(r, latest),
                     base.parents.get(r["id"]),
                     legacy_units.get(r["id"]),
                 )
+                resolution = store.automatic_corrections[r["id"]]
+                entry["documentary_resolution"] = resolution
+                entry["original_registry_boundaries"] = r["boundaries"]
+                if parent:
+                    parent["documentary_resolution"] = resolution
                 batch.append(dict(inventory=entry, parent=parent, units=own, raw=raw))
             jsonl(path, batch)
         for r in batch:
@@ -635,6 +747,8 @@ def build(output=None, resume=False, activate=True):
             if p["boundary_class"] in {"automatic_suspect", "uncertain"}
         ],
     )
+    documentary_reviews = documentary_review(all_inventory, resolutions, pairs)
+    jsonl(out / "documentary-review.jsonl.gz", documentary_reviews)
     engine, current, problems, duplicates, counts, volumes = verify_corpus(out, store)
     jsonl(out / "units.jsonl.gz", current)
     jsonl(out / "duplicate-source-spans.jsonl.gz", duplicates)
@@ -702,6 +816,8 @@ def build(output=None, resume=False, activate=True):
         assert sum(z - a for a, z in merged) + sum(z - a for a, z in own) == len(source.text)
     summary = dict(
         version=VERSION,
+        documentary_repairs=boundary_summary(resolutions),
+        documentary_review_levels=dict(Counter(r["priority"] for r in documentary_reviews)),
         notices_examined=len(all_inventory),
         document_kinds=dict(Counter(r["document_kind"] for r in all_inventory)),
         autonomous_probable=sum(

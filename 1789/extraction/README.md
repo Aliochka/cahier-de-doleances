@@ -19,3 +19,5 @@ python3 1789/extraction/production.py --verify-only 1789/data/corpus/global-corp
 ```
 
 Le bilan réel, les fichiers, les précautions de reprise et les limites documentaires sont dans [../docs/PRODUCTION.md](../docs/PRODUCTION.md). Cette commande produit des textes et des unités documentaires : elle ne calcule pas d’embeddings et ne prépare pas d’index.
+
+`boundary_rules.py` applique les réparations documentaires déterministes avant extraction : identité explicite, divisions contenant plusieurs cahiers, résolution traçable des alertes obsolètes. `boundary_report.py` compare deux générations sans modifier leurs données. Les règles du segmenteur d’articles restent inchangées. Voir [le bilan des corrections](../docs/BOUNDARY-CORRECTIONS.md).

@@ -30,6 +30,8 @@ const assert=require('node:assert/strict');
   const saved=page.waitForResponse(r=>r.url().endsWith('/api/decision')&&r.request().method()==='POST');
   await page.locator('#decision button[type=submit]').click();assert.equal((await saved).status(),200);
   await page.waitForFunction(()=>document.querySelector('#save-notice').textContent.includes('enregistrée'));
+  const reviewed=(await (await page.request.get(base+'/api/list')).json()).find(r=>r.id===id);
+  assert.equal(reviewed.documentary_review?.priority||'none','none');
   await page.evaluate(id=>open(id),id);
   const rebuilt=page.waitForResponse(r=>r.url().endsWith('/api/articles/rebuild'));
   await page.locator('#document-rebuild').click();assert.equal((await rebuilt).status(),200);

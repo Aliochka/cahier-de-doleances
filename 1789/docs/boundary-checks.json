@@ -1,0 +1,413 @@
+{
+  "before_generation": "global-corpus-1-95b58b690be5",
+  "after_generation": "global-corpus-2-45273d688b59",
+  "before": {
+    "version": "global-corpus-1",
+    "notices_examined": 1305,
+    "document_kinds": {
+      "cahier_autonome_probable": 1225,
+      "document_associe": 21,
+      "proces_verbal": 7,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "autonomous_probable": 1225,
+    "texts_extracted": 1237,
+    "autonomous_texts_extracted": 1201,
+    "boundary_classes": {
+      "human_validated": 29,
+      "automatic_no_alert": 805,
+      "automatic_suspect": 402,
+      "uncertain": 1
+    },
+    "unresolved_notices": 68,
+    "absence_notices": 4,
+    "unresolved_without_usable_span": 64,
+    "counts": {
+      "technical_passage": 41322,
+      "article": 38186,
+      "human_articles": 333,
+      "articles_with_anomalies": 4698,
+      "section": 1311,
+      "automatic_articles": 37853
+    },
+    "by_volume": {
+      "1": {
+        "notices": 24,
+        "texts": 24,
+        "autonomous_texts": 24,
+        "unresolved": 0,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_no_alert": 12,
+          "automatic_suspect": 7
+        },
+        "technical_passage": 1224,
+        "article": 1146,
+        "human_articles": 143,
+        "articles_with_anomalies": 175,
+        "section": 23,
+        "automatic_articles": 1003
+      },
+      "2": {
+        "notices": 181,
+        "texts": 176,
+        "autonomous_texts": 171,
+        "unresolved": 5,
+        "boundary_classes": {
+          "automatic_no_alert": 101,
+          "human_validated": 5,
+          "automatic_suspect": 70
+        },
+        "technical_passage": 8727,
+        "article": 8187,
+        "automatic_articles": 8102,
+        "articles_with_anomalies": 1440,
+        "section": 106,
+        "human_articles": 85
+      },
+      "3": {
+        "notices": 223,
+        "texts": 214,
+        "autonomous_texts": 198,
+        "unresolved": 9,
+        "boundary_classes": {
+          "automatic_no_alert": 124,
+          "automatic_suspect": 85,
+          "human_validated": 4,
+          "uncertain": 1
+        },
+        "technical_passage": 7733,
+        "article": 7060,
+        "automatic_articles": 7049,
+        "articles_with_anomalies": 1193,
+        "section": 474,
+        "human_articles": 11
+      },
+      "4": {
+        "notices": 347,
+        "texts": 342,
+        "autonomous_texts": 342,
+        "unresolved": 5,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_suspect": 82,
+          "automatic_no_alert": 255
+        },
+        "technical_passage": 8449,
+        "article": 7706,
+        "human_articles": 33,
+        "automatic_articles": 7673,
+        "articles_with_anomalies": 701,
+        "section": 212
+      },
+      "5": {
+        "notices": 298,
+        "texts": 287,
+        "autonomous_texts": 285,
+        "unresolved": 11,
+        "boundary_classes": {
+          "automatic_no_alert": 184,
+          "automatic_suspect": 98,
+          "human_validated": 5
+        },
+        "technical_passage": 8944,
+        "section": 345,
+        "article": 8293,
+        "automatic_articles": 8275,
+        "human_articles": 18,
+        "articles_with_anomalies": 480
+      },
+      "6": {
+        "notices": 232,
+        "texts": 194,
+        "autonomous_texts": 181,
+        "unresolved": 38,
+        "boundary_classes": {
+          "automatic_suspect": 60,
+          "human_validated": 5,
+          "automatic_no_alert": 129
+        },
+        "technical_passage": 6245,
+        "article": 5794,
+        "automatic_articles": 5751,
+        "articles_with_anomalies": 709,
+        "human_articles": 43,
+        "section": 151
+      }
+    },
+    "document_overlap_pairs": 46,
+    "duplicate_source_span_groups": 377,
+    "total_parent_characters": 30556018,
+    "total_parent_utf8_bytes": 31353097,
+    "unassigned_source_characters": 10091317,
+    "review_queue_entries": 5177,
+    "elapsed_seconds": 43.74343966200104,
+    "no_embeddings": true,
+    "no_index_preparation": true
+  },
+  "after": {
+    "version": "global-corpus-2",
+    "documentary_repairs": {
+      "changed_documents": 26,
+      "actions": {
+        "stop_before_identified_next_cahier": 14,
+        "unique_explicit_opening_name_estate_and_page": 12
+      },
+      "resolved_alerts": {
+        "new_control_boundary_incorrect": 12,
+        "end_page_mismatch_requires_review": 101,
+        "identity_ambigu": 44,
+        "same_primary_anchor_multiple_notices": 11
+      },
+      "documents_with_conflicts": 16
+    },
+    "documentary_review_levels": {
+      "high": 144,
+      "medium": 183,
+      "low": 946,
+      "none": 32
+    },
+    "notices_examined": 1305,
+    "document_kinds": {
+      "cahier_autonome_probable": 1225,
+      "document_associe": 21,
+      "proces_verbal": 7,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "autonomous_probable": 1225,
+    "texts_extracted": 1244,
+    "autonomous_texts_extracted": 1202,
+    "boundary_classes": {
+      "human_validated": 29,
+      "automatic_no_alert": 932,
+      "automatic_suspect": 282,
+      "uncertain": 1
+    },
+    "unresolved_notices": 61,
+    "absence_notices": 4,
+    "unresolved_without_usable_span": 57,
+    "counts": {
+      "technical_passage": 41681,
+      "article": 38553,
+      "human_articles": 333,
+      "articles_with_anomalies": 4678,
+      "section": 1222,
+      "automatic_articles": 38220
+    },
+    "by_volume": {
+      "1": {
+        "notices": 24,
+        "texts": 24,
+        "autonomous_texts": 24,
+        "unresolved": 0,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_no_alert": 16,
+          "automatic_suspect": 3
+        },
+        "technical_passage": 1127,
+        "article": 1055,
+        "human_articles": 143,
+        "articles_with_anomalies": 161,
+        "section": 23,
+        "automatic_articles": 912
+      },
+      "2": {
+        "notices": 181,
+        "texts": 178,
+        "autonomous_texts": 171,
+        "unresolved": 3,
+        "boundary_classes": {
+          "automatic_no_alert": 111,
+          "human_validated": 5,
+          "automatic_suspect": 62
+        },
+        "technical_passage": 8658,
+        "article": 8117,
+        "automatic_articles": 8032,
+        "articles_with_anomalies": 1437,
+        "section": 123,
+        "human_articles": 85
+      },
+      "3": {
+        "notices": 223,
+        "texts": 214,
+        "autonomous_texts": 198,
+        "unresolved": 9,
+        "boundary_classes": {
+          "automatic_no_alert": 146,
+          "automatic_suspect": 63,
+          "human_validated": 4,
+          "uncertain": 1
+        },
+        "technical_passage": 7567,
+        "article": 6924,
+        "automatic_articles": 6913,
+        "articles_with_anomalies": 1159,
+        "section": 411,
+        "human_articles": 11
+      },
+      "4": {
+        "notices": 347,
+        "texts": 342,
+        "autonomous_texts": 342,
+        "unresolved": 5,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_suspect": 50,
+          "automatic_no_alert": 287
+        },
+        "technical_passage": 8670,
+        "article": 7925,
+        "human_articles": 33,
+        "automatic_articles": 7892,
+        "articles_with_anomalies": 681,
+        "section": 189
+      },
+      "5": {
+        "notices": 298,
+        "texts": 290,
+        "autonomous_texts": 285,
+        "unresolved": 8,
+        "boundary_classes": {
+          "automatic_no_alert": 228,
+          "human_validated": 5,
+          "automatic_suspect": 57
+        },
+        "technical_passage": 9224,
+        "section": 331,
+        "article": 8556,
+        "automatic_articles": 8538,
+        "human_articles": 18,
+        "articles_with_anomalies": 499
+      },
+      "6": {
+        "notices": 232,
+        "texts": 196,
+        "autonomous_texts": 182,
+        "unresolved": 36,
+        "boundary_classes": {
+          "automatic_no_alert": 144,
+          "human_validated": 5,
+          "automatic_suspect": 47
+        },
+        "technical_passage": 6435,
+        "article": 5976,
+        "automatic_articles": 5933,
+        "articles_with_anomalies": 741,
+        "human_articles": 43,
+        "section": 145
+      }
+    },
+    "document_overlap_pairs": 16,
+    "duplicate_source_span_groups": 73,
+    "total_parent_characters": 30230159,
+    "total_parent_utf8_bytes": 31020647,
+    "unassigned_source_characters": 9822095,
+    "review_queue_entries": 5031,
+    "elapsed_seconds": 48.235902608998,
+    "no_embeddings": true,
+    "no_index_preparation": true
+  },
+  "corrected_documents": 26,
+  "overlap_causes": {
+    "XML_division_contains_successive_cahiers": 26,
+    "remaining_containment_or_interleaving": 9,
+    "associated_document_or_catalogue_level_overlap": 2,
+    "wrong_shared_page_alignment": 4,
+    "same_text_wrong_identity_or_shared_document_unresolved": 5
+  },
+  "overlap_cause_documents": {
+    "XML_division_contains_successive_cahiers": 23,
+    "remaining_containment_or_interleaving": 17,
+    "associated_document_or_catalogue_level_overlap": 4,
+    "wrong_shared_page_alignment": 8,
+    "same_text_wrong_identity_or_shared_document_unresolved": 10
+  },
+  "missing_notice_dispositions": {
+    "cahier_still_unlocated": 23,
+    "recovered_with_explicit_opening": 7,
+    "associated_or_list_still_unlocated": 34
+  },
+  "duplicate_dispositions": {
+    "no_longer_duplicated_after_parent_repairs": 304,
+    "still_duplicated_requires_attribution": 73
+  },
+  "remaining_new_span_groups": 0,
+  "mandatory_review": 327,
+  "review_levels": {
+    "high": 144,
+    "medium": 183,
+    "low": 946,
+    "none": 32
+  },
+  "checks": {
+    "notices_preserved": true,
+    "metadata_preserved": true,
+    "previously_extracted_documents_preserved": true,
+    "human_parent_boundaries_preserved": 29,
+    "human_articles_preserved": 333,
+    "real_journals_byte_identical": true,
+    "protected_data_source_files_unchanged": 13,
+    "no_new_overlap_pair": true,
+    "all_documentary_changes_applied": true
+  },
+  "tests": {
+    "python_tests_passed": 47,
+    "ruff": "passed",
+    "javascript_syntax": "passed",
+    "git_diff_check": "passed",
+    "verify_only": "passed",
+    "all_20_production_inputs_unchanged": true,
+    "global_browser": {
+      "passed": true,
+      "notices": 1305,
+      "full_collection": true,
+      "original_human_articles_preserved": 333,
+      "Pecqueuse_articles": 38,
+      "volume_filter": true,
+      "title_search": true,
+      "unresolved_access": true,
+      "source_search": true,
+      "parent_validation_then_rebuild": true,
+      "article_validation_reload": true,
+      "keyboard": true,
+      "viewports": [
+        320,
+        375,
+        768,
+        1280
+      ],
+      "text_zoom_200_percent": true,
+      "js_errors": [],
+      "temporary_journals_only": true
+    },
+    "documentary_browser": {
+      "passed": true,
+      "priorities": {
+        "high": 144,
+        "medium": 183,
+        "low": 946,
+        "none": 32
+      },
+      "direct_document_link": true,
+      "corrected_XML_boundary_displayed": true,
+      "not_human_validation": true,
+      "no_write_request": true,
+      "keyboard": true,
+      "viewports": [
+        320,
+        375,
+        768,
+        1280
+      ],
+      "text_200_percent": true,
+      "js_errors": []
+    },
+    "human_validation_clears_documentary_queue_in_temporary_fixture": true
+  }
+}

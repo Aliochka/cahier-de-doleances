@@ -76,7 +76,7 @@ Le serveur local impose Host/Origin de boucle locale et un jeton pour chaque éc
 
 Le même serveur propose désormais **Cahiers** et **Articles**. Redémarrer le serveur Python après la mise à jour du logiciel, puis recharger le navigateur. Le mode Cahiers et son journal restent conservés.
 
-Le mode Articles lit la génération globale active (1 237 textes à la production initiale), avec reprise des 333 articles humains. Sans corpus global, il conserve le premier lot de 29 parents. Les unités validées ou corrigées humainement se distinguent par un fond vert, un filet latéral et un badge ✓ explicite. Un simple examen Codex ne reçoit pas ce marquage. Lire les textes en continu, puis utiliser **Valider** sur une unité ou ouvrir **Validation rapide par groupes** pour sélectionner explicitement une suite après lecture. Les anomalies et incertitudes bloquent la validation groupée. **Annuler la dernière décision** reste disponible.
+Le mode Articles lit la génération globale active (1 244 textes après correction des frontières), avec reprise des 333 articles humains. Sans corpus global, il conserve le premier lot de 29 parents. Les unités validées ou corrigées humainement se distinguent par un fond vert, un filet latéral et un badge ✓ explicite. Un simple examen Codex ne reçoit pas ce marquage. Lire les textes en continu, puis utiliser **Valider** sur une unité ou ouvrir **Validation rapide par groupes** pour sélectionner explicitement une suite après lecture. Les anomalies et incertitudes bloquent la validation groupée. **Annuler la dernière décision** reste disponible.
 
 L’éditeur partagé permet de choisir le début/la fin ou le point de séparation dans le texte intégral en lecture seule, de fusionner des fragments, d’ajouter un article manquant, d’attribuer un numéro et de classer les C. La prévisualisation montre le résultat avant enregistrement. Classer une prose revendicative ne la transforme pas en article historique.
 
@@ -95,3 +95,11 @@ Les nouvelles alertes sur les unités non validées sont également affichées d
 ### Campagne de cinq cahiers tirés au sort
 
 Dans **Articles**, la section **« Campagne : cinq cahiers tirés au sort »** donne accès aux cinq dossiers et à leur statut courant. Le tirage, la graine, les identifiants et les instructions sont conservés dans [campaigns/README.md](campaigns/README.md). Les propositions initiales restent intactes ; aucune validation n’est créée en ouvrant un dossier.
+
+## Priorités documentaires et liens directs
+
+Après redémarrage, le menu **Contrôle documentaire** propose les priorités haute, moyenne et basse. La file documentaire est séparée des anomalies d’articles. Commencer par `http://127.0.0.1:1789/?review_priority=high` ; les niveaux moyens restent disponibles sans demander un parcours systématique des dossiers réguliers.
+
+Un lien `/?document=<identifiant du registre>` ouvre directement un dossier. Les limites issues des corrections déterministes sont des propositions ; l’interface affiche leurs explications et conserve leurs sources dans les détails. Les décisions humaines sont toujours prioritaires. Les alertes historiques expliquées ne sont pas effacées du registre original.
+
+Voir [le bilan des frontières](../../docs/BOUNDARY-CORRECTIONS.md), avec les chiffres, exceptions et liens vers les dossiers restants.
