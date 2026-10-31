@@ -1,0 +1,11 @@
+{
+  "events": 33,
+  "examined_documents": 30,
+  "human_validated": 29,
+  "uncertain": 1,
+  "blocked": 0,
+  "accepted_endpoints": 57,
+  "corrected_endpoints": 2,
+  "measured_active_seconds": 1716.0399999999995,
+  "warning": "User activity estimate, not script runtime or independent time study"
+}

@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "units": 1516,
+  "articles": 719,
+  "parents": 29,
+  "exact_source_fidelity": true,
+  "no_overlap_or_text_loss": true,
+  "previous_files_unchanged": 647,
+  "parent_journal_unchanged": true,
+  "parent_journal_append_only": true,
+  "real_article_events": 0
+}

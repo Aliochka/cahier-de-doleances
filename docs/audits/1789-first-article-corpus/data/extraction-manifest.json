@@ -1,0 +1,38 @@
+{
+  "version": "first-article-corpus-1.0",
+  "files": {
+    "automatic-proposals.jsonl.gz": {
+      "bytes": 12401,
+      "sha256": "3ec48d58377647ca7170a0e58f30a7a4c012d4e2f1eeca44a825d6f0c74d03c5"
+    },
+    "crosswalk.jsonl": {
+      "bytes": 57054,
+      "sha256": "90c5f963955523a645e79ba9e3b32a62874b676b1be4e976cce6dd1f5c0cd73a"
+    },
+    "parents.jsonl.gz": {
+      "bytes": 275395,
+      "sha256": "88e8242d49be0f22cc90179dcca99f1ff2764ebaf4a96ac5c9191e3376caabfc"
+    },
+    "source-manifest.json": {
+      "bytes": 1558,
+      "sha256": "088069616e223076a5cf3cd01b83504a4720a52668dd9a2f4eb3c3b88a8c2210"
+    },
+    "units-A.jsonl.gz": {
+      "bytes": 70533,
+      "sha256": "bf5d8b43ad6dcf79e9d2aae9858cc0e0c2aebaedf6a478628bfecd00386f1996"
+    },
+    "units-B.jsonl.gz": {
+      "bytes": 219806,
+      "sha256": "f1c0f5f3e209eedc8b9d2338da4fe82a1df5eba80af4b1c7b94b1f82b93821b9"
+    },
+    "units-C.jsonl.gz": {
+      "bytes": 148344,
+      "sha256": "7f67dffd2f454cf4037f15691edecf1ef5649ec191ad37dc34f29a0241551863"
+    },
+    "withheld.json": {
+      "bytes": 197,
+      "sha256": "bb05420edc16b701bf39d5d1b3d2c517dde2c70125e3b88e111db99277a6a4dd"
+    }
+  },
+  "full_corpus_local_not_versioned": true
+}

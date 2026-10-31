@@ -1,0 +1,40 @@
+{
+  "method": "article-segmentation-1.0",
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "freeze": {
+    "date": "2026-10-31T10:40:21.889458+00:00",
+    "method": "article-segmentation-1.0",
+    "files": {
+      "docs/tools/1789-document-review/segmentation.py": "b8ec263cdd86b5d3af3ed08bbdd7de4a1d3ebe9e90322cb21b8782df4328cb43",
+      "docs/audits/1789-article-segmentation-improvement/data/validation-plan.json": "7993c99d02bbd1ae85b102f14ba46e2c6486cea3ef9679ff133fa03d8cd252e8"
+    },
+    "annotation": "Reference not yet examined; no tuning after this freeze."
+  },
+  "outputs": {
+    "suspects.json": "c30701d7579b873bb1f689bd4c260e5430ef0095e8a0269bb0205a9328249d31",
+    "comparison.jsonl.gz": "2f9fd745fbbaf62b2b4bb7ff4ac43ab808d8b3190f2baa58e6dfc0cada243ed9",
+    "validation-plan.json": "7993c99d02bbd1ae85b102f14ba46e2c6486cea3ef9679ff133fa03d8cd252e8",
+    "review-notes.json": "effc0f5aad53670926fd2ac8c9fba218cf03ec663d9d950919b00d2366483b8e",
+    "browser-checks.json": "1164cdf158f32d9b4bce1669d931a14409b2d940e565fef4bb7dc03772b7c52d",
+    "checks.json": "1046e53cfe838f8e11c81bebb8c84704fa1cc245afa37e333b558bfde45f752b",
+    "freeze.json": "373aa1b3909dc46fdd47e094b324edd0ea9fa4bc5a19c5632310058132d4581d",
+    "development-comparison.json": "2ec1382a3ce82429e6a3c6a503964f0d52bab53ec29f12ea93c90fe533709734",
+    "validation-reference.json": "81c21f2275bb43d2d5e502f6ee724c21995542dc8ab33a3c322d35e6b8bdb555",
+    "journal-snapshots.json": "85a2855697181a7ade3ba52b6ddae8f136a844af703d053fbc1e820176ae4342",
+    "metrics.json": "ffb1d5b0f5565e14834abe4382e83ec8107019d15edca825605e7f7395114be9"
+  },
+  "scripts": {
+    "docs/audits/1789-article-segmentation-improvement/make_reference.py": "8314a3a33d054051f3acdf76db0a491570b7dc3dbdefce26c254c3b37438cd2f",
+    "docs/audits/1789-article-segmentation-improvement/experiment.py": "bf94f47a727e334bf7cc9a836923721ccb5a5258c6fecbccaf14acae0d9bd392",
+    "docs/audits/1789-article-segmentation-improvement/summarize.py": "c62d193e02cb2abcebd045bb5063f59dc19b9aab8048969310857e9f75b1854b",
+    "docs/tools/1789-document-review/test_review.py": "50228355b1f7b6040ee85d4bb06df3d4f5da840bf667ed31ca306b3d5756645c",
+    "docs/tools/1789-document-review/segmentation_comparison.py": "88ce4f7d7620a9ff90692cfd797b457c6fc89d7ddb4f0ad4e5e12bcf78d6490e",
+    "docs/tools/1789-document-review/article_test_server.py": "0a233f119b3eab0be193fda09c260afe80867494d52c09103e85645ed626c269",
+    "docs/tools/1789-document-review/segmentation.py": "b8ec263cdd86b5d3af3ed08bbdd7de4a1d3ebe9e90322cb21b8782df4328cb43",
+    "docs/tools/1789-document-review/server.py": "633ba0a009b41cf55181fc5dde0b093cb7f5d92cc5c9b78aa04682484582d7f7",
+    "docs/tools/1789-document-review/test_articles.py": "d59ae023b2329bac3be8a42e473e5fb7d1d45029144e4881667682a4c7ef8f15",
+    "docs/tools/1789-document-review/articles.py": "5a40c5984b8b6f3da7820cf12e5378dc8862c55b0f89f65ec260d5cddfae9266",
+    "docs/tools/1789-document-review/test_segmentation.py": "b40d49119f781a3c43b84cfc05db3501f118e5545bc7da2265587af6cd1b6dfc",
+    "docs/tools/1789-document-review/reviewlib.py": "818758f5d6370ef835efadd660941d4972f54838599fc54dfd8943ebf4a95bcc"
+  }
+}

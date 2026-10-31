@@ -1,0 +1,166 @@
+{
+  "id": "five-cahiers-01",
+  "title": "Cinq cahiers tirés au sort — campagne 1",
+  "created_at": "2026-10-31T11:44:07.123765+00:00",
+  "seed": 17892019,
+  "algorithm": "Python random.Random(seed).sample(sorted(eligible_document_ids), 5), without replacement",
+  "python_version": "3.10.12",
+  "population_human_validated_parents": [
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1539",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1540",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1554",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1559",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1612",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1634",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1692",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1844",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1874",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1926",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1744",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1745",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1857",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1867",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2175",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2339",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2348",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2358",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2405",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2495",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2556",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2568",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2579"
+  ],
+  "excluded_any_prior_article_event": [
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1844",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1745",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497"
+  ],
+  "eligible_document_ids": [
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1539",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1540",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1554",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1559",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1612",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1634",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1692",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1874",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1926",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1744",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1857",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1867",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2175",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2339",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2348",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2358",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2405",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2495",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2556",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2568",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2579"
+  ],
+  "selected": [
+    {
+      "id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+      "title": "Cahier du clergé de la sénéchaussée d'Anjou",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1563",
+      "volume": 2,
+      "proposed_articles": 80,
+      "initial_human_article_decisions": 0,
+      "parent_extent_id": "ap1789-parent-version:fe7668b00773eddb4270da4d",
+      "initial_units_sha256": "31fbabc84085afaca68f494ee9fb4fc55cdd27455f2c8414ba6f2d5b9ec989fd",
+      "selection_status": "articles_not_human_reviewed"
+    },
+    {
+      "id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2339",
+      "title": "Cahier de Pierrelez (Paris)",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2339",
+      "volume": 5,
+      "proposed_articles": 9,
+      "initial_human_article_decisions": 0,
+      "parent_extent_id": "ap1789-parent-version:412051b109b7588527944810",
+      "initial_units_sha256": "8a1ee3cec9ec633f8689fb56f01791feb98dd61aa9195e5e6eec08960045bcf2",
+      "selection_status": "articles_not_human_reviewed"
+    },
+    {
+      "id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1612",
+      "title": "Cahier de Lawastine (Bailliage de Bailleul)",
+      "persee_id": "arcpa_0000-0000_1879_num_2_1_1612",
+      "volume": 2,
+      "proposed_articles": 5,
+      "initial_human_article_decisions": 0,
+      "parent_extent_id": "ap1789-parent-version:7cd2511e54b0d52fe37f68cb",
+      "initial_units_sha256": "cef04e9c329b4365a36580714e8e742f7d04b63fd92501ca2eed2679bf151699",
+      "selection_status": "articles_not_human_reviewed"
+    },
+    {
+      "id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1744",
+      "title": "Cahier du clergé du bailliage de Mirecourt",
+      "persee_id": "arcpa_0000-0000_1879_num_4_1_1744",
+      "volume": 4,
+      "proposed_articles": 5,
+      "initial_human_article_decisions": 0,
+      "parent_extent_id": "ap1789-parent-version:ac6c7a652b81336ea840968a",
+      "initial_units_sha256": "5ff099fb42930b9d56677fb6d05f864f12a614174365c6641ff509c4cb5c06e0",
+      "selection_status": "articles_not_human_reviewed"
+    },
+    {
+      "id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2348",
+      "title": "Cahier de Plessis-Secqueville (Paris)",
+      "persee_id": "arcpa_0000-0000_1879_num_5_1_2348",
+      "volume": 5,
+      "proposed_articles": 9,
+      "initial_human_article_decisions": 0,
+      "parent_extent_id": "ap1789-parent-version:7825ea03276863cd25b06f71",
+      "initial_units_sha256": "9473ae9da2ea916f9ec310adede3d05c29d45ca16862b4664ef9531f00d0183e",
+      "selection_status": "articles_not_human_reviewed"
+    }
+  ],
+  "inputs": {
+    "docs/tools/1789-document-review/.local/article-decisions.jsonl": {
+      "bytes": 600114,
+      "sha256": "b525059c07cfd61854d68463039c0cdff4ddebd5a254cb017dfd49b217b4fcc8"
+    },
+    "docs/tools/1789-document-review/.local/decisions.jsonl": {
+      "bytes": 55580,
+      "sha256": "fd1ff67ea32b3b25c9b33c4bb53a5e8fd8eb31659d684d3cbca0e451db6c2fd4"
+    },
+    "docs/audits/1789-first-article-corpus/data/parents.jsonl.gz": {
+      "bytes": 275395,
+      "sha256": "88e8242d49be0f22cc90179dcca99f1ff2764ebaf4a96ac5c9191e3376caabfc"
+    },
+    "docs/audits/1789-first-article-corpus/data/units-A.jsonl.gz": {
+      "bytes": 70533,
+      "sha256": "bf5d8b43ad6dcf79e9d2aae9858cc0e0c2aebaedf6a478628bfecd00386f1996"
+    },
+    "docs/audits/1789-first-article-corpus/data/units-B.jsonl.gz": {
+      "bytes": 219806,
+      "sha256": "f1c0f5f3e209eedc8b9d2338da4fe82a1df5eba80af4b1c7b94b1f82b93821b9"
+    },
+    "docs/audits/1789-first-article-corpus/data/units-C.jsonl.gz": {
+      "bytes": 148344,
+      "sha256": "7f67dffd2f454cf4037f15691edecf1ef5649ec191ad37dc34f29a0241551863"
+    },
+    "docs/tools/1789-document-review/segmentation.py": {
+      "bytes": 14169,
+      "sha256": "b8ec263cdd86b5d3af3ed08bbdd7de4a1d3ebe9e90322cb21b8782df4328cb43"
+    },
+    "docs/tools/1789-document-review/segmentation_comparison.py": {
+      "bytes": 3145,
+      "sha256": "88ce4f7d7620a9ff90692cfd797b457c6fc89d7ddb4f0ad4e5e12bcf78d6490e"
+    }
+  },
+  "journal_baseline_events": 238,
+  "scope": "Préparation uniquement : aucun bilan de la nouvelle campagne, aucune nouvelle segmentation.",
+  "reported_previous_effort": "Environ 30 minutes pour Terre-Franche, Vic et Mirecourt, communiqué par l’utilisateur ; hors de cette campagne."
+}

@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-31T10:40:21.889458+00:00",
+  "method": "article-segmentation-1.0",
+  "files": {
+    "docs/tools/1789-document-review/segmentation.py": "b8ec263cdd86b5d3af3ed08bbdd7de4a1d3ebe9e90322cb21b8782df4328cb43",
+    "docs/audits/1789-article-segmentation-improvement/data/validation-plan.json": "7993c99d02bbd1ae85b102f14ba46e2c6486cea3ef9679ff133fa03d8cd252e8"
+  },
+  "annotation": "Reference not yet examined; no tuning after this freeze."
+}

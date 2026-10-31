@@ -1,0 +1,13 @@
+/.local/
+__pycache__/
+/data/*
+!/data/
+!/data/summary.json
+!/data/manifest.json
+!/data/initial-summary.json
+!/data/browser-checks.json
+!/data/checks.json
+!/data/input-manifest.json
+!/prior-files-sha256.json
+!/data/cahiers-browser-checks.json
+!/data/code-manifest.json
