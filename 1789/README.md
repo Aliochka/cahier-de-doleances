@@ -1,6 +1,6 @@
 # Corpus historique de 1789
 
-Espace unique de travail pour les cahiers de doléances : sources, registre, corpus expérimental, extraction, vérification humaine et expériences antérieures. L’extraction globale est produite : **1 305 notices traitées, 1 267 textes, 39 072 articles**, dont 333 validés/corrigés humainement. Voir [la finalisation documentaire et les 12 cahiers à contrôler](docs/DOCUMENTARY-FINALIZATION.md), [les corrections précédentes](docs/BOUNDARY-CORRECTIONS.md) et [le bilan initial de production](docs/PRODUCTION.md) pour les statuts, limites et commandes.
+Espace unique de travail pour les cahiers de doléances : sources, registre, corpus expérimental, extraction, vérification humaine et expériences antérieures. L’extraction globale est produite : **1 305 notices traitées, 1 267 textes, 39 772 articles**, dont 605 validés/corrigés humainement. Voir [les séparations de revendications fusionnées (génération 6)](docs/FUSION-CORRECTIONS.md), [les rubriques et revendications non numérotées (génération 5)](docs/THEMATIC-EXTRACTION.md), [la finalisation des articles et le petit lot de contrôle](docs/ARTICLE-FINALIZATION.md), [la finalisation documentaire et les 12 cahiers contrôlés](docs/DOCUMENTARY-FINALIZATION.md), [les corrections précédentes](docs/BOUNDARY-CORRECTIONS.md) et [le bilan initial de production](docs/PRODUCTION.md) pour les statuts, limites et commandes.
 
 ```text
 1789/
@@ -17,8 +17,14 @@ Espace unique de travail pour les cahiers de doléances : sources, registre, cor
 │   ├── segmentation-proposals/ # comparaisons et propositions, séparées des décisions
 │   └── private/document-review/ # journaux humains et sessions, jamais dans Git
 ├── extraction/
-│   ├── production.py           # extraction globale, reprise et contrôles
-│   └── segmentation.py         # segmenteur existant, inchangé
+│   ├── production.py           # chaîne documentaire historique et contrôles
+│   ├── article_production.py   # production de la génération 4
+│   ├── thematic_production.py  # génération 5 : formes thématiques et décisions
+│   ├── fusion_production.py    # génération 6 : séparations thématiques prudentes
+│   ├── fusion.py               # contrôle des titres intérieurs aux unités
+│   ├── thematic.py             # titres, développements et rubriques
+│   ├── article_rules.py        # corrections additives avec indices concordants
+│   └── segmentation.py         # segmenteur initial conservé
 ├── tools/document-review/       # interface locale, tests et campagnes
 ├── review.py                    # lanceur de cette interface
 ├── archives/                    # quinze audits, leurs scripts et résultats historiques
@@ -75,7 +81,7 @@ Contrôle de la migration, sans extraction :
 ```sh
 python3 1789/migration/verify.py
 python3 1789/archives/1789-human-review-quality/check.py --read-only
-python3 -m unittest discover -s 1789/tools/document-review -p 'test_*.py'
+PYTHONPATH=1789/extraction python3 -m unittest discover -s 1789/tools/document-review -p 'test_*.py'
 ```
 
 Le contrôle complet de déplacement nécessite l’inventaire local privé conservé sous `migration/.local/`. Son résultat lisible est dans [migration/verification.json](migration/verification.json).

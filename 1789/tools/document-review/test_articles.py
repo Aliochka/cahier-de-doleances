@@ -98,6 +98,211 @@ class ArticleTests(unittest.TestCase):
         self.assertTrue(all(not a["anomalies"] for a in self.articles))
         self.assertEqual(len(units), 1516)
 
+    def test_classification_on_proposed_parent_is_saved_without_approving_parent(self):
+        real_state = self.store.state
+
+        def proposed(record, *args, **kwargs):
+            state = real_state(record, *args, **kwargs)
+            if record["id"] == self.key:
+                state = dict(state, status="proposed", event=None)
+            return state
+
+        with patch.object(self.store, "state", side_effect=proposed):
+            doc = self.current()
+            self.assertTrue(doc["version"]["parent"]["reviewable"])
+            self.assertFalse(doc["version"]["parent"]["ready"])
+            passage = next(
+                u for u in doc["units"] if u["type"] == "technical_passage" and u["text"].strip()
+            )
+            self.save(self.payload("classify", [passage["id"]], type="paratext"))
+            classified = next(u for u in self.current()["units"] if u["spans"] == passage["spans"])
+            self.assertEqual(classified["type"], "paratext")
+            self.assertTrue(classified["human_validated"])
+            self.assertFalse(classified["indexing_eligible"])
+            self.assertFalse(classified["publication_ready"])
+            restarted = Articles(self.store, self.engine.log.journal)
+            self.assertEqual(restarted.document(self.key)["units"], self.current()["units"])
+            self.assertEqual(self.store.state(self.store.by_id[self.key])["status"], "proposed")
+
+    def test_article_validation_on_proposed_parent_does_not_make_export_eligible(self):
+        original_state = self.store.state
+
+        def proposed(record, *args, **kwargs):
+            state = original_state(record, *args, **kwargs)
+            return dict(state, status="proposed", event=None) if record["id"] == self.key else state
+
+        with patch.object(self.store, "state", side_effect=proposed):
+            self.save(self.payload("validate", [u["id"] for u in self.articles]))
+            articles = [u for u in self.current()["units"] if u["type"] == "article"]
+            self.assertEqual(sum(u["human_validated"] for u in articles), 9)
+            self.assertTrue(
+                all(not u["indexing_eligible"] and not u["publication_ready"] for u in articles)
+            )
+            self.assertFalse(self.current()["version"]["parent"]["ready"])
+
+    def test_uncertain_or_blocked_parent_still_rejects_classification(self):
+        real_state = self.store.state
+        for status in ["uncertain", "blocked"]:
+
+            def uncertain(record, *args, **kwargs):
+                state = real_state(record, *args, **kwargs)
+                return dict(state, status=status) if record["id"] == self.key else state
+
+            with patch.object(self.store, "state", side_effect=uncertain):
+                c = next(u for u in self.current()["units"] if u["type"] == "technical_passage")
+                with self.assertRaises(Conflict):
+                    self.engine.preview(self.payload("classify", [c["id"]], type="paratext"))
+        self.assertEqual(self.engine.log.history(), [])
+
+    def test_unicode_whitespace_rule_never_absorbs_punctuation_or_text(self):
+        record = dict(
+            type="technical_passage", review_status="technical_unclassified", last_event_id=None
+        )
+        with patch.object(self.engine, "text", side_effect=lambda p, r: r["fixture_text"]):
+            for text in [" ", "\t\n\r", "\u00a0", "\u202f\u2003\u3000", " \u00a0\t\n"]:
+                self.assertTrue(
+                    self.engine.automatic_whitespace({}, dict(record, fixture_text=text))
+                )
+            self.assertTrue(
+                self.engine.automatic_whitespace(
+                    {},
+                    dict(
+                        record,
+                        fixture_text=" ",
+                        last_event_id="human-created-residual-not-a-classification",
+                    ),
+                )
+            )
+            for text in ["", ".", " — ", "\n;\t", "a", " 1 ", "\u200b", "\ufeff"]:
+                self.assertFalse(
+                    self.engine.automatic_whitespace({}, dict(record, fixture_text=text))
+                )
+            for status, event in [
+                ("human_validated", "human-event"),
+                ("human_corrected", "human-event"),
+                ("uncertain", "human-event"),
+            ]:
+                self.assertFalse(
+                    self.engine.automatic_whitespace(
+                        {},
+                        dict(record, fixture_text=" ", review_status=status, last_event_id=event),
+                    )
+                )
+            self.assertFalse(
+                self.engine.automatic_whitespace({}, dict(record, fixture_text=" ", type="article"))
+            )
+
+    def test_automatic_whitespace_keeps_source_and_does_not_create_human_decision(self):
+        parent, records, *_ = self.engine.state(self.key)
+        white = next(r for r in records.values() if self.engine.automatic_whitespace(parent, r))
+        shown = next(u for u in self.current()["units"] if u["id"] == white["id"])
+        self.assertEqual(shown["type"], "paratext")
+        self.assertEqual(shown["original_type"], "technical_passage")
+        self.assertEqual(shown["validation_status"], "automatic_technical_paratext")
+        self.assertFalse(shown["requires_human_classification"])
+        self.assertFalse(shown["human_validated"])
+        self.assertFalse(shown["indexing_eligible"])
+        self.assertEqual(shown["spans"], white["spans"])
+        self.assertEqual(shown["text"], self.engine.text(parent, white))
+        self.assertEqual(self.engine.state(self.key)[1][white["id"]], white)
+        self.assertEqual(self.engine.log.history(), [])
+        listing = next(p for p in self.engine.listing() if p["id"] == self.key)
+        self.assertGreater(listing["automatic_technical_paratext"], 0)
+        self.assertEqual(listing["human_reviewed"], 0)
+        self.save(self.payload("uncertain", [white["id"]]))
+        resumed = Articles(self.store, self.engine.log.journal).document(self.key)
+        human = next(u for u in resumed["units"] if u["id"] == white["id"])
+        self.assertEqual(human["validation_status"], "uncertain")
+        self.assertIsNone(human["automatic_classification"])
+        self.assertTrue(human["requires_human_classification"])
+
+    def test_workbench_tracks_target_not_whole_cahier_and_handles_undo(self):
+        def window(unit, key):
+            return dict(
+                id=key, parent_id=self.key, unit_id=unit["id"], start=unit["start"], end=unit["end"]
+            )
+
+        windows = [window(self.articles[0], "first"), window(self.articles[1], "second")]
+        self.assertEqual(self.engine.workbench_progress(windows)["first"]["status"], "pending")
+        self.current()  # Reading never marks anything done.
+        self.assertEqual(self.engine.workbench_progress(windows)["first"]["status"], "pending")
+        self.save(self.payload("validate", [self.articles[0]["id"]]))
+        progress = self.engine.workbench_progress(windows)
+        self.assertEqual(progress["first"]["status"], "completed")
+        self.assertEqual(progress["second"]["status"], "pending")
+        self.assertEqual(
+            Articles(self.store, self.engine.log.journal).workbench_progress(windows), progress
+        )
+        self.save(self.payload("undo", []))
+        self.assertEqual(self.engine.workbench_progress(windows)["first"]["status"], "pending")
+        self.save(self.payload("uncertain", [self.articles[0]["id"]]))
+        self.assertEqual(self.engine.workbench_progress(windows)["first"]["status"], "uncertain")
+
+    def test_workbench_follows_reclassified_passage_and_preserves_window_id(self):
+        passage = next(
+            u for u in self.doc["units"] if u["type"] == "technical_passage" and u["text"].strip()
+        )
+        windows = [
+            dict(
+                id="C",
+                parent_id=self.key,
+                unit_id=passage["id"],
+                start=passage["start"],
+                end=passage["end"],
+            )
+        ]
+        self.save(self.payload("classify", [passage["id"]], type="paratext"))
+        self.assertNotIn(passage["id"], {u["id"] for u in self.current()["units"]})
+        self.assertEqual(self.engine.workbench_progress(windows)["C"]["status"], "completed")
+
+    def test_classify_C_as_article_respects_selected_range_and_keeps_remainder(self):
+        c = max(
+            (u for u in self.doc["units"] if u["type"] == "technical_passage"),
+            key=lambda u: len(u["text"]),
+        )
+        self.save(
+            self.payload(
+                "classify",
+                [c["id"]],
+                type="article",
+                number="5",
+                start=c["start"] + 1,
+                end=c["end"] - 1,
+            )
+        )
+        doc = self.current()
+        new = next(
+            u for u in doc["units"] if u["type"] == "article" and u["start"] == c["start"] + 1
+        )
+        self.assertEqual(new["number"], "5")
+        self.assertEqual(new["number_origin"], "human_attribution")
+        self.assertTrue(new["human_validated"])
+        self.assertLessEqual(new["end"], c["end"] - 1)
+        p, records, *_ = self.engine.state(self.key)
+        self.engine.check(p, list(records.values()))
+        self.assertEqual(new["text"], self.engine.text(p, records[new["id"]]))
+        self.assertTrue(
+            any(
+                u["original_type"] == "technical_passage" and u["start"] == c["start"]
+                for u in doc["units"]
+            )
+        )
+        self.save(self.payload("undo", []))
+        self.assertTrue(any(u["id"] == c["id"] for u in self.current()["units"]))
+
+    def test_classify_C_as_article_can_keep_full_range_without_inventing_number(self):
+        c = next(
+            u for u in self.doc["units"] if u["type"] == "technical_passage" and u["text"].strip()
+        )
+        self.save(self.payload("classify", [c["id"]], type="article"))
+        article = next(
+            u
+            for u in self.current()["units"]
+            if u["type"] == "article" and u["start"] == c["start"]
+        )
+        self.assertIsNone(article["number"])
+        self.assertEqual(article["text"], c["text"])
+
     def test_group_validation_and_historic_undo(self):
         self.save(self.payload("validate", [u["id"] for u in self.articles]))
         self.assertEqual(sum(u["human_validated"] for u in self.current()["units"]), 9)

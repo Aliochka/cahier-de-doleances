@@ -1,0 +1,197 @@
+{
+  "generation": "global-corpus-5-7b829ada54d6",
+  "before_with_current_decisions": {
+    "technical_passage": 42329,
+    "article": 39269,
+    "section": 1159,
+    "paratext": 37
+  },
+  "after": {
+    "technical_passage": 43355,
+    "article": 39673,
+    "section": 1844,
+    "paratext": 37
+  },
+  "before_thematic_forms": {
+    "thematic_context": 8257,
+    "article_in_thematic_section": 8362,
+    "thematic_heading": 159,
+    "section_introduction": 103,
+    "unnumbered_thematic_claim": 6
+  },
+  "after_thematic_forms": {
+    "thematic_context": 8934,
+    "article_in_thematic_section": 8362,
+    "unnumbered_thematic_claim": 410,
+    "thematic_heading": 941,
+    "section_introduction": 297
+  },
+  "change_kinds": {
+    "unnumbered_thematic_claim": 404,
+    "thematic_heading": 933
+  },
+  "classification_only": {
+    "unnumbered_thematic_claim": 147
+  },
+  "proposed_regions": {
+    "section_with_articles": 957,
+    "standalone_claim": 431
+  },
+  "uncertain_regions": {
+    "section_with_articles": 734,
+    "uncertain": 5681,
+    "standalone_claim": 500
+  },
+  "uncertainty_reasons": {
+    "title_inside_numbered_article_kept_unchanged": 1094,
+    "no_development": 2949,
+    "role_not_established": 5681,
+    "signature_inside_scope_requires_review": 272,
+    "unmarked_end_of_thematic_run": 282,
+    "insufficient_repeated_thematic_structure": 314,
+    "long_scope_requires_review": 185,
+    "first_body_too_short_to_distinguish_list_item_from_title": 190,
+    "possible_lowercase_heading_inside_scope": 335,
+    "numbered_article_crosses_next_heading": 448,
+    "possible_numbered_articles_in_prose": 43,
+    "locality_or_associated_document_requires_review": 31,
+    "known_shared_documentary_range_kept_unsegmented": 14
+  },
+  "parent_count": 1267,
+  "existing_articles_identical": 39269,
+  "numbered_articles_identical": 38628,
+  "human_records_identical": 653,
+  "all_records_in_human_reviewed_parents_identical": 1245,
+  "human_articles_identical": 600,
+  "human_journal_events": 689,
+  "beauvais_human_reference_preserved": true,
+  "jurandes_title_and_development_kept_together": true,
+  "old_sample_preserved": true,
+  "source_and_journals_unchanged": true,
+  "source_checks": [
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1547",
+      "volume": 1,
+      "title": "Aides et gabelles.",
+      "title_start": 5658209,
+      "title_end": 5658227,
+      "end": 5658787,
+      "xpath": "/TEI.2/text/body/div1/div2[9]/div3[9]/p[95]",
+      "form": "standalone_claim"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+      "volume": 1,
+      "title": "Améliorations particulières h VA génois. ",
+      "title_start": 5198228,
+      "title_end": 5198269,
+      "end": 5208184,
+      "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[135]",
+      "form": "section_with_articles"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1671",
+      "volume": 2,
+      "title": "Constitution. ",
+      "title_start": 2716916,
+      "title_end": 2716930,
+      "end": 2719980,
+      "xpath": "/TEI.2/text/body/div1/div2[27]/div3[3]/p[6]",
+      "form": "standalone_claim"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1574",
+      "volume": 2,
+      "title": "LÉGISLATION ET JURISPRUDENCE. ",
+      "title_start": 453146,
+      "title_end": 453176,
+      "end": 456624,
+      "xpath": "/TEI.2/text/body/div1/div2[5]/div3[1]/p[53]",
+      "form": "section_with_articles"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1817",
+      "volume": 3,
+      "title": "Des lois et des tribunaux.",
+      "title_start": 747323,
+      "title_end": 747349,
+      "end": 752807,
+      "xpath": "/TEI.2/text/body/div1/div2[8]/div3[2]/p[27]",
+      "form": "standalone_claim"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2052",
+      "volume": 3,
+      "title": "ADMINISTRATION. ",
+      "title_start": 6985754,
+      "title_end": 6985770,
+      "end": 6988895,
+      "xpath": "/TEI.2/text/body/div1/div2[54]/div3[6]/p[12]",
+      "form": "section_with_articles"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1781",
+      "volume": 4,
+      "title": "Des vingtièmes. ",
+      "title_start": 1041230,
+      "title_end": 1041246,
+      "end": 1052453,
+      "xpath": "/TEI.2/text/body/div1/div2[10]/div3[3]/p[135]",
+      "form": "standalone_claim"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1856",
+      "volume": 4,
+      "title": "Dépense. ",
+      "title_start": 2860353,
+      "title_end": 2860362,
+      "end": 2862981,
+      "xpath": "/TEI.2/text/body/div1/div2[18]/div3[11]/p[45]",
+      "form": "section_with_articles"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2909",
+      "volume": 5,
+      "title": "LES CADASTRES.",
+      "title_start": 6599756,
+      "title_end": 6599770,
+      "end": 6600218,
+      "xpath": "/TEI.2/text/body/div1/div2[27]/div3[4]/p[84]",
+      "form": "standalone_claim"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2489",
+      "volume": 5,
+      "title": "Subsides.",
+      "title_start": 2154044,
+      "title_end": 2154053,
+      "end": 2157781,
+      "xpath": "/TEI.2/text/body/div1/div2[1]/div3[158]/p[113]",
+      "form": "section_with_articles"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2753",
+      "volume": 6,
+      "title": "CONSTITUTION NATIONALE ",
+      "title_start": 6090775,
+      "title_end": 6090798,
+      "end": 6093523,
+      "xpath": "/TEI.2/text/body/div1/div2[53]/div3[2]/p[10]",
+      "form": "standalone_claim"
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2515",
+      "volume": 6,
+      "title": "ÉTATS GÉNÉRAUX. ",
+      "title_start": 670507,
+      "title_end": 670523,
+      "end": 673686,
+      "xpath": "/TEI.2/text/body/div1/div2[5]/div3[2]/p[9]",
+      "form": "section_with_articles"
+    }
+  ],
+  "source_checks_interpretation": "12 limited documentary control windows across six volumes, examined by Codex; not independent human validation or accuracy measurement",
+  "parent_unit_indices_source_ordered": true,
+  "no_boundary_changes": true,
+  "no_embeddings": true
+}

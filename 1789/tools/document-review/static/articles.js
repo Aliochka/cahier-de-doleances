@@ -3,9 +3,9 @@
 let articleVisibleParents = [], articleUnresolved = [];
 let articleParents = [], articleDocument = null, articleSelected = new Set();
 let articleEditorIds = [], articleRange = {}, articlePreviewDigest = null, articleDirty = false, articleSaving = false;
-let articleReturnPosition = null, articleCampaign = null;
+let articleReturnPosition = null, articleCampaign = null, articleWorkbench = null;
 const articleTypes = {article:'Article historique',section:'Section historique',technical_passage:'Passage C non classé',claim_passage:'Passage revendicatif technique',paratext:'Paratexte'};
-const articleStates = {codex_examined:'Limites examinées par Codex',automatic_proposal:'Proposition automatique',technical_unclassified:'À classer',human_validated:'Validé humainement',human_corrected:'Corrigé humainement',uncertain:'Incertain',review_required:'Validation périmée — à réexaminer'};
+const articleStates = {automatic_technical_paratext:'Paratexte technique — classement automatique, hors recherche',codex_examined:'Limites examinées par Codex',automatic_proposal:'Proposition automatique',technical_unclassified:'À classer',human_validated:'Validé humainement',human_corrected:'Corrigé humainement',uncertain:'Incertain',review_required:'Validation périmée — à réexaminer'};
 const articleButton = (text, callback) => { const b=el('button',text); b.type='button'; b.addEventListener('click',callback); return b; };
 const unicodeLength = text => Array.from(text).length;
 const unicodeSlice = (text,start,end) => Array.from(text).slice(start,end).join('');
@@ -61,6 +61,8 @@ async function switchReviewMode(mode,documentId=null){
   articleMessage('Chargement des cahiers et des unités…');
   articleParents=await api('/api/articles/list');
   articleCampaign=await api('/api/articles/campaign').catch(()=>null);
+  articleWorkbench=await api('/api/articles/workbench').catch(()=>null);
+  renderArticleWorkbench();
   renderArticleCampaign();
   filterArticleParents(false);
   articleUnresolved=await api('/api/corpus/unresolved').catch(()=>[]);renderUnresolvedArticles();
@@ -74,13 +76,15 @@ async function switchReviewMode(mode,documentId=null){
 async function loadArticleParent(id,afterMessage=''){
  $('article-stream').hidden=true;
  try{
-  if(!articleVisibleParents.some(p=>p.id===id)){$('article-query').value='';$('article-volume').value='';$('article-boundary-filter').value='';$('article-needs-review').checked=false;filterArticleParents(false);}
+  if(!articleVisibleParents.some(p=>p.id===id)){$('article-query').value='';$('article-volume').value='';$('article-boundary-filter').value='';$('article-needs-review').checked=false;$('article-quality-filter').value='';filterArticleParents(false);}
   articleDocument=await api('/api/articles/document?'+new URLSearchParams({id}));
   articleSelected=new Set();articleDirty=false;articlePreviewDigest=null;articleReturnPosition=null;
   $('article-editor').hidden=true;$('article-parent').value=id;$('article-note').value='';
   const row=articleParents.find(r=>r.id===id);
   if(row){row.articles=articleDocument.units.filter(u=>u.type==='article').length;row.human_reviewed=articleDocument.units.filter(u=>u.human_validated).length;const option=[...$('article-parent').options].find(o=>o.value===id);if(option)option.textContent=`${row.title} · ${row.articles} articles · ${row.human_reviewed} unités examinées`;}
-  renderArticles();renderArticleCampaign();articleMessage(afterMessage);
+  renderArticles();renderArticleCampaign();
+  articleWorkbench=await api('/api/articles/workbench').catch(()=>articleWorkbench);renderArticleWorkbench();
+  articleMessage(afterMessage);
  }catch(e){articleMessage(e.message,true);}
  finally{$('article-stream').hidden=false;}
 }
@@ -107,7 +111,8 @@ function articleGroupCount(){
 function renderArticles(){
  const d=articleDocument,p=d.parent,units=d.units,articles=units.filter(u=>u.type==='article');
  const human=units.filter(u=>u.human_validated).length;
- $('article-meta').textContent=`Tome ${p.volume} · ${p.metadata.id||p.id} · ${p.metadata.title} · ${p.document_kind||'cahier'} · ${p.boundary_class||'Référence du lot initial'} · ${articles.length} articles · ${human} unités validées/corrigées humainement. La validation du cahier reste distincte.`;
+ const whitespace=units.filter(u=>u.automatic_classification).length;
+ $('article-meta').textContent=`Tome ${p.volume} · ${p.metadata.id||p.id} · ${p.metadata.title} · ${p.document_kind||'cahier'} · ${p.boundary_class||'Référence du lot initial'} · ${articles.length} articles · ${human} unités validées/corrigées humainement. La validation du cahier reste distincte. ${whitespace} passage(s) de blancs classés automatiquement, hors vérification.`;
  $('article-warning').hidden=!d.warning&&!d.stale_events.length;
  $('article-warning').textContent=d.warning||`${d.stale_events.length} décision(s) concernent une autre version du parent. Les validations correspondantes doivent être reprises.`;
  if(p.anomalies?.length){$('article-warning').hidden=false;$('article-warning').textContent+='\nAlertes documentaires proposées (à examiner) : '+[...new Set(p.anomalies)].map(a=>documentaryAlerts[a]||({overlapping_document_proposals:'Propositions de documents qui se chevauchent : vérifier les voisins.',articles_withheld_pending_documentary_review:'Articles non proposés dans l’attente d’un examen documentaire.'}[a])||a).join(' · ');}
@@ -116,7 +121,7 @@ function renderArticles(){
  const stream=$('article-stream');stream.replaceChildren();let articleRank=0;
  for(const unit of units){
   const card=el('article','');card.className='review-unit';card.dataset.unitId=unit.id;card.dataset.unitType=unit.type;
-  if(unit.type==='technical_passage'||unit.type==='paratext'){card.hidden=!$('article-show-c').checked;card.classList.add('review-technical');}
+  if(unit.type==='technical_passage'||unit.type==='paratext'){card.hidden=unit.automatic_classification?!$('article-show-whitespace').checked:!$('article-show-c').checked;card.classList.add('review-technical');if(unit.automatic_classification)card.dataset.automaticWhitespace='true';}
   if(unit.human_validated){
    card.classList.add('review-human');
    const badge=el('span','');badge.className='review-human-badge';
@@ -124,11 +129,16 @@ function renderArticles(){
    badge.append(check,document.createTextNode(unit.validation_status==='human_corrected'?'Corrigé humainement':'Validé humainement'));
    card.append(badge);
   }
+  const quality=unit.quality;
+  if(quality?.changes?.length){card.classList.add('review-auto-correction');card.append(el('strong','Séparation automatique fondée sur les marqueurs de la source — à vérifier.'));}
+  if(quality&&unit.type==='technical_passage')card.append(el('p',({paratext:'Paratexte proposé',possible_missed_article:'Article potentiellement manqué : contexte à examiner',claim_prose_proposal:'Formule revendicative détectée — prose conservée, pas un article certifié',uncertain:'Nature du passage indéterminée'}[quality.content_class]||quality.content_class)+' (qualification automatique).'));
+  if(quality?.analysis_may_be_stale&&!unit.automatic_classification)card.append(el('p','Qualification calculée avant votre dernière décision : réexamen nécessaire.'));
   if(unit.type==='article')articleRank++;
-  const heading=el('h3',unit.type==='article'?`Article ${unit.number||'sans numéro reconnu'} · rang ${articleRank}`:articleTypes[unit.type]);
+  const heading=el('h3',unit.automatic_classification?'Blancs techniques — classement automatique':unit.type==='article'?`Article ${unit.number||(unit.thematic_context?.unit_form==='unnumbered_thematic_claim'?'non numéroté':'sans numéro reconnu')} · rang ${articleRank}`:articleTypes[unit.type]);
   card.append(heading);
   const page=unit.pages.map(p=>p.n||p.id).join(', ');
   card.append(el('p',`Origine ${unit.source_status==='human_created'?'création/correction humaine':unit.source_status} · ${articleStates[unit.validation_status]||unit.validation_status} · page ${page||'non identifiée'} · ordre documentaire ${unit.order}`));
+  if(unit.thematic_context)card.append(el('p',`Titre / rubrique thématique proposé : ${unit.thematic_context.title.trim()} · contexte documentaire, sans validation humaine ajoutée.`));
   if(unit.section)card.append(el('p',`Rubrique : ${unit.section.trim()}`));
   if(unit.anomalies.length)card.append(el('p',unit.anomalies.map(a=>a==='unusually_long_article_over_12000_chars'?'Article de plus de 12 000 caractères : contrôler la longueur et les limites.':a).join(' ')));
   const text=el('p',unit.text);text.className='article-original';
@@ -136,6 +146,11 @@ function renderArticles(){
    const detail=document.createElement('details');detail.append(el('summary',`${unit.text.trim()?'Lire le passage conservé':'Blancs entre unités'} (${unicodeLength(unit.text)} caractères)`),text);card.append(detail);
   }else card.append(text);
   if(unit.spans.length>1)card.append(el('small','Texte en plusieurs plages ; les notes et autres éléments séparés restent dans le cahier complet.'));
+  if(unit.automatic_classification){
+   card.append(el('p','Uniquement des caractères blancs. Texte et positions conservés ; aucune décision humaine attendue.'));
+   card.append(articleButton('Consulter le contexte',()=>openArticleEditor('correct',[unit.id])));
+   stream.append(card);continue;
+  }
   const controls=el('div','');controls.className='unit-controls';
   const label=el('label',' Sélectionner');const box=document.createElement('input');box.type='checkbox';box.dataset.articleSelect=unit.id;
   box.setAttribute('aria-label',`Sélectionner ${heading.textContent}`);
@@ -155,6 +170,8 @@ function renderArticles(){
  $('article-prev-parent').disabled=index<=0;$('article-next-parent').disabled=index<0||index===articleVisibleParents.length-1;
  articleGroupCount();
  renderSegmentationComparison();
+ renderFinalArticleChanges();
+ renderFusionComparison();
 }
 function sourceSelection(){
  const container=$('article-source-text'),selection=window.getSelection();
@@ -188,12 +205,18 @@ function openArticleEditor(action,ids){
  $('article-type').value=action==='classify'?'paratext':units.length?units[0].type:'article';
  $('article-number').value=units[0]?.number||'';$('article-second-number').value='';$('article-note').value='';$('article-ack').checked=false;
  $('article-editor').hidden=false;$('article-editor-title').textContent=action==='missing'?'Article manquant — choisir sa plage dans le cahier':'Correction et contexte — '+units.map(u=>u.number||articleTypes[u.type]).join(', ');
- invalidateArticlePreview();articleDirty=false;renderArticleSource();
+ updateArticleEditorFields();invalidateArticlePreview();articleDirty=false;renderArticleSource();
  $('article-source-details').open=true;$('article-editor-title').focus();
 }
+function updateArticleEditorFields(){
+ const split=$('article-action').value==='split';
+ $('article-second-number-label').hidden=!split;
+ $('article-second-number').disabled=!split;
+}
+$('article-action').addEventListener('change',updateArticleEditorFields);
 function editorPayload(){
  const payload=articlePayload($('article-action').value,articleEditorIds);
- return {...payload,...articleRange,note:$('article-note').value,type:$('article-type').value,number:$('article-number').value.trim()||null,second_number:$('article-second-number').value.trim()||null,acknowledge_anomalies:$('article-ack').checked};
+ return {...payload,...articleRange,note:$('article-note').value,type:$('article-type').value,number:$('article-number').value.trim()||null,second_number:$('article-action').value==='split'?($('article-second-number').value.trim()||null):null,acknowledge_anomalies:$('article-ack').checked};
 }
 $('mode-cahiers').addEventListener('click',()=>switchReviewMode('cahiers'));
 $('mode-articles').addEventListener('click',()=>switchReviewMode('articles'));
@@ -201,7 +224,9 @@ $('article-parent').addEventListener('change',()=>{if(articleCanLeave())loadArti
 for(const [id,step] of [['article-prev-parent',-1],['article-next-parent',1]])$(id).addEventListener('click',()=>{
  if(!articleCanLeave())return;const i=articleVisibleParents.findIndex(p=>p.id===articleDocument.parent.id);if(articleVisibleParents[i+step])loadArticleParent(articleVisibleParents[i+step].id);
 });
-$('article-show-c').addEventListener('change',()=>{for(const card of document.querySelectorAll('.review-technical'))card.hidden=!$('article-show-c').checked;});
+function updateTechnicalVisibility(){for(const card of document.querySelectorAll('.review-technical'))card.hidden=card.dataset.automaticWhitespace==='true'?!$('article-show-whitespace').checked:!$('article-show-c').checked;}
+$('article-show-c').addEventListener('change',updateTechnicalVisibility);
+$('article-show-whitespace').addEventListener('change',updateTechnicalVisibility);
 $('article-clear-selection').addEventListener('click',()=>{articleSelected.clear();articleGroupCount();});
 $('article-select-range').addEventListener('click',()=>{
  const articles=articleDocument.units.filter(u=>u.type==='article'),start=Number($('article-range-start').value),end=Number($('article-range-end').value);
@@ -291,6 +316,8 @@ function renderArticleCampaign(){
 function filterArticleParents(load=true){
  const q=$('article-query').value.toLocaleLowerCase('fr'),volume=$('article-volume').value,status=$('article-boundary-filter').value;
  articleVisibleParents=articleParents.filter(p=>(!q||`${p.title} ${p.id} ${p.persee_id}`.toLocaleLowerCase('fr').includes(q))&&(!volume||String(p.volume)===volume)&&(!status||p.boundary_class===status)&&(!$('article-needs-review').checked||p.boundary_class!=='human_validated'||p.uncertain));
+ const quality=$('article-quality-filter').value;
+ if(quality)articleVisibleParents=articleVisibleParents.filter(p=>quality==='sample'?articleWorkbench?.independent_sample.some(w=>w.parent_id===p.id):(p.article_quality?.[quality]||0)>0);
  const select=$('article-parent'),previous=articleDocument?.parent.id;select.replaceChildren();
  for(const p of articleVisibleParents){const option=el('option',`${p.title} · ${p.articles} articles · ${p.human_reviewed} unités examinées`);option.value=p.id;select.append(option);}
  if(articleVisibleParents.some(p=>p.id===previous))select.value=previous;
@@ -306,6 +333,56 @@ function renderUnresolvedArticles(){
   row.append(articleButton('Examiner les frontières',async()=>{if(!articleCanLeave())return;articleDirty=false;await switchReviewMode('cahiers');await open(p.id);}));list.append(row);
  }
 }
-for(const id of ['article-query','article-volume','article-boundary-filter','article-needs-review'])$(id).addEventListener(id==='article-query'?'input':'change',()=>filterArticleParents());
+for(const id of ['article-query','article-volume','article-boundary-filter','article-needs-review','article-quality-filter'])$(id).addEventListener(id==='article-query'?'input':'change',()=>filterArticleParents());
 $('article-review-boundaries').addEventListener('click',async()=>{if(!articleDocument||!articleCanLeave())return;const id=articleDocument.parent.id;articleDirty=false;await switchReviewMode('cahiers');await open(id);});
 $('article-rebuild').addEventListener('click',()=>{if(articleDocument&&articleCanLeave()){articleDirty=false;rebuildDocument(articleDocument.parent.id);}});
+
+function renderArticleWorkbench(){
+ $('article-workbench').hidden=!articleWorkbench;
+ if(!articleWorkbench)return;
+ $('fusion-campaign').hidden=!articleWorkbench.fusion_validation?.length;
+ for(const [id,windows] of [['article-sample-list',articleWorkbench.independent_sample],['article-example-list',articleWorkbench.examples],['fusion-window-list',articleWorkbench.fusion_validation||[]]]){
+  const list=$(id);list.replaceChildren();
+  const labels={completed:'✓ Terminé',in_progress:'◐ En cours',uncertain:'? Incertain',pending:'À examiner',review_required:'À réexaminer',automatic:'Blancs traités automatiquement'};
+  for(const w of windows){
+   const row=el('li','');const status=w.review?.status||'pending';row.className='workbench-entry';row.dataset.windowId=w.id;row.dataset.reviewStatus=status;
+   const button=articleButton(`Tome ${w.volume} · ${w.title} · ${w.group==='regular_article'?'Article sans alerte':w.group==='C_window'?'Fenêtre C':w.group==='automatic_correction'?'Correction automatique':w.group==='thematic_structure'?'Structure thématique proposée':w.group==='fusion_validation'?'Nouvelle séparation — '+w.focus_title.trim():w.group==='fusion_development'?'Amiens : cas corrigé (développement)':w.group==='fusion_refusal'?'Séparation refusée — '+w.focus_title.trim():'Passage à arbitrer'}`,()=>openArticleWindow(w.id));
+   const badge=el('strong',w.group==='fusion_refusal'&&status==='pending'?'Conservé sans séparation':labels[status]||status);badge.className='workbench-status';badge.title='État du passage ciblé, pas du cahier entier.';
+   row.append(button,badge);if(status==='in_progress')row.append(el('small',`${w.review.reviewed} unité(s) examinée(s), ${w.review.remaining} restante(s) dans cette fenêtre.`));
+   list.append(row);
+  }
+  const summary=el('p',`${windows.filter(w=>w.review?.status==='completed').length} / ${windows.length} passages terminés. Les états sont calculés depuis les décisions enregistrées.`);summary.className='workbench-progress';summary.id=id+'-progress';document.getElementById(summary.id)?.remove();list.after(summary);
+ }
+}
+async function openArticleWindow(id){
+ if(!articleCanLeave())return;
+ const w=[...(articleWorkbench?.independent_sample||[]),...(articleWorkbench?.examples||[]),...(articleWorkbench?.fusion_validation||[])].find(w=>w.id===id);
+ if(!w)return;
+ $('article-show-c').checked=true;
+ await loadArticleParent(w.parent_id);
+ const updated=[...(articleWorkbench?.independent_sample||[]),...(articleWorkbench?.examples||[]),...(articleWorkbench?.fusion_validation||[])].find(row=>row.id===w.id);
+ const targetIds=[w.unit_id,...(updated?.review?.unit_ids||[])];
+ const card=targetIds.map(id=>[...document.querySelectorAll('[data-unit-id]')].find(c=>c.dataset.unitId===id)).find(Boolean);
+ if(card&&w.focus_start!==undefined){const u=articleDocument.units.find(u=>u.id===card.dataset.unitId);const text=card.querySelector('.article-original');let offset=0;for(const [a,z] of u.spans){if(a<=w.focus_start&&w.focus_end<=z){const start=offset+w.focus_start-a,end=offset+w.focus_end-a;const mark=el('mark',unicodeSlice(u.text,start,end));text.replaceChildren(document.createTextNode(unicodeSlice(u.text,0,start)),mark,document.createTextNode(unicodeSlice(u.text,end)));break;}offset+=z-a;}}
+ if(card){if(card.dataset.automaticWhitespace==='true')$('article-show-whitespace').checked=true;card.hidden=false;card.querySelector('details')?.setAttribute('open','');card.tabIndex=-1;card.focus({preventScroll:true});card.scrollIntoView({block:'center'});articleMessage('Fenêtre de contrôle ouverte. Aucune validation enregistrée.');}
+ else articleMessage('Le découpage a changé depuis le tirage : retrouvez la plage source '+w.start+'–'+w.end+' dans le cahier complet.');
+ const url=new URL(location.href);url.searchParams.set('article_window',id);history.replaceState(null,'',url);
+}
+function renderFinalArticleChanges(){
+ let panel=$('article-final-changes');if(!panel){panel=document.createElement('details');panel.id='article-final-changes';$('article-stream').before(panel);}
+ panel.replaceChildren();const changes=articleDocument.finalization_changes||[];panel.hidden=!changes.length;
+ if(!changes.length)return;
+ panel.append(el('summary',`${changes.length} correction(s) automatique(s) : comparer avec le découpage précédent`));
+ panel.append(el('p','Les décisions humaines restent prioritaires. Les séparations ci-dessous sont des propositions issues des marqueurs originaux.'));
+ for(const c of changes){const item=el('section','');item.append(el('h3',c.kind==='recover_article_from_C'?'Article récupéré depuis C':'Unité précédemment fusionnée'),el('p',c.markers.map(m=>`${m.label} · position ${m.start}`).join(' ; ')));
+ const before=document.createElement('details');before.append(el('summary','Ancienne unité complète'),el('p',c.before_text||'Texte conservé dans les passages C et dans le cahier complet.'));item.append(before);
+ for(const id of c.after_ids){const u=articleDocument.units.find(x=>x.id===id);if(u)item.append(el('p',u.text));}panel.append(item);}
+}
+
+function renderFusionComparison(){
+ let panel=$('fusion-comparison');if(!panel){panel=document.createElement('details');panel.id='fusion-comparison';$('article-stream').before(panel);}
+ panel.replaceChildren();const f=articleDocument.fusion_report;panel.hidden=!f||(!f.changes.length&&!f.proposal_count);if(panel.hidden)return;
+ panel.append(el('summary',`Séparations thématiques : ${f.changes.length} unité(s) séparée(s), ${f.proposal_count} proposition(s) non appliquée(s)`),el('p',f.warning));
+ for(const c of f.changes){const item=el('section','');item.append(el('h3',`Ancienne unité ${c.old_number||'sans numéro'} : ${c.new_claim_ids.length} nouvelle(s) revendication(s) proposée(s)`));const old=document.createElement('details');old.append(el('summary','Lire l’ancienne unité complète'),el('p',c.before_text));item.append(old);for(const id of c.new_claim_ids){const u=articleDocument.units.find(u=>u.id===id);if(u)item.append(el('p',u.text));}panel.append(item);}
+ for(const h of f.proposals){panel.append(el('p',`${h.protected?'Décision humaine prioritaire, suggestion distincte : ':'Séparation non appliquée : '}${h.title.trim()} · ${h.reasons.join(' ; ')} · positions ${h.title_start}–${h.end}.`));}
+}

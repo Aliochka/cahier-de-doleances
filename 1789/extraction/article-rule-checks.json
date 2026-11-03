@@ -1,0 +1,244 @@
+{
+  "selection": "first three SHA256-sorted changes per volume, unseen parents, no selection by text",
+  "generation": "1789/data/corpus/global-corpus-4-b42cca513663",
+  "rule_sha256": "1bcb713e2f1f924103ab282e5344299089659a41059edaab8048f6aa86344114",
+  "cases": [
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1539",
+      "volume": 1,
+      "before_ids": [
+        "ap1789-unit-1:02f42b3ef8b0cd0ad7310d2b2fca"
+      ],
+      "expected_new_starts": [
+        5417073
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[9]/div3[1]/p[27]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1538",
+      "volume": 1,
+      "before_ids": [
+        "ap1789-global-unit-1:9a5da459d3e42f963dc021541055"
+      ],
+      "expected_new_starts": [
+        5404020
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[8]/div3[2]/p[192]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1694",
+      "volume": 2,
+      "before_ids": [
+        "ap1789-global-unit-1:f44055f978c35c894a84220d7a23"
+      ],
+      "expected_new_starts": [
+        4908037
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[50]/div3[1]/p[77]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1736",
+      "volume": 2,
+      "before_ids": [
+        "ap1789-global-unit-1:11ba14a0657d5f5fb8d87167ba1a"
+      ],
+      "expected_new_starts": [
+        3940935
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[41]/div3[3]/p[16]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1579",
+      "volume": 2,
+      "before_ids": [
+        "ap1789-global-unit-1:9bc200a400ad12af8b8805bb7d68"
+      ],
+      "expected_new_starts": [
+        565582
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[6]/div3[2]/p[145]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1969",
+      "volume": 3,
+      "before_ids": [
+        "ap1789-global-unit-1:027ac388fa8deff7c1c15e2fb8d8"
+      ],
+      "expected_new_starts": [
+        3836055
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[33]/div3[2]/p[63]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2044",
+      "volume": 3,
+      "before_ids": [
+        "ap1789-global-unit-1:3c39403efb324ee8e565006bced1"
+      ],
+      "expected_new_starts": [
+        6771027
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[53]/div3[1]/p[20]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1834",
+      "volume": 3,
+      "before_ids": [
+        "ap1789-global-unit-1:fa86a449487bbd49038179991097"
+      ],
+      "expected_new_starts": [
+        1489643
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[21]/div3[3]/p[150]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2161",
+      "volume": 4,
+      "before_ids": [
+        "ap1789-global-unit-1:d5a146ea086c93ed410857c30149"
+      ],
+      "expected_new_starts": [
+        4634077
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[18]/div3[128]/p[27]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2072",
+      "volume": 4,
+      "before_ids": [
+        "ap1789-global-unit-1:beaf98918a205275757154b6d3ad"
+      ],
+      "expected_new_starts": [
+        3356949
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[18]/div3[42]/p[2]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1748",
+      "volume": 4,
+      "before_ids": [
+        "ap1789-global-unit-1:986cb889d2819e24017e2ef93d57"
+      ],
+      "expected_new_starts": [
+        128050
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[1]/div3[7]/p[46]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2902",
+      "volume": 5,
+      "before_ids": [
+        "ap1789-global-unit-1:4767809113e3b7dc25f0787220dc"
+      ],
+      "expected_new_starts": [
+        6442589
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[25]/div3[15]/p[55]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2805",
+      "volume": 5,
+      "before_ids": [
+        "ap1789-global-unit-1:9fb86cdfc79c23a80467655c7161"
+      ],
+      "expected_new_starts": [
+        2950906
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[3]/div3[3]/p[12]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2902",
+      "volume": 5,
+      "before_ids": [
+        "ap1789-global-unit-1:f72711d70dfbed2f77ad33b48865"
+      ],
+      "expected_new_starts": [
+        6440135,
+        6440410,
+        6440694
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[25]/div3[15]/p[46]",
+        "/TEI.2/text/body/div1/div2[25]/div3[15]/p[47]",
+        "/TEI.2/text/body/div1/div2[25]/div3[15]/p[48]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2557",
+      "volume": 6,
+      "before_ids": [
+        "ap1789-global-unit-1:8ebf89d6fbac7399a40a1a766717"
+      ],
+      "expected_new_starts": [
+        2132727
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[17]/div3[2]/p[52]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2739",
+      "volume": 6,
+      "before_ids": [
+        "ap1789-global-unit-1:54a731fba23538163fbe17eff70b"
+      ],
+      "expected_new_starts": [
+        5703176
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[51]/div3[1]/p[49]"
+      ]
+    },
+    {
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2516",
+      "volume": 6,
+      "before_ids": [
+        "ap1789-global-unit-1:a708388d6af28ca973390c7bad44"
+      ],
+      "expected_new_starts": [
+        770739
+      ],
+      "expected_xpaths": [
+        "/TEI.2/text/body/div1/div2[5]/div3[4]/p[183]"
+      ]
+    }
+  ],
+  "evaluator": "Codex exploratory source inspection; not independent human validation",
+  "scope": "New cut positions only, not comprehensive article-end ground truth or corpus-wide precision",
+  "observations": "Literal printed markers and request text checked with preceding/following XML paragraphs. Multi-paragraph continuations retained. No false cut observed in this selected subset.",
+  "cut_functions_unchanged_since_selection": true,
+  "frozen_cut_function_AST_sha256": {
+    "number": "12bcac92d5300b397edcfc9fce87fcdff5580050597690c66d4b9bf0e1e73856",
+    "record_number": "6ef6002ad92a1ea2be44bf12058c227c4ac1c62b79fe8c5c4f5cd1a7b808c0f4",
+    "scan": "1dec03ea5b2e5976033fd6d75af692cad90c012b5dba3901a5c3966a86fbbd2f",
+    "detect": "985dc959cd1e1b4a571a4f0481c1a7c9254145311a06983ce9b3f5dbb65716c1",
+    "auto_record": "3b2155d6677fa955ded8b1edd7a42c5b96f35d6b87376b7bf206ba3c61b432c0",
+    "repair": "68d6feb0287d36f2eb790eb091452d60426ba46618734d8efe2c1a35e40fbc76"
+  }
+}

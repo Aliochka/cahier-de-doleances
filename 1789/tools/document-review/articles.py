@@ -59,6 +59,11 @@ class Articles:
         self.override_directory = (
             Path(override_directory) if override_directory else PRIVATE / "corpus-overrides"
         )
+        self._fusion_cache = None
+        self._thematic_cache = None
+        self._quality_cache = None
+        self._quality_summary = None
+        self._finalization_changes = None
         self._stat_fingerprint = None
         self.fingerprint = None
         self.refresh()
@@ -80,7 +85,7 @@ class Articles:
             if u["status"] == "B"
             else "technical_unclassified",
             spans=u["text_spans"],
-            origin_ids=[u["id"]],
+            origin_ids=u.get("origin_ids", [u["id"]]),
             section_id=u["section_id"],
             last_event_id=None,
         )
@@ -142,6 +147,11 @@ class Articles:
             not state["stale"] and span.get("start") == p["start"] and span.get("end") == p["end"]
         )
         ready = compatible and state["status"] == "human_validated"
+        reviewable = compatible and state["status"] in {
+            "proposed",
+            "codex_reviewed",
+            "human_validated",
+        }
         return dict(
             extent_id=p["extent_id"],
             source_sha256=p["source"]["source_sha256"],
@@ -152,6 +162,7 @@ class Articles:
             current_status=state["status"],
             compatible=compatible,
             ready=ready,
+            reviewable=reviewable,
             current_parent_event=(state["event"] or {}).get("id"),
         )
 
@@ -251,7 +262,7 @@ class Articles:
                             "Suite de numéros irrégulière ; aucune renumérotation automatique."
                         )
                     previous[r.get("section_id")] = n
-            else:
+            elif (self.thematic_context(r) or {}).get("unit_form") != "unnumbered_thematic_claim":
                 flags[r["id"]].append("Numéro non reconnu ; vérifier le repère original.")
             if sum(z - a for a, z in r["spans"]) > 12000:
                 flags[r["id"]].append("unusually_long_article_over_12000_chars")
@@ -291,6 +302,63 @@ class Articles:
                     )
         return flags
 
+    def thematic_context(self, record):
+        if self._thematic_cache is None:
+            path = self.directory / "thematic-regions.jsonl.gz"
+            self._thematic_cache = {}
+            if path.exists():
+                for h in rows(path):
+                    self._thematic_cache.setdefault(h["parent_id"], []).append(h)
+        from thematic import context
+
+        hypotheses = [
+            h
+            for h in self._thematic_cache.get(record["parent_id"], [])
+            if h.get("parent_extent_id") == record["parent_extent_id"]
+        ]
+        return context(record, hypotheses)
+
+    def quality_summary(self):
+        if self._quality_summary is None:
+            path = self.directory / "article-quality-summary.json"
+            self._quality_summary = json.loads(path.read_text()) if path.exists() else {}
+        return self._quality_summary
+
+    def unit_quality(self, record):
+        if self._quality_cache is None:
+            path = self.directory / "unit-quality.jsonl.gz"
+            self._quality_cache = {r["unit_id"]: r for r in rows(path)} if path.exists() else {}
+        quality = self._quality_cache.get(record["id"])
+        return (
+            dict(
+                quality,
+                analysis_may_be_stale=quality.get("last_event_id") != record.get("last_event_id"),
+            )
+            if quality
+            else None
+        )
+
+    def finalization_changes(self, p):
+        if self._finalization_changes is None:
+            path = self.directory / "article-changes.jsonl.gz"
+            self._finalization_changes = {}
+            if path.exists():
+                for r in rows(path):
+                    self._finalization_changes.setdefault(r["parent_id"], []).append(r)
+        source = self.store.sources[p["volume"]]
+        return [
+            dict(r, before_text="".join(source.text[a:z] for a, z in r["old_spans"]))
+            for r in self._finalization_changes.get(p["id"], [])
+        ]
+
+    def automatic_whitespace(self, p, record):
+        """Only unclassified C; preserve explicit human classifications and exact ranges."""
+        return (
+            record["type"] == "technical_passage"
+            and record["review_status"] == "technical_unclassified"
+            and self.text(p, record).isspace()
+        )
+
     def present(self, p, records, stale_events=None):
         ordered = sorted(records, key=lambda r: (r["spans"][0][0], r["spans"][-1][1], r["id"]))
         flags = self.anomalies(p, ordered, stale_events)
@@ -301,7 +369,9 @@ class Articles:
             a, z = r["spans"][0][0], r["spans"][-1][1]
             pages = source.pages_for(a, z)
             old_validation = r["review_status"] in HUMAN
-            invalidated = not version["ready"] or bool(stale_events and r["last_event_id"] is None)
+            invalidated = not version["reviewable"] or bool(
+                stale_events and r["last_event_id"] is None
+            )
             status = "review_required" if invalidated and old_validation else r["review_status"]
             eligible = (
                 version["ready"]
@@ -310,6 +380,10 @@ class Articles:
                 and r["type"] in {"article", "claim_passage", "section"}
             )
             text = self.text(p, r)
+            whitespace = self.automatic_whitespace(p, r)
+            if whitespace:
+                status = "automatic_technical_paratext"
+                eligible = False
             blocks = [
                 dict(id=b["id"], xpath=b["xpath"], start=max(a, b["start"]), end=min(z, b["end"]))
                 for b in self.store.selected_blocks(p["volume"], a, z)
@@ -321,6 +395,20 @@ class Articles:
             output.append(
                 dict(
                     r,
+                    type="paratext" if whitespace else r["type"],
+                    original_type=r["type"],
+                    automatic_classification=(
+                        dict(
+                            version="unicode-whitespace-1",
+                            origin="deterministic_rule",
+                            reason="exclusively_Unicode_whitespace",
+                            original_type="technical_passage",
+                        )
+                        if whitespace
+                        else None
+                    ),
+                    requires_human_classification=r["type"] == "technical_passage"
+                    and not whitespace,
                     text=text,
                     text_sha256=sha(text),
                     start=a,
@@ -334,6 +422,10 @@ class Articles:
                     next_unit_id=ordered[i + 1]["id"] if i + 1 < len(ordered) else None,
                     order_status="source_order_not_certified_historical_succession",
                     anomalies=flags[r["id"]],
+                    quality=self.unit_quality(r),
+                    thematic_context=self.thematic_context(r),
+                    effective_section_id=(self.thematic_context(r) or {}).get("section_id")
+                    or r["section_id"],
                     validation_status=status,
                     human_validated=old_validation and not invalidated,
                     indexing_eligible=eligible,
@@ -380,9 +472,17 @@ class Articles:
                     else p.get("boundary_class", "uncertain"),
                     document_kind=p.get("document_kind", "cahier_autonome_probable"),
                     documentary_anomalies=p.get("anomalies", []),
+                    article_quality=self.quality_summary().get("by_parent", {}).get(key, {}),
+                    automatic_technical_paratext=sum(
+                        self.automatic_whitespace(p, r) for r in actual
+                    ),
+                    technical_passages_to_classify=sum(
+                        r["type"] == "technical_passage" and not self.automatic_whitespace(p, r)
+                        for r in actual
+                    ),
                     articles=sum(r["type"] == "article" for r in actual),
                     human_reviewed=sum(
-                        r["review_status"] in HUMAN and version["ready"] and not stale
+                        r["review_status"] in HUMAN and version["reviewable"] and not stale
                         for r in actual
                     ),
                     proposed_articles=sum(
@@ -393,6 +493,7 @@ class Articles:
                             sum(z - a for a, z in r["spans"])
                             for r in actual
                             if r["type"] == "technical_passage"
+                            and not self.automatic_whitespace(p, r)
                         ),
                         default=0,
                     ),
@@ -403,6 +504,84 @@ class Articles:
             )
         self._listing_parent_events = None
         return result
+
+    def workbench_progress(self, windows):
+        """Progress of each frozen source window, never of the whole parent."""
+        events = self.log.history()
+        states = {}
+        result = {}
+        for window in windows:
+            key = window["parent_id"]
+            if key not in self.parents:
+                result[window["id"]] = dict(status="review_required", reviewed=0, remaining=0)
+                continue
+            if key not in states:
+                states[key] = self.state(key, events)
+            p, records, _, _, stale = states[key]
+            original = self.base[key].get(window["unit_id"])
+            spans = original["spans"] if original else [[window["start"], window["end"]]]
+            own = [r for r in records.values() if intersects(r["spans"], spans)]
+            relevant = [r for r in own if not self.automatic_whitespace(p, r)]
+            reviewed = sum(r["review_status"] in HUMAN for r in relevant)
+            uncertain = sum(r["review_status"] == "uncertain" for r in relevant)
+            compatible = (
+                self.parent_version(p)["reviewable"]
+                and not stale
+                and all(p["start"] <= a < z <= p["end"] for a, z in spans)
+            )
+            status = (
+                "review_required"
+                if not compatible or not own
+                else "automatic"
+                if not relevant
+                else "uncertain"
+                if uncertain
+                else "completed"
+                if reviewed == len(relevant)
+                else "in_progress"
+                if reviewed or any(r.get("last_event_id") for r in relevant)
+                else "pending"
+            )
+            result[window["id"]] = dict(
+                status=status,
+                reviewed=reviewed,
+                remaining=len(relevant) - reviewed,
+                uncertain=uncertain,
+                automatic_whitespace=len(own) - len(relevant),
+                unit_ids=[r["id"] for r in (relevant or own)],
+            )
+        return result
+
+    def fusion_report(self, parent):
+        if self._fusion_cache is None:
+            self._fusion_cache = {"changes": {}, "proposals": {}}
+            for field, name in [
+                ("changes", "fusion-changes.jsonl.gz"),
+                ("proposals", "fusion-candidates.jsonl.gz"),
+            ]:
+                path = self.directory / name
+                if path.exists():
+                    for item in rows(path):
+                        self._fusion_cache[field].setdefault(item["parent_id"], []).append(item)
+        source = self.store.sources[parent["volume"]]
+        changes = [
+            dict(c, before_text="".join(source.text[a:z] for a, z in c["old_spans"]))
+            for c in self._fusion_cache["changes"].get(parent["id"], [])
+        ]
+        credible = [
+            h
+            for h in self._fusion_cache["proposals"].get(parent["id"], [])
+            if h["application"] != "applied_automatic_proposal"
+            and "explicit_historical_request_formula" in h["evidence"]
+            and "title_words_in_development_and_new_relative_to_previous_paragraphs"
+            in h["evidence"]
+        ]
+        return dict(
+            changes=changes,
+            proposals=credible[:20],
+            proposal_count=len(credible),
+            warning="Propositions figées de cette génération. Les décisions humaines actuelles restent prioritaires ; aucune suggestion ne les remplace.",
+        )
 
     def document(self, key):
         from segmentation_comparison import comparison
@@ -435,6 +614,8 @@ class Articles:
             version=self.version(p),
             previous_event_id=head,
             units=self.present(p, list(records.values()), stale),
+            finalization_changes=self.finalization_changes(p),
+            fusion_report=self.fusion_report(p),
             history=[
                 {
                     k: e[k]
@@ -445,7 +626,11 @@ class Articles:
             stale_events=stale,
             warning=None
             if self.parent_version(p)["ready"]
-            else "Frontières non validées humainement ou périmètre modifié. Vérifiez le cahier, puis reconstruisez ce document si nécessaire avant de valider ses articles.",
+            else (
+                "Frontières du cahier encore proposées : vous pouvez examiner et classer ses unités sur ce périmètre. Ces décisions ne valident pas le cahier ; ses unités restent exclues de la publication et de l’export éligible tant que le parent n’est pas validé."
+                if self.parent_version(p)["reviewable"]
+                else "Périmètre du cahier incompatible, incertain ou bloqué : vérifiez ses frontières et reconstruisez le document si nécessaire avant de modifier ses unités."
+            ),
         )
 
     def _new(self, p, kind, spans, origins, number=None, section=None):
@@ -507,9 +692,9 @@ class Articles:
         selected = [copy.deepcopy(records[i]) for i in ids]
         before = []
         after = []
-        if action not in {"uncertain", "undo"} and not self.parent_version(p)["ready"]:
+        if action not in {"uncertain", "undo"} and not self.parent_version(p)["reviewable"]:
             raise Conflict(
-                "Les frontières du cahier doivent être validées et le corpus régénéré avant cette opération."
+                "Le périmètre du cahier est incompatible, incertain ou bloqué. Vérifiez ses frontières et reconstruisez le document avant cette opération."
             )
         flags = self.anomalies(p, list(records.values()), stale)
         if action == "validate":
@@ -545,7 +730,7 @@ class Articles:
             after[0].update(
                 number=number, number_origin="human_attribution", review_status="human_corrected"
             )
-        elif action == "classify":
+        elif action == "classify" and payload.get("type") != "article":
             if len(selected) != 1 or payload.get("type") not in {
                 "paratext",
                 "claim_passage",
@@ -565,7 +750,7 @@ class Articles:
             if kind == "technical_passage":
                 new["review_status"] = "uncertain"
             after = [new]
-        elif action in {"correct", "merge", "missing", "split"}:
+        elif action in {"correct", "merge", "missing", "split", "classify"}:
             if action == "split":
                 if len(selected) != 1:
                     raise ValueError("Sélectionnez une seule unité à séparer.")
@@ -595,7 +780,7 @@ class Articles:
                         )
                     )
             else:
-                if action == "correct" and len(selected) != 1:
+                if action in {"correct", "classify"} and len(selected) != 1:
                     raise ValueError("Sélectionnez une unité à corriger.")
                 if action == "missing" and selected:
                     raise ValueError(
@@ -609,6 +794,8 @@ class Articles:
                 if action == "merge":
                     start = min(r["spans"][0][0] for r in selected)
                     end = max(r["spans"][-1][1] for r in selected)
+                elif action == "classify" and "start" not in payload and "end" not in payload:
+                    start, end = selected[0]["spans"][0][0], selected[0]["spans"][-1][1]
                 else:
                     start, end = self._range(p, payload)
                 section = next(
@@ -773,6 +960,8 @@ class Articles:
             ),
             by_source_status=dict(Counter(r["source_status"] for r in units)),
             by_validation=dict(Counter(r["validation_status"] for r in units)),
+            automatic_technical_paratext=sum(bool(r["automatic_classification"]) for r in units),
+            technical_passages_to_classify=sum(r["requires_human_classification"] for r in units),
             human_validated_units=sum(r["human_validated"] for r in units),
             indexing_eligible=sum(r["indexing_eligible"] for r in units),
             publication_ready=sum(r["publication_ready"] for r in units),

@@ -1,0 +1,189 @@
+{
+  "version": "fusion-validation-results-2",
+  "assessor": "Codex exploratory source review, not independent human validation",
+  "rules_changed_after_v2_source_review": false,
+  "v1": {
+    "adopted": false,
+    "windows": 11,
+    "clearly_incorrect_proposals": 4,
+    "incorrect_mechanisms": [
+      "incomplete_considerants",
+      "ordinary_future_tense_sentence",
+      "OCR_ordinal_36d",
+      "personal_name_in_participant_list"
+    ]
+  },
+  "v2": {
+    "windows": 9,
+    "clear_incorrect_boundaries_observed": 0,
+    "global_precision_not_estimated": true,
+    "limits": "Small query-independent candidate sample; no eligible unseen positive unit in volume I and only one in volume III after exclusions. Source predictions were visible during review; not a blind reference."
+  },
+  "annotations": [
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:e156e9310a676cdefff77bcb",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1697",
+      "volume": 2,
+      "xpath": "/TEI.2/text/body/div1/div2[53]/div3[1]/p[102]",
+      "title_start": 5187105,
+      "end": 5187764,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Isolated medical heading followed by explicit provisions; following general medical provisions kept in same continuous source development."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:646edfd23bb5828c6782715d",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1683",
+      "volume": 2,
+      "xpath": "/TEI.2/text/body/div1/div2[39]/div3[1]/p[5]",
+      "title_start": 3765759,
+      "end": 3766586,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Isolated religious heading, explicit religious provisions and following material boundary; no semantic subdivision of its paragraphs."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:d1957d71f9d05ef4db2b4255",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1812",
+      "volume": 3,
+      "xpath": "/TEI.2/text/body/div1/div2[6]/div3[4]/p[162]",
+      "title_start": 577679,
+      "end": 578236,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Distinct nobility heading after fiscal development, explicit requests under the heading."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:3f48665e806d72dfe3db9581",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2095",
+      "volume": 4,
+      "xpath": "/TEI.2/text/body/div1/div2[18]/div3[65]/p[8]",
+      "title_start": 3632670,
+      "end": 3633363,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "New nominal heading and explicit fiscal request; editorial note remains separate."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:8255ea28cefcc023eef3e013",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1766",
+      "volume": 4,
+      "xpath": "/TEI.2/text/body/div1/div2[6]/div3[2]/p[101]",
+      "title_start": 589145,
+      "end": 589738,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Distinct provincial recruitment heading and request for voluntary engagements."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:a63e0304b3f3750283ad4459",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2814",
+      "volume": 5,
+      "xpath": "/TEI.2/text/body/div1/div2[5]/div3[1]/p[105]",
+      "title_start": 3214360,
+      "end": 3216967,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Commerce heading followed by requests, bounded by the next source heading."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:54372694b7b4bed027a74e77",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2849",
+      "volume": 5,
+      "xpath": "/TEI.2/text/body/div1/div2[15]/div3/p[96]",
+      "title_start": 4856268,
+      "end": 4857127,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Heading and explicit request for a reform commission; its introductory function remains a proposal, not certification of historical article status."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:d2b24d38ea77960f79b62a6e",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2613",
+      "volume": 6,
+      "xpath": "/TEI.2/text/body/div1/div2[17]/div3[61]/p[57]",
+      "title_start": 3244741,
+      "end": 3245474,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Distinct heading on exclusion from Estates, followed by requests on fiscal administration."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:c96e4977a5f51a686bfdd328",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2627",
+      "volume": 6,
+      "xpath": "/TEI.2/text/body/div1/div2[17]/div3[76]/p[26]",
+      "title_start": 3480923,
+      "end": 3482776,
+      "cohort": "validation",
+      "judgement": "source_boundary_supported_proposal",
+      "note": "Chasse heading and developed request, separated from preceding redemption/fiscal prose."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:be45f45e2318be8689f3d66f",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1545",
+      "volume": 1,
+      "xpath": "/TEI.2/text/body/div1/div2[9]/div3[7]/p[2]",
+      "title_start": 5611725,
+      "end": 5612013,
+      "cohort": "refusals",
+      "judgement": "prudent_abstention",
+      "note": "Refusal preserves dependent argument, editorial notice, certification or contextual prose. Observation/usury contains a request but independence of its generic heading is not certified."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:d851b2799e23ec9b3c05cc5e",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1647",
+      "volume": 2,
+      "xpath": "/TEI.2/text/body/div1/div2[26]/div3[1]/p[65]",
+      "title_start": 2572761,
+      "end": 2572852,
+      "cohort": "refusals",
+      "judgement": "prudent_abstention",
+      "note": "Refusal preserves dependent argument, editorial notice, certification or contextual prose. Observation/usury contains a request but independence of its generic heading is not certified."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:dbd20c9ff7096d59082e5ad3",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2469",
+      "volume": 3,
+      "xpath": "/TEI.2/text/body/div1/div2[25]/div3[3]/p",
+      "title_start": 2575182,
+      "end": 2575447,
+      "cohort": "refusals",
+      "judgement": "prudent_abstention",
+      "note": "Refusal preserves dependent argument, editorial notice, certification or contextual prose. Observation/usury contains a request but independence of its generic heading is not certified."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:f29ffa2dad497b2097deeb71",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2077",
+      "volume": 4,
+      "xpath": "/TEI.2/text/body/div1/div2[18]/div3[47]/p[37]",
+      "title_start": 3420619,
+      "end": 3421096,
+      "cohort": "refusals",
+      "judgement": "prudent_abstention",
+      "note": "Refusal preserves dependent argument, editorial notice, certification or contextual prose. Observation/usury contains a request but independence of its generic heading is not certified."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:26a889ec5a6a6e01fdf42c0a",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2892",
+      "volume": 5,
+      "xpath": "/TEI.2/text/body/div1/div2[25]/div3[3]/p[35]",
+      "title_start": 6176990,
+      "end": 6177830,
+      "cohort": "refusals",
+      "judgement": "prudent_abstention",
+      "note": "Refusal preserves dependent argument, editorial notice, certification or contextual prose. Observation/usury contains a request but independence of its generic heading is not certified."
+    },
+    {
+      "hypothesis_id": "ap1789-fusion-boundary-1:13e8df74c582fc8382ce56e3",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2742",
+      "volume": 6,
+      "xpath": "/TEI.2/text/body/div1/div2[51]/div3[3]/p[185]",
+      "title_start": 5967601,
+      "end": 5967951,
+      "cohort": "refusals",
+      "judgement": "prudent_abstention",
+      "note": "Refusal preserves dependent argument, editorial notice, certification or contextual prose. Observation/usury contains a request but independence of its generic heading is not certified."
+    }
+  ]
+}

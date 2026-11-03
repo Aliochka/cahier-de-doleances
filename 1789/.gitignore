@@ -80,3 +80,19 @@ __pycache__/
 
 # Aggregate finalization results and sample metadata, without source corpus or journals.
 !/docs/finalization-checks.json
+
+# Frozen source-check identifiers only; no private decisions.
+!/extraction/article-rule-checks.json
+!/docs/article-finalization-checks.json
+
+# Aggregate Unicode whitespace classification counts, no private decisions.
+!/docs/whitespace-summary.json
+
+# Aggregate thematic production checks and limited source references.
+!/docs/thematic-extraction-checks.json
+
+# Frozen fusion-control plans, annotations and aggregate checks only.
+!/extraction/fusion-validation-plan.json
+!/extraction/fusion-validation-v2.json
+!/extraction/fusion-validation-results.json
+!/docs/fusion-corrections-checks.json
