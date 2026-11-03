@@ -1,0 +1,166 @@
+{
+  "summary": {
+    "version": "reference-documents-1",
+    "generation": "reference-documents-1-b8b8b20c2f76",
+    "notices": 1305,
+    "documents": 1267,
+    "probable_cahiers": 1224,
+    "document_categories": {
+      "cahier_autonome_probable": 1224,
+      "document_associe": 21,
+      "proces_verbal": 8,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "extracted_categories": {
+      "cahier_autonome_probable": 1224,
+      "document_associe": 19,
+      "proces_verbal": 6,
+      "liste": 16,
+      "extrait": 2
+    },
+    "notices_without_text": 38,
+    "whitespace_only_documents": [
+      "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2837",
+      "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2877"
+    ],
+    "cahiers_with_substantive_text": 1222,
+    "passages": 11358,
+    "passages_in_cahiers": 10717,
+    "token_statistics": {
+      "minimum": 55,
+      "median": 599,
+      "mean": 591.1082056700124,
+      "p95": 696,
+      "maximum": 800,
+      "below_400": 338,
+      "between_400_800": 11020,
+      "above_800": 0
+    },
+    "boundary_methods": {
+      "XML_paragraph_end": 9922,
+      "document_end": 1265,
+      "sentence_end": 139,
+      "word_boundary_long_sentence": 32
+    },
+    "long_XML_paragraphs": 56,
+    "extracted_boundary_classes": {
+      "human_validated": 45,
+      "automatic_no_alert": 969,
+      "automatic_suspect": 253
+    },
+    "unresolved_or_suspect_documents": 253,
+    "existing_documentary_overlap_pairs": 2,
+    "by_volume": {
+      "1": {
+        "documents": 24,
+        "probable_cahiers": 24,
+        "passages": 349,
+        "mean_tokens": 597.7249283667621
+      },
+      "2": {
+        "documents": 181,
+        "probable_cahiers": 174,
+        "passages": 2255,
+        "mean_tokens": 595.2079822616408
+      },
+      "3": {
+        "documents": 220,
+        "probable_cahiers": 204,
+        "passages": 2508,
+        "mean_tokens": 590.042663476874
+      },
+      "4": {
+        "documents": 346,
+        "probable_cahiers": 346,
+        "passages": 2254,
+        "mean_tokens": 588.4942324755989
+      },
+      "5": {
+        "documents": 294,
+        "probable_cahiers": 288,
+        "passages": 2183,
+        "mean_tokens": 587.3925790196977
+      },
+      "6": {
+        "documents": 202,
+        "probable_cahiers": 188,
+        "passages": 1809,
+        "mean_tokens": 593.9391929242676
+      }
+    },
+    "integrity": {
+      "errors": 0,
+      "documents": 1267,
+      "passages": 11358,
+      "source_characters": 30656665,
+      "covered_characters": 30656615,
+      "explicitly_excluded_whitespace_only_document_characters": 50,
+      "substantive_coverage_fraction": 1.0,
+      "full_parent_preservation_fraction": 1.0,
+      "overlapping_characters": 2886105,
+      "exact_text_verified": true,
+      "stable_ids_verified": true,
+      "no_parent_boundary_changes": true
+    },
+    "human_journals_preserved": true,
+    "historical_generation_preserved": true,
+    "no_historical_segmenter_executed": true,
+    "no_embeddings": true,
+    "elapsed_seconds": 73.94761398599985
+  },
+  "verification": {
+    "errors": 0,
+    "documents": 1267,
+    "passages": 11358,
+    "source_characters": 30656665,
+    "covered_characters": 30656615,
+    "explicitly_excluded_whitespace_only_document_characters": 50,
+    "substantive_coverage_fraction": 1.0,
+    "full_parent_preservation_fraction": 1.0,
+    "overlapping_characters": 2886105,
+    "exact_text_verified": true,
+    "stable_ids_verified": true,
+    "no_parent_boundary_changes": true
+  },
+  "python_tests_passed": 92,
+  "browser": {
+    "passed": true,
+    "sample_windows": 12,
+    "six_volumes": true,
+    "exact_excerpt_and_parent": true,
+    "highlight_in_view": true,
+    "deep_links": true,
+    "passage_navigation": true,
+    "whitespace_only_document_handled": true,
+    "responsive": true,
+    "no_POST": true,
+    "js_errors": []
+  },
+  "historical_browser_regression": {
+    "passed": true,
+    "campaign_entries": 16,
+    "held_out_separations": 9,
+    "refusals": 6,
+    "amiens_article_2_and_dotation_separate": true,
+    "old_sample_preserved": true,
+    "source_highlight": true,
+    "quality_filter": true,
+    "reload": true,
+    "responsive": true,
+    "no_POST": true,
+    "js_errors": []
+  },
+  "all_input_hashes_unchanged": true,
+  "tokenizer_matches_pinned_snapshot_manifest": true,
+  "human_journals_identical_to_G6": true,
+  "human_articles_in_secondary_generation": 605,
+  "historical_article_events_preserved": 697,
+  "overlap_tokens": {
+    "count": 10093,
+    "minimum": 20,
+    "mean": 58.11562469037947,
+    "maximum": 80
+  }
+}

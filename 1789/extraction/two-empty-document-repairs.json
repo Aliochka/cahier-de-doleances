@@ -1,0 +1,123 @@
+{
+  "version": "two-empty-document-repairs-1",
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "repairs": [
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2837",
+      "volume": 5,
+      "xpath": "/TEI.2/text/body/div1/div2[12]/div3[2]",
+      "old_start": 4343092,
+      "old_end": 4343117,
+      "new_start": 4343092,
+      "new_end": 4360210,
+      "new_text_sha256": "686ea0bc42e4e5816690accbc0ef53c1d4ecd9b9766f27d8813db00f60adf91c",
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "pages_Stanford": [
+        483,
+        484
+      ],
+      "opening_xpaths": [
+        "/TEI.2/text/body/div1/div2[12]/div3[2]/p[1]",
+        "/TEI.2/text/body/div1/div2[12]/div3[2]/p[2]"
+      ],
+      "closing_xpaths": [
+        "/TEI.2/text/body/div1/div2[12]/div3[2]/p[36]",
+        "/TEI.2/text/body/div1/div2[12]/div3[2]/p[37]"
+      ],
+      "opening": "CAHIER Des doléances et observations du clergé, abbés chapitres et prieurs tant\n                            séculiers que réquliers du Quercy (1). a",
+      "neighbors": [
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[12]/div3[1]",
+          "start": 4263727,
+          "end": 4343071,
+          "opening": "\n                        PBOCÈS-VERBAL \n                        De Rassemblée des trois Etats du Quercy, contenant la liste des\n                            comparants des trois ordres (1). L’an 1789 et le sixième jour du mois de\n                            mar"
+        },
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[12]/div3[3]",
+          "start": 4360231,
+          "end": 4392672,
+          "opening": "\n                        CAHIER\n                        Des plaintes et doléances des curés de la paroisse du Quercy (1).\n                        Sire, il n’est aucun de nous qui n’ait ambitionné l’honneur de déposer\n                            aux pieds du me"
+        }
+      ],
+      "pagination_note": "Persée and Stanford both 483–484.",
+      "examination": "Codex source review, not independent human validation",
+      "components": [
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[12]/div3[2]",
+          "role": "main_cahier",
+          "relation": "explicit_document_title_and_signed_closure",
+          "start": 4343092,
+          "end": 4360210,
+          "text_sha256": "686ea0bc42e4e5816690accbc0ef53c1d4ecd9b9766f27d8813db00f60adf91c"
+        }
+      ]
+    },
+    {
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2877",
+      "volume": 5,
+      "xpath": "/TEI.2/text/body/div1/div2[22]/div3[2]",
+      "old_start": 5683756,
+      "old_end": 5683781,
+      "new_start": 5683756,
+      "new_end": 5760887,
+      "new_text_sha256": "c6130d3ab7a8037d7567b0427dd07b6d401971e8a1d622ed7276226602bc0efc",
+      "source_sha256": "42bd670ff817d77e31f0ba02a9af811248dc0ecfe5786beb4829043c72e4bc44",
+      "pages_Stanford": [
+        635,
+        643
+      ],
+      "opening_xpaths": [
+        "/TEI.2/text/body/div1/div2[22]/div3[2]/p[1]",
+        "/TEI.2/text/body/div1/div2[22]/div3[2]/p[2]"
+      ],
+      "closing_xpaths": [
+        "/TEI.2/text/body/div1/div2[22]/div3[4]/p[10]",
+        "/TEI.2/text/body/div1/div2[22]/div3[4]/p[11]"
+      ],
+      "opening": "CAHIER De ld chambre du tiers-état du bailliage royal du Nivernais à\n                            Saint-Pierre-le-Moutier (2).",
+      "neighbors": [
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[22]/div3[1]",
+          "start": 5681402,
+          "end": 5683735,
+          "opening": "\n                        CAHIER\n                        Des plaintes, doléances et remontrances dé Vordre de la noblesse du\n                            bailliage royal du Nivernais, séant à Saint-Pierre-le-Moutier (1).\n                        Convaincus de l’i"
+        },
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[22]/div3[5]",
+          "start": 5760908,
+          "end": 5786411,
+          "opening": "\n                        CAHIER\n                        Et instructions du fier s-état du bailliage royal de Çusset, pour ses\n                            députés à celui de Saint-Pierre-le-Moùtier et aux Etats généraux\n                            (1).\n        "
+        }
+      ],
+      "pagination_note": "Main signed cahier 635–642; distinct petitions Château-Chinon (642–643) and Pouilly-sur-Loire (643) retained as named associated components, never confused with main text; entire dossier matches Persée 635–643. Cusset begins following division and is excluded.",
+      "examination": "Codex source review, not independent human validation",
+      "components": [
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[22]/div3[2]",
+          "role": "main_cahier",
+          "relation": "explicit_document_title_and_signed_closure",
+          "start": 5683756,
+          "end": 5750736,
+          "text_sha256": "6bcda8d2e7728aacd3d8b92a6f61812352cff3f858d85af895e4e9a3f582e0da"
+        },
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[22]/div3[3]",
+          "role": "associated_petition",
+          "relation": "same_Stanford_territorial_dossier_and_Persee_page_range",
+          "association_status": "contextual_association_not_same_authorship",
+          "start": 5750757,
+          "end": 5756860,
+          "text_sha256": "af864c96a3079c651d477c32e1fedd1e9efbdc519b66e04bb81737f015d1d1e7"
+        },
+        {
+          "xpath": "/TEI.2/text/body/div1/div2[22]/div3[4]",
+          "role": "attached_petition",
+          "relation": "title_explicitly_says_pour_etre_jointes_au_cahier_general",
+          "start": 5756881,
+          "end": 5760887,
+          "text_sha256": "25dffb0c94acce8467b4be92318e1fca4dfb106ecb2966ad587989d5bc9fede9"
+        }
+      ]
+    }
+  ]
+}

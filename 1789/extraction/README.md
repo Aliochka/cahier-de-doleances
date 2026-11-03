@@ -1,4 +1,7 @@
-# Extraction — composants réutilisés
+# Extraction — collection de référence et composants conservés
+
+**Collection actuelle :** la génération de référence 2, construite par `repair_reference_documents.py`, récupère deux textes du tome V sans modifier les autres documents. Voir [le bilan final](../docs/TWO-EMPTY-RECOVERY.md). `prepare_documents.py --verify-only CHEMIN` vérifie les deux générations ; son constructeur sans option reste celui de la préparation initiale. `technical_passages.py` conserve les règles inchangées des extraits mécaniques de recherche. Voir [la collection de référence](../docs/REFERENCE-COLLECTION.md). Aucune règle d’article historique n’est relancée. Les commandes ci-dessous décrivent les chaînes antérieures conservées ; elles ne constituent plus la procédure courante.
+
 
 `segmentation.py` est le segmenteur existant déplacé depuis l’outil de vérification, **sans modification de ses règles ni de son contenu**. Il s’agit d’une bibliothèque, pas d’une commande d’extraction globale.
 

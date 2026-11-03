@@ -1,5 +1,8 @@
 # Vérifier les cahiers de 1789 en local
 
+**Collection principale :** après lancement, ouvrir **http://127.0.0.1:1789/passages** pour consulter les cahiers complets et les passages techniques, en lecture seule. Le texte du passage est surligné exactement dans le document complet ; un permalien et les voisins permettent d’y revenir. Douze exemples de lecture sont prêts, sans nouvelle campagne de corrections historiques. Voir [la collection corrigée de référence](../../docs/TWO-EMPTY-RECOVERY.md) et [la préparation initiale](../../docs/REFERENCE-COLLECTION.md). Les modes et journaux décrits ci-dessous restent disponibles comme outils documentaires et annotations historiques secondaires.
+
+
 Cet outil autonome lit directement les 1 305 notices de `1789/data/registry/registry.jsonl.gz` et les six XML Stanford figés déjà présents. Il ne démarre pas l’application publique, ne contacte aucune base ni aucun modèle et ne télécharge rien. Python 3.10+ et `lxml` sont nécessaires ; ils sont déjà disponibles ici avec `/usr/bin/python3`.
 
 Depuis la racine du dépôt :
@@ -43,7 +46,7 @@ Un document ayant déjà des décisions d’articles garde ses unités si son p�
 
 Le mode Articles propose une recherche par titre ou identifiant, un filtre de volume et de statut des frontières, les documents à examiner, ainsi qu’un accès aux notices sans texte extrait. **Examiner les frontières** revient au même dossier dans le mode Cahiers. **Rechercher un bloc dans le volume** permet de retrouver un bloc exact en dehors des propositions disponibles, sans manipuler le XML.
 
-Pour régénérer la collection complète après des décisions :
+Ancienne procédure de génération historique, conservée pour reproduction ; ne plus l’utiliser pour la collection de référence :
 
 ```sh
 python3 1789/extraction/production.py
