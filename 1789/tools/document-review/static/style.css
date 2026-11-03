@@ -12,3 +12,7 @@ body{overflow-wrap:anywhere}
 .notice,#article-unresolved-list li{overflow-wrap:anywhere}#articles-panel .filters>label{min-width:0;max-width:100%}
 
 #article-meta{overflow-wrap:anywhere}
+
+.review-auto-correction:not(.review-human){border-left:5px solid #a06000;background:#fff6df}#article-workbench ol{padding-left:1.4em}#article-workbench button{text-align:left;margin:.2em 0}#article-final-changes p{white-space:pre-wrap;overflow-wrap:anywhere}
+
+.workbench-entry{padding:.25em .5em;margin:.25em 0;border-left:4px solid transparent}.workbench-status{display:inline-block;margin-left:.6em}.workbench-entry[data-review-status="completed"]{background:#e4f3e8;border-left-color:#28733b}.workbench-entry[data-review-status="completed"] .workbench-status{color:#195d2a}.workbench-entry[data-review-status="in_progress"],.workbench-entry[data-review-status="uncertain"],.workbench-entry[data-review-status="review_required"]{background:#fff1ce;border-left-color:#8b6300}.workbench-entry small{display:block}.workbench-progress{font-weight:bold}

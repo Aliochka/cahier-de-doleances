@@ -1,0 +1,171 @@
+{
+  "passed": true,
+  "generation": "global-corpus-6-29e180f0c67f",
+  "unchanged_parents": 1267,
+  "unchanged_records": 84856,
+  "protected_current_records": 707,
+  "human_articles_preserved": 605,
+  "changed_source_units": 61,
+  "new_unnumbered_claims": 95,
+  "partition_and_exact_source_text": true,
+  "previous_workbench_preserved": true,
+  "amiens_number_2_and_dotation_separated": true,
+  "frozen_positive_controls_applied": 9,
+  "frozen_refusals_not_applied": 6,
+  "rejected_v1_false_cuts_not_applied": 4,
+  "before_types": {
+    "technical_passage": 43359,
+    "article": 39677,
+    "section": 1844,
+    "paratext": 37
+  },
+  "after_types": {
+    "technical_passage": 43415,
+    "article": 39772,
+    "section": 1844,
+    "paratext": 37
+  },
+  "human_journal_files_unchanged": true,
+  "parent_boundaries_unchanged": true,
+  "tests": {
+    "python_tests_passed": 86,
+    "browser_read_only": {
+      "passed": true,
+      "campaign_entries": 16,
+      "held_out_separations": 9,
+      "refusals": 6,
+      "amiens_article_2_and_dotation_separate": true,
+      "old_sample_preserved": true,
+      "source_highlight": true,
+      "quality_filter": true,
+      "reload": true,
+      "responsive": true,
+      "no_POST": true,
+      "js_errors": []
+    },
+    "browser_human_priority_regression": {
+      "passed": true,
+      "new_unnumbered_claim_with_title": true,
+      "numbered_articles_keep_section_context": true,
+      "theme_filters": true,
+      "beauvais_human_jurandes_preserved": true,
+      "whitespace_hidden": true,
+      "twelve_examples": true,
+      "no_POST": true,
+      "no_human_decisions_created": true,
+      "js_errors": []
+    },
+    "browser_progress_temporary_journals": {
+      "passed": true,
+      "opening_does_not_complete": true,
+      "validation_refreshes_badge": true,
+      "reload_preserves_status": true,
+      "undo_returns_to_pending": true,
+      "corrected_unit_navigation": false,
+      "js_errors": [],
+      "temporary_journals_only": true
+    },
+    "ruff_passed": true,
+    "complete_manifest_and_materialized_replay_passed": true
+  },
+  "production_summary": {
+    "version": "global-corpus-6",
+    "notices_examined": 1305,
+    "texts_extracted": 1267,
+    "autonomous_texts_extracted": 1224,
+    "boundary_classes": {
+      "human_validated": 45,
+      "automatic_no_alert": 969,
+      "automatic_suspect": 253
+    },
+    "unresolved_notices": 38,
+    "counts": {
+      "technical_passage": 43415,
+      "article": 39772,
+      "human_articles": 605,
+      "articles_with_anomalies": 4718,
+      "section": 1844,
+      "automatic_articles": 39167,
+      "paratext": 37
+    },
+    "by_volume": {
+      "1": {
+        "technical_passage": 1127,
+        "article": 1088,
+        "human_articles": 254,
+        "articles_with_anomalies": 164,
+        "section": 45,
+        "automatic_articles": 834,
+        "paratext": 32
+      },
+      "2": {
+        "technical_passage": 9060,
+        "article": 8472,
+        "automatic_articles": 8226,
+        "articles_with_anomalies": 1486,
+        "section": 264,
+        "human_articles": 246,
+        "paratext": 5
+      },
+      "3": {
+        "technical_passage": 7905,
+        "article": 7181,
+        "automatic_articles": 7170,
+        "articles_with_anomalies": 1142,
+        "section": 443,
+        "human_articles": 11
+      },
+      "4": {
+        "technical_passage": 8913,
+        "article": 8016,
+        "human_articles": 33,
+        "automatic_articles": 7983,
+        "articles_with_anomalies": 657,
+        "section": 330
+      },
+      "5": {
+        "technical_passage": 9658,
+        "section": 496,
+        "article": 8854,
+        "automatic_articles": 8836,
+        "human_articles": 18,
+        "articles_with_anomalies": 512
+      },
+      "6": {
+        "technical_passage": 6752,
+        "article": 6161,
+        "automatic_articles": 6118,
+        "articles_with_anomalies": 757,
+        "section": 266,
+        "human_articles": 43
+      }
+    },
+    "before_with_current_human_decisions": {
+      "technical_passage": 43359,
+      "article": 39677,
+      "section": 1844,
+      "paratext": 37
+    },
+    "suspected_source_units": 1393,
+    "units_with_multiple_interior_headings": 378,
+    "proposed_boundaries": 95,
+    "automatically_split_units": 61,
+    "new_unnumbered_claims": 95,
+    "uncertain_proposals": 5012,
+    "uncertain_source_units": 1378,
+    "human_records_preserved": 658,
+    "human_articles_preserved": 605,
+    "human_journal_events": 697,
+    "unchanged_records": 84856,
+    "numbered_prefixes_preserved": 47,
+    "document_overlap_pairs": 2,
+    "duplicate_source_span_groups": 0,
+    "independent_validation_windows": 9,
+    "refusal_windows": 6,
+    "rule_version": "thematic-fusion-2",
+    "elapsed_seconds": 52.05457860000024,
+    "no_parent_boundary_changes": true,
+    "no_embeddings": true,
+    "no_index_preparation": true
+  }
+}

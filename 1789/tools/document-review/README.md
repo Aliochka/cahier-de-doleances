@@ -111,3 +111,57 @@ Dans **Cahiers**, la rubrique **Contrôle des frontières : 12 cahiers tirés au
 Les cinq notices des trois blocages ciblés s’ouvrent avec `?finalization_blockers=1`. Cette vue évite de parcourir toute l’ancienne file technique. Les décisions existantes sont conservées.
 
 Le tirage, la graine, les références et ses limites sont détaillés dans [la finalisation documentaire](../../docs/DOCUMENTARY-FINALIZATION.md). `campaigns/draw_boundaries.py --verify` reproduit les choix à partir des données et du journal figés, même après de nouvelles décisions humaines. Le lot ne se renouvelle pas quand un dossier paraît difficile.
+
+
+## Dernier contrôle des articles de la collection complète
+
+Après redémarrage du serveur, ouvrir **http://127.0.0.1:1789/?article_sample=1**.
+Le mode Articles donne accès à 24 fenêtres figées (deux articles sans alerte et deux passages C par volume) et à 13 exemples ciblés. Le filtre « Contrôle des articles » retrouve les corrections automatiques, les fusions possibles et les qualifications des C. Le fond des corrections automatiques est distinct du vert des validations humaines.
+
+Le panneau de comparaison montre les unités avant/après. Les qualifications de C sont des propositions ; elles ne transforment pas les passages en articles. Les boutons de contexte, correction, classement et validation restent ceux de l’outil existant. Lire ou ouvrir un lien ne valide rien. Les liens `?article_window=IDENTIFIANT` rouvrent une fenêtre ; si une décision ultérieure a remplacé son unité, ses positions sources restent indiquées.
+
+Voir [le bilan et les instructions de reproduction](../../docs/ARTICLE-FINALIZATION.md). Les générations et journaux restent locaux et exclus de Git. Les analyses automatiques affichent un avertissement lorsqu’une nouvelle décision a rendu leur état potentiellement ancien.
+
+
+### Examiner des unités avant validation humaine du cahier
+
+Sur un périmètre proposé dont les positions restent compatibles avec le parent extrait, le classement, la correction et la validation des unités sont autorisés. Ces décisions ne valident pas les frontières du cahier. L’éligibilité à l’export pour la recherche et à la publication reste bloquée tant que le parent n’est pas validé humainement. Un parent incertain, bloqué ou modifié conserve les protections existantes. Les décisions restent liées à la version exacte du parent.
+
+Le test navigateur `provisional-review-smoke.cjs` reproduit le classement du passage d’Alençon dans une copie temporaire des journaux, puis vérifie la reprise après rechargement et le maintien du statut provisoire du cahier.
+
+
+### Passages C constitués uniquement de blancs
+
+Les C non classés contenant exclusivement des caractères blancs Unicode sont présentés automatiquement comme **paratexte technique, hors recherche**. Ils restent dans le cahier et les exports avec leur identifiant, texte exact, plages et provenance. Aucun événement humain n’est créé. Les restes techniques d’une correction humaine sont éligibles sans modifier leur historique ; un classement humain explicite ou une décision d’incertitude reste prioritaire.
+
+La case **Afficher aussi les blancs techniques classés automatiquement** permet de les consulter. Elle est désactivée par défaut, même quand les autres passages C sont affichés. Ces blancs n’ont ni sélection ni bouton de validation rapide. La ponctuation, un chiffre, une lettre, un espace de largeur nulle ou un BOM ne suffisent pas à cette classification.
+
+Le bilan sur les six volumes et la commande de reproduction sont dans [TECHNICAL-WHITESPACE.md](../../docs/TECHNICAL-WHITESPACE.md).
+
+
+### Avancement du dernier lot de contrôle
+
+Les listes de l’échantillon et des exemples affichent l’état du **passage ciblé** : « À examiner », « En cours », « Incertain », « À réexaminer » ou **« ✓ Terminé » sur fond vert**. Le nombre de passages terminés apparaît sous chaque liste. Cet état provient du journal : ouvrir une entrée ne la valide pas. Il est actualisé après enregistrement, annulation et rechargement.
+
+Une correction ou un classement peut remplacer l’identifiant initial ; le suivi utilise alors les plages sources d’origine et les unités actuelles qui les couvrent. Une fenêtre est terminée lorsque ses unités ont été validées/corrigées humainement, à l’exception des blancs traités automatiquement. Une décision sur un autre article du même cahier ne suffit pas. Les cas incertains et les versions incompatibles restent distincts. Les liens retrouvent les unités corrigées sans modifier le tirage figé.
+
+
+### Classer un passage C comme article historique
+
+Dans « Classer… », le type « Article historique » est accepté. Les limites choisies dans le texte source sont utilisées ; les restes et notes restent conservés en C. Sans changement de limites, toute l’unité est convertie. Le numéro éventuel se saisit dans **Numéro attribué** : il reste une attribution humaine, sans correction du texte OCR. Le champ de numéro de seconde unité apparaît uniquement pour l’opération « Séparer deux unités ». La prévisualisation et la confirmation explicite restent obligatoires, avec les mêmes contrôles de chevauchement et de version du parent.
+
+
+### Rubriques thématiques et articles non numérotés (génération 5)
+
+Les cartes peuvent présenter un « Article non numéroté » comprenant le titre et son développement. Une ligne distincte précise le contexte thématique proposé ; elle ne valide pas ce contexte humainement et ne réécrit pas l’ancienne attribution de rubrique. Les articles numérotés conservent leurs limites et numéros. Les introductions et notes restent accessibles dans le cahier et les passages techniques.
+
+Deux filtres sont disponibles : « Revendications thématiques non numérotées » et « Rubriques et articles rattachés ». Douze exemples thématiques sont ajoutés au panneau du dernier contrôle, sans modifier les 24 fenêtres du tirage ni leur progression. Les décisions humaines existantes, notamment à Beauvais, restent prioritaires. Voir [le bilan de génération 5](../../docs/THEMATIC-EXTRACTION.md).
+
+
+### Nouveau contrôle ciblé des séparations thématiques (génération 6)
+
+Après redémarrage du serveur, ouvrir **http://127.0.0.1:1789/?fusion_review=1**. Le panneau visible en haut du mode Articles donne directement accès à Amiens (cas de développement corrigé), à neuf nouvelles séparations hors développement et à six refus prudents. Les douze exemples de la campagne précédente n’ont pas besoin d’être repris. Les refus ne constituent pas une file obligatoire de décisions. Le titre concerné est surligné dans le texte exact ; ouvrir une entrée ne valide rien.
+
+Le filtre **Nouvelles séparations thématiques** retrouve les cahiers concernés. Dans chaque dossier, **Séparations thématiques** permet de consulter l’ancienne unité complète et les nouvelles revendications, avec les propositions ambiguës conservées séparément. Les corrections humaines restent prioritaires. Les statuts du nouveau lot sont actualisés après validation, annulation et rechargement.
+
+Voir [les résultats et contrôles de G6](../../docs/FUSION-CORRECTIONS.md). Les tests `fusion-smoke.cjs` et `fusion-progress-smoke.cjs` s’exécutent sur `global_test_server.py --port 17898 --corpus-directory CHEMIN_G6`, dans des copies temporaires des journaux ; ne pas les diriger vers le serveur de travail réel.

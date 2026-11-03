@@ -12,8 +12,9 @@ from server import ReviewServer
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--port", type=int, default=17898)
+    p.add_argument("--corpus-directory", type=Path, help="Immutable generation to test before activation")
     args = p.parse_args()
-    directory = discover()
+    directory = args.corpus_directory or discover()
     if directory is None:
         raise SystemExit("Build the local corpus first")
     with tempfile.TemporaryDirectory(prefix="1789-global-ui-test-") as temp:

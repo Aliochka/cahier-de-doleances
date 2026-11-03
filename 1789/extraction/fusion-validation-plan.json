@@ -1,0 +1,336 @@
+{
+  "version": "fusion-validation-1",
+  "generation": "global-corpus-5-7b829ada54d6",
+  "seed": 178906,
+  "rule_files_sha256": {
+    "fusion.py": "5cf142c543c9a16e36730b6ef359ad5e21e831acdf06a7d7f1e754d2f097c761",
+    "thematic.py": "a902b57a2ef52dd02c50eb498c9b62dbb19cb5c35576ad69ffd6f6c1808e6876"
+  },
+  "article_journal_sha256": "cac56ef490fbfbbb7354928f1ce431047f5556621d4ff868023377dffb251ddb",
+  "selection": "Two eligible source units per volume if available: random.sample(sorted IDs), one SHA256-selected proposed boundary per unit. Development, human-reviewed and previous control parents excluded. Refusals selected separately by fixed mechanism priorities and hash; not a random performance sample.",
+  "excluded_parent_ids": [
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1529",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1530",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1537",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1539",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1540",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1542",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1547",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1548",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1554",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1559",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1563",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1574",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1612",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1631",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1634",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1639",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1649",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1671",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1692",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1795",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1817",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1844",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1874",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1926",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1932",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2023",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_2052",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1744",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1745",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1781",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1856",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1857",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1867",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2175",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2231",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2335",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2339",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2348",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2358",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2405",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2489",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2909",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2911",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2495",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2497",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2515",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2556",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2568",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2579",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2612",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2753",
+    "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2781"
+  ],
+  "populations": {
+    "1": {
+      "units": 1,
+      "ids_sha256": "186c6a0bb44a0b6a7e0fb164b71699c7c4c87e1f4926782052dbe4ee81d25e55"
+    },
+    "2": {
+      "units": 18,
+      "ids_sha256": "09b02375ccaa19b373bd4fa84ad94c5746e25961600c6e056f4fdfb5e20cdfde"
+    },
+    "3": {
+      "units": 4,
+      "ids_sha256": "4feafd6654052a4628af9bfe40cc76af9480579a39764b67219ad727472102f0"
+    },
+    "4": {
+      "units": 6,
+      "ids_sha256": "272244e52b47b0f69063519d5bec9c834060fb2962556df8cdf616b6c03e8c0e"
+    },
+    "5": {
+      "units": 16,
+      "ids_sha256": "36caa214e6ac806cb3bded7433905c688a6c1e15b089e6003f3505709e55bfbe"
+    },
+    "6": {
+      "units": 9,
+      "ids_sha256": "520caebcd8bbbd01224dbec9a2de32f76f4361f31ecdaeb1d8238c0c16f609cd"
+    }
+  },
+  "validation": [
+    {
+      "id": "ap1789-fusion-boundary-1:65d3b053c62e1f5aa4d3fbdc",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1550",
+      "volume": 1,
+      "source_unit_id": "ap1789-global-unit-1:f94a602dff8a7ad5ca6fd967dee2",
+      "title_start": 5901369,
+      "title_end": 5901388,
+      "end": 5901936,
+      "xpath": "/TEI.2/text/body/div1/div2[10]/div3[1]/p[129]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:d712196146ae44448c5ce807",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1738",
+      "volume": 2,
+      "source_unit_id": "ap1789-thematic-unit-1:74bb61f28302fd9feb97c1d09a",
+      "title_start": 4173548,
+      "title_end": 4173556,
+      "end": 4173707,
+      "xpath": "/TEI.2/text/body/div1/div2[43]/div3[4]/p[5]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:f22f709eb0c18378bc236cf3",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1643",
+      "volume": 2,
+      "source_unit_id": "ap1789-global-unit-1:64896e0ac7018b085f61be939c3c",
+      "title_start": 2217313,
+      "title_end": 2217337,
+      "end": 2218145,
+      "xpath": "/TEI.2/text/body/div1/div2[22]/div3[1]/p[125]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:bdb39845ea95b44a9b0e1156",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1924",
+      "volume": 3,
+      "source_unit_id": "ap1789-global-unit-1:5ae5e0280440e5bc4b507e501604",
+      "title_start": 2465678,
+      "title_end": 2465718,
+      "end": 2467179,
+      "xpath": "/TEI.2/text/body/div1/div2[24]/div3[3]/p[110]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:728cd60aee48137c1c78750f",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1804",
+      "volume": 3,
+      "source_unit_id": "ap1789-global-unit-1:b0f36ad0a54553ad78130087f8c7",
+      "title_start": 294801,
+      "title_end": 294833,
+      "end": 296406,
+      "xpath": "/TEI.2/text/body/div1/div2[3]/div3[1]/p[7]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:5f30b2bdc3d24e63f7f30271",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1754",
+      "volume": 4,
+      "source_unit_id": "ap1789-global-unit-1:c223ef78ba77caf8afcca591136b",
+      "title_start": 637465,
+      "title_end": 637506,
+      "end": 645039,
+      "xpath": "/TEI.2/text/body/div1/div2[7]/div3[1]/p[31]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:bbd436f12a13353a185c50ee",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_2118",
+      "volume": 4,
+      "source_unit_id": "ap1789-global-unit-1:5011ee7a32fddb5ef51df49639f9",
+      "title_start": 3955255,
+      "title_end": 3955353,
+      "end": 3959009,
+      "xpath": "/TEI.2/text/body/div1/div2[18]/div3[87]/p[23]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:b3efd95b9a262d2aecb9341c",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2799",
+      "volume": 5,
+      "source_unit_id": "ap1789-global-unit-1:0f60b56222f135f801ab25c915e2",
+      "title_start": 2833502,
+      "title_end": 2833571,
+      "end": 2837488,
+      "xpath": "/TEI.2/text/body/div1/div2[2]/div3[18]/p[53]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:e24b1ea20a19d55e6cccd597",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2492",
+      "volume": 5,
+      "source_unit_id": "ap1789-global-unit-1:50da85670645dd3393d6ddc3f05d",
+      "title_start": 2330107,
+      "title_end": 2330167,
+      "end": 2332200,
+      "xpath": "/TEI.2/text/body/div1/div2[1]/div3[161]/p[444]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:c005cd14fa46efe83fdc1f44",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2760",
+      "volume": 6,
+      "source_unit_id": "ap1789-global-unit-1:f46d4f41f2787acbdfc598d965c2",
+      "title_start": 6249877,
+      "title_end": 6249919,
+      "end": 6250374,
+      "xpath": "/TEI.2/text/body/div1/div2[56]/div3[2]/p[112]",
+      "confidence": "proposed",
+      "reasons": []
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:e927cfcbae8ca276e40bbf92",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2545",
+      "volume": 6,
+      "source_unit_id": "ap1789-global-unit-1:9bd60a8ee067083fcda0e0feef32",
+      "title_start": 1717641,
+      "title_end": 1717767,
+      "end": 1721932,
+      "xpath": "/TEI.2/text/body/div1/div2[14]/div3[1]/p[18]",
+      "confidence": "proposed",
+      "reasons": []
+    }
+  ],
+  "refusals": [
+    {
+      "id": "ap1789-fusion-boundary-1:ce8cfda17b6c2872dc61c37c",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_1_1_1534",
+      "volume": 1,
+      "source_unit_id": "ap1789-global-unit-1:c5f82eb307bdaac31d3a34876213",
+      "title_start": 5322179,
+      "title_end": 5322191,
+      "end": 5323825,
+      "xpath": "/TEI.2/text/body/div1/div2[7]/div3[2]/p[125]",
+      "confidence": "uncertain",
+      "reasons": [
+        "no_explicit_request_formula",
+        "title_not_supported_by_development_vocabulary",
+        "dependent_subheading"
+      ]
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:ddbb57b48a4a8b2e10796914",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1680",
+      "volume": 2,
+      "source_unit_id": "ap1789-global-unit-1:91d382a8b2f405047f7e2d604762",
+      "title_start": 3613315,
+      "title_end": 3613323,
+      "end": 3614026,
+      "xpath": "/TEI.2/text/body/div1/div2[36]/div3[2]/p[53]",
+      "confidence": "uncertain",
+      "reasons": [
+        "singleton_title_without_sufficient_neighbour_support",
+        "no_explicit_request_formula",
+        "title_not_supported_by_development_vocabulary",
+        "dependent_subheading"
+      ]
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:23fa7239c92a9e66671a7bab",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_3_1_1936",
+      "volume": 3,
+      "source_unit_id": "ap1789-global-unit-1:aa4985ff94e3290d46c2efee31f8",
+      "title_start": 2794817,
+      "title_end": 2794925,
+      "end": 2797302,
+      "xpath": "/TEI.2/text/body/div1/div2[26]/div3[6]/p[57]",
+      "confidence": "uncertain",
+      "reasons": [
+        "dependent_subheading"
+      ]
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:8f23761d0b35e86199731084",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_4_1_1748",
+      "volume": 4,
+      "source_unit_id": "ap1789-article-final-1:469cdc650b6fff8ff6d5b419834d",
+      "title_start": 127757,
+      "title_end": 127776,
+      "end": 128050,
+      "xpath": "/TEI.2/text/body/div1/div2[1]/div3[7]/p[44]",
+      "confidence": "uncertain",
+      "reasons": [
+        "singleton_title_without_sufficient_neighbour_support",
+        "no_explicit_request_formula",
+        "title_not_supported_by_development_vocabulary",
+        "dependent_subheading"
+      ]
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:fb88ca9131d9366487275f61",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2341",
+      "volume": 5,
+      "source_unit_id": "ap1789-global-unit-1:819229d89aaa9871bea3528f5ee6",
+      "title_start": 216664,
+      "title_end": 216964,
+      "end": 216673,
+      "xpath": "/TEI.2/text/body/div1/div2[1]/div3[11]/p[20]",
+      "confidence": "uncertain",
+      "reasons": [
+        "preceding_development_not_clearly_closed",
+        "development_too_short_or_missing",
+        "no_explicit_request_formula",
+        "title_not_supported_by_development_vocabulary",
+        "dependent_subheading"
+      ]
+    },
+    {
+      "id": "ap1789-fusion-boundary-1:737a2e2f45b5ea70492e634f",
+      "parent_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_6_1_2698",
+      "volume": 6,
+      "source_unit_id": "ap1789-global-unit-1:2b01b5583149b88f3f5583488463",
+      "title_start": 4571419,
+      "title_end": 4571432,
+      "end": 4571431,
+      "xpath": "/TEI.2/text/body/div1/div2[28]/div3[1]/p[65]",
+      "confidence": "uncertain",
+      "reasons": [
+        "singleton_title_without_sufficient_neighbour_support",
+        "development_too_short_or_missing",
+        "no_explicit_request_formula",
+        "title_not_supported_by_development_vocabulary",
+        "right_boundary_not_materially_established",
+        "development_may_continue_outside_unit",
+        "dependent_subheading"
+      ]
+    }
+  ],
+  "source_review_performed_before_freeze": false,
+  "independent_human_validation": false,
+  "pre_evaluation_safety_change": "Application now independently refuses human/Codex records even if passed an outdated proposal; selection and detection positions unchanged. Added before source evaluation.",
+  "evaluation_rule_files_sha256": {
+    "fusion.py": "f4802c2bf7a6651a33ae89447d5b5aa33a7f8eb75001bdb32e19835d8d49579e",
+    "thematic.py": "a902b57a2ef52dd02c50eb498c9b62dbb19cb5c35576ad69ffd6f6c1808e6876"
+  }
+}

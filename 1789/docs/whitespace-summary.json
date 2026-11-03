@@ -1,0 +1,57 @@
+{
+  "version": "unicode-whitespace-1",
+  "python_version": "3.10.12",
+  "unicode_version": "13.0.0",
+  "generation": "global-corpus-4-b643646266f1",
+  "totals": {
+    "C_total": 42349,
+    "whitespace_C": 35716,
+    "automatically_classified": 35716,
+    "protected_by_prior_decision": 0
+  },
+  "by_volume": {
+    "1": {
+      "C_total": 1106,
+      "whitespace_C": 965,
+      "automatically_classified": 965,
+      "protected_by_prior_decision": 0
+    },
+    "2": {
+      "C_total": 8852,
+      "whitespace_C": 7595,
+      "automatically_classified": 7595,
+      "protected_by_prior_decision": 0
+    },
+    "3": {
+      "C_total": 7698,
+      "whitespace_C": 6435,
+      "automatically_classified": 6435,
+      "protected_by_prior_decision": 0
+    },
+    "4": {
+      "C_total": 8704,
+      "whitespace_C": 7091,
+      "automatically_classified": 7091,
+      "protected_by_prior_decision": 0
+    },
+    "5": {
+      "C_total": 9384,
+      "whitespace_C": 8048,
+      "automatically_classified": 8048,
+      "protected_by_prior_decision": 0
+    },
+    "6": {
+      "C_total": 6605,
+      "whitespace_C": 5582,
+      "automatically_classified": 5582,
+      "protected_by_prior_decision": 0
+    }
+  },
+  "parent_count": 1267,
+  "article_journal_events": 399,
+  "human_reviewed_units_unchanged": 386,
+  "rule": "Python str.isspace(): nonempty, every source character whitespace; no strip, no punctuation rule, no zero-width-space/BOM rule",
+  "human_decisions_created": 0,
+  "source_text_or_ranges_changed": false,
+  "raw_generations_and_journals_unchanged": true
+}

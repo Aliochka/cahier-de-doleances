@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "extraction"))
 from boundary_rules import exact_name, identity, plan  # noqa: E402
-from reviewlib import PRIVATE, Store  # noqa: E402
+from reviewlib import PRIVATE, Store, rows  # noqa: E402
 
 
 class BoundaryRepairsTests(unittest.TestCase):
@@ -17,6 +17,16 @@ class BoundaryRepairsTests(unittest.TestCase):
             for name in ["decisions.jsonl", "article-decisions.jsonl"]
         }
         cls.store = Store()
+        # Freeze this historical regression fixture before the user's later confirmations.
+        # Never assert that Digne is still uncertain in the live journal.
+        snapshot = (
+            Path(__file__).resolve().parents[2]
+            / "data/corpus/global-corpus-3-d0df8e19ee01/.private/decisions.jsonl"
+        )
+        reference = {}
+        for event in rows(snapshot):
+            reference[event["document_id"]] = event
+        cls.store.latest = lambda: reference.copy()
         cls.states = {r["id"]: cls.store.state(r) for r in cls.store.records}
         cls.plan = plan(cls.store)
         cls.by_suffix = {r["persee_id"].split("_")[-1]: r for r in cls.plan}

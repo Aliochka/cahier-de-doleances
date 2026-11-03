@@ -1,0 +1,312 @@
+{
+  "generation": "global-corpus-4-b643646266f1",
+  "baseline": "global-corpus-3-d0df8e19ee01",
+  "before": {
+    "version": "global-corpus-3",
+    "documentary_repairs": {
+      "changed_documents": 73,
+      "actions": {
+        "stop_before_identified_next_cahier": 14,
+        "scoped_documentary_source_examination": 48,
+        "unique_explicit_opening_name_estate_and_page": 12
+      },
+      "resolved_alerts": {
+        "new_control_boundary_incorrect": 12,
+        "end_page_mismatch_requires_review": 124,
+        "identity_ambigu": 44,
+        "same_primary_anchor_multiple_notices": 16
+      },
+      "documents_with_conflicts": 15
+    },
+    "documentary_review_levels": {
+      "high": 98,
+      "medium": 180,
+      "low": 995,
+      "none": 32
+    },
+    "notices_examined": 1305,
+    "document_kinds": {
+      "cahier_autonome_probable": 1224,
+      "document_associe": 21,
+      "proces_verbal": 8,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "autonomous_probable": 1224,
+    "texts_extracted": 1267,
+    "autonomous_texts_extracted": 1224,
+    "boundary_classes": {
+      "human_validated": 29,
+      "automatic_no_alert": 981,
+      "automatic_suspect": 256,
+      "uncertain": 1
+    },
+    "unresolved_notices": 38,
+    "absence_notices": 4,
+    "unresolved_without_usable_span": 34,
+    "counts": {
+      "technical_passage": 42262,
+      "article": 39072,
+      "human_articles": 333,
+      "articles_with_anomalies": 4723,
+      "section": 1231,
+      "automatic_articles": 38739
+    },
+    "by_volume": {
+      "1": {
+        "notices": 24,
+        "texts": 24,
+        "autonomous_texts": 24,
+        "unresolved": 0,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_no_alert": 16,
+          "automatic_suspect": 3
+        },
+        "technical_passage": 1127,
+        "article": 1055,
+        "human_articles": 143,
+        "articles_with_anomalies": 161,
+        "section": 23,
+        "automatic_articles": 912
+      },
+      "2": {
+        "notices": 181,
+        "texts": 181,
+        "autonomous_texts": 174,
+        "unresolved": 0,
+        "boundary_classes": {
+          "automatic_no_alert": 122,
+          "human_validated": 5,
+          "automatic_suspect": 54
+        },
+        "technical_passage": 8852,
+        "article": 8310,
+        "automatic_articles": 8225,
+        "articles_with_anomalies": 1482,
+        "section": 129,
+        "human_articles": 85
+      },
+      "3": {
+        "notices": 223,
+        "texts": 220,
+        "autonomous_texts": 204,
+        "unresolved": 3,
+        "boundary_classes": {
+          "automatic_no_alert": 160,
+          "human_validated": 4,
+          "automatic_suspect": 55,
+          "uncertain": 1
+        },
+        "technical_passage": 7589,
+        "article": 6947,
+        "automatic_articles": 6936,
+        "articles_with_anomalies": 1141,
+        "section": 411,
+        "human_articles": 11
+      },
+      "4": {
+        "notices": 347,
+        "texts": 346,
+        "autonomous_texts": 346,
+        "unresolved": 1,
+        "boundary_classes": {
+          "human_validated": 5,
+          "automatic_suspect": 46,
+          "automatic_no_alert": 295
+        },
+        "technical_passage": 8704,
+        "article": 7952,
+        "human_articles": 33,
+        "automatic_articles": 7919,
+        "articles_with_anomalies": 662,
+        "section": 187
+      },
+      "5": {
+        "notices": 298,
+        "texts": 294,
+        "autonomous_texts": 288,
+        "unresolved": 4,
+        "boundary_classes": {
+          "automatic_no_alert": 236,
+          "human_validated": 5,
+          "automatic_suspect": 53
+        },
+        "technical_passage": 9385,
+        "section": 336,
+        "article": 8704,
+        "automatic_articles": 8686,
+        "human_articles": 18,
+        "articles_with_anomalies": 517
+      },
+      "6": {
+        "notices": 232,
+        "texts": 202,
+        "autonomous_texts": 188,
+        "unresolved": 30,
+        "boundary_classes": {
+          "automatic_no_alert": 152,
+          "human_validated": 5,
+          "automatic_suspect": 45
+        },
+        "technical_passage": 6605,
+        "article": 6104,
+        "automatic_articles": 6061,
+        "articles_with_anomalies": 760,
+        "human_articles": 43,
+        "section": 145
+      }
+    },
+    "document_overlap_pairs": 2,
+    "duplicate_source_span_groups": 0,
+    "total_parent_characters": 30657280,
+    "total_parent_utf8_bytes": 31459492,
+    "unassigned_source_characters": 9236281,
+    "review_queue_entries": 5028,
+    "elapsed_seconds": 49.13150787000268,
+    "no_embeddings": true,
+    "no_index_preparation": true
+  },
+  "after": {
+    "version": "global-corpus-4",
+    "notices_examined": 1305,
+    "texts_extracted": 1267,
+    "autonomous_texts_extracted": 1224,
+    "boundary_classes": {
+      "human_validated": 45,
+      "automatic_no_alert": 969,
+      "automatic_suspect": 253
+    },
+    "unresolved_notices": 38,
+    "counts": {
+      "technical_passage": 42370,
+      "article": 39243,
+      "human_articles": 333,
+      "articles_with_anomalies": 4703,
+      "section": 1143,
+      "automatic_articles": 38910
+    },
+    "by_volume": {
+      "1": {
+        "technical_passage": 1127,
+        "article": 1057,
+        "human_articles": 143,
+        "articles_with_anomalies": 159,
+        "section": 23,
+        "automatic_articles": 914
+      },
+      "2": {
+        "technical_passage": 8852,
+        "article": 8321,
+        "automatic_articles": 8236,
+        "articles_with_anomalies": 1476,
+        "section": 129,
+        "human_articles": 85
+      },
+      "3": {
+        "technical_passage": 7698,
+        "article": 7060,
+        "automatic_articles": 7049,
+        "articles_with_anomalies": 1139,
+        "section": 323,
+        "human_articles": 11
+      },
+      "4": {
+        "technical_passage": 8704,
+        "article": 7961,
+        "human_articles": 33,
+        "automatic_articles": 7928,
+        "articles_with_anomalies": 657,
+        "section": 187
+      },
+      "5": {
+        "technical_passage": 9384,
+        "section": 336,
+        "article": 8718,
+        "automatic_articles": 8700,
+        "human_articles": 18,
+        "articles_with_anomalies": 514
+      },
+      "6": {
+        "technical_passage": 6605,
+        "article": 6126,
+        "automatic_articles": 6083,
+        "articles_with_anomalies": 758,
+        "human_articles": 43,
+        "section": 145
+      }
+    },
+    "document_overlap_pairs": 2,
+    "duplicate_source_span_groups": 0,
+    "article_rules_version": "article-finalization-1",
+    "parent_updates_applied": 16,
+    "automatically_split_units": 66,
+    "articles_recovered_from_C": 1,
+    "total_parent_characters": 30656665,
+    "total_parent_utf8_bytes": 31458877,
+    "unassigned_source_characters": 9236849,
+    "elapsed_seconds": 41.26915564199999,
+    "no_embeddings": true,
+    "no_index_preparation": true,
+    "no_boundary_discovery": true
+  },
+  "quality": {
+    "content_classes": {
+      "claim_prose_proposal": 1373,
+      "historical_numbered_article_proposal": 39243,
+      "paratext": 37600,
+      "uncertain": 3193,
+      "historical_section_proposal": 1143,
+      "possible_missed_article": 204
+    },
+    "mechanisms": {
+      "repeated_number_not_proof_of_error": 2669,
+      "sequence_irregularity_not_proof_of_error": 1794,
+      "OCR_label_uncertain": 632,
+      "section_contains_request_prose": 829,
+      "automatic_source_marker_correction": 135,
+      "possible_fusion_remaining": 393,
+      "long_article_not_necessarily_fused": 50,
+      "section_restart_supported_by_heading": 4
+    },
+    "categories": {
+      "regular_proposal": 73214,
+      "human_reference": 333,
+      "unresolved": 3193,
+      "documentary_irregularity": 5419,
+      "probable_segmentation_error": 597
+    }
+  },
+  "changes": {
+    "split_fused_article": 66,
+    "recover_article_from_C": 1
+  },
+  "new_articles_from_splits": 68,
+  "rule_source_checks": {
+    "windows": 17,
+    "starts": 19,
+    "no_false_cut_observed_in_checked_starts": true,
+    "independent_human_validation": false,
+    "scope": "New cut positions only, not comprehensive article-end ground truth or corpus-wide precision"
+  },
+  "sample": {
+    "size": 24,
+    "seed": 178939072,
+    "examples": 13,
+    "two_articles_and_two_C_per_volume": true,
+    "no_documentary_judgement_performed": true
+  },
+  "invariants": {
+    "no_parent_lost": true,
+    "human_articles_preserved": 333,
+    "prior_Codex_A_articles_preserved": 217,
+    "human_parent_extents_applied": 45,
+    "boundary_sample_confirmations": 12,
+    "finalization_dossiers_confirmed": 3,
+    "source_and_input_hashes_unchanged": true,
+    "human_journals_unchanged": true,
+    "unit_source_partition_checked_by_production": true,
+    "known_document_overlaps_retained": 2
+  }
+}

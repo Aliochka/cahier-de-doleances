@@ -442,12 +442,12 @@ def write_core(out, parents, units):
         jsonl(out / f"units-{status}.jsonl.gz", [u for u in units if u["status"] == status])
 
 
-def verify_corpus(out, store=None):
+def verify_corpus(out, store=None, article_journal=None):
     store = store or Store()
     resolutions_path = out / "boundary-resolutions.jsonl.gz"
     if resolutions_path.exists():
         store.automatic_corrections = {r["document_id"]: r for r in rows(resolutions_path)}
-    engine = Articles(store, directory=out)
+    engine = Articles(store, journal=article_journal, directory=out)
     inventory = rows(out / "inventory.jsonl.gz")
     parents = engine.parents
     assert len(inventory) == 1305 and len({r["id"] for r in inventory}) == 1305

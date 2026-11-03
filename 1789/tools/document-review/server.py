@@ -213,6 +213,20 @@ class Handler(BaseHTTPRequestHandler):
                 )
                 campaign["blockers"] = decisions["blockers"]
                 return self.send(200, campaign)
+            if url.path == "/api/articles/workbench":
+                path = self.server.articles().directory / "article-workbench.json"
+                if not path.exists():
+                    return self.send(200, None)
+                workbench = json.loads(path.read_text())
+                windows = (
+                    workbench["independent_sample"]
+                    + workbench["examples"]
+                    + workbench.get("fusion_validation", [])
+                )
+                progress = self.server.articles().workbench_progress(windows)
+                for window in windows:
+                    window["review"] = progress[window["id"]]
+                return self.send(200, workbench)
             if url.path == "/api/articles/campaign":
                 path = HERE / "campaigns/five-cahiers.json"
                 return self.send(200, json.loads(path.read_text()) if path.exists() else None)
