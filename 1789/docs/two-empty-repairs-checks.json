@@ -1,0 +1,193 @@
+{
+  "summary": {
+    "version": "reference-documents-2",
+    "generation": "reference-documents-2-7cbcaea79991",
+    "notices": 1305,
+    "documents": 1267,
+    "probable_cahiers": 1224,
+    "document_categories": {
+      "cahier_autonome_probable": 1224,
+      "document_associe": 21,
+      "proces_verbal": 8,
+      "liste": 46,
+      "notice_absence": 4,
+      "extrait": 2
+    },
+    "extracted_categories": {
+      "cahier_autonome_probable": 1224,
+      "document_associe": 19,
+      "proces_verbal": 6,
+      "liste": 16,
+      "extrait": 2
+    },
+    "notices_without_text": 38,
+    "whitespace_only_documents": [],
+    "cahiers_with_substantive_text": 1224,
+    "passages": 11391,
+    "passages_in_cahiers": 10750,
+    "token_statistics": {
+      "minimum": 55,
+      "median": 598,
+      "mean": 591.1270301114915,
+      "p95": 696,
+      "maximum": 800,
+      "below_400": 338,
+      "between_400_800": 11053,
+      "above_800": 0
+    },
+    "boundary_methods": {
+      "XML_paragraph_end": 9953,
+      "document_end": 1267,
+      "sentence_end": 139,
+      "word_boundary_long_sentence": 32
+    },
+    "long_XML_paragraphs": 56,
+    "extracted_boundary_classes": {
+      "human_validated": 45,
+      "automatic_no_alert": 969,
+      "automatic_suspect": 251,
+      "codex_reviewed": 2
+    },
+    "unresolved_or_suspect_documents": 251,
+    "existing_documentary_overlap_pairs": 2,
+    "by_volume": {
+      "1": {
+        "documents": 24,
+        "probable_cahiers": 24,
+        "passages": 349,
+        "mean_tokens": 597.7249283667621
+      },
+      "2": {
+        "documents": 181,
+        "probable_cahiers": 174,
+        "passages": 2255,
+        "mean_tokens": 595.2079822616408
+      },
+      "3": {
+        "documents": 220,
+        "probable_cahiers": 204,
+        "passages": 2508,
+        "mean_tokens": 590.042663476874
+      },
+      "4": {
+        "documents": 346,
+        "probable_cahiers": 346,
+        "passages": 2254,
+        "mean_tokens": 588.4942324755989
+      },
+      "5": {
+        "documents": 294,
+        "probable_cahiers": 288,
+        "passages": 2216,
+        "mean_tokens": 587.5446750902527
+      },
+      "6": {
+        "documents": 202,
+        "probable_cahiers": 188,
+        "passages": 1809,
+        "mean_tokens": 593.9391929242676
+      }
+    },
+    "integrity": {
+      "errors": 0,
+      "documents": 1267,
+      "passages": 11391,
+      "source_characters": 30750864,
+      "covered_characters": 30750864,
+      "explicitly_excluded_whitespace_only_document_characters": 0,
+      "substantive_coverage_fraction": 1.0,
+      "full_parent_preservation_fraction": 1.0,
+      "overlapping_characters": 2896200,
+      "exact_text_verified": true,
+      "stable_ids_verified": true,
+      "no_parent_boundary_changes": false,
+      "documented_parent_repairs": 2
+    },
+    "human_journals_preserved": true,
+    "historical_generation_preserved": true,
+    "no_historical_segmenter_executed": true,
+    "no_embeddings": true,
+    "elapsed_seconds": 19.578010881999944,
+    "previous_directory": "data/documents/reference-documents-1-b8b8b20c2f76",
+    "repaired_documents": 2,
+    "new_passages": 33,
+    "unchanged_documents": 1265,
+    "unchanged_passages": 11358,
+    "new_documentary_overlap_pairs": 0,
+    "secondary_human_articles_preserved": 605,
+    "technical_rules_unchanged": true
+  },
+  "verification": {
+    "errors": 0,
+    "documents": 1267,
+    "passages": 11391,
+    "source_characters": 30750864,
+    "covered_characters": 30750864,
+    "explicitly_excluded_whitespace_only_document_characters": 0,
+    "substantive_coverage_fraction": 1.0,
+    "full_parent_preservation_fraction": 1.0,
+    "overlapping_characters": 2896200,
+    "exact_text_verified": true,
+    "stable_ids_verified": true,
+    "no_parent_boundary_changes": false,
+    "documented_parent_repairs": 2
+  },
+  "python_tests_passed": 92,
+  "browser": {
+    "passed": true,
+    "sample_windows": 12,
+    "six_volumes": true,
+    "exact_excerpt_and_parent": true,
+    "highlight_in_view": true,
+    "deep_links": true,
+    "passage_navigation": true,
+    "empty_or_recovered_exceptions_checked": true,
+    "responsive": true,
+    "no_POST": true,
+    "js_errors": []
+  },
+  "unchanged_documents_verified": 1265,
+  "unchanged_passage_records_verified": 11358,
+  "metadata_and_previous_sample_byte_identical": true,
+  "human_journals_byte_identical": true,
+  "all_build_inputs_unchanged": true,
+  "technical_rules_sha256": "09000c178c1236df6e2a56e5f7a92de006cfc820be6e1b34483514bf34620dd5",
+  "configuration_unchanged": true,
+  "repaired_documents": [
+    {
+      "id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2837",
+      "source_start": 4343092,
+      "source_end": 4360210,
+      "characters": 17118,
+      "passages": 6,
+      "components": 1,
+      "max_tokens": 615,
+      "extent_id": "ap1789-parent-version:78dbe9b19a9e71b11c3de45c"
+    },
+    {
+      "id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_5_1_2877",
+      "source_start": 5683756,
+      "source_end": 5760887,
+      "characters": 77131,
+      "passages": 27,
+      "components": 3,
+      "max_tokens": 795,
+      "extent_id": "ap1789-parent-version:8f6ee6b34e98e98ea0057c16"
+    }
+  ],
+  "previous_generation_integrity": {
+    "errors": 0,
+    "documents": 1267,
+    "passages": 11358,
+    "source_characters": 30656665,
+    "covered_characters": 30656615,
+    "explicitly_excluded_whitespace_only_document_characters": 50,
+    "substantive_coverage_fraction": 1.0,
+    "full_parent_preservation_fraction": 1.0,
+    "overlapping_characters": 2886105,
+    "exact_text_verified": true,
+    "stable_ids_verified": true,
+    "no_parent_boundary_changes": true,
+    "documented_parent_repairs": 0
+  }
+}

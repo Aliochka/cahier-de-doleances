@@ -96,3 +96,11 @@ __pycache__/
 !/extraction/fusion-validation-v2.json
 !/extraction/fusion-validation-results.json
 !/docs/fusion-corrections-checks.json
+
+# Technical reference collection: configuration and aggregate checks only.
+!/extraction/technical-passages-config.json
+!/docs/reference-collection-checks.json
+
+# Two scoped documentary repairs: evidence metadata and aggregate checks.
+!/extraction/two-empty-document-repairs.json
+!/docs/two-empty-repairs-checks.json

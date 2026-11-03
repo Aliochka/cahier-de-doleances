@@ -137,6 +137,18 @@ class Handler(BaseHTTPRequestHandler):
         url = urlsplit(self.path)
         q = parse_qs(url.query)
         try:
+            if url.path in {"/api/technical/catalogue", "/api/technical/document"}:
+                from technical_collection import TechnicalCollection
+
+                if not hasattr(self.server, "technical_collection"):
+                    self.server.technical_collection = TechnicalCollection()
+                collection = self.server.technical_collection
+                if url.path.endswith("catalogue"):
+                    return self.send(200, collection.catalogue())
+                return self.send(
+                    200,
+                    collection.document(q.get("document", [None])[0], q.get("passage", [None])[0]),
+                )
             if url.path == "/api/meta":
                 return self.send(
                     200,
@@ -251,6 +263,8 @@ class Handler(BaseHTTPRequestHandler):
                 doc["documentary_review"] = self.server.review_for(q["id"][0], doc["state"])
                 return self.send(200, doc)
             static = {
+                "/passages": ("technical.html", "text/html; charset=utf-8"),
+                "/technical.js": ("technical.js", "text/javascript; charset=utf-8"),
                 "/": ("index.html", "text/html; charset=utf-8"),
                 "/app.js": ("app.js", "text/javascript; charset=utf-8"),
                 "/articles.js": ("articles.js", "text/javascript; charset=utf-8"),

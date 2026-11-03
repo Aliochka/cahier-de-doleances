@@ -1,6 +1,8 @@
 # Corpus historique de 1789
 
-Espace unique de travail pour les cahiers de doléances : sources, registre, corpus expérimental, extraction, vérification humaine et expériences antérieures. L’extraction globale est produite : **1 305 notices traitées, 1 267 textes, 39 772 articles**, dont 605 validés/corrigés humainement. Voir [les séparations de revendications fusionnées (génération 6)](docs/FUSION-CORRECTIONS.md), [les rubriques et revendications non numérotées (génération 5)](docs/THEMATIC-EXTRACTION.md), [la finalisation des articles et le petit lot de contrôle](docs/ARTICLE-FINALIZATION.md), [la finalisation documentaire et les 12 cahiers contrôlés](docs/DOCUMENTARY-FINALIZATION.md), [les corrections précédentes](docs/BOUNDARY-CORRECTIONS.md) et [le bilan initial de production](docs/PRODUCTION.md) pour les statuts, limites et commandes.
+La collection de référence suit désormais **Corpus 1789 → Cahier → Passages techniques de recherche**. Elle est effectivement produite : **1 305 notices, 1 267 parents conservés et 11 391 passages techniques**, dont 10 750 dans les cahiers probables. Les 1 224 cahiers probables ont désormais du texte substantiel, après récupération des deux plages vides du tome V. Les 38 notices sans texte et les incertitudes documentaires sont conservées.
+
+Consulter [la collection corrigée et le bilan final](docs/TWO-EMPTY-RECOVERY.md), puis [la méthode de préparation initiale](docs/REFERENCE-COLLECTION.md). Les propositions historiques de G6 — 39 772 articles, dont 605 humains — deviennent des **annotations secondaires** : elles restent intégralement disponibles, avec leurs journaux. Leur segmentation n’est plus poursuivie. Les conclusions et expériences antérieures restent dans les archives.
 
 ```text
 1789/
@@ -11,13 +13,17 @@ Espace unique de travail pour les cahiers de doléances : sources, registre, cor
 │   └── persee/                  # caches des métadonnées déjà collectées
 ├── data/
 │   ├── registry/                # registre des 1 305 notices et rapprochements
-│   ├── corpus/                  # générations globales et sélection current.json
+│   ├── documents/               # collection de référence et passages techniques
+│   ├── corpus/                  # générations historiques, dont G6 conservée
 │   ├── article-corpus/          # référence initiale : 29 parents, 719 articles
 │   ├── review-exports/          # exports de l’outil, avec statuts explicites
 │   ├── segmentation-proposals/ # comparaisons et propositions, séparées des décisions
 │   └── private/document-review/ # journaux humains et sessions, jamais dans Git
 ├── extraction/
-│   ├── production.py           # chaîne documentaire historique et contrôles
+│   ├── repair_reference_documents.py # référence 2 : récupération bornée de deux textes
+│   ├── prepare_documents.py    # préparation initiale et vérification des collections
+│   ├── technical_passages.py   # extraits XML/phrases, tokens BGE-M3 hors ligne
+│   ├── production.py           # chaîne historique conservée, ne plus relancer
 │   ├── article_production.py   # production de la génération 4
 │   ├── thematic_production.py  # génération 5 : formes thématiques et décisions
 │   ├── fusion_production.py    # génération 6 : séparations thématiques prudentes
@@ -40,13 +46,14 @@ Depuis la racine du dépôt :
 python3 1789/review.py
 ```
 
-Ouvrir **http://127.0.0.1:1789**. Pour arrêter : Ctrl-C. Le serveur reste strictement lié à `127.0.0.1`. Le serveur sélectionne la génération globale active. Les modes Cahiers/Articles, l’historique et les campagnes sont conservés ; les filtres permettent de parcourir les six volumes. En cas de serveur démarré avant le déplacement, l’arrêter puis le relancer avec cette commande avant de recharger le navigateur.
+Ouvrir **http://127.0.0.1:1789/passages** pour la collection en lecture seule. L’ancien outil de vérification reste à **http://127.0.0.1:1789**. Pour arrêter : Ctrl-C. Le serveur reste strictement lié à `127.0.0.1`. Le serveur sélectionne la génération globale active. Les modes Cahiers/Articles, l’historique et les campagnes sont conservés ; les filtres permettent de parcourir les six volumes. En cas de serveur démarré avant le déplacement, l’arrêter puis le relancer avec cette commande avant de recharger le navigateur.
 
 Les instructions détaillées sont dans [tools/document-review/README.md](tools/document-review/README.md). La campagne de cinq cahiers reste dans [tools/document-review/campaigns/](tools/document-review/campaigns/README.md).
 
 ## Ce qui sert au travail actuel
 
-- `data/corpus/current.json` : sélection de la génération globale ; ses textes, unités et inventaire complet sont décrits dans [docs/PRODUCTION.md](docs/PRODUCTION.md).
+- `data/documents/current.json` : collection principale de documents intégraux et passages techniques.
+- `data/corpus/current.json` : sélection de la génération historique G6 conservée ; ses textes, unités et inventaire complet sont décrits dans [docs/PRODUCTION.md](docs/PRODUCTION.md).
 - `data/registry/registry.jsonl.gz` : 1 305 notices ; ne pas les assimiler à autant de cahiers autonomes certifiés.
 - `data/article-corpus/parents.jsonl.gz` et `units-A/B/C.jsonl.gz` : corpus initial conservé, sans réécriture par les décisions ultérieures.
 - `data/private/document-review/decisions.jsonl` : décisions des frontières parentales.

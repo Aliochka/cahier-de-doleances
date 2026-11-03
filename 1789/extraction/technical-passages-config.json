@@ -1,0 +1,16 @@
+{
+  "version": "technical-passages-1",
+  "target_tokens": 600,
+  "minimum_preferred_tokens": 400,
+  "maximum_tokens": 800,
+  "overlap_target_tokens": 60,
+  "overlap_maximum_tokens": 80,
+  "model_context_tokens": 8192,
+  "reserved_special_tokens": 2,
+  "tokenizer_repository": "BAAI/bge-m3",
+  "tokenizer_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "tokenizer_path": "rag/models/bge-m3/5617a9f61b028005a4858fdac845db406aefb181/tokenizer.json",
+  "source_revision": "926fd3cd986a3c3d411e93d1845fff6475cb2602",
+  "sample_seed": 178903,
+  "sample_per_volume": 2
+}
