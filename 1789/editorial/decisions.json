@@ -1,0 +1,327 @@
+{
+  "format_version": 1,
+  "revision_id": "1789-editorial-1",
+  "corpus_id": "cahiers-1789-ap-stanford",
+  "source_generation": "reference-documents-2-7cbcaea79991",
+  "provenance": {
+    "authorization": "Mission phase 1, 7 novembre 2026",
+    "date_precision": "day; event timestamps use 00:00 UTC as a date marker, not a review-session time"
+  },
+  "decisions": [
+    {
+      "decision_id": "editorial-1789-v1-001",
+      "revision_id": "1789-editorial-1",
+      "sequence": 1,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1578",
+      "unit_id": "ap1789-technical-passage-1:fffb19e46c6025e22b17d54c370c",
+      "expected_document_hash": "bf3b3a782f264d919b9fc1e0854f076249ff98aea1da3398e1ca36a5ff151868",
+      "expected_extent_id": "ap1789-parent-version:1a4ef8159020a96e53dd96f4",
+      "expected_unit_hash": "ab0f10f71340e28fde9c17205dc6a2415616968e8bcab43491aad59b213b0023",
+      "property": "search_enabled",
+      "value": false,
+      "reason_code": "interleaved_columns",
+      "justification": "Exclusion des passages techniques 3 et 4 validée dans la mission phase 1. Texte intégral conservé.",
+      "evidence": {
+        "source": "user:phase-1-authorization",
+        "zone": [
+          5204,
+          8878
+        ],
+        "xml": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[37]–p[78]"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-002",
+      "revision_id": "1789-editorial-1",
+      "sequence": 2,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1578",
+      "unit_id": "ap1789-technical-passage-1:32ae8c839247d77b503fba421372",
+      "expected_document_hash": "bf3b3a782f264d919b9fc1e0854f076249ff98aea1da3398e1ca36a5ff151868",
+      "expected_extent_id": "ap1789-parent-version:1a4ef8159020a96e53dd96f4",
+      "expected_unit_hash": "0cffa951c7b6ecb6a0af694692856d367fa769b8608d7a98a8394068b7c6d34e",
+      "property": "search_enabled",
+      "value": false,
+      "reason_code": "interleaved_columns",
+      "justification": "Exclusion des passages techniques 3 et 4 validée dans la mission phase 1. Texte intégral conservé.",
+      "evidence": {
+        "source": "user:phase-1-authorization",
+        "zone": [
+          5204,
+          8878
+        ],
+        "xml": "/TEI.2/text/body/div1/div2[6]/div3[1]/p[37]–p[78]"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-003",
+      "revision_id": "1789-editorial-1",
+      "sequence": 3,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1578",
+      "unit_id": null,
+      "expected_document_hash": "bf3b3a782f264d919b9fc1e0854f076249ff98aea1da3398e1ca36a5ff151868",
+      "expected_extent_id": "ap1789-parent-version:1a4ef8159020a96e53dd96f4",
+      "expected_unit_hash": null,
+      "property": "warning",
+      "value": {
+        "key": "interleaved-columns",
+        "enabled": true,
+        "message": "La transcription présente un mélange de colonnes dans la dernière partie du cahier. Les passages techniques affectés sont exclus de la recherche ; le texte intégral est conservé.",
+        "start_offset": 5204,
+        "end_offset": 8878
+      },
+      "reason_code": "interleaved_columns",
+      "justification": "Avertissement documentaire validé ; aucune reconstruction du texte.",
+      "evidence": {
+        "source": "user:phase-1-authorization",
+        "stanford_image": "fz023dp4399_00_0083"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-004",
+      "revision_id": "1789-editorial-1",
+      "sequence": 4,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": null,
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": null,
+      "property": "display_title",
+      "value": "Cahier des habitants d'Aunay-la-Côte, présenté au bailliage d'Avallon — 16 mars 1789",
+      "reason_code": "clarified_attribution",
+      "justification": "Titre de présentation validé ; titre source conservé.",
+      "evidence": {
+        "source": "user:phase-1-authorization",
+        "persee": "https://www.persee.fr/doc/arcpa_0000-0000_1879_num_2_1_1602",
+        "pages": [
+          133,
+          134,
+          135,
+          136
+        ]
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-005",
+      "revision_id": "1789-editorial-1",
+      "sequence": 5,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": null,
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": null,
+      "property": "warning",
+      "value": {
+        "key": "missing-first-article-opening",
+        "enabled": true,
+        "message": "La transcription Stanford omet le début de l'article premier, visible sur la page imprimée 133. Le texte transcrit est conservé sans correction."
+      },
+      "reason_code": "source_lacuna",
+      "justification": "Lacune vérifiée sur la page imprimée ; les huit passages restent admissibles.",
+      "evidence": {
+        "source": "user:phase-1-authorization",
+        "persee_page": 133
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-006",
+      "revision_id": "1789-editorial-1",
+      "sequence": 6,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:0037b93d926cb1323329a7c97b74",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "ea9e8d5d307ad50f42f5daed197a6a7b8eaa631603fd4f21a1e40ec67c697a49",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-007",
+      "revision_id": "1789-editorial-1",
+      "sequence": 7,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:888328aeb49858f60bb8bba2a629",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "a7a023345bfd578e7f501320f65c9ae5d760c7cb37d587f5237e8291cac1bd47",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-008",
+      "revision_id": "1789-editorial-1",
+      "sequence": 8,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:7052e37090379296f7b7fb81ae85",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "d730b930ef0b3644f7d180ef6c224a0fc55fff250149ec84a932438d16aba8ce",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-009",
+      "revision_id": "1789-editorial-1",
+      "sequence": 9,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:8f632c0a56976395654787bff18e",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "734a5d6813af2b510a39ad8b26e97588a38e75618d0bdea37f313aeb1deb04c6",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-010",
+      "revision_id": "1789-editorial-1",
+      "sequence": 10,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:c1f32a5552ac40ad9e912a6fe47c",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "fb8d7950c0e2e85777a34f6171be6e3d1c5548691421753f5d8a111cd4d09dd0",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-011",
+      "revision_id": "1789-editorial-1",
+      "sequence": 11,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:dbb6552ff3cc852231ebbf8960f8",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "dc58905ee43ad93aa47822a385eb4f27e9f75b593e659982be25c14f71288d86",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-012",
+      "revision_id": "1789-editorial-1",
+      "sequence": 12,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:099382d6cd6fb9602c22dba566af",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "1c679003b358b63da99a1fe73c154092979b1d12ac80040185ae0b009da0e4c2",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    },
+    {
+      "decision_id": "editorial-1789-v1-013",
+      "revision_id": "1789-editorial-1",
+      "sequence": 13,
+      "corpus_id": "cahiers-1789-ap-stanford",
+      "source_generation": "reference-documents-2-7cbcaea79991",
+      "document_id": "ap1789-registry-p1:arcpa_0000-0000_1879_num_2_1_1602",
+      "unit_id": "ap1789-technical-passage-1:85ec4898eb08aa3905b22d1137ec",
+      "expected_document_hash": "80e4e99f05f2a6e993a7a4e70d84002124f60bad857e09ca4349b1bf5a145440",
+      "expected_extent_id": "ap1789-parent-version:3344288857357f2693d0a7e1",
+      "expected_unit_hash": "de27594d46ce57d9024872c0d7b377ab25fa61a7c1a2f2582c3e9d7a4a960b31",
+      "property": "search_enabled",
+      "value": true,
+      "reason_code": "attribution_resolved",
+      "justification": "Conservation des huit passages expressément validée après vérification Avallon / Aunay-la-Côte.",
+      "evidence": {
+        "source": "user:phase-1-authorization"
+      },
+      "decided_by": "user_authorization_phase_1",
+      "decided_at": "2026-11-07T00:00:00Z",
+      "supersedes_id": null
+    }
+  ]
+}
