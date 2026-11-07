@@ -55,7 +55,7 @@ def migrate(destination):
         command.upgrade(config, "head")
 
 
-def compare_rows(c, table, expected, key):
+def compare_rows(c, table, expected, key, *, phase1=True):
     expected = {r[key]: r for r in expected}
     result = c.execute(text(f"SELECT * FROM documentary.{table} WHERE {WHERE}"), SCOPE)
     seen = set()
@@ -65,12 +65,16 @@ def compare_rows(c, table, expected, key):
             raise ValueError(f"Unexpected/duplicate {table} identifier")
         if any(row[k] != value for k, value in expected[identity].items()):
             raise ValueError(f"Stored {table} differs from source/projection: {identity}")
-        if table == "document" and (
-            row["metadata_vector"] is not None or row["filter_metadata"] != {}
+        if (
+            phase1
+            and table == "document"
+            and (row["metadata_vector"] is not None or row["filter_metadata"] != {})
         ):
             raise ValueError("Unexpected phase-2 document representations")
-        if table == "search_unit" and any(
-            row[k] is not None for k in ("search_vector", "embedding", "embedding_hash")
+        if (
+            phase1
+            and table == "search_unit"
+            and any(row[k] is not None for k in ("search_vector", "embedding", "embedding_hash"))
         ):
             raise ValueError("Unexpected phase-2 unit representations")
         seen.add(identity)
@@ -117,7 +121,7 @@ def release_expected(artifacts, bundle, projection):
     )
 
 
-def verify(c, artifacts, bundle):
+def verify(c, artifacts, bundle, *, phase1=True):
     projection = replay(artifacts, bundle)
     release = (
         c.execute(text(f"SELECT * FROM documentary.release WHERE {WHERE}"), SCOPE).mappings().one()
@@ -127,12 +131,20 @@ def verify(c, artifacts, bundle):
     if (
         release["state"] != "verified"
         or release["validated_at"] is None
-        or any(
-            release[k]
-            for k in ("representations_ready", "statistics_ready", "publication_authorized")
+        or (
+            phase1
+            and any(
+                release[k]
+                for k in ("representations_ready", "statistics_ready", "publication_authorized")
+            )
         )
-        or any(
-            release[k] != {} for k in ("lexical_recipe", "embedding_recipe", "lexical_statistics")
+        or release["publication_authorized"]
+        or (
+            phase1
+            and any(
+                release[k] != {}
+                for k in ("lexical_recipe", "embedding_recipe", "lexical_statistics")
+            )
         )
     ):
         raise ValueError("Phase 1 must remain verified, without search readiness or publication")
@@ -143,12 +155,15 @@ def verify(c, artifacts, bundle):
         is not None
     ):
         raise ValueError("Phase 1 must not activate a public release")
-    compare_rows(c, "document", artifacts.document_rows(projection), "document_id")
-    compare_rows(c, "search_unit", artifacts.unit_rows(projection), "unit_id")
+    compare_rows(c, "document", artifacts.document_rows(projection), "document_id", phase1=phase1)
+    compare_rows(c, "search_unit", artifacts.unit_rows(projection), "unit_id", phase1=phase1)
     check_events(c, bundle)
-    if c.execute(
-        text(f"SELECT count(*) FROM documentary.lexical_term_statistics WHERE {WHERE}"), SCOPE
-    ).scalar_one():
+    if (
+        phase1
+        and c.execute(
+            text(f"SELECT count(*) FROM documentary.lexical_term_statistics WHERE {WHERE}"), SCOPE
+        ).scalar_one()
+    ):
         raise ValueError("No lexical statistics in phase 1")
     # Independent PostgreSQL Unicode slicing, in addition to Python source verification.
     for row in c.execute(
@@ -163,7 +178,7 @@ def verify(c, artifacts, bundle):
     return dict(
         **artifacts.counts(),
         state="verified",
-        search_ready=False,
+        search_ready=bool(release["representations_ready"] and release["statistics_ready"]),
         publication_authorized=False,
         active_release=None,
         editorial_revision=bundle["revision_id"],
@@ -176,7 +191,14 @@ def verify(c, artifacts, bundle):
             for u in artifacts.units.values()
         ),
         public_documents=0,
-        representations=0,
+        representations=c.execute(
+            text(
+                f"SELECT count(*) FROM documentary.search_unit WHERE {WHERE} AND embedding IS NOT NULL"
+            ),
+            SCOPE,
+        ).scalar_one()
+        if not phase1
+        else 0,
         source_manifest_hash=artifacts.manifest_hash,
     )
 
@@ -234,7 +256,7 @@ def apply_editorial(destination, artifacts, previous, replacement):
         raise ValueError("Editorial history is append-only")
     with destination.transaction() as c:
         c.execute(text("SELECT pg_advisory_xact_lock(1789,1)"))
-        verify(c, artifacts, previous)
+        verify(c, artifacts, previous, phase1=False)
         known = check_events(c, replacement, extending=True)
         insert(
             c,
@@ -264,7 +286,16 @@ def apply_editorial(destination, artifacts, previous, replacement):
             )
         c.execute(
             text(f"""UPDATE documentary.release SET editorial_revision=:revision,
-            editorial_hash=:hash WHERE {WHERE}"""),
+            editorial_hash=:hash,statistics_ready=false,representations_ready=false,
+            lexical_recipe='{{}}'::jsonb,lexical_statistics='{{}}'::jsonb WHERE {WHERE}"""),
             dict(SCOPE, revision=replacement["revision_id"], hash=projection["hash"]),
         )
-        return verify(c, artifacts, replacement)
+        c.execute(text(f"DELETE FROM documentary.lexical_term_statistics WHERE {WHERE}"), SCOPE)
+        c.execute(
+            text("""UPDATE documentary.search_unit u SET embedding=NULL,embedding_hash=NULL,search_vector=NULL
+            FROM documentary.document d WHERE u.corpus_id=d.corpus_id AND u.release_id=d.release_id
+            AND u.document_id=d.document_id AND u.corpus_id=:corpus AND u.release_id=:release
+            AND (NOT u.searchable OR NOT d.candidate)"""),
+            SCOPE,
+        )
+        return verify(c, artifacts, replacement, phase1=False)
