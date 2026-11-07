@@ -4,6 +4,8 @@ Ce package indépendant traite les **corpus documentaires** (document → passag
 
 La phase 1 n’indexe pas de texte, ne calcule pas de vecteurs et ne publie rien. Les six tables métier se trouvent dans `documentary`, avec une table Alembic dédiée. Voir [le schéma SQL](migrations/versions/doc_0001.sql), [la conception](../1789/docs/conception-technique-multicorpus-1789.md) et [le bilan réel](../1789/docs/rapport-phase1-documentary.md).
 
+La recherche autonome de phase 2 et le laboratoire local sont décrits dans [PHASE2.md](PHASE2.md). Ils ne changent pas les autorisations publiques.
+
 ## Prérequis et destination
 
 Utiliser l’environnement Python existant (`.venv/bin/python`), PostgreSQL 17 et pgvector disponible sur le serveur. La migration installe l’extension `vector` dans **la nouvelle base locale isolée seulement**, si elle est absente.

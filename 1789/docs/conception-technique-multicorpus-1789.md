@@ -1,6 +1,6 @@
 # Conception technique — multicorpus et intégration de 1789
 
-Date initiale : 6 novembre 2026. Mise à jour : 7 novembre 2026. Orientation validée ; phase 1 implémentée en local, phases de recherche et publication non autorisées.
+Date initiale : 6 novembre 2026. Mise à jour : 7 novembre 2026. Orientation validée ; phases 1 et 2 réalisées en laboratoire local. Recherche multicorpus (phase 3), interface publique et publication non autorisées.
 
 Ce document complète l’[audit architectural](audit-architecture-multicorpus-1789.md). Il décrit des structures et contrats futurs : aucun schéma, import, embedding, exclusion ou changement applicatif n’est appliqué par sa rédaction.
 
@@ -15,7 +15,7 @@ Un seul moteur principal réunira leurs **adaptateurs de recherche**, avec deux 
 
 La consultation conserve deux expériences autonomes : catalogue/métadonnées/lecture intégrale/navigation documentaire et questionnaires/questions/contributions/réponses. L’accueil « Parcourir » et la recherche commune ne fusionnent pas leurs modèles métier.
 
-La présente autorisation porte sur la phase 1 uniquement : aucun calcul lexical/vectoriel, aucune API publique, aucun frontend ni activation publique. Les propositions des phases suivantes restent des contrats de conception à expérimenter ultérieurement.
+L’autorisation initiale portait sur la phase 1 uniquement. Une mission distincte a ensuite autorisé et réalisé la phase 2 : recherche historique et laboratoire local, sans API publique, frontend public ni activation. Voir le [rapport de phase 2](rapport-phase2-recherche-1789.md). La phase 3 multicorpus et la publication restent à autoriser.
 
 ## 1. Décisions acquises et périmètre
 
@@ -434,3 +434,7 @@ Le package indépendant `documentary/` contient une migration `doc_0001`, une va
 Les notices sans texte sont conservées dans le manifeste SQL de release, les textes des passages ne sont pas dupliqués. Les futures colonnes de recherche restent NULL, les statistiques lexicales restent vides et aucune release n’est publiquement active. Les décisions individuelles d’unité ne rendent pas les documents publics. Le rejeu ne modifie aucune colonne source et refuse les décisions supprimées, modifiées ou liées à de mauvaises empreintes.
 
 Consulter [le mode d’emploi](../../documentary/README.md) et [le rapport de phase 1](rapport-phase1-documentary.md) pour les commandes, preuves et limites effectives.
+
+## Phase 2 effectivement livrée
+
+La recherche autonome historique est décrite dans le [rapport mesuré de phase 2](rapport-phase2-recherche-1789.md) et le [mode d’emploi du laboratoire](../../documentary/PHASE2.md). Elle conserve la release `verified` et toutes les protections publiques de phase 1 ; les deux drapeaux de préparation sont désormais true. Le laboratoire n’utilise que les 1 224 cahiers candidats et les 10 748 unités admissibles. Aucun HNSW supplémentaire ni aucune recherche GDN/multicorpus n’a été implémenté. Les coefficients et la pertinence restent expérimentaux ; les métriques et contre-exemples observés doivent être examinés avant la phase 3.
