@@ -1,6 +1,6 @@
 # Conception technique — multicorpus et intégration de 1789
 
-Date initiale : 6 novembre 2026. Mise à jour : 7 novembre 2026. Orientation validée ; phases 1 et 2 réalisées en laboratoire local. Recherche multicorpus (phase 3), interface publique et publication non autorisées.
+Date initiale : 6 novembre 2026. Mise à jour : 7 novembre 2026. Orientation validée ; phases 1, 2 et 3 réalisées en laboratoire local. Interface publique et publication non autorisées.
 
 Ce document complète l’[audit architectural](audit-architecture-multicorpus-1789.md). Il décrit des structures et contrats futurs : aucun schéma, import, embedding, exclusion ou changement applicatif n’est appliqué par sa rédaction.
 
@@ -15,7 +15,7 @@ Un seul moteur principal réunira leurs **adaptateurs de recherche**, avec deux 
 
 La consultation conserve deux expériences autonomes : catalogue/métadonnées/lecture intégrale/navigation documentaire et questionnaires/questions/contributions/réponses. L’accueil « Parcourir » et la recherche commune ne fusionnent pas leurs modèles métier.
 
-L’autorisation initiale portait sur la phase 1 uniquement. Une mission distincte a ensuite autorisé et réalisé la phase 2 : recherche historique et laboratoire local, sans API publique, frontend public ni activation. Voir le [rapport de phase 2](rapport-phase2-recherche-1789.md). La phase 3 multicorpus et la publication restent à autoriser.
+L’autorisation initiale portait sur la phase 1 uniquement. Une mission distincte a ensuite autorisé et réalisé la phase 2 : recherche historique et laboratoire local, sans API publique, frontend public ni activation. Voir le [rapport de phase 2](rapport-phase2-recherche-1789.md). Une mission distincte a ensuite autorisé la phase 3 en laboratoire ; voir le [rapport multicorpus](rapport-phase3-recherche-multicorpus.md). La phase 4 publique et la publication restent à autoriser.
 
 ## 1. Décisions acquises et périmètre
 
@@ -438,3 +438,7 @@ Consulter [le mode d’emploi](../../documentary/README.md) et [le rapport de ph
 ## Phase 2 effectivement livrée
 
 La recherche autonome historique est décrite dans le [rapport mesuré de phase 2](rapport-phase2-recherche-1789.md) et le [mode d’emploi du laboratoire](../../documentary/PHASE2.md). Elle conserve la release `verified` et toutes les protections publiques de phase 1 ; les deux drapeaux de préparation sont désormais true. Le laboratoire n’utilise que les 1 224 cahiers candidats et les 10 748 unités admissibles. Aucun HNSW supplémentaire ni aucune recherche GDN/multicorpus n’a été implémenté. Les coefficients et la pertinence restent expérimentaux ; les métriques et contre-exemples observés doivent être examinés avant la phase 3.
+
+## Phase 3 effectivement livrée
+
+Le [rapport multicorpus](rapport-phase3-recherche-multicorpus.md) décrit les deux adaptateurs, les statistiques et classements globaux, la RRF commune, les résultats comparés à H1 et les mesures sur les bases locales complètes. Le [laboratoire](../../multicorpus/README.md) est une voie indépendante ; H1 et toutes les protections publiques restent inchangés. Aucun schéma, index ou représentation n’a été ajouté aux bases de travail. La pertinence et l’autorisation de publication demandent encore une décision humaine avant la phase 4.
