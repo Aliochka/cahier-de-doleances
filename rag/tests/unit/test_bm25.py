@@ -104,9 +104,7 @@ def test_index_formula_reprise_determinism_filters(corpus, tmp_path, variant):
         found = index.search("bus", limit=100)
         assert len(found) == 3 and found == index.search("bus", limit=100)
         tied = index.search("bus", questionnaire_id=4)
-        assert [r.document.document_id for r in tied] == sorted(
-            d.document_id for d in docs[:2]
-        )
+        assert [r.document.document_id for r in tied] == sorted(d.document_id for d in docs[:2])
         tokens = Tokens().encode(
             [d.text + ("\n" + d.question_text if variant == "B" else "") for d in docs[:4]]
         )

@@ -11,8 +11,13 @@ from cahier_rag.search.hybrid import HybridConfig, HybridEngine
 
 # lexical : FlexibleEngine existant ; vector : VectorEngine déjà chargé.
 engine = HybridEngine(lexical, vector, scope, HybridConfig(k=60, depth=50))
-results = engine.search("Comment améliorer les services publics ?", limit=10,
-                        split="development", questionnaire_id=None, unit_type=None)
+results = engine.search(
+    "Comment améliorer les services publics ?",
+    limit=10,
+    split="development",
+    questionnaire_id=None,
+    unit_type=None,
+)
 # results : list[SearchResult], documents et provenance inchangés.
 diagnostics = engine.last_retrieval
 ```

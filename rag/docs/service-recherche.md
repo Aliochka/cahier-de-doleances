@@ -149,8 +149,10 @@ from cahier_rag.config import load_settings
 from cahier_rag.search.service import SearchWorker, create_service
 
 service = create_service(
-    load_settings(env_file="rag/search-reader.env"), "rag/models",
-    device="cuda", precision="bfloat16",
+    load_settings(env_file="rag/search-reader.env"),
+    "rag/models",
+    device="cuda",
+    precision="bfloat16",
 )
 worker = SearchWorker(service)
 # Dans le futur lifespan :
