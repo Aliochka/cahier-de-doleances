@@ -34,15 +34,16 @@ from sqlalchemy import text
 from sqlalchemy.exc import DBAPIError
 from sqlalchemy.sql.elements import TextClause
 
-BASE_COMMIT = "0eebaecbd0f14bc88ae12d85cc6fba35d0fd5a73"
+# Reviewed baseline including the optional question filter; diagnostics stay global.
+BASE_COMMIT = "c3b5ce25eec75514e27a1aadd9717a97e7edd56f"
 QUERY_SHA256 = "f1ad4fef0eae346ce9a2413426ecf7214406440d0e89ea4821fe6913e2e7583e"
 CASE_IDS = ("fiscalite-05", "democratie-02", "fiscalite-01")
 EXPLAIN = "EXPLAIN (VERBOSE, COSTS, SETTINGS, FORMAT JSON) "
 SOURCE_HASHES = {
-    "tuning/lexical.py": "d443c1f3b5ec1388d9ac0f56306086f029db9aee80804c82c239e288658b2d6b",
+    "tuning/lexical.py": "b66fc4a9a03e7f6f8e3324371c7cdcb439836da22a7799034c009ee35d1ab23e",
     "search/preparation.py": "1c6cc9f096141ef19166b025870de2e1da04b2b4e466c86d32588aa3215ec55c",
     "search/flexible.py": "caf45208b995ffdc567f99f87bbb12f18a114e89ba5abdbcfed77f2a81ee7e09",
-    "fullcorpus/search.py": "5b675c3990c63f8d3e9fb4229900c5a29417a77a274d0eebbed9c5dbe5339d59",
+    "fullcorpus/search.py": "53ae5b223a5c87f1246ef1c4b79481ccd9081c1304d54c044f00382bb8887a87",
     "fullcorpus/store.py": "7c0fe3f013b22b6f04829aeed5026bc09afd9297c07d307e9a2e8be115003102",
     "search/service/reader.py": "54f9709e9572937d6ef2f65b824f54b66266e0d3577fcdb4268cb885aabb66b9",
     "safety.py": "bbc6edc2eb833b312bb8e57ddb2542a730621e2adc1f6bbc5dc9d8e902b543a6",

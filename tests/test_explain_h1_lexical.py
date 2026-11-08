@@ -202,7 +202,7 @@ def test_real_lexical_path_only_explains_ranking_and_rolls_back(query_id, monkey
     assert len(ranking) == 1
     sql, params = ranking[0]
     assert params["limit"] == 50 and params["space"] == "full"
-    assert [params[k] for k in ("form", "kind", "split")] == [None, None, None]
+    assert [params[k] for k in ("form", "kind", "split", "question")] == [None] * 4
     assert [params[k] for k in ("idf_coverage", "term_coverage", "frequency_proximity")] == [
         0.5,
         0.3,
