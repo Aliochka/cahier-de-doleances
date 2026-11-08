@@ -42,6 +42,9 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
     OpenAPI.model_validate(schema)
     assert set(schema["paths"]) == {
         "/api/v1/search",
+        "/api/v1/corpora",
+        "/api/v1/documentary/1789",
+        "/api/v1/documentary/1789/{release}/documents/{document_id}",
         "/api/v1/forms",
         "/api/v1/forms/{form_id}",
         "/api/v1/forms/{form_id}/stats",
@@ -91,12 +94,38 @@ def test_offline_deterministic_contract_and_reference_closure(tmp_path):
         "ContributionDetail",
         "ContributionReference",
         "SelectedOption",
+        "CorpusOption",
+        "DocumentaryBlock",
+        "DocumentaryCatalogue",
+        "DocumentaryFragment",
+        "DocumentaryMetadata",
+        "DocumentaryParagraph",
+        "DocumentaryReading",
+        "DocumentarySource",
+        "DocumentaryUnit",
+        "DocumentaryWarning",
+        "HistoricalSearchResult",
     }
     for model in ("FormSummary", "FormDetail", "FormQuestion"):
         assert models[model]["properties"]["id"]["type"] == "string"
     assert models["HybridAnswer"]["properties"]["answer_id"]["type"] == "string"
     hybrid = schema["paths"]["/api/v1/search"]["get"]
-    assert {p["name"] for p in hybrid["parameters"]} == {"q", "page_size", "cursor"}
+    parameters = {p["name"]: p for p in hybrid["parameters"]}
+    assert set(parameters) == {"q", "page_size", "cursor", "question_id", "corpus"}
+    assert parameters["corpus"]["schema"]["enum"] == ["tous", "2019", "1789"]
+    assert parameters["corpus"]["schema"]["default"] == "tous"
+    result_types = models["HybridSearchPage"]["properties"]["items"]["items"]["anyOf"]
+    assert {t["$ref"] for t in result_types} == {
+        "#/components/schemas/HybridAnswer",
+        "#/components/schemas/HistoricalSearchResult",
+    }
+    assert models["HistoricalSearchResult"]["properties"]["kind"]["const"] == "historical_document"
+    assert models["DocumentaryReading"]["properties"]["paragraphs"]["items"]["$ref"] == (
+        "#/components/schemas/DocumentaryParagraph"
+    )
+    assert models["DocumentaryParagraph"]["properties"]["fragments"]["items"]["$ref"] == (
+        "#/components/schemas/DocumentaryFragment"
+    )
     assert {"200", "410", "422", "500", "503", "504"} == set(hybrid["responses"])
     assert hybrid["responses"]["422"]["content"]["application/json"]["schema"]["$ref"].endswith(
         "HybridErrorEnvelope"

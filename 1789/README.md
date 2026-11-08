@@ -71,6 +71,8 @@ Le corpus global utilise des générations versionnées sous `data/corpus/`, san
 - [Bilan des validations humaines et stratégie de contrôle](archives/1789-human-review-quality/README.md).
 - [Amélioration conservatrice du segmenteur](archives/1789-article-segmentation-improvement/README.md).
 
+Le répertoire `archives/` est exclu du lint et du formatage Ruff courants : plusieurs scripts sont figés octet par octet et leurs empreintes sont vérifiées par les manifestes de provenance. Leurs anciennes conventions d'import et de mise en forme sont conservées. Le code maintenu doit rester hors de `archives/` ; les dossiers actifs `extraction/`, `tools/` et le lecteur de revue restent soumis aux règles du dépôt.
+
 Les anciens scripts sont des moyens de reproduction d’une expérience précise, pas une chaîne globale à exécuter en série. Certains lancent des calculs, des téléchargements ou des extractions : **ne pas lancer leurs `main()` pour simplement tester l’installation**.
 
 Les dossiers d’archives qui utilisaient `data/` ou un cache Persée disposent de liens symboliques internes vers les données uniques sous `1789/data/` et `1789/sources/`. Ces liens conservent la lecture relative des expériences sans dupliquer les textes. Aucun ancien répertoire applicatif n’est maintenu dans `docs/audits/` ou `docs/tools/`.

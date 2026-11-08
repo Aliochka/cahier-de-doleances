@@ -206,9 +206,7 @@ def inspect_schema(connection, expected_revision, *, pending_target=False):
     }
 
 
-def check_deployment(
-    env, *, connection_only=False, count_contributions=False, pre_migration=False
-):
+def check_deployment(env, *, connection_only=False, count_contributions=False, pre_migration=False):
     raw = env.get("DATABASE_URL", "")
     if not raw or "REPLACE_WITH" in raw:
         raise ValueError("Configure DATABASE_URL with the existing database password")
@@ -275,9 +273,7 @@ def check_deployment(
                     if pre_migration
                     else env.get("EXPECTED_ALEMBIC_REVISION", "forms_statistics_v1")
                 )
-                schema = inspect_schema(
-                    connection, expected_revision, pending_target=pre_migration
-                )
+                schema = inspect_schema(connection, expected_revision, pending_target=pre_migration)
                 report["errors"].extend(schema.pop("errors"))
                 report.update(schema)
             if count_contributions and not report["errors"]:
