@@ -29,6 +29,7 @@ def observe(metrics):
 class SearchBackend:
     def __init__(self, worker, hydrator, cache):
         self.worker, self.hydrator, self.cache = worker, hydrator, cache
+        self.common = None
 
     def verify_source(self):
         reader = self.worker.service.reader
@@ -48,10 +49,19 @@ class SearchBackend:
             with suppress(Exception):
                 await verification
             raise
+        if self.common is not None:
+            try:
+                await self.common.start()
+            except Exception:
+                logger.warning("Documentary integration unavailable; H1 remains available")
+                await self.common.close()
+                self.common = None
         await self.worker.start()
 
     async def close(self):
         self.cache.clear()
+        if self.common is not None:
+            await self.common.close()
         try:
             await self.worker.close()
         finally:
@@ -107,7 +117,15 @@ def build_backend():
     )
     try:
         hydrator = Hydrator(create_search_engine(DB_URL))
-        return SearchBackend(SearchWorker(service), hydrator, cache)
+        backend = SearchBackend(SearchWorker(service), hydrator, cache)
+        if os.environ.get("MULTICORPUS_CONFIG_FILE"):
+            from app.multicorpus_runtime import configure
+
+            try:
+                backend.common = configure(backend)
+            except Exception:
+                logger.warning("Multicorpus configuration refused; H1 remains available")
+        return backend
     except Exception:
         service.close()
         raise

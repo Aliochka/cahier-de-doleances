@@ -1,0 +1,13 @@
+# Prepared opt-in only. No migration, import, public authorization or activation.
+# Apply with the existing CPU search overlay only after deployment approval.
+services:
+  app:
+    environment:
+      MULTICORPUS_CONFIG_FILE: /run/search/multicorpus.json
+    volumes:
+      - type: bind
+        source: ${MULTICORPUS_CONFIG_HOST_FILE:?Provide an explicitly reviewed runtime configuration}
+        target: /run/search/multicorpus.json
+        read_only: true
+        bind:
+          create_host_path: false

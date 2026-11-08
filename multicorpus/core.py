@@ -91,6 +91,7 @@ class MultiSearch:
         volume=None,
         estate=None,
         place=None,
+        budget=None,
     ):
         if corpus not in {"2019", "1789", "tous"} or mode not in {
             "lexical",
@@ -122,7 +123,7 @@ class MultiSearch:
         if not self.lock.acquire(blocking=False):
             raise SearchBusy("Laboratory busy; retry when current query finishes")
         try:
-            budget = Budget(18)
+            budget = budget if budget is not None else Budget(18)
             with budget.monitor():
                 return self._search(
                     query,

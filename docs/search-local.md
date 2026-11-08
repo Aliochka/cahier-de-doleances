@@ -5,6 +5,10 @@ cible Wallace. React SSR utilise exclusivement `GET /api/v1/search` pour la
 recherche générale. Voir le [contrat HTTP](api-search.md), le
 [rapport backend](rapport-search-004.md) et le [rapport frontend](rapport-search-005.md).
 
+## Intégration multicorpus locale — phase 4
+
+Le profil intégré sur les vraies bases locales est décrit dans [le guide multicorpus](multicorpus-local-et-deploiement.md). Il se lance avec `.venv/bin/python scripts/run_multicorpus_local.py`. Sans activation explicite, les commandes H1 ci-dessous conservent leur comportement. Aucune publication historique n’est implicite.
+
 ## Dépendances reproductibles
 
 Le backend et H1 utilisent le même **`.venv` racine**. PyTorch2.10.0 CPU,

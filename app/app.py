@@ -26,6 +26,7 @@ from app.hybrid_runtime import lifespan
 from app.logging_filters import redact_access_logs
 from app.routers import (
     api_contributions,
+    api_documentary,
     api_forms,
     api_hybrid_search,
     api_questions,
@@ -137,6 +138,7 @@ app.add_middleware(
 # -----------------------------------------------------------------------------
 app.include_router(health.router)
 app.include_router(api_forms.router)
+app.include_router(api_documentary.router)
 app.include_router(api_questions.router)
 app.include_router(api_hybrid_search.router)
 app.include_router(api_contributions.router)

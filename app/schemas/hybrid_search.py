@@ -4,6 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from app.schemas.documentary import HistoricalSearchResult
 from app.schemas.forms import PublicId
 
 
@@ -26,6 +27,8 @@ class HybridText(BaseModel):
 
 
 class HybridAnswer(BaseModel):
+    kind: Literal["questionnaire_answer"] = "questionnaire_answer"
+    corpus_id: Literal["gdn-2019"] = "gdn-2019"
     answer_id: PublicId
     contribution_id: PublicId
     rank: int = Field(ge=1, description="Position stable de carte dans cette sélection.")
@@ -62,7 +65,9 @@ class HybridSearchPage(BaseModel):
     state: Literal["idle", "results", "empty", "sources_unavailable"]
     mode: Literal["hybrid", "lexical"] = "hybrid"
     recipe_version: str
-    items: list[HybridAnswer]
+    items: list[HybridAnswer | HistoricalSearchResult]
+    corpus: Literal["tous", "2019", "1789"] = "tous"
+    preview: bool = False
     page_size: int = Field(ge=1, le=20)
     has_next: bool
     next_cursor: str | None

@@ -9,7 +9,11 @@ export const question = {
   prompt: "Comment améliorer la participation citoyenne ?",
   url: "/questions/9007199254741022-participation",
 };
-export const page: HybridSearchPage = {
+export const page: Omit<HybridSearchPage, "items"> & {
+  items: import("../../../contracts/api.generated").components["schemas"]["HybridAnswer"][];
+} = {
+  corpus: "tous",
+  preview: false,
   q: "école & lecture",
   state: "results",
   mode: "hybrid",
@@ -32,6 +36,8 @@ export const page: HybridSearchPage = {
       ["9007199254741993", "9007199254741992", "9007199254741994"][index] ??
       String(9007199254742000n + BigInt(index));
     return {
+      kind: "questionnaire_answer",
+      corpus_id: "gdn-2019",
       answer_id: id,
       contribution_id: "9007199254742993",
       rank: index + 1,

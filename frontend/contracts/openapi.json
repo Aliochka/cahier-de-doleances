@@ -465,6 +465,375 @@
         "title": "ContributionReference",
         "type": "object"
       },
+      "CorpusOption": {
+        "properties": {
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "id": {
+            "enum": [
+              "2019",
+              "1789"
+            ],
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "preview": {
+            "default": false,
+            "title": "Preview",
+            "type": "boolean"
+          },
+          "published": {
+            "title": "Published",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "available",
+          "published"
+        ],
+        "title": "CorpusOption",
+        "type": "object"
+      },
+      "DocumentaryBlock": {
+        "properties": {
+          "anchor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anchor"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "DocumentaryBlock",
+        "type": "object"
+      },
+      "DocumentaryCatalogue": {
+        "properties": {
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentaryMetadata"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "minimum": 1.0,
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "preview": {
+            "default": false,
+            "title": "Preview",
+            "type": "boolean"
+          },
+          "total": {
+            "minimum": 0.0,
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total",
+          "has_next"
+        ],
+        "title": "DocumentaryCatalogue",
+        "type": "object"
+      },
+      "DocumentaryMetadata": {
+        "properties": {
+          "document_id": {
+            "title": "Document Id",
+            "type": "string"
+          },
+          "orders": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Orders",
+            "type": "array"
+          },
+          "place": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place"
+          },
+          "reference": {
+            "title": "Reference",
+            "type": "string"
+          },
+          "release_id": {
+            "title": "Release Id",
+            "type": "string"
+          },
+          "source_title": {
+            "title": "Source Title",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentarySource"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentaryWarning"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "document_id",
+          "release_id",
+          "title",
+          "source_title",
+          "orders",
+          "reference",
+          "sources",
+          "warnings",
+          "url"
+        ],
+        "title": "DocumentaryMetadata",
+        "type": "object"
+      },
+      "DocumentaryReading": {
+        "properties": {
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentaryBlock"
+            },
+            "title": "Blocks",
+            "type": "array"
+          },
+          "document_id": {
+            "title": "Document Id",
+            "type": "string"
+          },
+          "next": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next"
+          },
+          "orders": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Orders",
+            "type": "array"
+          },
+          "place": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place"
+          },
+          "preview": {
+            "default": false,
+            "title": "Preview",
+            "type": "boolean"
+          },
+          "previous": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous"
+          },
+          "reference": {
+            "title": "Reference",
+            "type": "string"
+          },
+          "release_id": {
+            "title": "Release Id",
+            "type": "string"
+          },
+          "selected_unit": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DocumentaryUnit"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_title": {
+            "title": "Source Title",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentarySource"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "text_sha256": {
+            "title": "Text Sha256",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentaryWarning"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "document_id",
+          "release_id",
+          "title",
+          "source_title",
+          "orders",
+          "reference",
+          "sources",
+          "warnings",
+          "url",
+          "blocks",
+          "selected_unit",
+          "previous",
+          "next",
+          "text_sha256"
+        ],
+        "title": "DocumentaryReading",
+        "type": "object"
+      },
+      "DocumentarySource": {
+        "properties": {
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "url"
+        ],
+        "title": "DocumentarySource",
+        "type": "object"
+      },
+      "DocumentaryUnit": {
+        "properties": {
+          "end_offset": {
+            "title": "End Offset",
+            "type": "integer"
+          },
+          "start_offset": {
+            "title": "Start Offset",
+            "type": "integer"
+          },
+          "text_sha256": {
+            "title": "Text Sha256",
+            "type": "string"
+          },
+          "unit_id": {
+            "title": "Unit Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "unit_id",
+          "start_offset",
+          "end_offset",
+          "text_sha256"
+        ],
+        "title": "DocumentaryUnit",
+        "type": "object"
+      },
+      "DocumentaryWarning": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "DocumentaryWarning",
+        "type": "object"
+      },
       "EnrichedFormQuestion": {
         "properties": {
           "answers_count": {
@@ -734,6 +1103,128 @@
         "title": "HTTPValidationError",
         "type": "object"
       },
+      "HistoricalSearchResult": {
+        "properties": {
+          "corpus_id": {
+            "const": "cahiers-1789-ap-stanford",
+            "default": "cahiers-1789-ap-stanford",
+            "title": "Corpus Id",
+            "type": "string"
+          },
+          "document_id": {
+            "title": "Document Id",
+            "type": "string"
+          },
+          "end_offset": {
+            "exclusiveMinimum": 0.0,
+            "title": "End Offset",
+            "type": "integer"
+          },
+          "excerpt": {
+            "title": "Excerpt",
+            "type": "string"
+          },
+          "kind": {
+            "const": "historical_document",
+            "default": "historical_document",
+            "title": "Kind",
+            "type": "string"
+          },
+          "match_origin": {
+            "default": "text",
+            "enum": [
+              "text",
+              "metadata"
+            ],
+            "title": "Match Origin",
+            "type": "string"
+          },
+          "orders": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Orders",
+            "type": "array"
+          },
+          "place": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place"
+          },
+          "rank": {
+            "minimum": 1.0,
+            "title": "Rank",
+            "type": "integer"
+          },
+          "reference": {
+            "title": "Reference",
+            "type": "string"
+          },
+          "release_id": {
+            "title": "Release Id",
+            "type": "string"
+          },
+          "source_title": {
+            "title": "Source Title",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentarySource"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "start_offset": {
+            "minimum": 0.0,
+            "title": "Start Offset",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "unit_id": {
+            "title": "Unit Id",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentaryWarning"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "document_id",
+          "release_id",
+          "title",
+          "source_title",
+          "orders",
+          "reference",
+          "sources",
+          "warnings",
+          "url",
+          "rank",
+          "excerpt",
+          "unit_id",
+          "start_offset",
+          "end_offset"
+        ],
+        "title": "HistoricalSearchResult",
+        "type": "object"
+      },
       "HybridAnswer": {
         "properties": {
           "answer_id": {
@@ -748,12 +1239,24 @@
             "title": "Contribution Id",
             "type": "string"
           },
+          "corpus_id": {
+            "const": "gdn-2019",
+            "default": "gdn-2019",
+            "title": "Corpus Id",
+            "type": "string"
+          },
           "form": {
             "$ref": "#/components/schemas/HybridForm"
           },
           "is_truncated": {
             "title": "Is Truncated",
             "type": "boolean"
+          },
+          "kind": {
+            "const": "questionnaire_answer",
+            "default": "questionnaire_answer",
+            "title": "Kind",
+            "type": "string"
           },
           "question": {
             "$ref": "#/components/schemas/HybridQuestion"
@@ -881,6 +1384,16 @@
       },
       "HybridSearchPage": {
         "properties": {
+          "corpus": {
+            "default": "tous",
+            "enum": [
+              "tous",
+              "2019",
+              "1789"
+            ],
+            "title": "Corpus",
+            "type": "string"
+          },
           "expires_at": {
             "anyOf": [
               {
@@ -909,7 +1422,14 @@
           },
           "items": {
             "items": {
-              "$ref": "#/components/schemas/HybridAnswer"
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/HybridAnswer"
+                },
+                {
+                  "$ref": "#/components/schemas/HistoricalSearchResult"
+                }
+              ]
             },
             "title": "Items",
             "type": "array"
@@ -939,6 +1459,11 @@
             "minimum": 1.0,
             "title": "Page Size",
             "type": "integer"
+          },
+          "preview": {
+            "default": false,
+            "title": "Preview",
+            "type": "boolean"
           },
           "previous_cursor": {
             "anyOf": [
@@ -1837,6 +2362,156 @@
         ]
       }
     },
+    "/api/v1/corpora": {
+      "get": {
+        "operationId": "list_search_corpora",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CorpusOption"
+                  },
+                  "title": "Response List Search Corpora",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Corpora",
+        "tags": [
+          "Documentary"
+        ]
+      }
+    },
+    "/api/v1/documentary/1789": {
+      "get": {
+        "operationId": "list_historical_documents",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "maximum": 10000,
+              "minimum": 1,
+              "title": "Page",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 50,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentaryCatalogue"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Catalogue",
+        "tags": [
+          "Documentary"
+        ]
+      }
+    },
+    "/api/v1/documentary/1789/{release}/documents/{document_id}": {
+      "get": {
+        "operationId": "read_historical_document",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "release",
+            "required": true,
+            "schema": {
+              "title": "Release",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "title": "Document Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "unit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Unit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentaryReading"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Read Document",
+        "tags": [
+          "Documentary"
+        ]
+      }
+    },
     "/api/v1/forms": {
       "get": {
         "description": "Ordre stable par identifiant. Une liste vide reste une réponse 200.",
@@ -2649,7 +3324,7 @@
     },
     "/api/v1/search": {
       "get": {
-        "description": "Sans question_id : recherche hybride existante. Avec question_id : plein texte H1 français, sans encodage, recherche vectorielle ni fusion RRF. La fenêtre est bornée par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.",
+        "description": "La voie multicorpus est activée explicitement par la configuration. Elle conserve un encodage unique, deux classements globaux et une seule RRF documentaire. Par défaut, tous les corpus publiés et disponibles sont sélectionnés ; les aperçus non publiés nécessitent l'autorisation locale dédiée. Sans activation, H1 reste la référence. Avec question_id, la recherche lexicale H1 par question reste inchangée. Les curseurs parcourent une fenêtre bornée pendant dix minutes, liée à la requête, au corpus et aux permissions, sans recalcul du classement.",
         "operationId": "search_public_hybrid",
         "parameters": [
           {
@@ -2711,6 +3386,21 @@
                 }
               ],
               "title": "Question Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "corpus",
+            "required": false,
+            "schema": {
+              "default": "tous",
+              "enum": [
+                "tous",
+                "2019",
+                "1789"
+              ],
+              "title": "Corpus",
+              "type": "string"
             }
           }
         ],
@@ -2776,7 +3466,7 @@
             "description": "Gateway Timeout"
           }
         },
-        "summary": "Recherche de réponses : hybride globale, lexicale H1 par question",
+        "summary": "Recherche principale : réponses et documents des corpus disponibles",
         "tags": [
           "Hybrid search"
         ]

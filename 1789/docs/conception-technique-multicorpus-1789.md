@@ -1,6 +1,6 @@
 # Conception technique — multicorpus et intégration de 1789
 
-Date initiale : 6 novembre 2026. Mise à jour : 7 novembre 2026. Orientation validée ; phases 1, 2 et 3 réalisées en laboratoire local. Interface publique et publication non autorisées.
+Date initiale : 6 novembre 2026. Mise à jour : 7 novembre 2026. Orientation validée ; phases 1, 2 et 3 réalisées, phase 4 intégrée dans l’application locale. Déploiement de production et publication non autorisés.
 
 Ce document complète l’[audit architectural](audit-architecture-multicorpus-1789.md). Il décrit des structures et contrats futurs : aucun schéma, import, embedding, exclusion ou changement applicatif n’est appliqué par sa rédaction.
 
@@ -15,7 +15,7 @@ Un seul moteur principal réunira leurs **adaptateurs de recherche**, avec deux 
 
 La consultation conserve deux expériences autonomes : catalogue/métadonnées/lecture intégrale/navigation documentaire et questionnaires/questions/contributions/réponses. L’accueil « Parcourir » et la recherche commune ne fusionnent pas leurs modèles métier.
 
-L’autorisation initiale portait sur la phase 1 uniquement. Une mission distincte a ensuite autorisé et réalisé la phase 2 : recherche historique et laboratoire local, sans API publique, frontend public ni activation. Voir le [rapport de phase 2](rapport-phase2-recherche-1789.md). Une mission distincte a ensuite autorisé la phase 3 en laboratoire ; voir le [rapport multicorpus](rapport-phase3-recherche-multicorpus.md). La phase 4 publique et la publication restent à autoriser.
+L’autorisation initiale portait sur la phase 1 uniquement. Une mission distincte a ensuite autorisé et réalisé la phase 2 : recherche historique et laboratoire local, sans API publique, frontend public ni activation. Voir le [rapport de phase 2](rapport-phase2-recherche-1789.md). Une mission distincte a ensuite autorisé la phase 3 en laboratoire ; voir le [rapport multicorpus](rapport-phase3-recherche-multicorpus.md). L’implémentation de la phase 4 dans l’application locale est autorisée et réalisée. Son déploiement public et la publication historique restent à autoriser.
 
 ## 1. Décisions acquises et périmètre
 
@@ -442,3 +442,7 @@ La recherche autonome historique est décrite dans le [rapport mesuré de phase 
 ## Phase 3 effectivement livrée
 
 Le [rapport multicorpus](rapport-phase3-recherche-multicorpus.md) décrit les deux adaptateurs, les statistiques et classements globaux, la RRF commune, les résultats comparés à H1 et les mesures sur les bases locales complètes. Le [laboratoire](../../multicorpus/README.md) est une voie indépendante ; H1 et toutes les protections publiques restent inchangés. Aucun schéma, index ou représentation n’a été ajouté aux bases de travail. La pertinence et l’autorisation de publication demandent encore une décision humaine avant la phase 4.
+
+## Phase 4 — Application locale intégrée
+
+Le [rapport de phase 4](rapport-phase4-integration-application.md) décrit le stockage documentaire intégré à `cahier_rag`, la recherche applicative contrôlée, les contrats typés, le filtre de corpus, le catalogue et le lecteur. Le [guide opératoire](../../docs/multicorpus-local-et-deploiement.md) précise sauvegarde, restauration, sécurité et retour H1. La publication reste une décision distincte ; les protections des données non publiées restent actives.

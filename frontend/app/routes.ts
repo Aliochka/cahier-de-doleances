@@ -7,6 +7,12 @@ if (process.env.FRONTEND_TEST_ROUTES === "1" && process.env.NETLIFY) {
 export default [
   index("routes/home.tsx"),
   route("recherche", "routes/search.tsx"),
+  route("parcourir", "routes/browse.tsx"),
+  route("parcourir/1789", "routes/historical-catalogue.tsx"),
+  route(
+    "parcourir/1789/:release/documents/:documentId",
+    "routes/historical-document.tsx",
+  ),
   route("enquetes", "routes/surveys.tsx"),
   route("authors/:authorId", "routes/author.tsx"),
   route(

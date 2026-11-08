@@ -33,6 +33,9 @@ WORKDIR /home/app
 COPY --from=dependencies /opt/venv /opt/venv
 COPY --from=dependencies --chown=app:app /build/rag /build/rag
 COPY --chown=app:app app ./app
+COPY --chown=app:app documentary ./documentary
+COPY --chown=app:app multicorpus ./multicorpus
+COPY --chown=app:app 1789/editorial/decisions.json ./1789/editorial/decisions.json
 COPY --chown=app:app migrations ./migrations
 COPY --chown=app:app alembic.ini .
 COPY --chown=app:app scripts/benchmark_public_search.py ./scripts/benchmark_public_search.py
