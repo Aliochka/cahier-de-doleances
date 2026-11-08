@@ -86,6 +86,9 @@ Thumbs.db
 !deploy/documentary/multicorpus-gavroche.disabled.json
 !deploy/documentary/backup-proof.example.json
 !deploy/documentary/publication-authorization.example.json
+!deploy/documentary/gavroche-nov02-baseline.json
+!deploy/documentary/gavroche-rollback-inventory.json
+!deploy/documentary/nov02-backup-proof.prepared.json
 
 # Search administration secrets, archives and benchmark outputs.
 /private/search/

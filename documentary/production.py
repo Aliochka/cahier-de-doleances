@@ -1,7 +1,8 @@
 """Opt-in documentary maintenance for the physically inventoried Gavroche cluster.
 
-Default is read-only. Import requires both --execute-import and a fresh operator
-attestation of FULL backups and isolated restoration. No publication command.
+Default is read-only. Import requires --execute-import and a full backup proof,
+or the specifically approved Nov 2 cold backup plus fresh checks and rollback
+assets preserved before deployment. No publication command.
 The original local/laboratory destination guards are unchanged.
 """
 
@@ -19,6 +20,7 @@ from sqlalchemy import create_engine, event, text
 from sqlalchemy.engine import make_url
 from sqlalchemy.pool import NullPool
 
+from .backup_exception import check_cold_exception
 from .local_application import LocalApplicationDestination, digest
 from .safety import UnsafeDestination
 
@@ -74,6 +76,15 @@ def check_backup_proof(proof, *, now=None):
     """
     now = now or datetime.now(timezone.utc)
     try:
+        if "exception" in proof:
+            if not (
+                proof["target"] == IDENTITY
+                and proof["application"] == APPLICATION_IDENTITY
+                and proof["operator"].strip()
+            ):
+                raise ValueError()
+            check_cold_exception(proof, now=now)
+            return
         completed = datetime.fromisoformat(proof["restore_completed_at"])
         backup_completed = datetime.fromisoformat(proof["backup_completed_at"])
         if not (
@@ -110,7 +121,7 @@ def check_backup_proof(proof, *, now=None):
                 raise ValueError()
     except (KeyError, TypeError, ValueError, AttributeError):
         raise UnsafeDestination(
-            "Fresh FULL backup and isolated-restore attestation required"
+            "Fresh FULL backup proof or complete approved Nov 2 exception required"
         ) from None
 
 

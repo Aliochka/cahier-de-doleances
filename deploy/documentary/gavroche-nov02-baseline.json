@@ -1,0 +1,2462 @@
+{
+  "cahier_doleances": {
+    "identity": [
+      {
+        "sid": "7695026423032606758",
+        "version": "17.11 (Debian 17.11-1.pgdg13+2)",
+        "db": "cahier_doleances",
+        "databases": [
+          {
+            "name": "postgres",
+            "oid": "5",
+            "collate": "en_US.utf8",
+            "ctype": "en_US.utf8"
+          },
+          {
+            "name": "cahier_doleances",
+            "oid": "16384",
+            "collate": "en_US.utf8",
+            "ctype": "en_US.utf8"
+          },
+          {
+            "name": "cahier_search",
+            "oid": "634726",
+            "collate": "fr_FR.UTF-8",
+            "ctype": "fr_FR.UTF-8"
+          }
+        ],
+        "extensions": [
+          {
+            "name": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "name": "unaccent",
+            "version": "1.1"
+          },
+          {
+            "name": "pg_trgm",
+            "version": "1.6"
+          }
+        ],
+        "french_probe": "'agen':6 'agricultur':5 'cur':4 'général':2 'privileg':3 'état':1"
+      }
+    ],
+    "indexes": [
+      {
+        "schema": "public",
+        "name": "alembic_version_pkc",
+        "node": "25507",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX alembic_version_pkc ON public.alembic_version USING btree (version_num)"
+      },
+      {
+        "schema": "public",
+        "name": "answer_options_pkey",
+        "node": "37425",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX answer_options_pkey ON public.answer_options USING btree (answer_id, option_id)"
+      },
+      {
+        "schema": "public",
+        "name": "answer_valid_stats_pkey",
+        "node": "25517",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX answer_valid_stats_pkey ON public.answer_valid_stats USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "answers_pkey",
+        "node": "626498",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX answers_pkey ON public.answers USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "authors_pkey",
+        "node": "18929",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX authors_pkey ON public.authors USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "bookmarks_pkey",
+        "node": "26101",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX bookmarks_pkey ON public.bookmarks USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "contribution_topics_pkey",
+        "node": "25604",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX contribution_topics_pkey ON public.contribution_topics USING btree (contribution_id, topic_id)"
+      },
+      {
+        "schema": "public",
+        "name": "contributions_pkey",
+        "node": "557352",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX contributions_pkey ON public.contributions USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "forms_pkey",
+        "node": "25471",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX forms_pkey ON public.forms USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "gdn_import_runs_pkey",
+        "node": "25381",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX gdn_import_runs_pkey ON public.gdn_import_runs USING btree (source_key)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answer_options_option_id",
+        "node": "55857",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answer_options_option_id ON public.answer_options USING btree (option_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answer_options_question_id",
+        "node": "55858",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answer_options_question_id ON public.answer_options USING btree (option_id, answer_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_contribution_id",
+        "node": "626500",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_contribution_id ON public.answers USING btree (contribution_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_fts_length_id_critical",
+        "node": "626503",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_fts_length_id_critical ON public.answers USING gin (text_tsv) WHERE (char_length(btrim(text)) >= 60)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_id_desc",
+        "node": "626501",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_id_desc ON public.answers USING btree (id DESC)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_id_desc_long_text",
+        "node": "626502",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_id_desc_long_text ON public.answers USING btree (id DESC) WHERE (char_length(btrim(text)) >= 60)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_nonempty_recent",
+        "node": "626504",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_nonempty_recent ON public.answers USING btree (id DESC) WHERE ((text IS NOT NULL) AND (char_length(btrim(text)) >= 60))"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_qid_id_desc_nonempty",
+        "node": "626505",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_qid_id_desc_nonempty ON public.answers USING btree (question_id, id DESC) WHERE ((text IS NOT NULL) AND (char_length(btrim(text)) >= 60))"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_question_id",
+        "node": "626506",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_question_id ON public.answers USING btree (question_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_question_id_multi",
+        "node": "626507",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_question_id_multi ON public.answers USING btree (question_id) WHERE (text ~~ '%|%'::text)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_answers_text_tsv",
+        "node": "626508",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_answers_text_tsv ON public.answers USING gin (text_tsv)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_bookmarks_user_type",
+        "node": "26108",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_bookmarks_user_type ON public.bookmarks USING btree (user_id, page_type)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_contrib_author_id",
+        "node": "557938",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_contrib_author_id ON public.contributions USING btree (author_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_contrib_form_id",
+        "node": "557939",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_contrib_form_id ON public.contributions USING btree (form_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_contributions_author_submitted",
+        "node": "557940",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_contributions_author_submitted ON public.contributions USING btree (author_id, submitted_at)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_ct_topic_id",
+        "node": "25610",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_ct_topic_id ON public.contribution_topics USING btree (topic_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_options_question_id",
+        "node": "25419",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_options_question_id ON public.options USING btree (question_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_questions_form_id",
+        "node": "25087",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_questions_form_id ON public.questions USING btree (form_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_questions_prompt_tsv",
+        "node": "25264",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_questions_prompt_tsv ON public.questions USING gin (prompt_tsv)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_questions_type",
+        "node": "25286",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_questions_type ON public.questions USING btree (type)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_topic_aliases_topic_id",
+        "node": "25568",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_topic_aliases_topic_id ON public.topic_aliases USING btree (topic_id)"
+      },
+      {
+        "schema": "public",
+        "name": "idx_topics_parent_id",
+        "node": "25532",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX idx_topics_parent_id ON public.topics USING btree (parent_id)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_answers_contribution_question",
+        "node": "626509",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_answers_contribution_question ON public.answers USING btree (contribution_id, question_id)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_answers_question",
+        "node": "626510",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_answers_question ON public.answers USING btree (question_id)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_bookmarks_user_id",
+        "node": "26112",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_bookmarks_user_id ON public.bookmarks USING btree (user_id)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_contributions_form_submit_id",
+        "node": "558293",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_contributions_form_submit_id ON public.contributions USING btree (form_id, submitted_at, id)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_forms_name_unaccent_trgm",
+        "node": "25480",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_forms_name_unaccent_trgm ON public.forms USING gin (name_unaccent gin_trgm_ops)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_forms_tsv_name",
+        "node": "25493",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_forms_tsv_name ON public.forms USING gin (((tsv_name)::tsvector))"
+      },
+      {
+        "schema": "public",
+        "name": "ix_question_stats_question",
+        "node": "25451",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_question_stats_question ON public.question_stats USING btree (question_id)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_questions_form_position",
+        "node": "25294",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_questions_form_position ON public.questions USING btree (form_id, \"position\")"
+      },
+      {
+        "schema": "public",
+        "name": "ix_questions_prompt_unaccent_trgm",
+        "node": "25301",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_questions_prompt_unaccent_trgm ON public.questions USING gin (prompt_unaccent gin_trgm_ops)"
+      },
+      {
+        "schema": "public",
+        "name": "ix_questions_tsv_prompt",
+        "node": "25337",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX ix_questions_tsv_prompt ON public.questions USING gin (((tsv_prompt)::tsvector))"
+      },
+      {
+        "schema": "public",
+        "name": "ix_users_email",
+        "node": "25644",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX ix_users_email ON public.users USING btree (email)"
+      },
+      {
+        "schema": "public",
+        "name": "options_pkey",
+        "node": "25423",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX options_pkey ON public.options USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "question_statistics_form",
+        "node": "626562",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX question_statistics_form ON public.question_statistics_snapshots USING btree (generation_id, form_id)"
+      },
+      {
+        "schema": "public",
+        "name": "question_statistics_snapshots_pkey",
+        "node": "626555",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX question_statistics_snapshots_pkey ON public.question_statistics_snapshots USING btree (generation_id, question_id)"
+      },
+      {
+        "schema": "public",
+        "name": "question_stats_pkey",
+        "node": "25455",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX question_stats_pkey ON public.question_stats USING btree (question_id)"
+      },
+      {
+        "schema": "public",
+        "name": "questions_pkey",
+        "node": "25352",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX questions_pkey ON public.questions USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "statistics_generations_pkey",
+        "node": "626547",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX statistics_generations_pkey ON public.statistics_generations USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "statistics_source_pkey",
+        "node": "626537",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX statistics_source_pkey ON public.statistics_source USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "topic_aliases_pkey",
+        "node": "25574",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX topic_aliases_pkey ON public.topic_aliases USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "topics_pkey",
+        "node": "25538",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX topics_pkey ON public.topics USING btree (id)"
+      },
+      {
+        "schema": "public",
+        "name": "unique_user_bookmark",
+        "node": "26117",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX unique_user_bookmark ON public.bookmarks USING btree (user_id, page_type, page_id)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_answers_cid_qid_pos",
+        "node": "626511",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_answers_cid_qid_pos ON public.answers USING btree (contribution_id, question_id, \"position\")"
+      },
+      {
+        "schema": "public",
+        "name": "uq_authors_email_hash",
+        "node": "19761",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_authors_email_hash ON public.authors USING btree (email_hash)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_authors_source_author_id",
+        "node": "20129",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_authors_source_author_id ON public.authors USING btree (source_author_id)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_contributions_raw_hash",
+        "node": "558688",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_contributions_raw_hash ON public.contributions USING btree (raw_hash)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_contributions_source_id",
+        "node": "560820",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_contributions_source_id ON public.contributions USING btree (source_contribution_id)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_options_qid_code",
+        "node": "25429",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_options_qid_code ON public.options USING btree (question_id, code)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_questions_form_code",
+        "node": "25359",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_questions_form_code ON public.questions USING btree (form_id, question_code)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_topic_aliases_tid_alias",
+        "node": "25583",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_topic_aliases_tid_alias ON public.topic_aliases USING btree (topic_id, alias)"
+      },
+      {
+        "schema": "public",
+        "name": "uq_topics_slug",
+        "node": "25544",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX uq_topics_slug ON public.topics USING btree (slug)"
+      },
+      {
+        "schema": "public",
+        "name": "users_pkey",
+        "node": "25649",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)"
+      }
+    ],
+    "relations": [
+      {
+        "schema": "public",
+        "name": "alembic_version",
+        "estimated_rows": 1,
+        "pages": 1,
+        "node": "25501"
+      },
+      {
+        "schema": "public",
+        "name": "answer_options",
+        "estimated_rows": 11684595.0,
+        "pages": 63200,
+        "node": "16590"
+      },
+      {
+        "schema": "public",
+        "name": "answer_valid_stats",
+        "estimated_rows": 1,
+        "pages": 1,
+        "node": "25512"
+      },
+      {
+        "schema": "public",
+        "name": "answers",
+        "estimated_rows": 15816633.0,
+        "pages": 635372,
+        "node": "16593"
+      },
+      {
+        "schema": "public",
+        "name": "authors",
+        "estimated_rows": 496395,
+        "pages": 6680,
+        "node": "16596"
+      },
+      {
+        "schema": "public",
+        "name": "bookmarks",
+        "estimated_rows": -1,
+        "pages": 0,
+        "node": "26094"
+      },
+      {
+        "schema": "public",
+        "name": "contribution_topics",
+        "estimated_rows": -1,
+        "pages": 0,
+        "node": "25599"
+      },
+      {
+        "schema": "public",
+        "name": "contributions",
+        "estimated_rows": 1591315.0,
+        "pages": 279872,
+        "node": "16589"
+      },
+      {
+        "schema": "public",
+        "name": "forms",
+        "estimated_rows": 7,
+        "pages": 1,
+        "node": "25462"
+      },
+      {
+        "schema": "public",
+        "name": "gdn_import_runs",
+        "estimated_rows": 7,
+        "pages": 1,
+        "node": "25372"
+      },
+      {
+        "schema": "public",
+        "name": "options",
+        "estimated_rows": 123,
+        "pages": 2,
+        "node": "25388"
+      },
+      {
+        "schema": "public",
+        "name": "question_statistics_snapshots",
+        "estimated_rows": 120,
+        "pages": 7,
+        "node": "626549"
+      },
+      {
+        "schema": "public",
+        "name": "question_stats",
+        "estimated_rows": 120,
+        "pages": 1,
+        "node": "25437"
+      },
+      {
+        "schema": "public",
+        "name": "questions",
+        "estimated_rows": 120,
+        "pages": 24,
+        "node": "25024"
+      },
+      {
+        "schema": "public",
+        "name": "statistics_generations",
+        "estimated_rows": -1,
+        "pages": 0,
+        "node": "626539"
+      },
+      {
+        "schema": "public",
+        "name": "statistics_source",
+        "estimated_rows": -1,
+        "pages": 0,
+        "node": "626532"
+      },
+      {
+        "schema": "public",
+        "name": "topic_aliases",
+        "estimated_rows": -1,
+        "pages": 0,
+        "node": "25558"
+      },
+      {
+        "schema": "public",
+        "name": "topics",
+        "estimated_rows": -1,
+        "pages": 0,
+        "node": "25523"
+      },
+      {
+        "schema": "public",
+        "name": "users",
+        "estimated_rows": -1,
+        "pages": 0,
+        "node": "25624"
+      }
+    ],
+    "columns": [
+      {
+        "schema": "public",
+        "table": "alembic_version",
+        "column": "version_num",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "answer_options",
+        "column": "answer_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "answer_options",
+        "column": "option_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "answer_valid_stats",
+        "column": "id",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "answer_valid_stats",
+        "column": "valid_count",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "answers",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "answers",
+        "column": "contribution_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "answers",
+        "column": "question_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "answers",
+        "column": "position",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "answers",
+        "column": "text",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "answers",
+        "column": "value_json",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "answers",
+        "column": "text_tsv",
+        "type": "tsvector"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "source_author_id",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "name",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "email_hash",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "zipcode",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "city",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "age_range",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "gender",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "user_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "authors",
+        "column": "is_anonymous",
+        "type": "boolean"
+      },
+      {
+        "schema": "public",
+        "table": "bookmarks",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "bookmarks",
+        "column": "user_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "bookmarks",
+        "column": "page_type",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "bookmarks",
+        "column": "page_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "bookmarks",
+        "column": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "schema": "public",
+        "table": "contribution_topics",
+        "column": "contribution_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "contribution_topics",
+        "column": "topic_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "source_contribution_id",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "author_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "form_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "source",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "theme_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "submitted_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "title",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "import_batch_id",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "raw_hash",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "contributions",
+        "column": "raw_json",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "forms",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "forms",
+        "column": "name",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "forms",
+        "column": "version",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "forms",
+        "column": "source",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "forms",
+        "column": "name_unaccent",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "forms",
+        "column": "tsv_name",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "gdn_import_runs",
+        "column": "source_key",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "gdn_import_runs",
+        "column": "file_sha256",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "gdn_import_runs",
+        "column": "mapping_sha256",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "gdn_import_runs",
+        "column": "rows_processed",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "gdn_import_runs",
+        "column": "completed",
+        "type": "boolean"
+      },
+      {
+        "schema": "public",
+        "table": "gdn_import_runs",
+        "column": "stats",
+        "type": "jsonb"
+      },
+      {
+        "schema": "public",
+        "table": "gdn_import_runs",
+        "column": "updated_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "schema": "public",
+        "table": "options",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "options",
+        "column": "question_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "options",
+        "column": "code",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "options",
+        "column": "label",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "options",
+        "column": "position",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "options",
+        "column": "meta_json",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "question_statistics_snapshots",
+        "column": "generation_id",
+        "type": "uuid"
+      },
+      {
+        "schema": "public",
+        "table": "question_statistics_snapshots",
+        "column": "question_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "question_statistics_snapshots",
+        "column": "form_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "question_statistics_snapshots",
+        "column": "answers_count",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "question_statistics_snapshots",
+        "column": "statistics",
+        "type": "jsonb"
+      },
+      {
+        "schema": "public",
+        "table": "question_statistics_snapshots",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "question_stats",
+        "column": "question_id",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "question_stats",
+        "column": "answers_count",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "form_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "question_code",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "prompt",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "section",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "position",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "type",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "options_json",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "prompt_unaccent",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "prompt_tsv",
+        "type": "tsvector"
+      },
+      {
+        "schema": "public",
+        "table": "questions",
+        "column": "tsv_prompt",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "id",
+        "type": "uuid"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "corpus_id",
+        "type": "uuid"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "source_revision",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "method_version",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "calculated_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "question_count",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "form_count",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_generations",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_source",
+        "column": "id",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_source",
+        "column": "corpus_id",
+        "type": "uuid"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_source",
+        "column": "revision",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "statistics_source",
+        "column": "published_generation",
+        "type": "uuid"
+      },
+      {
+        "schema": "public",
+        "table": "topic_aliases",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "topic_aliases",
+        "column": "topic_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "topic_aliases",
+        "column": "alias",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "topics",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "topics",
+        "column": "slug",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "topics",
+        "column": "label",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "topics",
+        "column": "parent_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "topics",
+        "column": "depth",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "topics",
+        "column": "sort_order",
+        "type": "integer"
+      },
+      {
+        "schema": "public",
+        "table": "topics",
+        "column": "meta_json",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "id",
+        "type": "bigint"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "email",
+        "type": "character varying"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "is_active",
+        "type": "boolean"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "last_login",
+        "type": "timestamp with time zone"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "nationalities",
+        "type": "text"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "profile_completed",
+        "type": "boolean"
+      },
+      {
+        "schema": "public",
+        "table": "users",
+        "column": "author_id",
+        "type": "bigint"
+      }
+    ],
+    "public.alembic_version": [
+      {
+        "version_num": "forms_statistics_v1"
+      }
+    ],
+    "forms_digest": [
+      {
+        "count": 7,
+        "md5": "d2314d784843d94513a2546f40edd811"
+      }
+    ],
+    "questions_digest": [
+      {
+        "count": 120,
+        "md5": "aebd9801d4cc16adb668ead0fc30f890"
+      }
+    ],
+    "options_digest": [
+      {
+        "count": 123,
+        "md5": "08c70e4f977c19665cc363dd0fc979b2"
+      }
+    ],
+    "question_stats_digest": [
+      {
+        "count": 120,
+        "md5": "ffb269b760d98911cd8f42ec88df3dc3"
+      }
+    ],
+    "alembic_version_digest": [
+      {
+        "count": 1,
+        "md5": "2e7d91b108fdcfc7f69d25900682a6d6"
+      }
+    ],
+    "answers_last_id": [
+      {
+        "id": 15915250
+      }
+    ],
+    "contributions_last_id": [
+      {
+        "id": 1599306,
+        "submitted_at": "2019-02-16T16:31:59"
+      }
+    ],
+    "authors_last_id": [
+      {
+        "id": 1549787
+      }
+    ],
+    "users_last_id": [
+      {
+        "id": 1,
+        "created_at": "2026-10-11T16:30:46.316366+00:00",
+        "last_login": null
+      }
+    ],
+    "bookmarks_last_id": [],
+    "users_summary": [
+      {
+        "count": 1,
+        "safe_fields_md5": "c125a7cefe2184bda4cda9df51bb05cb"
+      }
+    ],
+    "bookmarks_summary": [
+      {
+        "count": 0,
+        "safe_fields_md5": null
+      }
+    ]
+  },
+  "cahier_search": {
+    "identity": [
+      {
+        "sid": "7695026423032606758",
+        "version": "17.11 (Debian 17.11-1.pgdg13+2)",
+        "db": "cahier_search",
+        "databases": [
+          {
+            "name": "postgres",
+            "oid": "5",
+            "collate": "en_US.utf8",
+            "ctype": "en_US.utf8"
+          },
+          {
+            "name": "cahier_doleances",
+            "oid": "16384",
+            "collate": "en_US.utf8",
+            "ctype": "en_US.utf8"
+          },
+          {
+            "name": "cahier_search",
+            "oid": "634726",
+            "collate": "fr_FR.UTF-8",
+            "ctype": "fr_FR.UTF-8"
+          }
+        ],
+        "extensions": [
+          {
+            "name": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "name": "vector",
+            "version": "0.8.7"
+          }
+        ],
+        "french_probe": "'agen':6 'agricultur':5 'cur':4 'général':2 'privileg':3 'état':1"
+      }
+    ],
+    "indexes": [
+      {
+        "schema": "public",
+        "name": "rag_alembic_version_pkc",
+        "node": "6771842",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX rag_alembic_version_pkc ON public.rag_alembic_version USING btree (version_num)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_full_pkey",
+        "node": "6771870",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX documents_full_pkey ON rag_full.documents_full USING btree (space_id, document_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_full_search_vector_idx",
+        "node": "6771906",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX documents_full_search_vector_idx ON rag_full.documents_full USING gin (search_vector)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_full_space_id_contribution_id_idx",
+        "node": "6771908",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX documents_full_space_id_contribution_id_idx ON rag_full.documents_full USING btree (space_id, contribution_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_full_space_id_ordinal_key",
+        "node": "6771874",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX documents_full_space_id_ordinal_key ON rag_full.documents_full USING btree (space_id, ordinal)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_full_space_id_questionnaire_id_unit_type_idx",
+        "node": "6771910",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX documents_full_space_id_questionnaire_id_unit_type_idx ON rag_full.documents_full USING btree (space_id, questionnaire_id, unit_type)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_pilot100k_pkey",
+        "node": "6771876",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX documents_pilot100k_pkey ON rag_full.documents_pilot100k USING btree (space_id, document_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_pilot100k_search_vector_idx",
+        "node": "6771911",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX documents_pilot100k_search_vector_idx ON rag_full.documents_pilot100k USING gin (search_vector)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_pilot100k_space_id_contribution_id_idx",
+        "node": "6771912",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX documents_pilot100k_space_id_contribution_id_idx ON rag_full.documents_pilot100k USING btree (space_id, contribution_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_pilot100k_space_id_ordinal_key",
+        "node": "6771878",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX documents_pilot100k_space_id_ordinal_key ON rag_full.documents_pilot100k USING btree (space_id, ordinal)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_pilot100k_space_id_questionnaire_id_unit_type_idx",
+        "node": "6771913",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX documents_pilot100k_space_id_questionnaire_id_unit_type_idx ON rag_full.documents_pilot100k USING btree (space_id, questionnaire_id, unit_type)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_pkey",
+        "node": "0",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX documents_pkey ON ONLY rag_full.documents USING btree (space_id, document_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_space_id_ordinal_key",
+        "node": "0",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX documents_space_id_ordinal_key ON ONLY rag_full.documents USING btree (space_id, ordinal)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "full_documents_form",
+        "node": "0",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX full_documents_form ON ONLY rag_full.documents USING btree (space_id, questionnaire_id, unit_type)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "full_documents_parent",
+        "node": "0",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX full_documents_parent ON ONLY rag_full.documents USING btree (space_id, contribution_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "full_lexical_gin",
+        "node": "0",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX full_lexical_gin ON ONLY rag_full.documents USING gin (search_vector)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_full_hnsw",
+        "node": "6771914",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX segments_full_hnsw ON rag_full.segments_full USING hnsw (embedding vector_cosine_ops) WITH (m='16', ef_construction='64')"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_full_pkey",
+        "node": "6771882",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX segments_full_pkey ON rag_full.segments_full USING btree (space_id, document_id, segment_index)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_full_space_id_representation_id_key",
+        "node": "6771886",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX segments_full_space_id_representation_id_key ON rag_full.segments_full USING btree (space_id, representation_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_pilot100k_hnsw",
+        "node": "6771915",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE INDEX segments_pilot100k_hnsw ON rag_full.segments_pilot100k USING hnsw (embedding vector_cosine_ops) WITH (m='16', ef_construction='64')"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_pilot100k_pkey",
+        "node": "6771888",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX segments_pilot100k_pkey ON rag_full.segments_pilot100k USING btree (space_id, document_id, segment_index)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_pilot100k_space_id_representation_id_key",
+        "node": "6771890",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX segments_pilot100k_space_id_representation_id_key ON rag_full.segments_pilot100k USING btree (space_id, representation_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_pkey",
+        "node": "0",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX segments_pkey ON ONLY rag_full.segments USING btree (space_id, document_id, segment_index)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_space_id_representation_id_key",
+        "node": "0",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX segments_space_id_representation_id_key ON ONLY rag_full.segments USING btree (space_id, representation_id)"
+      },
+      {
+        "schema": "rag_full",
+        "name": "spaces_pkey",
+        "node": "6771892",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX spaces_pkey ON rag_full.spaces USING btree (space_id)"
+      },
+      {
+        "schema": "rag_tuning",
+        "name": "statistics_pkey",
+        "node": "6771894",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX statistics_pkey ON rag_tuning.statistics USING btree (space_id)"
+      },
+      {
+        "schema": "rag_tuning",
+        "name": "term_statistics_pkey",
+        "node": "6771896",
+        "valid": true,
+        "ready": true,
+        "definition": "CREATE UNIQUE INDEX term_statistics_pkey ON rag_tuning.term_statistics USING btree (space_id, term)"
+      }
+    ],
+    "relations": [
+      {
+        "schema": "public",
+        "name": "rag_alembic_version",
+        "estimated_rows": 1,
+        "pages": 1,
+        "node": "635058"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents",
+        "estimated_rows": 5272928.0,
+        "pages": -1,
+        "node": "0"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_full",
+        "estimated_rows": 5174845.0,
+        "pages": 996536,
+        "node": "635153"
+      },
+      {
+        "schema": "rag_full",
+        "name": "documents_pilot100k",
+        "estimated_rows": 100000,
+        "pages": 19312,
+        "node": "635164"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments",
+        "estimated_rows": 5287224.0,
+        "pages": -1,
+        "node": "0"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_full",
+        "estimated_rows": 5187131.0,
+        "pages": 207488,
+        "node": "635183"
+      },
+      {
+        "schema": "rag_full",
+        "name": "segments_pilot100k",
+        "estimated_rows": 100258,
+        "pages": 4032,
+        "node": "635193"
+      },
+      {
+        "schema": "rag_full",
+        "name": "spaces",
+        "estimated_rows": 2,
+        "pages": 1,
+        "node": "635203"
+      },
+      {
+        "schema": "rag_tuning",
+        "name": "statistics",
+        "estimated_rows": 1,
+        "pages": 1,
+        "node": "635218"
+      },
+      {
+        "schema": "rag_tuning",
+        "name": "term_statistics",
+        "estimated_rows": 314656,
+        "pages": 2240,
+        "node": "635226"
+      }
+    ],
+    "columns": [
+      {
+        "schema": "public",
+        "table": "rag_alembic_version",
+        "column": "version_num",
+        "type": "character varying"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "document_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "ordinal",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "answer_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "contribution_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "questionnaire_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "unit_type",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "record",
+        "type": "jsonb"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "search_vector",
+        "type": "tsvector"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents",
+        "column": "historical_split",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "document_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "ordinal",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "answer_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "contribution_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "questionnaire_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "unit_type",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "record",
+        "type": "jsonb"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "search_vector",
+        "type": "tsvector"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_full",
+        "column": "historical_split",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "document_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "ordinal",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "answer_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "contribution_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "questionnaire_id",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "unit_type",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "record",
+        "type": "jsonb"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "search_vector",
+        "type": "tsvector"
+      },
+      {
+        "schema": "rag_full",
+        "table": "documents_pilot100k",
+        "column": "historical_split",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "document_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "segment_index",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "representation_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "start_offset",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "end_offset",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "tokens",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "vector_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments",
+        "column": "embedding",
+        "type": "USER-DEFINED"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "document_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "segment_index",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "representation_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "start_offset",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "end_offset",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "tokens",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "vector_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_full",
+        "column": "embedding",
+        "type": "USER-DEFINED"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "document_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "segment_index",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "representation_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "start_offset",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "end_offset",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "tokens",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "content_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "vector_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "segments_pilot100k",
+        "column": "embedding",
+        "type": "USER-DEFINED"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "manifest",
+        "type": "jsonb"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "recipe_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "expected_units",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "documents",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "segments",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "cursor",
+        "type": "jsonb"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "vector_cursor",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "chain_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "extraction_complete",
+        "type": "boolean"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "vectors_complete",
+        "type": "boolean"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "verified",
+        "type": "boolean"
+      },
+      {
+        "schema": "rag_full",
+        "table": "spaces",
+        "column": "updated_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "statistics",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "statistics",
+        "column": "corpus_hash",
+        "type": "text"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "statistics",
+        "column": "documents",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "statistics",
+        "column": "lexemes",
+        "type": "bigint"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "statistics",
+        "column": "version",
+        "type": "integer"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "statistics",
+        "column": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "term_statistics",
+        "column": "space_id",
+        "type": "text"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "term_statistics",
+        "column": "term",
+        "type": "text"
+      },
+      {
+        "schema": "rag_tuning",
+        "table": "term_statistics",
+        "column": "documents",
+        "type": "bigint"
+      }
+    ],
+    "public.rag_alembic_version": [
+      {
+        "version_num": "rag_0007"
+      }
+    ],
+    "rag_full.spaces": [
+      {
+        "cursor": {
+          "answer_id": "7176701",
+          "unit_index": 0
+        },
+        "manifest": {
+          "model": {
+            "key": "bge-m3",
+            "source": "https://huggingface.co/BAAI/bge-m3/tree/5617a9f61b028005a4858fdac845db406aefb181",
+            "license": "MIT",
+            "pooling": "cls",
+            "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "dimension": 1024,
+            "max_tokens": 8192,
+            "parameters": 568000000,
+            "repository": "BAAI/bge-m3",
+            "weight_file": "pytorch_model.bin",
+            "query_prefix": "",
+            "document_prefix": ""
+          },
+          "space": "pilot100k",
+          "corpus": "gdn-2019",
+          "reader": "gdn-v1",
+          "tokens": {
+            "budget": 1024,
+            "offsets": "unicode-codepoints",
+            "overlap": 128,
+            "version": 1,
+            "strategy": "B"
+          },
+          "adapter": "full-keyset-v1",
+          "storage": "float32",
+          "version": 1,
+          "normalize": true,
+          "precision": "bfloat16",
+          "selection": "hashtextextended(parent,26) mod 50 = 0; first 100000 usable units",
+          "audit_source": {
+            "cluster_id": "7697259424657850634",
+            "database_oid": 16385,
+            "database_name": "cahier_doleances_local",
+            "schema_revision": "remove_runtime_caches"
+          },
+          "max_answer_id": "15915250",
+          "selection_hash": "39fcc82862b72cda1844dcdbfccc8fb9d24c012a92b654808fe9539a1d627817",
+          "contract_version": 1,
+          "historical_partitions": "RAG007 membership retained; other documents unassigned"
+        },
+        "segments": 100258,
+        "space_id": "pilot100k",
+        "verified": true,
+        "documents": 100000,
+        "chain_hash": "b7d55a4ffbdc53529fde0876f92c9186a6f68273d343fb2cda545d8a7bbe87c8",
+        "updated_at": "2026-10-19T15:47:18.588724+00:00",
+        "recipe_hash": "66c11e52b4458322ec8b12f7d449f7e461eb99ce3c7b3fa8012c2734fea2d2d6",
+        "vector_cursor": 100000,
+        "expected_units": 100000,
+        "vectors_complete": true,
+        "extraction_complete": true
+      },
+      {
+        "cursor": {
+          "answer_id": "7268702",
+          "unit_index": 0
+        },
+        "manifest": {
+          "model": {
+            "key": "bge-m3",
+            "source": "https://huggingface.co/BAAI/bge-m3/tree/5617a9f61b028005a4858fdac845db406aefb181",
+            "license": "MIT",
+            "pooling": "cls",
+            "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "dimension": 1024,
+            "max_tokens": 8192,
+            "parameters": 568000000,
+            "repository": "BAAI/bge-m3",
+            "weight_file": "pytorch_model.bin",
+            "query_prefix": "",
+            "document_prefix": ""
+          },
+          "space": "full",
+          "corpus": "gdn-2019",
+          "reader": "gdn-v1",
+          "tokens": {
+            "budget": 1024,
+            "offsets": "unicode-codepoints",
+            "overlap": 128,
+            "version": 1,
+            "strategy": "B"
+          },
+          "adapter": "full-keyset-v1",
+          "storage": "float32",
+          "version": 1,
+          "normalize": true,
+          "precision": "bfloat16",
+          "selection": "all usable units through audited max_answer_id",
+          "audit_source": {
+            "cluster_id": "7697259424657850634",
+            "database_oid": 16385,
+            "database_name": "cahier_doleances_local",
+            "schema_revision": "remove_runtime_caches"
+          },
+          "max_answer_id": "15915250",
+          "selection_hash": "39fcc82862b72cda1844dcdbfccc8fb9d24c012a92b654808fe9539a1d627817",
+          "contract_version": 1,
+          "historical_partitions": "RAG007 membership retained; other documents unassigned"
+        },
+        "segments": 5187190,
+        "space_id": "full",
+        "verified": true,
+        "documents": 5172356,
+        "chain_hash": "bf1bac7a6c9af63c1cb5d465cd4611310f77e7923b75ce5d9fc105afedbcf4d3",
+        "updated_at": "2026-10-19T18:51:42.336879+00:00",
+        "recipe_hash": "912c45857238fc60b0f2e0c1ebea4dabb73bbcdc973816ec5825edbd8e825d8a",
+        "vector_cursor": 5172356,
+        "expected_units": 5172356,
+        "vectors_complete": true,
+        "extraction_complete": true
+      }
+    ],
+    "rag_tuning.statistics": [
+      {
+        "lexemes": 314656,
+        "version": 1,
+        "space_id": "full",
+        "documents": 5172356,
+        "created_at": "2026-10-20T07:19:56.443188+00:00",
+        "corpus_hash": "bf1bac7a6c9af63c1cb5d465cd4611310f77e7923b75ce5d9fc105afedbcf4d3"
+      }
+    ],
+    "lexical_sample": [
+      {
+        "space_id": "full",
+        "term": "agricultur",
+        "documents": 33189
+      },
+      {
+        "space_id": "full",
+        "term": "éduc",
+        "documents": 149531
+      },
+      {
+        "space_id": "full",
+        "term": "fiscal",
+        "documents": 173028
+      },
+      {
+        "space_id": "full",
+        "term": "justic",
+        "documents": 58905
+      }
+    ],
+    "document_samples": [
+      {
+        "ordinal": 1,
+        "document_id": "text-unit:v1:gdn-2019:open_answer:11687:0",
+        "content_hash": "269a902088bcc3e7d516aaec763ba982683ff1b696f8c6feaa2e2ff8a78f2aa5",
+        "record_md5": "1757e2cfaa7f4f0c6f1a64c1849eb652"
+      },
+      {
+        "ordinal": 2586178,
+        "document_id": "text-unit:v1:gdn-2019:open_answer:3745849:0",
+        "content_hash": "eeb18b22616b241e738930e48c2661172e91d1eb79595100dbc16e52d441f581",
+        "record_md5": "81d418437a297a423cb079cf6a973620"
+      },
+      {
+        "ordinal": 5172356,
+        "document_id": "text-unit:v1:gdn-2019:open_answer:7268702:0",
+        "content_hash": "eb644c2e8acac405a9172558c9fa684037d4ba5e32549ea4ce595fb5596f29df",
+        "record_md5": "73d4b0c202f43eb6ad33ecf4759375d5"
+      }
+    ],
+    "segment_samples": [
+      {
+        "document_id": "text-unit:v1:gdn-2019:open_answer:11687:0",
+        "segment_index": 0,
+        "representation_id": "token-B:v1:e8e7071e21bed5ccf84a22d688fd5a604c82bf12219937c2a83e223ada47e40c",
+        "content_hash": "bb923e7f1b8774b87ce7f9667ac8c88b7d29b1c13e31bfed9e6f1ed0b4cab9d0",
+        "vector_hash": "2a82740127d34cf2e5a4aa8feee9d49d2f56fb53b93870f954663c60b2cd4d68",
+        "dimensions": 1024,
+        "stored_vector_md5": "9a5e6cb9c56444d05b1ca24a6b4c5cd6"
+      },
+      {
+        "document_id": "text-unit:v1:gdn-2019:open_answer:3745849:0",
+        "segment_index": 0,
+        "representation_id": "token-B:v1:872af7aa29eaf1d967644b1e393cd18dd742aa112b279a520c1d30719d3db40c",
+        "content_hash": "cfd966f326fcc60023f23b2ff72f1dbb846ab24dd8bed4204a9808ac1208a5e7",
+        "vector_hash": "76fe968ec1b5a9dd1e61dbc36a6d3da1e0f48dda0e6b5a9909bbc85ff6292a2e",
+        "dimensions": 1024,
+        "stored_vector_md5": "2a880e15fe9f444d808e555afa430690"
+      },
+      {
+        "document_id": "text-unit:v1:gdn-2019:open_answer:7268702:0",
+        "segment_index": 0,
+        "representation_id": "token-B:v1:8a7cd357a7226fe49456e638d002e89f553fcae374e93d0525a95df368683e7e",
+        "content_hash": "1de1fe6031b00899ccee2f15f2c3b81258fefa44dab508431b49b75887f28a2c",
+        "vector_hash": "7aea2f5c5e3342583f763a8fb9778988c2ce3f21a91574bea397d91cf3ca8d01",
+        "dimensions": 1024,
+        "stored_vector_md5": "cf0fd7039ae6e1123f929c97dce4b45a"
+      }
+    ]
+  }
+}

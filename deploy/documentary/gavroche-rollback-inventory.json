@@ -1,0 +1,29 @@
+{
+  "configuration": [
+    "/etc/fstab",
+    "/etc/systemd/system/docker.service.d",
+    "/srv/cahier-de-doleances/compose.yaml",
+    "/srv/cahier-de-doleances/.env",
+    "/srv/cahier-de-doleances-app/.env.deploy",
+    "/srv/cahier-de-doleances-app/compose.deploy.yml",
+    "/srv/cahier-de-doleances-app/compose.search.yml",
+    "/srv/cahier-de-doleances-app/Caddyfile",
+    "/srv/cahier-de-doleances-app/deploy/postgres",
+    "/srv/cahier-de-doleances-app/rag/search-reader.env",
+    "/srv/cahier-search/private",
+    "/data/postgresql/pg17/data/postgresql.conf",
+    "/data/postgresql/pg17/data/postgresql.auto.conf",
+    "/data/postgresql/pg17/data/pg_hba.conf",
+    "/data/postgresql/pg17/data/pg_ident.conf",
+    "/var/lib/docker/volumes/cahier-de-doleances-app_caddy-data/_data",
+    "/var/lib/docker/volumes/cahier-de-doleances-app_caddy-config/_data"
+  ],
+  "model": "/srv/cahier-search/models/bge-m3/5617a9f61b028005a4858fdac845db406aefb181",
+  "model_manifest_hash": "fe2f29e9b4699cfeb8ee4d9524c1e99df203cb4f144dbe4b463e28e65e3d1f6d",
+  "images": {
+    "cahier-de-doleances-app-app-1": "sha256:e0c26f229536597004ef299d6e8406fb087916d0511eabe8bd02e5543070c7cd",
+    "cahier-de-doleances-app-frontend-1": "sha256:73e31e5b321040259aae7769d5fc4eaebcd90c493ebdc85f1168d1313176a1eb",
+    "cahier-postgres": "sha256:30ee450c42fda0596abaf71066c1612c79a0aaa791e655e5e00ce2c1e33ab6cc",
+    "cahier-de-doleances-app-caddy-1": "sha256:834468128c7696cec0ceea6172f7d692daf645ae51983ca76e39da54a97c570d"
+  }
+}

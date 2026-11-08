@@ -6,6 +6,8 @@ Préparé le 8 novembre 2026. **À la rédaction initiale, aucune commande de sa
 
 ## Périmètre et espace
 
+**Décision ultérieure :** la réutilisation de la copie froide du 2 novembre est désormais autorisée. Voir les [prérequis finalisés](prerequis-deploiement-multicorpus-gavroche.md), l'exception ciblée et la nouvelle procédure de conservation des actifs. Les étapes de création d'une nouvelle sauvegarde physique ci-dessous restent une solution de secours, pas une étape à lancer pour ce déploiement. L'attestation préparée reste volontairement incomplète jusqu'à la conservation effective des configurations/images/modèle, non autorisée pendant la mission de préparation.
+
 La sauvegarde physique complète couvre **les deux bases**, leurs données, index HNSW, statistiques, rôles et WAL nécessaires à la récupération. Elle évite une reconstruction des index à la restauration. Elle ne remplace pas la sauvegarde des configurations Docker/Caddy et du modèle situé hors de PGDATA. Une sauvegarde de schéma ou un catalogue `pg_restore --list` ne prouve pas la sauvegarde/restauration des données.
 
 | Élément | Sauvegarde nécessaire |

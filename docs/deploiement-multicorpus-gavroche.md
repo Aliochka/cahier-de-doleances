@@ -4,6 +4,8 @@
 
 Ce document remplace les hypothèses « Wallace » pour cette opération. Les anciens guides restent des références historiques. La préparation repose sur le code local `79dfefe7d21b9035318c043bb194b5a770513ed7`, plus les fichiers de cette mission à revoir et versionner avant déploiement.
 
+**Mise à jour après validation de la sauvegarde du 2 novembre :** suivre les [prérequis finalisés](prerequis-deploiement-multicorpus-gavroche.md) pour la sauvegarde, l'attestation et la conservation des images/configurations. La copie physique existante a été restaurée avec succès et sa réutilisation est explicitement acceptée. Ne pas lancer une nouvelle sauvegarde physique ni refaire la restauration dans cette préparation. L'exception nominative ne dispense ni d'une comparaison récente ni de la conservation effective des autres actifs avant toute modification applicative.
+
 ## 1. Environnement réellement observé
 
 Accès : `ssh gavroche@192.168.1.185`, machine **Gavroche**, Linux amd64. Le compte nécessite sudo pour Docker ; aucun changement de groupe, de droits du socket ou de sudoers n'a été effectué. Les mots de passe ont été saisis par l'opérateur dans son terminal, pas transmis à l'agent.
@@ -71,7 +73,7 @@ Cela ne certifie pas l'absence d'une intégration externe GitHub/Netlify non vis
 | `deploy/documentary/publication-authorization.example.json` | Modèle d'autorisation volontairement **approved=false** |
 | `deploy/documentary/activate-1789.sql` | Promotion initiale séparée, transactionnelle, journalisée et limitée aux 1 224 candidats ; non exécutée en production |
 
-Les gardes locaux d'origine restent stricts. Le nouveau client de maintenance n'accepte que `cahier_search_maintenance@127.0.0.1:55495/cahier_search` via le tunnel SSH explicite, puis vérifie le cluster/OID/révision/vector à chaque transaction. Ses écritures s'exécutent sous **`cahier_documentary_owner`**, sans droit GDN, après preuve opérateur de sauvegarde complète/restauration de moins de 24 heures. Il interdit toute mutation SQL hors documentary et refuse, avant commit, une release prête/publiée, un pointeur actif ou des permissions documentaires publiques. L'import ne peut donc pas servir à publier.
+Les gardes locaux d'origine restent stricts. Le nouveau client de maintenance n'accepte que `cahier_search_maintenance@127.0.0.1:55495/cahier_search` via le tunnel SSH explicite, puis vérifie le cluster/OID/révision/vector à chaque transaction. Ses écritures s'exécutent sous **`cahier_documentary_owner`**, sans droit GDN, après preuve opérateur de sauvegarde complète/restauration de moins de 24 heures **ou l'exception nominative du 2 novembre avec contrôles récents et actifs conservés**. Il interdit toute mutation SQL hors documentary et refuse, avant commit, une release prête/publiée, un pointeur actif ou des permissions documentaires publiques. L'import ne peut donc pas servir à publier.
 
 `documentary.storage.migrate` évite de recréer un schéma déjà préprovisionné : son propriétaire n'a pas besoin de CREATE sur la base. La chaîne reste `documentary.alembic_version=doc_0001`, indépendante de `public.rag_alembic_version=rag_0007` et de la chaîne applicative. Le SQL `doc_0001` existant n'est pas modifié ; son empreinte est épinglée dans la garde. Aucun Alembic n'est appelé au démarrage des serveurs.
 
@@ -100,17 +102,17 @@ L'import conserve initialement les dérivés lexicaux transférés et recalcule 
 ## 4. Conditions de passage avant toute écriture
 
 1. Autoriser une fenêtre de maintenance et la charge de sauvegarde/build ; désigner l'opérateur et le commit approuvé **après** intégration de ces fichiers.
-2. Effectuer et restaurer les sauvegardes du [protocole dédié](sauvegarde-gavroche-multicorpus.md). Les anciennes copies ne suffisent pas. Décider de la copie hors serveur et de la rétention.
+2. Utiliser la sauvegarde froide du 2 novembre restaurée le 8 novembre, avec l'exception nominative et une comparaison récente conformes aux [prérequis finalisés](prerequis-deploiement-multicorpus-gavroche.md). Pour toute autre sauvegarde, conserver le protocole ordinaire de sauvegarde/restauration fraîche. Décider de la copie hors serveur et de la rétention.
 3. Conserver les images exactes et configurations précédentes ; ne pas écraser `.env.deploy` par un exemple. Vérifier les UUID et la dépendance Docker après tout redémarrage.
 4. Répéter les builds Docker CPU/frontend et les contrôles d'image. **Docker n'est pas disponible sur la machine de préparation ; aucun nouveau build Docker n'a été exécuté ici**, et construire sur Gavroche serait déjà une modification hors autorisation actuelle.
-5. Vérifier l'authentification de réplication, l'espace de sauvegarde et l'état des connexions. Ne pas augmenter le budget de recherche.
+5. Vérifier l'espace de conservation et l'état des connexions. La réplication n'est pas nécessaire pour réutiliser la copie froide validée. Ne pas augmenter le budget de recherche.
 6. Le déploiement technique n'autorise aucune publication. L'exemple d'autorisation reste false.
 
 ## 5. Déploiement technique futur — sans publication
 
 ### A. Sauvegardes et conservation
 
-Commencer par le protocole de sauvegarde. Les variables `MC_STAMP`, `MC_BACKUP`, `MC_ROOT` du shell root de ce protocole restent nécessaires. **Aucune étape suivante si une sauvegarde, restauration ou vérification échoue.** L'attestation doit être remplie sur les faits réels, pas activée pour débloquer l'import.
+Commencer par les [prérequis finalisés](prerequis-deploiement-multicorpus-gavroche.md) : contrôle récent, puis conservation des actifs dans une destination HDD neuve **avant tout changement du checkout**. Le reçu fournit `MC_BACKUP` (les actifs, distincts de la copie physique), `MC_STAMP` et `MC_ROOT`. **Aucune étape suivante si une vérification échoue.** L'attestation doit être remplie sur les faits réels, pas activée pour débloquer l'import.
 
 ### B. Code et images
 
@@ -352,9 +354,11 @@ MC_OLD_ROOT="$MC_BACKUP/rollback-files/srv/cahier-de-doleances-app"
 cat > "$MC_BACKUP/rollback-images.yml" <<EOF
 services:
   app:
-    image: cahier-de-doleances-app:before-mc-$MC_STAMP
+    image: sha256:e0c26f229536597004ef299d6e8406fb087916d0511eabe8bd02e5543070c7cd
+    env_file: !override
+      - $MC_OLD_ROOT/.env.deploy
   frontend:
-    image: cahier-de-doleances-frontend:before-mc-$MC_STAMP
+    image: sha256:73e31e5b321040259aae7769d5fc4eaebcd90c493ebdc85f1168d1313176a1eb
 EOF
 docker compose --project-name cahier-de-doleances-app --project-directory "$MC_ROOT" \
   --env-file "$MC_OLD_ROOT/.env.deploy" \
