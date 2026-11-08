@@ -52,6 +52,7 @@ def render(result):
     for model in models:
         for method, data in result["common_complete_metrics"][model].items():
             agg = data["aggregates"].get("all", {})
+
             def mean(k, metric):
                 return fmt(agg.get(k, {}).get(metric, {}).get("mean"))
 

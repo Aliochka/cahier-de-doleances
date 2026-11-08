@@ -248,8 +248,10 @@ def report_campaign(root, directory, output):
         for row in exports[model]:
             grades[row["query_id"]][row["document_id"]] = row["grade"]
         common_metrics[model] = engine_metrics(
-            {m: {q: ids for q, ids in rankings.items() if q in complete_queries}
-             for m, rankings in runs.items()},
+            {
+                m: {q: ids for q, ids in rankings.items() if q in complete_queries}
+                for m, rankings in runs.items()
+            },
             grades,
             [q for q in queries if q["query_id"] in complete_queries],
             expected,
