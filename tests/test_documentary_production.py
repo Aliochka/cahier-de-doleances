@@ -79,6 +79,26 @@ def test_schema_only_or_unverified_archive_is_not_a_full_backup():
             check_backup_proof(changed)
 
 
+def test_only_the_exact_readonly_lexical_validation_cte_is_permitted():
+    from documentary.production import DF_VALIDATION_STATEMENT
+
+    target = ProductionDestination(
+        "postgresql+psycopg2://cahier_search_maintenance@127.0.0.1:55495/cahier_search"
+    )
+    connection = SimpleNamespace(info={"documentary_write": False})
+    try:
+        target._restrict(connection, None, DF_VALIDATION_STATEMENT, None, None, None)
+        for sql in (
+            "WITH gone AS (DELETE FROM rag_full.spaces RETURNING *) SELECT * FROM gone",
+            DF_VALIDATION_STATEMENT + "; DELETE FROM documentary.release",
+            "WITH expected AS (SELECT * FROM rag_full.spaces) SELECT * FROM expected",
+        ):
+            with pytest.raises(UnsafeDestination):
+                target._restrict(connection, None, sql, None, None, None)
+    finally:
+        target.close()
+
+
 def test_verified_full_physical_backup_covers_both_databases():
     value = proof()
     for key in ("application", "search"):
@@ -185,16 +205,26 @@ def test_explicit_import_overrides_only_its_session_readonly_default(monkeypatch
     ]
 
 
-def test_real_readonly_role_can_import_only_through_explicit_guard(isolated_databases, monkeypatch):  # noqa: F811
+@pytest.fixture
+def readonly_role_cluster():
+    # This regression installs simulated GDN objects. Do not contaminate the
+    # module-scoped cluster used by the independent migration/activation test.
+    yield from isolated_databases.__wrapped__()
+
+
+def test_real_readonly_role_can_import_only_through_explicit_guard(
+    readonly_role_cluster, monkeypatch
+):
     from sqlalchemy import create_engine, text
     from sqlalchemy.exc import InternalError
 
-    destination = isolated_databases[0]
+    destination = readonly_role_cluster[0]
     with destination.transaction() as c:
         c.execute(text("CREATE EXTENSION vector"))
         c.execute(text("CREATE ROLE cahier_search_maintenance LOGIN"))
         c.execute(text("ALTER ROLE cahier_search_maintenance SET default_transaction_read_only=on"))
         c.execute(text("CREATE ROLE cahier_documentary_owner NOLOGIN"))
+        c.execute(text("CREATE ROLE cahier_search_reader NOLOGIN"))
         c.execute(text("GRANT cahier_documentary_owner TO cahier_search_maintenance"))
         c.execute(text("CREATE SCHEMA documentary AUTHORIZATION cahier_documentary_owner"))
         c.execute(text("CREATE TABLE public.rag_alembic_version(version_num text)"))
@@ -260,6 +290,49 @@ def test_real_readonly_role_can_import_only_through_explicit_guard(isolated_data
                 c.execute(text("SELECT value FROM documentary.guard_probe")).scalar_one()
                 == "authorized"
             )
+        # Exercise the FULL transfer with the actual production SQL guard, not
+        # an owner-only stand-in. Sources and vectors exist only in /tmp tests.
+        from documentary.artifacts import DECISIONS, Artifacts
+        from documentary.editorial import load_decisions
+        from documentary.integrate_local import transfer
+        from documentary.representations import ELIGIBLE, prepare_lexical, vector_hash
+        from documentary.storage import import_collection, migrate
+
+        source = readonly_role_cluster[1]
+        migrate(source)
+        import_collection(source, Artifacts(), load_decisions(DECISIONS))
+        prepare_lexical(source)
+        with source.transaction() as c:
+            c.execute(
+                text(
+                    f"UPDATE documentary.search_unit u SET embedding=CAST(:v AS public.vector),embedding_hash=:h FROM documentary.document d WHERE u.corpus_id=d.corpus_id AND u.release_id=d.release_id AND u.document_id=d.document_id AND {ELIGIBLE}"
+                ),
+                dict(
+                    corpus="cahiers-1789-ap-stanford",
+                    release="reference-documents-2-7cbcaea79991",
+                    v="[" + ",".join(["1"] + ["0"] * 1023) + "]",
+                    h=vector_hash([1.0] + [0.0] * 1023),
+                ),
+            )
+            c.execute(
+                text(
+                    "UPDATE documentary.release SET representations_ready=true,embedding_recipe='{}'::jsonb"
+                )
+            )
+        result = transfer(source, target, reuse_lexical=True)
+        assert result["vectors"] == 10748
+        assert result["source_integrity"]["public_documents"] == 0
+        # The real failed verification leaves data present and readiness false.
+        # Replaying the guarded import must recover without duplicates/publication.
+        with target.transaction() as c:
+            c.execute(
+                text(
+                    "UPDATE documentary.release SET representations_ready=false,statistics_ready=false"
+                )
+            )
+        replayed = transfer(source, target, reuse_lexical=True)
+        assert replayed["source_integrity"] == result["source_integrity"]
+        assert replayed["vectors"] == 10748
     finally:
         target.close()
     # A separate ordinary login keeps the role's read-only default unchanged.

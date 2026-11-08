@@ -42,3 +42,24 @@ Un test réel sur un PostgreSQL local isolé reproduit d'abord le refus d'origin
 La reprise de production est suspendue tant que ce correctif, son nouveau SHA et la poursuite après cette seconde erreur ne sont pas validés. Elle devra conserver les archives déjà produites et distinguer les écritures documentaires autorisées des modifications GDN. **Aucune publication ni activation du multicorpus n'est autorisée.**
 
 Les journaux et reçus détaillés restent dans `private/search/deployment-469ad864-20261108T171700Z/` et `private/search/deployment-469ad864-20261108T173000Z/`, ignorés par Git. Le paquet source historique est conservé et vérifié dans le premier répertoire de staging de Gavroche ; aucune base de laboratoire n'est raccordée à l'application publique.
+
+## Reprise validée avec `9064db7`
+
+L'opérateur a validé explicitement `9064db7a35a801f96c905926101adfc28d818a90`. Le checkout distant et les nouvelles images construites portent ce SHA :
+
+| Service | Image `mc-9064db7a35a8` construite |
+|---|---|
+| Backend CPU | `sha256:396e090f40ba289bacafa8ba1630c58704a70a50910d918b1edb724b047b2e61` |
+| Frontend | `sha256:9f3a797ba39009b3c7d6de656e37d8061468af5c705a3cefa3b5705238af9dcb` |
+
+Les archives existantes ont été relues et l'attestation préprovisionnement du 8 novembre à 17:32:08 UTC conservée **sans modifier sa date ni son snapshot**. Un contrôle distinct, à 17:47:57 UTC, constate le seul préprovisionnement autorisé, snapshot `1156:1156:`, et un état GDN identique à la référence. Une tentative d'authentification sudo a été interrompue avant opération ; le lanceur a ensuite été corrigé pour restaurer le terminal. Aucun changement du rôle de production n'a été nécessaire.
+
+La migration `doc_0001` et le transfert ont installé **1 267 documents, 11 391 passages, 10 748 vecteurs et 86 341 termes lexicaux**. Le contrôle final a rencontré une seconde erreur : le garde refusait la CTE `WITH expected … SELECT …` qui vérifie les fréquences lexicales. Cette requête est exclusivement en lecture ; elle n'avait pas été incluse dans les formes autorisées du garde.
+
+L'échec a correctement remis `representations_ready` et `statistics_ready` à false. La release demeure `verified`, `publication_authorized=false`, pointeur actif absent et zéro document public. Les anciennes images sont encore actives : **l'installation technique n'est pas achevée à ce point du journal**.
+
+Le correctif suivant nomme cette requête de validation et autorise **uniquement son SQL exact compilé pour psycopg2**. Il n'autorise pas génériquement `WITH`, ne modifie pas le calcul des statistiques et conserve le rejet des CTE de mutation et des instructions ajoutées. Un test de transfert complet sous le véritable `ProductionDestination` (rôle readonly par défaut, propriétaire dédié, migration, décisions, représentations et vérifications) passe sur deux bases isolées, avec des vecteurs synthétiques ; aucune inférence n'est réalisée. Les fixtures de régression sont désormais isolées pour pouvoir exécuter ensemble les deux tests PostgreSQL sans contamination.
+
+Au contrôle RO du **8 novembre à 17:57:59 UTC**, snapshot `1168:1168:`, les index GDN sont valides et les décisions sont conformes : Artois 1/2 admissibles et vectorisés, 3/4 exclus sans vecteurs ; titre validé d'Aunay-la-Côte, titre source et avertissements conservés ; 43 documents non candidats, sans droits publics. Le déploiement reste arrêté dans l'attente de la validation de ce nouveau correctif et de sa reprise. Journaux privés : `private/search/deployment-9064db7-20261108T175000Z/`.
+
+Validation du correctif CTE : **89 tests réussis**, avec les intégrations PostgreSQL activées (`DOCUMENTARY_TEST_PG_BIN=/usr/lib/postgresql/17/bin`), aucun test ignoré. Le parcours complet sous le véritable garde passe également après simulation de l'état partiel (données présentes, préparation false) et réimport idempotent. Ces opérations sont toutes réalisées dans de nouveaux clusters temporaires locaux ; rien n'est relancé sur Gavroche pendant ces tests.

@@ -25,6 +25,12 @@ ELIGIBLE = """u.corpus_id=:corpus AND u.release_id=:release AND d.candidate AND 
 JOIN = (
     "documentary.search_unit u JOIN documentary.document d USING(corpus_id,release_id,document_id)"
 )
+LEXICAL_DF_VALIDATION_SQL = f"""WITH expected AS (
+            SELECT term,count(*)::bigint AS df FROM {JOIN}
+            CROSS JOIN LATERAL unnest(tsvector_to_array(u.search_vector || d.metadata_vector)) term
+            WHERE {ELIGIBLE} GROUP BY term), stored AS (
+            SELECT term,document_frequency AS df FROM documentary.lexical_term_statistics WHERE {WHERE})
+            SELECT count(*) FROM expected FULL JOIN stored USING(term) WHERE expected.df IS DISTINCT FROM stored.df"""
 
 
 def gate(c):
@@ -347,12 +353,7 @@ def verify_representations(destination):
         if invalid or not release["statistics_ready"] or not release["representations_ready"]:
             raise ValueError("Historical representations incomplete")
         delta = c.execute(
-            text(f"""WITH expected AS (
-            SELECT term,count(*)::bigint AS df FROM {JOIN}
-            CROSS JOIN LATERAL unnest(tsvector_to_array(u.search_vector || d.metadata_vector)) term
-            WHERE {ELIGIBLE} GROUP BY term), stored AS (
-            SELECT term,document_frequency AS df FROM documentary.lexical_term_statistics WHERE {WHERE})
-            SELECT count(*) FROM expected FULL JOIN stored USING(term) WHERE expected.df IS DISTINCT FROM stored.df"""),
+            text(LEXICAL_DF_VALIDATION_SQL),
             SCOPE,
         ).scalar_one()
         if delta or population(c) != release["lexical_statistics"]["units"]:

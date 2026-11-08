@@ -17,11 +17,13 @@ from pathlib import Path
 from cahier_rag.safety import inspect_database
 from dotenv import dotenv_values
 from sqlalchemy import create_engine, event, text
+from sqlalchemy.dialects.postgresql import dialect as postgresql_dialect
 from sqlalchemy.engine import make_url
 from sqlalchemy.pool import NullPool
 
 from .backup_exception import check_cold_exception
 from .local_application import LocalApplicationDestination, digest
+from .representations import LEXICAL_DF_VALIDATION_SQL
 from .safety import UnsafeDestination
 
 IDENTITY = dict(
@@ -40,6 +42,9 @@ OWNER = "cahier_documentary_owner"
 LOGIN = "cahier_search_maintenance"
 MIGRATION_SHA256 = "f6b998e25971c754021a2948a845bdc52820b95ed10faf31eacae4db0debc7ba"
 ARCHIVE_SHA256 = "a9196d21f3abe5c8198cf4f13c05826e6ab21f37ec109b09571523c36c3e3275"
+DF_VALIDATION_STATEMENT = str(
+    text(LEXICAL_DF_VALIDATION_SQL).compile(dialect=postgresql_dialect())
+).strip()
 
 
 def gdn_snapshot(target):
@@ -161,6 +166,10 @@ class ProductionDestination:
     def _restrict(self, connection, cursor, statement, parameters, context, executemany):
         sql = statement.strip()
         if re.match(r"^(SELECT|SHOW|SET)\b", sql, re.I):
+            return
+        # One fixed read-only CTE, compiled to psycopg2's bound-parameter syntax.
+        # Generic WITH (including data-modifying CTEs) remains forbidden.
+        if sql == DF_VALIDATION_STATEMENT:
             return
         if connection.info.get("documentary_write"):
             if sql == self.migration.strip():
