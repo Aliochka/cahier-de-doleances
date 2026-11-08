@@ -16,7 +16,10 @@ def database_url(env):
     raw = env.get("DATABASE_URL", "")
     if not raw or "REPLACE_WITH" in raw:
         raise ValueError("Configure DATABASE_URL privately")
-    if any(env.get(key) for key in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL")):
+    if any(
+        env.get(key)
+        for key in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL")
+    ):
         raise ValueError("Remove alternate database URL variables")
     if raw.startswith("postgres://"):
         raw = "postgresql://" + raw[len("postgres://") :]

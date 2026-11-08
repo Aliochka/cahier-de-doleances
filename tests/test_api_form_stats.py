@@ -206,6 +206,7 @@ def test_real_statement_timeout_rollback(client, web_data, monkeypatch):
 
 def publish(data):
     from app.services.statistics_generation import generate
+
     with data["factory"]() as db:
         generate(db)
         db.commit()

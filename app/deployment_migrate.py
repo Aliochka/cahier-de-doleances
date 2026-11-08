@@ -60,9 +60,12 @@ def inspect_database(connection, env):
     ).scalar_one():
         raise ValueError("Database role needs CREATE privilege on schema public")
     for table in MIGRATION_SOURCE_TABLES:
-        if connection.execute(
-            text("SELECT to_regclass(:table)"), {"table": f"public.{table}"}
-        ).scalar() is None:
+        if (
+            connection.execute(
+                text("SELECT to_regclass(:table)"), {"table": f"public.{table}"}
+            ).scalar()
+            is None
+        ):
             raise ValueError(f"Migration source table is missing: public.{table}")
         if not connection.execute(
             text("SELECT has_table_privilege(current_user, :table, 'TRIGGER')"),
@@ -93,7 +96,10 @@ def database_url(env):
     raw = env.get("DATABASE_URL", "")
     if not raw or "REPLACE_WITH" in raw:
         raise ValueError("Configure DATABASE_URL privately")
-    if any(env.get(key) for key in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL")):
+    if any(
+        env.get(key)
+        for key in ("TEST_DATABASE_URL", "ALEMBIC_DATABASE_URL", "SCALINGO_POSTGRESQL_URL")
+    ):
         raise ValueError("Remove alternate database URL variables")
     if raw.startswith("postgres://"):
         raw = "postgresql://" + raw[len("postgres://") :]
@@ -113,7 +119,10 @@ def run(env, apply=False):
     url = database_url(env)
     engine = create_engine(
         url,
-        connect_args={"connect_timeout": 5, "options": "-c statement_timeout=60000 -c lock_timeout=5000"},
+        connect_args={
+            "connect_timeout": 5,
+            "options": "-c statement_timeout=60000 -c lock_timeout=5000",
+        },
     )
     try:
         with engine.connect() as connection:
@@ -147,7 +156,11 @@ def main():
     except Exception as exc:
         report = {
             "status": "failed",
-            "errors": [str(exc) if isinstance(exc, ValueError) else f"Migration check failed ({type(exc).__name__})"],
+            "errors": [
+                str(exc)
+                if isinstance(exc, ValueError)
+                else f"Migration check failed ({type(exc).__name__})"
+            ],
         }
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0 if report["status"] in {"ready", "applied"} else 1
