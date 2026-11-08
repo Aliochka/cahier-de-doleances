@@ -518,6 +518,18 @@ export interface components {
             /** Total */
             total: number;
         };
+        /** DocumentaryFragment */
+        DocumentaryFragment: {
+            /** Anchor */
+            anchor?: string | null;
+            /**
+             * Selected
+             * @default false
+             */
+            selected: boolean;
+            /** Text */
+            text: string;
+        };
         /** DocumentaryMetadata */
         DocumentaryMetadata: {
             /** Document Id */
@@ -541,6 +553,20 @@ export interface components {
             /** Warnings */
             warnings: components["schemas"]["DocumentaryWarning"][];
         };
+        /** DocumentaryParagraph */
+        DocumentaryParagraph: {
+            /** End Offset */
+            end_offset: number;
+            /** Fragments */
+            fragments: components["schemas"]["DocumentaryFragment"][];
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "paragraph" | "heading";
+            /** Start Offset */
+            start_offset: number;
+        };
         /** DocumentaryReading */
         DocumentaryReading: {
             /** Blocks */
@@ -551,6 +577,8 @@ export interface components {
             next: string | null;
             /** Orders */
             orders: string[];
+            /** Paragraphs */
+            paragraphs: components["schemas"]["DocumentaryParagraph"][];
             /** Place */
             place?: string | null;
             /**

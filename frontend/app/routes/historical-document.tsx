@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { data, Link } from "react-router";
 import { css } from "../../styled-system/css";
-import { PageContainer } from "../components/layout/page-container";
 import { DocumentNavigation } from "../components/layout/document-navigation";
+import { PageContainer } from "../components/layout/page-container";
 import { Alert } from "../components/ui/alert";
 import { contributionStyles } from "../features/contributions/contribution-presentation";
+import { HistoricalText } from "../features/documentary/historical-text";
 import { SurveyRouteError } from "../features/surveys/route-error";
 import { documentaryReading } from "../lib/api.server";
-import { localPreviewRequest } from "../lib/local-preview.server";
 import { requireApiData } from "../lib/api-errors";
+import { localPreviewRequest } from "../lib/local-preview.server";
 import type { Route } from "./+types/historical-document";
 
 export async function loader({ request, url, params }: Route.LoaderArgs) {
@@ -93,30 +94,7 @@ export default function HistoricalDocument({
             Le passage retrouvé est surligné dans le texte intégral.
           </p>
         )}
-        <section
-          aria-label="Texte intégral du cahier"
-          className={contributionStyles.reading}
-        >
-          {d.blocks.map((b) =>
-            b.anchor ? (
-              <mark
-                key={b.anchor}
-                id={b.anchor}
-                className={css({
-                  background: "warningSurface",
-                  color: "text",
-                  scrollMarginTop: "12",
-                })}
-              >
-                {b.text}
-              </mark>
-            ) : (
-              <span key={b === d.blocks[0] ? "prefix" : "suffix"}>
-                {b.text}
-              </span>
-            ),
-          )}
-        </section>
+        <HistoricalText paragraphs={d.paragraphs} />
         <DocumentNavigation {...navigation} />
         <footer
           className={css({

@@ -526,6 +526,22 @@ function documentaryReading(v: unknown): v is DocumentaryReading {
   return (
     record(v) &&
     historicalMetadata(v) &&
+    Array.isArray(v.paragraphs) &&
+    v.paragraphs.every(
+      (p: unknown) =>
+        record(p) &&
+        ["paragraph", "heading"].includes(String(p.kind)) &&
+        Number.isSafeInteger(p.start_offset) &&
+        Number.isSafeInteger(p.end_offset) &&
+        Array.isArray(p.fragments) &&
+        p.fragments.every(
+          (f: unknown) =>
+            record(f) &&
+            typeof f.text === "string" &&
+            typeof f.selected === "boolean" &&
+            (f.anchor === null || typeof f.anchor === "string"),
+        ),
+    ) &&
     Array.isArray(v.blocks) &&
     v.blocks.every(
       (b: unknown) =>

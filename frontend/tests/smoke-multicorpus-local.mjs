@@ -92,7 +92,7 @@ try {
     .first()
     .click();
   await page.locator('mark[id^="passage-"]').waitFor();
-  if (!(await page.locator("mark").textContent()).trim())
+  if (!(await page.locator("mark").allTextContents()).join("").trim())
     throw Error("Empty selected passage");
   await page.goBack();
   await page.locator("#search-results-title").waitFor();
