@@ -26,7 +26,7 @@ else:
     import analyze_h1_lexical as p1
 
 base = p1.base
-P1_SHA = "3d3b9f4cba9530e57cf3cf6f58ce92f4ad4e76a3fe372c06c4f9316735b5e937"
+P1_SHA = "78f74618dc655fb98231d8c75f3ab62df28182a622a24c215329d4cbafa0bcd0"
 COSTS = ("filter", "score", "top50", "filter-stream", "score-stream")
 MEMORY = ("observe", "current", "4MB", "16MB", "64MB")
 CONTROL_SQL = """SELECT current_setting('work_mem') AS work_mem,

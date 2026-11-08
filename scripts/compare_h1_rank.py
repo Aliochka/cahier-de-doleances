@@ -27,7 +27,7 @@ else:
     import components_h1_lexical as p3
 
 p2, p1, base = p3.p2, p3.p1, p3.base
-P3_SHA = "56ed64dfb9d765609c29b34f4d8224bfc8971eb8115326b852bca50b67e97777"
+P3_SHA = "e56b7d699d869f528af3ddd9993fc95418bc343bcd2af828f2d01173b496b9cb"
 QUERIES = ("democratie-02", "fiscalite-01")
 VARIANTS = ("original", "ts_rank")
 FUNCTION = "ts_rank_cd(d.search_vector,CAST(:query AS tsquery),32)"

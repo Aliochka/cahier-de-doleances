@@ -27,7 +27,7 @@ else:
     import decompose_h1_lexical as p2
 
 p1, base = p2.p1, p2.base
-P2_SHA = "0c4474464e8389cd537ccb82533d87f1678b3dc87c5c968c77e434d4b803039d"
+P2_SHA = "2f6586b264430013c3dd1a17221570f76c55f239c244b8ccd060c9f950cf285c"
 AGGREGATED = ("zero", "idf", "terms", "rank", "idf-terms", "idf-rank", "terms-rank", "full")
 VARIANTS = (*AGGREGATED, "top50", "touch", "classify", "observe")
 WHERE = f"FROM rag_full.documents d\n                WHERE {p2.FILTERS} AND d.search_vector @@ CAST(:query AS tsquery)"
