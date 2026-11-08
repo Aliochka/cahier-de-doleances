@@ -267,6 +267,27 @@ const server = createServer((request, response) => {
   const url = new URL(request.url, "http://127.0.0.1");
   response.setHeader("Content-Type", "application/json");
   response.setHeader("Cache-Control", "private, no-store");
+  if (url.pathname === "/api/v1/corpora") {
+    response.end(
+      JSON.stringify([
+        {
+          id: "2019",
+          label: "Grand Débat national — 2019",
+          available: true,
+          published: true,
+          preview: false,
+        },
+        {
+          id: "1789",
+          label: "Cahiers de doléances — 1789",
+          available: false,
+          published: false,
+          preview: false,
+        },
+      ]),
+    );
+    return;
+  }
   if (url.pathname === "/forms-reset") {
     formCalls.length = 0;
     response.end("{}");
@@ -391,6 +412,8 @@ const server = createServer((request, response) => {
                   ? "9007199254741994"
                   : String(9007199254742000n + BigInt(index));
           return {
+            kind: "questionnaire_answer",
+            corpus_id: "gdn-2019",
             answer_id: id,
             contribution_id: contributionIds[0],
             rank: next ? pageSize + 1 : index + 1,
@@ -439,6 +462,8 @@ const server = createServer((request, response) => {
       response.end(
         JSON.stringify({
           q,
+          corpus: url.searchParams.get("corpus") ?? "tous",
+          preview: false,
           state:
             q === "withdrawn"
               ? "sources_unavailable"

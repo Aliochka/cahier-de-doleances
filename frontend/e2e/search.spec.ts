@@ -28,7 +28,7 @@ for (const javaScriptEnabled of [true, false]) {
         page
           .getByRole("navigation", { name: "Navigation principale" })
           .getByRole("link"),
-      ).toHaveText(["Enquêtes", "Recherche"]);
+      ).toHaveText(["Parcourir", "Recherche"]);
       await expect(
         page.getByText("Un point de départ pour écouter et comprendre"),
       ).toBeVisible();
