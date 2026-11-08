@@ -55,6 +55,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/corpora": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Corpora */
+        get: operations["list_search_corpora"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/documentary/1789": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Catalogue */
+        get: operations["list_historical_documents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/documentary/1789/{release}/documents/{document_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Document */
+        get: operations["read_historical_document"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/forms": {
         parameters: {
             query?: never;
@@ -217,8 +268,8 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Recherche de réponses : hybride globale, lexicale H1 par question
-         * @description Sans question_id : recherche hybride existante. Avec question_id : plein texte H1 français, sans encodage, recherche vectorielle ni fusion RRF. La fenêtre est bornée par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.
+         * Recherche principale : réponses et documents des corpus disponibles
+         * @description La voie multicorpus est activée explicitement par la configuration. Elle conserve un encodage unique, deux classements globaux et une seule RRF documentaire. Par défaut, tous les corpus publiés et disponibles sont sélectionnés ; les aperçus non publiés nécessitent l'autorisation locale dédiée. Sans activation, H1 reste la référence. Avec question_id, la recherche lexicale H1 par question reste inchangée. Les curseurs parcourent une fenêtre bornée pendant dix minutes, liée à la requête, au corpus et aux permissions, sans recalcul du classement.
          */
         get: operations["search_public_hybrid"];
         put?: never;
@@ -423,6 +474,135 @@ export interface components {
             /** Submitted At */
             submitted_at: string | null;
         };
+        /** CorpusOption */
+        CorpusOption: {
+            /** Available */
+            available: boolean;
+            /**
+             * Id
+             * @enum {string}
+             */
+            id: "2019" | "1789";
+            /** Label */
+            label: string;
+            /**
+             * Preview
+             * @default false
+             */
+            preview: boolean;
+            /** Published */
+            published: boolean;
+        };
+        /** DocumentaryBlock */
+        DocumentaryBlock: {
+            /** Anchor */
+            anchor?: string | null;
+            /** Text */
+            text: string;
+        };
+        /** DocumentaryCatalogue */
+        DocumentaryCatalogue: {
+            /** Has Next */
+            has_next: boolean;
+            /** Items */
+            items: components["schemas"]["DocumentaryMetadata"][];
+            /** Page */
+            page: number;
+            /** Page Size */
+            page_size: number;
+            /**
+             * Preview
+             * @default false
+             */
+            preview: boolean;
+            /** Total */
+            total: number;
+        };
+        /** DocumentaryMetadata */
+        DocumentaryMetadata: {
+            /** Document Id */
+            document_id: string;
+            /** Orders */
+            orders: string[];
+            /** Place */
+            place?: string | null;
+            /** Reference */
+            reference: string;
+            /** Release Id */
+            release_id: string;
+            /** Source Title */
+            source_title: string;
+            /** Sources */
+            sources: components["schemas"]["DocumentarySource"][];
+            /** Title */
+            title: string;
+            /** Url */
+            url: string;
+            /** Warnings */
+            warnings: components["schemas"]["DocumentaryWarning"][];
+        };
+        /** DocumentaryReading */
+        DocumentaryReading: {
+            /** Blocks */
+            blocks: components["schemas"]["DocumentaryBlock"][];
+            /** Document Id */
+            document_id: string;
+            /** Next */
+            next: string | null;
+            /** Orders */
+            orders: string[];
+            /** Place */
+            place?: string | null;
+            /**
+             * Preview
+             * @default false
+             */
+            preview: boolean;
+            /** Previous */
+            previous: string | null;
+            /** Reference */
+            reference: string;
+            /** Release Id */
+            release_id: string;
+            selected_unit: components["schemas"]["DocumentaryUnit"] | null;
+            /** Source Title */
+            source_title: string;
+            /** Sources */
+            sources: components["schemas"]["DocumentarySource"][];
+            /** Text Sha256 */
+            text_sha256: string;
+            /** Title */
+            title: string;
+            /** Url */
+            url: string;
+            /** Warnings */
+            warnings: components["schemas"]["DocumentaryWarning"][];
+        };
+        /** DocumentarySource */
+        DocumentarySource: {
+            /** Label */
+            label: string;
+            /** Url */
+            url: string;
+        };
+        /** DocumentaryUnit */
+        DocumentaryUnit: {
+            /** End Offset */
+            end_offset: number;
+            /** Start Offset */
+            start_offset: number;
+            /** Text Sha256 */
+            text_sha256: string;
+            /** Unit Id */
+            unit_id: string;
+        };
+        /** DocumentaryWarning */
+        DocumentaryWarning: {
+            /** Code */
+            code: string;
+            /** Message */
+            message: string;
+        };
         /** EnrichedFormQuestion */
         EnrichedFormQuestion: {
             /** Answers Count */
@@ -567,6 +747,57 @@ export interface components {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
+        /** HistoricalSearchResult */
+        HistoricalSearchResult: {
+            /**
+             * Corpus Id
+             * @default cahiers-1789-ap-stanford
+             * @constant
+             */
+            corpus_id: "cahiers-1789-ap-stanford";
+            /** Document Id */
+            document_id: string;
+            /** End Offset */
+            end_offset: number;
+            /** Excerpt */
+            excerpt: string;
+            /**
+             * Kind
+             * @default historical_document
+             * @constant
+             */
+            kind: "historical_document";
+            /**
+             * Match Origin
+             * @default text
+             * @enum {string}
+             */
+            match_origin: "text" | "metadata";
+            /** Orders */
+            orders: string[];
+            /** Place */
+            place?: string | null;
+            /** Rank */
+            rank: number;
+            /** Reference */
+            reference: string;
+            /** Release Id */
+            release_id: string;
+            /** Source Title */
+            source_title: string;
+            /** Sources */
+            sources: components["schemas"]["DocumentarySource"][];
+            /** Start Offset */
+            start_offset: number;
+            /** Title */
+            title: string;
+            /** Unit Id */
+            unit_id: string;
+            /** Url */
+            url: string;
+            /** Warnings */
+            warnings: components["schemas"]["DocumentaryWarning"][];
+        };
         /** HybridAnswer */
         HybridAnswer: {
             /**
@@ -579,9 +810,21 @@ export interface components {
              * @description Identifiant historique BIGINT, chaîne décimale sans perte de précision.
              */
             contribution_id: string;
+            /**
+             * Corpus Id
+             * @default gdn-2019
+             * @constant
+             */
+            corpus_id: "gdn-2019";
             form: components["schemas"]["HybridForm"];
             /** Is Truncated */
             is_truncated: boolean;
+            /**
+             * Kind
+             * @default questionnaire_answer
+             * @constant
+             */
+            kind: "questionnaire_answer";
             question: components["schemas"]["HybridQuestion"];
             /**
              * Rank
@@ -634,6 +877,12 @@ export interface components {
         };
         /** HybridSearchPage */
         HybridSearchPage: {
+            /**
+             * Corpus
+             * @default tous
+             * @enum {string}
+             */
+            corpus: "tous" | "2019" | "1789";
             /** Expires At */
             expires_at: string | null;
             /** First Cursor */
@@ -641,7 +890,7 @@ export interface components {
             /** Has Next */
             has_next: boolean;
             /** Items */
-            items: components["schemas"]["HybridAnswer"][];
+            items: (components["schemas"]["HybridAnswer"] | components["schemas"]["HistoricalSearchResult"])[];
             /**
              * Mode
              * @default hybrid
@@ -652,6 +901,11 @@ export interface components {
             next_cursor: string | null;
             /** Page Size */
             page_size: number;
+            /**
+             * Preview
+             * @default false
+             */
+            preview: boolean;
             /** Previous Cursor */
             previous_cursor: string | null;
             /** Q */
@@ -1157,6 +1411,92 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    list_search_corpora: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CorpusOption"][];
+                };
+            };
+        };
+    };
+    list_historical_documents: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DocumentaryCatalogue"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_historical_document: {
+        parameters: {
+            query?: {
+                unit?: string | null;
+            };
+            header?: never;
+            path: {
+                release: string;
+                document_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DocumentaryReading"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -1766,6 +2106,7 @@ export interface operations {
                 page_size?: number;
                 cursor?: string | null;
                 question_id?: string | null;
+                corpus?: "tous" | "2019" | "1789";
             };
             header?: never;
             path?: never;

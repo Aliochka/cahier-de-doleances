@@ -4,6 +4,7 @@ import { PageContainer } from "./page-container";
 
 export function Header() {
   const surveysMatch = useMatch("/enquetes");
+  const browseMatch = useMatch("/parcourir/*");
   const formMatch = useMatch("/forms/:formId/*");
   return (
     <header
@@ -64,9 +65,13 @@ export function Header() {
           >
             <li>
               <Link
-                to="/enquetes"
+                to="/parcourir"
                 aria-current={
-                  surveysMatch ? "page" : formMatch ? "location" : undefined
+                  browseMatch
+                    ? "page"
+                    : surveysMatch || formMatch
+                      ? "location"
+                      : undefined
                 }
                 className={css({
                   color: "text",
@@ -77,7 +82,7 @@ export function Header() {
                   "&[aria-current]": { textDecorationThickness: "3px" },
                 })}
               >
-                Enquêtes
+                Parcourir
               </Link>
             </li>
             <li>

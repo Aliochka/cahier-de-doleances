@@ -13,7 +13,7 @@ import { type SearchState, searchUrl } from "../features/search/search-url";
 import { search } from "../lib/api.server";
 import { loader } from "./search";
 
-vi.mock("../lib/api.server", () => ({ search: vi.fn() }));
+vi.mock("../lib/api.server", () => ({ search: vi.fn(), listCorpora: vi.fn() }));
 beforeEach(() => vi.resetAllMocks());
 const state: SearchState = {
   q: page.q,

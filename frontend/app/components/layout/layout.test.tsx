@@ -22,9 +22,9 @@ it("identifie l'accueil actif et propose les destinations disponibles", () => {
     "href",
     "/recherche",
   );
-  expect(screen.getByRole("link", { name: "Enquêtes" })).toHaveAttribute(
+  expect(screen.getByRole("link", { name: "Parcourir" })).toHaveAttribute(
     "href",
-    "/enquetes",
+    "/parcourir",
   );
   expect(screen.getAllByRole("main")).toHaveLength(1);
   expect(screen.getByTestId("container")).toHaveTextContent("Contenu");
@@ -33,15 +33,15 @@ it("identifie l'accueil actif et propose les destinations disponibles", () => {
   );
 });
 
-it("indique la page Enquêtes active", () => {
+it("situe les anciennes enquêtes dans Parcourir", () => {
   render(
     <MemoryRouter initialEntries={["/enquetes"]}>
       <Header />
     </MemoryRouter>,
   );
-  expect(screen.getByRole("link", { name: "Enquêtes" })).toHaveAttribute(
+  expect(screen.getByRole("link", { name: "Parcourir" })).toHaveAttribute(
     "aria-current",
-    "page",
+    "location",
   );
 });
 
@@ -51,7 +51,7 @@ it("situe un formulaire dans la section Enquêtes sans le déclarer comme la pag
       <Header />
     </MemoryRouter>,
   );
-  expect(screen.getByRole("link", { name: "Enquêtes" })).toHaveAttribute(
+  expect(screen.getByRole("link", { name: "Parcourir" })).toHaveAttribute(
     "aria-current",
     "location",
   );

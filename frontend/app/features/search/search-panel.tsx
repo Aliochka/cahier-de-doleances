@@ -19,16 +19,23 @@ export function SearchPanel({
   failure,
   fieldError,
   otherOnly = false,
+  corpora,
 }: {
   state: SearchState;
   result: HybridSearchPage | null;
   failure: ApiFailure | null;
   fieldError?: string;
   otherOnly?: boolean;
+  corpora?: import("../../lib/api").CorpusOption[];
 }) {
   const progressive = useProgressivePage({
     page: result,
-    identity: `search:${state.path ?? "global"}:${state.q}:${state.page_size}`,
+    identity: `search:${state.path ?? "global"}:${state.q}:${state.page_size}:${state.corpus ?? "tous"}:${corpora?.some((c) => c.preview) ? "preview" : "public"}:${
+      corpora
+        ?.filter((c) => c.available)
+        .map((c) => c.id)
+        .join(",") ?? "2019"
+    }`,
     merge: mergeSearch,
     ids: searchIds,
   });
@@ -37,6 +44,8 @@ export function SearchPanel({
     displayed && failure
       ? { ...displayed, has_next: false, next_cursor: null }
       : displayed;
+  const [draftCorpus, setDraftCorpus] = useState(state.corpus ?? "tous");
+  useEffect(() => setDraftCorpus(state.corpus ?? "tous"), [state.corpus]);
   const [draft, setDraft] = useState(state.q);
   useEffect(() => setDraft(state.q), [state.q]);
   const navigation = useNavigation();
@@ -53,11 +62,19 @@ export function SearchPanel({
     <>
       <SearchControls
         path={state.path}
+        corpus={draftCorpus}
+        onCorpusChange={setDraftCorpus}
+        corpora={corpora}
         draft={draft}
         onDraftChange={setDraft}
         error={fieldError}
         pending={pending}
       />
+      {corpora?.some((c) => c.preview) && (
+        <Alert variant="warning">
+          Aperçu local : les cahiers de 1789 ne sont pas publiés.
+        </Alert>
+      )}
       <div className={css({ maxWidth: "reading" })}>
         <LoadingState active={pending} />
       </div>
@@ -89,6 +106,9 @@ export function SearchPanel({
           >
             {state.path && <input type="hidden" name="tab" value="search" />}
             <input type="hidden" name="q" value={state.q} />
+            {state.corpus && (
+              <input type="hidden" name="corpus" value={state.corpus} />
+            )}
             {state.page_size !== 20 && (
               <input type="hidden" name="page_size" value={state.page_size} />
             )}
@@ -138,10 +158,17 @@ export function SearchPanel({
               color: "muted",
             })}
           >
-            {state.path
-              ? "Vous pouvez lire"
-              : "Chaque réponse est accompagnée de sa question. Vous pouvez ensuite lire"}{" "}
-            la contribution complète pour retrouver le témoignage original.
+            {!state.path &&
+            corpora?.some((c) => c.id === "1789" && c.available) ? (
+              "Chaque résultat permet de retrouver sa source : une réponse dans sa contribution ou un cahier intégral."
+            ) : (
+              <>
+                {state.path
+                  ? "Vous pouvez lire"
+                  : "Chaque réponse est accompagnée de sa question. Vous pouvez ensuite lire"}{" "}
+                la contribution complète pour retrouver le témoignage original.
+              </>
+            )}
           </p>
         </section>
       )}

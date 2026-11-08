@@ -1,3 +1,4 @@
+import { isHistoricalResult } from "../../lib/api";
 import type {
   AnswerPage,
   AuthorFormsPage,
@@ -10,7 +11,9 @@ const unique = <T>(values: T[], key: (value: T) => string) => [
 export const answerIds = (page: AnswerPage) =>
   page.items.map((item) => item.id);
 export const searchIds = (page: HybridSearchPage) =>
-  page.items.map((item) => item.answer_id);
+  page.items.map((item) =>
+    isHistoricalResult(item) ? `1789:${item.document_id}` : item.answer_id,
+  );
 export const authorIds = (page: AuthorFormsPage) =>
   page.forms.flatMap((form) => form.contributions.map((item) => item.id));
 export function mergeAnswers(pages: AnswerPage[]): AnswerPage {
@@ -29,7 +32,8 @@ export function mergeSearch(pages: HybridSearchPage[]): HybridSearchPage {
   if (!last) throw new Error("Missing search page");
   const items = unique(
     pages.flatMap((page) => page.items),
-    (item) => item.answer_id,
+    (item) =>
+      isHistoricalResult(item) ? `1789:${item.document_id}` : item.answer_id,
   );
   return {
     ...last,

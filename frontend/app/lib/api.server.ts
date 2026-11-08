@@ -40,14 +40,24 @@ function backendOrigin(): string | null {
     return null;
   }
 }
-function publicApi(origin: string) {
-  if (origin !== "http://app:8000") return createPublicApi(origin);
+function publicApi(origin: string, preview = false) {
+  const local = ["127.0.0.1", "localhost", "[::1]"].includes(
+    new URL(origin).hostname,
+  );
+  const token =
+    preview && local && process.env.DOCUMENTARY_LOCAL_PREVIEW === "1"
+      ? process.env.DOCUMENTARY_PREVIEW_TOKEN
+      : undefined;
+  if (origin !== "http://app:8000" && !token) return createPublicApi(origin);
   const transport: typeof fetch = (input, init) =>
     fetch(input, {
       ...init,
       headers: {
         ...Object.fromEntries(new Headers(init?.headers).entries()),
-        "x-forwarded-proto": "https",
+        ...(origin === "http://app:8000"
+          ? { "x-forwarded-proto": "https" }
+          : {}),
+        ...(token ? { "x-documentary-preview": token } : {}),
       },
     });
   return createPublicApi(origin, transport);
@@ -139,7 +149,7 @@ export function search(
 ): Promise<ApiResult<HybridSearchPage>> {
   const origin = backendOrigin();
   return origin
-    ? publicApi(origin).search(query, options)
+    ? publicApi(origin, options.preview).search(query, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
 }
 
@@ -152,4 +162,29 @@ export function getFormContribution(
   return origin
     ? publicApi(origin).getFormContribution(formId, index, options)
     : Promise.resolve({ ok: false, kind: "configuration" });
+}
+
+// A browser receives only a preview boolean. The token stays in the SSR process.
+export function listCorpora(options: RequestOptions = {}) {
+  const origin = backendOrigin();
+  return origin
+    ? publicApi(origin, options.preview).listCorpora(options)
+    : Promise.resolve({ ok: false as const, kind: "configuration" as const });
+}
+export function documentaryCatalogue(page = 1, options: RequestOptions = {}) {
+  const origin = backendOrigin();
+  return origin
+    ? publicApi(origin, options.preview).catalogue(page, options)
+    : Promise.resolve({ ok: false as const, kind: "configuration" as const });
+}
+export function documentaryReading(
+  release: string,
+  id: string,
+  unit: string | null,
+  options: RequestOptions = {},
+) {
+  const origin = backendOrigin();
+  return origin
+    ? publicApi(origin, options.preview).documentary(release, id, unit, options)
+    : Promise.resolve({ ok: false as const, kind: "configuration" as const });
 }

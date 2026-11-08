@@ -27,6 +27,7 @@ export type ApiFailure = {
 };
 export type ApiResult<T> = { ok: true; data: T } | ApiFailure;
 export type RequestOptions = {
+  preview?: boolean;
   signal?: AbortSignal;
   timeoutMs?: number;
   query?: URLSearchParams;
@@ -48,6 +49,17 @@ export type AuthorFormsQuery = NonNullable<
   operations["list_public_author_forms"]["parameters"]["query"]
 >;
 export type HybridSearchPage = components["schemas"]["HybridSearchPage"];
+export type HistoricalSearchResult =
+  components["schemas"]["HistoricalSearchResult"];
+export type DocumentaryCatalogue =
+  components["schemas"]["DocumentaryCatalogue"];
+export type DocumentaryReading = components["schemas"]["DocumentaryReading"];
+export type CorpusOption = components["schemas"]["CorpusOption"];
+export function isHistoricalResult(
+  item: HybridSearchPage["items"][number],
+): item is HistoricalSearchResult {
+  return item.kind === "historical_document";
+}
 export type HybridSearchQuery = NonNullable<
   operations["search_public_hybrid"]["parameters"]["query"]
 >;
@@ -402,38 +414,43 @@ function hybridSearch(value: unknown): value is HybridSearchPage {
     value.window.exhaustive === false &&
     new Set(
       value.items.map((item: unknown) =>
-        record(item) ? item.answer_id : undefined,
+        record(item)
+          ? item.kind === "historical_document"
+            ? `1789:${item.document_id}`
+            : `2019:${item.answer_id}`
+          : undefined,
       ),
     ).size === value.items.length &&
     value.items.every(
       (item: unknown) =>
-        record(item) &&
-        publicId(item.answer_id) &&
-        publicId(item.contribution_id) &&
-        positive(item.rank) &&
-        typeof item.is_truncated === "boolean" &&
-        record(item.question) &&
-        publicId(item.question.id) &&
-        typeof item.question.prompt === "string" &&
-        typeof item.question.url === "string" &&
-        item.question.url.startsWith(`/questions/${item.question.id}-`) &&
-        record(item.form) &&
-        publicId(item.form.id) &&
-        typeof item.form.name === "string" &&
-        item.form.url === `/forms/${item.form.id}` &&
-        item.url ===
-          `/forms/${item.form.id}/contributions/${item.contribution_id}#answer-${item.answer_id}` &&
-        Array.isArray(item.texts) &&
-        item.texts.length > 0 &&
-        item.texts.every(
-          (unit: unknown) =>
-            record(unit) &&
-            ["open_answer", "other_text"].includes(String(unit.unit_type)) &&
-            typeof unit.unit_index === "number" &&
-            Number.isSafeInteger(unit.unit_index) &&
-            unit.unit_index >= 0 &&
-            typeof unit.text === "string",
-        ),
+        historicalResult(item) ||
+        (record(item) &&
+          publicId(item.answer_id) &&
+          publicId(item.contribution_id) &&
+          positive(item.rank) &&
+          typeof item.is_truncated === "boolean" &&
+          record(item.question) &&
+          publicId(item.question.id) &&
+          typeof item.question.prompt === "string" &&
+          typeof item.question.url === "string" &&
+          item.question.url.startsWith(`/questions/${item.question.id}-`) &&
+          record(item.form) &&
+          publicId(item.form.id) &&
+          typeof item.form.name === "string" &&
+          item.form.url === `/forms/${item.form.id}` &&
+          item.url ===
+            `/forms/${item.form.id}/contributions/${item.contribution_id}#answer-${item.answer_id}` &&
+          Array.isArray(item.texts) &&
+          item.texts.length > 0 &&
+          item.texts.every(
+            (unit: unknown) =>
+              record(unit) &&
+              ["open_answer", "other_text"].includes(String(unit.unit_type)) &&
+              typeof unit.unit_index === "number" &&
+              Number.isSafeInteger(unit.unit_index) &&
+              unit.unit_index >= 0 &&
+              typeof unit.text === "string",
+          )),
     ) &&
     Array.isArray(value.warnings) &&
     value.warnings.every(
@@ -442,6 +459,98 @@ function hybridSearch(value: unknown): value is HybridSearchPage {
         warning.code === "source_unavailable" &&
         positive(warning.count) &&
         typeof warning.message === "string",
+    )
+  );
+}
+
+function historicalMetadata(v: unknown): boolean {
+  return (
+    record(v) &&
+    typeof v.document_id === "string" &&
+    typeof v.release_id === "string" &&
+    typeof v.title === "string" &&
+    typeof v.source_title === "string" &&
+    (v.place === null || typeof v.place === "string") &&
+    Array.isArray(v.orders) &&
+    v.orders.every((s: unknown) => typeof s === "string") &&
+    typeof v.reference === "string" &&
+    typeof v.url === "string" &&
+    v.url.startsWith("/parcourir/1789/") &&
+    Array.isArray(v.warnings) &&
+    v.warnings.every(
+      (w: unknown) =>
+        record(w) &&
+        typeof w.code === "string" &&
+        typeof w.message === "string",
+    ) &&
+    Array.isArray(v.sources) &&
+    v.sources.every(
+      (s: unknown) =>
+        record(s) &&
+        typeof s.label === "string" &&
+        typeof s.url === "string" &&
+        s.url.startsWith("https://"),
+    )
+  );
+}
+function historicalResult(v: unknown): v is HistoricalSearchResult {
+  return (
+    record(v) &&
+    v.kind === "historical_document" &&
+    historicalMetadata(v) &&
+    positive(v.rank) &&
+    typeof v.excerpt === "string" &&
+    typeof v.unit_id === "string" &&
+    Number.isSafeInteger(v.start_offset) &&
+    Number.isSafeInteger(v.end_offset) &&
+    typeof v.start_offset === "number" &&
+    typeof v.end_offset === "number" &&
+    v.start_offset >= 0 &&
+    v.end_offset > v.start_offset
+  );
+}
+function documentaryCatalogue(v: unknown): v is DocumentaryCatalogue {
+  return (
+    record(v) &&
+    Array.isArray(v.items) &&
+    v.items.every(historicalMetadata) &&
+    positive(v.page) &&
+    positive(v.page_size) &&
+    typeof v.total === "number" &&
+    Number.isSafeInteger(v.total) &&
+    v.total >= 0 &&
+    typeof v.has_next === "boolean"
+  );
+}
+function documentaryReading(v: unknown): v is DocumentaryReading {
+  return (
+    record(v) &&
+    historicalMetadata(v) &&
+    Array.isArray(v.blocks) &&
+    v.blocks.every(
+      (b: unknown) =>
+        record(b) &&
+        typeof b.text === "string" &&
+        (b.anchor === null || typeof b.anchor === "string"),
+    ) &&
+    (v.previous === null ||
+      (typeof v.previous === "string" &&
+        v.previous.startsWith("/parcourir/1789/"))) &&
+    (v.next === null ||
+      (typeof v.next === "string" && v.next.startsWith("/parcourir/1789/"))) &&
+    typeof v.text_sha256 === "string"
+  );
+}
+function corpusOptions(v: unknown): v is CorpusOption[] {
+  return (
+    Array.isArray(v) &&
+    v.every(
+      (o) =>
+        record(o) &&
+        ["2019", "1789"].includes(String(o.id)) &&
+        typeof o.label === "string" &&
+        typeof o.available === "boolean" &&
+        typeof o.published === "boolean",
     )
   );
 }
@@ -531,9 +640,28 @@ export function createPublicApi(origin = "", transport: typeof fetch = fetch) {
     "/api/v1/forms/{form_id}/contributions/{contribution_id}" satisfies keyof paths;
   const searchPath = "/api/v1/search" satisfies keyof paths;
   return {
+    listCorpora: (options: RequestOptions = {}) =>
+      read("/api/v1/corpora", corpusOptions, options),
+    catalogue: (page = 1, options: RequestOptions = {}) =>
+      read("/api/v1/documentary/1789", documentaryCatalogue, {
+        ...options,
+        query: new URLSearchParams({ page: String(page) }),
+      }),
+    documentary: (
+      release: string,
+      id: string,
+      unit: string | null,
+      options: RequestOptions = {},
+    ) =>
+      read(
+        `/api/v1/documentary/1789/${encodeURIComponent(release)}/documents/${encodeURIComponent(id)}`,
+        documentaryReading,
+        { ...options, query: unit ? new URLSearchParams({ unit }) : undefined },
+      ),
     search: (query: HybridSearchQuery = {}, options: RequestOptions = {}) => {
       const params = new URLSearchParams();
       if (query.q !== undefined) params.set("q", query.q);
+      if (query.corpus !== undefined) params.set("corpus", query.corpus);
       if (query.question_id !== undefined && query.question_id !== null)
         params.set("question_id", query.question_id);
       if (query.cursor !== undefined && query.cursor !== null)

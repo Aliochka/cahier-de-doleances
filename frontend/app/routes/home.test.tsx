@@ -14,14 +14,14 @@ test("presents the project and provides page metadata", () => {
   ).toBeVisible();
   expect(screen.getByText(/Des paroles citoyennes à découvrir/)).toBeVisible();
   expect(
-    screen.getByRole("link", { name: "Explorer les enquêtes" }),
-  ).toHaveAttribute("href", "/enquetes");
+    screen.getByRole("link", { name: "Parcourir les corpus" }),
+  ).toHaveAttribute("href", "/parcourir");
   expect(
     screen.getByRole("link", { name: "Rechercher dans les contributions" }),
   ).toHaveAttribute("href", "/recherche");
   expect(document.title).toBe("Cahier de doléances — Les paroles citoyennes");
   expect(document.querySelector('meta[name="description"]')).toHaveAttribute(
     "content",
-    "Explorez les enquêtes et recherchez dans les contributions citoyennes avec Cahier de doléances.",
+    "Explorez les corpus et recherchez dans les contributions citoyennes avec Cahier de doléances.",
   );
 });

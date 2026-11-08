@@ -48,3 +48,10 @@ checkpoints
 .codex
 .agents
 *.log
+
+# Multicorpus runtime keeps code and the approved policy only, never local corpora/secrets.
+private/
+1789/*
+!1789/editorial/
+1789/editorial/*
+!1789/editorial/decisions.json

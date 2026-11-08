@@ -5,6 +5,7 @@ import time
 import unicodedata
 from contextlib import suppress
 from dataclasses import replace
+from typing import Literal
 from uuid import uuid4
 
 from cahier_rag.search.service.control import (
@@ -17,7 +18,7 @@ from cahier_rag.search.service.control import (
     SearchUnavailable,
 )
 from cahier_rag.search.service.core import QUESTION_LEXICAL_RECIPE, SearchRecipe, validate_query
-from fastapi import APIRouter, Query, Request
+from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.responses import JSONResponse, Response
 
 from app.hybrid_runtime import observe
@@ -195,11 +196,13 @@ async def calculate(backend, query, size, cursor, budget, metrics, question_id=N
     "/search",
     response_model=HybridSearchPage,
     operation_id="search_public_hybrid",
-    summary="Recherche de réponses : hybride globale, lexicale H1 par question",
-    description="Sans question_id : recherche hybride existante. Avec question_id : plein texte H1 français, "
-    "sans encodage, recherche vectorielle ni fusion RRF. La fenêtre est bornée "
-    "par la recette (initialement top 50 documentaire) et ne constitue pas un total exhaustif. "
-    "Les curseurs authentifiés parcourent cette sélection pendant 10 minutes sans recalcul H1.",
+    summary="Recherche principale : réponses et documents des corpus disponibles",
+    description="La voie multicorpus est activée explicitement par la configuration. Elle conserve "
+    "un encodage unique, deux classements globaux et une seule RRF documentaire. Par défaut, tous "
+    "les corpus publiés et disponibles sont sélectionnés ; les aperçus non publiés nécessitent "
+    "l'autorisation locale dédiée. Sans activation, H1 reste la référence. Avec question_id, la "
+    "recherche lexicale H1 par question reste inchangée. Les curseurs parcourent une fenêtre bornée "
+    "pendant dix minutes, liée à la requête, au corpus et aux permissions, sans recalcul du classement.",
     responses={status: {"model": HybridErrorEnvelope} for status in (410, 422, 500, 503, 504)},
 )
 async def search_hybrid(
@@ -208,6 +211,7 @@ async def search_hybrid(
     page_size: int = Query(default=20, ge=1, le=20),
     cursor: str | None = Query(default=None, min_length=1, max_length=1024),
     question_id: QueryId | None = None,
+    corpus: Literal["tous", "2019", "1789"] = "tous",
 ):
     started = time.monotonic()
     request.state.search_request_id = uuid4().hex
@@ -216,13 +220,23 @@ async def search_hybrid(
     watcher = None
     backend = getattr(request.app.state, "hybrid_search", None)
     try:
-        allowed = {"q", "page_size", "cursor", "question_id"}
+        allowed = {"q", "page_size", "cursor", "question_id", "corpus"}
         if any(
             k not in allowed or len(request.query_params.getlist(k)) != 1
             for k in request.query_params
         ):
             raise InvalidQuery("Paramètre inconnu ou répété.")
         question_id = int(question_id) if question_id is not None else None
+        common = getattr(backend, "common", None)
+        if question_id is not None and corpus == "1789":
+            raise InvalidQuery("Filtre de question incompatible avec le corpus historique")
+        if corpus == "1789" and (
+            common is None
+            or not await common.read(
+                lambda: common.repository.available(preview=common.repository.preview(request))
+            )
+        ):
+            raise InvalidQuery("Corpus historique indisponible")
         query = unicodedata.normalize("NFC", q).strip()
         if not query:
             if cursor is not None:
@@ -262,9 +276,21 @@ async def search_hybrid(
                     await asyncio.sleep(0.05)
 
             watcher = asyncio.create_task(watch_disconnect())
-            result = await calculate(
-                backend, query, page_size, cursor, budget, metrics, question_id
-            )
+            if common is not None and question_id is None:
+                result = await common.calculate(
+                    query,
+                    page_size,
+                    cursor,
+                    corpus,
+                    common.repository.preview(request),
+                    budget,
+                    metrics,
+                )
+            else:
+                result = await calculate(
+                    backend, query, page_size, cursor, budget, metrics, question_id
+                )
+        result = result.model_copy(update={"corpus": corpus})
         with budget.phase("serialization"):
             content = result.model_dump_json()
         metrics["total"] = time.monotonic() - started
@@ -345,6 +371,14 @@ async def search_hybrid(
     except asyncio.CancelledError:
         budget.cancellation.set()
         raise
+    except HTTPException:
+        return failure(
+            request,
+            503,
+            "search_unavailable",
+            "Le corpus demandé est momentanément indisponible.",
+            True,
+        )
     except Exception:
         return failure(
             request, 500, "search_internal_error", "La recherche n’a pas pu aboutir.", True

@@ -1,5 +1,6 @@
 """Read-only candidate adapters. Local ranks never enter global scoring."""
 
+import hashlib
 import time
 from contextlib import contextmanager
 
@@ -25,13 +26,16 @@ class DocumentaryAdapter:
     corpus = "1789"
     capabilities = ("lexical", "exact-vector", "volume", "estate", "place", "full-reader")
 
-    def __init__(self, destination, *, corpus="1789", scope=None, validator=gate):
+    def __init__(
+        self, destination, *, corpus="1789", scope=None, validator=gate, eligibility=ELIGIBLE
+    ):
         self.scope = dict(SCOPE if scope is None else scope)
         if self.scope != SCOPE and validator is gate:
             raise ValueError(
                 "A different documentary release requires its explicit publication validator"
             )
         self.corpus, self.validator = corpus, validator
+        self.eligibility = eligibility
         self.destination = destination
         self.last_sql = {}
         self.pinned_identity = None
@@ -66,9 +70,9 @@ class DocumentaryAdapter:
                 source_manifest_hash=release["source_manifest_hash"],
                 embedding_recipe=self.recipe,
                 lexical_statistics=release["lexical_statistics"],
-                publication_authorized=False,
-                active=False,
-                laboratory_only=True,
+                publication_authorized=bool(release["publication_authorized"]),
+                active=bool(release["publication_authorized"]),
+                laboratory_only=not release["publication_authorized"],
             )
             if self.pinned_identity is not None and self.pinned_identity != identity:
                 raise ValueError(
@@ -100,7 +104,7 @@ class DocumentaryAdapter:
             u.text_sha256 AS content_hash,d.display_title AS title,
             {score} AS score,u.search_vector @@ CAST(:query AS tsquery) AS text_match,
             d.metadata_vector @@ CAST(:query AS tsquery) AS metadata_match
-            FROM {JOIN} WHERE {ELIGIBLE} {HISTORICAL_FILTERS}
+            FROM {JOIN} WHERE {self.eligibility} {HISTORICAL_FILTERS}
             AND (u.search_vector @@ CAST(:query AS tsquery) OR d.metadata_vector @@ CAST(:query AS tsquery))"""
         self.last_sql["lexical"] = sql, dict(params)
         with self.connection(budget) as c:
@@ -119,7 +123,7 @@ class DocumentaryAdapter:
         sql = f"""SELECT u.document_id,u.unit_id,u.ordinal,u.start_offset,u.end_offset,
             u.text_sha256 AS content_hash,d.display_title AS title,
             1-(u.embedding <=> CAST(:vector AS public.vector)) AS score
-            FROM {JOIN} WHERE {ELIGIBLE} {HISTORICAL_FILTERS} AND u.embedding IS NOT NULL"""
+            FROM {JOIN} WHERE {self.eligibility} {HISTORICAL_FILTERS} AND u.embedding IS NOT NULL"""
         self.last_sql["vector"] = sql, dict(params)
         with self.connection(budget) as c:
             rows = c.execute(text(sql), params).mappings().all()
@@ -141,12 +145,12 @@ class DocumentaryAdapter:
                 for r in c.execute(
                     text(f"""
                 SELECT u.unit_id,d.display_title,d.source_metadata->'metadata' AS metadata,
-                d.provenance,d.warnings,d.source_metadata,
+                d.provenance,d.warnings,d.source_title,d.text_sha256 AS document_hash,d.source_metadata,
                 substring(d.full_text FROM u.start_offset+1 FOR u.end_offset-u.start_offset) AS passage,
                 CASE WHEN CAST(:headline AS text) IS NOT NULL THEN ts_headline('pg_catalog.french',
                     substring(d.full_text FROM u.start_offset+1 FOR u.end_offset-u.start_offset),
                     CAST(:headline AS tsquery),'StartSel="", StopSel="", MaxFragments=1, MinWords=18, MaxWords=70') END AS snippet
-                FROM {JOIN} WHERE {ELIGIBLE} AND u.unit_id=ANY(:ids)"""),
+                FROM {JOIN} WHERE {self.eligibility} AND u.unit_id=ANY(:ids)"""),
                     dict(self.scope, ids=[r["witness"]["unit_id"] for r in ranked], headline=query),
                 ).mappings()
             }
@@ -154,9 +158,16 @@ class DocumentaryAdapter:
         for r in ranked:
             w = r["witness"]
             d = rows[w["unit_id"]]
+            if (
+                w.get("content_hash")
+                and hashlib.sha256(d["passage"].encode()).hexdigest() != w["content_hash"]
+            ):
+                raise ValueError("Historical witness no longer matches its immutable fingerprint")
             metadata_only = w["branch"] == "lexical" and not w["text_match"]
             out[r["key"]] = dict(
                 title=d["display_title"],
+                source_title=d["source_title"],
+                document_hash=d["document_hash"],
                 metadata=d["metadata"],
                 provenance=d["provenance"],
                 warnings=d["warnings"],
@@ -168,7 +179,9 @@ class DocumentaryAdapter:
                 content_kind="historical_document",
                 corpus_id=self.scope["corpus"],
                 release_id=self.scope["release"],
-                publication_authorized=False,
+                publication_authorized=bool(
+                    (self.pinned_identity or {}).get("publication_authorized", False)
+                ),
             )
         return out
 
@@ -192,12 +205,15 @@ class GdnAdapter:
 
     def identity(self, budget):
         generation = self.reader.validate(budget)
+        published = getattr(self.reader, "publication", None) is not None
         return dict(
             corpus_id="gdn-2019",
             generation=generation,
-            publication_authorized=None,
-            publication_basis="verified local index; no public authorization inferred",
-            laboratory_only=True,
+            publication_authorized=True if published else None,
+            publication_basis="validated signed H1 publication"
+            if published
+            else "verified local index; no public authorization inferred",
+            laboratory_only=not published,
         )
 
     def parse(self, query, budget):
@@ -433,6 +449,16 @@ class GdnAdapter:
                     )
                 },
                 text=full_text,
+                source_units=[
+                    dict(
+                        unit_id=u.document_id,
+                        content_hash=u.content_hash,
+                        unit_type=u.unit_type.value,
+                        unit_index=u.unit_index,
+                        text=u.text,
+                    )
+                    for u in originals.values()
+                ],
                 excerpt=" ".join(excerpt.split())[:850],
                 warnings={},
                 url=f"/2019/answer?id={d['answer_id']}",

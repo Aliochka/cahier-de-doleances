@@ -7,7 +7,7 @@ export default function Home() {
       <title>Cahier de doléances — Les paroles citoyennes</title>
       <meta
         name="description"
-        content="Explorez les enquêtes et recherchez dans les contributions citoyennes avec Cahier de doléances."
+        content="Explorez les corpus et recherchez dans les contributions citoyennes avec Cahier de doléances."
       />
       <div
         className={css({
@@ -99,8 +99,8 @@ export default function Home() {
             mt: { base: "2", md: "4" },
           })}
         >
-          <LinkButton to="/enquetes" size="large">
-            Explorer les enquêtes
+          <LinkButton to="/parcourir" size="large">
+            Parcourir les corpus
           </LinkButton>
           <LinkButton to="/recherche" variant="secondary" size="large">
             Rechercher dans les contributions

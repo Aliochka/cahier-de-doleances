@@ -4,7 +4,9 @@ import {
   type HybridSearchPage,
   httpFailure,
 } from "../../lib/api";
-import { search } from "../../lib/api.server";
+import { listCorpora, search } from "../../lib/api.server";
+import { localPreviewRequest } from "../../lib/local-preview.server";
+import { isHistoricalResult } from "../../lib/api";
 import { failureStatus } from "../../lib/api-errors";
 import { type SearchState, searchUrl } from "./search-url";
 
@@ -20,20 +22,52 @@ export async function loadSearch(
   const params = url.searchParams;
   const raw = params.get("q") ?? "";
   const size = params.get("page_size");
+  const corpus = params.get("corpus");
+  const preview = !scope && localPreviewRequest(request);
+  const options = !scope
+    ? await listCorpora({
+        signal: request.signal,
+        ...(preview ? { preview: true } : {}),
+      })
+    : null;
+  const corpora = options?.ok
+    ? options.data
+    : [
+        {
+          id: "2019" as const,
+          label: "Grand Débat national — 2019",
+          available: true,
+          published: true,
+          preview: false,
+        },
+        {
+          id: "1789" as const,
+          label: "Cahiers de doléances — 1789",
+          available: false,
+          published: false,
+          preview: false,
+        },
+      ];
   const state: SearchState = {
     ...(scope ? { path: scope.path } : {}),
+    ...(corpus ? { corpus: corpus as "tous" | "2019" | "1789" } : {}),
     q: raw.normalize("NFC").trim(),
     cursor: params.get("cursor"),
     page_size: size === null ? 20 : Number(size),
   };
   const invalid =
     (scope !== undefined && params.get("tab") !== "search") ||
+    (corpus !== null &&
+      (!["tous", "2019", "1789"].includes(corpus) || scope !== undefined)) ||
     Array.from(raw).length > 512 ||
     [...params.keys()].some(
       (key) =>
-        !["q", "cursor", "page_size", ...(scope ? ["tab"] : [])].includes(
-          key,
-        ) || params.getAll(key).length !== 1,
+        ![
+          "q",
+          "cursor",
+          "page_size",
+          ...(scope ? ["tab"] : ["corpus"]),
+        ].includes(key) || params.getAll(key).length !== 1,
     ) ||
     (size !== null && !/^(?:[1-9]|1[0-9]|20)$/.test(size)) ||
     (state.cursor !== null &&
@@ -45,10 +79,11 @@ export async function loadSearch(
       {
         ...(scope ? { question_id: scope.questionId } : {}),
         q: state.q,
+        ...(state.corpus ? { corpus: state.corpus } : {}),
         page_size: state.page_size,
         ...(state.cursor !== null ? { cursor: state.cursor } : {}),
       },
-      { signal: request.signal },
+      { signal: request.signal, ...(preview ? { preview: true } : {}) },
     );
     if (response.ok) {
       if (
@@ -57,7 +92,8 @@ export async function loadSearch(
         response.data.page_size !== state.page_size ||
         (scope !== undefined &&
           response.data.items.some(
-            (item) => item.question.id !== scope.questionId,
+            (item) =>
+              isHistoricalResult(item) || item.question.id !== scope.questionId,
           ))
       )
         failure = { ok: false, kind: "invalid_response" };
@@ -75,6 +111,7 @@ export async function loadSearch(
   return data(
     {
       state,
+      corpora,
       result,
       failure,
       fieldError:

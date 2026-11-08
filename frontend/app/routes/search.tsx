@@ -16,15 +16,15 @@ export default function Search({ loaderData }: Route.ComponentProps) {
       <title>Recherche — Cahier de doléances</title>
       <meta
         name="description"
-        content="Retrouvez la parole citoyenne du Grand Débat national. Recherchez une question ou un sujet et découvrez les réponses dans leur contexte."
+        content="Recherchez dans les corpus de paroles citoyennes disponibles et retrouvez chaque texte dans son contexte."
       />
       <meta name="robots" content="noindex, follow" />
       <link rel="canonical" href="https://cahierdedoleances.fr/recherche" />
       <div className={css({ maxWidth: "reading" })}>
         <h1 className={styles.title}>Rechercher dans les paroles citoyennes</h1>
         <p className={css({ textStyle: "editorialBody", mb: "6" })}>
-          Une question, un sujet, une préoccupation : découvrez les réponses des
-          participants au Grand Débat national, dans leur contexte d’origine.
+          Une question, un sujet, une préoccupation : découvrez les paroles
+          citoyennes, dans leur contexte d’origine.
         </p>
       </div>
       <SearchPanel {...loaderData} />
