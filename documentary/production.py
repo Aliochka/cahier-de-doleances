@@ -152,7 +152,8 @@ class ProductionDestination:
             connect_args={
                 "connect_timeout": 3,
                 "options": "-c statement_timeout=120000 -c lock_timeout=2000"
-                + ("" if writable else " -c default_transaction_read_only=on"),
+                + " -c default_transaction_read_only="
+                + ("off" if writable else "on"),
             },
         )
         event.listen(self.engine, "before_cursor_execute", self._restrict)

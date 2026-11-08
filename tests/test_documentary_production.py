@@ -165,6 +165,116 @@ def test_documentary_import_needs_write_transaction_and_cannot_publish():
         destination.close()
 
 
+def test_explicit_import_overrides_only_its_session_readonly_default(monkeypatch):
+    captured = []
+
+    def engine(url, **kwargs):
+        captured.append(kwargs["connect_args"]["options"])
+        return SimpleNamespace(dispose=lambda: None)
+
+    monkeypatch.setattr("documentary.production.create_engine", engine)
+    monkeypatch.setattr("documentary.production.event.listen", lambda *args: None)
+    url = "postgresql+psycopg2://cahier_search_maintenance@127.0.0.1:55495/cahier_search"
+    readonly = ProductionDestination(url)
+    writable = ProductionDestination(url, writable=True, backup_proof=proof())
+    readonly.close()
+    writable.close()
+    assert captured == [
+        "-c statement_timeout=120000 -c lock_timeout=2000 -c default_transaction_read_only=on",
+        "-c statement_timeout=120000 -c lock_timeout=2000 -c default_transaction_read_only=off",
+    ]
+
+
+def test_real_readonly_role_can_import_only_through_explicit_guard(isolated_databases, monkeypatch):  # noqa: F811
+    from sqlalchemy import create_engine, text
+    from sqlalchemy.exc import InternalError
+
+    destination = isolated_databases[0]
+    with destination.transaction() as c:
+        c.execute(text("CREATE EXTENSION vector"))
+        c.execute(text("CREATE ROLE cahier_search_maintenance LOGIN"))
+        c.execute(text("ALTER ROLE cahier_search_maintenance SET default_transaction_read_only=on"))
+        c.execute(text("CREATE ROLE cahier_documentary_owner NOLOGIN"))
+        c.execute(text("GRANT cahier_documentary_owner TO cahier_search_maintenance"))
+        c.execute(text("CREATE SCHEMA documentary AUTHORIZATION cahier_documentary_owner"))
+        c.execute(text("CREATE TABLE public.rag_alembic_version(version_num text)"))
+        c.execute(text("INSERT INTO public.rag_alembic_version VALUES ('rag_0007')"))
+        c.execute(text("GRANT SELECT ON public.rag_alembic_version TO cahier_search_maintenance"))
+        c.execute(
+            text("GRANT EXECUTE ON FUNCTION pg_control_system() TO cahier_search_maintenance")
+        )
+        sid = c.execute(
+            text("SELECT system_identifier::text FROM pg_control_system()")
+        ).scalar_one()
+        oid = c.execute(
+            text("SELECT oid::int FROM pg_database WHERE datname=current_database()")
+        ).scalar_one()
+    identity = dict(
+        cluster_id=sid,
+        database_oid=oid,
+        database_name=destination.engine.url.database,
+        schema_revision=None,
+    )
+    monkeypatch.setattr("documentary.production.IDENTITY", identity)
+
+    # Reproduce the actual production role default without touching production.
+    original_engine = create_engine(
+        destination.engine.url.set(username="cahier_search_maintenance")
+    )
+    try:
+        with pytest.raises(InternalError) as refused:
+            with original_engine.connect() as c, c.begin():
+                c.execute(text("SET LOCAL ROLE cahier_documentary_owner"))
+                c.execute(text("CREATE TABLE documentary.guard_probe(value text)"))
+        assert refused.value.orig.pgcode == "25006"  # read_only_sql_transaction
+    finally:
+        original_engine.dispose()
+
+    def isolated_engine(url, **kwargs):
+        return create_engine(
+            destination.engine.url.set(username="cahier_search_maintenance"), **kwargs
+        )
+
+    monkeypatch.setattr("documentary.production.create_engine", isolated_engine)
+    value = proof()
+    value["target"] = identity
+    target = ProductionDestination(
+        "postgresql+psycopg2://cahier_search_maintenance@127.0.0.1:55495/"
+        + identity["database_name"],
+        writable=True,
+        backup_proof=value,
+    )
+    try:
+        with target.transaction(readonly=True) as c:
+            assert c.execute(text("SHOW transaction_read_only")).scalar_one() == "on"
+        with target.transaction() as c:
+            assert c.execute(text("SHOW transaction_read_only")).scalar_one() == "off"
+            assert c.execute(text("SELECT current_user")).scalar_one() == "cahier_documentary_owner"
+            c.execute(text("CREATE TABLE documentary.guard_probe(value text)"))
+            c.execute(text("INSERT INTO documentary.guard_probe VALUES ('authorized')"))
+            with pytest.raises(UnsafeDestination):
+                c.execute(text("UPDATE public.rag_alembic_version SET version_num='forbidden'"))
+        with target.transaction(readonly=True) as c:
+            assert c.execute(text("SHOW transaction_read_only")).scalar_one() == "on"
+            assert (
+                c.execute(text("SELECT value FROM documentary.guard_probe")).scalar_one()
+                == "authorized"
+            )
+    finally:
+        target.close()
+    # A separate ordinary login keeps the role's read-only default unchanged.
+    engine = create_engine(destination.engine.url.set(username="cahier_search_maintenance"))
+    try:
+        with engine.connect() as c:
+            assert c.execute(text("SHOW default_transaction_read_only")).scalar_one() == "on"
+            assert (
+                c.execute(text("SELECT version_num FROM public.rag_alembic_version")).scalar_one()
+                == "rag_0007"
+            )
+    finally:
+        engine.dispose()
+
+
 def test_role_migration_and_prepared_activation_on_new_cluster_only(isolated_databases):  # noqa: F811
     from sqlalchemy import text
 
