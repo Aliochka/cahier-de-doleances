@@ -1,0 +1,14 @@
+{
+  "format": "cahier-publication-authorization-v1",
+  "approved": false,
+  "approval_id": "TO-BE-DECIDED",
+  "decided_by": "TO-BE-DECIDED",
+  "approved_at": "TO-BE-DECIDED",
+  "corpus_id": "cahiers-1789-ap-stanford",
+  "release_id": "reference-documents-2-7cbcaea79991",
+  "source_manifest_hash": "eb9f4533e95df62a8964fbd6a71d56c0446b7769f6fa9d80fcdd8c0111e08ff2",
+  "editorial_hash": "2b2b4c14e33ed5b7908a7e0304a980143c803c088af5dd8234690a81a8314cba",
+  "candidate_documents": 1224,
+  "other_documents_authorized": false,
+  "scope": "Publication initiale des cahiers candidats ; aucune certification historique individuelle."
+}

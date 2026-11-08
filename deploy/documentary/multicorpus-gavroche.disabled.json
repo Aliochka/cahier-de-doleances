@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "local_preview": false,
+  "expected_target": {
+    "cluster_id": "7695026423032606758",
+    "database_oid": 634726,
+    "database_name": "cahier_search",
+    "schema_revision": null
+  },
+  "source_manifest_hash": "eb9f4533e95df62a8964fbd6a71d56c0446b7769f6fa9d80fcdd8c0111e08ff2",
+  "editorial_hash": "2b2b4c14e33ed5b7908a7e0304a980143c803c088af5dd8234690a81a8314cba"
+}

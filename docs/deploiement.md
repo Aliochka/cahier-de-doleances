@@ -1,5 +1,7 @@
 # Déployer le frontend React SSR et FastAPI sur Wallace
 
+Pour la prochaine opération, utiliser le [plan multicorpus sur Gavroche, relevé le 8 novembre 2026](deploiement-multicorpus-gavroche.md). Il identifie les bases, images et montages réellement actifs ; les noms Wallace et les hypothèses de ce guide sont historiques.
+
 Pour la préparation du moteur H1 CPU, consulter la procédure distincte
 [SEARCH-DEPLOY-002](search-deploiement.md). Elle conserve la recherche désactivée
 jusqu’à validation et ne remplace pas la procédure de sauvegarde applicative.

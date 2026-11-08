@@ -1,0 +1,50 @@
+{
+  "target": {
+    "cluster_id": "7695026423032606758",
+    "database_oid": 634726,
+    "database_name": "cahier_search",
+    "schema_revision": null
+  },
+  "application": {
+    "cluster_id": "7695026423032606758",
+    "database_oid": 16384,
+    "database_name": "cahier_doleances",
+    "schema_revision": "forms_statistics_v1"
+  },
+  "operator": "TO-BE-COMPLETED-AFTER-VERIFICATION",
+  "backup_completed_at": "TO-BE-COMPLETED",
+  "restore_completed_at": "TO-BE-COMPLETED",
+  "restore_verified": false,
+  "restored_application_revision": "forms_statistics_v1",
+  "restored_rag_revision": "rag_0007",
+  "backups": {
+    "application": {
+      "kind": "physical-cluster",
+      "covers": ["cahier_doleances", "cahier_search"],
+      "integrity_file": "backup_manifest",
+      "path": "/backups/postgresql/multicorpus-STAMP/physical",
+      "bytes": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "search": {
+      "kind": "physical-cluster",
+      "covers": ["cahier_doleances", "cahier_search"],
+      "integrity_file": "backup_manifest",
+      "path": "/backups/postgresql/multicorpus-STAMP/physical",
+      "bytes": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "globals": {
+      "kind": "globals",
+      "path": "/backups/postgresql/multicorpus-STAMP/globals.sql",
+      "bytes": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "configuration": {
+      "kind": "configuration",
+      "path": "/backups/postgresql/multicorpus-STAMP/configuration.tar",
+      "bytes": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  }
+}

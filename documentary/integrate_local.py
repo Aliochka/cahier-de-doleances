@@ -121,7 +121,7 @@ def backup(directory, source):
         target.close()
 
 
-def transfer(source, target):
+def transfer(source, target, *, reuse_lexical=False):
     # Verify every immutable text/slice/vector and recipe BEFORE touching the target.
     original = verify_representations(source)
     artifacts, bundle = Artifacts(), load_decisions(DECISIONS)
@@ -202,12 +202,13 @@ def transfer(source, target):
         dst.execute(
             text(f"""UPDATE documentary.release SET lexical_recipe=CAST(:lex AS jsonb),
             embedding_recipe=CAST(:emb AS jsonb),lexical_statistics=CAST(:stats AS jsonb),
-            statistics_ready=false,representations_ready=true WHERE {WHERE}"""),
+            statistics_ready=:statistics_ready,representations_ready=true WHERE {WHERE}"""),
             dict(
                 SCOPE,
                 lex=canonical(release["lexical_recipe"]),
                 emb=canonical(release["embedding_recipe"]),
                 stats=canonical(release["lexical_statistics"]),
+                statistics_ready=reuse_lexical,
             ),
         )
         for table in ["document", "search_unit", "lexical_term_statistics"]:
@@ -222,7 +223,8 @@ def transfer(source, target):
         c.execute(text("REVOKE ALL ON documentary.editorial_decision FROM cahier_search_reader"))
     # Text search case folding depends on the database locale, not only french.
     # Rebuild this small corpus on the target; existing GDN statistics are untouched.
-    prepare_lexical(target)
+    if not reuse_lexical:
+        prepare_lexical(target)
     with target.transaction() as c:
         locale = dict(
             c.execute(
@@ -237,14 +239,28 @@ def transfer(source, target):
             ),
             dict(SCOPE, locale=canonical({"database_locale": locale})),
         )
-    result = verify_representations(target)
-    if (
-        result["source_integrity"] != original["source_integrity"]
-        or result["vectors"] != original["vectors"]
-    ):
-        raise ValueError("Integrated documentary differs from verified source")
+    try:
+        result = verify_representations(target)
+        if (
+            result["source_integrity"] != original["source_integrity"]
+            or result["vectors"] != original["vectors"]
+        ):
+            raise ValueError("Integrated documentary differs from verified source")
+    except Exception:
+        # In particular, copied lexical derivatives can disagree with target
+        # locale rules. A failed verification must not leave promotable flags.
+        with target.transaction() as c:
+            c.execute(
+                text(
+                    f"UPDATE documentary.release SET statistics_ready=false,representations_ready=false WHERE {WHERE}"
+                ),
+                SCOPE,
+            )
+        raise
     result["source_statistics"] = original["statistics"]
-    result["lexical_rebuilt_on_target"] = True
+    # verify_representations recomputes expected tsvectors/DF on the destination.
+    # A non-compatible transfer fails explicitly; no ready/public release results.
+    result["lexical_rebuilt_on_target"] = not reuse_lexical
     return result
 
 

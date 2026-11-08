@@ -80,6 +80,12 @@ Thumbs.db
 
 # Private deployment rollback snapshot
 .env.deploy.*backup
+.env.deploy.avant-*
+
+# Non-secret, disabled production preparation templates only.
+!deploy/documentary/multicorpus-gavroche.disabled.json
+!deploy/documentary/backup-proof.example.json
+!deploy/documentary/publication-authorization.example.json
 
 # Search administration secrets, archives and benchmark outputs.
 /private/search/

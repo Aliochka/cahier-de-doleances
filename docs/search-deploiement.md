@@ -1,5 +1,7 @@
 # SEARCH-DEPLOY-002 — Installer H1 CPU sur Wallace
 
+Pour le déploiement multicorpus sur le serveur actuel, consulter le [plan Gavroche du 8 novembre 2026](deploiement-multicorpus-gavroche.md). H1, PostgreSQL 17.11 et pgvector y sont déjà installés : ne pas répéter la création/restauration de la base GDN décrite dans ce guide historique.
+
 Cette procédure est préparée, **non exécutée sur Wallace**. Toute commande de
 déploiement ci-dessous attend une validation humaine. La recherche publique reste
 désactivée (`HYBRID_SEARCH_ENABLED=false`). Lire d’abord

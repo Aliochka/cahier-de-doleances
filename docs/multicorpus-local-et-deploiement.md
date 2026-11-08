@@ -1,5 +1,7 @@
 # Multicorpus — application locale et préparation du déploiement
 
+Le relevé réel de **Gavroche du 8 novembre 2026** et les procédures de sauvegarde, transfert, déploiement désactivé, publication séparée et retour arrière sont désormais dans [le plan de production multicorpus](deploiement-multicorpus-gavroche.md). Les commandes locales ci-dessous restent des outils de développement ; ne pas les transposer directement à la production.
+
 La phase 4 est intégrée à FastAPI et React Router. **Aucun déploiement ni aucune publication historique n’est effectué.** L’activation reste explicite ; sans configuration multicorpus, H1 continue de servir la recherche principale et la recherche par question.
 
 ## Ouvrir l’application locale

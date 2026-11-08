@@ -12,7 +12,13 @@ from .representations import verify_representations
 from .safety import Destination
 
 
-def check(archive, binary=Path("/usr/lib/postgresql/17/bin"), *, install_manifest=None):
+def check(
+    archive,
+    binary=Path("/usr/lib/postgresql/17/bin"),
+    *,
+    install_manifest=None,
+    verified_callback=None,
+):
     archive = Path(archive).resolve()
     env = {k: v for k, v in os.environ.items() if not k.startswith("PG")}
     with tempfile.TemporaryDirectory(prefix="documentary-restore-") as tmp:
@@ -83,6 +89,7 @@ def check(archive, binary=Path("/usr/lib/postgresql/17/bin"), *, install_manifes
                 system,
             )
             result = verify_representations(destination)
+            callback_result = verified_callback(destination) if verified_callback else None
             installed = False
             if install_manifest is not None:
                 from .integrate_local import TARGET, transfer, verify_gdn
@@ -96,13 +103,16 @@ def check(archive, binary=Path("/usr/lib/postgresql/17/bin"), *, install_manifes
                     installed = True
                 finally:
                     target.close()
-            return dict(
+            report = dict(
                 installed_local=installed,
                 archive_sha256=digest(archive),
                 locale="fr_FR.UTF-8",
                 restored=True,
                 integrity=result,
             )
+            if verified_callback:
+                report["verified_action"] = callback_result
+            return report
         finally:
             if destination:
                 destination.close()

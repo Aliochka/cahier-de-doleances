@@ -48,7 +48,10 @@ def insert(c, table, records):
 def migrate(destination):
     with destination.transaction() as c:
         c.execute(text("SELECT pg_advisory_xact_lock(1789,1)"))
-        c.execute(text("CREATE SCHEMA IF NOT EXISTS documentary"))
+        # Production may pre-provision the schema under a dedicated owner that
+        # deliberately has no CREATE privilege on the database itself.
+        if not c.execute(text("SELECT to_regnamespace('documentary') IS NOT NULL")).scalar_one():
+            c.execute(text("CREATE SCHEMA IF NOT EXISTS documentary"))
         config = Config()
         config.set_main_option("script_location", str(Path(__file__).parent / "migrations"))
         config.attributes.update(connection=c, documentary_guarded=True)
