@@ -1,6 +1,8 @@
 # Sauvegardes avant multicorpus — Gavroche
 
-Préparé le 8 novembre 2026. **Aucune commande de sauvegarde, de création de conteneur ou de restauration ci-dessous n'a été exécutée en production.** Ces opérations nécessitent l'autorisation de maintenance. Le [plan principal](deploiement-multicorpus-gavroche.md) décrit les prérequis et la bascule.
+Préparé le 8 novembre 2026. **À la rédaction initiale, aucune commande de sauvegarde, de création de conteneur ou de restauration ci-dessous n'avait été exécutée sur Gavroche.** Ces opérations nécessitent l'autorisation de maintenance. Le [plan principal](deploiement-multicorpus-gavroche.md) décrit les prérequis et la bascule.
+
+**Complément du 8 novembre :** la copie froide existante du 2 novembre a depuis été testée, sur une copie indépendante et après autorisation distincte. Le [rapport de vérification](verification-sauvegarde-20261102-gavroche.md) recommande sa réutilisation sur le périmètre contrôlé et propose une exception ciblée au protocole, **sans l'implémenter**. Aucune nouvelle sauvegarde de production n'a été créée. Ne pas lancer automatiquement la procédure ci-dessous : la décision sur l'exception, les configurations hors PGDATA et l'autorisation de déploiement restent distinctes.
 
 ## Périmètre et espace
 
