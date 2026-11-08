@@ -1,9 +1,9 @@
-import { isHistoricalResult } from "../../lib/api";
 import type {
   AnswerPage,
   AuthorFormsPage,
   HybridSearchPage,
 } from "../../lib/api";
+import { isHistoricalResult } from "../../lib/api";
 
 const unique = <T>(values: T[], key: (value: T) => string) => [
   ...new Map(values.map((value) => [key(value), value])).values(),

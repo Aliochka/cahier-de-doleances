@@ -1,5 +1,5 @@
-import { isHistoricalResult } from "../../lib/api";
 import { expect, it } from "vitest";
+import { isHistoricalResult } from "../../lib/api";
 import { authorPage } from "../contributions/fixtures.test-support";
 import { answers } from "../questions/fixtures.test-support";
 import { page as searchPage } from "../search/fixtures.test-support";
@@ -36,10 +36,7 @@ it("la recherche conserve le classement de la sélection et les avertissements",
     merged.items.map((item) =>
       isHistoricalResult(item) ? item.document_id : item.answer_id,
     ),
-  ).toEqual([
-    ...searchPage.items.map((item) => item.answer_id),
-    "999",
-  ]);
+  ).toEqual([...searchPage.items.map((item) => item.answer_id), "999"]);
   expect(merged.window).toEqual(searchPage.window);
   expect(merged.first_cursor).toBe(searchPage.first_cursor);
 });
