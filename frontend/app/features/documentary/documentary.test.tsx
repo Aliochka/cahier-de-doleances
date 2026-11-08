@@ -7,8 +7,8 @@ import { mergeSearch, searchIds } from "../pagination/merge-pages";
 import { page } from "../search/fixtures.test-support";
 import { SearchControls } from "../search/search-controls";
 import { searchUrl } from "../search/search-url";
-import { HistoricalCard } from "./historical-card";
 import { historical } from "./fixtures.test-support";
+import { HistoricalCard } from "./historical-card";
 
 it("présente le cahier comme document et conserve le lien versionné au passage", () => {
   render(

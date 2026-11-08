@@ -3,11 +3,11 @@ import {
   type ApiFailure,
   type HybridSearchPage,
   httpFailure,
+  isHistoricalResult,
 } from "../../lib/api";
 import { listCorpora, search } from "../../lib/api.server";
-import { localPreviewRequest } from "../../lib/local-preview.server";
-import { isHistoricalResult } from "../../lib/api";
 import { failureStatus } from "../../lib/api-errors";
+import { localPreviewRequest } from "../../lib/local-preview.server";
 import { type SearchState, searchUrl } from "./search-url";
 
 const headers = {

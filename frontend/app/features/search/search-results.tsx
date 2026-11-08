@@ -2,13 +2,13 @@ import { Link } from "react-router";
 import { css, cx } from "../../../styled-system/css";
 import { EmptyState } from "../../components/layout/data-states";
 import { Alert } from "../../components/ui/alert";
-import { isHistoricalResult, type HybridSearchPage } from "../../lib/api";
+import { type HybridSearchPage, isHistoricalResult } from "../../lib/api";
 import {
   CitizenText,
   contributionStyles,
 } from "../contributions/contribution-presentation";
-import { ListNavigation, type MoreAction } from "../pagination/list-navigation";
 import { HistoricalCard } from "../documentary/historical-card";
+import { ListNavigation, type MoreAction } from "../pagination/list-navigation";
 import { type SearchState, searchUrl } from "./search-url";
 
 const secondary = css({ fontSize: "secondary", color: "muted" });
