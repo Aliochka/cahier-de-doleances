@@ -571,6 +571,35 @@
         "title": "DocumentaryCatalogue",
         "type": "object"
       },
+      "DocumentaryFragment": {
+        "properties": {
+          "anchor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anchor"
+          },
+          "selected": {
+            "default": false,
+            "title": "Selected",
+            "type": "boolean"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "DocumentaryFragment",
+        "type": "object"
+      },
       "DocumentaryMetadata": {
         "properties": {
           "document_id": {
@@ -644,6 +673,41 @@
         "title": "DocumentaryMetadata",
         "type": "object"
       },
+      "DocumentaryParagraph": {
+        "properties": {
+          "end_offset": {
+            "title": "End Offset",
+            "type": "integer"
+          },
+          "fragments": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentaryFragment"
+            },
+            "title": "Fragments",
+            "type": "array"
+          },
+          "kind": {
+            "enum": [
+              "paragraph",
+              "heading"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "start_offset": {
+            "title": "Start Offset",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "kind",
+          "start_offset",
+          "end_offset",
+          "fragments"
+        ],
+        "title": "DocumentaryParagraph",
+        "type": "object"
+      },
       "DocumentaryReading": {
         "properties": {
           "blocks": {
@@ -673,6 +737,13 @@
               "type": "string"
             },
             "title": "Orders",
+            "type": "array"
+          },
+          "paragraphs": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentaryParagraph"
+            },
+            "title": "Paragraphs",
             "type": "array"
           },
           "place": {
@@ -762,6 +833,7 @@
           "warnings",
           "url",
           "blocks",
+          "paragraphs",
           "selected_unit",
           "previous",
           "next",

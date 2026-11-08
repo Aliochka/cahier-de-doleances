@@ -60,8 +60,20 @@ class DocumentaryUnit(BaseModel):
     text_sha256: str
 
 
+class DocumentaryFragment(DocumentaryBlock):
+    selected: bool = False
+
+
+class DocumentaryParagraph(BaseModel):
+    kind: Literal["paragraph", "heading"]
+    start_offset: int
+    end_offset: int
+    fragments: list[DocumentaryFragment]
+
+
 class DocumentaryReading(DocumentaryMetadata):
     blocks: list[DocumentaryBlock]
+    paragraphs: list[DocumentaryParagraph]
     selected_unit: DocumentaryUnit | None
     previous: str | None
     next: str | None

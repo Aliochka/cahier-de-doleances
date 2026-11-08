@@ -12,6 +12,7 @@ from fastapi import HTTPException
 from sqlalchemy import text
 
 from app.config import settings
+from app.documentary_presentation import reading_paragraphs
 from documentary.representations import ELIGIBLE
 from documentary.representations import gate as laboratory_gate
 from documentary.storage import SCOPE, WHERE
@@ -304,6 +305,9 @@ class DocumentaryRepository:
             return dict(
                 **self.metadata(row),
                 blocks=blocks,
+                paragraphs=reading_paragraphs(
+                    full, row["source_metadata"].get("document", {}), witness
+                ),
                 selected_unit=dict(witness) if witness else None,
                 previous=document_url(prev, release) if prev else None,
                 next=document_url(nxt, release) if nxt else None,
