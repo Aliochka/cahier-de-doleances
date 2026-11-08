@@ -23,8 +23,8 @@ test("home hydrates without errors or backend requests", async ({ page }) => {
     "Cahier de doléances — Les paroles citoyennes",
   );
   await expect(
-    page.getByRole("link", { name: "Explorer les enquêtes" }),
-  ).toHaveAttribute("href", "/enquetes");
+    page.getByRole("link", { name: "Parcourir les corpus" }),
+  ).toHaveAttribute("href", "/parcourir");
   await page.keyboard.press("Tab");
   await expect(
     page.getByRole("link", { name: "Aller au contenu principal" }),
@@ -73,9 +73,9 @@ for (const width of [320, 375, 768, 1280]) {
       await expect(brand.locator("img")).toHaveAttribute("src", "/favicon.svg");
       await expect(brand).toHaveAttribute("href", "/");
       for (const name of [
-        "Enquêtes",
+        "Parcourir",
         "Recherche",
-        "Explorer les enquêtes",
+        "Parcourir les corpus",
         "Rechercher dans les contributions",
       ]) {
         const box = await page
@@ -89,7 +89,7 @@ for (const width of [320, 375, 768, 1280]) {
         .getByText(/Des paroles citoyennes à découvrir/)
         .boundingBox();
       const explore = await page
-        .getByRole("link", { name: "Explorer les enquêtes" })
+        .getByRole("link", { name: "Parcourir les corpus" })
         .boundingBox();
       const search = await page
         .getByRole("link", { name: "Rechercher dans les contributions" })

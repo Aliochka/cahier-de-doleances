@@ -100,8 +100,8 @@ test("navigation interne, retour arrière, clavier et hydratation", async ({
   });
   await page.goto(`${origin}/enquetes`);
   await expect(
-    page.getByRole("navigation").getByRole("link", { name: "Enquêtes" }),
-  ).toHaveAttribute("aria-current", "page");
+    page.getByRole("navigation").getByRole("link", { name: "Parcourir" }),
+  ).toHaveAttribute("aria-current", "location");
   const cards = page.getByRole("list", {
     name: "Questionnaires — Consultation non renseignée",
   });
