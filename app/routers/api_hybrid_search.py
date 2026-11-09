@@ -218,6 +218,7 @@ async def search_hybrid(
     budget = Budget(18)
     metrics = {"cache_hit": False}
     watcher = None
+    watcher_stopping = asyncio.Event()
     backend = getattr(request.app.state, "hybrid_search", None)
     try:
         allowed = {"q", "page_size", "cursor", "question_id", "corpus"}
@@ -269,7 +270,7 @@ async def search_hybrid(
                 raise SearchNotReady("Recherche indisponible.")
 
             async def watch_disconnect():
-                while True:
+                while not watcher_stopping.is_set():
                     if await request.is_disconnected():
                         budget.cancellation.set()
                         return
@@ -385,6 +386,10 @@ async def search_hybrid(
         )
     finally:
         if watcher is not None:
+            # Starlette's disconnect poll uses its own cancellation scope, which
+            # can consume Task.cancel(). Also stop its loop explicitly so a
+            # completed response cannot wait until the outer HTTP timeout.
+            watcher_stopping.set()
             watcher.cancel()
             with suppress(asyncio.CancelledError):
                 await watcher

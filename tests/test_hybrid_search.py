@@ -4,6 +4,7 @@ import asyncio
 from dataclasses import replace
 from types import SimpleNamespace
 
+import anyio
 import pytest
 from cahier_rag.contracts import MAX_BIGINT
 from cahier_rag.search.service.control import (
@@ -22,10 +23,13 @@ from cahier_rag.search.service.core import (
 )
 from cahier_rag.sources.gdn import row_to_documents
 from fastapi.testclient import TestClient
+from starlette.requests import Request
 
 from app.app import app
 from app.hybrid_runtime import SearchBackend
+from app.routers import api_hybrid_search
 from app.routers.api_hybrid_search import calculate
+from app.schemas.hybrid_search import HybridSearchPage, SearchWindow
 from app.services.search_hydration import public_card
 from app.services.search_snapshots import (
     CardReference,
@@ -157,6 +161,90 @@ def test_http_order_pagination_return_first_and_no_recomputation(hybrid):
         for word in ("PRIVATE", "SECRET", "rrf_score", "embedding", "content_hash", "author")
     )
     assert first["items"][0]["url"].endswith("#answer-" + str(MAX_BIGINT))
+
+
+@pytest.mark.parametrize("common_mode", [False, True], ids=["h1", "multicorpus"])
+@pytest.mark.parametrize("outcome", ["result", "busy-error", "disconnect"])
+def test_finished_response_does_not_wait_for_disconnect_polling(monkeypatch, common_mode, outcome):
+    """Starlette's own cancellation scope can consume the watcher's cancel.
+
+    Exercise the real Request.is_disconnected(), including its AnyIO receive
+    checkpoint. A completed ranking or structured error must still be returned.
+    No PostgreSQL connection, model or production configuration is used.
+    """
+
+    async def exercise():
+        entered = asyncio.Event()
+
+        async def receive():
+            entered.set()
+            if outcome == "disconnect":
+                return {"type": "http.disconnect"}
+            await anyio.sleep(3600)
+
+        async def result(*args, **kwargs):
+            await entered.wait()
+            if outcome == "busy-error":
+                raise SearchBusy("occupied")
+            next(value for value in args if isinstance(value, Budget)).check()
+            return HybridSearchPage(
+                q="test",
+                state="empty",
+                recipe_version="test",
+                items=[],
+                page_size=20,
+                has_next=False,
+                next_cursor=None,
+                previous_cursor=None,
+                first_cursor=None,
+                expires_at=None,
+                warnings=[],
+                window=SearchWindow(document_limit=50, retrieval_depth=50, answer_count=0),
+            )
+
+        monkeypatch.setattr(api_hybrid_search, "calculate", result)
+        backend = SimpleNamespace(
+            common=SimpleNamespace(
+                calculate=result, repository=SimpleNamespace(preview=lambda request: False)
+            )
+            if common_mode
+            else None
+        )
+        request = Request(
+            dict(
+                type="http",
+                method="GET",
+                path="/api/v1/search",
+                query_string=b"q=test",
+                headers=[],
+                app=SimpleNamespace(state=SimpleNamespace(hybrid_search=backend)),
+            ),
+            receive=receive,
+        )
+        task = asyncio.create_task(
+            api_hybrid_search.search_hybrid(
+                request, q="test", page_size=20, cursor=None, question_id=None, corpus="tous"
+            )
+        )
+        try:
+            done, _ = await asyncio.wait({task}, timeout=1)
+            assert task in done, "Completed response held by disconnect watcher"
+            response = task.result()
+            assert (
+                response.status_code
+                == {"result": 200, "busy-error": 503, "disconnect": 504}[outcome]
+            )
+        finally:
+            if not task.done():
+                # A second cancellation is needed on the unfixed implementation
+                # after the first was consumed inside Starlette's cancel scope.
+                task.cancel()
+                try:
+                    await task
+                except asyncio.CancelledError:
+                    pass
+
+    asyncio.run(exercise())
 
 
 @pytest.mark.parametrize(
