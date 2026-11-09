@@ -1,6 +1,6 @@
 # Préparer le multicorpus en production — Gavroche
 
-État du **8 novembre 2026**. Diagnostic réel effectué en lecture seule. **Aucune migration, aucun import, aucune sauvegarde lourde, aucun build/restart de production et aucune publication n'ont été exécutés.** Les commandes d'exploitation ci-dessous sont futures et requièrent l'autorisation correspondante.
+Document de préparation initiale du **8 novembre 2026**, fondé sur un diagnostic en lecture seule. Le déploiement technique a ensuite été autorisé et exécuté : voir le [journal et bilan réel](deploiement-multicorpus-gavroche-execution-20261108.md). Les commandes ci-dessous constituent le protocole ; elles ne doivent pas être relancées sans vérifier l'état atteint. **La publication de 1789 reste interdite sans autorisation distincte.**
 
 Ce document remplace les hypothèses « Wallace » pour cette opération. Les anciens guides restent des références historiques. La préparation repose sur le code local `79dfefe7d21b9035318c043bb194b5a770513ed7`, plus les fichiers de cette mission à revoir et versionner avant déploiement.
 
@@ -252,6 +252,8 @@ mc run --rm --no-deps app python -m app.deployment_check
 mc up -d --no-deps --no-build --pull never app frontend
 ```
 
+**Disponibilité H1 :** `/healthz` peut répondre 200 avant la fin du chargement asynchrone de BGE-M3. Après la recréation, sonder `https://cahierdedoleances.fr/api/v1/search?q=transports+publics&page_size=1` jusqu'à obtenir 200, des résultats et la recette `h1-public-v2-ts-rank`. Pendant une fenêtre de démarrage bornée à 180 secondes, seul un 503 `search_not_ready` justifie d'attendre puis de réessayer. Ne pas augmenter le budget des requêtes ni considérer un autre code d'erreur comme une simple initialisation. La sonde TLS utilise le domaine public, **pas** `HEALTHCHECK_HOST=localhost` destiné au contrôle interne. En accès LAN, employer `curl --resolve cahierdedoleances.fr:443:192.168.1.185`, sans `--insecure`.
+
 Conserver `HYBRID_SEARCH_ENABLED=true` et toutes les valeurs H1 existantes. Ne définir **aucun** `DOCUMENTARY_LOCAL_PREVIEW`/`DOCUMENTARY_PREVIEW_TOKEN`. L'image et l'overlay savent fonctionner avec `enabled=false` : H1 sert la recherche, la recherche par question reste lexicale, les cahiers restent en 404 et le filtre 1789 indisponible. Ne pas tester en activant des permissions documentaires pour contourner cela.
 
 **Point d'arrêt technique :** release `verified`, flags représentations/statistiques vrais, `publication_authorized=false`, `active_release_id=NULL`, zéro document lisible/catalogué/recherchable publiquement, deux unités Artois exclues, 43 non candidats hors publication. Valider H1 et l'application avant de demander l'autorisation B.
@@ -348,10 +350,11 @@ H1 reste activé. Les routes historiques deviennent indisponibles sans intégrat
 Reprendre le répertoire `MC_BACKUP` exact de cette opération, pas un répertoire « latest ». Dans le shell root :
 
 ```bash
-mkdir -m 700 "$MC_BACKUP/rollback-files"
-tar -xf "$MC_BACKUP/configuration.tar" -C "$MC_BACKUP/rollback-files"
-MC_OLD_ROOT="$MC_BACKUP/rollback-files/srv/cahier-de-doleances-app"
-cat > "$MC_BACKUP/rollback-images.yml" <<EOF
+MC_ROLLBACK_WORK="$MC_BACKUP/rollback-$(date -u +%Y%m%dT%H%M%S%NZ)"
+mkdir -m 700 "$MC_ROLLBACK_WORK"
+tar -xf "$MC_BACKUP/configuration.tar" -C "$MC_ROLLBACK_WORK"
+MC_OLD_ROOT="$MC_ROLLBACK_WORK/srv/cahier-de-doleances-app"
+cat > "$MC_ROLLBACK_WORK/rollback-images.yml" <<EOF
 services:
   app:
     image: sha256:e0c26f229536597004ef299d6e8406fb087916d0511eabe8bd02e5543070c7cd
@@ -363,8 +366,10 @@ EOF
 docker compose --project-name cahier-de-doleances-app --project-directory "$MC_ROOT" \
   --env-file "$MC_OLD_ROOT/.env.deploy" \
   -f "$MC_OLD_ROOT/compose.deploy.yml" -f "$MC_OLD_ROOT/compose.search.yml" \
-  -f "$MC_BACKUP/rollback-images.yml" up -d --no-deps --no-build --pull never app frontend
+  -f "$MC_ROLLBACK_WORK/rollback-images.yml" up -d --no-deps --no-build --pull never app frontend
 ```
+
+Chaque tentative utilise un répertoire neuf ; les fichiers d'une tentative antérieure ne sont ni écrasés ni supprimés. Après retour arrière, attendre également la disponibilité H1, pas seulement la santé HTTP. La décision finale du 8 novembre a été de **conserver les nouvelles images**, sans exécuter la commande de retour arrière proposée : le [bilan d'exécution](deploiement-multicorpus-gavroche-execution-20261108.md) prévaut sur les étapes historiques intermédiaires.
 
 Les poids, fichiers lecteur/publication GDN, réseau et Caddy restent aux mêmes chemins. Si les images ont disparu, vérifier les checksums puis `docker image load -i "$MC_BACKUP/images.tar"`. Ne pas relancer le projet PostgreSQL, toucher les données ni retirer le schéma documentaire pour revenir à H1.
 

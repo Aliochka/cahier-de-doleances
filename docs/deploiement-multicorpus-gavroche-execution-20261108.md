@@ -1,5 +1,9 @@
 # Exécution technique sur Gavroche — 8 novembre 2026
 
+**État final confirmé le 9 novembre 2026 à 07:48 UTC (08:48 à Paris) : les nouvelles images du commit `78cdf0a167d093c12ded146fb4b88cd081c2c987` sont actives et saines. Le stockage de 1789 est installé et vérifié ; le public accède uniquement au Grand Débat via H1. Le multicorpus et la publication historique restent désactivés.**
+
+Les sections suivantes retracent les étapes intermédiaires et leurs arrêts. Le bilan final en fin de document prévaut sur ces états historiques. Réserve conservée : la requête très fréquente « Non », question 293, a dépassé le budget de recherche ; son statut sur l'ancienne image n'a pas été établi.
+
 ## État avant reprise du correctif de maintenance
 
 Le code initial retenu est `469ad8640088985301dd549ad08f928e9c02c3a2`, déjà commité et propre au début de la mission. 85 tests ciblés ont réussi avant la première séquence. Aucun secret ni artefact documentaire privé n'a été ajouté au dépôt.
@@ -63,3 +67,72 @@ Le correctif suivant nomme cette requête de validation et autorise **uniquement
 Au contrôle RO du **8 novembre à 17:57:59 UTC**, snapshot `1168:1168:`, les index GDN sont valides et les décisions sont conformes : Artois 1/2 admissibles et vectorisés, 3/4 exclus sans vecteurs ; titre validé d'Aunay-la-Côte, titre source et avertissements conservés ; 43 documents non candidats, sans droits publics. Le déploiement reste arrêté dans l'attente de la validation de ce nouveau correctif et de sa reprise. Journaux privés : `private/search/deployment-9064db7-20261108T175000Z/`.
 
 Validation du correctif CTE : **89 tests réussis**, avec les intégrations PostgreSQL activées (`DOCUMENTARY_TEST_PG_BIN=/usr/lib/postgresql/17/bin`), aucun test ignoré. Le parcours complet sous le véritable garde passe également après simulation de l'état partiel (données présentes, préparation false) et réimport idempotent. Ces opérations sont toutes réalisées dans de nouveaux clusters temporaires locaux ; rien n'est relancé sur Gavroche pendant ces tests.
+
+## Installation vérifiée avec `78cdf0a`
+
+L'opérateur a approuvé le commit `78cdf0a167d093c12ded146fb4b88cd081c2c987`. L'import idempotent a été vérifié entièrement le 8 novembre à **18:11:54 UTC** : textes, identifiants, offsets Unicode, représentations, empreintes et décisions éditoriales conformes. Les représentations existantes ont été transférées, **sans calcul d'embeddings**. La compatibilité des représentations et statistiques lexicales a été vérifiée dans la locale cible `fr_FR.UTF-8`, sans reconstruire les statistiques GDN.
+
+Une première bascule a renvoyé un 503 H1 pendant l'initialisation asynchrone : le contrôle HTTP était prêt avant le moteur. Le retour aux anciennes images a alors été effectué. Le diagnostic de la nouvelle image en conteneur éphémère sans serveur a ensuite confirmé une initialisation H1 réussie en **11,1 secondes**. La séquence d'exploitation a été corrigée pour attendre la disponibilité H1 pendant au plus 180 secondes, sans augmenter le budget de recherche et sans changer le code applicatif approuvé.
+
+La seconde bascule a rendu H1 disponible et permis les contrôles de recherche générale et de pagination. La requête « Non », question 293, a toutefois reçu un **504 après 10,02 secondes**. Le retour arrière automatique a été bloqué par le répertoire `rollback-files` déjà créé lors du précédent retour. Un retour arrière utilisant un nouveau répertoire a été préparé, mais **l'opérateur a explicitement choisi de conserver les nouveaux conteneurs**, après consultation du site. La commande de retour arrière proposée n'a pas été exécutée.
+
+Le [protocole principal](deploiement-multicorpus-gavroche.md) utilise désormais un répertoire neuf pour chaque retour arrière et distingue la disponibilité HTTP de celle de H1. Les archives de conservation ne sont ni écrasées ni supprimées.
+
+## Images effectivement actives
+
+Contrôle Docker du **9 novembre à 07:48:48 UTC** : les quatre services sont `healthy`, aucun OOM, checkout et labels des deux images applicatives conformes au SHA approuvé.
+
+| Service | Ancienne image conservée | Image active |
+|---|---|---|
+| Backend | `sha256:e0c26f229536597004ef299d6e8406fb087916d0511eabe8bd02e5543070c7cd` | `sha256:0cf56991af956848df143dbe2af8c53c0cfe7618af128b1232bb1b4996874853` |
+| Frontend | `sha256:73e31e5b321040259aae7769d5fc4eaebcd90c493ebdc85f1168d1313176a1eb` | `sha256:3473018c996c2c1900517fc45f8a76054dfbc12d2b744e6b33d46823f80bd9e0` |
+
+Tags des nouvelles images : `cahier-de-doleances-app:mc-78cdf0a167d0` et `cahier-de-doleances-frontend:mc-78cdf0a167d0`. Conteneurs démarrés le 8 novembre à **18:25:32 UTC** pour le backend et **18:25:37 UTC** pour le frontend ; ils sont restés actifs après la décision de conservation.
+
+PostgreSQL conserve l'image `sha256:30ee450c42fda0596abaf71066c1612c79a0aaa791e655e5e00ce2c1e33ab6cc`, Caddy `sha256:834468128c7696cec0ceea6172f7d692daf645ae51983ca76e39da54a97c570d`. Le conteneur PostgreSQL et son serveur tournent toujours depuis le **6 novembre à 19:59:25 UTC**. Aucun redémarrage ni changement de son image ou de ses montages n'a été effectué.
+
+## Intégrité et non-publication finales
+
+Contrôle SQL en transactions `READ ONLY` le **9 novembre à 07:40:33 UTC** :
+
+| Élément | Résultat |
+|---|---|
+| Révisions | `documentary.alembic_version=doc_0001`, `public.rag_alembic_version=rag_0007` |
+| Documents / passages / vecteurs | **1 267 / 11 391 / 10 748** |
+| Population candidate / autres documents | **1 224 / 43** ; les 43 restent hors périmètre candidat/public |
+| Statistiques 1789 | **86 341 termes**, population **10 748**, somme DF **1 770 363**, locale `fr_FR.UTF-8` |
+| Release | `verified`, représentations/statistiques prêtes, **`publication_authorized=false`** |
+| Pointeur actif / documents publics | **Aucun / zéro** |
+| Artois | Passages 1/2 admissibles et vectorisés ; 3/4 exclus et sans vecteurs |
+| Aunay-la-Côte | Huit passages admissibles ; titre de présentation validé, titre source et avertissement préservés |
+| Index HNSW documentaire | **Aucun** |
+| Journal éditorial | Le lecteur public n'a pas de droit SELECT sur `editorial_decision` |
+| Maintenance | Défaut `default_transaction_read_only=on` conservé ; aucun ALTER ROLE pour le désactiver |
+
+Les compteurs de manifeste GDN restent **5 172 356 documents / 5 187 190 segments**. L'état complet de l'espace, les recettes, empreintes, statistiques lexicales et **26 index `rag_full`/`rag_tuning`** ont été comparés à la référence : mêmes définitions, relfilenodes et validité. Cela ne constitue pas un nouveau hachage des millions d'embeddings ; aucun ordre de modification/reconstruction GDN n'a été exécuté. Les OID et les relfilenodes provenant des deux formats de relevé ont été comparés après normalisation de leurs types numériques.
+
+Les fichiers `.env.deploy`, lecteur de recherche et publication GDN sont identiques à leurs copies de conservation. La publication conserve notamment le SHA-256 `bb117a749ded5512938d2ab701deaca6a3aa4fca8be5e08faa212fb26b79de32`. Configuration effective : **`HYBRID_SEARCH_ENABLED=true`, CPU/float32, deux threads ; `enabled=false`, `local_preview=false`, aucun jeton d'aperçu**. Aucun `activate-1789.sql`, autorisation de publication ou promotion de release n'a été exécuté.
+
+## Vérifications publiques et exploitation
+
+Le 9 novembre, **28 contrôles HTTP**, complétés par deux contrôles d'anciennes URL, ont réussi : accueil, santé, formulaires, questions, contributions, navigation, recherche générale, recherche par question et pagination avant/arrière sans répétition du résultat échantillonné. Les anciennes URL `?contrib=1` répondent 200, de même que les liens de questions avec leur redirection canonique.
+
+| Sonde | Avant bascule le 8 novembre | Après, le 9 novembre |
+|---|---:|---:|
+| H1 « transports publics », première page de taille 1 | 1,16 s | **1,17 s** |
+| H1 « vélomobile », première page de taille 1 | 0,24 s | **0,23 s** |
+| Recherche par question « vélomobile », question 279 | Non mesurée | **0,04 s**, neuf réponses, recette `h1-question-lexical-v1-ts-rank` |
+
+La recherche générale conserve `h1-public-v2-ts-rank`. Ces mesures ponctuelles ne sont pas des distributions de latence ni une nouvelle validation de pertinence. La requête très fréquente « Non », question 293, demeure un **cas de dépassement de budget observé**, non corrigé ; aucune comparaison de cette requête avec l'ancienne image n'a été réalisée, donc son caractère antérieur ou régressif n'est pas établi. L'opérateur a choisi de garder les nouvelles images avec cette réserve. Aucune optimisation de classement ni augmentation de délai n'a été appliquée.
+
+Les API et pages de catalogue/lecture de 1789 répondent **404**, y compris avec un identifiant de document réellement présent, de faux en-têtes d'aperçu et une adresse locale usurpée. Le filtre `corpus=1789` est refusé en **422**. `/api/v1/corpora` annonce uniquement 2019 disponible/publié ; 1789 est indisponible, non publié, sans aperçu.
+
+Les journaux bornés inspectés ne montrent pas d'erreur applicative backend/frontend/Caddy. PostgreSQL contient trois messages au même instant, le **8 novembre à 18:26:01 UTC** : un `statement timeout` et l'arrêt de deux workers parallèles ; leur horodatage coïncide avec le 504 de « Non ». Le postmaster n'a pas redémarré. Aucun autre message d'erreur n'a été relevé dans cette fenêtre inspectée.
+
+Consommations instantanées au relevé Docker : backend environ **646 Mio**, frontend **232 Mio**, PostgreSQL **445 Mio**, Caddy **69 Mio**, sans OOM. Les connexions observées comprennent trois connexions du lecteur de recherche, quatre du compte applicatif et la connexion de contrôle de maintenance. L'état détaillé de certaines connexions n'est pas visible par ce rôle de contrôle ; ces chiffres ne sont pas un test de charge.
+
+## État réel de fin de mission
+
+**Application en production sur le nouveau code, H1 actif, données historiques installées et vérifiées, corpus historique inaccessible publiquement.** Les réserves connues sont le timeout de la requête fréquente et les corrections apportées à l'exploitation (attente H1, retours arrière dans un répertoire neuf). Le déploiement ne vaut ni autorisation éditoriale ni activation multicorpus.
+
+Les preuves finales sont privées dans `private/search/deployment-78cdf0a-20261108T182000Z/` : contrôles HTTP, vérification SQL finale, relevés Docker du 9 novembre et journaux d'exploitation. Les sources/dumps, secrets, archives et journaux ne sont pas ajoutés au dépôt. La clôture du 9 novembre est **strictement en lecture seule**, sans nouvelle bascule, migration, import, calcul de vecteurs ou publication.
